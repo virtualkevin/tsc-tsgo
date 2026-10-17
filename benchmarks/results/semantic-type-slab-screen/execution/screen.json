@@ -1,0 +1,77 @@
+{
+  "name": "semantic-type-slab",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-type-slab",
+      "sha256": "a394f03b618b28be6779d213bf94c1740c30fffa762a6ebcee7127306ce3ea3a",
+      "source": "df44149c429fabf63ea25b7b63ba4a7cd4184a330680cc031aa42de8568a4962",
+      "sidecarSha256": "1e7cd656de10946fb70e5d1e57c7e1fc968f22e8dc4529fbd6a1426a4d9328ff",
+      "revisionLabel": "32-object typed semantic slabs"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "17891a6e4e52c55bafb8d76ebcd4a81a5cdd3da59bd1d52f5aeada68d3d0ab19",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/semantic_type_slab.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/semantic_type_slab.go",
+        "sha256": "d3cdf8301c578620458cdb885c3337e2bc37bbd31b5a904a919c380eedea118e",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/semantic_type_slab_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/semantic_type_slab_test.go",
+        "sha256": "aab24ef2b6a21c46c44bbc8b47c85ca1930eade2119f3fb42487b3dae518a2ab",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5156
+  },
+  "comparisonPolicySha256": "ab80481ffa273e74be17ded85f5cc9c1631112bc8a8bb721b1acaf4973338ccb",
+  "methodology": "Frozen 32-object typed slab candidate against retained node-pointer Go; nine small-workload/five large-workload alternating pairs, one warmup, default settings, matched RSS, identical physical inputs. Full correctness and two independent confirmations required before retention."
+}

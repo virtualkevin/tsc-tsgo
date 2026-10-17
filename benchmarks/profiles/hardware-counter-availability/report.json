@@ -1,0 +1,37 @@
+{
+  "scope": "Read-only hardware counter availability probe; not compiler performance data. No kernel setting changes.",
+  "perfEventParanoid": "4",
+  "runs": [
+    {
+      "command": [
+        "perf",
+        "stat",
+        "-e",
+        "cycles,instructions,cache-references,cache-misses",
+        "--",
+        "/usr/bin/true"
+      ],
+      "exitCode": 255,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "3e16d8f851a488f8fd897a68f4b3bdf14c890916b53a59cf3456a56555dcb6bc",
+      "unsupportedMarkers": 0
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "perf",
+        "stat",
+        "-e",
+        "cycles,instructions,cache-references,cache-misses",
+        "--",
+        "/usr/bin/true"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "669e8741aa53cbe47852a99b9017037459e1da1f4f04928fa049397cb4ea8634",
+      "unsupportedMarkers": 4
+    }
+  ],
+  "requestedHardwareCountersAvailable": false
+}
