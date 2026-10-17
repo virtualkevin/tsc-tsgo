@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync,copyFileSync,unlinkSync,chmodSync,statSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {captureGoSources,readBuildProvenance,hashFile,sha256} from '../../../scripts/build-provenance.mjs';
+const root=process.cwd(),dir=root+'/benchmarks/profiles/node-pointer-candidate',pkg=root+'/packages/tsc-go';
+const config=JSON.parse(readFileSync(dir+'/screen.json'));
+const a=config.expected.baseline,b=config.expected.candidate;
+const bp=readBuildProvenance(a.path,a.sha256),cp=readBuildProvenance(b.path,b.sha256);
+assert.equal(bp.status,'verified');assert.equal(cp.status,'verified');assert.equal(bp.sidecarSha256,a.sidecarSha256);assert.equal(cp.sidecarSha256,b.sidecarSha256);
+const before=captureGoSources(pkg);assert.equal(before.sha256,b.source);assert.deepEqual(before.files,cp.metadata.source.files);assert.equal(hashFile(pkg+'/dist/tsc-go'),b.sha256);
+const prepared=config.sourceDifference.map(d=>{assert.equal(hashFile(root+'/'+d.path),d.after.sha256);if(!d.before)return {path:d.path,remove:true};const p=spawnSync('git',['show',before.revision+':'+d.path],{maxBuffer:16*1024*1024});assert.equal(p.status,0);assert.equal(sha256(p.stdout),d.before.sha256);return {path:d.path,content:p.stdout};});
+assert.deepEqual(prepared.map(p=>p.path),['packages/tsc-go/internal/checker/checker.go','packages/tsc-go/internal/checker/node_links_lifetime_test.go']);
+for(const p of prepared)if(p.remove)unlinkSync(root+'/'+p.path);else writeFileSync(root+'/'+p.path,p.content);
+const after=captureGoSources(pkg);assert.equal(after.sha256,a.source);assert.deepEqual(after.files,bp.metadata.source.files);
+copyFileSync(a.path,pkg+'/dist/tsc-go');chmodSync(pkg+'/dist/tsc-go',statSync(a.path).mode&0o777);copyFileSync(a.path+'.provenance.json',pkg+'/dist/tsc-go.provenance.json');
+assert.equal(hashFile(pkg+'/dist/tsc-go'),a.sha256);assert.equal(hashFile(pkg+'/dist/tsc-go.provenance.json'),a.sidecarSha256);assert.equal(hashFile(b.path),b.sha256);
+const report={status:'restored',beforeSource:before.sha256,afterSource:after.sha256,fileCount:after.files.length,defaultBinarySha256:a.sha256,candidateBinarySha256:b.sha256,controllerSha256:hashFile(dir+'/restore.mjs')};
+writeFileSync(root+'/benchmarks/validation/node-pointer-restoration.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(report);
