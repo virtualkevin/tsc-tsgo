@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "fixture_revisions": {
+    "typescript_go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript": "4d4f005c8541e0255a9d8791205fdce326e462bc"
+  },
+  "source_before": {
+    "revision": "a0f10e17ee7a75c8ba9e227303adbd336e3a2c8a",
+    "dirty": true,
+    "sha256": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "source_after": {
+    "revision": "a0f10e17ee7a75c8ba9e227303adbd336e3a2c8a",
+    "dirty": true,
+    "sha256": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "source_unchanged": true,
+  "source_scope": "Complete captureGoSources manifest, including cmd/internal/scripts, go.mod/go.sum/package.json, build-provenance helper and untracked/ignored sources. Captures both core pointer table and checker field integration.",
+  "source_file_count": 5148,
+  "controller_report_sha256": "b5957135afa6e3ad1ca73dde5b34f52b562f1669abcd85efbe3bc97581461ac7",
+  "controller_report_path": "/tmp/pointer-linkstore-integration-validation-main/validation.json",
+  "coverage_limits": [
+    "Focused normal/race/checkptr cover five core tests and two actual-checker ValueSymbolLinks lifetime tests; only the core test deliberately creates concurrent read-only access.",
+    "Root npm test exercises the integrated checker broadly in normal mode; the focused checker race/checkptr tests are lifetime checks, not native parallel-emit or concurrent API coverage.",
+    "Pinned conformance reports unsupported/partial skips separately; skips are not passed checks.",
+    "Native CLI/API/parallel emit checks and a separately built race CLI are separate gates owned by the parent.",
+    "No timings are compiler performance measurements; no microbenchmark or production benchmark is run."
+  ],
+  "scope": "PointerLinkStore integrated as checker ValueSymbolLinks: five core tests and two actual-checker lifetime tests, under normal/race/checkptr.",
+  "suites": {
+    "focused": {
+      "test_records": {
+        "pass": 7
+      },
+      "top_level_records": {
+        "pass": 7
+      },
+      "passing_top_level_tests": [
+        "TestPointerLinkStoreDifferential",
+        "TestPointerLinkStoreNilAndReplacement",
+        "TestPointerLinkStoreCollisionsAndGrowth",
+        "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+        "TestPointerLinkStoreConcurrentReadOnlyCopies",
+        "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+        "TestValueSymbolLinksReplacementKeepsPublishedPointers"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/core": "pass",
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": []
+    },
+    "checkptr": {
+      "test_records": {
+        "pass": 7
+      },
+      "top_level_records": {
+        "pass": 7
+      },
+      "passing_top_level_tests": [
+        "TestPointerLinkStoreDifferential",
+        "TestPointerLinkStoreNilAndReplacement",
+        "TestPointerLinkStoreCollisionsAndGrowth",
+        "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+        "TestPointerLinkStoreConcurrentReadOnlyCopies",
+        "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+        "TestValueSymbolLinksReplacementKeepsPublishedPointers"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/core": "pass",
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": []
+    },
+    "race": {
+      "test_records": {
+        "pass": 7
+      },
+      "top_level_records": {
+        "pass": 7
+      },
+      "passing_top_level_tests": [
+        "TestPointerLinkStoreDifferential",
+        "TestPointerLinkStoreNilAndReplacement",
+        "TestPointerLinkStoreCollisionsAndGrowth",
+        "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+        "TestPointerLinkStoreConcurrentReadOnlyCopies",
+        "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+        "TestValueSymbolLinksReplacementKeepsPublishedPointers"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/core": "pass",
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": []
+    }
+  },
+  "processes": [
+    {
+      "name": "focused",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/core",
+        "./internal/checker",
+        "-run",
+        "^(TestPointerLinkStore(Differential|NilAndReplacement|CollisionsAndGrowth|RetainsDisplacedArenaSlots|ConcurrentReadOnlyCopies)|TestValueSymbolLinks(RetainInstantiatedGraphAcrossGC|ReplacementKeepsPublishedPointers))$",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/pointer-linkstore-integration-validation-main/focused.jsonl",
+      "stderr": "/tmp/pointer-linkstore-integration-validation-main/focused.stderr",
+      "stdout_sha256": "98d7d94c2d5fd5bc94b749bba65528d3116f45e53a53a07d3dae9a662f08251b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/core",
+        "./internal/checker",
+        "-run",
+        "^(TestPointerLinkStore(Differential|NilAndReplacement|CollisionsAndGrowth|RetainsDisplacedArenaSlots|ConcurrentReadOnlyCopies)|TestValueSymbolLinks(RetainInstantiatedGraphAcrossGC|ReplacementKeepsPublishedPointers))$",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/pointer-linkstore-integration-validation-main/checkptr.jsonl",
+      "stderr": "/tmp/pointer-linkstore-integration-validation-main/checkptr.stderr",
+      "stdout_sha256": "0a94e40039dfcff0012b45951bf1677b967bd2bf2de31f534e8ccbab52f6d603",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-race",
+        "./internal/core",
+        "./internal/checker",
+        "-run",
+        "^(TestPointerLinkStore(Differential|NilAndReplacement|CollisionsAndGrowth|RetainsDisplacedArenaSlots|ConcurrentReadOnlyCopies)|TestValueSymbolLinks(RetainInstantiatedGraphAcrossGC|ReplacementKeepsPublishedPointers))$",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/pointer-linkstore-integration-validation-main/race.jsonl",
+      "stderr": "/tmp/pointer-linkstore-integration-validation-main/race.stderr",
+      "stdout_sha256": "821cb58396e2380604f97dc7ed141cbcb1248b51e27586ae5c1aed0f67bbb01e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "scope": "Targeted static production-binary codegen inspection; not runtime profiling or timing",
+  "binary": {
+    "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore",
+    "sha256": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+    "sidecarSha256": "97d330f15385fa956d521349254195da088c60ee6bec2717ac4757efc43156f2"
+  },
+  "source": {
+    "revision": "a0f10e17ee7a75c8ba9e227303adbd336e3a2c8a",
+    "dirty": true,
+    "sha256": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d"
+  },
+  "sourceFileCount": 5148,
+  "build": {
+    "toolchain": {
+      "CGO_ENABLED": "1",
+      "GO386": "",
+      "GOAMD64": "v1",
+      "GOARCH": "amd64",
+      "GOARM": "",
+      "GOARM64": "",
+      "GOEXPERIMENT": "",
+      "GOMIPS": "",
+      "GOMIPS64": "",
+      "GOOS": "linux",
+      "GOPPC64": "",
+      "GORISCV64": "",
+      "GOVERSION": "go1.26.9"
+    },
+    "arguments": [
+      "build",
+      "-trimpath",
+      "-o",
+      "<binary>",
+      "./cmd/tsgo"
+    ],
+    "extraFlagsPresent": false,
+    "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "profile": null,
+    "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+  },
+  "commands": [
+    "go tool nm -size packages/tsc-go/dist/tsc-go-pointer-linkstore | rg 'core\\.(\\(\\*PointerLinkStore|pointerLinkHash)|checker\\.\\(\\*Checker\\)\\.(getTypeOfSymbol|instantiateSymbol|newInstantiatedSymbolWithLinks)$' > symbols.txt",
+    "go tool objdump -s 'core\\.\\(\\*PointerLinkStore.*\\)\\.(Get|New|slot|insertAt|grow)$' packages/tsc-go/dist/tsc-go-pointer-linkstore > store.asm",
+    "go tool objdump -s 'checker\\.\\(\\*Checker\\)\\.(getTypeOfSymbol|instantiateSymbol|newInstantiatedSymbolWithLinks)$' packages/tsc-go/dist/tsc-go-pointer-linkstore > callers.asm",
+    "go tool objdump -s 'checker\\.\\(\\*Checker\\)\\.(getTypeOfInstantiatedSymbol|newSymbol)$|core\\.\\(\\*Arena\\[go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf\\]\\)\\.New$' packages/tsc-go/dist/tsc-go-pointer-linkstore > typed-callers.asm"
+  ],
+  "workingDirectory": "/home/dev/tssss/tsc-tsgo",
+  "goTool": "/tmp/tsc-toolchains/go/bin/go",
+  "sessions": [
+    {
+      "id": 81855,
+      "exitCode": 0
+    }
+  ],
+  "allProcessesTerminal": true,
+  "compilerRebuilt": false,
+  "observations": {
+    "getCallerBoundary": "direct CALL to generic shape Get; dictionary address loaded in caller",
+    "newCallerBoundary": "direct CALL to generic shape New; dictionary address loaded in caller",
+    "slotBoundary": "Get and New CALL generic shape slot",
+    "hash": "inlined two IMULQ mixing rounds, shifts/xors, mask; no hash helper call/symbol",
+    "getHitHeapWrites": false,
+    "insert": "Arena.New CALL and gcWriteBarrier4 entry publication",
+    "grow": "runtime.makeslice; slot rehash; gcWriteBarrier4 copy and gcWriteBarrier2 slice publication",
+    "valueArena": "runtime.growslice on chunk exhaustion; gcWriteBarrier2 slice publication; no per-value newobject",
+    "getTypeOfSymbol": "dispatch wrapper, no direct store access; getTypeOfInstantiatedSymbol is real inspected Get caller"
+  },
+  "artifacts": {
+    "store.asm": {
+      "bytes": 34637,
+      "sha256": "221eaaf1accf6786db48b5900f876d926758b851ea0e0ae44425682262465250"
+    },
+    "symbols.txt": {
+      "bytes": 1791,
+      "sha256": "52ce02eed6baccbb099c15131df6db159a536a0e70cdcbc75f944f706a08c0f0"
+    },
+    "typed-callers.asm": {
+      "bytes": 12501,
+      "sha256": "a2a4f562ff776c359eeb629115e6bc41cb76cb1d8eecf5dcb9ae09ad1ae410b9"
+    },
+    "callers.asm": {
+      "bytes": 22216,
+      "sha256": "adc30f40c3e1ca142ab5e70fe84f91a6b3d0f62af0b757719af70924fb5650b4"
+    }
+  }
+}

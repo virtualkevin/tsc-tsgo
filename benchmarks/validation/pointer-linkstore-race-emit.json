@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T11:30:40.372Z",
+  "status": "passed",
+  "scope": "Actual race-instrumented Go CLI on the existing three parallel-emit tests; not all compiler APIs or arbitrary same-store mutation.",
+  "sourceSha256": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-pointer-linkstore-race",
+    "sha256": "7bbe50e3f76ae5d8b2717aa52db74a082048a53a31223dbe8a8c48066dce2649"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-pointer-linkstore-race.provenance.json",
+    "sha256": "a16e01c04e0500efef93d46a00abbf92adc9d57716d8605a689a4b2c042cfbb8",
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": [
+        "build",
+        "-race",
+        "-trimpath",
+        "-o",
+        "<binary>",
+        "./cmd/tsgo"
+      ],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    },
+    "sourceRevision": "a0f10e17ee7a75c8ba9e227303adbd336e3a2c8a",
+    "sourceDirty": true
+  },
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=spec",
+    "tests/parallel-emit.test.mjs"
+  ],
+  "cwd": "packages/tsc-ts",
+  "environment": {
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore-race",
+    "GORACE": "unset; race runtime defaults"
+  },
+  "exitCode": 0,
+  "error": null,
+  "counts": {
+    "tests": 3,
+    "suites": 0,
+    "pass": 3,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 37634.711342
+  },
+  "log": "/tmp/pointer-linkstore-race-emit.log",
+  "logSha256": "2639b1e3f78ec48ac3378c72fa5b36fd12c43aef854ee4f8097b3fadbe59a716",
+  "sourcesBinaryAndSidecarUnchanged": true,
+  "notes": [
+    "The suite child environment retains PATH and explicit shared library directory; no custom GORACE is required. The instrumented runtime defaults to reporting races and nonzero status, and each test asserts compiler status/outputs.",
+    "Three tests cover ten CLI invocations: single-threaded versus three-checker emit, noEmitOnError, and declaration ordering at two/three/four checkers.",
+    "The instrumented binary is excluded from all performance measurements."
+  ]
+}

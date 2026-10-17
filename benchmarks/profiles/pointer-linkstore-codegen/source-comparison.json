@@ -1,0 +1,167 @@
+{
+  "scope": "Preserved build-time source manifest comparison; the only production changes are the valueSymbolLinks field type and the new pointerlinkstore.go implementation. Tests are separated below. No builds or tests run.",
+  "baseline": {
+    "path": "packages/tsc-go/dist/tsc-go-lazy",
+    "binarySha256": "961e90a7e1d873477233c022716da08acc6f4b3f02df11c70d5e11360ca59ec3",
+    "sourceSha256": "39b165a093813ad622f9b276a3a9d6c433d0d6a91199ee6c897f3d8e3ed03a59",
+    "sourceFileCount": 5140
+  },
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-pointer-linkstore",
+    "binarySha256": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+    "sourceSha256": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d",
+    "sourceFileCount": 5148
+  },
+  "buildSettingsEqual": true,
+  "buildSettings": {
+    "toolchain": {
+      "CGO_ENABLED": "1",
+      "GO386": "",
+      "GOAMD64": "v1",
+      "GOARCH": "amd64",
+      "GOARM": "",
+      "GOARM64": "",
+      "GOEXPERIMENT": "",
+      "GOMIPS": "",
+      "GOMIPS64": "",
+      "GOOS": "linux",
+      "GOPPC64": "",
+      "GORISCV64": "",
+      "GOVERSION": "go1.26.9"
+    },
+    "arguments": [
+      "build",
+      "-trimpath",
+      "-o",
+      "<binary>",
+      "./cmd/tsgo"
+    ],
+    "extraFlagsPresent": false,
+    "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "profile": null,
+    "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+  },
+  "productionDifferences": [
+    "packages/tsc-go/internal/checker/checker.go",
+    "packages/tsc-go/internal/core/pointerlinkstore.go"
+  ],
+  "testDifferences": [
+    "packages/tsc-go/internal/checker/active_mapper_cache_test.go",
+    "packages/tsc-go/internal/checker/active_mapper_split_test.go",
+    "packages/tsc-go/internal/checker/type_data_test.go",
+    "packages/tsc-go/internal/checker/union_property_cache_test.go",
+    "packages/tsc-go/internal/checker/value_symbol_links_lifetime_test.go",
+    "packages/tsc-go/internal/core/linkstore_split_race_test.go",
+    "packages/tsc-go/internal/core/pointerlinkstore_test.go"
+  ],
+  "checkerVerification": {
+    "baselineContentSource": "git show 7ee01da:packages/tsc-go/internal/checker/checker.go",
+    "baselineContentMatchesManifest": true,
+    "candidateContentSource": "current frozen packages/tsc-go/internal/checker/checker.go",
+    "candidateContentMatchesManifest": true,
+    "onlyDifference": "valueSymbolLinks core.LinkStore[*ast.Symbol, ValueSymbolLinks] -> core.PointerLinkStore[ast.Symbol, ValueSymbolLinks]",
+    "verifiedByteReplacementExactlyMatches": true
+  },
+  "pointerStoreContentMatchesCandidateManifest": true,
+  "differences": [
+    {
+      "path": "packages/tsc-go/internal/checker/active_mapper_cache_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/active_mapper_cache_test.go",
+        "sha256": "e08030a7964e81b5ec74da409499c0c8b4e8af8c44feb70aa8c10dc17dae69c5",
+        "executable": false
+      },
+      "testOnly": true
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/active_mapper_split_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/active_mapper_split_test.go",
+        "sha256": "9e7e9684b12e92f60c0831232bc4c22d9dd0c53f34b257c4faaaacedfbcb9aa3",
+        "executable": false
+      },
+      "testOnly": true
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "baseline": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "b8dee8420dbe10bc23199fcd1cdcbfd96b583c3c5c7013616ee0dea77a94b73e",
+        "executable": false
+      },
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "5f4ea48686c739b07e5b9c54551cd35783884c26f047bcaba8209480776d2eb1",
+        "executable": false
+      },
+      "testOnly": false
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/type_data_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/type_data_test.go",
+        "sha256": "74ebe6ed5afc77d5ba2421cccc42ae10c96ccd3fb8c9d7fff00056c8ff6ac4a1",
+        "executable": false
+      },
+      "testOnly": true
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/union_property_cache_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/union_property_cache_test.go",
+        "sha256": "fc01ba40a2cda9941bd2bbb26c0ecd716ec7da2b36d15379a28c4e0174a3eba7",
+        "executable": false
+      },
+      "testOnly": true
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/value_symbol_links_lifetime_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/value_symbol_links_lifetime_test.go",
+        "sha256": "3575286f5599172645f25126b0f2f0312ed7faeb68beea95f312417c6ab98fe0",
+        "executable": false
+      },
+      "testOnly": true
+    },
+    {
+      "path": "packages/tsc-go/internal/core/linkstore_split_race_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/core/linkstore_split_race_test.go",
+        "sha256": "405639ec6db59ef5bce036a9360e869336c43dc60e19faa92853c302e6168c80",
+        "executable": false
+      },
+      "testOnly": true
+    },
+    {
+      "path": "packages/tsc-go/internal/core/pointerlinkstore.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/core/pointerlinkstore.go",
+        "sha256": "e26dc36149fc749f6ab208a761df309f8005f7f4a59bf806b9ae409d8da86315",
+        "executable": false
+      },
+      "testOnly": false
+    },
+    {
+      "path": "packages/tsc-go/internal/core/pointerlinkstore_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/core/pointerlinkstore_test.go",
+        "sha256": "26831a0865d41e73ac2080aad6963a7874d90db6c4e07df4cd20da2464969103",
+        "executable": false
+      },
+      "testOnly": true
+    }
+  ],
+  "limitations": [
+    "Build settings compare recorded provenance fields; external module-cache contents and toolchain file bytes are not hashed by that manifest.",
+    "Test-only files are part of source digest but are excluded from go build ./cmd/tsgo.",
+    "This source comparison does not claim semantic correctness or performance improvement."
+  ]
+}
