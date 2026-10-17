@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Untimed instrumented fresh-process work counters; no elapsed-time or speedup claim.",
+  "project": {
+    "name": "trpc",
+    "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+    "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc"
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "environmentOverrides": {
+    "TSC_TS_LIB_DIR": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs",
+    "TSC_TS_CHECKERS_TRACE": "1"
+  },
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-expansion",
+      "sha256": "6749d967d1437efdbfe03479072a2352737900bc5057b27ee6730c1797fd9a06",
+      "sourceRevision": "b4a01daf237e4997aadef58bd9221028905a66bf",
+      "sourceDirty": true,
+      "sourceManifestSha256": "a89092fd6263a978b86700f99c704c560d2cd7d1c26671ae8b180fefd83ffde5"
+    }
+  },
+  "startedAt": "2026-10-17T08:20:20.337923+00:00",
+  "status": "complete",
+  "runs": {
+    "baseline": {
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "1"
+      ],
+      "exitCode": 0,
+      "stdout": "benchmarks/profiles/trpc-single-checker-work/baseline.stdout.log",
+      "stderr": "benchmarks/profiles/trpc-single-checker-work/baseline.stderr.log",
+      "extendedCounters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 127787,
+        "Types": 47593,
+        "Instantiations": 0,
+        "Memory allocs": 0
+      },
+      "workCounters": {
+        "Types": 47593,
+        "Instantiations": 143314,
+        "SymbolLinkEntries": 9651,
+        "NodeLinkEntries": 3423,
+        "Signatures": 12532,
+        "RelationEntries": 18965
+      },
+      "stdoutSha256": "b8d8b780b8ab1289581332b6ae91b3ed46e16c0f808d93dfd831bbb724c6cd8c",
+      "stderrSha256": "a2a979fca4d62ad374578626010d90a12cdd210e3fb98a9861f561ef4938061b"
+    },
+    "candidate": {
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "1"
+      ],
+      "exitCode": 0,
+      "stdout": "benchmarks/profiles/trpc-single-checker-work/candidate.stdout.log",
+      "stderr": "benchmarks/profiles/trpc-single-checker-work/candidate.stderr.log",
+      "extendedCounters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 168946,
+        "Types": 48011,
+        "Instantiations": 143473,
+        "Memory allocs": 1132321
+      },
+      "workCounters": {
+        "Types": 48011,
+        "Instantiations": 143473
+      },
+      "stdoutSha256": "35cbcf70033efd6e168118d0f1faf6e49c6f3d24990786be8fd565433c5603b3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "definitions": {
+    "Types": "Created Type objects, including checker initialization, one checker per process.",
+    "Instantiations": "Calls into instantiateTypeWorker after active mapper cache miss, not every instantiateType call.",
+    "SymbolLinkEntries": "Native aggregate symbol-link entries, not symbol allocations; no equivalent Go extended counter.",
+    "RelationEntries": "Native retained entries summed across subtype, strict subtype, assignable, comparable and identity caches; not relation call count."
+  },
+  "comparison": {
+    "Types": {
+      "native": 47593,
+      "go": 48011,
+      "difference": 418,
+      "goOverNative": 1.008782804193894
+    },
+    "Instantiations": {
+      "native": 143314,
+      "go": 143473,
+      "difference": 159,
+      "goOverNative": 1.0011094519725916
+    }
+  },
+  "finishedAt": "2026-10-17T08:20:22.643418+00:00",
+  "sourceReferences": {
+    "nativeTrace": "packages/tsc-ts/src/compiler/parallel-check.ts:1413",
+    "nativeInstantiationIncrement": "packages/tsc-ts/src/compiler/instantiation.ts:210",
+    "goInstantiationIncrement": "packages/tsc-go/internal/checker/checker.go:22070"
+  },
+  "interpretation": "On this pinned tRPC server workload with one checker, expansion Go creates 0.88% more Type objects and executes 0.11% more counted instantiations than native tsc-ts. These counters do not measure total algorithmic work or runtime cost and do not explain the performance gap on other projects or under default parallel scheduling. Raw diagnostic timings are instrumented and are not performance evidence."
+}

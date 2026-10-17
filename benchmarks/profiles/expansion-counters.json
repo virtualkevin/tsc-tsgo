@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Untimed work counters collected concurrently with validation; elapsed diagnostics are not performance evidence. Counters may differ in definition across implementations.",
+  "startedAt": "2026-10-17T08:05:45.881501+00:00",
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "libraryDirectory": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs",
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-expansion",
+      "sha256": "6749d967d1437efdbfe03479072a2352737900bc5057b27ee6730c1797fd9a06",
+      "sourceRevision": "b4a01daf237e4997aadef58bd9221028905a66bf",
+      "sourceDirty": true,
+      "sourceManifestSha256": "a89092fd6263a978b86700f99c704c560d2cd7d1c26671ae8b180fefd83ffde5"
+    }
+  },
+  "projects": [
+    {
+      "name": "typeorm",
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+      "runs": {
+        "baseline": {
+          "args": [
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "benchmarks/profiles/expansion-counters/typeorm-baseline.stdout.log",
+          "stderr": "benchmarks/profiles/expansion-counters/typeorm-baseline.stderr.log",
+          "counters": {
+            "Files": 3572,
+            "Lines": 386634,
+            "Identifiers": 444563,
+            "Symbols": 186223,
+            "Types": 89,
+            "Instantiations": 0,
+            "Memory allocs": 0
+          },
+          "diagnosticCount": 0,
+          "stdoutSha256": "ea10ad62cb18722d9010f5e61b2e43e6bbbeaf74b299204240df1b083442ea5e",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "candidate": {
+          "args": [
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "benchmarks/profiles/expansion-counters/typeorm-candidate.stdout.log",
+          "stderr": "benchmarks/profiles/expansion-counters/typeorm-candidate.stderr.log",
+          "counters": {
+            "Files": 3572,
+            "Lines": 386634,
+            "Identifiers": 444563,
+            "Symbols": 465313,
+            "Types": 260994,
+            "Instantiations": 425741,
+            "Memory allocs": 11246057
+          },
+          "diagnosticCount": 0,
+          "stdoutSha256": "ecc53a47ff1250423a6cfa95855cb7447e76d5a14842b931f58a448d3bf24d33",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "trpc",
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "runs": {
+        "baseline": {
+          "args": [
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "benchmarks/profiles/expansion-counters/trpc-baseline.stdout.log",
+          "stderr": "benchmarks/profiles/expansion-counters/trpc-baseline.stderr.log",
+          "counters": {
+            "Files": 942,
+            "Lines": 209550,
+            "Identifiers": 203324,
+            "Symbols": 127787,
+            "Types": 85,
+            "Instantiations": 0,
+            "Memory allocs": 0
+          },
+          "diagnosticCount": 0,
+          "stdoutSha256": "56c084995252774b0ed477e2a1d01868f5ad0cbb2ff555db6d93c46f0d6c9617",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "candidate": {
+          "args": [
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "benchmarks/profiles/expansion-counters/trpc-candidate.stdout.log",
+          "stderr": "benchmarks/profiles/expansion-counters/trpc-candidate.stderr.log",
+          "counters": {
+            "Files": 942,
+            "Lines": 209550,
+            "Identifiers": 203324,
+            "Symbols": 189359,
+            "Types": 79935,
+            "Instantiations": 222416,
+            "Memory allocs": 1357632
+          },
+          "diagnosticCount": 0,
+          "stdoutSha256": "9a875f814c36cca7ac6aa12975d6b3a08d8c60687b02abeed8506fc355eb9fac",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "vscode",
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "runs": {
+        "baseline": {
+          "args": [
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "benchmarks/profiles/expansion-counters/vscode-baseline.stdout.log",
+          "stderr": "benchmarks/profiles/expansion-counters/vscode-baseline.stderr.log",
+          "counters": {
+            "Files": 11563,
+            "Lines": 4036783,
+            "Identifiers": 7444484,
+            "Symbols": 2923596,
+            "Types": 85,
+            "Instantiations": 0,
+            "Memory allocs": 0
+          },
+          "diagnosticCount": 0,
+          "stdoutSha256": "272ed98fd0532b1754218bcb4a6e353275210aa2da1be6738ed1f28fed4ebbc7",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "status": "partial; large runs stopped after baseline counter limitations were established",
+  "limitations": [
+    "Native statisticsOf never populates Instantiations or memory counters, so zero is unavailable data, not zero work.",
+    "Native Symbols sums file.symbolCount only, unlike Go which includes checker-generated symbols.",
+    "Default native Types excludes worker checker activity. Only explicit single-checker Types is comparable.",
+    "VS Code Go collection canceled; Sentry not started. No compiler failure inferred."
+  ],
+  "singleCheckerTrpc": {
+    "baseline": {
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "1"
+      ],
+      "exitCode": 0,
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 127787,
+        "Types": 47593,
+        "Instantiations": 0,
+        "Memory allocs": 0
+      },
+      "stdout": "benchmarks/profiles/expansion-counters/trpc-single-baseline.stdout.log",
+      "stderr": "benchmarks/profiles/expansion-counters/trpc-single-baseline.stderr.log",
+      "stdoutSha256": "40ec51113c8f5ad9b623fe679ca5e73745bd43c47e304698ea87895fb8030178",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate": {
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "1"
+      ],
+      "exitCode": 0,
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 168946,
+        "Types": 48011,
+        "Instantiations": 143473,
+        "Memory allocs": 1131679
+      },
+      "stdout": "benchmarks/profiles/expansion-counters/trpc-single-candidate.stdout.log",
+      "stderr": "benchmarks/profiles/expansion-counters/trpc-single-candidate.stderr.log",
+      "stdoutSha256": "1fb4ee842a90be4e31ade31b31828df7909454e15c68e6e06e8d88f40b110bcc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "typeCountComparison": {
+      "baseline": 47593,
+      "candidate": 48011,
+      "difference": 418,
+      "candidateOverBaseline": 1.008782804193894,
+      "interpretation": "Counts of created Type objects with one checker are close; this is not a direct count of all algorithmic work, and instantiation counts cannot be compared with the uninstrumented native baseline."
+    }
+  },
+  "completedAt": "2026-10-17T08:07:37.482361+00:00"
+}
