@@ -10,7 +10,8 @@
       "project": "src/tsconfig.json",
       "lockfile": "package-lock.json",
       "install": ["npm", "ci", "--ignore-scripts"],
-      "scope": "VS Code client sources; repository typecheck-client configuration. Native runtime modules are not built."
+      "scope": "VS Code client sources; repository typecheck-client configuration. Native runtime modules are not built. Electron declarations are fetched by the repository checksum-verified setup script.",
+      "prepare": ["node", "build/npm/electronTypes.ts"]
     },
     {
       "name": "sentry",

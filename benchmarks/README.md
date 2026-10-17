@@ -15,7 +15,8 @@ node benchmarks/prepare.mjs --projects typeorm,trpc --install
 The manifest records the exact install commands. pnpm uses the `packageManager`
 version in each pinned repository through Corepack. Install scripts are disabled;
 native database bindings are unnecessary for typechecking. The manifest's `prepare` command builds Sentry's referenced icons and scraps
-declarations using its lockfile-pinned `typescript-7` installation. Setup is
+declarations using its lockfile-pinned `typescript-7` installation and fetches
+VS Code's Electron declarations with its checksum-verified setup script. Setup is
 excluded from timed runs. Other generated inputs must also exist before measuring. An unexpected failed compiler invocation is never accepted as a performance result.
 
 Build both native compilers, then run from the repository root:
