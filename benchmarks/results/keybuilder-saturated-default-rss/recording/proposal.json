@@ -1,0 +1,173 @@
+{
+  "status": "validated-proposal-only",
+  "summaryPath": "/home/dev/tssss/tsc-tsgo/benchmarks/results/keybuilder-saturated-default-rss/summary.json",
+  "summarySha256": "0343bff96d47c2dc937fff4070cb8cdfc0696bc2aa5c3369e05b0667eb0e5276",
+  "reportHashes": [
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/benchmarks/results/keybuilder-saturated-default-rss/small.json",
+      "sha256": "901846d6bad5439e964a3da775640e4f0f3fc5a94d6e7b8c72561049c7e90367"
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/benchmarks/results/keybuilder-saturated-default-rss/large.json",
+      "sha256": "6cea885dcfffcb1ce46a4309497a389a674117c931de0c90e2353144f5c79643"
+    }
+  ],
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore",
+      "sha256": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+      "source": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d",
+      "revisionLabel": "849d873",
+      "sidecarSha256": "97d330f15385fa956d521349254195da088c60ee6bec2717ac4757efc43156f2"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+      "sha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+      "source": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "revisionLabel": "Buffered keyBuilder with direct writers and saturated streaming length",
+      "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d"
+    }
+  },
+  "results": [
+    {
+      "name": "typeorm",
+      "runs": 7,
+      "files": 3572,
+      "baselineMedianMs": 2312.565833,
+      "candidateMedianMs": 2208.418506,
+      "baselineOverCandidate": 1.047159234862887,
+      "baselineMedianRssMiB": 880.8046875,
+      "candidateMedianRssMiB": 887.10546875
+    },
+    {
+      "name": "trpc",
+      "runs": 7,
+      "files": 942,
+      "baselineMedianMs": 491.321171,
+      "candidateMedianMs": 494.683176,
+      "baselineOverCandidate": 0.9932037207588398,
+      "baselineMedianRssMiB": 243.5,
+      "candidateMedianRssMiB": 241.125
+    },
+    {
+      "name": "vscode",
+      "runs": 3,
+      "files": 11563,
+      "baselineMedianMs": 33417.093876,
+      "candidateMedianMs": 34202.957323,
+      "baselineOverCandidate": 0.977023523446274,
+      "baselineMedianRssMiB": 7450.18359375,
+      "candidateMedianRssMiB": 7810.3671875
+    },
+    {
+      "name": "sentry",
+      "runs": 3,
+      "files": 13290,
+      "baselineMedianMs": 29465.309009,
+      "candidateMedianMs": 28054.943222,
+      "baselineOverCandidate": 1.050271560909595,
+      "baselineMedianRssMiB": 5395.40625,
+      "candidateMedianRssMiB": 5440.8046875
+    }
+  ],
+  "repositoryStartingHead": "1633f6ac66404bad0f2d4bed42de02f8e7cda400",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "5f4ea48686c739b07e5b9c54551cd35783884c26f047bcaba8209480776d2eb1",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "761427dae0126839bb6803be7fd88bed3dc4924d31b20edee1d72ca0d68981ee",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/jsx_managed_attributes_errors_api_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/jsx_managed_attributes_errors_api_test.go",
+        "sha256": "9db62d8a8fd00af674034a59a86d7d34b76e95d00766a986e9ac13802a929e99",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/keybuilder.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/keybuilder.go",
+        "sha256": "6c50894e0b6c481c2878af208c31f575e15829025a594261cda3e9e10a16d13a",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/keybuilder_direct_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/keybuilder_direct_test.go",
+        "sha256": "e397e66d6cb2da4566e517ec75fdd00c2dcbe02eceea0915bba1ad1631dee3db",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/keybuilder_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/keybuilder_test.go",
+        "sha256": "dba4b569b9e5528d1f8e59c91f1ff1ee369abcb406700c3a3af9f7013a82648a",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/relation_keys_api_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/relation_keys_api_test.go",
+        "sha256": "e32a99d280fc626e4812705d21fe3f856ca9a7688777b91368d1c96a1dbae5ec",
+        "executable": false
+      }
+    }
+  ],
+  "buildSettings": {
+    "toolchain": {
+      "CGO_ENABLED": "1",
+      "GO386": "",
+      "GOAMD64": "v1",
+      "GOARCH": "amd64",
+      "GOARM": "",
+      "GOARM64": "",
+      "GOEXPERIMENT": "",
+      "GOMIPS": "",
+      "GOMIPS64": "",
+      "GOOS": "linux",
+      "GOPPC64": "",
+      "GORISCV64": "",
+      "GOVERSION": "go1.26.9"
+    },
+    "arguments": [
+      "build",
+      "-trimpath",
+      "-o",
+      "<binary>",
+      "./cmd/tsgo"
+    ],
+    "extraFlagsPresent": false,
+    "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "profile": null,
+    "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+  },
+  "currentDocumentation": {
+    "perfSha256": "102f5da2f7b258248e4d745d96e02416bdb719a588a889f538d64dc1e2ded437",
+    "notesSha256": "cbab0ec68048ee46071e28d2132f973c2584784b5f09bb5aabae50ec3dcb53c6"
+  },
+  "limitations": [
+    "No repository files were written.",
+    "Direct Go/Go A/B; not native target comparison.",
+    "GNU-time-wrapped timings cannot compare with historical unwrapped timings.",
+    "Timed invocation output/exit parity is enforced by the hashed runner; raw per-sample diagnostic text is not separately retained in the report.",
+    "Report links outside benchmarks/ need relocation before committing proposed documentation."
+  ]
+}
