@@ -1,0 +1,106 @@
+{
+  "scope": "Focused isolated Go-overlay tests only; no production compiler build or workload performance claim",
+  "sourceSha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+  "head": "de15faad706864c5673bc141059eca265526e053",
+  "overlayFiles": {
+    "/tmp/tsc-indexed-symbol-pilot/combined/packages/tsc-go/internal/ast/symbol.go": "a69d00f2784edc67ec3566fe8b6199dbd1e39fac7f8d69c2e6b6ba289f1c1f0f",
+    "/tmp/tsc-indexed-symbol-pilot/combined/packages/tsc-go/internal/binder/binder.go": "0c4589236bcf7cf9841b4b542747c85517a0381b401e5a1165e0e0b4d6535afb",
+    "/tmp/tsc-indexed-symbol-pilot/combined/packages/tsc-go/internal/checker/checker.go": "98199dd984bccc60528b6c24d83dd560f1c6c8416ebc60a1ad237f03c305a576",
+    "/tmp/tsc-indexed-symbol-pilot/combined/packages/tsc-go/internal/ast/symbol_allocator.go": "50ad160d99427c61004dce5712dbbd78362d0329bce4b1bb8b2e76089617261d",
+    "/tmp/tsc-indexed-symbol-pilot/combined/packages/tsc-go/internal/ast/symbol_allocator_test.go": "3f1dfbe32ebb9323abd19373bdd0d2c46c7cf836bf92f7b9a16f83918cd259ff",
+    "/tmp/tsc-indexed-symbol-pilot/combined/packages/tsc-go/internal/core/indexedpointerlinkstore.go": "f82632515263494f40ec88c5fa45520a10f131eb170b59b4ce11412097fee9ca",
+    "/tmp/tsc-indexed-symbol-pilot/combined/packages/tsc-go/internal/core/indexedpointerlinkstore_test.go": "c00d2f9b91a70482fdfc1a34333179b3065a7ae3b3cde1c1c8700e23ad5acb22",
+    "/tmp/tsc-indexed-symbol-pilot/combined/packages/tsc-go/internal/ast/symbol_links.go": "7776c7905f9447992fc27df2a868413d4c79a0d9458a18689c8e8af1d50eec06",
+    "/tmp/tsc-indexed-symbol-pilot/combined-overlay.json": "ecc32883f8033de26c2e1def0604702b8f701d5a2f7ba757230605cc304633d6"
+  },
+  "runs": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/tmp/tsc-indexed-symbol-pilot/combined-overlay.json",
+        "-json",
+        "./internal/core",
+        "./internal/ast",
+        "-run",
+        "^Test(SymbolAllocation|IndexedPointerLinks)",
+        "-count=1",
+        "-timeout",
+        "10m"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "testRecords": {
+        "pass": 6
+      },
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/core": "pass",
+        "github.com/microsoft/typescript-go/internal/ast": "pass"
+      },
+      "stdoutSha256": "d71667840b8e7d1f46b52e4234308e68e030a57669fc66eeba5bc5343b4d71ad",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/tmp/tsc-indexed-symbol-pilot/combined-overlay.json",
+        "-json",
+        "-race",
+        "./internal/core",
+        "./internal/ast",
+        "-run",
+        "^Test(SymbolAllocation|IndexedPointerLinks)",
+        "-count=1",
+        "-timeout",
+        "10m"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "testRecords": {
+        "pass": 6
+      },
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/core": "pass",
+        "github.com/microsoft/typescript-go/internal/ast": "pass"
+      },
+      "stdoutSha256": "3f2c287e42217bebb7a2db8a4bfdbdf4f5137a060333795df2a6eae6392b6c84",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/tmp/tsc-indexed-symbol-pilot/combined-overlay.json",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/core",
+        "./internal/ast",
+        "-run",
+        "^Test(SymbolAllocation|IndexedPointerLinks)",
+        "-count=1",
+        "-timeout",
+        "10m"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "testRecords": {
+        "pass": 6
+      },
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/core": "pass",
+        "github.com/microsoft/typescript-go/internal/ast": "pass"
+      },
+      "stdoutSha256": "d0dfe9258683fd450eed40edf84d064bf10d1a4c71c8a707fed18656c389622d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "passed": true,
+  "mainSourceUnchanged": true
+}

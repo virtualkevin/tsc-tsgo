@@ -1,0 +1,456 @@
+--- a/packages/tsc-go/internal/ast/symbol.go
++++ b/packages/tsc-go/internal/ast/symbol.go
+@@ -18,6 +18,8 @@
+ 	id               atomic.Uint64
+ 	Parent           *Symbol
+ 	ExportSymbol     *Symbol
++	// Allocation-only lookup handle, immutable after publication; independent of id.
++	linkIndex uint32
+ }
+ 
+ func (s *Symbol) IsExternalModule() bool {
+--- /dev/null
++++ b/packages/tsc-go/internal/ast/symbol_allocator.go
+@@ -0,0 +1,67 @@
++package ast
++
++import (
++	"github.com/microsoft/typescript-go/internal/core"
++	"sync/atomic"
++)
++
++// Allocation handles are independent of lazy semantic SymbolIds. Each allocator
++// exclusively owns its reserved blocks; blocks are never reused. Exhaustion
++// leaves symbols unindexed, so ordinary pointer-key lookup remains available.
++var symbolLinkBlock atomic.Uint32
++
++const symbolLinkBlockShift = 8
++const symbolLinkBlockSize = 1 << symbolLinkBlockShift
++const maxSymbolLinkBlock = ^uint32(0) >> symbolLinkBlockShift
++
++type symbolLinkCursor struct {
++	next      uint32
++	remaining uint16
++	exhausted bool
++}
++
++func reserveSymbolLinkBlock(counter *atomic.Uint32) uint32 {
++	for {
++		old := counter.Load()
++		if old >= maxSymbolLinkBlock {
++			return 0
++		}
++		if counter.CompareAndSwap(old, old+1) {
++			return old + 1
++		}
++	}
++}
++
++func (c *symbolLinkCursor) take(counter *atomic.Uint32) uint32 {
++	if c.remaining == 0 {
++		if c.exhausted {
++			return 0
++		}
++		block := reserveSymbolLinkBlock(counter)
++		if block == 0 {
++			c.exhausted = true
++			return 0
++		}
++		c.next = block << symbolLinkBlockShift
++		c.remaining = symbolLinkBlockSize
++	}
++	result := c.next
++	c.next++ // Last valid handle may wrap; remaining reaches zero simultaneously.
++	c.remaining--
++	return result
++}
++
++// SymbolAllocator preserves Arena's typed allocation and published-pointer
++// lifetime. Allocation handles are assigned before a symbol is published.
++// Like Arena, an allocator requires exclusive mutation and must not be copied
++// after use. Resetting it abandons unused handles rather than recycling them.
++type SymbolAllocator struct {
++	arena  core.Arena[Symbol]
++	cursor symbolLinkCursor
++}
++
++func (a *SymbolAllocator) New() *Symbol {
++	symbol := a.arena.New()
++	symbol.linkIndex = a.cursor.take(&symbolLinkBlock)
++	return symbol
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/ast/symbol_allocator_test.go
+@@ -0,0 +1,78 @@
++package ast
++
++import (
++	"sync"
++	"sync/atomic"
++	"testing"
++)
++
++func TestSymbolAllocationHandlesPreserveLazySemanticIDs(t *testing.T) {
++	var allocator SymbolAllocator
++	first, second := allocator.New(), allocator.New()
++	if first.linkIndex == 0 || second.linkIndex == 0 || first.linkIndex == second.linkIndex {
++		t.Fatal("allocation handles missing or repeated")
++	}
++	if first.id.Load() != 0 || second.id.Load() != 0 {
++		t.Fatal("allocation forced a semantic ID")
++	}
++	secondID, firstID := GetSymbolId(second), GetSymbolId(first)
++	if secondID >= firstID {
++		t.Fatal("semantic IDs no longer follow their first query order")
++	}
++	if (&Symbol{}).linkIndex != 0 {
++		t.Fatal("foreign symbol unexpectedly indexed")
++	}
++}
++
++func TestSymbolAllocationHandleExhaustionDoesNotWrap(t *testing.T) {
++	var counter atomic.Uint32
++	counter.Store(maxSymbolLinkBlock - 1)
++	var cursor symbolLinkCursor
++	for i := uint32(0); i < symbolLinkBlockSize; i++ {
++		got := cursor.take(&counter)
++		want := maxSymbolLinkBlock<<symbolLinkBlockShift | i
++		if got != want || got == 0 {
++			t.Fatalf("handle %d: got %x want %x", i, got, want)
++		}
++	}
++	for range 3 {
++		if cursor.take(&counter) != 0 {
++			t.Fatal("exhausted allocator reused a handle")
++		}
++	}
++	var other symbolLinkCursor
++	if other.take(&counter) != 0 || counter.Load() != maxSymbolLinkBlock {
++		t.Fatal("global exhaustion was not permanent")
++	}
++}
++
++func TestSymbolAllocationHandleConcurrentOwners(t *testing.T) {
++	var counter atomic.Uint32
++	const owners, perOwner = 8, 3*symbolLinkBlockSize + 17
++	results := make(chan []uint32, owners)
++	var workers sync.WaitGroup
++	for range owners {
++		workers.Go(func() {
++			var cursor symbolLinkCursor
++			ids := make([]uint32, perOwner)
++			for i := range ids {
++				ids[i] = cursor.take(&counter)
++			}
++			results <- ids
++		})
++	}
++	workers.Wait()
++	close(results)
++	seen := make(map[uint32]bool)
++	for ids := range results {
++		for _, id := range ids {
++			if id == 0 || seen[id] {
++				t.Fatalf("reused handle %x", id)
++			}
++			seen[id] = true
++		}
++	}
++	if len(seen) != owners*perOwner || counter.Load() != owners*4 {
++		t.Fatal("block reservation count differs")
++	}
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/ast/symbol_links.go
+@@ -0,0 +1,28 @@
++package ast
++
++import "github.com/microsoft/typescript-go/internal/core"
++
++// IndexedSymbolLinks retains checker-local values. Symbols supply only immutable
++// allocation handles; no checker-owned state is published on shared symbols.
++type IndexedSymbolLinks[V any] struct {
++	store core.IndexedPointerLinkStore[Symbol, V]
++}
++
++func symbolLinkIndex(symbol *Symbol) uint32 {
++	if symbol == nil {
++		return 0
++	}
++	return symbol.linkIndex
++}
++func (s *IndexedSymbolLinks[V]) Get(symbol *Symbol) *V {
++	return s.store.Get(symbol, symbolLinkIndex(symbol))
++}
++func (s *IndexedSymbolLinks[V]) New(symbol *Symbol) *V {
++	return s.store.New(symbol, symbolLinkIndex(symbol))
++}
++func (s *IndexedSymbolLinks[V]) TryGet(symbol *Symbol) *V {
++	return s.store.TryGet(symbol, symbolLinkIndex(symbol))
++}
++func (s *IndexedSymbolLinks[V]) Has(symbol *Symbol) bool {
++	return s.store.Has(symbol, symbolLinkIndex(symbol))
++}
+--- a/packages/tsc-go/internal/binder/binder.go
++++ b/packages/tsc-go/internal/binder/binder.go
+@@ -75,7 +75,7 @@
+ 	symbolCount             int
+ 	classifiableNames       collections.Set[string]
+ 	notConstEnumOnlyModules collections.Set[*ast.Symbol]
+-	symbolArena             core.Arena[ast.Symbol]
++	symbolArena             ast.SymbolAllocator
+ 	flowNodeArena           core.Arena[ast.FlowNode]
+ 	flowListArena           core.Arena[ast.FlowList]
+ 	singleDeclarationsArena core.Arena[*ast.Node]
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -664,7 +664,7 @@
+ 	propertiesTypes                             map[PropertiesTypesKey]*Type
+ 	diagnostics                                 ast.DiagnosticsCollection
+ 	suggestionDiagnostics                       ast.DiagnosticsCollection
+-	symbolArena                                 core.Arena[ast.Symbol]
++	symbolArena                                 ast.SymbolAllocator
+ 	signatureArena                              core.Arena[Signature]
+ 	indexInfoArena                              core.Arena[IndexInfo]
+ 	mergedSymbols                               map[*ast.Symbol]*ast.Symbol
+@@ -679,7 +679,7 @@
+ 	switchStatementLinks                        core.LinkStore[*ast.Node, SwitchStatementLinks]
+ 	jsxElementLinks                             core.LinkStore[*ast.Node, JsxElementLinks]
+ 	symbolReferenceLinks                        core.LinkStore[*ast.Symbol, SymbolReferenceLinks]
+-	valueSymbolLinks                            core.PointerLinkStore[ast.Symbol, ValueSymbolLinks]
++	valueSymbolLinks                            ast.IndexedSymbolLinks[ValueSymbolLinks]
+ 	mappedSymbolLinks                           core.LinkStore[*ast.Symbol, MappedSymbolLinks]
+ 	deferredSymbolLinks                         core.LinkStore[*ast.Symbol, DeferredSymbolLinks]
+ 	aliasSymbolLinks                            core.LinkStore[*ast.Symbol, AliasSymbolLinks]
+--- /dev/null
++++ b/packages/tsc-go/internal/core/indexedpointerlinkstore.go
+@@ -0,0 +1,101 @@
++package core
++
++// Sparse radix pages bound metadata by populated index regions, not by the
++// greatest process-global index. Values and keys remain typed GC roots. The
++// caller supplies a stable allocation handle; zero opts out of indexing.
++// Distinct pointers carrying a copied handle use the pointer-key fallback.
++// Mutation requires exclusive ownership. Populated copies may only be read.
++type IndexedPointerLinkStore[K, V any] struct {
++	root     [256]*indexedLinkDirectory[K, V]
++	arena    Arena[V]
++	fallback PointerLinkStore[K, V]
++}
++
++type indexedLinkDirectory[K, V any] [256]*indexedLinkBranch[K, V]
++type indexedLinkBranch[K, V any] [256]*indexedLinkPage[K, V]
++type indexedLinkPage[K, V any] [256]pointerLinkEntry[K, V]
++
++func (s *IndexedPointerLinkStore[K, V]) entry(index uint32) *pointerLinkEntry[K, V] {
++	directory := s.root[index>>24]
++	if directory == nil {
++		return nil
++	}
++	branch := directory[(index>>16)&255]
++	if branch == nil {
++		return nil
++	}
++	page := branch[(index>>8)&255]
++	if page == nil {
++		return nil
++	}
++	return &page[index&255]
++}
++
++func (s *IndexedPointerLinkStore[K, V]) ensureEntry(index uint32) *pointerLinkEntry[K, V] {
++	directory := s.root[index>>24]
++	if directory == nil {
++		directory = new(indexedLinkDirectory[K, V])
++		s.root[index>>24] = directory
++	}
++	branch := directory[(index>>16)&255]
++	if branch == nil {
++		branch = new(indexedLinkBranch[K, V])
++		directory[(index>>16)&255] = branch
++	}
++	page := branch[(index>>8)&255]
++	if page == nil {
++		page = new(indexedLinkPage[K, V])
++		branch[(index>>8)&255] = page
++	}
++	return &page[index&255]
++}
++
++func (s *IndexedPointerLinkStore[K, V]) Get(key *K, index uint32) *V {
++	if index == 0 {
++		return s.fallback.Get(key)
++	}
++	entry := s.entry(index)
++	if entry != nil && entry.value != nil {
++		if entry.key == key {
++			return entry.value
++		}
++		return s.fallback.Get(key)
++	}
++	if entry == nil {
++		entry = s.ensureEntry(index)
++	}
++	value := s.arena.New()
++	*entry = pointerLinkEntry[K, V]{key: key, value: value}
++	return value
++}
++
++func (s *IndexedPointerLinkStore[K, V]) New(key *K, index uint32) *V {
++	if index == 0 {
++		return s.fallback.New(key)
++	}
++	entry := s.ensureEntry(index)
++	if entry.value != nil && entry.key != key {
++		return s.fallback.New(key)
++	}
++	value := s.arena.New()
++	*entry = pointerLinkEntry[K, V]{key: key, value: value}
++	return value
++}
++
++func (s *IndexedPointerLinkStore[K, V]) TryGet(key *K, index uint32) *V {
++	if index == 0 {
++		return s.fallback.TryGet(key)
++	}
++	entry := s.entry(index)
++	if entry == nil || entry.value == nil {
++		return nil
++	}
++	if entry.key == key {
++		return entry.value
++	}
++	return s.fallback.TryGet(key)
++}
++
++func (s *IndexedPointerLinkStore[K, V]) Has(key *K, index uint32) bool {
++	return s.TryGet(key, index) != nil
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/core/indexedpointerlinkstore_test.go
+@@ -0,0 +1,125 @@
++package core
++
++import (
++	"runtime"
++	"sync"
++	"testing"
++)
++
++type indexedTestKey struct {
++	n    int
++	tail *[64]int
++}
++type indexedTestValue struct {
++	n    int
++	tail *[64]int
++}
++
++func TestIndexedPointerLinksBoundariesIdentityAndReplacement(t *testing.T) {
++	var store IndexedPointerLinkStore[indexedTestKey, indexedTestValue]
++	indices := []uint32{0, 1, 255, 256, 65535, 65536, 16777215, 16777216, ^uint32(0)}
++	keys := make([]*indexedTestKey, len(indices))
++	values := make([]*indexedTestValue, len(indices))
++	for i, index := range indices {
++		keys[i] = &indexedTestKey{n: i}
++		values[i] = store.Get(keys[i], index)
++		values[i].n = i + 1
++	}
++	for i, index := range indices {
++		if store.Get(keys[i], index) != values[i] || store.TryGet(keys[i], index) != values[i] || !store.Has(keys[i], index) {
++			t.Fatalf("lookup changed at %x", index)
++		}
++		next := store.New(keys[i], index)
++		if next == values[i] || next.n != 0 || values[i].n != i+1 {
++			t.Fatalf("replacement lost identity/old value at %x", index)
++		}
++	}
++	// A copied allocation handle never makes distinct pointer keys equivalent.
++	original, copied := &indexedTestKey{n: 100}, &indexedTestKey{n: 101}
++	a, b := store.Get(original, 42), store.Get(copied, 42)
++	a.n = 100
++	b.n = 101
++	if a == b || store.Get(original, 42) != a || store.Get(copied, 42) != b {
++		t.Fatal("handle collision aliased pointer identities")
++	}
++	old := store.New(copied, 42)
++	if old == b || b.n != 101 || store.Get(original, 42) != a {
++		t.Fatal("fallback replacement changed indexed entry")
++	}
++	nilValue := store.Get(nil, 0)
++	nilValue.n = 999
++	if store.TryGet(nil, 0) != nilValue {
++		t.Fatal("nil-key fallback lost value")
++	}
++}
++
++func TestIndexedPointerLinksReadonlyMissesAndReaders(t *testing.T) {
++	var store IndexedPointerLinkStore[indexedTestKey, indexedTestValue]
++	keys := []*indexedTestKey{{n: 1}, {n: 2}, {n: 3}}
++	indices := []uint32{1, 1, 0} // indexed, colliding-handle fallback, unindexed fallback
++	for i, k := range keys {
++		store.Get(k, indices[i]).n = i + 1
++	}
++	rootBefore := store.root
++	var readers sync.WaitGroup
++	for range 8 {
++		readers.Go(func() {
++			for range 100 {
++				for i, k := range keys {
++					if store.Get(k, indices[i]).n != i+1 || store.TryGet(k, indices[i]).n != i+1 {
++						t.Error("published read changed")
++					}
++				}
++				if store.TryGet(nil, ^uint32(0)) != nil || store.Has(nil, ^uint32(0)) {
++					t.Error("missing key found")
++				}
++			}
++		})
++	}
++	readers.Wait()
++	if store.root != rootBefore {
++		t.Fatal("read-only lookup allocated radix metadata")
++	}
++	var empty IndexedPointerLinkStore[indexedTestKey, indexedTestValue]
++	if empty.Has(nil, 0) || empty.TryGet(nil, 0) != nil || len(empty.fallback.entries) != 0 {
++		t.Fatal("fallback miss allocated or returned a value")
++	}
++}
++
++func indexedGCFixture() *IndexedPointerLinkStore[indexedTestKey, indexedTestValue] {
++	store := new(IndexedPointerLinkStore[indexedTestKey, indexedTestValue])
++	for i := 1; i <= 2048; i++ {
++		key := &indexedTestKey{n: i, tail: new([64]int)}
++		key.tail[63] = i
++		value := store.Get(key, uint32(i))
++		value.n = i
++		value.tail = new([64]int)
++		value.tail[63] = i * 3
++	}
++	return store
++}
++
++func TestIndexedPointerLinksTypedRootsAndDisplacedValues(t *testing.T) {
++	store := indexedGCFixture()
++	entry := store.entry(1)
++	old := entry.value
++	fresh := store.New(entry.key, 1)
++	fresh.n = 4000
++	for range 3 {
++		runtime.GC()
++	}
++	if old.n != 1 || old.tail[63] != 3 || store.entry(1).value != fresh {
++		t.Fatal("displaced value lost its typed allocation")
++	}
++	for i := 1; i <= 2048; i++ {
++		e := store.entry(uint32(i))
++		if e.key.n != i || e.key.tail[63] != i {
++			t.Fatalf("key graph lost at %d", i)
++		}
++		if i > 1 && (e.value.n != i || e.value.tail[63] != i*3) {
++			t.Fatalf("value graph lost at %d", i)
++		}
++	}
++	runtime.KeepAlive(store)
++	runtime.KeepAlive(old)
++}
