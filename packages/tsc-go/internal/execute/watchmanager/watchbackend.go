@@ -77,6 +77,13 @@ func ShouldIgnoreWatchPath(path string) bool {
 		strings.Contains(p, "/.#")
 }
 
+// CanWatchKnownDirectory accepts absolute project and dependency paths regardless
+// of depth. In particular, a missing checkout may need a nonrecursive watch on
+// /tmp or a filesystem root to detect its recreation, as in the native TS driver.
+func CanWatchKnownDirectory(dir string) bool {
+	return tspath.IsRootedDiskPath(dir)
+}
+
 func CanWatchDirectory(dir string) bool {
 	components := tspath.GetPathComponents(dir, "")
 	length := len(components)

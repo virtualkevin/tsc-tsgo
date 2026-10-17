@@ -86,7 +86,11 @@ func (c *Checker) inferFromTypes(n *InferenceState, source *Type, target *Type) 
 			nodeIsInJsFile := ast.IsInJSFile(source.alias.symbol.ValueDeclaration)
 			sourceTypes := c.fillMissingTypeArguments(source.alias.typeArguments, params, minParams, nodeIsInJsFile)
 			targetTypes := c.fillMissingTypeArguments(target.alias.typeArguments, params, minParams, nodeIsInJsFile)
-			c.inferFromTypeArguments(n, sourceTypes, targetTypes, c.getAliasVariances(source.alias.symbol))
+			var variances []VarianceFlags
+			if c.someTypeCouldHoldInference(targetTypes) {
+				variances = c.getAliasVariances(source.alias.symbol)
+			}
+			c.inferFromTypeArguments(n, sourceTypes, targetTypes, variances)
 		}
 		// And if there weren't any type arguments, there's no reason to run inference as the types must be the same.
 		return
@@ -252,7 +256,7 @@ func (c *Checker) inferFromTypes(n *InferenceState, source *Type, target *Type) 
 	switch {
 	case source.objectFlags&ObjectFlagsReference != 0 && target.objectFlags&ObjectFlagsReference != 0 && (source.AsTypeReference().target == target.AsTypeReference().target || c.isArrayType(source) && c.isArrayType(target)) && !(source.AsTypeReference().node != nil && target.AsTypeReference().node != nil):
 		// If source and target are references to the same generic type, infer from type arguments
-		c.inferFromTypeArguments(n, c.getTypeArguments(source), c.getTypeArguments(target), c.getVariances(source.AsTypeReference().target))
+		c.inferFromReferenceTypeArguments(n, source, target)
 	case source.flags&TypeFlagsIndex != 0 && target.flags&TypeFlagsIndex != 0:
 		c.inferFromContravariantTypes(n, source.AsIndexType().target, target.AsIndexType().target)
 	case (isLiteralType(source) || source.flags&TypeFlagsString != 0) && target.flags&TypeFlagsIndex != 0:
@@ -300,6 +304,19 @@ func (c *Checker) inferFromTypes(n *InferenceState, source *Type, target *Type) 
 			c.invokeOnce(n, source, target, (*Checker).inferFromObjectTypes)
 		}
 	}
+}
+
+// inferFromReferenceTypeArguments measures variances only if a target argument
+// can record an inference. Measuring them relates marker instantiations of the
+// entire generic type, even when all the inference targets are concrete.
+func (c *Checker) inferFromReferenceTypeArguments(n *InferenceState, source *Type, target *Type) {
+	sourceTypes := c.getTypeArguments(source)
+	targetTypes := c.getTypeArguments(target)
+	var variances []VarianceFlags
+	if c.someTypeCouldHoldInference(targetTypes) {
+		variances = c.getVariances(source.Target())
+	}
+	c.inferFromTypeArguments(n, sourceTypes, targetTypes, variances)
 }
 
 func (c *Checker) inferFromTypeArguments(n *InferenceState, sourceTypes []*Type, targetTypes []*Type, variances []VarianceFlags) {
@@ -665,7 +682,7 @@ func (c *Checker) inferFromGenericMappedTypes(n *InferenceState, source *Type, t
 func (c *Checker) inferFromObjectTypes(n *InferenceState, source *Type, target *Type) {
 	if source.objectFlags&ObjectFlagsReference != 0 && target.objectFlags&ObjectFlagsReference != 0 && (source.Target() == target.Target() || c.isArrayType(source) && c.isArrayType(target)) {
 		// If source and target are references to the same generic type, infer from type arguments
-		c.inferFromTypeArguments(n, c.getTypeArguments(source), c.getTypeArguments(target), c.getVariances(source.Target()))
+		c.inferFromReferenceTypeArguments(n, source, target)
 		return
 	}
 	if c.isGenericMappedType(source) && c.isGenericMappedType(target) {

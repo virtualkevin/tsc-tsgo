@@ -50,12 +50,13 @@ type taskResult struct {
 }
 
 type BuildTask struct {
-	config     string
-	resolved   *tsoptions.ParsedCommandLine
-	upStream   []*upstreamTask
-	downStream []*BuildTask // Only set and used in watch mode
-	status     *upToDateStatus
-	done       chan struct{}
+	configMissing bool // Presence observed during the last config resolution.
+	config        string
+	resolved      *tsoptions.ParsedCommandLine
+	upStream      []*upstreamTask
+	downStream    []*BuildTask // Only set and used in watch mode
+	status        *upToDateStatus
+	done          chan struct{}
 
 	// task reporting
 	result       *taskResult

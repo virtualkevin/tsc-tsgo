@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "suite": "Pinned upstream Go TestSubmodule compiler conformance",
+  "completed_at": "2026-10-17T07:23:33.653407604Z",
+  "exit_code": 0,
+  "source": {
+    "base_commit": "b4a01daf237e4997aadef58bd9221028905a66bf",
+    "uncommitted_changes": true,
+    "content_sha256": "f5d202be0fa717b5f0f4863924e77515651c4b0d28d9c60af03fc094de90db69",
+    "digest_file_count": 4976,
+    "digest_algorithm": "SHA256 of sorted repository-relative path UTF-8 + NUL + binary SHA256(content), concatenated for all nonignored packages/tsc-go *.go, go.mod, go.sum files",
+    "note": "Digest identifies the uncommitted expansion sources at validation completion; a subsequent commit may also contain later watch fixes. No TypeData or shared-global experimental patch was applied."
+  },
+  "fixtures": {
+    "typescript_go_commit": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript_commit": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "go_reference": "upstream/typescript-go/testdata/baselines/reference",
+    "typescript_reference": "upstream/TypeScript/tests/baselines/reference",
+    "auxiliary_declarations": "upstream/TypeScript/tests/lib"
+  },
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "working_directory": "packages/tsc-go",
+  "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/testrunner -run '^TestSubmodule$' -parallel 4 -timeout 30m",
+  "test_binary_flags": "No -trimpath; upstream test runner locates fixtures from source paths.",
+  "source_and_configuration_cases": {
+    "total": 14915,
+    "passed_parent_cases": 12797,
+    "fully_checked_cases": 12789,
+    "partially_checked_cases": 8,
+    "unsupported_cases_skipped": 2118,
+    "failed_cases": 0
+  },
+  "test_and_subtest_records": {
+    "passed": 113970,
+    "skipped": 2126,
+    "failed": 0,
+    "note": "Includes parent aggregate records; not a count of independent assertions. Skips are excluded from passed records."
+  },
+  "unsupported_case_skip_categories": {
+    "alwaysStrict=false is unsupported": 52,
+    "esModuleInterop=false is unsupported": 24,
+    "unsupported baseUrl": 31,
+    "unsupported module kind AMD": 321,
+    "unsupported module kind System": 222,
+    "unsupported module kind UMD": 57,
+    "unsupported module resolution kind 1": 57,
+    "unsupported module resolution kind 2": 23,
+    "unsupported outFile": 87,
+    "unsupported target ES5": 1244
+  },
+  "inherited_skipped_output_checks": [
+    {
+      "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+      "reason": "cls.d.ts is missing statements when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/grammarErrors.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+      "reason": "No files are emitted."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    }
+  ],
+  "reported_package_elapsed_seconds": 167.997,
+  "timing_note": "Validation duration only; concurrent native suites were running, so this is not a performance benchmark.",
+  "unit_validation": {
+    "initial_command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/core ./internal/compiler ./internal/checker ./cmd/tsgo ./internal/execute ./internal/execute/watchmanager",
+    "initial_exit_code": 1,
+    "initial_failures": "Two newly added watch test fixtures: stale expected root-watch policy and absent ParsedConfig in alias fixture. Corrected test fixtures only; no compiler changes were needed.",
+    "passing_initial_packages": ["internal/core", "internal/compiler", "internal/checker", "cmd/tsgo"],
+    "rerun_command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/execute ./internal/execute/watchmanager",
+    "rerun_exit_code": 0,
+    "rerun_passed_test_records": 14,
+    "rerun_skipped_test_records": 0,
+    "final_status": "All six requested unit packages passed across initial run and targeted rerun."
+  },
+  "coverage_limits": [
+    "Unsupported options are skipped by the pinned upstream runner.",
+    "Eight output subchecks are explicitly skipped by the pinned runner; their parent cases are marked partially checked above.",
+    "Native CLI/API/emit/watch comparisons are tracked separately and are not implied by this conformance result."
+  ]
+}

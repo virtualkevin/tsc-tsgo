@@ -155,9 +155,12 @@ func (wm *WatchManager) handleWatchTerminated(dir string, identity *watchedDir) 
 		delete(wm.watchedDirs, dir)
 	}
 	wm.mu.Unlock()
-	if staleCloser != nil {
-		staleCloser.Close()
+	if staleCloser == nil {
+		// Reconciliation already replaced or removed this subscription. A late
+		// termination callback must not schedule a second, obsolete rebuild.
+		return
 	}
+	staleCloser.Close()
 	wm.changedMu.Lock()
 	wm.changedOverflow = true
 	wm.changedMu.Unlock()
@@ -220,7 +223,9 @@ func (wm *WatchManager) ResolveDesiredDirs(desiredDirs map[string]bool) map[stri
 			watchDir = parent
 			watchRecursive = false // ancestor fallbacks are always non-recursive
 		}
-		if !wm.dirExists(watchDir) || !CanWatchDirectory(watchDir) {
+		// Keep the nearest concrete ancestor so deleted projects can reappear.
+		// Even root ancestors are valid; fallback watches remain nonrecursive.
+		if !wm.dirExists(watchDir) || !CanWatchKnownDirectory(watchDir) {
 			if wm.DebugLog != nil {
 				fmt.Fprintf(wm.DebugLog, "[watch] no watchable ancestor for %s\n", dir)
 			}

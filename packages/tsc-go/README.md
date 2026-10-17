@@ -10,11 +10,13 @@ npm test -w @tsc-ts/go
 
 Building requires Go 1.26 or newer. Set `GO` to a Go executable when it is not on `PATH`. The build embeds the standard library declaration files, so the executable can be moved without sibling data files. `TSC_TS_LIB_DIR` overrides their directory, including in API and language-server modes, matching the tsc-ts test configuration. The local `tsc-go` npm command launches this executable after building. `TSC_GO_PGO` optionally selects a CPU profile for a profile-guided build.
 
-The existing TypeScript implementation remains available as the performance and compatibility baseline. The Go CLI, API server, incremental compiler, watch mode, emitters, and language server come from the pinned upstream source. The original internal Go tests are retained. Tests requiring the upstream TypeScript submodule or baseline fixtures need those fixtures separately; the workspace test command runs the compiler unit suites that do not require them.
+The existing TypeScript implementation remains available as the performance and compatibility baseline. The Go CLI, API server, incremental compiler, watch mode, emitters, and language server come from the pinned upstream source. The original internal Go tests are retained. Tests requiring the upstream TypeScript submodule or baseline fixtures need those fixtures separately; the workspace test command runs the compiler, CLI lifecycle, and watch unit suites that do not require them.
 
 `TSC_GO_SCHEDULER=balanced` enables an experimental checker assignment that balances estimated work using checked source-file lengths. It keeps each file assigned to one checker for the program's lifetime and preserves processing order within each checker. Files skipped by type checking retain their original assignment and do not count toward semantic work. The default remains the upstream round-robin assignment until representative measurements justify a change.
 
 `TSC_GO_SCHEDULER=dependency` adds bounded groups of checked files and their importers to that balancing policy. It uses the program's completed module resolutions, keeps groups on one checker, and preserves the same fixed ownership and processing order. Both alternative schedulers are experiments; see the root `PERF.md` for measured results.
+
+Native watch mode uses the same `TSC_TS_WATCH_MEMORY` policy as tsc-ts: the exact value `0` disables worker replacement; a positive numeric value sets a limit in MiB; otherwise the limit is 2.5 times resident memory after the first build. A worker above that limit is replaced before a relevant rebuild. Ordinary watch retains its last valid configuration after a failed reread and waits for successful configuration recovery before allowing replacement.
 
 ## Upstream conformance fixtures
 
@@ -37,6 +39,12 @@ Run a focused check, then the broader generic and union subset:
 cd packages/tsc-go
 go test ./internal/testrunner -run 'TestSubmodule/(mappedTypes[12]|unionTypePropertyAccessibility|unionTypeIndexSignature|contextualTypeWithUnionTypeMembers|typeArgumentInferenceWithObjectLiteral|typeArgumentInferenceWithConstraints)\.ts' -parallel 4 -timeout 15m
 go test ./internal/testrunner -run 'TestSubmodule/(?i)(mappedType|union|intersection|generic|typeArgument|contextualType)' -parallel 4 -timeout 20m
+```
+
+Run the complete pinned conformance corpus with:
+
+```sh
+go test ./internal/testrunner -run '^TestSubmodule$' -parallel 4 -timeout 30m
 ```
 
 Do not add `-trimpath` to these test builds: the runner locates fixtures using its source path. The regular compiler build still uses `-trimpath`. Add `-json` to capture individual passes, failures, and skips; unsupported options such as ES5, AMD, and `outFile` are explicitly skipped by the upstream runner and are not passing cases.

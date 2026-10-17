@@ -15,6 +15,9 @@ import (
 )
 
 type osSys struct {
+	watchLimit         float64
+	watchChild         bool
+	watchResumed       bool
 	writer             io.Writer
 	fs                 vfs.FS
 	defaultLibraryPath string

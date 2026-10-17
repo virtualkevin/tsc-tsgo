@@ -20,6 +20,32 @@ for (const path of [baseline, candidate, libs]) {
 
 const fixtures = [
   {
+    name: 'template instantiation and distribution preserve inputs and repeated errors',
+    files: {
+      'main.ts': `export type Join<T extends string, U extends string> = \`\${T}/\${U}\`;
+export type First = Join<"a" | "b", "c" | "d">;
+export type Again = Join<"a" | "b", "c" | "d">;
+export type Swapped = Join<"c" | "d", "a" | "b">;
+export const first: First = "a/c";
+export const repeated: Again = first;
+export const swapped: Swapped = "d/b";
+// @ts-expect-error cache must retain argument order
+export const wrong: Swapped = "a/c";
+type D = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+type Fifty = \`\${"0" | "1" | "2" | "3" | "4"}\${D}\`;
+type Triple<T extends string> = \`\${T}-\${T}-\${T}\`;
+// @ts-expect-error oversized instantiated cross product at first use
+export type TooLargeFirst = Triple<Fifty>;
+// @ts-expect-error same oversized product must still diagnose this use
+export type TooLargeSecond = Triple<Fifty>;
+// @ts-expect-error oversized distribution at first use
+export type DistributionFirst = \`\${Fifty}:\${Fifty}:\${Fifty}\`;
+// @ts-expect-error same distribution must still diagnose this use
+export type DistributionSecond = \`\${Fifty}:\${Fifty}:\${Fifty}\`;
+`,
+    },
+  },
+  {
     name: 'primitive unions preserve enum assignments, freshness, and comparison narrowing',
     files: {
       'main.ts': `export enum N { One = 1, Two = 2 }

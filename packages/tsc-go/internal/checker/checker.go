@@ -626,6 +626,8 @@ type Checker struct {
 	enumNaNLiteralTypes                         map[*ast.Symbol]*Type
 	indexedAccessTypes                          map[CacheHashKey]*Type
 	templateLiteralTypes                        map[CacheHashKey]*Type
+	templateLiteralInstantiations               map[CacheHashKey]*Type
+	templateLiteralDistributions                map[CacheHashKey]*Type
 	stringMappingTypes                          map[StringMappingKey]*Type
 	uniqueESSymbolTypes                         map[*ast.Symbol]*Type
 	thisExpandoKinds                            map[*ast.Symbol]thisAssignmentDeclarationKind
@@ -22203,7 +22205,7 @@ func (c *Checker) instantiateTypeWorker(t *Type, m *TypeMapper, alias *TypeAlias
 		d := t.AsIndexedAccessType()
 		return c.getIndexedAccessTypeEx(c.instantiateType(d.objectType, m), c.instantiateType(d.indexType, m), d.accessFlags, nil /*accessNode*/, alias)
 	case flags&TypeFlagsTemplateLiteral != 0:
-		return c.getTemplateLiteralType(t.AsTemplateLiteralType().texts, c.instantiateTypes(t.AsTemplateLiteralType().types, m))
+		return c.instantiateTemplateLiteralType(t, c.instantiateTypes(t.AsTemplateLiteralType().types, m))
 	case flags&TypeFlagsStringMapping != 0:
 		return c.getStringMappingType(t.symbol, c.instantiateType(t.AsStringMappingType().target, m))
 	case flags&TypeFlagsConditional != 0:
@@ -26348,6 +26350,9 @@ func (c *Checker) eachUnionContains(unionTypes []*Type, t *Type) bool {
 }
 
 func (c *Checker) getCrossProductIntersections(types []*Type, flags IntersectionFlags) []*Type {
+	if allIntersectionConstituentsWithoutMembersToResolve(types) {
+		return c.addCrossProductIntersections(types, flags, slices.Clone(types), 0, nil, nil)
+	}
 	count := c.getCrossProductUnionSize(types)
 	var intersections []*Type
 	for i := range count {
@@ -28930,17 +28935,52 @@ func (c *Checker) getConstraintDeclaration(t *Type) *ast.Node {
 	return nil
 }
 
+// The template identity fixes its immutable texts; the instantiated types fix
+// every substitution. Mappers that produce the same arguments share the result.
+func (c *Checker) instantiateTemplateLiteralType(template *Type, types []*Type) *Type {
+	var b keyBuilder
+	b.writeType(template)
+	b.writeTypes(types)
+	key := b.hash()
+	if result := c.templateLiteralInstantiations[key]; result != nil {
+		return result
+	}
+	result := c.getTemplateLiteralType(template.AsTemplateLiteralType().texts, types)
+	// Oversized products diagnose the current source node on every use.
+	if result != c.errorType {
+		if c.templateLiteralInstantiations == nil {
+			c.templateLiteralInstantiations = make(map[CacheHashKey]*Type)
+		}
+		c.templateLiteralInstantiations[key] = result
+	}
+	return result
+}
+
 func (c *Checker) getTemplateLiteralType(texts []string, types []*Type) *Type {
 	unionIndex := core.FindIndex(types, func(t *Type) bool {
 		return t.flags&(TypeFlagsNever|TypeFlagsUnion) != 0
 	})
 	if unionIndex >= 0 {
+		// Key all texts (including their boundaries) and the complete type list.
+		// The existing template key is length-delimited, so embedded NULs cannot
+		// collide with adjacent text spans.
+		key := getTemplateTypeKey(texts, types)
+		if result := c.templateLiteralDistributions[key]; result != nil {
+			return result
+		}
 		if !c.checkCrossProductUnion(types) {
 			return c.errorType
 		}
-		return c.mapType(types[unionIndex], func(t *Type) *Type {
+		result := c.mapType(types[unionIndex], func(t *Type) *Type {
 			return c.getTemplateLiteralType(texts, core.ReplaceElement(types, unionIndex, t))
 		})
+		if result != c.errorType {
+			if c.templateLiteralDistributions == nil {
+				c.templateLiteralDistributions = make(map[CacheHashKey]*Type)
+			}
+			c.templateLiteralDistributions[key] = result
+		}
+		return result
 	}
 	if slices.Contains(types, c.wildcardType) {
 		return c.wildcardType

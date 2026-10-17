@@ -912,28 +912,39 @@ test(
 
 // A config edit restarts the process too once the config reads again: a run of config edits otherwise grows past the
 // limit. Natively on Linux, the supervising process's child is a new process after the edit.
+function watchWorkerPids(child) {
+  const taskDirectory = `/proc/${child.pid}/task`;
+  const children = new Set();
+  // Linux records a child under the OS thread that spawned it. Go may call
+  // exec on any runtime thread, so the process leader's list is insufficient.
+  for (const tid of readdirSync(taskDirectory)) {
+    try {
+      for (const pid of readFileSync(`${taskDirectory}/${tid}/children`, 'utf8').trim().split(/\s+/)) {
+        if (pid) children.add(pid);
+      }
+    } catch (error) {
+      // Runtime threads can exit between listing tasks and reading children.
+      if (error.code !== 'ENOENT') throw error;
+    }
+  }
+  return [...children].sort((a, b) => Number(a) - Number(b)).join(' ');
+}
+
 test(
   '--watch restarts after a config edit when the watch process is above its limit',
   { skip: tscTsMissing, timeout: 120_000 },
   async () => {
-    const children = (child) => {
-      try {
-        return readFileSync(`/proc/${child.pid}/task/${child.pid}/children`, 'utf8').trim();
-      } catch {
-        return '';
-      }
-    };
     const run = async (memory) => {
       const workers = [];
       const steps = [
         (dir, child) => {
-          workers.push(children(child));
+          workers.push(existsSync('/proc/self/task') ? watchWorkerPids(child) : '');
           writeFiles(dir, {
             'tsconfig.json': '{"compilerOptions":{"outDir":"out","rootDir":"src","strict":true},"include":["src"]}',
           });
         },
         (dir, child) => {
-          workers.push(children(child));
+          workers.push(existsSync('/proc/self/task') ? watchWorkerPids(child) : '');
           writeFiles(dir, { 'src/a.ts': 'export const a: string = 1;\n' });
         },
       ];
@@ -1040,5 +1051,78 @@ test(
         '<time> - Found 1 error. Watching for file changes.\n\n',
     );
     assert.deepEqual(files, ['a.js']);
+  },
+);
+
+// A failed config read must suppress replacement only until a valid config is restored.
+test(
+  '--watch resumes memory restarts after a failed config read is repaired',
+  { skip: tscTsMissing, timeout: 120_000 },
+  async () => {
+    const run = async (memory) => {
+      const workers = [];
+      const steps = [
+        (dir, child) => {
+          workers.push(existsSync('/proc/self/task') ? watchWorkerPids(child) : '');
+          rmSync(join(dir, 'tsconfig.json'));
+        },
+        (dir, child) => {
+          workers.push(existsSync('/proc/self/task') ? watchWorkerPids(child) : '');
+          writeFiles(dir, { 'src/a.ts': 'export const a: string = 1;\n' });
+        },
+        (dir, child) => {
+          workers.push(existsSync('/proc/self/task') ? watchWorkerPids(child) : '');
+          writeFiles(dir, {
+            'tsconfig.json': '{"compilerOptions":{"outDir":"out","rootDir":"src","strict":true},"include":["src"]}',
+          });
+        },
+        (dir, child) => {
+          workers.push(existsSync('/proc/self/task') ? watchWorkerPids(child) : '');
+          writeFiles(dir, { 'src/a.ts': 'export const a: number = 2;\n' });
+        },
+      ];
+      return {
+        ...(await watchSequence(['--watch'], steps, watchProject, () => {}, { TSC_TS_WATCH_MEMORY: memory })),
+        workers,
+      };
+    };
+    const expected = await run('0');
+    const restarting = await run('1');
+    assert.match(expected.output, /error TS(?:5083|6053)/);
+    assert.match(expected.output, /error TS2322/);
+    assert.match(expected.output, /Found 0 errors\. Watching for file changes\.\n\n$/);
+    assert.equal(restarting.output, expected.output);
+    assert.deepEqual(restarting.files, expected.files);
+    if (tscTs[0] !== process.execPath && existsSync('/proc/self/task')) {
+      assert.notEqual(restarting.workers[0], '');
+      assert.equal(restarting.workers[1], restarting.workers[0]);
+      assert.equal(restarting.workers[2], restarting.workers[0]);
+      assert.notEqual(restarting.workers[3], restarting.workers[0]);
+    }
+  },
+);
+
+test(
+  '--build --watch finds recreated project directories after a memory restart',
+  { skip: tscTsMissing, timeout: 120_000 },
+  async () => {
+    const project = Object.fromEntries(Object.entries(watchProject).map(([path, text]) => ['proj/' + path, text]));
+    const run = (memory) =>
+      watchSequence(
+        ['--build', 'proj', '--watch'],
+        [
+          ['proj', null],
+          { 'proj/src/a.ts': 'export const a: string = 1;\n', 'proj/tsconfig.json': project['proj/tsconfig.json'] },
+        ],
+        project,
+        () => {},
+        { TSC_TS_WATCH_MEMORY: memory },
+      );
+    const expected = await run('0');
+    const restarting = await run('1');
+    assert.match(expected.output, /error TS6053/);
+    assert.match(expected.output, /error TS2322/);
+    assert.deepEqual(restarting, expected);
+    assert.deepEqual(restarting.files, ['a.js']);
   },
 );

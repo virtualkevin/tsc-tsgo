@@ -22,8 +22,9 @@ import (
 )
 
 type cachedSourceFile struct {
-	file    *ast.SourceFile
-	modTime time.Time
+	file     *ast.SourceFile
+	modTime  time.Time
+	realPath tspath.Path
 }
 
 type watchCompilerHost struct {
@@ -32,10 +33,13 @@ type watchCompilerHost struct {
 }
 
 func (h *watchCompilerHost) GetSourceFile(opts ast.SourceFileParseOptions) *ast.SourceFile {
-	info := h.CompilerHost.FS().Stat(opts.FileName)
+	fs := h.CompilerHost.FS()
+	info := fs.Stat(opts.FileName)
+	// A replaced link can point at different text with the same modification time.
+	realPath := tspath.ToPath(fs.Realpath(opts.FileName), h.GetCurrentDirectory(), fs.UseCaseSensitiveFileNames())
 
 	if cached, ok := h.cache.Load(opts.Path); ok {
-		if info != nil && info.ModTime().Equal(cached.modTime) {
+		if info != nil && info.ModTime().Equal(cached.modTime) && realPath == cached.realPath {
 			return cached.file
 		}
 	}
@@ -44,8 +48,9 @@ func (h *watchCompilerHost) GetSourceFile(opts ast.SourceFileParseOptions) *ast.
 	if file != nil {
 		if info != nil {
 			h.cache.Store(opts.Path, &cachedSourceFile{
-				file:    file,
-				modTime: info.ModTime(),
+				file:     file,
+				modTime:  info.ModTime(),
+				realPath: realPath,
 			})
 		}
 	} else {
@@ -129,10 +134,11 @@ func (w *Watcher) start(ctx context.Context) {
 		w.wm.EnsureDefaultBackend()
 	}
 
-	w.reportWatchStatus(ast.NewCompilerDiagnostic(diagnostics.Starting_compilation_in_watch_mode))
+	w.reportWatchStatus(ast.NewCompilerDiagnostic(core.IfElse(tsc.WatchProcessResumed(w.sys), diagnostics.File_change_detected_Starting_incremental_compilation, diagnostics.Starting_compilation_in_watch_mode)))
 	if err := w.doBuild(); err != nil {
 		w.wm.ForceOverflow()
 	}
+	tsc.WatchFirstBuildDone(w.sys)
 	w.wm.Unlock()
 
 	if w.testing == nil {
@@ -188,7 +194,7 @@ func (w *Watcher) computeDesiredWatches(seenFilePaths []string) map[string]bool 
 	for _, filePath := range seenFilePaths {
 		dir := tspath.GetDirectoryPath(filePath)
 		if !watchmanager.IsDirCoveredByWatch(resolvedDirs, dir, opts) {
-			if watchmanager.CanWatchDirectory(dir) {
+			if watchmanager.CanWatchKnownDirectory(dir) {
 				resolvedDirs[dir] = false
 			}
 		}
@@ -248,6 +254,10 @@ func (w *Watcher) DoCycle() {
 		return
 	}
 
+	// A replacement cannot recover the old config after a failed reread.
+	if !w.configHasErrors && tsc.RestartWatchBeforeRebuild(w.sys) {
+		return
+	}
 	w.reportWatchStatus(ast.NewCompilerDiagnostic(diagnostics.File_change_detected_Starting_incremental_compilation))
 	if err := w.doBuild(); err != nil {
 		// Mid-cycle watch failure; force a full rebuild on the next event
@@ -270,8 +280,11 @@ func (w *Watcher) isRelevantChange(changedPaths map[string]fswatch.EventKind) bo
 		if w.config.ConfigFile != nil && w.config.PossiblyMatchesDirectoryName(p) {
 			return true
 		}
-		if w.sys.FS().DirectoryExists(eventPath) {
-			if w.wm.IsPathUnderWatch(eventPath, opts) {
+		// An ancestor watch can cover unrelated directories (for example /tmp
+		// while a project is missing). Only changes to an actual dependency or
+		// its ancestors matter; deleted ancestors no longer pass DirectoryExists.
+		for dependency := range w.seenFiles.Keys() {
+			if tspath.ContainsPath(eventPath, string(dependency), opts) {
 				return true
 			}
 		}
@@ -313,11 +326,7 @@ func (w *Watcher) doBuild() error {
 
 	caseSensitive := w.sys.FS().UseCaseSensitiveFileNames()
 	cwd := w.sys.GetCurrentDirectory()
-	seenSlice := tfs.SeenFiles.ToSlice()
-	w.seenFiles = collections.NewSetWithSizeHint[tspath.Path](len(seenSlice))
-	for _, p := range seenSlice {
-		w.seenFiles.Add(tspath.ToPath(p, cwd, caseSensitive))
-	}
+	seenSlice := w.trackSeenFiles(tfs.SeenFiles.ToSlice(), cwd, caseSensitive)
 
 	w.configMtimes = make(map[string]time.Time, len(w.configFilePaths))
 	for _, cfgPath := range w.configFilePaths {
@@ -353,18 +362,42 @@ func (w *Watcher) doBuild() error {
 	return nil
 }
 
+// Keep both spelling and physical target: spelling observes link replacement,
+// while the target observes edits in directories with no other program inputs.
+func (w *Watcher) trackSeenFiles(paths []string, cwd string, caseSensitive bool) []string {
+	w.seenFiles = collections.NewSetWithSizeHint[tspath.Path](len(paths))
+	seen := make([]string, 0, len(paths))
+	for _, path := range paths {
+		for _, dependency := range []string{path, w.sys.FS().Realpath(path)} {
+			if w.seenFiles.AddIfAbsent(tspath.ToPath(dependency, cwd, caseSensitive)) {
+				seen = append(seen, dependency)
+			}
+		}
+	}
+	return seen
+}
+
 func (w *Watcher) evictChangedSourceFiles(changedPaths map[string]fswatch.EventKind) {
 	caseSensitive := w.sys.FS().UseCaseSensitiveFileNames()
 	cwd := w.sys.GetCurrentDirectory()
+	changed := collections.NewSetWithSizeHint[tspath.Path](len(changedPaths))
 	for eventPath := range changedPaths {
-		p := tspath.ToPath(eventPath, cwd, caseSensitive)
-		if _, ok := w.sourceFileCache.Load(p); ok {
-			if w.wm.DebugLog != nil {
-				fmt.Fprintf(w.wm.DebugLog, "[watch] evicting cached source file: %s\n", p)
-			}
-			w.sourceFileCache.Delete(p)
-		}
+		changed.Add(tspath.ToPath(eventPath, cwd, caseSensitive))
 	}
+	// Several source spellings can share a physical file. Invalidate all aliases,
+	// including ancestor-only events and edits that preserve the file's timestamp.
+	w.sourceFileCache.Range(func(path tspath.Path, cached *cachedSourceFile) bool {
+		for ancestor := range changed.Keys() {
+			if ancestor.ContainsPath(path) || ancestor.ContainsPath(cached.realPath) {
+				if w.wm.DebugLog != nil {
+					fmt.Fprintf(w.wm.DebugLog, "[watch] evicting cached source file: %s\n", path)
+				}
+				w.sourceFileCache.Delete(path)
+				break
+			}
+		}
+		return true
+	})
 }
 
 func (w *Watcher) compileAndEmit() tsc.CompileAndEmitResult {
@@ -386,7 +419,7 @@ func (w *Watcher) recheckTsConfig() bool {
 		return false
 	}
 
-	if !w.configHasErrors && len(w.configFilePaths) > 0 {
+	if len(w.configFilePaths) > 0 {
 		changed := false
 		for _, path := range w.configFilePaths {
 			oldMtime, ok := w.configMtimes[path]
@@ -430,6 +463,14 @@ func (w *Watcher) parseConfigFile() *tsoptions.ParsedCommandLine {
 			w.reportDiagnostic(e)
 		}
 		w.configHasErrors = true
+		// Remember the failed read's stamps too. Source-only edits must compile
+		// with the last valid config; retry parsing when a config changes again.
+		w.configMtimes = make(map[string]time.Time, len(w.configFilePaths))
+		for _, path := range w.configFilePaths {
+			if info := w.sys.FS().Stat(path); info != nil {
+				w.configMtimes[path] = info.ModTime()
+			}
+		}
 		errorCount := len(errors)
 		if errorCount == 1 {
 			w.reportWatchStatus(ast.NewCompilerDiagnostic(diagnostics.Found_1_error_Watching_for_file_changes))

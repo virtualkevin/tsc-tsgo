@@ -38,7 +38,7 @@ type orchestratorResult struct {
 
 func (b *orchestratorResult) report(o *Orchestrator) {
 	if o.opts.Command.CompilerOptions.Watch.IsTrue() {
-		o.watchStatusReporter(ast.NewCompilerDiagnostic(core.IfElse(len(b.errors) == 1, diagnostics.Found_1_error_Watching_for_file_changes, diagnostics.Found_0_errors_Watching_for_file_changes), len(b.errors)))
+		o.pendingWatchStatus = ast.NewCompilerDiagnostic(core.IfElse(len(b.errors) == 1, diagnostics.Found_1_error_Watching_for_file_changes, diagnostics.Found_0_errors_Watching_for_file_changes), len(b.errors))
 	} else {
 		o.errorSummaryReporter(b.errors)
 	}
@@ -71,6 +71,7 @@ type Orchestrator struct {
 
 	errorSummaryReporter tsc.DiagnosticsReporter
 	watchStatusReporter  tsc.DiagnosticReporter
+	pendingWatchStatus   *ast.Diagnostic
 
 	// fswatch event-based watching
 	wm *watchmanager.WatchManager
@@ -146,6 +147,7 @@ func (o *Orchestrator) createBuildTasks(oldTasks *collections.SyncMap[tspath.Pat
 				return
 			}
 			task.resolved = o.host.GetResolvedProjectReference(config, path)
+			task.configMissing = !o.host.FS().FileExists(config)
 			task.upStream = nil
 			if task.resolved != nil {
 				o.createBuildTasks(oldTasks, task.resolved.ResolvedProjectReferencePaths(), wg)
@@ -226,11 +228,12 @@ func (o *Orchestrator) GenerateGraph(oldTasks *collections.SyncMap[tspath.Path, 
 
 func (o *Orchestrator) Start(ctx context.Context) tsc.CommandLineResult {
 	if o.opts.Command.CompilerOptions.Watch.IsTrue() {
-		o.watchStatusReporter(ast.NewCompilerDiagnostic(diagnostics.Starting_compilation_in_watch_mode))
+		o.watchStatusReporter(ast.NewCompilerDiagnostic(core.IfElse(tsc.WatchProcessResumed(o.opts.Sys), diagnostics.File_change_detected_Starting_incremental_compilation, diagnostics.Starting_compilation_in_watch_mode)))
 	}
 	o.GenerateGraph(nil)
 	result := o.buildOrClean()
 	if o.opts.Command.CompilerOptions.Watch.IsTrue() {
+		tsc.WatchFirstBuildDone(o.opts.Sys)
 		o.Watch(ctx)
 		result.Watcher = o
 	}
@@ -254,11 +257,21 @@ func (o *Orchestrator) Watch(ctx context.Context) {
 		o.wm.ForceOverflow()
 	}
 	o.resetCaches()
+	o.reportWatchReady()
 
 	o.wm.Unlock()
 
 	if o.opts.Testing == nil {
 		o.wm.RunLoop(ctx, o.DoCycle)
+	}
+}
+
+// Readiness must follow watch reconciliation: users can edit immediately after
+// this line, including recreating a project whose parent watch was just added.
+func (o *Orchestrator) reportWatchReady() {
+	if diagnostic := o.pendingWatchStatus; diagnostic != nil {
+		o.pendingWatchStatus = nil
+		o.watchStatusReporter(diagnostic)
 	}
 }
 
@@ -291,7 +304,17 @@ func (o *Orchestrator) checkTasksForEventChanges(changedPaths map[string]fswatch
 		task := o.getTask(path)
 
 		configPath := o.toPath(task.config)
-		if _, changed := normalizedPaths[configPath]; changed {
+		configChangedByEvent := false
+		for eventPath, kind := range normalizedPaths {
+			if eventPath.ContainsPath(configPath) && (!task.configMissing || kind != fswatch.EventDelete) {
+				// Different directory subscriptions can deliver the same deletion in
+				// separate batches. A config already known missing needs no second
+				// failed build, but an ancestor's creation must retry its cached nil.
+				configChangedByEvent = true
+				break
+			}
+		}
+		if configChangedByEvent {
 			task.resetConfig(o, path)
 			needsConfigUpdate.Store(true)
 			needsUpdate.Store(true)
@@ -305,7 +328,7 @@ func (o *Orchestrator) checkTasksForEventChanges(changedPaths map[string]fswatch
 		configChanged := false
 		for _, file := range task.resolved.ExtendedSourceFiles() {
 			fp := o.toPath(file)
-			if _, changed := normalizedPaths[fp]; changed {
+			if pathChangedByWatchEvent(fp, normalizedPaths) {
 				task.resetConfig(o, path)
 				needsConfigUpdate.Store(true)
 				needsUpdate.Store(true)
@@ -324,7 +347,7 @@ func (o *Orchestrator) checkTasksForEventChanges(changedPaths map[string]fswatch
 			fp := o.toPath(file)
 			roots.Add(fp)
 			if !rootChanged {
-				if _, changed := normalizedPaths[fp]; changed {
+				if pathChangedByWatchEvent(fp, normalizedPaths) {
 					task.resetStatus()
 					needsUpdate.Store(true)
 					rootChanged = true
@@ -343,7 +366,7 @@ func (o *Orchestrator) checkTasksForEventChanges(changedPaths map[string]fswatch
 					if roots.Has(fp) {
 						continue
 					}
-					if _, changed := normalizedPaths[fp]; changed {
+					if pathChangedByWatchEvent(fp, normalizedPaths) {
 						task.resetStatus()
 						needsUpdate.Store(true)
 						break
@@ -385,35 +408,22 @@ func (o *Orchestrator) checkTasksForEventChanges(changedPaths map[string]fswatch
 		}
 	}
 
-	if !needsUpdate.Load() {
-		opts := o.comparePathsOptions
-		for eventPath := range changedPaths {
-			if o.host.FS().DirectoryExists(eventPath) {
-				if o.wm.IsPathUnderWatch(eventPath, opts) {
-					o.rangeTask(func(path tspath.Path, task *BuildTask) {
-						task.resetStatus()
-						task.reportDone = make(chan struct{})
-						task.done = make(chan struct{})
-					})
-					needsUpdate.Store(true)
-					break
-				}
-			}
-		}
-	}
 }
 
-func (o *Orchestrator) packageJsonLookupChanged(packageJson string, changedPaths map[tspath.Path]fswatch.EventKind) bool {
-	packageJsonPath := o.toPath(packageJson)
-	if _, changed := changedPaths[packageJsonPath]; changed {
-		return true
-	}
-	for changedPath, kind := range changedPaths {
-		if kind == fswatch.EventDelete && tspath.ContainsPath(string(changedPath), string(packageJsonPath), o.comparePathsOptions) {
+// A directory event can stand for a dependency removed or created underneath it.
+// Compare with the actual dependency, not the directory chosen as a watch fallback:
+// /tmp and filesystem roots can be watched without making unrelated projects relevant.
+func pathChangedByWatchEvent(path tspath.Path, changedPaths map[tspath.Path]fswatch.EventKind) bool {
+	for changedPath := range changedPaths {
+		if changedPath.ContainsPath(path) {
 			return true
 		}
 	}
 	return false
+}
+
+func (o *Orchestrator) packageJsonLookupChanged(packageJson string, changedPaths map[tspath.Path]fswatch.EventKind) bool {
+	return pathChangedByWatchEvent(o.toPath(packageJson), changedPaths)
 }
 
 func (o *Orchestrator) computeDesiredWatches() map[string]bool {
@@ -459,7 +469,7 @@ func (o *Orchestrator) computeDesiredWatches() map[string]bool {
 			absPath := tspath.GetNormalizedAbsolutePath(fileName, o.opts.Sys.GetCurrentDirectory())
 			dir := tspath.GetDirectoryPath(absPath)
 			if !watchmanager.IsDirCoveredByWatch(desiredDirs, dir, o.comparePathsOptions) {
-				if watchmanager.CanWatchDirectory(dir) {
+				if watchmanager.CanWatchKnownDirectory(dir) {
 					desiredDirs[dir] = false
 				}
 			}
@@ -480,7 +490,7 @@ func (o *Orchestrator) computeDesiredWatches() map[string]bool {
 				}
 				dir := tspath.GetDirectoryPath(absPath)
 				if !watchmanager.IsDirCoveredByWatch(desiredDirs, dir, o.comparePathsOptions) {
-					if watchmanager.CanWatchDirectory(dir) {
+					if watchmanager.CanWatchKnownDirectory(dir) {
 						desiredDirs[dir] = false
 					}
 				}
@@ -501,7 +511,7 @@ func (o *Orchestrator) computeDesiredWatches() map[string]bool {
 }
 
 func (o *Orchestrator) addWatchDir(desiredDirs map[string]bool, dir string) {
-	if !watchmanager.IsDirCoveredByWatch(desiredDirs, dir, o.comparePathsOptions) && watchmanager.CanWatchDirectory(dir) {
+	if !watchmanager.IsDirCoveredByWatch(desiredDirs, dir, o.comparePathsOptions) && watchmanager.CanWatchKnownDirectory(dir) {
 		desiredDirs[dir] = false
 	}
 }
@@ -571,6 +581,9 @@ func (o *Orchestrator) DoCycle() {
 		return
 	}
 
+	if tsc.RestartWatchBeforeRebuild(o.opts.Sys) {
+		return
+	}
 	o.watchStatusReporter(ast.NewCompilerDiagnostic(diagnostics.File_change_detected_Starting_incremental_compilation))
 	if needsConfigUpdate.Load() {
 		// Generate new tasks
@@ -586,6 +599,7 @@ func (o *Orchestrator) DoCycle() {
 		o.wm.ForceOverflow()
 	}
 	o.resetCaches()
+	o.reportWatchReady()
 }
 
 func (o *Orchestrator) buildOrClean() tsc.CommandLineResult {

@@ -110,6 +110,12 @@ func tscBuildCompilation(ctx context.Context, sys tsc.System, buildCommand *tsop
 		return tsc.CommandLineResult{Status: tsc.ExitStatusSuccess}
 	}
 
+	if buildCommand.CompilerOptions.Watch.IsTrue() {
+		if supervising, status := tsc.StartWatchProcess(ctx, sys); supervising {
+			return tsc.CommandLineResult{Status: status}
+		}
+	}
+
 	orchestrator := build.NewOrchestrator(build.Options{
 		Sys:     sys,
 		Command: buildCommand,
@@ -230,6 +236,9 @@ func tscCompilation(ctx context.Context, sys tsc.System, commandLine *tsoptions.
 		return tsc.CommandLineResult{Status: tsc.ExitStatusSuccess}
 	}
 	if configForCompilation.CompilerOptions().Watch.IsTrue() {
+		if supervising, status := tsc.StartWatchProcess(ctx, sys); supervising {
+			return tsc.CommandLineResult{Status: status}
+		}
 		watcher := createWatcher(
 			sys,
 			configForCompilation,
