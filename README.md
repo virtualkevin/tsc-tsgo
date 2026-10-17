@@ -1,5 +1,21 @@
 # tsc-ts
 
+This fork is developing a Go implementation in [`packages/tsc-go`](packages/tsc-go/README.md).
+It starts from the pinned Go ancestor of this compiler and retains the TypeScript
+implementation below as the native performance and compatibility baseline.
+
+```sh
+npm ci
+npm run build:go                    # requires Go 1.26+
+packages/tsc-go/dist/tsc-go --noEmit -p path/to/tsconfig.json
+npm run test:go                     # local Go unit tests
+```
+
+The 10× speedup is an optimization target, not an achieved result. Reproducible
+measurements live in [`PERF.md`](PERF.md), with methodology and pinned workloads
+in [`benchmarks`](benchmarks/README.md). GitHub workflows are disabled for this
+fork; validation runs locally.
+
 <p>
   <a href="https://vercel.com/labs#active-experiments"><img alt="Vercel Labs Experiment" src="https://img.shields.io/badge/LABS-EXPERIMENT-0a0a0a.svg?style=for-the-badge&amp;logo=Vercel&amp;labelColor=000000" height="28"></a>
   <a href="https://github.com/vercel-labs/tsc-ts/blob/main/LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/github/license/vercel-labs/tsc-ts.svg?style=for-the-badge&amp;labelColor=000000" height="28"></a>

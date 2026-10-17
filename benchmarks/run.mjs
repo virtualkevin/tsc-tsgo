@@ -101,7 +101,7 @@ const report = {
     availableParallelism: availableParallelism(),
     totalMemoryBytes: totalmem(),
     compilerEnvironment: Object.fromEntries(
-      ['GOMAXPROCS', 'GOGC', 'GOMEMLIMIT', 'TSC_TS_LIB_DIR', 'NODE_OPTIONS']
+      ['GOMAXPROCS', 'GOGC', 'GOMEMLIMIT', 'TSC_GO_SCHEDULER', 'TSC_TS_LIB_DIR', 'NODE_OPTIONS']
         .filter((k) => compilerEnv[k] !== undefined)
         .map((k) => [k, compilerEnv[k]]),
     ),

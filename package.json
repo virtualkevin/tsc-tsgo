@@ -7,6 +7,9 @@
   ],
   "type": "module",
   "scripts": {
+    "build:go": "npm run build -w @tsc-ts/go",
+    "test:go": "npm test -w @tsc-ts/go",
+    "bench:projects": "node benchmarks/run.mjs",
     "build": "turbo run build",
     "dev:web": "npm run dev -w @tsc-ts/web",
     "build:web": "npm run build -w @tsc-ts/web",

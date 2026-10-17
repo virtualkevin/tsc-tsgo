@@ -1,0 +1,17 @@
+{
+  "name": "@tsc-ts/go",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Go implementation of the TypeScript compiler, based on the pinned tsc-ts ancestor.",
+  "license": "Apache-2.0",
+  "bin": {
+    "tsc-go": "bin/tsc-go.js"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:native": "node scripts/build.mjs",
+    "test": "go test ./internal/core ./internal/ast ./internal/bundled ./internal/scanner ./internal/compiler ./internal/checker",
+    "test:parity": "node --test tests/parity.mjs"
+  }
+}
