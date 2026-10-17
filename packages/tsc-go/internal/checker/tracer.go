@@ -112,10 +112,11 @@ func (a *tracedTypeAdapter) IntrinsicName() string {
 	if a.t.flags&TypeFlagsIntrinsic == 0 {
 		return ""
 	}
-	if a.t.dataKind != typeDataIntrinsicType {
+	data, ok := a.t.data.(*IntrinsicType)
+	if !ok {
 		return ""
 	}
-	return a.t.AsIntrinsicType().intrinsicName
+	return data.intrinsicName
 }
 
 func (a *tracedTypeAdapter) UnionTypes() []tracing.TracedType {

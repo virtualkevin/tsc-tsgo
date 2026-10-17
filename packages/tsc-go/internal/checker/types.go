@@ -4,7 +4,6 @@ import (
 	"math/bits"
 	"slices"
 	"strings"
-	"unsafe"
 
 	"github.com/microsoft/typescript-go/internal/ast"
 	"github.com/microsoft/typescript-go/internal/collections"
@@ -668,11 +667,10 @@ type Type struct {
 	flags       TypeFlags
 	objectFlags ObjectFlags
 	id          TypeId
-	dataKind    typeDataKind
 	symbol      *ast.Symbol
 	alias       *TypeAlias
 	checker     *Checker
-	data        unsafe.Pointer // Original concrete allocation, never a reconstructed enclosing pointer
+	data        TypeData // Type specific data
 }
 
 func (t *Type) Id() TypeId {
@@ -685,6 +683,39 @@ func (t *Type) Flags() TypeFlags {
 
 func (t *Type) ObjectFlags() ObjectFlags {
 	return t.objectFlags
+}
+
+// Casts for concrete struct types
+
+func (t *Type) AsIntrinsicType() *IntrinsicType           { return t.data.(*IntrinsicType) }
+func (t *Type) AsLiteralType() *LiteralType               { return t.data.(*LiteralType) }
+func (t *Type) AsUniqueESSymbolType() *UniqueESSymbolType { return t.data.(*UniqueESSymbolType) }
+func (t *Type) AsTupleType() *TupleType                   { return t.data.(*TupleType) }
+func (t *Type) AsInstantiationExpressionType() *InstantiationExpressionType {
+	return t.data.(*InstantiationExpressionType)
+}
+func (t *Type) AsMappedType() *MappedType                   { return t.data.(*MappedType) }
+func (t *Type) AsReverseMappedType() *ReverseMappedType     { return t.data.(*ReverseMappedType) }
+func (t *Type) AsEvolvingArrayType() *EvolvingArrayType     { return t.data.(*EvolvingArrayType) }
+func (t *Type) AsTypeParameter() *TypeParameter             { return t.data.(*TypeParameter) }
+func (t *Type) AsUnionType() *UnionType                     { return t.data.(*UnionType) }
+func (t *Type) AsIntersectionType() *IntersectionType       { return t.data.(*IntersectionType) }
+func (t *Type) AsIndexType() *IndexType                     { return t.data.(*IndexType) }
+func (t *Type) AsIndexedAccessType() *IndexedAccessType     { return t.data.(*IndexedAccessType) }
+func (t *Type) AsTemplateLiteralType() *TemplateLiteralType { return t.data.(*TemplateLiteralType) }
+func (t *Type) AsStringMappingType() *StringMappingType     { return t.data.(*StringMappingType) }
+func (t *Type) AsSubstitutionType() *SubstitutionType       { return t.data.(*SubstitutionType) }
+func (t *Type) AsConditionalType() *ConditionalType         { return t.data.(*ConditionalType) }
+
+// Casts for embedded struct types
+
+func (t *Type) AsConstrainedType() *ConstrainedType { return t.data.AsConstrainedType() }
+func (t *Type) AsStructuredType() *StructuredType   { return t.data.AsStructuredType() }
+func (t *Type) AsObjectType() *ObjectType           { return t.data.AsObjectType() }
+func (t *Type) AsTypeReference() *TypeReference     { return t.data.AsTypeReference() }
+func (t *Type) AsInterfaceType() *InterfaceType     { return t.data.AsInterfaceType() }
+func (t *Type) AsUnionOrIntersectionType() *UnionOrIntersectionType {
+	return t.data.AsUnionOrIntersectionType()
 }
 
 func (t *Type) Distributed() []*Type {

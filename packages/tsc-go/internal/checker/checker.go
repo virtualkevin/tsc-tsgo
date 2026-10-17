@@ -11,7 +11,6 @@ import (
 	"strings"
 	"sync"
 	"sync/atomic"
-	"unsafe"
 
 	"github.com/microsoft/typescript-go/internal/ast"
 	"github.com/microsoft/typescript-go/internal/binder"
@@ -24982,18 +24981,14 @@ func isUnaryTupleTypeNode(node *ast.Node) bool {
 	return ast.IsTupleTypeNode(node) && len(node.Elements()) == 1
 }
 
-// newType receives a pointer converted directly from the complete concrete allocation
-// and its exact immutable kind. Every supported allocation begins with Type; this
-// conversion only narrows to that embedded prefix. Never pass a detached *Type.
-func (c *Checker) newType(flags TypeFlags, objectFlags ObjectFlags, data unsafe.Pointer, kind typeDataKind) *Type {
+func (c *Checker) newType(flags TypeFlags, objectFlags ObjectFlags, data TypeData) *Type {
 	c.TypeCount++
-	t := (*Type)(data)
+	t := data.AsType()
 	t.flags = flags
 	t.objectFlags = objectFlags &^ (ObjectFlagsCouldContainTypeVariablesComputed | ObjectFlagsCouldContainTypeVariables | ObjectFlagsMembersResolved)
 	t.id = TypeId(c.TypeCount)
 	t.checker = c
 	t.data = data
-	t.dataKind = kind
 	if c.tracer != nil {
 		c.tracer.RecordType(t)
 	}
@@ -25007,7 +25002,7 @@ func (c *Checker) newIntrinsicType(flags TypeFlags, intrinsicName string) *Type 
 func (c *Checker) newIntrinsicTypeEx(flags TypeFlags, intrinsicName string, objectFlags ObjectFlags) *Type {
 	data := &IntrinsicType{}
 	data.intrinsicName = intrinsicName
-	return c.newType(flags, objectFlags, unsafe.Pointer(data), typeDataIntrinsicType)
+	return c.newType(flags, objectFlags, data)
 }
 
 func (c *Checker) createWideningType(nonWideningType *Type) *Type {
@@ -25029,7 +25024,7 @@ func (c *Checker) createUnknownUnionType() *Type {
 func (c *Checker) newLiteralType(flags TypeFlags, value any, regularType *Type) *Type {
 	data := &LiteralType{}
 	data.value = value
-	t := c.newType(flags, ObjectFlagsNone, unsafe.Pointer(data), typeDataLiteralType)
+	t := c.newType(flags, ObjectFlagsNone, data)
 	if regularType != nil {
 		data.regularType = regularType
 	} else {
@@ -25041,43 +25036,34 @@ func (c *Checker) newLiteralType(flags TypeFlags, value any, regularType *Type) 
 func (c *Checker) newUniqueESSymbolType(symbol *ast.Symbol, name string) *Type {
 	data := &UniqueESSymbolType{}
 	data.name = name
-	t := c.newType(TypeFlagsUniqueESSymbol, ObjectFlagsNone, unsafe.Pointer(data), typeDataUniqueESSymbolType)
+	t := c.newType(TypeFlagsUniqueESSymbol, ObjectFlagsNone, data)
 	t.symbol = symbol
 	return t
 }
 
 func (c *Checker) newObjectType(objectFlags ObjectFlags, symbol *ast.Symbol) *Type {
-	var data unsafe.Pointer
-	var kind typeDataKind
+	var data TypeData
 	switch {
 	case objectFlags&ObjectFlagsClassOrInterface != 0:
-		data = unsafe.Pointer(&InterfaceType{})
-		kind = typeDataInterfaceType
+		data = &InterfaceType{}
 	case objectFlags&ObjectFlagsTuple != 0:
-		data = unsafe.Pointer(&TupleType{})
-		kind = typeDataTupleType
+		data = &TupleType{}
 	case objectFlags&ObjectFlagsReference != 0:
-		data = unsafe.Pointer(&TypeReference{})
-		kind = typeDataTypeReference
+		data = &TypeReference{}
 	case objectFlags&ObjectFlagsMapped != 0:
-		data = unsafe.Pointer(&MappedType{})
-		kind = typeDataMappedType
+		data = &MappedType{}
 	case objectFlags&ObjectFlagsReverseMapped != 0:
-		data = unsafe.Pointer(&ReverseMappedType{})
-		kind = typeDataReverseMappedType
+		data = &ReverseMappedType{}
 	case objectFlags&ObjectFlagsEvolvingArray != 0:
-		data = unsafe.Pointer(&EvolvingArrayType{})
-		kind = typeDataEvolvingArrayType
+		data = &EvolvingArrayType{}
 	case objectFlags&ObjectFlagsInstantiationExpressionType != 0:
-		data = unsafe.Pointer(&InstantiationExpressionType{})
-		kind = typeDataInstantiationExpressionType
+		data = &InstantiationExpressionType{}
 	case objectFlags&ObjectFlagsAnonymous != 0:
-		data = unsafe.Pointer(&ObjectType{})
-		kind = typeDataObjectType
+		data = &ObjectType{}
 	default:
 		panic("Unhandled case in newObjectType")
 	}
-	t := c.newType(TypeFlagsObject, objectFlags, data, kind)
+	t := c.newType(TypeFlagsObject, objectFlags, data)
 	t.symbol = symbol
 	return t
 }
@@ -25162,7 +25148,7 @@ func (c *Checker) setStructuredTypeMembers(t *Type, members ast.SymbolTable, cal
 }
 
 func (c *Checker) newTypeParameter(symbol *ast.Symbol) *Type {
-	t := c.newType(TypeFlagsTypeParameter, ObjectFlagsNone, unsafe.Pointer(&TypeParameter{}), typeDataTypeParameter)
+	t := c.newType(TypeFlagsTypeParameter, ObjectFlagsNone, &TypeParameter{})
 	t.symbol = symbol
 	return t
 }
@@ -25184,13 +25170,13 @@ func (c *Checker) getPropagatingFlagsOfTypes(types []*Type, excludeKinds TypeFla
 func (c *Checker) newUnionType(objectFlags ObjectFlags, types []*Type) *Type {
 	data := &UnionType{}
 	data.types = types
-	return c.newType(TypeFlagsUnion, objectFlags, unsafe.Pointer(data), typeDataUnionType)
+	return c.newType(TypeFlagsUnion, objectFlags, data)
 }
 
 func (c *Checker) newIntersectionType(objectFlags ObjectFlags, types []*Type) *Type {
 	data := &IntersectionType{}
 	data.types = types
-	return c.newType(TypeFlagsIntersection, objectFlags, unsafe.Pointer(data), typeDataIntersectionType)
+	return c.newType(TypeFlagsIntersection, objectFlags, data)
 }
 
 func (c *Checker) newIndexedAccessType(objectType *Type, indexType *Type, accessFlags AccessFlags) *Type {
@@ -25198,27 +25184,27 @@ func (c *Checker) newIndexedAccessType(objectType *Type, indexType *Type, access
 	data.objectType = objectType
 	data.indexType = indexType
 	data.accessFlags = accessFlags
-	return c.newType(TypeFlagsIndexedAccess, ObjectFlagsNone, unsafe.Pointer(data), typeDataIndexedAccessType)
+	return c.newType(TypeFlagsIndexedAccess, ObjectFlagsNone, data)
 }
 
 func (c *Checker) newIndexType(target *Type, indexFlags IndexFlags) *Type {
 	data := &IndexType{}
 	data.target = target
 	data.indexFlags = indexFlags
-	return c.newType(TypeFlagsIndex, ObjectFlagsNone, unsafe.Pointer(data), typeDataIndexType)
+	return c.newType(TypeFlagsIndex, ObjectFlagsNone, data)
 }
 
 func (c *Checker) newTemplateLiteralType(texts []string, types []*Type) *Type {
 	data := &TemplateLiteralType{}
 	data.texts = texts
 	data.types = types
-	return c.newType(TypeFlagsTemplateLiteral, ObjectFlagsNone, unsafe.Pointer(data), typeDataTemplateLiteralType)
+	return c.newType(TypeFlagsTemplateLiteral, ObjectFlagsNone, data)
 }
 
 func (c *Checker) newStringMappingType(symbol *ast.Symbol, target *Type) *Type {
 	data := &StringMappingType{}
 	data.target = target
-	t := c.newType(TypeFlagsStringMapping, ObjectFlagsNone, unsafe.Pointer(data), typeDataStringMappingType)
+	t := c.newType(TypeFlagsStringMapping, ObjectFlagsNone, data)
 	t.symbol = symbol
 	return t
 }
@@ -25230,14 +25216,14 @@ func (c *Checker) newConditionalType(root *ConditionalRoot, mapper *TypeMapper, 
 	data.extendsType = c.instantiateType(root.extendsType, mapper)
 	data.mapper = mapper
 	data.combinedMapper = combinedMapper
-	return c.newType(TypeFlagsConditional, ObjectFlagsNone, unsafe.Pointer(data), typeDataConditionalType)
+	return c.newType(TypeFlagsConditional, ObjectFlagsNone, data)
 }
 
 func (c *Checker) newSubstitutionType(baseType *Type, constraint *Type) *Type {
 	data := &SubstitutionType{}
 	data.baseType = baseType
 	data.constraint = constraint
-	return c.newType(TypeFlagsSubstitution, ObjectFlagsNone, unsafe.Pointer(data), typeDataSubstitutionType)
+	return c.newType(TypeFlagsSubstitution, ObjectFlagsNone, data)
 }
 
 func (c *Checker) newSignature(flags SignatureFlags, declaration *ast.Node, typeParameters []*Type, thisParameter *ast.Symbol, parameters []*ast.Symbol, resolvedReturnType *Type, resolvedTypePredicate *TypePredicate, minArgumentCount int) *Signature {
