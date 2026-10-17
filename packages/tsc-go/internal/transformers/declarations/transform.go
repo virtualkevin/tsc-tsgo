@@ -345,10 +345,8 @@ func (tx *DeclarationTransformer) transformSourceFile(node *ast.SourceFile) *ast
 		tx.cjsExportAssignmentName = nil
 		tx.cjsExportMembers = nil
 	}()
-	if node.CommonJSModuleIndicator != nil {
-		tx.cjsExportAssignmentVisitor.VisitNode(node.AsNode()) // collect nested module.exports= assignments
-	}
-	tx.expressionVisitor.VisitNode(node.AsNode()) // collect expando members (requires any export assignment be located in advance)
+	tx.cjsExportAssignmentVisitor.VisitNode(node.AsNode()) // collect nested module.exports= assignments
+	tx.expressionVisitor.VisitNode(node.AsNode())          // collect expando members (requires any export assignment be located in advance)
 	var combinedStatements *ast.StatementList
 	statements := tx.Visitor().VisitNodes(node.Statements)
 	combinedStatements = tx.transformAndReplaceLatePaintedStatements(statements)

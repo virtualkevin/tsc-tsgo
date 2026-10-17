@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-confirmation-evidence-only",
+  "summaryPath": "/home/dev/tssss/tsc-tsgo/benchmarks/results/cjs-prepass-trpc-confirmation-rss/summary.json",
+  "summarySha256": "f2be0cd9159df62c1369976d327029882ebf1ab058b80704ed1bcbc414906ce3",
+  "reportPath": "/home/dev/tssss/tsc-tsgo/benchmarks/results/cjs-prepass-trpc-confirmation-rss/trpc-reversed-confirmation.json",
+  "reportSha256": "ab2912dada02dea1afd3826b1e6fd7b8310dcd880ec68204856c726e3040d22b",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-cjs-prepass",
+      "sha256": "a6da693db033a9c2a6a2d712efeb1f20507fc9dfc92ad7d02db0234116e2d80c",
+      "source": "02093082d3baa33b0e2d3f2f77b916a7fe01907c96d894b6805eeeab0648c014",
+      "revisionLabel": "CJS prepass guard"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore",
+      "sha256": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+      "source": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d",
+      "revisionLabel": "849d873"
+    }
+  },
+  "repositoryStartingHead": "58aedf6f75edde49c5c740247147d63abfba63a7",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/jsx_managed_attributes_errors_api_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/jsx_managed_attributes_errors_api_test.go",
+        "sha256": "9db62d8a8fd00af674034a59a86d7d34b76e95d00766a986e9ac13802a929e99",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/transformers/declarations/transform.go",
+      "before": {
+        "path": "packages/tsc-go/internal/transformers/declarations/transform.go",
+        "sha256": "3642d191e79150264e99afdadf9a832930c6f4ab2a39257d313e65498e9aa072",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/transformers/declarations/transform.go",
+        "sha256": "224a1e3a2727790ba4fdfcbd27b9f826b8ff53d8272ca76815577c5a3bd5e625",
+        "executable": false
+      }
+    }
+  ],
+  "sourceDifferenceDirection": "old pointer (candidate) to new guard (baseline)",
+  "buildSettings": {
+    "toolchain": {
+      "CGO_ENABLED": "1",
+      "GO386": "",
+      "GOAMD64": "v1",
+      "GOARCH": "amd64",
+      "GOARM": "",
+      "GOARM64": "",
+      "GOEXPERIMENT": "",
+      "GOMIPS": "",
+      "GOMIPS64": "",
+      "GOOS": "linux",
+      "GOPPC64": "",
+      "GORISCV64": "",
+      "GOVERSION": "go1.26.9"
+    },
+    "arguments": [
+      "build",
+      "-trimpath",
+      "-o",
+      "<binary>",
+      "./cmd/tsgo"
+    ],
+    "extraFlagsPresent": false,
+    "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "profile": null,
+    "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+  },
+  "predeclaredConfirmation": {
+    "scope": "trpc only",
+    "pairs": 9,
+    "warmups": 1,
+    "reason": "Original small-project result consistently favored old pointer in all seven tRPC pairs",
+    "originalRoundedMediansMs": {
+      "oldPointer": 458.77,
+      "newGuard": 493.04
+    },
+    "originalOldPointerWins": 7,
+    "originalPairCount": 7,
+    "selectionPolicy": "One predeclared reversed-role confirmation; no adaptive extra runs or automatic PERF write."
+  },
+  "roleMeaning": {
+    "baseline": "NEW guard a6da693d",
+    "candidate": "OLD PointerLinkStore b1a592d5",
+    "ratio": "baseline/candidate >1 favors OLD pointer; <1 favors NEW guard"
+  },
+  "totals": {
+    "newGuardMedianMs": 503.618341,
+    "oldPointerMedianMs": 467.04879,
+    "newGuardOverOldRatio": 1.078299209382386,
+    "oldOverNewGuardRatio": 0.9273863796791308,
+    "newGuardPercentSlowerThanOld": 7.829920938238599,
+    "oldPointerWins": 7,
+    "newGuardWins": 2,
+    "ties": 0,
+    "pairCount": 9,
+    "medianPairedNewOverOldRatio": 1.0639124576256798,
+    "newGuardMedianPeakRssMiB": 234,
+    "oldPointerMedianPeakRssMiB": 242.75
+  },
+  "byFirst": {
+    "new-guard": {
+      "pairs": 5,
+      "oldPointerWins": 3,
+      "newGuardWins": 2,
+      "medianPairedNewOverOldRatio": 1.0321542421805434
+    },
+    "old-pointer": {
+      "pairs": 4,
+      "oldPointerWins": 4,
+      "newGuardWins": 0,
+      "medianPairedNewOverOldRatio": 1.1035477404182652
+    }
+  },
+  "pairs": [
+    {
+      "index": 1,
+      "order": [
+        "new-guard",
+        "old-pointer"
+      ],
+      "newGuardMs": 496.899026,
+      "oldPointerMs": 467.04879,
+      "newGuardOverOldRatio": 1.0639124576256798,
+      "oldOverNewGuardRatio": 0.9399269581180463,
+      "oldPointerFaster": true,
+      "newGuardFaster": false,
+      "newGuardRssKiB": 242944,
+      "oldPointerRssKiB": 244224
+    },
+    {
+      "index": 2,
+      "order": [
+        "old-pointer",
+        "new-guard"
+      ],
+      "newGuardMs": 513.605556,
+      "oldPointerMs": 458.542145,
+      "newGuardOverOldRatio": 1.120083642475219,
+      "oldOverNewGuardRatio": 0.8927904685672833,
+      "oldPointerFaster": true,
+      "newGuardFaster": false,
+      "newGuardRssKiB": 242304,
+      "oldPointerRssKiB": 249216
+    },
+    {
+      "index": 3,
+      "order": [
+        "new-guard",
+        "old-pointer"
+      ],
+      "newGuardMs": 458.513609,
+      "oldPointerMs": 483.904594,
+      "newGuardOverOldRatio": 0.9475289441042174,
+      "oldOverNewGuardRatio": 1.0553767314679638,
+      "oldPointerFaster": false,
+      "newGuardFaster": true,
+      "newGuardRssKiB": 245632,
+      "oldPointerRssKiB": 249728
+    },
+    {
+      "index": 4,
+      "order": [
+        "old-pointer",
+        "new-guard"
+      ],
+      "newGuardMs": 511.950914,
+      "oldPointerMs": 488.117994,
+      "newGuardOverOldRatio": 1.0488261450980232,
+      "oldOverNewGuardRatio": 0.9534468650250325,
+      "oldPointerFaster": true,
+      "newGuardFaster": false,
+      "newGuardRssKiB": 230784,
+      "oldPointerRssKiB": 246528
+    },
+    {
+      "index": 5,
+      "order": [
+        "new-guard",
+        "old-pointer"
+      ],
+      "newGuardMs": 503.618341,
+      "oldPointerMs": 466.889464,
+      "newGuardOverOldRatio": 1.0786671789192486,
+      "oldOverNewGuardRatio": 0.9270700170945522,
+      "oldPointerFaster": true,
+      "newGuardFaster": false,
+      "newGuardRssKiB": 239616,
+      "oldPointerRssKiB": 248576
+    },
+    {
+      "index": 6,
+      "order": [
+        "old-pointer",
+        "new-guard"
+      ],
+      "newGuardMs": 545.334737,
+      "oldPointerMs": 448.271728,
+      "newGuardOverOldRatio": 1.2165271707699576,
+      "oldOverNewGuardRatio": 0.8220120553222707,
+      "oldPointerFaster": true,
+      "newGuardFaster": false,
+      "newGuardRssKiB": 232192,
+      "oldPointerRssKiB": 247168
+    },
+    {
+      "index": 7,
+      "order": [
+        "new-guard",
+        "old-pointer"
+      ],
+      "newGuardMs": 461.51466,
+      "oldPointerMs": 447.137299,
+      "newGuardOverOldRatio": 1.0321542421805434,
+      "oldOverNewGuardRatio": 0.9688474446293862,
+      "oldPointerFaster": true,
+      "newGuardFaster": false,
+      "newGuardRssKiB": 237184,
+      "oldPointerRssKiB": 249600
+    },
+    {
+      "index": 8,
+      "order": [
+        "old-pointer",
+        "new-guard"
+      ],
+      "newGuardMs": 514.414167,
+      "oldPointerMs": 473.23695,
+      "newGuardOverOldRatio": 1.0870118383613114,
+      "oldOverNewGuardRatio": 0.9199531823935945,
+      "oldPointerFaster": true,
+      "newGuardFaster": false,
+      "newGuardRssKiB": 232832,
+      "oldPointerRssKiB": 249600
+    },
+    {
+      "index": 9,
+      "order": [
+        "new-guard",
+        "old-pointer"
+      ],
+      "newGuardMs": 463.368814,
+      "oldPointerMs": 501.478775,
+      "newGuardOverOldRatio": 0.924004837492873,
+      "oldOverNewGuardRatio": 1.0822454162830215,
+      "oldPointerFaster": false,
+      "newGuardFaster": true,
+      "newGuardRssKiB": 240000,
+      "oldPointerRssKiB": 245760
+    }
+  ],
+  "limitations": [
+    "One predeclared tRPC confirmation motivated by the original seven consistent old-pointer wins; no adaptive additional runs.",
+    "This changes starting order and gives5 new-first/4 old-first pairs; it cannot eliminate all host variation or carryover effects.",
+    "Original rounded medians in predeclaredConfirmation are the coordinator-provided rationale, not recomputed original evidence.",
+    "No automatic PERF/NOTES update, acceptance decision or statistical significance claim.",
+    "GNU-time-wrapped Go/Go timing is not native target evidence and cannot compare with historical unwrapped numbers."
+  ]
+}
