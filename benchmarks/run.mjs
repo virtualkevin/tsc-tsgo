@@ -1,11 +1,12 @@
 // Fresh-process, paired, end-to-end typechecking benchmark. Node 24+, no dependencies.
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { availableParallelism, cpus, platform, release, totalmem } from 'node:os';
 import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { readCgroupCpuStats, readCgroupV2 } from './cgroup.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // Both native builds support the same physical declaration-library override.
@@ -18,6 +19,7 @@ const { values } = parseArgs({
     baseline: { type: 'string' },
     candidate: { type: 'string' },
     'candidate-checkers': { type: 'string' },
+    'unset-env': { type: 'string', multiple: true },
     manifest: { type: 'string', default: 'benchmarks/workloads.json' },
     projects: { type: 'string' },
     runs: { type: 'string', default: '7' },
@@ -29,9 +31,15 @@ const { values } = parseArgs({
 });
 if (values.help) {
   console.log(
-    'node benchmarks/run.mjs --baseline PATH --candidate PATH [--candidate-checkers N] [--projects typeorm,trpc] [--runs 7] [--warmups 1] [--manifest PATH] [--output PATH]',
+    'node benchmarks/run.mjs --baseline PATH --candidate PATH [--candidate-checkers N] [--unset-env NAME] [--projects typeorm,trpc] [--runs 7] [--warmups 1] [--manifest PATH] [--output PATH]',
   );
   process.exit(0);
+}
+const unsetEnvironment = [...new Set(values['unset-env'] ?? [])];
+for (const name of unsetEnvironment) {
+  if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name) || name === 'TSC_TS_LIB_DIR')
+    throw new Error('--unset-env requires an environment name other than mandatory TSC_TS_LIB_DIR');
+  delete compilerEnv[name];
 }
 const count = (name, min) => {
   const n = Number(values[name]);
@@ -93,6 +101,7 @@ const median = (ns) => {
   return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
 };
 const summarize = (ns) => ({ medianMs: median(ns), minMs: Math.min(...ns), maxMs: Math.max(...ns), samplesMs: ns });
+const cgroupV2 = readCgroupV2();
 const report = {
   schemaVersion: 1,
   startedAt: new Date().toISOString(),
@@ -111,14 +120,29 @@ const report = {
     availableParallelism: availableParallelism(),
     totalMemoryBytes: totalmem(),
     compilerEnvironment: Object.fromEntries(
-      ['GOMAXPROCS', 'GOGC', 'GOMEMLIMIT', 'TSC_GO_SCHEDULER', 'TSC_TS_LIB_DIR', 'NODE_OPTIONS']
+      [
+        'GOMAXPROCS',
+        'GOGC',
+        'GOMEMLIMIT',
+        'GODEBUG',
+        'TSC_GO_SCHEDULER',
+        'TSC_GO_SHARED_GLOBALS',
+        'TSC_TS_LIB_DIR',
+        'TSC_TS_CHECKERS',
+        'TSC_TS_CHECKERS_TRACE',
+        'TSC_TS_REGION',
+        'TSC_TS_RECYCLE',
+        'TSC_TS_SIDE_STATE',
+        'TSC_TS_ID_ORDER',
+        'TSC_TS_TIMELINE',
+        'TSC_TS_SMAPS',
+        'NODE_OPTIONS',
+      ]
         .filter((k) => compilerEnv[k] !== undefined)
         .map((k) => [k, compilerEnv[k]]),
     ),
-    cpuMax: existsSync('/sys/fs/cgroup/cpu.max') ? readFileSync('/sys/fs/cgroup/cpu.max', 'utf8').trim() : null,
-    memoryMax: existsSync('/sys/fs/cgroup/memory.max')
-      ? readFileSync('/sys/fs/cgroup/memory.max', 'utf8').trim()
-      : null,
+    unsetEnvironment,
+    cgroupV2,
   },
   repositoryCommit: git(root, 'rev-parse', 'HEAD'),
   repositoryDirty: git(root, 'status', '--porcelain', '--untracked-files=no') !== '',
@@ -243,8 +267,11 @@ try {
         inputs,
       };
     }
-    const sample = (name) => {
-      const result = requireOutcome(run(binaries[name], compilerArgs[name], cwd), `${p.name} ${name}`);
+    const sample = (name, cpuCounters) => {
+      if (cpuCounters) cpuCounters.before = readCgroupCpuStats(cgroupV2);
+      const result = run(binaries[name], compilerArgs[name], cwd);
+      if (cpuCounters) cpuCounters.after = readCgroupCpuStats(cgroupV2);
+      requireOutcome(result, `${p.name} ${name}`);
       if (outputSignature(result) !== expectedOutput)
         throw new Error(`${p.name} ${name}: output changed during timing`);
       return result.ms;
@@ -255,8 +282,11 @@ try {
     }
     for (let i = 0; i < runs; i++) {
       const order = i % 2 ? ['candidate', 'baseline'] : ['baseline', 'candidate'];
-      const pair = { order };
-      for (const name of order) pair[name] = sample(name);
+      const pair = { order, cgroupCpu: {} };
+      for (const name of order) {
+        pair.cgroupCpu[name] = {};
+        pair[name] = sample(name, pair.cgroupCpu[name]);
+      }
       entry.pairs.push(pair);
       save();
     }

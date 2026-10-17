@@ -42,6 +42,15 @@ JSON records `candidateCheckers` and each project's actual `compilerArgs` and
 `fileDiscoveryArgs` arrays for both executables. Without the option both receive
 identical flags.
 
+Both executables inherit the same environment. Repeatable `--unset-env NAME`
+removes an inherited setting from all discovery, preflight, warmup and timed
+subprocesses, for example `--unset-env TSC_TS_CHECKERS --unset-env TSC_GO_SCHEDULER`.
+The mandatory physical-library override `TSC_TS_LIB_DIR` cannot be unset.
+JSON records removals and the effective runtime/scheduler settings, including
+`TSC_GO_SHARED_GLOBALS` and the native baseline's `TSC_TS_CHECKERS`, `TSC_TS_REGION`,
+`TSC_TS_RECYCLE` and `TSC_TS_SIDE_STATE`. Clear experimental baseline controls when
+measuring its default policy.
+
 The runner disables emit,
 incremental checking, composite mode, and `noCheck`; it preserves the project's
 other settings, including `skipLibCheck`. Every invocation starts a fresh process.
@@ -70,6 +79,16 @@ The runner rejects changed tracked workload files and mismatched commits. Genera
 or installed files are fingerprinted through the compiler's actual input list.
 Keep the same installed dependency tree and library version for both executables.
 Do not run other CPU-intensive builds or benchmarks at the same time.
+
+Cgroup v2 metadata resolves the process membership using `/proc/self/cgroup` and
+`/proc/self/mountinfo`, then records each visible ancestor's CPU quota, memory
+limit, configured/effective CPU set, and CPU counters. Minimum quota ratios
+include parent limits even when the leaf and mount root say `max`. Missing or
+unreadable limits are recorded as unknown, with completeness flags; limits
+outside the visible cgroup namespace cannot be inferred. Each timed sample also
+records ancestor CPU counters immediately before and after invocation, outside
+the timer. These counters include sibling tasks, so throttling changes describe
+shared cgroup pressure, not CPU time attributable solely to the compiler.
 
 The old `packages/tsc-ts/scripts/bench.mjs` is a separate scanner/self-check
 microbenchmark. Its whole-project loop ignores exit status and does not measure

@@ -50,7 +50,7 @@ function fixture(t) {
   return {
     dir,
     compiler,
-    run(candidate, extra = []) {
+    run(candidate, extra = [], env = process.env) {
       const output = join(dir, 'result.json');
       const r = spawnSync(
         process.execPath,
@@ -70,7 +70,7 @@ function fixture(t) {
           output,
           ...extra,
         ],
-        { encoding: 'utf8' },
+        { encoding: 'utf8', env },
       );
       assert.equal(r.error, undefined);
       let report;
@@ -130,6 +130,28 @@ test('rejects candidate checker counts outside integer range 1..256 before runni
     assert.equal(r.status, 1);
     assert.match(r.stderr, /--candidate-checkers must be an integer from 1 to 256/);
   }
+});
+test('removes inherited scheduler controls consistently from every compiler invocation', (t) => {
+  const f = fixture(t);
+  const code = `
+    if ('TSC_TS_CHECKERS' in process.env || 'TSC_GO_SCHEDULER' in process.env) process.exit(99);
+    if (process.env.TSC_GO_SHARED_GLOBALS !== '1') process.exit(98);
+    if (!process.env.TSC_TS_LIB_DIR) process.exit(97);
+    if (process.argv.includes('--listFilesOnly')) console.log(process.cwd()+'/input.ts');
+  `;
+  f.compiler('baseline', code);
+  const candidate = f.compiler('candidate', code);
+  const r = f.run(candidate, ['--unset-env', 'TSC_TS_CHECKERS', '--unset-env', 'TSC_GO_SCHEDULER', '--warmups', '1'], {
+    ...process.env,
+    TSC_TS_CHECKERS: 'fixed',
+    TSC_GO_SCHEDULER: 'dependency',
+    TSC_GO_SHARED_GLOBALS: '1',
+  });
+  assert.equal(r.status, 0, r.stderr);
+  assert.equal(r.report.environment.compilerEnvironment.TSC_TS_CHECKERS, undefined);
+  assert.equal(r.report.environment.compilerEnvironment.TSC_GO_SCHEDULER, undefined);
+  assert.equal(r.report.environment.compilerEnvironment.TSC_GO_SHARED_GLOBALS, '1');
+  assert.deepEqual(r.report.environment.unsetEnvironment, ['TSC_TS_CHECKERS', 'TSC_GO_SCHEDULER']);
 });
 test('rejects compiler errors instead of timing a fast failure', (t) => {
   const f = fixture(t),
