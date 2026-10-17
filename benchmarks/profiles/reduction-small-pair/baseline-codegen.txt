@@ -1,0 +1,521 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty(SB) github.com/microsoft/typescript-go/internal/checker/lazy_properties.go
+  lazy_properties.go:13	0x89de60		4c8da42458fdffff	LEAQ 0xfffffd58(SP), R12																
+  lazy_properties.go:13	0x89de68		4d3b6610		CMPQ R12, 0x10(R14)																	
+  lazy_properties.go:13	0x89de6c		0f8634090000		JBE 0x89e7a6																		
+  lazy_properties.go:13	0x89de72		55			PUSHQ BP																		
+  lazy_properties.go:13	0x89de73		4889e5			MOVQ SP, BP																		
+  lazy_properties.go:13	0x89de76		4881ec20030000		SUBQ $0x320, SP																		
+  types.go:702		0x89de7d		488b5328		MOVQ 0x28(BX), DX																	
+  types.go:702		0x89de81		488d35b88bc900		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.IntersectionType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), SI	
+  types.go:702		0x89de88		4839f2			CMPQ DX, SI																		
+  types.go:702		0x89de8b		0f85fe080000		JNE 0x89e78f																		
+  types.go:702		0x89de91		4889842430030000	MOVQ AX, 0x330(SP)																	
+  types.go:702		0x89de99		488b4b30		MOVQ 0x30(BX), CX																	
+  lazy_properties.go:14	0x89de9d		488b91d0000000		MOVQ 0xd0(CX), DX																	
+  lazy_properties.go:14	0x89dea4		4885d2			TESTQ DX, DX																		
+  lazy_properties.go:14	0x89dea7		741c			JE 0x89dec5																		
+  lazy_properties.go:14	0x89dea9		48899424e8000000	MOVQ DX, 0xe8(SP)																	
+  lazy_properties.go:14	0x89deb1		488b89d8000000		MOVQ 0xd8(CX), CX																	
+  lazy_properties.go:14	0x89deb8		48894c2448		MOVQ CX, 0x48(SP)																	
+  lazy_properties.go:14	0x89debd		31db			XORL BX, BX																		
+  lazy_properties.go:14	0x89debf		90			NOPL																			
+  lazy_properties.go:15	0x89dec0		e91b080000		JMP 0x89e6e0																		
+  types.go:702		0x89dec5		48899c2438030000	MOVQ BX, 0x338(SP)																	
+  lazy_properties.go:22	0x89decd		e80e0a0000		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getCostliestConstituent(SB)								
+  lazy_properties.go:22	0x89ded2		48898424e0000000	MOVQ AX, 0xe0(SP)																	
+  lazy_properties.go:23	0x89deda		488d8c24b8020000	LEAQ 0x2b8(SP), CX																	
+  lazy_properties.go:23	0x89dee2		440f1139		MOVUPS X15, 0(CX)																	
+  lazy_properties.go:23	0x89dee6		440f117910		MOVUPS X15, 0x10(CX)																	
+  lazy_properties.go:23	0x89deeb		440f117920		MOVUPS X15, 0x20(CX)																	
+  lazy_properties.go:23	0x89def0		488d8c2470010000	LEAQ 0x170(SP), CX																	
+  lazy_properties.go:23	0x89def8		ba05000000		MOVL $0x5, DX																		
+  lazy_properties.go:23	0x89defd		440f1139		MOVUPS X15, 0(CX)																	
+  lazy_properties.go:23	0x89df01		440f117910		MOVUPS X15, 0x10(CX)																	
+  lazy_properties.go:23	0x89df06		440f117920		MOVUPS X15, 0x20(CX)																	
+  lazy_properties.go:23	0x89df0b		440f117930		MOVUPS X15, 0x30(CX)																	
+  lazy_properties.go:23	0x89df10		4883c140		ADDQ $0x40, CX																		
+  lazy_properties.go:23	0x89df14		ffca			DECL DX																			
+  lazy_properties.go:23	0x89df16		75e5			JNE 0x89defd																		
+  lazy_properties.go:23	0x89df18		440f1179f8		MOVUPS X15, -0x8(CX)																	
+  lazy_properties.go:23	0x89df1d		48b98080808080808080	MOVQ $0x8080808080808080, CX																
+  lazy_properties.go:23	0x89df27		48898c2470010000	MOVQ CX, 0x170(SP)																	
+  lazy_properties.go:23	0x89df2f		488d8c2470010000	LEAQ 0x170(SP), CX																	
+  lazy_properties.go:23	0x89df37		48898c24c8020000	MOVQ CX, 0x2c8(SP)																	
+  lazy_properties.go:23	0x89df3f		90			NOPL																			
+  lazy_properties.go:23	0x89df40		e8bbcbbeff		CALL runtime.rand(SB)																	
+  lazy_properties.go:23	0x89df45		48898424c0020000	MOVQ AX, 0x2c0(SP)																	
+  lazy_properties.go:25	0x89df4d		488b842438030000	MOVQ 0x338(SP), AX																	
+  lazy_properties.go:25	0x89df55		e806ec0500		CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Types(SB)										
+  lazy_properties.go:25	0x89df5a		4889842418030000	MOVQ AX, 0x318(SP)																	
+  lazy_properties.go:25	0x89df62		48899c24d0000000	MOVQ BX, 0xd0(SP)																	
+  lazy_properties.go:25	0x89df6a		488b8c24e0000000	MOVQ 0xe0(SP), CX																	
+  lazy_properties.go:25	0x89df72		31d2			XORL DX, DX																		
+  lazy_properties.go:25	0x89df74		31f6			XORL SI, SI																		
+  lazy_properties.go:25	0x89df76		31ff			XORL DI, DI																		
+  lazy_properties.go:25	0x89df78		4531c0			XORL R8, R8																		
+  lazy_properties.go:25	0x89df7b		4531c9			XORL R9, R9																		
+  lazy_properties.go:25	0x89df7e		6690			NOPW																			
+  lazy_properties.go:25	0x89df80		eb03			JMP 0x89df85																		
+  lazy_properties.go:25	0x89df82		48ffc2			INCQ DX																			
+  lazy_properties.go:25	0x89df85		4c89442470		MOVQ R8, 0x70(SP)																	
+  lazy_properties.go:25	0x89df8a		4889bc2418010000	MOVQ DI, 0x118(SP)																	
+  lazy_properties.go:25	0x89df92		4839d3			CMPQ BX, DX																		
+  lazy_properties.go:25	0x89df95		0f8eb1030000		JLE 0x89e34c																		
+  lazy_properties.go:25	0x89df9b		4c8b14d0		MOVQ 0(AX)(DX*8), R10																	
+  lazy_properties.go:25	0x89df9f		90			NOPL																			
+  lazy_properties.go:26	0x89dfa0		4c39d1			CMPQ CX, R10																		
+  lazy_properties.go:26	0x89dfa3		74dd			JE 0x89df82																		
+  lazy_properties.go:25	0x89dfa5		48899424c8000000	MOVQ DX, 0xc8(SP)																	
+  lazy_properties.go:25	0x89dfad		4c894c2478		MOVQ R9, 0x78(SP)																	
+  lazy_properties.go:25	0x89dfb2		4088742447		MOVB SI, 0x47(SP)																	
+  lazy_properties.go:29	0x89dfb7		488b842430030000	MOVQ 0x330(SP), AX																	
+  lazy_properties.go:29	0x89dfbf		4c89d3			MOVQ R10, BX																		
+  lazy_properties.go:29	0x89dfc2		e81902f7ff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType(SB)								
+  lazy_properties.go:29	0x89dfc7		4889842410030000	MOVQ AX, 0x310(SP)																	
+  lazy_properties.go:29	0x89dfcf		48899c24c0000000	MOVQ BX, 0xc0(SP)																	
+  lazy_properties.go:29	0x89dfd7		31c9			XORL CX, CX																		
+  lazy_properties.go:29	0x89dfd9		0fb6542447		MOVZX 0x47(SP), DX																	
+  lazy_properties.go:29	0x89dfde		488b742478		MOVQ 0x78(SP), SI																	
+  lazy_properties.go:29	0x89dfe3		488b7c2470		MOVQ 0x70(SP), DI																	
+  lazy_properties.go:29	0x89dfe8		4c8b842418010000	MOVQ 0x118(SP), R8																	
+  lazy_properties.go:29	0x89dff0		eb2e			JMP 0x89e020																		
+  lazy_properties.go:29	0x89dff2		488b8c24b8000000	MOVQ 0xb8(SP), CX																	
+  lazy_properties.go:29	0x89dffa		48ffc1			INCQ CX																			
+  lazy_properties.go:29	0x89dffd		89da			MOVL BX, DX																		
+  lazy_properties.go:29	0x89dfff		4889c6			MOVQ AX, SI																		
+  lazy_properties.go:29	0x89e002		4c89c7			MOVQ R8, DI																		
+  lazy_properties.go:29	0x89e005		4d89e0			MOVQ R12, R8																		
+  lazy_properties.go:29	0x89e008		488b842410030000	MOVQ 0x310(SP), AX																	
+  lazy_properties.go:29	0x89e010		488b9c24c0000000	MOVQ 0xc0(SP), BX																	
+  lazy_properties.go:29	0x89e018		0f1f840000000000	NOPL 0(AX)(AX*1)																	
+  lazy_properties.go:29	0x89e020		4839cb			CMPQ BX, CX																		
+  lazy_properties.go:29	0x89e023		0f8ef0020000		JLE 0x89e319																		
+  lazy_properties.go:29	0x89e029		48898c24b8000000	MOVQ CX, 0xb8(SP)																	
+  lazy_properties.go:29	0x89e031		4889b424b0000000	MOVQ SI, 0xb0(SP)																	
+  lazy_properties.go:29	0x89e039		4889bc24a8000000	MOVQ DI, 0xa8(SP)																	
+  lazy_properties.go:29	0x89e041		4c89842400030000	MOVQ R8, 0x300(SP)																	
+  lazy_properties.go:29	0x89e049		88542446		MOVB DL, 0x46(SP)																	
+  lazy_properties.go:29	0x89e04d		488b14c8		MOVQ 0(AX)(CX*8), DX																	
+  lazy_properties.go:29	0x89e051		4889942408010000	MOVQ DX, 0x108(SP)																	
+  lazy_properties.go:30	0x89e059		488b4a08		MOVQ 0x8(DX), CX																	
+  lazy_properties.go:30	0x89e05d		488b7a10		MOVQ 0x10(DX), DI																	
+  lazy_properties.go:30	0x89e061		488d0538b65200		LEAQ 0x52b638(IP), AX																	
+  lazy_properties.go:30	0x89e068		488d9c24b8020000	LEAQ 0x2b8(SP), BX																	
+  lazy_properties.go:30	0x89e070		e8eb5eb7ff		CALL runtime.mapaccess2_faststr(SB)															
+  lazy_properties.go:30	0x89e075		488b10			MOVQ 0(AX), DX																		
+  lazy_properties.go:30	0x89e078		488b4810		MOVQ 0x10(AX), CX																	
+  lazy_properties.go:30	0x89e07c		488b7008		MOVQ 0x8(AX), SI																	
+  lazy_properties.go:30	0x89e080		84db			TESTL BL, BL																		
+  lazy_properties.go:31	0x89e082		742a			JE 0x89e0ae																		
+  slices.go:98		0x89e084		4c8b8c2408010000	MOVQ 0x108(SP), R9																	
+  lazy_properties.go:34	0x89e08c		0fb65c2446		MOVZX 0x46(SP), BX																	
+  lazy_properties.go:34	0x89e091		488b8424b0000000	MOVQ 0xb0(SP), AX																	
+  lazy_properties.go:34	0x89e099		4c8b8424a8000000	MOVQ 0xa8(SP), R8																	
+  lazy_properties.go:34	0x89e0a1		4c8ba42400030000	MOVQ 0x300(SP), R12																	
+  lazy_properties.go:31	0x89e0a9		e922010000		JMP 0x89e1d0																		
+  lazy_properties.go:32	0x89e0ae		488b9c24a8000000	MOVQ 0xa8(SP), BX																	
+  lazy_properties.go:32	0x89e0b6		4c8d4301		LEAQ 0x1(BX), R8																	
+  lazy_properties.go:32	0x89e0ba		4c8b8c2408010000	MOVQ 0x108(SP), R9																	
+  lazy_properties.go:32	0x89e0c2		4d8b5108		MOVQ 0x8(R9), R10																	
+  lazy_properties.go:32	0x89e0c6		4d8b5910		MOVQ 0x10(R9), R11																	
+  lazy_properties.go:32	0x89e0ca		4c8ba424b0000000	MOVQ 0xb0(SP), R12																	
+  lazy_properties.go:32	0x89e0d2		4d39c4			CMPQ R12, R8																		
+  lazy_properties.go:32	0x89e0d5		721a			JB 0x89e0f1																		
+  lazy_properties.go:32	0x89e0d7		4c8ba42400030000	MOVQ 0x300(SP), R12																	
+  lazy_properties.go:32	0x89e0df		488b8424b0000000	MOVQ 0xb0(SP), AX																	
+  lazy_properties.go:32	0x89e0e7		0fb65c2446		MOVZX 0x46(SP), BX																	
+  lazy_properties.go:32	0x89e0ec		e9af000000		JMP 0x89e1a0																		
+  lazy_properties.go:30	0x89e0f1		48894c2468		MOVQ CX, 0x68(SP)																	
+  lazy_properties.go:30	0x89e0f6		4889742458		MOVQ SI, 0x58(SP)																	
+  lazy_properties.go:30	0x89e0fb		48899424f8000000	MOVQ DX, 0xf8(SP)																	
+  lazy_properties.go:32	0x89e103		4c899c24a0000000	MOVQ R11, 0xa0(SP)																	
+  lazy_properties.go:32	0x89e10b		4c899424f8020000	MOVQ R10, 0x2f8(SP)																	
+  lazy_properties.go:32	0x89e113		4983f802		CMPQ R8, $0x2																		
+  lazy_properties.go:32	0x89e117		7f30			JG 0x89e149																		
+  lazy_properties.go:29	0x89e119		440fb66c2446		MOVZX 0x46(SP), R13																	
+  lazy_properties.go:29	0x89e11f		90			NOPL																			
+  lazy_properties.go:29	0x89e120		4584ed			TESTL R13, R13																		
+  lazy_properties.go:32	0x89e123		7524			JNE 0x89e149																		
+  lazy_properties.go:32	0x89e125		4885db			TESTQ BX, BX																		
+  lazy_properties.go:32	0x89e128		751f			JNE 0x89e149																		
+  lazy_properties.go:32	0x89e12a		4c8da42450010000	LEAQ 0x150(SP), R12																	
+  lazy_properties.go:32	0x89e132		450f113c24		MOVUPS X15, 0(R12)																	
+  lazy_properties.go:32	0x89e137		450f117c2410		MOVUPS X15, 0x10(R12)																	
+  lazy_properties.go:32	0x89e13d		b802000000		MOVL $0x2, AX																		
+  lazy_properties.go:32	0x89e142		bb01000000		MOVL $0x1, BX																		
+  lazy_properties.go:32	0x89e147		eb57			JMP 0x89e1a0																		
+  lazy_properties.go:32	0x89e149		488b842400030000	MOVQ 0x300(SP), AX																	
+  lazy_properties.go:32	0x89e151		4c89c3			MOVQ R8, BX																		
+  lazy_properties.go:32	0x89e154		4c89e1			MOVQ R12, CX																		
+  lazy_properties.go:32	0x89e157		bf01000000		MOVL $0x1, DI																		
+  lazy_properties.go:32	0x89e15c		488d351d234c00		LEAQ 0x4c231d(IP), SI																	
+  lazy_properties.go:32	0x89e163		e8f8dfbeff		CALL runtime.growslice(SB)																
+  slices.go:98		0x89e168		488b9424f8000000	MOVQ 0xf8(SP), DX																	
+  slices.go:97		0x89e170		488b742458		MOVQ 0x58(SP), SI																	
+  slices.go:98		0x89e175		4c8b8c2408010000	MOVQ 0x108(SP), R9																	
+  lazy_properties.go:32	0x89e17d		4c8b9424f8020000	MOVQ 0x2f8(SP), R10																	
+  lazy_properties.go:32	0x89e185		4c8b9c24a0000000	MOVQ 0xa0(SP), R11																	
+  lazy_properties.go:32	0x89e18d		4989c4			MOVQ AX, R12																		
+  lazy_properties.go:32	0x89e190		4989d8			MOVQ BX, R8																		
+  lazy_properties.go:32	0x89e193		4889c8			MOVQ CX, AX																		
+  lazy_properties.go:32	0x89e196		0fb65c2446		MOVZX 0x46(SP), BX																	
+  lazy_properties.go:35	0x89e19b		488b4c2468		MOVQ 0x68(SP), CX																	
+  lazy_properties.go:32	0x89e1a0		4d8d68ff		LEAQ -0x1(R8), R13																	
+  lazy_properties.go:32	0x89e1a4		49c1e504		SHLQ $0x4, R13																		
+  lazy_properties.go:32	0x89e1a8		4f895c2c08		MOVQ R11, 0x8(R12)(R13*1)																
+  lazy_properties.go:32	0x89e1ad		833d5ca3650100		CMPL runtime.writeBarrier(SB), $0x0															
+  lazy_properties.go:32	0x89e1b4		7416			JE 0x89e1cc																		
+  lazy_properties.go:32	0x89e1b6		4f8b1c2c		MOVQ 0(R12)(R13*1), R11																	
+  lazy_properties.go:32	0x89e1ba		4c89df			MOVQ R11, DI																		
+  lazy_properties.go:32	0x89e1bd		0f1f00			NOPL 0(AX)																		
+  lazy_properties.go:32	0x89e1c0		e83b33bfff		CALL runtime.gcWriteBarrier2(SB)															
+  lazy_properties.go:32	0x89e1c5		4d8913			MOVQ R10, 0(R11)																	
+  lazy_properties.go:32	0x89e1c8		49897b08		MOVQ DI, 0x8(R11)																	
+  lazy_properties.go:32	0x89e1cc		4f89142c		MOVQ R10, 0(R12)(R13*1)																	
+  slices.go:118		0x89e1d0		31ff			XORL DI, DI																		
+  slices.go:97		0x89e1d2		eb03			JMP 0x89e1d7																		
+  slices.go:97		0x89e1d4		48ffc7			INCQ DI																			
+  slices.go:97		0x89e1d7		4839f7			CMPQ DI, SI																		
+  slices.go:97		0x89e1da		7d0b			JGE 0x89e1e7																		
+  slices.go:98		0x89e1dc		4c8b14fa		MOVQ 0(DX)(DI*8), R10																	
+  slices.go:98		0x89e1e0		4d39ca			CMPQ R10, R9																		
+  slices.go:98		0x89e1e3		75ef			JNE 0x89e1d4																		
+  slices.go:98		0x89e1e5		eb07			JMP 0x89e1ee																		
+  slices.go:98		0x89e1e7		48c7c7ffffffff		MOVQ $-0x1, DI																		
+  slices.go:118		0x89e1ee		4885ff			TESTQ DI, DI																		
+  lazy_properties.go:34	0x89e1f1		0f8dfbfdffff		JGE 0x89dff2																		
+  lazy_properties.go:34	0x89e1f7		4889842498000000	MOVQ AX, 0x98(SP)																	
+  lazy_properties.go:34	0x89e1ff		4c89842490000000	MOVQ R8, 0x90(SP)																	
+  lazy_properties.go:34	0x89e207		4c89a424f0020000	MOVQ R12, 0x2f0(SP)																	
+  lazy_properties.go:34	0x89e20f		885c2445		MOVB BL, 0x45(SP)																	
+  lazy_properties.go:35	0x89e213		4c8d5601		LEAQ 0x1(SI), R10																	
+  lazy_properties.go:35	0x89e217		4c39d1			CMPQ CX, R10																		
+  lazy_properties.go:35	0x89e21a		7342			JAE 0x89e25e																		
+  lazy_properties.go:35	0x89e21c		4889d0			MOVQ DX, AX																		
+  lazy_properties.go:35	0x89e21f		4c89d3			MOVQ R10, BX																		
+  lazy_properties.go:35	0x89e222		bf01000000		MOVL $0x1, DI																		
+  lazy_properties.go:35	0x89e227		488d35326b5300		LEAQ 0x536b32(IP), SI																	
+  lazy_properties.go:35	0x89e22e		e82ddfbeff		CALL runtime.growslice(SB)																
+  lazy_properties.go:29	0x89e233		4c8b842490000000	MOVQ 0x90(SP), R8																	
+  lazy_properties.go:35	0x89e23b		4c8b8c2408010000	MOVQ 0x108(SP), R9																	
+  lazy_properties.go:29	0x89e243		4c8ba424f0020000	MOVQ 0x2f0(SP), R12																	
+  lazy_properties.go:35	0x89e24b		4889c2			MOVQ AX, DX																		
+  lazy_properties.go:35	0x89e24e		4989da			MOVQ BX, R10																		
+  lazy_properties.go:29	0x89e251		488b842498000000	MOVQ 0x98(SP), AX																	
+  lazy_properties.go:29	0x89e259		0fb65c2445		MOVZX 0x45(SP), BX																	
+  lazy_properties.go:35	0x89e25e		48898c24a0000000	MOVQ CX, 0xa0(SP)																	
+  lazy_properties.go:35	0x89e266		833da3a2650100		CMPL runtime.writeBarrier(SB), $0x0															
+  lazy_properties.go:35	0x89e26d		7411			JE 0x89e280																		
+  lazy_properties.go:35	0x89e26f		4a8b74d2f8		MOVQ -0x8(DX)(R10*8), SI																
+  lazy_properties.go:35	0x89e274		e88732bfff		CALL runtime.gcWriteBarrier2(SB)															
+  lazy_properties.go:35	0x89e279		4d890b			MOVQ R9, 0(R11)																		
+  lazy_properties.go:35	0x89e27c		49897308		MOVQ SI, 0x8(R11)																	
+  lazy_properties.go:35	0x89e280		48899424e8020000	MOVQ DX, 0x2e8(SP)																	
+  lazy_properties.go:35	0x89e288		4c89942488000000	MOVQ R10, 0x88(SP)																	
+  lazy_properties.go:35	0x89e290		4e894cd2f8		MOVQ R9, -0x8(DX)(R10*8)																
+  lazy_properties.go:35	0x89e295		498b4908		MOVQ 0x8(R9), CX																	
+  lazy_properties.go:35	0x89e299		498b7910		MOVQ 0x10(R9), DI																	
+  lazy_properties.go:35	0x89e29d		488d05fcb35200		LEAQ 0x52b3fc(IP), AX																	
+  lazy_properties.go:35	0x89e2a4		488d9c24b8020000	LEAQ 0x2b8(SP), BX																	
+  lazy_properties.go:35	0x89e2ac		e86f5fb7ff		CALL runtime.mapassign_faststr(SB)															
+  lazy_properties.go:35	0x89e2b1		488b942488000000	MOVQ 0x88(SP), DX																	
+  lazy_properties.go:35	0x89e2b9		48895008		MOVQ DX, 0x8(AX)																	
+  lazy_properties.go:35	0x89e2bd		488b9424a0000000	MOVQ 0xa0(SP), DX																	
+  lazy_properties.go:35	0x89e2c5		48895010		MOVQ DX, 0x10(AX)																	
+  lazy_properties.go:35	0x89e2c9		833d40a2650100		CMPL runtime.writeBarrier(SB), $0x0															
+  lazy_properties.go:35	0x89e2d0		750a			JNE 0x89e2dc																		
+  lazy_properties.go:35	0x89e2d2		488bb424e8020000	MOVQ 0x2e8(SP), SI																	
+  lazy_properties.go:35	0x89e2da		eb18			JMP 0x89e2f4																		
+  lazy_properties.go:35	0x89e2dc		488b10			MOVQ 0(AX), DX																		
+  lazy_properties.go:35	0x89e2df		90			NOPL																			
+  lazy_properties.go:35	0x89e2e0		e81b32bfff		CALL runtime.gcWriteBarrier2(SB)															
+  lazy_properties.go:35	0x89e2e5		488bb424e8020000	MOVQ 0x2e8(SP), SI																	
+  lazy_properties.go:35	0x89e2ed		498933			MOVQ SI, 0(R11)																		
+  lazy_properties.go:35	0x89e2f0		49895308		MOVQ DX, 0x8(R11)																	
+  lazy_properties.go:35	0x89e2f4		488930			MOVQ SI, 0(AX)																		
+  lazy_properties.go:29	0x89e2f7		488b842498000000	MOVQ 0x98(SP), AX																	
+  lazy_properties.go:29	0x89e2ff		0fb65c2445		MOVZX 0x45(SP), BX																	
+  lazy_properties.go:29	0x89e304		4c8b842490000000	MOVQ 0x90(SP), R8																	
+  lazy_properties.go:29	0x89e30c		4c8ba424f0020000	MOVQ 0x2f0(SP), R12																	
+  lazy_properties.go:35	0x89e314		e9d9fcffff		JMP 0x89dff2																		
+  lazy_properties.go:25	0x89e319		488b842418030000	MOVQ 0x318(SP), AX																	
+  lazy_properties.go:26	0x89e321		488b8c24e0000000	MOVQ 0xe0(SP), CX																	
+  lazy_properties.go:25	0x89e329		488b9c24d0000000	MOVQ 0xd0(SP), BX																	
+  lazy_properties.go:25	0x89e331		4989f1			MOVQ SI, R9																		
+  lazy_properties.go:25	0x89e334		89d6			MOVL DX, SI																		
+  lazy_properties.go:25	0x89e336		488b9424c8000000	MOVQ 0xc8(SP), DX																	
+  lazy_properties.go:25	0x89e33e		4d89c2			MOVQ R8, R10																		
+  lazy_properties.go:25	0x89e341		4989f8			MOVQ DI, R8																		
+  lazy_properties.go:25	0x89e344		4c89d7			MOVQ R10, DI																		
+  lazy_properties.go:29	0x89e347		e936fcffff		JMP 0x89df82																		
+  lazy_properties.go:40	0x89e34c		4885c9			TESTQ CX, CX																		
+  lazy_properties.go:40	0x89e34f		7504			JNE 0x89e355																		
+  lazy_properties.go:40	0x89e351		31c0			XORL AX, AX																		
+  lazy_properties.go:40	0x89e353		eb45			JMP 0x89e39a																		
+  lazy_properties.go:41	0x89e355		488b842430030000	MOVQ 0x330(SP), AX																	
+  lazy_properties.go:41	0x89e35d		4889cb			MOVQ CX, BX																		
+  lazy_properties.go:41	0x89e360		e8fb3df8ff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getApparentType(SB)									
+  checker.go:26549	0x89e365		488b8c2430030000	MOVQ 0x330(SP), CX																	
+  checker.go:26549	0x89e36d		483981900b0000		CMPQ 0xb90(CX), AX																	
+  checker.go:26549	0x89e374		7415			JE 0x89e38b																		
+  checker.go:26549	0x89e376		8b10			MOVL 0(AX), DX																		
+  checker.go:26549	0x89e378		0fbae200		BTL $0x0, DX																		
+  checker.go:26549	0x89e37c		7307			JAE 0x89e385																		
+  checker.go:26549	0x89e37e		4883781800		CMPQ 0x18(AX), $0x0																	
+  lazy_properties.go:42	0x89e383		7506			JNE 0x89e38b																		
+  lazy_properties.go:42	0x89e385		0fbae212		BTL $0x12, DX																		
+  lazy_properties.go:42	0x89e389		7302			JAE 0x89e38d																		
+  lazy_properties.go:42	0x89e38b		31c0			XORL AX, AX																		
+  lazy_properties.go:48	0x89e38d		488bbc2418010000	MOVQ 0x118(SP), DI																	
+  lazy_properties.go:48	0x89e395		4c8b442470		MOVQ 0x70(SP), R8																	
+  lazy_properties.go:48	0x89e39a		48898424d8000000	MOVQ AX, 0xd8(SP)																	
+  lazy_properties.go:48	0x89e3a2		488d942430030000	LEAQ 0x330(SP), DX																	
+  lazy_properties.go:48	0x89e3aa		4829e2			SUBQ SP, DX																		
+  lazy_properties.go:48	0x89e3ad		4889fb			MOVQ DI, BX																		
+  lazy_properties.go:48	0x89e3b0		4829e7			SUBQ SP, DI																		
+  lazy_properties.go:48	0x89e3b3		4839d7			CMPQ DI, DX																		
+  lazy_properties.go:48	0x89e3b6		731d			JAE 0x89e3d5																		
+  lazy_properties.go:48	0x89e3b8		488d05c1204c00		LEAQ 0x4c20c1(IP), AX																	
+  lazy_properties.go:48	0x89e3bf		4c89c1			MOVQ R8, CX																		
+  lazy_properties.go:48	0x89e3c2		e8b9ebbcff		CALL runtime.moveSliceNoCap(SB)																
+  lazy_properties.go:48	0x89e3c7		4989d8			MOVQ BX, R8																		
+  lazy_properties.go:48	0x89e3ca		4889c3			MOVQ AX, BX																		
+  lazy_properties.go:50	0x89e3cd		488b8424d8000000	MOVQ 0xd8(SP), AX																	
+  lazy_properties.go:48	0x89e3d5		4c89442470		MOVQ R8, 0x70(SP)																	
+  lazy_properties.go:48	0x89e3da		31c9			XORL CX, CX																		
+  lazy_properties.go:48	0x89e3dc		31d2			XORL DX, DX																		
+  lazy_properties.go:48	0x89e3de		6690			NOPW																			
+  lazy_properties.go:48	0x89e3e0		eb27			JMP 0x89e409																		
+  lazy_properties.go:48	0x89e3e2		488bb42408030000	MOVQ 0x308(SP), SI																	
+  lazy_properties.go:48	0x89e3ea		4883c610		ADDQ $0x10, SI																		
+  lazy_properties.go:48	0x89e3ee		488b8c24d0000000	MOVQ 0xd0(SP), CX																	
+  lazy_properties.go:48	0x89e3f6		48ffc1			INCQ CX																			
+  lazy_properties.go:50	0x89e3f9		4889d8			MOVQ BX, AX																		
+  lazy_properties.go:48	0x89e3fc		4c8b442470		MOVQ 0x70(SP), R8																	
+  lazy_properties.go:48	0x89e401		0fb6542447		MOVZX 0x47(SP), DX																	
+  lazy_properties.go:48	0x89e406		4889f3			MOVQ SI, BX																		
+  lazy_properties.go:48	0x89e409		4c39c1			CMPQ CX, R8																		
+  lazy_properties.go:48	0x89e40c		0f8dc3010000		JGE 0x89e5d5																		
+  lazy_properties.go:48	0x89e412		48898c24d0000000	MOVQ CX, 0xd0(SP)																	
+  lazy_properties.go:48	0x89e41a		88542447		MOVB DL, 0x47(SP)																	
+  lazy_properties.go:48	0x89e41e		48899c2408030000	MOVQ BX, 0x308(SP)																	
+  lazy_properties.go:48	0x89e426		488b0b			MOVQ 0(BX), CX																		
+  lazy_properties.go:48	0x89e429		48898c2420010000	MOVQ CX, 0x120(SP)																	
+  lazy_properties.go:48	0x89e431		488b7b08		MOVQ 0x8(BX), DI																	
+  lazy_properties.go:48	0x89e435		4889bc2480000000	MOVQ DI, 0x80(SP)																	
+  lazy_properties.go:49	0x89e43d		488d055cb25200		LEAQ 0x52b25c(IP), AX																	
+  lazy_properties.go:49	0x89e444		488d9c24b8020000	LEAQ 0x2b8(SP), BX																	
+  lazy_properties.go:49	0x89e44c		e84f58b7ff		CALL runtime.mapaccess1_faststr(SB)															
+  lazy_properties.go:49	0x89e451		488b5008		MOVQ 0x8(AX), DX																	
+  lazy_properties.go:49	0x89e455		488b30			MOVQ 0(AX), SI																		
+  lazy_properties.go:49	0x89e458		4c8b4010		MOVQ 0x10(AX), R8																	
+  lazy_properties.go:50	0x89e45c		488b9c24d8000000	MOVQ 0xd8(SP), BX																	
+  lazy_properties.go:50	0x89e464		4885db			TESTQ BX, BX																		
+  lazy_properties.go:50	0x89e467		7507			JNE 0x89e470																		
+  lazy_properties.go:56	0x89e469		0fb6442447		MOVZX 0x47(SP), AX																	
+  lazy_properties.go:50	0x89e46e		eb7f			JMP 0x89e4ef																		
+  lazy_properties.go:49	0x89e470		4c89442460		MOVQ R8, 0x60(SP)																	
+  lazy_properties.go:49	0x89e475		4889542450		MOVQ DX, 0x50(SP)																	
+  lazy_properties.go:49	0x89e47a		4889b424f0000000	MOVQ SI, 0xf0(SP)																	
+  lazy_properties.go:51	0x89e482		488b842430030000	MOVQ 0x330(SP), AX																	
+  lazy_properties.go:51	0x89e48a		488b8c2420010000	MOVQ 0x120(SP), CX																	
+  lazy_properties.go:51	0x89e492		488bbc2480000000	MOVQ 0x80(SP), DI																	
+  lazy_properties.go:51	0x89e49a		be01000000		MOVL $0x1, SI																		
+  lazy_properties.go:51	0x89e49f		4531c0			XORL R8, R8																		
+  lazy_properties.go:51	0x89e4a2		e83902f7ff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx(SB)								
+  lazy_properties.go:52	0x89e4a7		4885c0			TESTQ AX, AX																		
+  lazy_properties.go:52	0x89e4aa		7419			JE 0x89e4c5																		
+  slices.go:97		0x89e4ac		488b5c2450		MOVQ 0x50(SP), BX																	
+  slices.go:97		0x89e4b1		488b9424f0000000	MOVQ 0xf0(SP), DX																	
+  slices.go:97		0x89e4b9		31c9			XORL CX, CX																		
+  slices.go:97		0x89e4bb		0f1f440000		NOPL 0(AX)(AX*1)																	
+  slices.go:97		0x89e4c0		e92d010000		JMP 0x89e5f2																		
+  slices.go:97		0x89e4c5		488b442460		MOVQ 0x60(SP), AX																	
+  slices.go:97		0x89e4ca		488b4c2450		MOVQ 0x50(SP), CX																	
+  slices.go:97		0x89e4cf		0fb6542447		MOVZX 0x47(SP), DX																	
+  slices.go:97		0x89e4d4		488b9c24f0000000	MOVQ 0xf0(SP), BX																	
+  lazy_properties.go:56	0x89e4dc		4989c0			MOVQ AX, R8																		
+  lazy_properties.go:56	0x89e4df		4889de			MOVQ BX, SI																		
+  lazy_properties.go:50	0x89e4e2		488b9c24d8000000	MOVQ 0xd8(SP), BX																	
+  lazy_properties.go:56	0x89e4ea		89d0			MOVL DX, AX																		
+  lazy_properties.go:56	0x89e4ec		4889ca			MOVQ CX, DX																		
+  lazy_properties.go:56	0x89e4ef		88442447		MOVB AL, 0x47(SP)																	
+  lazy_properties.go:56	0x89e4f3		4883fa02		CMPQ DX, $0x2																		
+  lazy_properties.go:56	0x89e4f7		7d09			JGE 0x89e502																		
+  lazy_properties.go:56	0x89e4f9		b901000000		MOVL $0x1, CX																		
+  lazy_properties.go:56	0x89e4fe		6690			NOPW																			
+  lazy_properties.go:56	0x89e500		eb28			JMP 0x89e52a																		
+  lazy_properties.go:56	0x89e502		488b842430030000	MOVQ 0x330(SP), AX																	
+  lazy_properties.go:56	0x89e50a		4889f3			MOVQ SI, BX																		
+  lazy_properties.go:56	0x89e50d		4889d1			MOVQ DX, CX																		
+  lazy_properties.go:56	0x89e510		4c89c7			MOVQ R8, DI																		
+  lazy_properties.go:56	0x89e513		e8c8020000		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).someLiteralOrPrivateProperty(SB)							
+  lazy_properties.go:56	0x89e518		83f001			XORL $0x1, AX																		
+  lazy_properties.go:50	0x89e51b		488b9c24d8000000	MOVQ 0xd8(SP), BX																	
+  lazy_properties.go:56	0x89e523		89c1			MOVL AX, CX																		
+  lazy_properties.go:48	0x89e525		0fb6442447		MOVZX 0x47(SP), AX																	
+  lazy_properties.go:56	0x89e52a		84c9			TESTL CL, CL																		
+  lazy_properties.go:56	0x89e52c		0f85b0feffff		JNE 0x89e3e2																		
+  lazy_properties.go:59	0x89e532		488b842430030000	MOVQ 0x330(SP), AX																	
+  lazy_properties.go:59	0x89e53a		488b9c2438030000	MOVQ 0x338(SP), BX																	
+  lazy_properties.go:59	0x89e542		488b8c2420010000	MOVQ 0x120(SP), CX																	
+  lazy_properties.go:59	0x89e54a		488bbc2480000000	MOVQ 0x80(SP), DI																	
+  lazy_properties.go:59	0x89e552		be01000000		MOVL $0x1, SI																		
+  lazy_properties.go:59	0x89e557		e8e417f8ff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfUnionOrIntersectionType(SB)						
+  lazy_properties.go:59	0x89e55c		0f1f4000		NOPL 0(AX)																		
+  lazy_properties.go:60	0x89e560		4885c0			TESTQ AX, AX																		
+  lazy_properties.go:60	0x89e563		745e			JE 0x89e5c3																		
+  checker.go:21782	0x89e565		8b10			MOVL 0(AX), DX																		
+  checker.go:21782	0x89e567		0fbae218		BTL $0x18, DX																		
+  checker.go:21782	0x89e56b		7240			JB 0x89e5ad																		
+  checker.go:21782	0x89e56d		8b5004			MOVL 0x4(AX), DX																	
+  checker.go:21782	0x89e570		81e2c0000200		ANDL $0x200c0, DX																	
+  checker.go:21782	0x89e576		81fac0000000		CMPL DX, $0xc0																		
+  checker.go:21782	0x89e57c		7404			JE 0x89e582																		
+  checker.go:21782	0x89e57e		31c9			XORL CX, CX																		
+  checker.go:21782	0x89e580		eb2d			JMP 0x89e5af																		
+  lazy_properties.go:59	0x89e582		4889842428010000	MOVQ AX, 0x128(SP)																	
+  checker.go:21782	0x89e58a		4889c3			MOVQ AX, BX																		
+  checker.go:21782	0x89e58d		488b842430030000	MOVQ 0x330(SP), AX																	
+  checker.go:21782	0x89e595		e8c61cf6ff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)									
+  checker.go:21782	0x89e59a		8b08			MOVL 0(AX), CX																		
+  checker.go:21782	0x89e59c		0fbae112		BTL $0x12, CX																		
+  checker.go:21782	0x89e5a0		0f92c1			SETB CL																			
+  checker.go:21787	0x89e5a3		488b842428010000	MOVQ 0x128(SP), AX																	
+  checker.go:21782	0x89e5ab		eb02			JMP 0x89e5af																		
+  checker.go:21782	0x89e5ad		31c9			XORL CX, CX																		
+  checker.go:21754	0x89e5af		84c9			TESTL CL, CL																		
+  checker.go:21754	0x89e5b1		752e			JNE 0x89e5e1																		
+  checker.go:21787	0x89e5b3		4883783000		CMPQ 0x30(AX), $0x0																	
+  checker.go:21787	0x89e5b8		7509			JNE 0x89e5c3																		
+  checker.go:21787	0x89e5ba		8b5004			MOVL 0x4(AX), DX																	
+  checker.go:21787	0x89e5bd		0fbae20a		BTL $0xa, DX																		
+  checker.go:21754	0x89e5c1		721e			JB 0x89e5e1																		
+  lazy_properties.go:48	0x89e5c3		0fb6442447		MOVZX 0x47(SP), AX																	
+  lazy_properties.go:50	0x89e5c8		488b9c24d8000000	MOVQ 0xd8(SP), BX																	
+  lazy_properties.go:60	0x89e5d0		e90dfeffff		JMP 0x89e3e2																		
+  lazy_properties.go:64	0x89e5d5		31c0			XORL AX, AX																		
+  lazy_properties.go:64	0x89e5d7		4881c420030000		ADDQ $0x320, SP																		
+  lazy_properties.go:64	0x89e5de		5d			POPQ BP																			
+  lazy_properties.go:64	0x89e5df		90			NOPL																			
+  lazy_properties.go:64	0x89e5e0		c3			RET																			
+  lazy_properties.go:61	0x89e5e1		b801000000		MOVL $0x1, AX																		
+  lazy_properties.go:61	0x89e5e6		4881c420030000		ADDQ $0x320, SP																		
+  lazy_properties.go:61	0x89e5ed		5d			POPQ BP																			
+  lazy_properties.go:61	0x89e5ee		c3			RET																			
+  slices.go:97		0x89e5ef		48ffc1			INCQ CX																			
+  slices.go:97		0x89e5f2		4839d9			CMPQ CX, BX																		
+  slices.go:97		0x89e5f5		7d10			JGE 0x89e607																		
+  slices.go:98		0x89e5f7		4c8b04ca		MOVQ 0(DX)(CX*8), R8																	
+  slices.go:98		0x89e5fb		0f1f440000		NOPL 0(AX)(AX*1)																	
+  slices.go:98		0x89e600		4939c0			CMPQ R8, AX																		
+  slices.go:98		0x89e603		75ea			JNE 0x89e5ef																		
+  slices.go:98		0x89e605		eb07			JMP 0x89e60e																		
+  slices.go:98		0x89e607		48c7c1ffffffff		MOVQ $-0x1, CX																		
+  slices.go:118		0x89e60e		4885c9			TESTQ CX, CX																		
+  lazy_properties.go:52	0x89e611		7c1a			JL 0x89e62d																		
+  lazy_properties.go:52	0x89e613		488b442460		MOVQ 0x60(SP), AX																	
+  lazy_properties.go:52	0x89e618		4889d9			MOVQ BX, CX																		
+  lazy_properties.go:52	0x89e61b		0fb6542447		MOVZX 0x47(SP), DX																	
+  lazy_properties.go:52	0x89e620		488b9c24f0000000	MOVQ 0xf0(SP), BX																	
+  lazy_properties.go:52	0x89e628		e9affeffff		JMP 0x89e4dc																		
+  lazy_properties.go:53	0x89e62d		4c8d4301		LEAQ 0x1(BX), R8																	
+  lazy_properties.go:53	0x89e631		488b4c2460		MOVQ 0x60(SP), CX																	
+  lazy_properties.go:53	0x89e636		4c39c1			CMPQ CX, R8																		
+  lazy_properties.go:53	0x89e639		720a			JB 0x89e645																		
+  lazy_properties.go:53	0x89e63b		4889d6			MOVQ DX, SI																		
+  lazy_properties.go:53	0x89e63e		0fb6542447		MOVZX 0x47(SP), DX																	
+  lazy_properties.go:53	0x89e643		eb67			JMP 0x89e6ac																		
+  lazy_properties.go:51	0x89e645		4889842400010000	MOVQ AX, 0x100(SP)																	
+  lazy_properties.go:53	0x89e64d		4983f804		CMPQ R8, $0x4																		
+  lazy_properties.go:53	0x89e651		7f2f			JG 0x89e682																		
+  lazy_properties.go:48	0x89e653		440fb64c2447		MOVZX 0x47(SP), R9																	
+  lazy_properties.go:48	0x89e659		4584c9			TESTL R9, R9																		
+  lazy_properties.go:53	0x89e65c		7524			JNE 0x89e682																		
+  lazy_properties.go:53	0x89e65e		6690			NOPW																			
+  lazy_properties.go:53	0x89e660		4885db			TESTQ BX, BX																		
+  lazy_properties.go:53	0x89e663		751d			JNE 0x89e682																		
+  lazy_properties.go:53	0x89e665		488db42430010000	LEAQ 0x130(SP), SI																	
+  lazy_properties.go:53	0x89e66d		440f113e		MOVUPS X15, 0(SI)																	
+  lazy_properties.go:53	0x89e671		440f117e10		MOVUPS X15, 0x10(SI)																	
+  lazy_properties.go:53	0x89e676		b904000000		MOVL $0x4, CX																		
+  lazy_properties.go:53	0x89e67b		ba01000000		MOVL $0x1, DX																		
+  lazy_properties.go:53	0x89e680		eb2a			JMP 0x89e6ac																		
+  lazy_properties.go:53	0x89e682		4889d0			MOVQ DX, AX																		
+  lazy_properties.go:53	0x89e685		4c89c3			MOVQ R8, BX																		
+  lazy_properties.go:53	0x89e688		bf01000000		MOVL $0x1, DI																		
+  lazy_properties.go:53	0x89e68d		488d35cc665300		LEAQ 0x5366cc(IP), SI																	
+  lazy_properties.go:53	0x89e694		e8c7dabeff		CALL runtime.growslice(SB)																
+  lazy_properties.go:53	0x89e699		4989d8			MOVQ BX, R8																		
+  lazy_properties.go:53	0x89e69c		4889c6			MOVQ AX, SI																		
+  lazy_properties.go:53	0x89e69f		0fb6542447		MOVZX 0x47(SP), DX																	
+  lazy_properties.go:53	0x89e6a4		488b842400010000	MOVQ 0x100(SP), AX																	
+  lazy_properties.go:53	0x89e6ac		833d5d9e650100		CMPL runtime.writeBarrier(SB), $0x0															
+  lazy_properties.go:53	0x89e6b3		7411			JE 0x89e6c6																		
+  lazy_properties.go:53	0x89e6b5		4e8b4cc6f8		MOVQ -0x8(SI)(R8*8), R9																	
+  lazy_properties.go:53	0x89e6ba		e8412ebfff		CALL runtime.gcWriteBarrier2(SB)															
+  lazy_properties.go:53	0x89e6bf		498903			MOVQ AX, 0(R11)																		
+  lazy_properties.go:53	0x89e6c2		4d894b08		MOVQ R9, 0x8(R11)																	
+  lazy_properties.go:53	0x89e6c6		4a8944c6f8		MOVQ AX, -0x8(SI)(R8*8)																	
+  lazy_properties.go:53	0x89e6cb		4889c8			MOVQ CX, AX																		
+  lazy_properties.go:53	0x89e6ce		4c89c1			MOVQ R8, CX																		
+  lazy_properties.go:53	0x89e6d1		4889f3			MOVQ SI, BX																		
+  lazy_properties.go:53	0x89e6d4		e903feffff		JMP 0x89e4dc																		
+  lazy_properties.go:15	0x89e6d9		48ffc3			INCQ BX																			
+  lazy_properties.go:15	0x89e6dc		0f1f4000		NOPL 0(AX)																		
+  lazy_properties.go:15	0x89e6e0		4839cb			CMPQ BX, CX																		
+  lazy_properties.go:15	0x89e6e3		0f8d9b000000		JGE 0x89e784																		
+  lazy_properties.go:15	0x89e6e9		488b34da		MOVQ 0(DX)(BX*8), SI																	
+  checker.go:21782	0x89e6ed		8b3e			MOVL 0(SI), DI																		
+  checker.go:21782	0x89e6ef		0fbae718		BTL $0x18, DI																		
+  checker.go:21782	0x89e6f3		7262			JB 0x89e757																		
+  checker.go:21782	0x89e6f5		8b7e04			MOVL 0x4(SI), DI																	
+  checker.go:21782	0x89e6f8		81e7c0000200		ANDL $0x200c0, DI																	
+  checker.go:21782	0x89e6fe		6690			NOPW																			
+  checker.go:21782	0x89e700		81ffc0000000		CMPL DI, $0xc0																		
+  checker.go:21782	0x89e706		7404			JE 0x89e70c																		
+  checker.go:21782	0x89e708		31ff			XORL DI, DI																		
+  checker.go:21782	0x89e70a		eb4d			JMP 0x89e759																		
+  lazy_properties.go:15	0x89e70c		48899c24d0000000	MOVQ BX, 0xd0(SP)																	
+  lazy_properties.go:15	0x89e714		4889b42410010000	MOVQ SI, 0x110(SP)																	
+  checker.go:21782	0x89e71c		4889f3			MOVQ SI, BX																		
+  checker.go:21782	0x89e71f		90			NOPL																			
+  checker.go:21782	0x89e720		e83b1bf6ff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)									
+  checker.go:21782	0x89e725		8b08			MOVL 0(AX), CX																		
+  checker.go:21782	0x89e727		0fbae112		BTL $0x12, CX																		
+  checker.go:21782	0x89e72b		0f92c1			SETB CL																			
+  checker.go:21782	0x89e72e		488b842430030000	MOVQ 0x330(SP), AX																	
+  lazy_properties.go:15	0x89e736		488b9424e8000000	MOVQ 0xe8(SP), DX																	
+  lazy_properties.go:15	0x89e73e		488b9c24d0000000	MOVQ 0xd0(SP), BX																	
+  checker.go:21787	0x89e746		488bb42410010000	MOVQ 0x110(SP), SI																	
+  checker.go:21754	0x89e74e		89cf			MOVL CX, DI																		
+  lazy_properties.go:15	0x89e750		488b4c2448		MOVQ 0x48(SP), CX																	
+  checker.go:21782	0x89e755		eb02			JMP 0x89e759																		
+  checker.go:21782	0x89e757		31ff			XORL DI, DI																		
+  checker.go:21754	0x89e759		4084ff			TESTL DI, DI																		
+  checker.go:21754	0x89e75c		7518			JNE 0x89e776																		
+  checker.go:21787	0x89e75e		48837e3000		CMPQ 0x30(SI), $0x0																	
+  checker.go:21787	0x89e763		0f8570ffffff		JNE 0x89e6d9																		
+  checker.go:21787	0x89e769		8b7604			MOVL 0x4(SI), SI																	
+  checker.go:21787	0x89e76c		0fbae60a		BTL $0xa, SI																		
+  lazy_properties.go:16	0x89e770		0f8363ffffff		JAE 0x89e6d9																		
+  lazy_properties.go:17	0x89e776		b801000000		MOVL $0x1, AX																		
+  lazy_properties.go:17	0x89e77b		4881c420030000		ADDQ $0x320, SP																		
+  lazy_properties.go:17	0x89e782		5d			POPQ BP																			
+  lazy_properties.go:17	0x89e783		c3			RET																			
+  lazy_properties.go:20	0x89e784		31c0			XORL AX, AX																		
+  lazy_properties.go:20	0x89e786		4881c420030000		ADDQ $0x320, SP																		
+  lazy_properties.go:20	0x89e78d		5d			POPQ BP																			
+  lazy_properties.go:20	0x89e78e		c3			RET																			
+  types.go:702		0x89e78f		4889d0			MOVQ DX, AX																		
+  types.go:702		0x89e792		488d1dc71c6500		LEAQ 0x651cc7(IP), BX																	
+  types.go:702		0x89e799		488d0d20565900		LEAQ 0x595620(IP), CX																	
+  types.go:702		0x89e7a0		e8bb17b8ff		CALL runtime.panicdottypeI(SB)																
+  types.go:702		0x89e7a5		90			NOPL																			
+  lazy_properties.go:13	0x89e7a6		4889442408		MOVQ AX, 0x8(SP)																	
+  lazy_properties.go:13	0x89e7ab		48895c2410		MOVQ BX, 0x10(SP)																	
+  lazy_properties.go:13	0x89e7b0		e84b12bfff		CALL runtime.morestack_noctxt.abi0(SB)															
+  lazy_properties.go:13	0x89e7b5		488b442408		MOVQ 0x8(SP), AX																	
+  lazy_properties.go:13	0x89e7ba		488b5c2410		MOVQ 0x10(SP), BX																	
+  lazy_properties.go:13	0x89e7bf		90			NOPL																			
+  lazy_properties.go:13	0x89e7c0		e99bf6ffff		JMP github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty(SB)								

@@ -1,0 +1,86 @@
+diff --git a/packages/tsc-go/internal/checker/lazy_properties.go b/packages/tsc-go/internal/checker/lazy_properties.go
+index 1fde9c4..17ac533 100644
+--- a/packages/tsc-go/internal/checker/lazy_properties.go
++++ b/packages/tsc-go/internal/checker/lazy_properties.go
+@@ -20,13 +20,48 @@ func (c *Checker) hasNeverReducedProperty(t *Type) bool {
+ 		return false
+ 	}
+ 	skipped := c.getCostliestConstituent(t)
++	// A two-constituent intersection has only one enumerated side. Snapshot
++	// small unique-name lists without a grouping map or per-name symbol slices.
++	// Names are copied before recursive resolution, just as the grouping keys are.
++	var enumerated *Type
++	var enumeratedProperties []*ast.Symbol
++	if skipped != nil && len(t.Types()) == 2 {
++		for _, current := range t.Types() {
++			if current != skipped {
++				enumerated = current
++				enumeratedProperties = c.getPropertiesOfType(current)
++				break
++			}
++		}
++		if enumerated != nil && len(enumeratedProperties) <= 8 {
++			var properties [8]*ast.Symbol
++			var names [8]string
++			unique := true
++			for i, prop := range enumeratedProperties {
++				properties[i], names[i] = prop, prop.Name
++				for j := 0; j < i; j++ {
++					if names[j] == prop.Name {
++						unique = false
++						break
++					}
++				}
++			}
++			if unique {
++				return c.hasNeverReducedSmallPair(t, skipped, properties[:len(enumeratedProperties)], names[:len(enumeratedProperties)])
++			}
++		}
++	}
+ 	byName := make(map[string][]*ast.Symbol)
+ 	var names []string
+ 	for _, current := range t.Types() {
+ 		if current == skipped {
+ 			continue
+ 		}
+-		for _, prop := range c.getPropertiesOfType(current) {
++		properties := enumeratedProperties
++		if current != enumerated {
++			properties = c.getPropertiesOfType(current)
++		}
++		for _, prop := range properties {
+ 			props, seen := byName[prop.Name]
+ 			if !seen {
+ 				names = append(names, prop.Name)
+@@ -64,6 +99,31 @@ func (c *Checker) hasNeverReducedProperty(t *Type) bool {
+ 	return false
+ }
+ 
++// The caller has captured a unique-name property list in its original order.
++// Keep skipped-side lookup before either property type is resolved, and avoid
++// resolving either type when the two contributions are the same symbol.
++func (c *Checker) hasNeverReducedSmallPair(t *Type, skipped *Type, properties []*ast.Symbol, names []string) bool {
++	skippedType := c.getApparentType(skipped)
++	if c.isErrorType(skippedType) || skippedType.flags&TypeFlagsNever != 0 {
++		return false
++	}
++	for i, prop := range properties {
++		other := c.getPropertyOfTypeEx(skippedType, names[i], true, false)
++		if other == nil || other == prop {
++			continue
++		}
++		pair := [2]*ast.Symbol{prop, other}
++		if !c.someLiteralOrPrivateProperty(pair[:]) {
++			continue
++		}
++		combined := c.getPropertyOfUnionOrIntersectionType(t, names[i], true)
++		if combined != nil && c.isNeverReducedProperty(combined) {
++			return true
++		}
++	}
++	return false
++}
++
+ func (c *Checker) someLiteralOrPrivateProperty(props []*ast.Symbol) bool {
+ 	for _, prop := range props {
+ 		if getDeclarationModifierFlagsFromSymbol(prop)&ast.ModifierFlagsPrivate != 0 {
