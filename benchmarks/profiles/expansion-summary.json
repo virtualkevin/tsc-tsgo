@@ -1,0 +1,803 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T07:59:02.394430+00:00",
+  "purpose": "Exploratory CPU/allocation profiling and PGO training; these are not benchmark timing samples.",
+  "sourceCommit": "e0a3b2747c4456bd9833a08ac11ff40d612d90ce",
+  "binary": {
+    "path": "packages/tsc-go/dist/tsc-go-expansion",
+    "sha256": "6749d967d1437efdbfe03479072a2352737900bc5057b27ee6730c1797fd9a06",
+    "provenanceSourceSha256": "a89092fd6263a978b86700f99c704c560d2cd7d1c26671ae8b180fefd83ffde5"
+  },
+  "compilerEnvironment": {
+    "TSC_TS_LIB_DIR": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs"
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "methodology": "One sequential fresh compiler process per workload, exact candidate arguments and inputs from expansion-default.json and expansion-default-large.json, with --pprofDir appended. No competing compiler workloads. Default runtime CPU/memory sampling.",
+  "caveats": [
+    "CPU percentages are sampled aggregate CPU across threads, not wall-time speedups; cumulative categories overlap.",
+    "Allocation counts and bytes are sampled estimates, not exact allocation totals or peak RSS. Go heap profiles may omit the most recent allocations until a later GC; tRPC is especially short and has no sampled checker type-constructor allocations.",
+    "Profiles include profiler overhead. PGO training uses the same four benchmark workloads; improvement on these workloads is not evidence of generalization."
+  ],
+  "runs": [
+    {
+      "name": "trpc",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-expansion",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--pprofDir",
+        "/tmp/tsc-profiles/expansion-trpc"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdoutSha256": "b22eed829234b7c931435a48f56a2274ed5945ddb9d962caa90d0073c469fbc3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": [
+        {
+          "kind": "cpu",
+          "path": "benchmarks/profiles/expansion/trpc-cpu.pprof",
+          "sha256": "27a7fe6df27619652e277ee83037ef8897546983de9eec7cda4606f71db63365",
+          "bytes": 53622
+        },
+        {
+          "kind": "alloc",
+          "path": "benchmarks/profiles/expansion/trpc-alloc.pprof",
+          "sha256": "6e4bfe5ea6fcaf9c9e5ddbe326f7bbf9e6b3796a50772232329c1fb0e65a3e5f",
+          "bytes": 68259
+        }
+      ],
+      "totalCpuSampleSeconds": 2.08,
+      "cpuInclusiveCategories": {
+        "LinkStore": {
+          "seconds": 0.12,
+          "percent": 5.77
+        },
+        "Arena": {
+          "seconds": 0.14,
+          "percent": 6.73
+        },
+        "gc": {
+          "seconds": 0.32,
+          "percent": 15.38
+        },
+        "type_shapes": {
+          "seconds": 0.01,
+          "percent": 0.48
+        }
+      },
+      "sampledAllocatedMiB": 107.81,
+      "sampledAllocationObjects": 293029,
+      "selectedFunctions": {
+        "getUnionOrIntersectionProperty": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.03s",
+            "cumulativePercent": 1.44
+          }
+        },
+        "initializeChecker": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.02s",
+            "cumulativePercent": 0.96
+          }
+        },
+        "mergeSymbolTable": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.01s",
+            "cumulativePercent": 0.48
+          }
+        },
+        "newObjectType": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.01s",
+            "cumulativePercent": 0.48
+          }
+        }
+      },
+      "concreteTypeConstructors": {
+        "allocationMiB": {
+          "flatPercent": 0,
+          "flat": 0,
+          "attributedFunctions": []
+        },
+        "allocationObjects": {
+          "flatPercent": 0,
+          "flat": 0,
+          "attributedFunctions": []
+        }
+      }
+    },
+    {
+      "name": "typeorm",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-expansion",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--pprofDir",
+        "/tmp/tsc-profiles/expansion-typeorm"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdoutSha256": "ad2937b5d011b63ac0ed363f1b1b2282197c5b9b936b40490ae7ed9203a2ed1b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": [
+        {
+          "kind": "cpu",
+          "path": "benchmarks/profiles/expansion/typeorm-cpu.pprof",
+          "sha256": "e608b35a8c1346034bcdb058098df8905794f090da5a31e8b4c22bd1a8fb77a4",
+          "bytes": 126451
+        },
+        {
+          "kind": "alloc",
+          "path": "benchmarks/profiles/expansion/typeorm-alloc.pprof",
+          "sha256": "bb6a0202bdda8884a74a879607d591a2e59bd2e14559346dcb27533562b409c7",
+          "bytes": 114211
+        }
+      ],
+      "totalCpuSampleSeconds": 13.03,
+      "cpuInclusiveCategories": {
+        "LinkStore": {
+          "seconds": 1.08,
+          "percent": 8.29
+        },
+        "Arena": {
+          "seconds": 0.35,
+          "percent": 2.69
+        },
+        "gc": {
+          "seconds": 2.51,
+          "percent": 19.26
+        },
+        "type_shapes": {
+          "seconds": 0.14,
+          "percent": 1.07
+        }
+      },
+      "sampledAllocatedMiB": 539.85,
+      "sampledAllocationObjects": 2652058,
+      "selectedFunctions": {
+        "getUnionOrIntersectionProperty": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.30s",
+            "cumulativePercent": 2.3
+          },
+          "allocationMiB": {
+            "flat": "6.01MB",
+            "flatPercent": 1.11,
+            "cumulative": "27.72MB",
+            "cumulativePercent": 5.13
+          },
+          "allocationObjects": {
+            "flat": "4392",
+            "flatPercent": 0.17,
+            "cumulative": "267930",
+            "cumulativePercent": 10.1
+          }
+        },
+        "newObjectType": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.12s",
+            "cumulativePercent": 0.92
+          },
+          "allocationMiB": {
+            "flat": "16.50MB",
+            "flatPercent": 3.06,
+            "cumulative": "16.50MB",
+            "cumulativePercent": 3.06
+          },
+          "allocationObjects": {
+            "flat": "79372",
+            "flatPercent": 2.99,
+            "cumulative": "79372",
+            "cumulativePercent": 2.99
+          }
+        },
+        "initializeChecker": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.02s",
+            "cumulativePercent": 0.15
+          },
+          "allocationMiB": {
+            "flat": "0.54MB",
+            "flatPercent": 0.1,
+            "cumulative": "1.55MB",
+            "cumulativePercent": 0.29
+          },
+          "allocationObjects": {
+            "flat": "6",
+            "flatPercent": 0.00023,
+            "cumulative": "2591",
+            "cumulativePercent": 0.098
+          }
+        },
+        "addInheritedMembers": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.01s",
+            "cumulativePercent": 0.077
+          },
+          "allocationMiB": {
+            "flat": "3.51MB",
+            "flatPercent": 0.65,
+            "cumulative": "3.51MB",
+            "cumulativePercent": 0.65
+          },
+          "allocationObjects": {
+            "flat": "1707",
+            "flatPercent": 0.064,
+            "cumulative": "1707",
+            "cumulativePercent": 0.064
+          }
+        },
+        "newUnionType": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.01s",
+            "cumulativePercent": 0.077
+          },
+          "allocationMiB": {
+            "flat": "8MB",
+            "flatPercent": 1.48,
+            "cumulative": "8MB",
+            "cumulativePercent": 1.48
+          },
+          "allocationObjects": {
+            "flat": "29120",
+            "flatPercent": 1.1,
+            "cumulative": "29120",
+            "cumulativePercent": 1.1
+          }
+        }
+      },
+      "concreteTypeConstructors": {
+        "allocationMiB": {
+          "flatPercent": 5.653,
+          "flat": 30.5,
+          "attributedFunctions": [
+            "newObjectType",
+            "newUnionType (inline)",
+            "newTypeParameter (inline)",
+            "newLiteralType",
+            "newIntersectionType (inline)",
+            "newConditionalType"
+          ]
+        },
+        "allocationObjects": {
+          "flatPercent": 6.08,
+          "flat": 161478.0,
+          "attributedFunctions": [
+            "newObjectType",
+            "newUnionType (inline)",
+            "newTypeParameter (inline)",
+            "newLiteralType",
+            "newIntersectionType (inline)",
+            "newConditionalType"
+          ]
+        }
+      }
+    },
+    {
+      "name": "vscode",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-expansion",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--pprofDir",
+        "/tmp/tsc-profiles/expansion-vscode"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdoutSha256": "017ddab1fa69285ff083ad4b298989e85b385a7de0f3ba347b00bca7e358a7cb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": [
+        {
+          "kind": "cpu",
+          "path": "benchmarks/profiles/expansion/vscode-cpu.pprof",
+          "sha256": "d0bf9d813c83f67b46960a3c46626b7b9182540a9aa9658317409fdb28864ce7",
+          "bytes": 569699
+        },
+        {
+          "kind": "alloc",
+          "path": "benchmarks/profiles/expansion/vscode-alloc.pprof",
+          "sha256": "86f43d9a68f52eda2e0c1306c8b529481f2b49c0f1d87b15587f15c4bdabab7a",
+          "bytes": 440331
+        }
+      ],
+      "totalCpuSampleSeconds": 164.0,
+      "cpuInclusiveCategories": {
+        "LinkStore": {
+          "seconds": 24.66,
+          "percent": 15.04
+        },
+        "Arena": {
+          "seconds": 4.75,
+          "percent": 2.9
+        },
+        "gc": {
+          "seconds": 30.7,
+          "percent": 18.72
+        },
+        "type_shapes": {
+          "seconds": 2.84,
+          "percent": 1.73
+        }
+      },
+      "sampledAllocatedMiB": 5014.87,
+      "sampledAllocationObjects": 18885245,
+      "selectedFunctions": {
+        "newObjectType": {
+          "cpu": {
+            "flat": "0.02s",
+            "flatPercent": 0.012,
+            "cumulative": "2.17s",
+            "cumulativePercent": 1.32
+          },
+          "allocationMiB": {
+            "flat": "126.03MB",
+            "flatPercent": 2.51,
+            "cumulative": "126.03MB",
+            "cumulativePercent": 2.51
+          },
+          "allocationObjects": {
+            "flat": "604399",
+            "flatPercent": 3.2,
+            "cumulative": "604399",
+            "cumulativePercent": 3.2
+          }
+        },
+        "getUnionOrIntersectionProperty": {
+          "cpu": {
+            "flat": "0.02s",
+            "flatPercent": 0.012,
+            "cumulative": "2.10s",
+            "cumulativePercent": 1.28
+          },
+          "allocationMiB": {
+            "flat": "41.68MB",
+            "flatPercent": 0.83,
+            "cumulative": "98.68MB",
+            "cumulativePercent": 1.97
+          },
+          "allocationObjects": {
+            "flat": "96224",
+            "flatPercent": 0.51,
+            "cumulative": "597447",
+            "cumulativePercent": 3.16
+          }
+        },
+        "addInheritedMembers": {
+          "cpu": {
+            "flat": "0.02s",
+            "flatPercent": 0.012,
+            "cumulative": "0.52s",
+            "cumulativePercent": 0.32
+          },
+          "allocationMiB": {
+            "flat": "32.60MB",
+            "flatPercent": 0.65,
+            "cumulative": "32.60MB",
+            "cumulativePercent": 0.65
+          },
+          "allocationObjects": {
+            "flat": "76196",
+            "flatPercent": 0.4,
+            "cumulative": "76196",
+            "cumulativePercent": 0.4
+          }
+        },
+        "newUnionType": {
+          "cpu": {
+            "flat": "0.07s",
+            "flatPercent": 0.043,
+            "cumulative": "0.33s",
+            "cumulativePercent": 0.2
+          },
+          "allocationMiB": {
+            "flat": "32.51MB",
+            "flatPercent": 0.65,
+            "cumulative": "32.51MB",
+            "cumulativePercent": 0.65
+          },
+          "allocationObjects": {
+            "flat": "118301",
+            "flatPercent": 0.63,
+            "cumulative": "118301",
+            "cumulativePercent": 0.63
+          }
+        },
+        "initializeChecker": {
+          "cpu": {
+            "flat": "0.02s",
+            "flatPercent": 0.012,
+            "cumulative": "0.03s",
+            "cumulativePercent": 0.018
+          },
+          "allocationMiB": {
+            "flat": "1.29MB",
+            "flatPercent": 0.026,
+            "cumulative": "6.84MB",
+            "cumulativePercent": 0.14
+          },
+          "allocationObjects": {
+            "flat": "4",
+            "flatPercent": 2.1e-5,
+            "cumulative": "44037",
+            "cumulativePercent": 0.23
+          }
+        },
+        "mergeSymbolTable": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.02s",
+            "cumulativePercent": 0.012
+          },
+          "allocationMiB": {
+            "flat": "2.03MB",
+            "flatPercent": 0.04,
+            "cumulative": "3.04MB",
+            "cumulativePercent": 0.061
+          },
+          "allocationObjects": {
+            "flat": "66159",
+            "flatPercent": 0.35,
+            "cumulative": "98946",
+            "cumulativePercent": 0.52
+          }
+        }
+      },
+      "concreteTypeConstructors": {
+        "allocationMiB": {
+          "flatPercent": 3.99,
+          "flat": 200.04,
+          "attributedFunctions": [
+            "newObjectType",
+            "newUnionType (inline)",
+            "newLiteralType",
+            "newTypeParameter (inline)",
+            "newConditionalType",
+            "newIntersectionType"
+          ]
+        },
+        "allocationObjects": {
+          "flatPercent": 5.984,
+          "flat": 1130560.0,
+          "attributedFunctions": [
+            "newObjectType",
+            "newLiteralType",
+            "newUnionType (inline)",
+            "newTypeParameter (inline)",
+            "newConditionalType",
+            "newIntersectionType"
+          ]
+        }
+      }
+    },
+    {
+      "name": "sentry",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-expansion",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--pprofDir",
+        "/tmp/tsc-profiles/expansion-sentry"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdoutSha256": "3dc9d964f363248423c97750929f362e70decd9a41dd7bf2dc4d264df234f939",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": [
+        {
+          "kind": "cpu",
+          "path": "benchmarks/profiles/expansion/sentry-cpu.pprof",
+          "sha256": "b64e3bbdb8753070ec1f8bdb27dd86ff8094bafa76a74d46ca011cd93d8f1e3d",
+          "bytes": 470355
+        },
+        {
+          "kind": "alloc",
+          "path": "benchmarks/profiles/expansion/sentry-alloc.pprof",
+          "sha256": "c61dc335be75441f1300b66ddb7bed9d20d34d5b7fdad79fc776132a43d566f5",
+          "bytes": 385338
+        }
+      ],
+      "totalCpuSampleSeconds": 133.09,
+      "cpuInclusiveCategories": {
+        "LinkStore": {
+          "seconds": 16.8,
+          "percent": 12.62
+        },
+        "Arena": {
+          "seconds": 2.18,
+          "percent": 1.64
+        },
+        "gc": {
+          "seconds": 22.95,
+          "percent": 17.24
+        },
+        "type_shapes": {
+          "seconds": 1.21,
+          "percent": 0.91
+        }
+      },
+      "sampledAllocatedMiB": 4766.46,
+      "sampledAllocationObjects": 22269712,
+      "selectedFunctions": {
+        "getUnionOrIntersectionProperty": {
+          "cpu": {
+            "flat": "0.26s",
+            "flatPercent": 0.2,
+            "cumulative": "11.80s",
+            "cumulativePercent": 8.87
+          },
+          "allocationMiB": {
+            "flat": "462.97MB",
+            "flatPercent": 9.71,
+            "cumulative": "893.79MB",
+            "cumulativePercent": 18.75
+          },
+          "allocationObjects": {
+            "flat": "448329",
+            "flatPercent": 2.01,
+            "cumulative": "5400408",
+            "cumulativePercent": 24.25
+          }
+        },
+        "addInheritedMembers": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "1.14s",
+            "cumulativePercent": 0.86
+          },
+          "allocationMiB": {
+            "flat": "194.93MB",
+            "flatPercent": 4.09,
+            "cumulative": "194.93MB",
+            "cumulativePercent": 4.09
+          },
+          "allocationObjects": {
+            "flat": "109926",
+            "flatPercent": 0.49,
+            "cumulative": "109926",
+            "cumulativePercent": 0.49
+          }
+        },
+        "newObjectType": {
+          "cpu": {
+            "flat": "0.01s",
+            "flatPercent": 0.0075,
+            "cumulative": "0.72s",
+            "cumulativePercent": 0.54
+          },
+          "allocationMiB": {
+            "flat": "103.52MB",
+            "flatPercent": 2.17,
+            "cumulative": "103.52MB",
+            "cumulativePercent": 2.17
+          },
+          "allocationObjects": {
+            "flat": "510259",
+            "flatPercent": 2.29,
+            "cumulative": "510259",
+            "cumulativePercent": 2.29
+          }
+        },
+        "newUnionType": {
+          "cpu": {
+            "flat": "0.07s",
+            "flatPercent": 0.053,
+            "cumulative": "0.20s",
+            "cumulativePercent": 0.15
+          },
+          "allocationMiB": {
+            "flat": "55.02MB",
+            "flatPercent": 1.15,
+            "cumulative": "55.02MB",
+            "cumulativePercent": 1.15
+          },
+          "allocationObjects": {
+            "flat": "200225",
+            "flatPercent": 0.9,
+            "cumulative": "200225",
+            "cumulativePercent": 0.9
+          }
+        },
+        "initializeChecker": {
+          "cpu": {
+            "flat": "0.01s",
+            "flatPercent": 0.0075,
+            "cumulative": "0.12s",
+            "cumulativePercent": 0.09
+          },
+          "allocationMiB": {
+            "flat": "2MB",
+            "flatPercent": 0.042,
+            "cumulative": "20.10MB",
+            "cumulativePercent": 0.42
+          },
+          "allocationObjects": {
+            "flat": "6",
+            "flatPercent": 2.7e-5,
+            "cumulative": "185551",
+            "cumulativePercent": 0.83
+          }
+        },
+        "mergeSymbolTable": {
+          "cpu": {
+            "flat": "0",
+            "flatPercent": 0.0,
+            "cumulative": "0.01s",
+            "cumulativePercent": 0.0075
+          },
+          "allocationMiB": {
+            "flat": "1.50MB",
+            "flatPercent": 0.032,
+            "cumulative": "4.54MB",
+            "cumulativePercent": 0.095
+          },
+          "allocationObjects": {
+            "flat": "738",
+            "flatPercent": 0.0033,
+            "cumulative": "66379",
+            "cumulativePercent": 0.3
+          }
+        }
+      },
+      "concreteTypeConstructors": {
+        "allocationMiB": {
+          "flatPercent": 4.153,
+          "flat": 198.04,
+          "attributedFunctions": [
+            "newObjectType",
+            "newUnionType (inline)",
+            "newLiteralType",
+            "newIntersectionType (inline)",
+            "newTypeParameter",
+            "newConditionalType",
+            "newTemplateLiteralType",
+            "newIndexType"
+          ]
+        },
+        "allocationObjects": {
+          "flatPercent": 4.661,
+          "flat": 1038196.0,
+          "attributedFunctions": [
+            "newObjectType",
+            "newUnionType (inline)",
+            "newLiteralType",
+            "newTypeParameter (inline)",
+            "newIntersectionType (inline)",
+            "newTemplateLiteralType",
+            "newIndexType",
+            "newConditionalType"
+          ]
+        }
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "experiment": "PGO with the merged CPU profile",
+      "reason": "Low semantic risk, measures compiler optimization opportunities across all four observed paths; preserve non-PGO control and validate output before fresh timings.",
+      "limitation": "Unweighted merge heavily favors VSCode and Sentry because their profiles have far more CPU samples."
+    },
+    {
+      "priority": 2,
+      "experiment": "Reduce LinkStore pointer-map lookups with checker-local ownership-safe storage",
+      "reason": "Inclusive LinkStore CPU is 15.04% in VSCode and 12.62% in Sentry, dominated by map probes. Transient-symbol direct/owned storage or validated locality caches warrant a separate identity/concurrency audit."
+    },
+    {
+      "priority": 3,
+      "experiment": "Per-checker typed arenas for concrete Type shapes",
+      "reason": "Individual concrete constructors allocate~1.13M objects/~200MiB in VSCode and~1.04M/~198MiB in Sentry. This preserves Go typed pointers and avoids unsafe TypeData representation changes.",
+      "limitation": "Direct inclusive constructor CPU is only 1.73%/0.91%; gains would mainly be GC/object-count reduction. Arena tail waste, sibling retention and API-held checker lifetime must be measured. Initialize fields exactly as today; no reuse or pooling across checkers."
+    },
+    {
+      "priority": 4,
+      "experiment": "Larger core.Arena chunks as an isolated A/B experiment",
+      "reason": "Arena allocation paths have 2.90% CPU in VSCode and 1.64% in Sentry; default cap 256 creates many typed backing arrays.",
+      "limitation": "Many arenas are per source file and per type. Larger chunks may increase zeroing, unused tail storage and retention; bytes represented by AST nodes are still needed. Existing slices.Grow accounts for 56.06% of VSCode sampled allocation bytes but only 9.19% of objects, so its byte prominence alone does not justify a larger cap."
+    },
+    {
+      "priority": 5,
+      "experiment": "Union/intersection property and relation-cache allocation reduction on Sentry",
+      "reason": "getUnionOrIntersectionProperty allocates 462.97MiB flat/893.79MiB cumulative; Relation.set 269.89MiB; addInheritedMembers 194.93MiB. These are larger byte opportunities than Type layout alone."
+    },
+    {
+      "priority": 6,
+      "experiment": "Defer shared-globals",
+      "reason": "initializeChecker accounts for 0.018% CPU/6.84MiB cumulative in VSCode and 0.09%/20.10MiB in Sentry. Global merging itself is smaller; current workloads do not justify its complexity before hotter paths."
+    }
+  ],
+  "mergedTrainingProfile": {
+    "path": "benchmarks/profiles/expansion/cpu.pprof",
+    "sha256": "f0c774f76ea6695dde72e179a4a5cbe34856b1f9386a0e67e8dc357094f2c19a",
+    "bytes": 701869,
+    "merge": "Unweighted sum of all four CPU profiles; no normalization or rescaling.",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "pprof",
+      "-proto",
+      "-output",
+      "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/expansion/cpu.pprof",
+      "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/expansion/trpc-cpu.pprof",
+      "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/expansion/typeorm-cpu.pprof",
+      "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/expansion/vscode-cpu.pprof",
+      "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/expansion/sentry-cpu.pprof"
+    ],
+    "runtimeSettingsChanged": false
+  }
+}
