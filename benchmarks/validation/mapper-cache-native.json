@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T09:24:21.664Z",
+  "scope": "Default native differential parity and actual-Go API/emit/project integrations after skipping unused first-activation hashes and specializing alias-free active instantiation keys.",
+  "nativeSuiteStatus": "passed",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-mapper-cache",
+    "sha256": "ecf0ba481c4e9e503c074b42278934e5aa6550b4765b1d97106511b30b06ab31"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-mapper-cache.provenance.json",
+    "sha256": "11915224ebde55587a49b89c38fe99ddd4807c8dc1ddef307c39be21111814fe",
+    "builtAt": "2026-10-17T09:21:58.122Z",
+    "sourceSha256": "0c1da9ec53cab6f1ac402ffcb071b227f7c20e75940ef54c38fd1d88b566ebce",
+    "buildTimeRevision": "5e006fd6bd4b16fb30e935e76f91690a8d42ce15",
+    "sourceDirty": true,
+    "sourceFileCount": 5143,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": ["build", "-trimpath", "-o", "<binary>", "./cmd/tsgo"],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE",
+    "PROJECTS_FILTER"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-mapper-cache",
+    "TSC_GO_BASELINE": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-mapper-cache"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "exitCode": 0,
+      "error": null,
+      "log": "/tmp/mapper-cache-parity.log",
+      "logSha256": "47ba148c991d48c804d96e79d0c07e898300b0efe5be6a8a6e0d67ec970dee78",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 62289.270681
+      },
+      "expectedTests": 80,
+      "passed": true
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "/tmp/mapper-cache-integration.log",
+      "logSha256": "38172ce3bd33eaed2d83a96fd6d2dd33c12720a4b671b4de5c63f7f2072c4f9f",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 33253.451663
+      },
+      "expectedTests": 12,
+      "passed": true
+    }
+  ],
+  "verifiedSourcesBinariesAndSidecarUnchanged": true,
+  "notes": [
+    "The source digest includes active-only mapper cache specialization and restores the pre-split LinkStore Get body; no arena or direct-properties draft was applied.",
+    "These suites compare diagnostics, API results, emitted outputs and project behavior; correctness is not inferred from compiler exit status alone.",
+    "Go units and full pinned upstream conformance are recorded separately for this source digest.",
+    "Validation durations are not performance measurements."
+  ]
+}
