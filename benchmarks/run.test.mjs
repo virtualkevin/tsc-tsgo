@@ -234,3 +234,56 @@ test('only accepts explicitly fingerprinted semantic diagnostics, never setup fa
   writeFileSync(path, JSON.stringify(manifest));
   assert.match(f.run(f.baseline).stderr, /setup diagnostic TS2307/);
 });
+
+test(
+  'RSS mode preserves approved diagnostics, real compiler provenance and every phase resource sample',
+  { skip: process.platform !== 'linux' && 'RSS integration requires Linux GNU time' },
+  (t) => {
+    const f = fixture(t);
+    const diagnostic = 'input.ts(1,1): error TS2322: Type number is not assignable to string.\n';
+    const stderr = 'fixture diagnostic context\n';
+    const code = `if(process.argv.includes('--listFilesOnly'))console.log(process.cwd()+'/input.ts');else{process.stdout.write(${JSON.stringify(diagnostic)});process.stderr.write(${JSON.stringify(stderr)});process.exit(1);}`;
+    f.compiler('baseline', code);
+    const candidate = f.compiler('candidate', code);
+    const manifestPath = join(f.dir, 'manifest.json');
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    Object.assign(manifest.projects[0], {
+      expectedExit: 1,
+      diagnosticCount: 1,
+      diagnosticsSha256: createHash('sha256')
+        .update(JSON.stringify([diagnostic, stderr]))
+        .digest('hex'),
+    });
+    writeFileSync(manifestPath, JSON.stringify(manifest));
+    const plain = f.run(candidate);
+    assert.equal(plain.status, 0, plain.stderr);
+    const wrapped = f.run(candidate, ['--measure-rss', '--warmups', '1']);
+    assert.equal(wrapped.status, 0, wrapped.stderr);
+    const report = wrapped.report,
+      project = report.projects[0];
+    assert.equal(report.resourceMeasurement.enabled, true);
+    assert.equal(report.resourceMeasurement.timingComparableToUnwrapped, false);
+    assert.match(report.methodology, /not comparable to historical unwrapped/);
+    assert.match(report.resourceMeasurement.wrapper.sha256, /^[a-f0-9]{64}$/);
+    assert.deepEqual(report.binaries, plain.report.binaries);
+    assert.equal(project.warmupResources.length, 1);
+    for (const name of ['baseline', 'candidate']) {
+      assert.deepEqual(project.compilerArgs[name], plain.report.projects[0].compilerArgs[name]);
+      assert.equal(project.preflight[name].outputSha256, plain.report.projects[0].preflight[name].outputSha256);
+      assert.equal(project.preflight[name].resources.discovery.exitStatus, 0);
+      assert.equal(project.preflight[name].resources.check.exitStatus, 1);
+      assert.equal(project.warmupResources[0][name].exitStatus, 1);
+      assert.equal(project.execution[name].executable, report.resourceMeasurement.wrapper.path);
+      assert.equal(project.execution[name].arguments[6], report.binaries[name].path);
+      assert.deepEqual(
+        project.resources[name].peakRssKiB.samples,
+        project.pairs.map((pair) => pair.resources[name].peakRssKiB),
+      );
+      for (const pair of project.pairs) {
+        assert.equal(pair.resources[name].exitStatus, 1);
+        assert.ok(pair.resources[name].peakRssKiB > 0);
+        assert.equal(typeof pair[name], 'number');
+      }
+    }
+  },
+);

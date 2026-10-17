@@ -119,3 +119,26 @@ The pinned upstream source configurations are available at:
 - [Sentry frontend](https://github.com/getsentry/sentry/blob/624fb343cb8e0f9c1b852e6860c426fb7804b739/tsconfig.json)
 - [TypeORM package](https://github.com/typeorm/typeorm/blob/fe92394287516feeada6e9c308ebe22deca2458e/packages/typeorm/tsconfig.json)
 - [tRPC server](https://github.com/trpc/trpc/blob/10e2ef98f7842b94eb3026e4f9bcfe62cc39b088/packages/server/tsconfig.json)
+
+Optional `--measure-rss` requires Linux and GNU `/usr/bin/time`. It wraps both
+compilers symmetrically in discovery, preflight, warmups and timed samples,
+writing resource metrics to a separate temporary file. Compiler stdout/stderr,
+approved diagnostic fingerprints and real binary provenance retain their existing
+checks. Reports record the wrapper path, version, SHA-256, normalized invocation
+arguments and per-invocation peak RSS in KiB; wrapper hashes are checked before
+and after each project. RSS summaries are separate from wall-time summaries.
+
+Wrapped wall times include GNU time startup, waiting and writing its resource
+file, and are **not comparable with historical unwrapped timings**. Temporary
+file setup, metric parsing and cleanup happen outside the timer for both
+compilers. Peak RSS is an OS command maximum, not Go heap size, total allocated
+bytes, or an aggregate process-tree/cgroup memory peak. Pair fresh wrapped
+baseline and candidate measurements for GC/memory comparisons. The default mode
+remains unwrapped.
+
+In RSS mode, timeout, SIGINT/SIGTERM, output overflow and wrapper termination
+kill the compiler's Linux process group. This covers the native compilers and
+ordinary descendants; processes deliberately creating separate sessions are
+outside this cleanup contract. Missing/malformed metrics and mismatched wrapper
+exit status fail the run. Test the resource adapter and full mock harness with
+`node --test benchmarks/resource-run.test.mjs benchmarks/run.test.mjs`.

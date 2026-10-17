@@ -6,6 +6,7 @@ import { availableParallelism, cpus, platform, release, totalmem } from 'node:os
 import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { inspectResourceWrapper, assertResourceWrapperUnchanged, runWithResources } from './resource-run.mjs';
 import { readCgroupCpuStats, readCgroupV2 } from './cgroup.mjs';
 import { readBuildProvenance } from '../scripts/build-provenance.mjs';
 
@@ -19,6 +20,7 @@ const { values } = parseArgs({
   options: {
     baseline: { type: 'string' },
     candidate: { type: 'string' },
+    'measure-rss': { type: 'boolean', default: false },
     'candidate-checkers': { type: 'string' },
     'unset-env': { type: 'string', multiple: true },
     manifest: { type: 'string', default: 'benchmarks/workloads.json' },
@@ -32,7 +34,7 @@ const { values } = parseArgs({
 });
 if (values.help) {
   console.log(
-    'node benchmarks/run.mjs --baseline PATH --candidate PATH [--candidate-checkers N] [--unset-env NAME] [--projects typeorm,trpc] [--runs 7] [--warmups 1] [--manifest PATH] [--output PATH]',
+    'node benchmarks/run.mjs --baseline PATH --candidate PATH [--candidate-checkers N] [--measure-rss] [--unset-env NAME] [--projects typeorm,trpc] [--runs 7] [--warmups 1] [--manifest PATH] [--output PATH]',
   );
   process.exit(0);
 }
@@ -90,6 +92,11 @@ const run = (command, args, cwd = root) => {
     ms,
   };
 };
+let resourceWrapper;
+const runCompiler = (binary, args, cwd) =>
+  resourceWrapper
+    ? runWithResources(resourceWrapper, binary, args, { cwd, env: compilerEnv, timeout })
+    : run(binary, args, cwd);
 const requireSuccess = (result, label) => {
   if (result.status !== 0)
     throw new Error(`${label} exited ${result.status}; no timing accepted.\n${result.stdout}\n${result.stderr}`);
@@ -109,6 +116,7 @@ const report = {
   status: 'running',
   methodology:
     'Fresh process for every invocation; warmed filesystem cache; alternating baseline/candidate order; no incremental cache; typechecking enabled; timings include process startup and diagnostic output capture. All measured commands must match the approved exit code and diagnostics; nonzero semantic diagnostics require an explicit manifest fingerprint.',
+  resourceMeasurement: { enabled: values['measure-rss'], timingComparableToUnwrapped: !values['measure-rss'] },
   manifestSha256: hashFile(manifestPath),
   provenance: manifest.provenance,
   environment: {
@@ -161,7 +169,14 @@ const report = {
 };
 const save = () => writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
 try {
+  if (values['measure-rss']) {
+    resourceWrapper = inspectResourceWrapper('/usr/bin/time', compilerEnv);
+    report.resourceMeasurement.wrapper = resourceWrapper;
+    report.methodology +=
+      ' GNU time wraps both compilers for discovery, preflight, warmups and samples. Wrapped wall times include wrapper launch/wait and resource-file output and are not comparable to historical unwrapped timings. Temporary-directory setup, resource parsing and cleanup are outside the timer; RSS is recorded separately from diagnostic output.';
+  }
   for (const p of projects) {
+    if (resourceWrapper) assertResourceWrapperUnchanged(resourceWrapper);
     const cwd = resolve(root, p.directory);
     if (!/^[a-f0-9]{40}$/.test(p.commit)) throw new Error(`${p.name}: full pinned commit required`);
     if (git(cwd, 'rev-parse', 'HEAD') !== p.commit) throw new Error(`${p.name}: checkout does not match pinned commit`);
@@ -241,12 +256,47 @@ try {
       pairs: [],
       status: 'running',
     };
+    if (resourceWrapper) {
+      entry.execution = Object.fromEntries(
+        Object.entries(binaries).map(([name, binary]) => [
+          name,
+          {
+            executable: resourceWrapper.path,
+            arguments: [
+              '--quiet',
+              '--output',
+              '<unique-resource-output>',
+              '--format',
+              resourceWrapper.format,
+              '--',
+              binary,
+              ...compilerArgs[name],
+            ],
+            fileDiscoveryArguments: [
+              '--quiet',
+              '--output',
+              '<unique-resource-output>',
+              '--format',
+              resourceWrapper.format,
+              '--',
+              binary,
+              ...fileDiscoveryArgs[name],
+            ],
+            resourceOutputPlaceholder: 'A unique temporary file per invocation; excluded from measured setup time.',
+          },
+        ]),
+      );
+      entry.warmupResources = [];
+    }
     report.projects.push(entry);
     save();
     const canonicalFile = (file) => relative(cwd, resolve(cwd, file));
     let expectedFiles, expectedOutput, expectedInputs;
     for (const [name, binary] of Object.entries(binaries)) {
-      const files = requireSuccess(run(binary, fileDiscoveryArgs[name], cwd), `${p.name} ${name} file discovery`);
+      const files = requireSuccess(
+        await runCompiler(binary, fileDiscoveryArgs[name], cwd),
+        `${p.name} ${name} file discovery`,
+      );
       const paths = files.stdout.trim().split('\n').filter(Boolean);
       if (!paths.length || files.stderr)
         throw new Error(`${p.name} ${name}: empty source set or file discovery errors`);
@@ -254,7 +304,7 @@ try {
       if (expectedFiles && JSON.stringify(expectedFiles) !== JSON.stringify(canonical))
         throw new Error(`${p.name}: compilers read different file sets`);
       expectedFiles = canonical;
-      const check = requireOutcome(run(binary, compilerArgs[name], cwd), `${p.name} ${name} preflight`);
+      const check = requireOutcome(await runCompiler(binary, compilerArgs[name], cwd), `${p.name} ${name} preflight`);
       const signature = outputSignature(check);
       if (expectedOutput !== undefined && expectedOutput !== signature)
         throw new Error(`${p.name}: compiler diagnostics differ`);
@@ -271,27 +321,32 @@ try {
         outputSha256: hash(signature),
         status: check.status,
         inputs,
+        ...(resourceWrapper ? { resources: { discovery: files.resources, check: check.resources } } : {}),
       };
     }
-    const sample = (name, cpuCounters) => {
+    const sample = async (name, cpuCounters) => {
       if (cpuCounters) cpuCounters.before = readCgroupCpuStats(cgroupV2);
-      const result = run(binaries[name], compilerArgs[name], cwd);
+      const result = await runCompiler(binaries[name], compilerArgs[name], cwd);
       if (cpuCounters) cpuCounters.after = readCgroupCpuStats(cgroupV2);
       requireOutcome(result, `${p.name} ${name}`);
       if (outputSignature(result) !== expectedOutput)
         throw new Error(`${p.name} ${name}: output changed during timing`);
-      return result.ms;
+      return result;
     };
     for (let i = 0; i < warmups; i++) {
-      sample('baseline');
-      sample('candidate');
+      const baseline = await sample('baseline');
+      const candidate = await sample('candidate');
+      if (resourceWrapper) entry.warmupResources.push({ baseline: baseline.resources, candidate: candidate.resources });
     }
     for (let i = 0; i < runs; i++) {
       const order = i % 2 ? ['candidate', 'baseline'] : ['baseline', 'candidate'];
       const pair = { order, cgroupCpu: {} };
+      if (resourceWrapper) pair.resources = {};
       for (const name of order) {
         pair.cgroupCpu[name] = {};
-        pair[name] = sample(name, pair.cgroupCpu[name]);
+        const result = await sample(name, pair.cgroupCpu[name]);
+        pair[name] = result.ms;
+        if (resourceWrapper) pair.resources[name] = result.resources;
       }
       entry.pairs.push(pair);
       save();
@@ -314,6 +369,26 @@ try {
       )
         throw new Error(`${name}: binary build provenance changed during timing`);
     }
+    if (resourceWrapper) {
+      assertResourceWrapperUnchanged(resourceWrapper);
+      entry.resourceWrapperVerifiedAfter = true;
+      entry.resources = Object.fromEntries(
+        Object.keys(binaries).map((name) => {
+          const samplesKiB = entry.pairs.map((pair) => pair.resources[name].peakRssKiB);
+          return [
+            name,
+            {
+              peakRssKiB: {
+                median: median(samplesKiB),
+                min: Math.min(...samplesKiB),
+                max: Math.max(...samplesKiB),
+                samples: samplesKiB,
+              },
+            },
+          ];
+        }),
+      );
+    }
     entry.baseline = summarize(entry.pairs.map((p) => p.baseline));
     entry.candidate = summarize(entry.pairs.map((p) => p.candidate));
     entry.speedup = entry.baseline.medianMs / entry.candidate.medianMs;
@@ -330,7 +405,16 @@ try {
 } catch (error) {
   report.status = 'failed';
   report.error = error.message;
+  if (resourceWrapper) {
+    try {
+      assertResourceWrapperUnchanged(resourceWrapper);
+      report.resourceMeasurement.wrapperVerifiedAfterFailure = true;
+    } catch (integrityError) {
+      report.resourceMeasurement.wrapperVerifiedAfterFailure = false;
+      report.error += `; ${integrityError.message}`;
+    }
+  }
   save();
-  console.error(error.message);
+  console.error(report.error);
   process.exitCode = 1;
 }
