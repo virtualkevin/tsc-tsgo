@@ -1,0 +1,15 @@
+{
+  "command": "node /tmp/tsc-indexed-restoration/restore.mjs",
+  "exitCode": 1,
+  "initialScriptSha256": "0116499758ad5319c9e17fc97b42626e85b5f749d89f6eda6452ca7980e3a6cd",
+  "phase": "read-only dry-run; no --apply",
+  "cause": "git show checker.go exceeded default spawnSync maxBuffer",
+  "diagnostic": {
+    "status": null,
+    "signal": "SIGTERM",
+    "error": "ENOBUFS",
+    "stdoutBytes": 1064960,
+    "stderrBytes": 0
+  },
+  "fix": "Explicit 16 MiB maximum output buffer for reading baseline file bytes; unchanged source/hash gates."
+}

@@ -75,7 +75,7 @@ type Binder struct {
 	symbolCount             int
 	classifiableNames       collections.Set[string]
 	notConstEnumOnlyModules collections.Set[*ast.Symbol]
-	symbolArena             ast.SymbolAllocator
+	symbolArena             core.Arena[ast.Symbol]
 	flowNodeArena           core.Arena[ast.FlowNode]
 	flowListArena           core.Arena[ast.FlowList]
 	singleDeclarationsArena core.Arena[*ast.Node]

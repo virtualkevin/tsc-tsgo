@@ -1,0 +1,62 @@
+{
+  "status": "preflight-passed",
+  "recordedAt": "2026-10-17T18:00:09.245Z",
+  "scriptSha256": "6ee2b98e87a5cd1ba9a569c5175df815a7f3aeb9d29fcb596359d3093ab10eaf",
+  "baselineRevision": "e94bc1f0dd96ac097f1941144df7fb46e6b86fb7",
+  "evidence": [
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/benchmarks/results/indexed-symbol-confirm-forward/recording/proposal.json",
+      "sha256": "c4f987194718aac2ce337ed672883443eb33d68149b112a3d615a1142e99d73f",
+      "passes": false
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/benchmarks/results/indexed-symbol-confirm-reverse/recording/proposal.json",
+      "sha256": "da69431b212979895e1d98a03146c86ee17175e3f3b7a6537b7cfb4994267f3c",
+      "passes": true
+    }
+  ],
+  "before": {
+    "revision": "3276d0d295545ec5b0673d87f636c3be4720c849",
+    "sha256": "c8a7bd150f663db3b46e1262e5e39b0865da004e3aeced71f6ead8a9af96589e",
+    "fileCount": 5159,
+    "binarySha256": "3c3b18fa41dfaad20ea334e4f425ebcbfada4d7cdd2547865007714ba55194a5"
+  },
+  "operations": [
+    {
+      "path": "packages/tsc-go/internal/ast/symbol.go",
+      "operation": "restore baseline bytes"
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/symbol_allocator.go",
+      "operation": "remove candidate-added file"
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/symbol_allocator_test.go",
+      "operation": "remove candidate-added file"
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/symbol_links.go",
+      "operation": "remove candidate-added file"
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/symbol_links_test.go",
+      "operation": "remove candidate-added file"
+    },
+    {
+      "path": "packages/tsc-go/internal/binder/binder.go",
+      "operation": "restore baseline bytes"
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "operation": "restore baseline bytes"
+    },
+    {
+      "path": "packages/tsc-go/internal/core/indexedpointerlinkstore.go",
+      "operation": "remove candidate-added file"
+    },
+    {
+      "path": "packages/tsc-go/internal/core/indexedpointerlinkstore_test.go",
+      "operation": "remove candidate-added file"
+    }
+  ]
+}

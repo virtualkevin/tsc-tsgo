@@ -1,0 +1,9 @@
+# Indexed-storage restoration preparation
+
+Completed after confirmation2 and its recorder terminated: syntax check, read-only preflight, then guarded apply. The first read-only preflight exceeded Node’s default subprocess output buffer while reading checker.go; no source write occurred. The corrected helper uses a bounded16MiB buffer and passed preflight/apply. The original helper and failure diagnosis are preserved. The first confirmation has already failed the frozen retention rule. This helper requires both completed, recorded confirmation suites and at least one failed retention decision before doing anything.
+
+Executed commands: `node /tmp/tsc-indexed-restoration/restore.mjs` for preflight, then the same command with `--apply`. Both invocations must happen after confirmation2 and its recorder terminate, before beginning the direct native milestone. Keep the compiler source frozen during confirmation2.
+
+Before writing, it validates the current indexed source/binary/sidecar, both confirmation records/configurations, and all nine candidate-delta paths. Three existing files are restored from e94bc1f only after their bytes match preserved baseline hashes; six candidate-added files are removed only after their current hashes match the frozen delta. Unrelated files, including OPTI_ANALYSIS_01.md, are not touched. The complete restored local source manifest must equal the preserved baseline, and the default executable/sidecar are replaced with the preserved baseline pair with executable permissions retained.
+
+A successful apply writes `benchmarks/validation/indexed-symbol-restoration.json` exclusively, including source/binary hashes and the exact operations. This verifies byte-for-byte restoration of a previously validated compiler; it is not a new test execution or a performance measurement. Preserve the indexed prototype and every measurement in history and archived binaries.

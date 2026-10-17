@@ -1,6 +1,6 @@
 # Direct native milestone — preparation only
 
-Prepared during the first indexed-storage confirmation. All four controller syntax checks passed after the quiet timing window closed (see syntax-checks.json). They have not been preflighted or executed; no performance result is implied. Preflight remains gated on both confirmation records and the retained source.
+Prepared during the first indexed-storage confirmation. All four controller syntax checks passed after the quiet timing window closed (see syntax-checks.json). The selected saturated configuration passed preflight after both confirmations and exact baseline restoration (see saturated-preflight.json). The indexed alternative is not selected. No native timing has run yet and no performance result is implied.
 
 The runner preserves the existing alternating-pair workload harness, GNU time/RSS wrapper, identical physical library and project settings, diagnostic/input gates, frozen binary identities and process cleanup. It uses nine pairs for TypeORM/tRPC and five for VS Code/Sentry, one warmup each, with a 90-minute overall bound and 180-second invocation bound. Default native worker count is not assumed equal to Go.
 
