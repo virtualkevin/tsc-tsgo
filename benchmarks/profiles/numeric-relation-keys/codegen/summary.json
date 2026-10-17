@@ -1,0 +1,254 @@
+{
+  "scope": "Targeted static code generation; no compilation, runtime profiling, or benchmark",
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore",
+      "sha256": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+      "sidecarSha256": "97d330f15385fa956d521349254195da088c60ee6bec2717ac4757efc43156f2",
+      "sha256After": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+      "source": {
+        "revision": "a0f10e17ee7a75c8ba9e227303adbd336e3a2c8a",
+        "dirty": true,
+        "sha256": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d"
+      },
+      "sourceFileCount": 5148,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      }
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations",
+      "sha256": "17436c0cc37d89adb39f10ca6fdbf734c67f407fc82dc68eb23302506c796f2b",
+      "sidecarSha256": "c6517f968888c5c35f871d26b94186db4804095c3e0ee1fdfc4b273d7a44ab78",
+      "source": {
+        "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+        "dirty": true,
+        "sha256": "ba28763bee00738fc90a7f7c61dc87949860ba92d02e0dc9350bd1351b0a6f95"
+      },
+      "sourceFileCount": 5151,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      }
+    },
+    "initialCandidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations-initial",
+      "sha256": "17436c0cc37d89adb39f10ca6fdbf734c67f407fc82dc68eb23302506c796f2b",
+      "sidecarSha256": "99ac54908f54c97e06517efed1f0c4ed366d92ac5b374249647703a4e2a4a110",
+      "sha256After": "17436c0cc37d89adb39f10ca6fdbf734c67f407fc82dc68eb23302506c796f2b",
+      "source": {
+        "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+        "dirty": true,
+        "sha256": "245f0f0ac92f0088196d7a8297c476125f927616b885f9581a460914c877cb6c"
+      },
+      "sourceFileCount": 5151,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      }
+    }
+  },
+  "commands": [
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|\\(\\*Checker\\)\\.(getRelationKey|getHashedRelationKey|internRelationHash))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(\\(\\*Checker\\)\\.isTypeRelatedTo|\\(\\*Relater\\)\\.(recursiveTypeRelatedTo|resetMaybeStack)|\\(\\*Relation\\)\\.(get|set))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations-initial"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|\\(\\*Checker\\)\\.(getRelationKey|getHashedRelationKey|internRelationHash))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations-initial"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(\\(\\*Checker\\)\\.isTypeRelatedTo|\\(\\*Relater\\)\\.(recursiveTypeRelatedTo|resetMaybeStack)|\\(\\*Relation\\)\\.(get|set))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations-initial"
+    ]
+  ],
+  "artifacts": {
+    "candidate-keys.asm": {
+      "bytes": 17506,
+      "sha256": "ae1416ae9114629502a2fb95fd082dfa33d9c1b10e3eb9eb2f63c4bd2f2d282d"
+    },
+    "baseline-keys.asm": {
+      "bytes": 8376,
+      "sha256": "b6464b2e608a836866203b991f3cd3a9d9324a123674d708c276e106ed90fc47"
+    },
+    "baseline-callers.asm": {
+      "bytes": 24627,
+      "sha256": "540f470f866ddef4222e0b69b30b9f82502d556dcd53a30f26a07e2a12729b16"
+    },
+    "candidate-callers.asm": {
+      "bytes": 23599,
+      "sha256": "7bd8af6e6ed5931db6b1c44640508cdf6e2cf6ad787e34961524d3a47f28de33"
+    },
+    "baseline-symbols.txt": {
+      "bytes": 298,
+      "sha256": "358e6049b6efb5b0a4d7285adc4e1c96c33b0f6feff9296cfea25d52e569bbd6"
+    },
+    "candidate-symbols.txt": {
+      "bytes": 415,
+      "sha256": "85ded4d9ff81724c6c87451b188156182d8e6239ca0830f6f85afcde9f64df41"
+    }
+  },
+  "buildSettingsEqual": true,
+  "sessions": [
+    {
+      "id": 42503,
+      "exitCode": 0
+    }
+  ],
+  "allProcessesTerminal": true,
+  "compilerRebuilt": false,
+  "finalValidatedCandidate": "Final preserved candidate bytes match inspected initial binary exactly; validation results maintained separately by parent.",
+  "observations": {
+    "commonKeyHelper": {
+      "baselineCodeBytes": 412,
+      "candidateCodeBytes": 325,
+      "baselineFrameBytes": 1240,
+      "candidateFrameBytes": 48,
+      "baselineHasherZeroedBytes": 1184,
+      "candidateCommonHasherZeroedBytes": 0,
+      "inlined": false
+    },
+    "fallbackHelper": {
+      "codeBytes": 664,
+      "frameBytes": 1264,
+      "hasherZeroedBytes": 1184,
+      "internRelationHashInlined": true,
+      "mapAccess": "runtime.mapaccess1",
+      "missMapInsert": "runtime.mapassign",
+      "firstMapAllocation": "runtime.makemap_small",
+      "firstMapPublicationBarrier": "runtime.gcWriteBarrier2"
+    },
+    "relationAccessors": {
+      "getInlinedAtObservedCallers": true,
+      "setInlinedAtObservedCallers": true,
+      "baselineGet": "runtime.mapaccess1",
+      "candidateGet": "runtime.mapaccess1_fast64",
+      "baselineSet": "runtime.mapassign",
+      "candidateSet": "runtime.mapassign_fast64"
+    },
+    "callerFrames": {
+      "isTypeRelatedTo": [
+        120,
+        104
+      ],
+      "recursiveTypeRelatedTo": [
+        616,
+        576
+      ]
+    },
+    "performanceClaim": null
+  },
+  "finalBinding": {
+    "method": "SHA256 equality of entire initial and final preserved binaries; no repeated disassembly",
+    "sameBinaryBytes": true,
+    "buildSettingsEqual": true,
+    "validationClaim": null
+  }
+}

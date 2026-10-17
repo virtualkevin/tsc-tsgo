@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T12:44:38.581Z",
+  "scope": "Default native differential parity and actual-Go API/emit/project integrations after packing ordinary type-relation keys into uint64 and interning complete exceptional hashes per checker.",
+  "nativeSuiteStatus": "passed",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-numeric-relations",
+    "sha256": "17436c0cc37d89adb39f10ca6fdbf734c67f407fc82dc68eb23302506c796f2b"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-numeric-relations.provenance.json",
+    "sha256": "c6517f968888c5c35f871d26b94186db4804095c3e0ee1fdfc4b273d7a44ab78",
+    "builtAt": "2026-10-17T12:41:59.964Z",
+    "sourceSha256": "ba28763bee00738fc90a7f7c61dc87949860ba92d02e0dc9350bd1351b0a6f95",
+    "buildTimeRevision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+    "sourceDirty": true,
+    "sourceFileCount": 5151,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": [
+        "build",
+        "-trimpath",
+        "-o",
+        "<binary>",
+        "./cmd/tsgo"
+      ],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE",
+    "PROJECTS_FILTER"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations",
+    "TSC_GO_BASELINE": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "/tmp/numeric-relations-parity.log",
+      "logSha256": "62bb5cc7850fd4ad0cfe7b0cc274332474e569621499785c4c3dd273eabf6f5b",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 90542.749314
+      },
+      "expectedTests": 80,
+      "passed": true
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "/tmp/numeric-relations-integration.log",
+      "logSha256": "663af9345e157a7cc6670f1bbcd15e93c48bcb9890e5d2bfd21389629902241f",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 52541.142801
+      },
+      "expectedTests": 12,
+      "passed": true
+    }
+  ],
+  "verifiedSourcesBinariesAndSidecarUnchanged": true,
+  "notes": [
+    "The candidate changes relation result maps and transient maybe keys to uint64. Ordinary IDs/state are packed exactly; generic and exceptional keys retain the complete prior hash via a checker-local interner. The rejected CommonJS prepass guard is reverted. Focused normal/race/checkptr evidence is recorded separately; these CLI suites do not imply a race-instrumented CLI build.",
+    "These suites compare diagnostics, API results, emitted outputs and project behavior; correctness is not inferred from compiler exit status alone.",
+    "Go units and full pinned upstream conformance are recorded separately for this source digest.",
+    "Validation durations are not performance measurements."
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "suites": {
+    "focused": {
+      "test_records": {
+        "pass": 5,
+        "fail": 4
+      },
+      "top_level_records": {
+        "pass": 5,
+        "fail": 2
+      },
+      "passing_top_level_tests": [
+        "TestRelationKeysOrdinaryBoundariesMatchLegacy",
+        "TestRelationKeysGenericNormalizationMatchesLegacy",
+        "TestRelationKeyFallbackUsesAllHashBitsAndCheckerLifetime",
+        "TestRelationKeysPreserveMaybeStackCacheFlagsAndSize",
+        "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/checker": "fail"
+      },
+      "cached_packages": []
+    }
+  },
+  "validation_incomplete": true,
+  "schema_version": 1,
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "fixture_revisions": {
+    "typescript_go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript": "4d4f005c8541e0255a9d8791205fdce326e462bc"
+  },
+  "source_before": {
+    "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+    "dirty": true,
+    "sha256": "245f0f0ac92f0088196d7a8297c476125f927616b885f9581a460914c877cb6c",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "source_after": {
+    "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+    "dirty": true,
+    "sha256": "245f0f0ac92f0088196d7a8297c476125f927616b885f9581a460914c877cb6c",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "source_unchanged": true,
+  "source_scope": "Complete captureGoSources manifest, including cmd/internal/scripts, go.mod/go.sum/package.json, build-provenance helper and untracked/ignored sources. Captures numeric relation packing/interner, consumers, and tests along with all local compiler source.",
+  "source_file_count": 5151,
+  "processes": [
+    {
+      "name": "focused",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/checker",
+        "-run",
+        "^TestRelationKeys?(OrdinaryBoundariesMatchLegacy|GenericNormalizationMatchesLegacy|FallbackUsesAllHashBitsAndCheckerLifetime|PreserveMaybeStackCacheFlagsAndSize|RecursiveGenericAssignmentsAndDiagnostics|ColdRecursiveConstraints|RepeatedFailureDiagnosticsKeepUsePositions)$",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 1,
+      "stdout": "/tmp/numeric-relation-validation-main/focused.jsonl",
+      "stderr": "/tmp/numeric-relation-validation-main/focused.stderr",
+      "stdout_sha256": "9ccf5b061bf09202bdf47d367aad2a0fbaa9af728e63c422c64c132c06ffa9cf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "expected_source_sha256": "245f0f0ac92f0088196d7a8297c476125f927616b885f9581a460914c877cb6c",
+  "coverage_limits": [
+    "Focused normal/race/checkptr select seven top-level numeric relation tests and two cold-direction subtests.",
+    "Race mode instruments actual interner and checker calls, but these tests do not deliberately run unsynchronized concurrent writes to one checker.",
+    "Flag/container tests cover overflow flag storage and accounting, not actual complexity/stack overflow generation or cached-overflow diagnostic reporting.",
+    "Cold recursive-constraint API cases exercise fresh and warm behavior; exact nested getRelationKey reentry count is not instrumented.",
+    "Root npm test covers ten packages; pinned conformance unsupported and partial output skips are reported separately.",
+    "Native CLI/API/parallel emit gates belong to the parent; no noninstrumented binary is claimed as race validation.",
+    "No durations are performance measurements."
+  ]
+}

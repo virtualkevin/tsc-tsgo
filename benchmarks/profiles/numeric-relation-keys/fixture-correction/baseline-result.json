@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "test",
+    "-json",
+    "-overlay",
+    "/tmp/tsc-relation-fixture-fix/baseline-overlay.json",
+    "./internal/checker",
+    "-run",
+    "^TestRelationKeys(RecursiveGenericAssignmentsAndDiagnostics|ColdRecursiveConstraints|RepeatedFailureDiagnosticsKeepUsePositions)$",
+    "-count=1"
+  ],
+  "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+  "environment": {
+    "GOFLAGS": ""
+  },
+  "exit_code": 0,
+  "main_source_before": {
+    "sha256": "245f0f0ac92f0088196d7a8297c476125f927616b885f9581a460914c877cb6c",
+    "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+    "dirty": true
+  },
+  "main_source_after": {
+    "sha256": "245f0f0ac92f0088196d7a8297c476125f927616b885f9581a460914c877cb6c",
+    "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+    "dirty": true
+  },
+  "main_unchanged": true,
+  "baseline_revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+  "scope": "Three public API tests plus two cold-direction subtests, with old production checker.go/relater.go overlaid and candidate-private key tests disabled. No main source changes.",
+  "files": {
+    "/tmp/tsc-relation-fixture-fix/baseline-overlay.json": "0c57095765b1631de571a1abc9356a39b57a02024fa78f9801426451ab2828e5",
+    "/tmp/tsc-relation-fixture-fix/baseline-checker.go": "5f4ea48686c739b07e5b9c54551cd35783884c26f047bcaba8209480776d2eb1",
+    "/tmp/tsc-relation-fixture-fix/baseline-relater.go": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae",
+    "/tmp/tsc-relation-fixture-fix/empty-internal-tests.go": "71b6c89a62c8856951c429ad8254608b54d34db24d7bb48975d2d71efe34a8e0",
+    "/tmp/tsc-relation-fixture-fix/corrected.go": "e32a99d280fc626e4812705d21fe3f856ca9a7688777b91368d1c96a1dbae5ec",
+    "/tmp/tsc-relation-fixture-fix/baseline.jsonl": "22c0da71ff5923a87769a33685dac86aa40620da3e4471ecd4bb5be3c6135592",
+    "/tmp/tsc-relation-fixture-fix/baseline.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

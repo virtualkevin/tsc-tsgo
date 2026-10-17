@@ -1,0 +1,107 @@
+{
+  "scope": "Targeted static code generation; no compilation, runtime profiling, or benchmark",
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore",
+      "sha256": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+      "sidecarSha256": "97d330f15385fa956d521349254195da088c60ee6bec2717ac4757efc43156f2",
+      "provenanceKeys": [
+        "schemaVersion",
+        "producer",
+        "builtAt",
+        "binary",
+        "source",
+        "build"
+      ],
+      "sha256After": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations-initial",
+      "sha256": "17436c0cc37d89adb39f10ca6fdbf734c67f407fc82dc68eb23302506c796f2b",
+      "sidecarSha256": "99ac54908f54c97e06517efed1f0c4ed366d92ac5b374249647703a4e2a4a110",
+      "provenanceKeys": [
+        "schemaVersion",
+        "producer",
+        "builtAt",
+        "binary",
+        "source",
+        "build"
+      ],
+      "sha256After": "17436c0cc37d89adb39f10ca6fdbf734c67f407fc82dc68eb23302506c796f2b"
+    }
+  },
+  "commands": [
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|\\(\\*Checker\\)\\.(getRelationKey|getHashedRelationKey|internRelationHash))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(\\(\\*Checker\\)\\.isTypeRelatedTo|\\(\\*Relater\\)\\.(recursiveTypeRelatedTo|resetMaybeStack)|\\(\\*Relation\\)\\.(get|set))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations-initial"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|\\(\\*Checker\\)\\.(getRelationKey|getHashedRelationKey|internRelationHash))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations-initial"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(\\(\\*Checker\\)\\.isTypeRelatedTo|\\(\\*Relater\\)\\.(recursiveTypeRelatedTo|resetMaybeStack)|\\(\\*Relation\\)\\.(get|set))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-numeric-relations-initial"
+    ]
+  ],
+  "artifacts": {
+    "candidate-keys.asm": {
+      "bytes": 17506,
+      "sha256": "ae1416ae9114629502a2fb95fd082dfa33d9c1b10e3eb9eb2f63c4bd2f2d282d"
+    },
+    "baseline-keys.asm": {
+      "bytes": 8376,
+      "sha256": "b6464b2e608a836866203b991f3cd3a9d9324a123674d708c276e106ed90fc47"
+    },
+    "baseline-callers.asm": {
+      "bytes": 24627,
+      "sha256": "540f470f866ddef4222e0b69b30b9f82502d556dcd53a30f26a07e2a12729b16"
+    },
+    "candidate-callers.asm": {
+      "bytes": 23599,
+      "sha256": "7bd8af6e6ed5931db6b1c44640508cdf6e2cf6ad787e34961524d3a47f28de33"
+    },
+    "baseline-symbols.txt": {
+      "bytes": 298,
+      "sha256": "358e6049b6efb5b0a4d7285adc4e1c96c33b0f6feff9296cfea25d52e569bbd6"
+    },
+    "candidate-symbols.txt": {
+      "bytes": 415,
+      "sha256": "85ded4d9ff81724c6c87451b188156182d8e6239ca0830f6f85afcde9f64df41"
+    }
+  }
+}

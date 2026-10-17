@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "fixture_revisions": {
+    "typescript_go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript": "4d4f005c8541e0255a9d8791205fdce326e462bc"
+  },
+  "source_before": {
+    "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+    "dirty": true,
+    "sha256": "ba28763bee00738fc90a7f7c61dc87949860ba92d02e0dc9350bd1351b0a6f95",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "source_after": {
+    "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+    "dirty": true,
+    "sha256": "ba28763bee00738fc90a7f7c61dc87949860ba92d02e0dc9350bd1351b0a6f95",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "source_unchanged": true,
+  "source_scope": "Complete captureGoSources manifest, including cmd/internal/scripts, go.mod/go.sum/package.json, build-provenance helper and untracked/ignored sources. Captures numeric relation packing/interner, consumers, and tests along with all local compiler source.",
+  "source_file_count": 5151,
+  "expected_source_sha256": "ba28763bee00738fc90a7f7c61dc87949860ba92d02e0dc9350bd1351b0a6f95",
+  "coverage_limits": [
+    "Focused normal/race/checkptr select seven top-level numeric relation tests and two cold-direction subtests.",
+    "Race mode instruments actual interner and checker calls, but these tests do not deliberately run unsynchronized concurrent writes to one checker.",
+    "Flag/container tests cover overflow flag storage and accounting, not actual complexity/stack overflow generation or cached-overflow diagnostic reporting.",
+    "Cold recursive-constraint API cases exercise fresh and warm behavior; exact nested getRelationKey reentry count is not instrumented.",
+    "Root npm test covers ten packages; pinned conformance unsupported and partial output skips are reported separately.",
+    "Native CLI/API/parallel emit gates belong to the parent; no noninstrumented binary is claimed as race validation.",
+    "No durations are performance measurements."
+  ],
+  "controller_report_sha256": "d46675d76541797ed7c0de2b628ccc2e69b127831f20419dd89f1c6f54ad7f5f",
+  "controller_report_path": "/tmp/numeric-relation-validation-corrected/validation.json",
+  "duration_note": "Correctness validation may overlap builds; durations are not performance measurements.",
+  "scope": "Seven numeric-relation tests (two cold-direction subtests) in normal, race and checkptr modes; no claim of actual complexity/stack overflow generation coverage.",
+  "suites": {
+    "focused": {
+      "test_records": {
+        "pass": 9
+      },
+      "top_level_records": {
+        "pass": 7
+      },
+      "passing_top_level_tests": [
+        "TestRelationKeysOrdinaryBoundariesMatchLegacy",
+        "TestRelationKeysGenericNormalizationMatchesLegacy",
+        "TestRelationKeyFallbackUsesAllHashBitsAndCheckerLifetime",
+        "TestRelationKeysPreserveMaybeStackCacheFlagsAndSize",
+        "TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics",
+        "TestRelationKeysColdRecursiveConstraints",
+        "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": []
+    },
+    "checkptr": {
+      "test_records": {
+        "pass": 9
+      },
+      "top_level_records": {
+        "pass": 7
+      },
+      "passing_top_level_tests": [
+        "TestRelationKeysOrdinaryBoundariesMatchLegacy",
+        "TestRelationKeysGenericNormalizationMatchesLegacy",
+        "TestRelationKeyFallbackUsesAllHashBitsAndCheckerLifetime",
+        "TestRelationKeysPreserveMaybeStackCacheFlagsAndSize",
+        "TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics",
+        "TestRelationKeysColdRecursiveConstraints",
+        "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": []
+    },
+    "race": {
+      "test_records": {
+        "pass": 9
+      },
+      "top_level_records": {
+        "pass": 7
+      },
+      "passing_top_level_tests": [
+        "TestRelationKeysOrdinaryBoundariesMatchLegacy",
+        "TestRelationKeysGenericNormalizationMatchesLegacy",
+        "TestRelationKeyFallbackUsesAllHashBitsAndCheckerLifetime",
+        "TestRelationKeysPreserveMaybeStackCacheFlagsAndSize",
+        "TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics",
+        "TestRelationKeysColdRecursiveConstraints",
+        "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": []
+    }
+  },
+  "processes": [
+    {
+      "name": "focused",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/checker",
+        "-run",
+        "^TestRelationKeys?(OrdinaryBoundariesMatchLegacy|GenericNormalizationMatchesLegacy|FallbackUsesAllHashBitsAndCheckerLifetime|PreserveMaybeStackCacheFlagsAndSize|RecursiveGenericAssignmentsAndDiagnostics|ColdRecursiveConstraints|RepeatedFailureDiagnosticsKeepUsePositions)$",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/numeric-relation-validation-corrected/focused.jsonl",
+      "stderr": "/tmp/numeric-relation-validation-corrected/focused.stderr",
+      "stdout_sha256": "791d352794b581b1373baf56558a8b8dfb76951886eac11bff269997cce2c77f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestRelationKeys?(OrdinaryBoundariesMatchLegacy|GenericNormalizationMatchesLegacy|FallbackUsesAllHashBitsAndCheckerLifetime|PreserveMaybeStackCacheFlagsAndSize|RecursiveGenericAssignmentsAndDiagnostics|ColdRecursiveConstraints|RepeatedFailureDiagnosticsKeepUsePositions)$",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/numeric-relation-validation-corrected/checkptr.jsonl",
+      "stderr": "/tmp/numeric-relation-validation-corrected/checkptr.stderr",
+      "stdout_sha256": "7ea15b8be40d6baaf66edcd7b6bd11388e71e69d676c2643c71b4e0d2eaa3101",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestRelationKeys?(OrdinaryBoundariesMatchLegacy|GenericNormalizationMatchesLegacy|FallbackUsesAllHashBitsAndCheckerLifetime|PreserveMaybeStackCacheFlagsAndSize|RecursiveGenericAssignmentsAndDiagnostics|ColdRecursiveConstraints|RepeatedFailureDiagnosticsKeepUsePositions)$",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/numeric-relation-validation-corrected/race.jsonl",
+      "stderr": "/tmp/numeric-relation-validation-corrected/race.stderr",
+      "stdout_sha256": "3ae1703f02a1cb929440f8fe8e90f0fb5719de92e9e0b2c3cc3c1f19be94cea0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "fixture_correction_baseline": {
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "test",
+      "-json",
+      "-overlay",
+      "/tmp/tsc-relation-fixture-fix/baseline-overlay.json",
+      "./internal/checker",
+      "-run",
+      "^TestRelationKeys(RecursiveGenericAssignmentsAndDiagnostics|ColdRecursiveConstraints|RepeatedFailureDiagnosticsKeepUsePositions)$",
+      "-count=1"
+    ],
+    "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+    "environment": {
+      "GOFLAGS": ""
+    },
+    "exit_code": 0,
+    "main_source_before": {
+      "sha256": "245f0f0ac92f0088196d7a8297c476125f927616b885f9581a460914c877cb6c",
+      "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+      "dirty": true
+    },
+    "main_source_after": {
+      "sha256": "245f0f0ac92f0088196d7a8297c476125f927616b885f9581a460914c877cb6c",
+      "revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+      "dirty": true
+    },
+    "main_unchanged": true,
+    "baseline_revision": "7437132b3f96a0d0bb7f3edcab01968074edaa86",
+    "scope": "Three public API tests plus two cold-direction subtests, with old production checker.go/relater.go overlaid and candidate-private key tests disabled. No main source changes.",
+    "files": {
+      "/tmp/tsc-relation-fixture-fix/baseline-overlay.json": "0c57095765b1631de571a1abc9356a39b57a02024fa78f9801426451ab2828e5",
+      "/tmp/tsc-relation-fixture-fix/baseline-checker.go": "5f4ea48686c739b07e5b9c54551cd35783884c26f047bcaba8209480776d2eb1",
+      "/tmp/tsc-relation-fixture-fix/baseline-relater.go": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae",
+      "/tmp/tsc-relation-fixture-fix/empty-internal-tests.go": "71b6c89a62c8856951c429ad8254608b54d34db24d7bb48975d2d71efe34a8e0",
+      "/tmp/tsc-relation-fixture-fix/corrected.go": "e32a99d280fc626e4812705d21fe3f856ca9a7688777b91368d1c96a1dbae5ec",
+      "/tmp/tsc-relation-fixture-fix/baseline.jsonl": "22c0da71ff5923a87769a33685dac86aa40620da3e4471ecd4bb5be3c6135592",
+      "/tmp/tsc-relation-fixture-fix/baseline.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "test_records": {
+      "pass": 5,
+      "skip": 0,
+      "fail": 0
+    }
+  },
+  "fixture_correction_archive": "benchmarks/profiles/numeric-relation-keys/fixture-correction/",
+  "fixture_correction_patch_sha256": "eef432aac69274876ec6fe7d9d92ba27e489f001ab136914f70b27e90da4bf72",
+  "initial_failed_fixture_report": "benchmarks/validation/numeric-relation-initial-focused-failure.json"
+}

@@ -1,0 +1,507 @@
+diff --git a/packages/tsc-go/internal/checker/checker.go b/packages/tsc-go/internal/checker/checker.go
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -821,6 +821,8 @@
+ 	assignableRelation                          *Relation
+ 	comparableRelation                          *Relation
+ 	identityRelation                            *Relation
++	relationKeyIds                              map[CacheHashKey]RelationKey
++	relationKeyCount                            uint64
+ 	enumRelation                                map[EnumRelationKey]RelationComparisonResult
+ 	getGlobalESSymbolType                       func() *Type
+ 	getGlobalBigIntType                         func() *Type
+@@ -17526,13 +17528,33 @@
+ 	return b.hash()
+ }
+ 
+-func getRelationKey(source *Type, target *Type, intersectionState IntersectionState, isIdentity bool, ignoreConstraints bool) (CacheHashKey, bool) {
++// RelationKey is local to a checker. Ordinary keys are exact packed IDs and
++// state; generic and oversized keys retain the existing complete 128-bit hash.
++type RelationKey uint64
++
++const (
++	relationKeyIdLimit                 = 1 << 30
++	relationKeyFallbackTag RelationKey = 1 << 63
++)
++
++func (c *Checker) getRelationKey(source *Type, target *Type, intersectionState IntersectionState, isIdentity bool, ignoreConstraints bool) (RelationKey, bool) {
+ 	if isIdentity && source.id > target.id {
+ 		source, target = target, source
+ 	}
++	// Preserve generic detection order: resolving type arguments can have side
++	// effects. Generic references must keep their alpha-equivalent keys.
++	generic := isTypeReferenceWithGenericArguments(source) && isTypeReferenceWithGenericArguments(target)
++	if !generic && source.id != 0 && target.id != 0 && source.id < relationKeyIdLimit && target.id < relationKeyIdLimit && intersectionState <= IntersectionStateSource|IntersectionStateTarget {
++		return RelationKey(uint64(source.id)<<32 | uint64(target.id)<<2 | uint64(intersectionState)), false
++	}
++	return c.getHashedRelationKey(source, target, intersectionState, generic, ignoreConstraints)
++}
++
++// Keep the hasher's frame and zeroing off the ordinary packed-key path.
++func (c *Checker) getHashedRelationKey(source *Type, target *Type, intersectionState IntersectionState, generic bool, ignoreConstraints bool) (RelationKey, bool) {
+ 	var b keyBuilder
+ 	var constrained bool
+-	if isTypeReferenceWithGenericArguments(source) && isTypeReferenceWithGenericArguments(target) {
++	if generic {
+ 		b.writeByte('g')
+ 		constrained = b.writeGenericTypeReferences(source, target, ignoreConstraints)
+ 	} else {
+@@ -17541,7 +17563,23 @@
+ 		b.writeType(target)
+ 	}
+ 	hashWrite32(&b.h, intersectionState)
+-	return b.hash(), constrained
++	return c.internRelationHash(b.hash()), constrained
++}
++
++func (c *Checker) internRelationHash(hash CacheHashKey) RelationKey {
++	if key := c.relationKeyIds[hash]; key != 0 {
++		return key
++	}
++	if c.relationKeyCount == uint64(relationKeyFallbackTag)-1 {
++		panic("relation key IDs exhausted")
++	}
++	if c.relationKeyIds == nil {
++		c.relationKeyIds = make(map[CacheHashKey]RelationKey)
++	}
++	c.relationKeyCount++
++	key := relationKeyFallbackTag | RelationKey(c.relationKeyCount)
++	c.relationKeyIds[hash] = key
++	return key
+ }
+ 
+ func getNodeListKey(nodes []*ast.Node) CacheHashKey {
+diff --git a/packages/tsc-go/internal/checker/relater.go b/packages/tsc-go/internal/checker/relater.go
+--- a/packages/tsc-go/internal/checker/relater.go
++++ b/packages/tsc-go/internal/checker/relater.go
+@@ -97,16 +97,16 @@
+ }
+ 
+ type Relation struct {
+-	results map[CacheHashKey]RelationComparisonResult
+-}
+-
+-func (r *Relation) get(key CacheHashKey) RelationComparisonResult {
++	results map[RelationKey]RelationComparisonResult
++}
++
++func (r *Relation) get(key RelationKey) RelationComparisonResult {
+ 	return r.results[key]
+ }
+ 
+-func (r *Relation) set(key CacheHashKey, result RelationComparisonResult) {
++func (r *Relation) set(key RelationKey, result RelationComparisonResult) {
+ 	if r.results == nil {
+-		r.results = make(map[CacheHashKey]RelationComparisonResult)
++		r.results = make(map[RelationKey]RelationComparisonResult)
+ 	}
+ 	r.results[key] = result
+ }
+@@ -216,7 +216,7 @@
+ 		}
+ 	}
+ 	if source.flags&TypeFlagsObject != 0 && target.flags&TypeFlagsObject != 0 {
+-		id, _ := getRelationKey(source, target, IntersectionStateNone, relation == c.identityRelation, false)
++		id, _ := c.getRelationKey(source, target, IntersectionStateNone, relation == c.identityRelation, false)
+ 		related := relation.get(id)
+ 		if related != RelationComparisonResultNone {
+ 			return related&RelationComparisonResultSucceeded != 0
+@@ -423,7 +423,7 @@
+ 	result := r.isRelatedToEx(source, target, RecursionFlagsBoth, errorNode != nil /*reportErrors*/, headMessage, IntersectionStateNone)
+ 	if r.overflow {
+ 		// Record this relation as having failed such that we don't attempt the overflowing operation again.
+-		id, _ := getRelationKey(source, target, IntersectionStateNone, relation == c.identityRelation, false /*ignoreConstraints*/)
++		id, _ := c.getRelationKey(source, target, IntersectionStateNone, relation == c.identityRelation, false /*ignoreConstraints*/)
+ 		relation.set(id, RelationComparisonResultFailed|core.IfElse(r.relationCount <= 0, RelationComparisonResultComplexityOverflow, RelationComparisonResultStackDepthOverflow))
+ 		if tr := c.tracer; tr != nil {
+ 			tr.Instant(tracing.PhaseCheckTypes, "checkTypeRelatedTo_DepthLimit", map[string]any{"sourceId": source.id, "targetId": target.id, "depth": len(r.sourceStack), "targetDepth": len(r.targetStack)})
+@@ -2603,8 +2603,8 @@
+ 	errorNode      *ast.Node
+ 	errorChain     *ErrorChain
+ 	relatedInfo    []*ast.Diagnostic
+-	maybeKeys      []CacheHashKey
+-	maybeKeysSet   collections.Set[CacheHashKey]
++	maybeKeys      []RelationKey
++	maybeKeysSet   collections.Set[RelationKey]
+ 	sourceStack    []*Type
+ 	targetStack    []*Type
+ 	maybeCount     int
+@@ -3094,7 +3094,7 @@
+ 		// important to have well-defined behavior even in cases that shouldn't normally occur.
+ 		return TernaryFalse
+ 	}
+-	id, constrained := getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, false /*ignoreConstraints*/)
++	id, constrained := r.c.getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, false /*ignoreConstraints*/)
+ 	if entry := r.relation.get(id); entry != RelationComparisonResultNone {
+ 		if reportErrors && entry&RelationComparisonResultFailed != 0 && entry&RelationComparisonResultOverflow == 0 {
+ 			// We are elaborating errors and the cached result is a failure not due to a comparison overflow,
+@@ -3125,7 +3125,7 @@
+ 	// type parameters. For such keys we also check against the key we would have gotten if all type parameters
+ 	// were unconstrained.
+ 	if constrained {
+-		broadestEquivalentId, _ := getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, true /*ignoreConstraints*/)
++		broadestEquivalentId, _ := r.c.getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, true /*ignoreConstraints*/)
+ 		if r.maybeKeysSet.Has(broadestEquivalentId) {
+ 			return TernaryMaybe
+ 		}
+diff --git a/packages/tsc-go/internal/checker/relation_keys_test.go b/packages/tsc-go/internal/checker/relation_keys_test.go
+new file mode 100644
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/relation_keys_test.go
+@@ -0,0 +1,222 @@
++package checker
++
++import "testing"
++
++// The pre-packing implementation is the equivalence-class oracle: changing key
++// representation must neither merge distinct comparisons nor split normalized
++// generic comparisons. It intentionally retains the original byte serialization.
++func legacyRelationHash(source, target *Type, state IntersectionState, identity, ignoreConstraints bool) (CacheHashKey, bool) {
++	if identity && source.id > target.id {
++		source, target = target, source
++	}
++	var b keyBuilder
++	var constrained bool
++	if isTypeReferenceWithGenericArguments(source) && isTypeReferenceWithGenericArguments(target) {
++		b.writeByte('g')
++		constrained = b.writeGenericTypeReferences(source, target, ignoreConstraints)
++	} else {
++		b.writeByte('s')
++		b.writeType(source)
++		b.writeType(target)
++	}
++	hashWrite32(&b.h, state)
++	return b.hash(), constrained
++}
++
++func TestRelationKeysOrdinaryBoundariesMatchLegacy(t *testing.T) {
++	c := &Checker{}
++	ids := []TypeId{0, 1, 2, (1 << 30) - 1, 1 << 30, 1 << 31, ^TypeId(0)}
++	states := []IntersectionState{0, 1, 2, 3, 4, ^IntersectionState(0)}
++	forward := make(map[CacheHashKey]RelationKey)
++	reverse := make(map[RelationKey]CacheHashKey)
++	for _, sourceID := range ids {
++		for _, targetID := range ids {
++			for _, state := range states {
++				for _, identity := range []bool{false, true} {
++					for _, ignoreConstraints := range []bool{false, true} {
++						source, target := &Type{id: sourceID}, &Type{id: targetID}
++						old, oldConstrained := legacyRelationHash(source, target, state, identity, ignoreConstraints)
++						key, constrained := c.getRelationKey(source, target, state, identity, ignoreConstraints)
++						if constrained != oldConstrained || key == 0 {
++							t.Fatal("ordinary relation changed constraint status or produced reserved zero key")
++						}
++						if previous, ok := forward[old]; ok && previous != key {
++							t.Fatal("one legacy comparison acquired two numeric keys")
++						}
++						if previous, ok := reverse[key]; ok && previous != old {
++							t.Fatalf("distinct comparisons collided: source=%d target=%d state=%d identity=%v", sourceID, targetID, state, identity)
++						}
++						forward[old], reverse[key] = key, old
++						wantFallback := sourceID == 0 || targetID == 0 || sourceID >= 1<<30 || targetID >= 1<<30 || state > 3
++						if (key&relationKeyFallbackTag != 0) != wantFallback {
++							t.Fatal("invalid packing range or fallback tag")
++						}
++					}
++				}
++			}
++		}
++	}
++	// The two identity orientations share a key, but Source/Target state bits do
++	// not swap: this is the pre-existing identity normalization contract.
++	a, b := &Type{id: 17}, &Type{id: 29}
++	key, _ := c.getRelationKey(a, b, IntersectionStateSource, true, false)
++	reversed, _ := c.getRelationKey(b, a, IntersectionStateSource, true, false)
++	otherState, _ := c.getRelationKey(b, a, IntersectionStateTarget, true, false)
++	if key != reversed || key == otherState {
++		t.Fatal("identity normalization changed intersection-state meaning")
++	}
++}
++
++func relationKeyReference(c *Checker, target *Type, args ...*Type) *Type {
++	t := c.newObjectType(ObjectFlagsReference, nil)
++	t.AsTypeReference().target = target
++	t.AsTypeReference().resolvedTypeArguments = args
++	return t
++}
++
++func TestRelationKeysGenericNormalizationMatchesLegacy(t *testing.T) {
++	c := lazyPropertyTestChecker()
++	c.noConstraintType = c.newIntrinsicType(TypeFlagsAny, "no constraint")
++	c.circularConstraintType = c.newIntrinsicType(TypeFlagsAny, "circular constraint")
++	parameter := func(constraint *Type) *Type {
++		p := c.newTypeParameter(nil)
++		p.AsTypeParameter().constraint = constraint
++		p.AsTypeParameter().resolvedBaseConstraint = constraint
++		return p
++	}
++	p, q := parameter(c.noConstraintType), parameter(c.noConstraintType)
++	r, s := parameter(c.stringType), parameter(c.stringType)
++	target := lazyObject(c)
++	otherTarget := lazyObject(c)
++	ref := func(args ...*Type) *Type { return relationKeyReference(c, target, args...) }
++	pq, qp, pp, qq := ref(p, q), ref(q, p), ref(p, p), ref(q, q)
++	constrainedR, constrainedS := ref(r), ref(s)
++	types := []*Type{pq, qp, pp, qq, ref(p), ref(q), constrainedR, constrainedS, ref(c.stringType), relationKeyReference(c, otherTarget, p)}
++	left, right := p, q
++	for range 6 {
++		left, right = ref(left), ref(right)
++		types = append(types, left, right)
++	}
++	forward := make(map[CacheHashKey]RelationKey)
++	reverse := make(map[RelationKey]CacheHashKey)
++	for _, source := range types {
++		for _, target := range types {
++			for state := IntersectionStateNone; state <= 3; state++ {
++				for _, identity := range []bool{false, true} {
++					for _, ignoreConstraints := range []bool{false, true} {
++						old, oldConstrained := legacyRelationHash(source, target, state, identity, ignoreConstraints)
++						key, constrained := c.getRelationKey(source, target, state, identity, ignoreConstraints)
++						if constrained != oldConstrained {
++							t.Fatal("generic relation lost constrained/broadest distinction")
++						}
++						if previous, ok := forward[old]; ok && previous != key {
++							t.Fatal("normalized relation split")
++						}
++						if previous, ok := reverse[key]; ok && previous != old {
++							t.Fatal("distinct generic relations merged")
++						}
++						forward[old], reverse[key] = key, old
++					}
++				}
++			}
++		}
++	}
++	first, _ := c.getRelationKey(pp, pp, 0, false, false)
++	alpha, _ := c.getRelationKey(qq, qq, 0, false, false)
++	distinct, _ := c.getRelationKey(pq, pp, 0, false, false)
++	if first != alpha || first == distinct {
++		t.Fatal("type-parameter occurrence positions lost alpha-equivalence")
++	}
++	narrow, constrained := c.getRelationKey(constrainedR, constrainedR, 0, false, false)
++	broad, broadConstrained := c.getRelationKey(constrainedR, constrainedR, 0, false, true)
++	if !constrained || broadConstrained || narrow == broad {
++		t.Fatal("constraint normalization lost broadest recursion key")
++	}
++	otherNarrow, _ := c.getRelationKey(constrainedS, constrainedS, 0, false, false)
++	otherBroad, _ := c.getRelationKey(constrainedS, constrainedS, 0, false, true)
++	if narrow == otherNarrow || broad != otherBroad {
++		t.Fatal("constrained parameters were normalized too early")
++	}
++	if broad&relationKeyFallbackTag == 0 {
++		t.Fatal("generic relation was packed using reference IDs")
++	}
++}
++
++func TestRelationKeyFallbackUsesAllHashBitsAndCheckerLifetime(t *testing.T) {
++	c := &Checker{}
++	a, b := &Type{id: 1}, &Type{id: 2}
++	packed, _ := c.getRelationKey(a, b, 0, false, false)
++	if c.relationKeyIds != nil {
++		t.Fatal("ordinary relation allocated fallback storage")
++	}
++	hashes := []CacheHashKey{{}, {Lo: 1}, {Hi: 1}, {Lo: 1, Hi: 1}, {Lo: 1, Hi: 1 << 63}}
++	seen := map[RelationKey]bool{packed: true}
++	for _, hash := range hashes {
++		key := c.internRelationHash(hash)
++		if seen[key] || key&relationKeyFallbackTag == 0 || c.internRelationHash(hash) != key {
++			t.Fatal("fallback key collided or changed")
++		}
++		seen[key] = true
++	}
++	other := &Checker{}
++	other.internRelationHash(CacheHashKey{Lo: 99})
++	otherKey := other.internRelationHash(hashes[0])
++	if c.internRelationHash(hashes[0]) == otherKey || len(c.relationKeyIds) != len(hashes) {
++		t.Fatal("checker fallback interner was shared")
++	}
++	// Exhaustion must never wrap onto an existing packed or fallback key.
++	c.relationKeyCount = uint64(relationKeyFallbackTag) - 1
++	if c.internRelationHash(hashes[0]) == 0 {
++		t.Fatal("existing key unavailable at exhaustion")
++	}
++	defer func() {
++		if recover() == nil {
++			t.Fatal("fallback counter wrapped")
++		}
++	}()
++	c.internRelationHash(CacheHashKey{Hi: 99})
++}
++
++func TestRelationKeysPreserveMaybeStackCacheFlagsAndSize(t *testing.T) {
++	c := &Checker{}
++	c.identityRelation = &Relation{}
++	relation := &Relation{}
++	ordinary, _ := c.getRelationKey(&Type{id: 1}, &Type{id: 2}, 0, false, false)
++	fallback := c.internRelationHash(CacheHashKey{Hi: 42})
++	// Probe-only interned keys must not consume the relation's complexity budget.
++	c.internRelationHash(CacheHashKey{Hi: 43})
++	if relation.size() != 0 {
++		t.Fatal("interned keys changed relation size")
++	}
++	r := c.getRelater()
++	r.relation, r.relationCount = relation, 10
++	r.maybeKeys = append(r.maybeKeys, ordinary, fallback)
++	r.maybeKeysSet.Add(ordinary)
++	r.maybeKeysSet.Add(fallback)
++	r.resetMaybeStack(1, RelationComparisonResultReportsUnreliable, true)
++	if relation.size() != 1 || r.relationCount != 9 || !r.maybeKeysSet.Has(ordinary) || r.maybeKeysSet.Has(fallback) {
++		t.Fatal("partial maybe-stack commit changed accounting")
++	}
++	if relation.get(fallback) != RelationComparisonResultSucceeded|RelationComparisonResultReportsUnreliable {
++		t.Fatal("reliability flags lost")
++	}
++	r.resetMaybeStack(0, 0, false)
++	if relation.size() != 1 || r.relationCount != 9 || r.maybeKeysSet.Len() != 0 {
++		t.Fatal("discarded assumptions became cached results")
++	}
++	flags := RelationComparisonResultFailed | RelationComparisonResultComplexityOverflow | RelationComparisonResultReportsUnmeasurable
++	relation.set(ordinary, flags)
++	relation.set(ordinary, flags)
++	if relation.size() != 2 || relation.get(ordinary) != flags {
++		t.Fatal("failure/overflow flags or replacement size changed")
++	}
++	// A new relater from this checker must see the same stable fallback IDs but
++	// no recursive assumptions retained from its previous use.
++	r.maybeKeysSet.Add(ordinary)
++	c.putRelater(r)
++	reused := c.getRelater()
++	if reused.c != c || reused.maybeKeysSet.Len() != 0 || len(reused.maybeKeys) != 0 || c.internRelationHash(CacheHashKey{Hi: 42}) != fallback {
++		t.Fatal("pooled relater lifetime changed key ownership")
++	}
++	c.putRelater(reused)
++}
+diff --git a/packages/tsc-go/internal/checker/relation_keys_api_test.go b/packages/tsc-go/internal/checker/relation_keys_api_test.go
+new file mode 100644
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/relation_keys_api_test.go
+@@ -0,0 +1,129 @@
++package checker_test
++
++import (
++	"strings"
++	"testing"
++)
++
++func TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics(t *testing.T) {
++	const source = `
++interface Left<T> { value: T; next?: Left<T>; map<U>(f: (value: T) => U): Left<U> }
++interface Right<T> { value: T; next?: Right<T>; map<U>(f: (value: T) => U): Right<U> }
++declare let left: Left<string>;
++declare let right: Right<string>;
++left = right;
++right = left;
++declare let wrong: Right<number>;
++// @ts-expect-error distinct recursive value types remain incompatible
++left = wrong;
++// @ts-expect-error cached failure must still elaborate the second diagnostic
++left = wrong;
++function normalized<T, U>(l: Left<T>, r: Right<T>, other: Right<U>) {
++  l = r;
++  // @ts-expect-error unconstrained distinct parameters cannot be conflated
++  l = other;
++}
++interface Constrained<T extends { tag: string }> { value: T; next?: Constrained<T> }
++function constrained<T extends { tag: string }, U extends { tag: string }>(l: Constrained<T>, r: Constrained<U>) {
++  // @ts-expect-error sharing constraints does not make different parameters assignable
++  l = r;
++}
++type Intersected<T> = Left<T> & { kind: "ok" };
++declare let intersection: Intersected<string>;
++left = intersection;
++// @ts-expect-error comparison in reverse still requires the intersection property
++intersection = left;
++type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? true : false;
++type Assert<T extends true> = T;
++type GenericSignatureIdentity = Assert<Equal<<T>(x: Left<T>) => T, <U>(x: Left<U>) => U>>;
++`
++	c, file := pendingAPIChecker(t, source)
++	for _, diagnostic := range c.GetDiagnostics(t.Context(), file) {
++		t.Errorf("unexpected diagnostic %d: %v", diagnostic.Code(), diagnostic)
++	}
++}
++
++func TestRelationKeysColdRecursiveConstraints(t *testing.T) {
++	// Adapted from pinned signatureInstantiationWithRecursiveConstraints.ts
++	// (#17148). Type parameter constraints recurse through the containing
++	// interfaces; generic result references also exercise normalized relation
++	// keys. Query relations before GetDiagnostics can warm those constraints.
++	const source = `
++declare let left: RecursiveLeft;
++declare let right: RecursiveRight;
++declare let different: Different;
++interface Box<T> { value: T; next?: Box<T> }
++interface RecursiveLeft { method<T extends RecursiveLeft>(arg: T): Box<T> }
++interface RecursiveRight { method<T extends RecursiveRight>(arg: T): Box<T> }
++interface Different { required: number; method<T extends Different>(arg: T): Box<T> }
++left = right;
++right = left;
++// @ts-expect-error the failed cold relation must still produce its diagnostic
++ different = left;
++// @ts-expect-error failure caching must preserve a second diagnostic
++ different = left;
++`
++	for _, reverseFirst := range []bool{false, true} {
++		name := "left-first"
++		if reverseFirst {
++			name = "right-first"
++		}
++		t.Run(name, func(t *testing.T) {
++			c, file := pendingAPIChecker(t, source)
++			left := pendingVariableType(c, file, 0)
++			right := pendingVariableType(c, file, 1)
++			different := pendingVariableType(c, file, 2)
++			if reverseFirst {
++				left, right = right, left
++			}
++			for range 2 {
++				if !c.IsTypeAssignableTo(left, right) || !c.IsTypeAssignableTo(right, left) {
++					t.Fatal("recursive generic constraints differ between cold and cached relation checks")
++				}
++				if c.IsTypeAssignableTo(left, different) || c.IsTypeAssignableTo(right, different) {
++					t.Fatal("recursive key normalization lost a required property")
++				}
++			}
++			for _, diagnostic := range c.GetDiagnostics(t.Context(), file) {
++				t.Errorf("unexpected diagnostic %d: %v", diagnostic.Code(), diagnostic)
++			}
++		})
++	}
++}
++
++// Warm failure results from the API must still elaborate each source use. This
++// checks diagnostic codes and locations directly, without @ts-expect-error.
++func TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions(t *testing.T) {
++	const source = `declare let left: Left<string>;
++declare let wrong: Right<number>;
++interface Left<T> { value: T; next?: Left<T> }
++interface Right<T> { value: T; next?: Right<T> }
++left = wrong;
++left = wrong;
++`
++	c, file := pendingAPIChecker(t, source)
++	left := pendingVariableType(c, file, 0)
++	wrong := pendingVariableType(c, file, 1)
++	for range 2 {
++		if c.IsTypeAssignableTo(wrong, left) {
++			t.Fatal("incompatible recursive value types became assignable")
++		}
++	}
++	first, second := strings.Index(source, "left = wrong"), strings.LastIndex(source, "left = wrong")
++	for attempt := 0; attempt < 2; attempt++ {
++		ds := c.GetDiagnostics(t.Context(), file)
++		if len(ds) != 2 {
++			t.Fatalf("query %d: want two assignment diagnostics, got %v", attempt, ds)
++		}
++		positions := map[int]bool{}
++		for _, d := range ds {
++			if d.Code() != 2322 || d.File() != file {
++				t.Fatalf("query %d: unexpected diagnostic %v", attempt, d)
++			}
++			positions[d.Pos()] = true
++		}
++		if !positions[first] || !positions[second] {
++			t.Fatalf("query %d: positions %v, want %d and %d", attempt, positions, first, second)
++		}
++	}
++}

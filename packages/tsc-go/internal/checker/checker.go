@@ -821,6 +821,8 @@ type Checker struct {
 	assignableRelation                          *Relation
 	comparableRelation                          *Relation
 	identityRelation                            *Relation
+	relationKeyIds                              map[CacheHashKey]RelationKey
+	relationKeyCount                            uint64
 	enumRelation                                map[EnumRelationKey]RelationComparisonResult
 	getGlobalESSymbolType                       func() *Type
 	getGlobalBigIntType                         func() *Type
@@ -17526,13 +17528,33 @@ func getConditionalTypeKey(typeArguments []*Type, alias *TypeAlias, forConstrain
 	return b.hash()
 }
 
-func getRelationKey(source *Type, target *Type, intersectionState IntersectionState, isIdentity bool, ignoreConstraints bool) (CacheHashKey, bool) {
+// RelationKey is local to a checker. Ordinary keys are exact packed IDs and
+// state; generic and oversized keys retain the existing complete 128-bit hash.
+type RelationKey uint64
+
+const (
+	relationKeyIdLimit                 = 1 << 30
+	relationKeyFallbackTag RelationKey = 1 << 63
+)
+
+func (c *Checker) getRelationKey(source *Type, target *Type, intersectionState IntersectionState, isIdentity bool, ignoreConstraints bool) (RelationKey, bool) {
 	if isIdentity && source.id > target.id {
 		source, target = target, source
 	}
+	// Preserve generic detection order: resolving type arguments can have side
+	// effects. Generic references must keep their alpha-equivalent keys.
+	generic := isTypeReferenceWithGenericArguments(source) && isTypeReferenceWithGenericArguments(target)
+	if !generic && source.id != 0 && target.id != 0 && source.id < relationKeyIdLimit && target.id < relationKeyIdLimit && intersectionState <= IntersectionStateSource|IntersectionStateTarget {
+		return RelationKey(uint64(source.id)<<32 | uint64(target.id)<<2 | uint64(intersectionState)), false
+	}
+	return c.getHashedRelationKey(source, target, intersectionState, generic, ignoreConstraints)
+}
+
+// Keep the hasher's frame and zeroing off the ordinary packed-key path.
+func (c *Checker) getHashedRelationKey(source *Type, target *Type, intersectionState IntersectionState, generic bool, ignoreConstraints bool) (RelationKey, bool) {
 	var b keyBuilder
 	var constrained bool
-	if isTypeReferenceWithGenericArguments(source) && isTypeReferenceWithGenericArguments(target) {
+	if generic {
 		b.writeByte('g')
 		constrained = b.writeGenericTypeReferences(source, target, ignoreConstraints)
 	} else {
@@ -17541,7 +17563,23 @@ func getRelationKey(source *Type, target *Type, intersectionState IntersectionSt
 		b.writeType(target)
 	}
 	hashWrite32(&b.h, intersectionState)
-	return b.hash(), constrained
+	return c.internRelationHash(b.hash()), constrained
+}
+
+func (c *Checker) internRelationHash(hash CacheHashKey) RelationKey {
+	if key := c.relationKeyIds[hash]; key != 0 {
+		return key
+	}
+	if c.relationKeyCount == uint64(relationKeyFallbackTag)-1 {
+		panic("relation key IDs exhausted")
+	}
+	if c.relationKeyIds == nil {
+		c.relationKeyIds = make(map[CacheHashKey]RelationKey)
+	}
+	c.relationKeyCount++
+	key := relationKeyFallbackTag | RelationKey(c.relationKeyCount)
+	c.relationKeyIds[hash] = key
+	return key
 }
 
 func getNodeListKey(nodes []*ast.Node) CacheHashKey {

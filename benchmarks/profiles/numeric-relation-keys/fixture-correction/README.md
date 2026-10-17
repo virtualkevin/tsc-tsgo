@@ -1,0 +1,7 @@
+# Regression fixture correction
+
+The initial numeric-key focused run failed because two older API fixtures expected @ts-expect-error comments to suppress raw Checker.GetDiagnostics output. Suppression is performed at the Program layer. The fix changes only test expectations to require the intended diagnostic codes, exact counts and use positions; production code is unchanged.
+
+The corrected three API tests (five records including two cold-direction subtests) passed independently against prior production source from commit `7437132`. The overlay substitutes that commit's checker.go and relater.go, removes the candidate-only internal unit tests from this baseline compilation, and supplies corrected API tests. baseline-result.json records exact commands, hashes, exit 0 and unchanged main source. baseline.jsonl is the raw passing output. The two old production files are reproducible with git show 7437132:packages/tsc-go/internal/checker/checker.go` and `git show 7437132:packages/tsc-go/internal/checker/relater.go; their hashes are recorded in the result, and no duplicate large source blobs are included here. Overlay/controller paths retain their original /tmp capture locations.
+
+Initial failure evidence is ../../../validation/numeric-relation-initial-focused-failure.json. Corrected focused and conformance reports are recorded separately; baseline agreement is not a replacement for those gates. The preserved final compiler binary is byte-identical to the initial compiler binary because only a test file changed.

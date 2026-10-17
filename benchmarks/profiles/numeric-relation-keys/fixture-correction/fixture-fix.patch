@@ -1,0 +1,90 @@
+--- a/packages/tsc-go/internal/checker/relation_keys_api_test.go
++++ b/packages/tsc-go/internal/checker/relation_keys_api_test.go
+@@ -14,32 +14,46 @@
+ left = right;
+ right = left;
+ declare let wrong: Right<number>;
+-// @ts-expect-error distinct recursive value types remain incompatible
++// Expected error: distinct recursive value types remain incompatible
+ left = wrong;
+-// @ts-expect-error cached failure must still elaborate the second diagnostic
++// Expected error: cached failure must still elaborate the second diagnostic
+ left = wrong;
+ function normalized<T, U>(l: Left<T>, r: Right<T>, other: Right<U>) {
+   l = r;
+-  // @ts-expect-error unconstrained distinct parameters cannot be conflated
++  // Expected error: unconstrained distinct parameters cannot be conflated
+   l = other;
+ }
+ interface Constrained<T extends { tag: string }> { value: T; next?: Constrained<T> }
+ function constrained<T extends { tag: string }, U extends { tag: string }>(l: Constrained<T>, r: Constrained<U>) {
+-  // @ts-expect-error sharing constraints does not make different parameters assignable
++  // Expected error: sharing constraints does not make different parameters assignable
+   l = r;
+ }
+ type Intersected<T> = Left<T> & { kind: "ok" };
+ declare let intersection: Intersected<string>;
+ left = intersection;
+-// @ts-expect-error comparison in reverse still requires the intersection property
++// Expected error: comparison in reverse still requires the intersection property
+ intersection = left;
+ type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? true : false;
+ type Assert<T extends true> = T;
+ type GenericSignatureIdentity = Assert<Equal<<T>(x: Left<T>) => T, <U>(x: Left<U>) => U>>;
+ `
+ 	c, file := pendingAPIChecker(t, source)
+-	for _, diagnostic := range c.GetDiagnostics(t.Context(), file) {
+-		t.Errorf("unexpected diagnostic %d: %v", diagnostic.Code(), diagnostic)
++	wantPositions := map[int]bool{
++		strings.Index(source, "left = wrong;"):        true,
++		strings.LastIndex(source, "left = wrong;"):    true,
++		strings.Index(source, "l = other;"):           true,
++		strings.LastIndex(source, "l = r;"):           true,
++		strings.Index(source, "intersection = left;"): true,
++	}
++	diagnostics := c.GetDiagnostics(t.Context(), file)
++	if len(diagnostics) != len(wantPositions) {
++		t.Fatalf("want five incompatible assignment diagnostics, got %v", diagnostics)
++	}
++	for _, diagnostic := range diagnostics {
++		if diagnostic.Code() != 2322 || diagnostic.File() != file || !wantPositions[diagnostic.Pos()] {
++			t.Fatalf("unexpected assignment diagnostic %d at %d: %v", diagnostic.Code(), diagnostic.Pos(), diagnostic)
++		}
++		delete(wantPositions, diagnostic.Pos())
+ 	}
+ }
+ 
+@@ -58,9 +72,9 @@
+ interface Different { required: number; method<T extends Different>(arg: T): Box<T> }
+ left = right;
+ right = left;
+-// @ts-expect-error the failed cold relation must still produce its diagnostic
++// Expected error: the failed cold relation must still produce its diagnostic
+  different = left;
+-// @ts-expect-error failure caching must preserve a second diagnostic
++// Expected error: failure caching must preserve a second diagnostic
+  different = left;
+ `
+ 	for _, reverseFirst := range []bool{false, true} {
+@@ -84,8 +98,19 @@
+ 					t.Fatal("recursive key normalization lost a required property")
+ 				}
+ 			}
+-			for _, diagnostic := range c.GetDiagnostics(t.Context(), file) {
+-				t.Errorf("unexpected diagnostic %d: %v", diagnostic.Code(), diagnostic)
++			wantPositions := map[int]bool{
++				strings.Index(source, "different = left;"):     true,
++				strings.LastIndex(source, "different = left;"): true,
++			}
++			diagnostics := c.GetDiagnostics(t.Context(), file)
++			if len(diagnostics) != 2 {
++				t.Fatalf("want two missing-property diagnostics, got %v", diagnostics)
++			}
++			for _, diagnostic := range diagnostics {
++				if diagnostic.Code() != 2741 || diagnostic.File() != file || !wantPositions[diagnostic.Pos()] {
++					t.Fatalf("unexpected missing-property diagnostic %d at %d: %v", diagnostic.Code(), diagnostic.Pos(), diagnostic)
++				}
++				delete(wantPositions, diagnostic.Pos())
+ 			}
+ 		})
+ 	}
