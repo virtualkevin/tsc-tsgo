@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "provenance": "Representative snapshots selected independently as the latest default-branch commits before 2026-10-17T00:00:00Z. The tweet does not publish its SHAs, tsconfigs, hardware, or commands; these are not claimed to reproduce its exact inputs. Scheduler experiment overlay: explicit --checkers 4 for both sides; same preserved PointerLinkStore binary. Baseline unset round-robin, candidate dependency scheduling only.",
+  "projects": [
+    {
+      "name": "typeorm",
+      "repository": "https://github.com/typeorm/typeorm.git",
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "directory": "upstream/benchmarks/typeorm",
+      "project": "packages/typeorm/tsconfig.json",
+      "lockfile": "pnpm-lock.yaml",
+      "install": [
+        "corepack",
+        "pnpm",
+        "install",
+        "--frozen-lockfile",
+        "--ignore-scripts",
+        "--filter",
+        "typeorm..."
+      ],
+      "scope": "TypeORM package source and tests; native database modules are not built. TS7 compatibility override: node20/node16 replaces removed node10 resolution; Node20 permits require(ESM).",
+      "args": [
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--checkers",
+        "4"
+      ]
+    },
+    {
+      "name": "trpc",
+      "repository": "https://github.com/trpc/trpc.git",
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "directory": "upstream/benchmarks/trpc",
+      "project": "packages/server/tsconfig.json",
+      "lockfile": "pnpm-lock.yaml",
+      "install": [
+        "corepack",
+        "pnpm",
+        "install",
+        "--frozen-lockfile",
+        "--ignore-scripts",
+        "--filter",
+        "@trpc/server..."
+      ],
+      "scope": "tRPC server package only; explicitly not the entire monorepo or the unknown tweet configuration.",
+      "args": [
+        "--checkers",
+        "4"
+      ]
+    },
+    {
+      "name": "vscode",
+      "repository": "https://github.com/microsoft/vscode.git",
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "directory": "upstream/benchmarks/vscode",
+      "project": "src/tsconfig.json",
+      "lockfile": "package-lock.json",
+      "install": [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      "scope": "VS Code client sources; repository typecheck-client configuration. Native runtime modules are not built. Electron declarations are fetched by the repository checksum-verified setup script.",
+      "prepare": [
+        "node",
+        "build/npm/electronTypes.ts"
+      ],
+      "args": [
+        "--checkers",
+        "4"
+      ]
+    },
+    {
+      "name": "sentry",
+      "repository": "https://github.com/getsentry/sentry.git",
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "directory": "upstream/benchmarks/sentry",
+      "project": "tsconfig.json",
+      "lockfile": "pnpm-lock.yaml",
+      "install": [
+        "corepack",
+        "pnpm",
+        "install",
+        "--frozen-lockfile",
+        "--ignore-scripts"
+      ],
+      "scope": "Root frontend configuration; referenced icons and scraps declarations must be built before benchmarking.",
+      "prepare": [
+        "node",
+        "node_modules/typescript-7/bin/tsc",
+        "--build",
+        "static/packages/icons",
+        "static/packages/scraps/tsconfig.test.json",
+        "--pretty",
+        "false"
+      ],
+      "args": [
+        "--checkers",
+        "4"
+      ]
+    }
+  ]
+}
