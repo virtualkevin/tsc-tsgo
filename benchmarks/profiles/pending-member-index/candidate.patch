@@ -1,0 +1,47 @@
+diff --git a/packages/tsc-go/internal/checker/pending_members.go b/packages/tsc-go/internal/checker/pending_members.go
+index aa284f5..e0a36f3 100644
+--- a/packages/tsc-go/internal/checker/pending_members.go
++++ b/packages/tsc-go/internal/checker/pending_members.go
+@@ -47,7 +47,7 @@ type pendingInstantiatedMembers struct {
+ 	source                 *instantiatedMemberSource
+ 	mapper                 *TypeMapper
+ 	states                 []uint32
+-	instantiated           ast.SymbolTable
++	instantiated           []*ast.Symbol
+ 	bases                  []inheritedPendingMembers
+ 	hasBases               bool
+ 	resolving              bool
+@@ -61,8 +61,10 @@ func (p *pendingInstantiatedMembers) state(i int) uint32 {
+ 
+ func (p *pendingInstantiatedMembers) memberAt(i int) *ast.Symbol {
+ 	source := p.source.entries[i]
+-	if known := p.instantiated[source.Name]; known != nil {
+-		return known
++	if p.instantiated != nil {
++		if known := p.instantiated[i]; known != nil {
++			return known
++		}
+ 	}
+ 	if p.state(i) == pendingMemberKept {
+ 		return source
+@@ -75,14 +77,16 @@ func (p *pendingInstantiatedMembers) ownMember(name string) *ast.Symbol {
+ 	if !ok || p.state(i) == pendingMemberSkipped {
+ 		return nil
+ 	}
+-	if known := p.instantiated[name]; known != nil {
+-		return known
++	if p.instantiated != nil {
++		if known := p.instantiated[i]; known != nil {
++			return known
++		}
+ 	}
+ 	symbol := p.memberAt(i)
+ 	if p.instantiated == nil {
+-		p.instantiated = make(ast.SymbolTable)
++		p.instantiated = make([]*ast.Symbol, len(p.source.entries))
+ 	}
+-	p.instantiated[name] = symbol
++	p.instantiated[i] = symbol
+ 	return symbol
+ }
+ 

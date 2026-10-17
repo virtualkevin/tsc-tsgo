@@ -1,0 +1,59 @@
+File: tsc-go
+Build ID: 15af3668b3053a71304a82aaa639569aa27b0a22
+Type: cpu
+Time: 2026-10-17 21:41:17 UTC
+Duration: 28.74s, Total samples = 121.55s (422.99%)
+Showing nodes accounting for 121.55s, 100% of 121.55s total
+----------------------------------------------------------+-------------
+      flat  flat%   sum%        cum   cum%   calls calls% + context 	 	 
+----------------------------------------------------------+-------------
+                                             2.70s 38.57% |   github.com/microsoft/typescript-go/internal/checker.getResolvedMember
+                                             1.38s 19.71% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty
+                                             0.70s 10.00% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getStringLiteralType
+                                             0.51s  7.29% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getSymbol
+                                             0.21s  3.00% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getExportOfModule
+                                             0.16s  2.29% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByJSXAttributes.func2
+                                             0.15s  2.14% |   github.com/microsoft/typescript-go/internal/compiler.(*Program).GetSourceFileByPath
+                                             0.13s  1.86% |   github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).ownTable
+                                             0.12s  1.71% |   github.com/microsoft/typescript-go/internal/compiler.(*projectReferenceFileMapper).getProjectReferenceFromSource
+                                             0.12s  1.71% |   github.com/microsoft/typescript-go/internal/scanner.GetIdentifierToken
+                                             0.11s  1.57% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty
+                                             0.08s  1.14% |   github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).ownMember
+                                             0.06s  0.86% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveExternalModuleSymbol
+                                             0.06s  0.86% |   github.com/microsoft/typescript-go/internal/compiler.(*Program).GetSourceFileMetaData
+                                             0.05s  0.71% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getCannotResolveModuleNameErrorForSpecificModule
+                                             0.05s  0.71% |   github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).keepTableOnDemand
+                                             0.04s  0.57% |   github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolEx
+                                             0.04s  0.57% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getExternalModuleMember
+                                             0.04s  0.57% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getSpreadType
+                                             0.04s  0.57% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveMappedTypeMembers.func1
+                                             0.04s  0.57% |   github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).memberAt
+                                             0.04s  0.57% |   github.com/microsoft/typescript-go/internal/compiler.(*Program).GetModeForUsageLocation
+                                             0.03s  0.43% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).hasUnmatchedProperty
+                                             0.02s  0.29% |   github.com/microsoft/typescript-go/internal/binder.(*NameResolver).Resolve
+                                             0.02s  0.29% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).checkGrammarObjectLiteralExpression
+                                             0.02s  0.29% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveAnonymousTypeMembers
+                                             0.02s  0.29% |   github.com/microsoft/typescript-go/internal/compiler.(*projectReferenceFileMapper).getProjectReferenceFromOutputDts
+                                             0.01s  0.14% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers.func2
+                                             0.01s  0.14% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).mergeGlobalSymbol
+                                             0.01s  0.14% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveDeclaredMembers
+                                             0.01s  0.14% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveExportByName
+                                             0.01s  0.14% |   github.com/microsoft/typescript-go/internal/checker.(*WideningContext).getChildContext
+                                             0.01s  0.14% |   github.com/microsoft/typescript-go/internal/compiler.(*Program).GetJSXRuntimeImportSpecifier
+     1.91s  1.57%  1.57%         7s  5.76%                | runtime.mapaccess1_faststr
+                                             2.20s 31.43% |   internal/runtime/maps.(*Map).getWithoutKeySmallFastStr
+                                             1.29s 18.43% |   internal/runtime/maps.ctrlGroup.matchH2 (inline)
+                                             0.72s 10.29% |   aeshashbody
+                                             0.35s  5.00% |   memeqbody
+                                             0.24s  3.43% |   internal/runtime/maps.(*Map).directoryAt (inline)
+                                             0.06s  0.86% |   internal/runtime/maps.(*groupReference).key (inline)
+                                             0.06s  0.86% |   runtime.strhash
+                                             0.04s  0.57% |   internal/runtime/maps.h1 (inline)
+                                             0.03s  0.43% |   internal/runtime/maps.(*groupsReference).group (inline)
+                                             0.02s  0.29% |   internal/runtime/maps.(*Map).Used (inline)
+                                             0.02s  0.29% |   internal/runtime/maps.(*Map).directoryIndex (inline)
+                                             0.02s  0.29% |   internal/runtime/maps.bitset.removeFirst (inline)
+                                             0.02s  0.29% |   internal/runtime/maps.ctrlGroup.matchEmpty (inline)
+                                             0.01s  0.14% |   internal/runtime/maps.(*groupReference).ctrls (inline)
+                                             0.01s  0.14% |   runtime.memequal
+----------------------------------------------------------+-------------

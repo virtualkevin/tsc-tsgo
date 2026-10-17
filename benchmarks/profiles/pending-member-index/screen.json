@@ -1,0 +1,59 @@
+{
+  "name": "pending-member-index",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pending-member-index",
+      "sha256": "9199d55d055054865e949928ba8c1d537d366431f82a20780ef5adfa8fc6f86f",
+      "source": "eaffe7bc4ed0261af97850b27059d041e51856fb2858563cf35050d857b44ac6",
+      "sidecarSha256": "65abfd5c806d906ee077e1e714e344618de418d2f1973b5fc7a2e5276ffbbd11",
+      "revisionLabel": "Indexed pending-member cache"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/pending_members.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/pending_members.go",
+        "sha256": "778607282e1f2d649cc0726c61f35972196a64dddc12e52edf9ef906296693bb",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/pending_members.go",
+        "sha256": "55bc442e434f7d70354e1c828f586cb5fbdde67fafd1f9f72b0bd4cb93c65b6e",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5154
+  },
+  "comparisonPolicySha256": "29695700ead13caf6503f007cf600ee8e0379e7098fdbdfd30dbfcd142e9c87f",
+  "methodology": "Frozen indexed pending-member cache candidate against retained node-pointer Go; nine small-workload/five large-workload alternating pairs, one warmup, default settings, matched RSS, identical physical inputs. Full correctness and two independent confirmations required before retention."
+}

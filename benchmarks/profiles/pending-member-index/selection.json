@@ -1,0 +1,18 @@
+{
+  "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+  "profiles": [
+    {
+      "workload": "sentry",
+      "profileSha256": "41c1dd391cb188916792843d7f1c1206af99fecc0fe8fe838fa1c51069c5645e",
+      "profile": "/tmp/tsc-node-pointer-normal/sentry/398210-cpuprofile.pb.gz",
+      "report": "sentry-string-map-callers.txt"
+    },
+    {
+      "workload": "vscode",
+      "profileSha256": "19bfa2f4204510b877d55173362910c12cf4c0c6ae343988bfb887f1e0b8dc71",
+      "profile": "/tmp/tsc-node-pointer-normal/vscode/398188-cpuprofile.pb.gz",
+      "report": "vscode-string-map-callers.txt"
+    }
+  ],
+  "scope": "Historical normal-flag CPU profile call edges; sampled time is not lookup counts, cache misses or a forecast. Candidate changes only the secondary per-instantiation member cache, not all string-map callers."
+}
