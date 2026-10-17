@@ -1,0 +1,121 @@
+{
+  "status": "passed",
+  "experiment": "reduction-inline",
+  "summarySha256": "7d46189a08571ab8c711640e0d722d73011a754f6fb735db0b3fab65c5de413e",
+  "configSha256": "a34b5d5063a98e8d05e17eeb921d93cfb1c228d6af7ea3a34ddee0d76224427d",
+  "comparisonPolicySha256": "29a8e37ca24557ed7048194278c0b3df8cae43f11e79876918346d8845412069",
+  "results": [
+    {
+      "name": "typeorm",
+      "runs": 9,
+      "files": 3572,
+      "baselineMedianMs": 2451.88632,
+      "candidateMedianMs": 2479.018827,
+      "baselineOverCandidate": 0.9890551428232458,
+      "baselineMedianRssMiB": 881.50390625,
+      "candidateMedianRssMiB": 884.46875,
+      "pairedRatios": [
+        0.9921510696941553,
+        0.9589217880140812,
+        0.9830709121121547,
+        1.082427885058231,
+        0.9303270246485299,
+        1.0582611227776448,
+        0.9885881367758554,
+        0.9904955423498396,
+        0.9071102997877684
+      ],
+      "pairedMedian": 0.9885881367758554,
+      "pairedMin": 0.9071102997877684,
+      "pairedMax": 1.082427885058231,
+      "candidateFasterPairs": 2,
+      "rssCandidateOverBaseline": 1.003363392639532
+    },
+    {
+      "name": "trpc",
+      "runs": 9,
+      "files": 942,
+      "baselineMedianMs": 485.627692,
+      "candidateMedianMs": 490.196551,
+      "baselineOverCandidate": 0.9906795366252996,
+      "baselineMedianRssMiB": 241.625,
+      "candidateMedianRssMiB": 242.125,
+      "pairedRatios": [
+        0.9274985139240424,
+        0.9451326820942891,
+        0.9417124574461654,
+        1.171182596304429,
+        1.0351313352273022,
+        1.028931481810744,
+        0.9827288523314636,
+        1.038792076822534,
+        1.0256640781473758
+      ],
+      "pairedMedian": 1.0256640781473758,
+      "pairedMin": 0.9274985139240424,
+      "pairedMax": 1.171182596304429,
+      "candidateFasterPairs": 5,
+      "rssCandidateOverBaseline": 1.0020693222969477
+    },
+    {
+      "name": "vscode",
+      "runs": 5,
+      "files": 11563,
+      "baselineMedianMs": 36927.846749,
+      "candidateMedianMs": 34893.373435,
+      "baselineOverCandidate": 1.0583054349213281,
+      "baselineMedianRssMiB": 7872.4453125,
+      "candidateMedianRssMiB": 7447.5,
+      "pairedRatios": [
+        1.031783603585388,
+        1.0398136202247947,
+        1.0552470550023525,
+        1.0583054349213281,
+        1.044822065170234
+      ],
+      "pairedMedian": 1.044822065170234,
+      "pairedMin": 1.031783603585388,
+      "pairedMax": 1.0583054349213281,
+      "candidateFasterPairs": 5,
+      "rssCandidateOverBaseline": 0.9460211794897749
+    },
+    {
+      "name": "sentry",
+      "runs": 5,
+      "files": 13290,
+      "baselineMedianMs": 41683.321775,
+      "candidateMedianMs": 42581.370939,
+      "baselineOverCandidate": 0.9789098109291383,
+      "baselineMedianRssMiB": 5444.984375,
+      "candidateMedianRssMiB": 5364.171875,
+      "pairedRatios": [
+        0.9284860007503306,
+        0.9603701525122074,
+        1.0508219346017162,
+        0.9789098109291383,
+        1.053217674588366
+      ],
+      "pairedMedian": 0.9789098109291383,
+      "pairedMin": 0.9284860007503306,
+      "pairedMax": 1.053217674588366,
+      "candidateFasterPairs": 2,
+      "rssCandidateOverBaseline": 0.9851583596142092
+    }
+  ],
+  "aggregates": {
+    "ratioOfMediansGeometricMean": 1.0037529885913647,
+    "pairedMedianGeometricMean": 1.0091399262747274
+  },
+  "gates": {
+    "bothAggregatesAtLeast101": false,
+    "allWorkloadSummariesAtLeast098": false,
+    "allWorkloadMedianRssAtMost105": true
+  },
+  "qualifiesForConfirmation": false,
+  "limitations": [
+    "Screening only; not promotion or a statistical-confidence claim.",
+    "This candidate requires two independent confirmations and full correctness validation before promotion.",
+    "All paired samples retained; ratios above one favor the configured candidate.",
+    "Not a comparison to the original native target; do not multiply historical ratios."
+  ]
+}
