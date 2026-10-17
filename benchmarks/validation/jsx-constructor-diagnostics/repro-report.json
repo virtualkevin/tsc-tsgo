@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T11:21:06.624Z",
+  "purpose": "Untimed bounded diagnostic reproduction; no performance evidence. Candidate draft not built.",
+  "semanticArgs": [
+    "--noLib",
+    "--strict",
+    "--target",
+    "es2022",
+    "--jsx",
+    "preserve",
+    "--noEmit",
+    "--pretty",
+    "false",
+    "/tmp/tsc-jsx-constructor-port/recursive-managed-attributes.tsx",
+    "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts",
+    "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.d.ts",
+    "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.legacy.d.ts"
+  ],
+  "inputMetadata": [
+    {
+      "path": "/tmp/tsc-jsx-constructor-port/recursive-managed-attributes.tsx",
+      "sha256": "8f117d48f4da274b1230102ce32a99599394d0f06a30fe4ee4cc419ddc86997b"
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts",
+      "sha256": "6388847232654d7fcbed7fe89ea511a65ad1f5104b41e905c43f90910e1408b6"
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.d.ts",
+      "sha256": "1ce14b81c5cc821994aa8ec1d42b220dd41b27fcc06373bce3958af7421b77d4"
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.legacy.d.ts",
+      "sha256": "b3a048b3e9302ef9a34ef4ebb9aecfb28b66abb3bce577206a79fee559c230da"
+    }
+  ],
+  "explicitLibraryDirectory": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs",
+  "unsetInheritedEnvironmentNames": [],
+  "jsCompilerVersion": "5.9.3",
+  "jsImplementationFiles": [
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/node_modules/typescript/lib/tsc.js",
+      "sha256": "2cffde0b8c6760dfb0b5b0382bbb7e00ba6a8b2d981b9205b256a700a481d983"
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/node_modules/typescript/lib/_tsc.js",
+      "sha256": "e8f349eabd48486bdb2bf9dc1a00c89d58297270c54b745838879e2859194419"
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/node_modules/typescript/package.json",
+      "sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    }
+  ],
+  "pinnedUpstream": {
+    "repository": "https://github.com/microsoft/typescript-go",
+    "commit": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "scriptc": "0.2.6"
+  },
+  "runs": [
+    {
+      "name": "preserved-lazy-go",
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy",
+      "args": [
+        "--checkers",
+        "1",
+        "--noLib",
+        "--strict",
+        "--target",
+        "es2022",
+        "--jsx",
+        "preserve",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "/tmp/tsc-jsx-constructor-port/recursive-managed-attributes.tsx",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.d.ts",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.legacy.d.ts"
+      ],
+      "sha256": "961e90a7e1d873477233c022716da08acc6f4b3f02df11c70d5e11360ca59ec3",
+      "exitCode": 1,
+      "signal": null,
+      "error": null,
+      "stdout": "/tmp/tsc-jsx-constructor-port/recursion-repro/preserved-lazy-go.stdout.txt",
+      "stderr": "/tmp/tsc-jsx-constructor-port/recursion-repro/preserved-lazy-go.stderr.txt",
+      "stdoutSha256": "88b8288d9ef82057d4a1cd0ed92b00e02b97535c488caf64083965558cd4714a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "diagnostics": [
+        {
+          "file": "recursive-managed-attributes.tsx",
+          "line": 7,
+          "column": 15,
+          "code": 2589,
+          "message": "Type instantiation is excessively deep and possibly infinite."
+        },
+        {
+          "file": "recursive-managed-attributes.tsx",
+          "line": 8,
+          "column": 16,
+          "code": 2589,
+          "message": "Type instantiation is excessively deep and possibly infinite."
+        }
+      ],
+      "diagnosticCount": 2,
+      "binaryUnchanged": true
+    },
+    {
+      "name": "pinned-upstream-go",
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsgo/dist/tsgo",
+      "args": [
+        "--checkers",
+        "1",
+        "--noLib",
+        "--strict",
+        "--target",
+        "es2022",
+        "--jsx",
+        "preserve",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "/tmp/tsc-jsx-constructor-port/recursive-managed-attributes.tsx",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.d.ts",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.legacy.d.ts"
+      ],
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a",
+      "exitCode": 1,
+      "signal": null,
+      "error": null,
+      "stdout": "/tmp/tsc-jsx-constructor-port/recursion-repro/pinned-upstream-go.stdout.txt",
+      "stderr": "/tmp/tsc-jsx-constructor-port/recursion-repro/pinned-upstream-go.stderr.txt",
+      "stdoutSha256": "88b8288d9ef82057d4a1cd0ed92b00e02b97535c488caf64083965558cd4714a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "diagnostics": [
+        {
+          "file": "recursive-managed-attributes.tsx",
+          "line": 7,
+          "column": 15,
+          "code": 2589,
+          "message": "Type instantiation is excessively deep and possibly infinite."
+        },
+        {
+          "file": "recursive-managed-attributes.tsx",
+          "line": 8,
+          "column": 16,
+          "code": 2589,
+          "message": "Type instantiation is excessively deep and possibly infinite."
+        }
+      ],
+      "diagnosticCount": 2,
+      "binaryUnchanged": true
+    },
+    {
+      "name": "original-native-tsc-ts",
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+      "args": [
+        "--checkers",
+        "1",
+        "--noLib",
+        "--strict",
+        "--target",
+        "es2022",
+        "--jsx",
+        "preserve",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "/tmp/tsc-jsx-constructor-port/recursive-managed-attributes.tsx",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.d.ts",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.legacy.d.ts"
+      ],
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+      "exitCode": 1,
+      "signal": null,
+      "error": null,
+      "stdout": "/tmp/tsc-jsx-constructor-port/recursion-repro/original-native-tsc-ts.stdout.txt",
+      "stderr": "/tmp/tsc-jsx-constructor-port/recursion-repro/original-native-tsc-ts.stderr.txt",
+      "stdoutSha256": "78aa19cbc3546875f9d87fd5f707d701e0574da468f6f883ab531345edacd11f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "diagnostics": [
+        {
+          "file": "recursive-managed-attributes.tsx",
+          "line": 7,
+          "column": 15,
+          "code": 2589,
+          "message": "Type instantiation is excessively deep and possibly infinite."
+        }
+      ],
+      "diagnosticCount": 1,
+      "binaryUnchanged": true
+    },
+    {
+      "name": "official-typescript-5.9.3",
+      "path": "/home/dev/.nvm/versions/node/v24.15.0/bin/node",
+      "script": "/home/dev/tssss/tsc-tsgo/node_modules/typescript/lib/tsc.js",
+      "args": [
+        "/home/dev/tssss/tsc-tsgo/node_modules/typescript/lib/tsc.js",
+        "--noLib",
+        "--strict",
+        "--target",
+        "es2022",
+        "--jsx",
+        "preserve",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "/tmp/tsc-jsx-constructor-port/recursive-managed-attributes.tsx",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.d.ts",
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.legacy.d.ts"
+      ],
+      "sha256": "d1de76d8edf2fededf6f8b30d244e2c0529ac607923a018283b77e9c74bd932c",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": "/tmp/tsc-jsx-constructor-port/recursion-repro/official-typescript-5.9.3.stdout.txt",
+      "stderr": "/tmp/tsc-jsx-constructor-port/recursion-repro/official-typescript-5.9.3.stderr.txt",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "diagnostics": [],
+      "diagnosticCount": 0,
+      "binaryUnchanged": true
+    }
+  ],
+  "finishedAt": "2026-10-17T11:21:08.681Z",
+  "inputsUnchanged": true,
+  "jsImplementationUnchanged": true,
+  "allBinariesUnchanged": true,
+  "limitations": [
+    "Pinned upstream Go identity follows the repository build-oracle path and upstream.json; the historical binary has no independently verified build-time provenance sidecar.",
+    "Official JS TypeScript 5.9.3 is an additional labeled-version comparator, not assumed equivalent to the pinned upstream corpus/compiler.",
+    "This runs the recursive fixture only; no draft candidate or full compiler validation is included.",
+    "Timing fields are intentionally absent because other builds and validation are active."
+  ]
+}

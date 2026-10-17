@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Copied evidence and unexecuted representation-independent regression draft. No compiler builds or main changes.",
+  "originalReportSha256": "792ae8d25e5ca94e80705b2532187b19c31f3558990dc4881ce0f82ac4097d28",
+  "fixtureSha256": "8f117d48f4da274b1230102ce32a99599394d0f06a30fe4ee4cc419ddc86997b",
+  "rawLogs": [
+    {
+      "compiler": "preserved-lazy-go",
+      "stream": "stdout",
+      "path": "raw/preserved-lazy-go.stdout.txt",
+      "sha256": "88b8288d9ef82057d4a1cd0ed92b00e02b97535c488caf64083965558cd4714a"
+    },
+    {
+      "compiler": "preserved-lazy-go",
+      "stream": "stderr",
+      "path": "raw/preserved-lazy-go.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "compiler": "pinned-upstream-go",
+      "stream": "stdout",
+      "path": "raw/pinned-upstream-go.stdout.txt",
+      "sha256": "88b8288d9ef82057d4a1cd0ed92b00e02b97535c488caf64083965558cd4714a"
+    },
+    {
+      "compiler": "pinned-upstream-go",
+      "stream": "stderr",
+      "path": "raw/pinned-upstream-go.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "compiler": "original-native-tsc-ts",
+      "stream": "stdout",
+      "path": "raw/original-native-tsc-ts.stdout.txt",
+      "sha256": "78aa19cbc3546875f9d87fd5f707d701e0574da468f6f883ab531345edacd11f"
+    },
+    {
+      "compiler": "original-native-tsc-ts",
+      "stream": "stderr",
+      "path": "raw/original-native-tsc-ts.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "compiler": "official-typescript-5.9.3",
+      "stream": "stdout",
+      "path": "raw/official-typescript-5.9.3.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "compiler": "official-typescript-5.9.3",
+      "stream": "stderr",
+      "path": "raw/official-typescript-5.9.3.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "draftTestSha256": "9db62d8a8fd00af674034a59a86d7d34b76e95d00766a986e9ac13802a929e99",
+  "draftPatchSha256": "ad4bebdab19b55a71fddf59c5a0581c39d472dec166ee16d9940f12cb3fdb4a4",
+  "draftTestStatus": "formatted; not built or run",
+  "libraries": [
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts",
+      "sha256": "6388847232654d7fcbed7fe89ea511a65ad1f5104b41e905c43f90910e1408b6"
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.d.ts",
+      "sha256": "1ce14b81c5cc821994aa8ec1d42b220dd41b27fcc06373bce3958af7421b77d4"
+    },
+    {
+      "path": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.decorators.legacy.d.ts",
+      "sha256": "b3a048b3e9302ef9a34ef4ebb9aecfb28b66abb3bce577206a79fee559c230da"
+    }
+  ]
+}

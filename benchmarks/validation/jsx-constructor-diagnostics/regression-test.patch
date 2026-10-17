@@ -1,0 +1,89 @@
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/jsx_managed_attributes_errors_api_test.go
+@@ -0,0 +1,86 @@
++package checker_test
++
++import (
++	"encoding/json"
++	"os"
++	"path/filepath"
++	"strings"
++	"testing"
++
++	"github.com/microsoft/typescript-go/internal/bundled"
++	"github.com/microsoft/typescript-go/internal/compiler"
++	"github.com/microsoft/typescript-go/internal/core"
++	"github.com/microsoft/typescript-go/internal/tsoptions"
++	"github.com/microsoft/typescript-go/internal/vfs/vfstest"
++)
++
++// Preserved Go and the pinned upstream Go oracle both report TS2589 at each
++// intrinsic use. Canonicalizing artificial JSX constructors must not cause an
++// instantiation-error cache entry to suppress a later use's diagnostic.
++func TestJsxManagedAttributesReportsInstantiationDepthAtEachUse(t *testing.T) {
++	const source = `type Loop<C> = C extends new (props: any) => any ? Loop<C> : never;
++declare namespace JSX {
++  interface Element {}
++  interface IntrinsicElements { item: {} }
++  type LibraryManagedAttributes<C, P> = Loop<C>;
++}
++const first = <item />;
++const second = <item />;
++`
++	const sourcePath = "/recursive-managed-attributes.tsx"
++	files := map[string]string{sourcePath: source}
++	rootFiles := []string{sourcePath}
++	// Match the explicit --noLib reproduction. Load these files into the virtual
++	// FS so the test neither discovers default libraries nor depends on a global
++	// TSC_TS_LIB_DIR override. Their versions follow the repository's pinned libs.
++	for _, name := range []string{"lib.es5.d.ts", "lib.decorators.d.ts", "lib.decorators.legacy.d.ts"} {
++		text, err := os.ReadFile(filepath.Join(bundled.TestingLibPath(), name))
++		if err != nil {
++			t.Fatal(err)
++		}
++		path := "/lib/" + name
++		files[path] = string(text)
++		rootFiles = append(rootFiles, path)
++	}
++	config, err := json.Marshal(map[string]any{
++		"compilerOptions": map[string]any{"noLib": true, "strict": true, "target": "es2022", "jsx": "preserve", "noEmit": true, "pretty": false},
++		"files":           rootFiles,
++	})
++	if err != nil {
++		t.Fatal(err)
++	}
++	files["/tsconfig.json"] = string(config)
++	host := compiler.NewCompilerHost("/", vfstest.FromMap(files, false), "/lib", nil, nil)
++	parsed, configDiagnostics := tsoptions.GetParsedCommandLineOfConfigFile("/tsconfig.json", &core.CompilerOptions{}, nil, host, nil)
++	if len(configDiagnostics) != 0 {
++		t.Fatalf("configuration diagnostics: %v", configDiagnostics)
++	}
++	program := compiler.NewProgram(compiler.ProgramOptions{Config: parsed, Host: host})
++	program.BindSourceFiles()
++	c, done := program.GetTypeChecker(t.Context())
++	defer done()
++	file := program.GetSourceFile(sourcePath)
++	// The exact fixture positions are (7,15) and (8,16), using one-based lines
++	// and columns. Compute their byte offsets without depending on AST layout.
++	first := strings.Index(source, "<item")
++	second := strings.LastIndex(source, "<item")
++	if first < 0 || second <= first {
++		t.Fatal("expected two distinct JSX uses")
++	}
++	for attempt := 0; attempt < 2; attempt++ {
++		ds := c.GetDiagnostics(t.Context(), file)
++		if len(ds) != 2 {
++			t.Fatalf("query %d: expected two per-use TS2589 diagnostics, got %v", attempt, ds)
++		}
++		positions := map[int]bool{}
++		for _, d := range ds {
++			if d.Code() != 2589 || d.File() != file {
++				t.Fatalf("query %d: unexpected diagnostic: %v", attempt, d)
++			}
++			positions[d.Pos()] = true
++		}
++		if !positions[first] || !positions[second] {
++			t.Fatalf("query %d: diagnostic positions %v, want %d and %d", attempt, positions, first, second)
++		}
++	}
++}

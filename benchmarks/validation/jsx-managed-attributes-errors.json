@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Regression only: recursive JSX LibraryManagedAttributes reports two TS2589 diagnostics at distinct intrinsic use sites, including repeated diagnostics queries. Production compiler source unchanged by this task.",
+  "sourceBefore": {
+    "revision": "849d8735e830cbbec9cbf12ae073dccd1cbdbf9b",
+    "dirty": true,
+    "sha256": "f81f5d8b5780dfae25375f25b097ab30dd07e3933c6ba47cd3f600aa9fba59c5",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "sourceAfter": {
+    "revision": "849d8735e830cbbec9cbf12ae073dccd1cbdbf9b",
+    "dirty": true,
+    "sha256": "f81f5d8b5780dfae25375f25b097ab30dd07e3933c6ba47cd3f600aa9fba59c5",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "sourceUnchangedDuringRun": true,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "test",
+    "-json",
+    "./internal/checker",
+    "-run",
+    "^TestJsxManagedAttributesReportsInstantiationDepthAtEachUse$",
+    "-count=1"
+  ],
+  "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+  "environment": {
+    "GOFLAGS": ""
+  },
+  "exitCode": 0,
+  "testRecords": {
+    "pass": 1,
+    "fail": 0,
+    "skip": 0
+  },
+  "log": "/tmp/tsc-jsx-error-regression-evidence/applied-regression.jsonl",
+  "logSha256": "afb43dafbf00845b7a87905101ecdc88649f1ac94abdc7d96f8431f12d3d593f",
+  "stderr": "/tmp/tsc-jsx-error-regression-evidence/applied-regression.stderr",
+  "testFile": "packages/tsc-go/internal/checker/jsx_managed_attributes_errors_api_test.go",
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "scope": "One focused API regression; no broad tests or production build performed.",
+  "testFileSha256": "9db62d8a8fd00af674034a59a86d7d34b76e95d00766a986e9ac13802a929e99"
+}
