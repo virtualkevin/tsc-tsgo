@@ -7,6 +7,7 @@ import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { readCgroupCpuStats, readCgroupV2 } from './cgroup.mjs';
+import { readBuildProvenance } from '../scripts/build-provenance.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // Both native builds support the same physical declaration-library override.
@@ -145,8 +146,13 @@ const report = {
     cgroupV2,
   },
   repositoryCommit: git(root, 'rev-parse', 'HEAD'),
-  repositoryDirty: git(root, 'status', '--porcelain', '--untracked-files=no') !== '',
-  binaries: Object.fromEntries(Object.entries(binaries).map(([k, path]) => [k, { path, sha256: hashFile(path) }])),
+  repositoryDirty: git(root, 'status', '--porcelain', '--untracked-files=all') !== '',
+  binaries: Object.fromEntries(
+    Object.entries(binaries).map(([k, path]) => {
+      const sha256 = hashFile(path);
+      return [k, { path, sha256, buildProvenance: readBuildProvenance(path, sha256) }];
+    }),
+  ),
   runs,
   warmups,
   candidateCheckers,
@@ -300,8 +306,14 @@ try {
     for (const input of expectedInputs)
       if (hashFile(resolve(cwd, input.file)) !== input.sha256)
         throw new Error(`${p.name}: input changed during timing: ${input.file}`);
-    for (const [name, path] of Object.entries(binaries))
+    for (const [name, path] of Object.entries(binaries)) {
       if (hashFile(path) !== report.binaries[name].sha256) throw new Error(`${name}: binary changed during timing`);
+      if (
+        JSON.stringify(readBuildProvenance(path, report.binaries[name].sha256)) !==
+        JSON.stringify(report.binaries[name].buildProvenance)
+      )
+        throw new Error(`${name}: binary build provenance changed during timing`);
+    }
     entry.baseline = summarize(entry.pairs.map((p) => p.baseline));
     entry.candidate = summarize(entry.pairs.map((p) => p.candidate));
     entry.speedup = entry.baseline.medianMs / entry.candidate.medianMs;

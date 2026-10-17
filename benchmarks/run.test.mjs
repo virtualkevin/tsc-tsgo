@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
+import { publishBuildProvenance } from '../scripts/build-provenance.mjs';
 
 const runner = resolve(dirname(fileURLToPath(import.meta.url)), 'run.mjs');
 function fixture(t) {
@@ -94,7 +95,35 @@ test('records paired successful samples and provenance', (t) => {
   assert.equal(r.report.projects[0].preflight.baseline.fileCount, 1);
   assert.match(r.report.projects[0].preflight.baseline.inputs[0].sha256, /^[a-f0-9]{64}$/);
   assert.equal(r.report.candidateCheckers, null);
+  assert.equal(r.report.binaries.baseline.buildProvenance.status, 'absent');
   assert.deepEqual(r.report.projects[0].compilerArgs.baseline, r.report.projects[0].compilerArgs.candidate);
+});
+test('records verified build provenance and rejects a sidecar changed during measurement', (t) => {
+  const f = fixture(t);
+  const source = {
+    revision: 'a'.repeat(40),
+    dirty: true,
+    files: [],
+    sha256: createHash('sha256').update('[]').digest('hex'),
+  };
+  const build = { toolchain: { GOVERSION: 'fixture' }, arguments: ['fixture'] };
+  publishBuildProvenance(f.baseline, source, build);
+  const passed = f.run(f.baseline);
+  assert.equal(passed.status, 0, passed.stderr);
+  assert.equal(passed.report.binaries.candidate.buildProvenance.status, 'verified');
+  assert.equal(passed.report.binaries.candidate.buildProvenance.metadata.source.dirty, true);
+  const candidate = f.compiler(
+    'changing-provenance',
+    `
+    const fs = process.getBuiltinModule('fs');
+    if (process.argv.includes('--listFilesOnly')) console.log(process.cwd()+'/input.ts');
+    else fs.appendFileSync(process.argv[1]+'.provenance.json', ' ');
+  `,
+  );
+  publishBuildProvenance(candidate, source, build);
+  const rejected = f.run(candidate);
+  assert.equal(rejected.status, 1);
+  assert.match(rejected.stderr, /binary build provenance changed during timing/);
 });
 test('candidate checker count is recorded and used only for every candidate invocation', (t) => {
   const f = fixture(t);

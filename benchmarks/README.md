@@ -80,6 +80,25 @@ or installed files are fingerprinted through the compiler's actual input list.
 Keep the same installed dependency tree and library version for both executables.
 Do not run other CPU-intensive builds or benchmarks at the same time.
 
+New Go builds write `<binary>.provenance.json` after a successful build. The
+sidecar records the binary SHA-256, Git revision, source dirty state (including
+untracked and ignored source files), a content-hashed local source manifest,
+toolchain settings, build options, and an explicit PGO profile hash when used.
+Sources and settings are checked before and after building; changes prevent
+publication. Arbitrary `GOFLAGS` values are hashed, since linker flags may contain
+secrets. Local source hashing includes `cmd`, `internal` (including embedded
+libraries), build scripts, and module files. External dependency/toolchain files
+and external inputs selected through arbitrary `GOFLAGS` are not content-hashed;
+this is build metadata with integrity checks, not a hermetic or signed attestation.
+
+The runner checks each optional sidecar against the actual binary and source
+manifest hashes, records `buildProvenance.status: "verified"`, and rejects
+sidecar changes during measurement. Historical binaries without sidecars remain
+usable with explicit `"absent"` provenance; the measurement checkout's commit
+does not identify their build source. When preserving or renaming a binary,
+copy its sidecar alongside it as `<new-binary>.provenance.json`. Do not generate
+sidecars retroactively from the current checkout for previously built binaries.
+
 Cgroup v2 metadata resolves the process membership using `/proc/self/cgroup` and
 `/proc/self/mountinfo`, then records each visible ancestor's CPU quota, memory
 limit, configured/effective CPU set, and CPU counters. Minimum quota ratios
