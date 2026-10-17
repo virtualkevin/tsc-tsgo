@@ -1,0 +1,98 @@
+diff --git a/packages/tsc-go/internal/checker/lazy_properties.go b/packages/tsc-go/internal/checker/lazy_properties.go
+index 1fde9c4..f3c176a 100644
+--- a/packages/tsc-go/internal/checker/lazy_properties.go
++++ b/packages/tsc-go/internal/checker/lazy_properties.go
+@@ -6,6 +6,18 @@ import (
+ 	"github.com/microsoft/typescript-go/internal/ast"
+ )
+ 
++// Keep the common singleton group inline. A separate slice is needed only
++// when multiple non-skipped constituents contribute distinct symbols.
++// The skipped constituent is inspected separately, without extending this slice.
++type reductionProperties struct {
++	first *ast.Symbol
++	rest  []*ast.Symbol
++}
++
++func (p reductionProperties) contains(symbol *ast.Symbol) bool {
++	return p.first == symbol || slices.Contains(p.rest, symbol)
++}
++
+ // Ports tsc-ts 0d434007d9c2180898b6c0e279caf842a6ca403f. Only properties
+ // combined from different constituents, with a literal or private property,
+ // can reduce an intersection to never. Avoid enumerating the most expensive
+@@ -20,7 +32,7 @@ func (c *Checker) hasNeverReducedProperty(t *Type) bool {
+ 		return false
+ 	}
+ 	skipped := c.getCostliestConstituent(t)
+-	byName := make(map[string][]*ast.Symbol)
++	byName := make(map[string]reductionProperties)
+ 	var names []string
+ 	for _, current := range t.Types() {
+ 		if current == skipped {
+@@ -30,9 +42,10 @@ func (c *Checker) hasNeverReducedProperty(t *Type) bool {
+ 			props, seen := byName[prop.Name]
+ 			if !seen {
+ 				names = append(names, prop.Name)
+-			}
+-			if !slices.Contains(props, prop) {
+-				byName[prop.Name] = append(props, prop)
++				byName[prop.Name] = reductionProperties{first: prop}
++			} else if !props.contains(prop) {
++				props.rest = append(props.rest, prop)
++				byName[prop.Name] = props
+ 			}
+ 		}
+ 	}
+@@ -47,13 +60,21 @@ func (c *Checker) hasNeverReducedProperty(t *Type) bool {
+ 	// make property resolution and recursive side effects depend on Go map order.
+ 	for _, name := range names {
+ 		props := byName[name]
++		var skippedProp *ast.Symbol
+ 		if skippedType != nil {
+ 			prop := c.getPropertyOfTypeEx(skippedType, name, true, false)
+-			if prop != nil && !slices.Contains(props, prop) {
+-				props = append(props, prop)
++			if prop != nil && !props.contains(prop) {
++				skippedProp = prop
+ 			}
+ 		}
+-		if len(props) < 2 || !c.someLiteralOrPrivateProperty(props) {
++		if len(props.rest) == 0 && skippedProp == nil {
++			continue
++		}
++		// Preserve the original short-circuit resolution order: first, rest,
++		// then the skipped constituent. Do not resolve singleton property types.
++		if !c.isLiteralOrPrivateProperty(props.first) &&
++			!c.someLiteralOrPrivateProperty(props.rest) &&
++			(skippedProp == nil || !c.isLiteralOrPrivateProperty(skippedProp)) {
+ 			continue
+ 		}
+ 		combined := c.getPropertyOfUnionOrIntersectionType(t, name, true)
+@@ -66,17 +87,21 @@ func (c *Checker) hasNeverReducedProperty(t *Type) bool {
+ 
+ func (c *Checker) someLiteralOrPrivateProperty(props []*ast.Symbol) bool {
+ 	for _, prop := range props {
+-		if getDeclarationModifierFlagsFromSymbol(prop)&ast.ModifierFlagsPrivate != 0 {
+-			return true
+-		}
+-		t := c.getTypeOfSymbol(prop)
+-		if isLiteralType(t) || c.isPatternLiteralType(t) {
++		if c.isLiteralOrPrivateProperty(prop) {
+ 			return true
+ 		}
+ 	}
+ 	return false
+ }
+ 
++func (c *Checker) isLiteralOrPrivateProperty(prop *ast.Symbol) bool {
++	if getDeclarationModifierFlagsFromSymbol(prop)&ast.ModifierFlagsPrivate != 0 {
++		return true
++	}
++	t := c.getTypeOfSymbol(prop)
++	return isLiteralType(t) || c.isPatternLiteralType(t)
++}
++
+ func (p *pendingInstantiatedMembers) unmaterializedMemberCount() (int, bool) {
+ 	if p == nil || p.memberNames != nil {
+ 		return 0, false
