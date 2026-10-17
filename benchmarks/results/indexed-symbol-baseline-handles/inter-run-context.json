@@ -1,0 +1,47 @@
+{
+  "comparisons": [
+    {
+      "workload": "typeorm",
+      "sameInputContentManifest": true,
+      "sameConfig": true,
+      "sameLockfile": true,
+      "calibrationBaselineMedianMs": 2269.639441,
+      "screenBaselineMedianMs": 3615.116186,
+      "screenOverCalibrationBaselineMedian": 1.5928151937680397
+    },
+    {
+      "workload": "trpc",
+      "sameInputContentManifest": true,
+      "sameConfig": true,
+      "sameLockfile": true,
+      "calibrationBaselineMedianMs": 476.175116,
+      "screenBaselineMedianMs": 727.169501,
+      "screenOverCalibrationBaselineMedian": 1.5271052110165286
+    },
+    {
+      "workload": "vscode",
+      "sameInputContentManifest": true,
+      "sameConfig": true,
+      "sameLockfile": true,
+      "calibrationBaselineMedianMs": 33086.901756,
+      "screenBaselineMedianMs": 36008.452677,
+      "screenOverCalibrationBaselineMedian": 1.0882993198500432
+    },
+    {
+      "workload": "sentry",
+      "sameInputContentManifest": true,
+      "sameConfig": true,
+      "sameLockfile": true,
+      "calibrationBaselineMedianMs": 28157.635132,
+      "screenBaselineMedianMs": 28209.068409,
+      "screenOverCalibrationBaselineMedian": 1.0018266192014667
+    }
+  ],
+  "reportedStaticEnvironmentFieldsMatch": true,
+  "minimumVisibleCpuQuotaCpus": 5.6,
+  "limitations": [
+    "Visible quota discovery is incomplete in these reports; unchanged visible metadata does not prove identical host scheduling, frequency, load or hidden limits.",
+    "Absolute timings across separate runs are context only, not the optimization comparison or a causal diagnosis.",
+    "All screen samples are preserved; none is excluded because it differs from calibration."
+  ]
+}

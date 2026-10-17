@@ -1,0 +1,103 @@
+{
+  "name": "baseline-handles",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+      "sha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+      "source": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "revisionLabel": "Saturated baseline A/A",
+      "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-symbol-handles",
+      "sha256": "a92d065b4609b3974984fabc940cb16ebf76e1391ed13d27dc8f2a26faf3b421",
+      "source": "8eef1a9cc14abdb788c257debaf02091e427e6e86dc0941fc29c55d2806b39ab",
+      "sidecarSha256": "86085fc5311feb56795078b64ffba93c4e82ed677ee961120b59f9ca884e3a40",
+      "revisionLabel": "handles"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "c8a7bd150f663db3b46e1262e5e39b0865da004e3aeced71f6ead8a9af96589e",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/ast/symbol.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ast/symbol.go",
+        "sha256": "7c2e4e59c0b72fa384559d77db10be01b7aa5529047ef12a81e544d17c051aa6",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ast/symbol.go",
+        "sha256": "a69d00f2784edc67ec3566fe8b6199dbd1e39fac7f8d69c2e6b6ba289f1c1f0f",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/symbol_allocator.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/ast/symbol_allocator.go",
+        "sha256": "50ad160d99427c61004dce5712dbbd78362d0329bce4b1bb8b2e76089617261d",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/symbol_allocator_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/ast/symbol_allocator_test.go",
+        "sha256": "3f1dfbe32ebb9323abd19373bdd0d2c46c7cf836bf92f7b9a16f83918cd259ff",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/binder/binder.go",
+      "before": {
+        "path": "packages/tsc-go/internal/binder/binder.go",
+        "sha256": "84e8c0e303cd929f84dbe4594700d5af28e290d71a88564264422705c61cd84c",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/binder/binder.go",
+        "sha256": "0c4589236bcf7cf9841b4b542747c85517a0381b401e5a1165e0e0b4d6535afb",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "761427dae0126839bb6803be7fd88bed3dc4924d31b20edee1d72ca0d68981ee",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "f9eafc7fcf1cdd1526441af719532c213369f643c81c830c1a119cbeaa68c205",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5153,
+    "candidate": 5155
+  },
+  "methodology": "Frozen indexed-storage screening: baseline versus handles; nine alternating pairs TypeORM/tRPC and five VSCode/Sentry, one warmup each, default settings, identical GNU time/RSS wrappers and physical libraries. Fresh process per invocation; no competing builds/tests/profiles. All samples retained. Both ratio-of-medians and paired-median summaries plus per-workload RSS are required by the pre-timing comparison policy. Screening alone cannot promote a candidate or establish the original-native 10x goal.",
+  "comparisonPolicySha256": "9d1ccb2493990233542c83f5cda507ca7a3101951f39f55891ed2f613dd0ee43"
+}
