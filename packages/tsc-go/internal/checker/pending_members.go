@@ -10,7 +10,15 @@ import (
 // Freeze an entry order once: unlike JavaScript Map, Go map iteration cannot be
 // used independently to construct positions and then interpret packed states.
 type instantiatedMemberSource struct {
-	entries   []*ast.Symbol
+	entries         []*ast.Symbol
+	positions       map[string]int
+	lastMemberNames *memberNames
+}
+
+// A name layout is shared by instantiations of one source with the same
+// property order. Go maps have no stable iteration order to preserve separately.
+type memberNames struct {
+	names     []string
 	positions map[string]int
 }
 
@@ -33,16 +41,18 @@ const (
 // Only symbol allocation is deferred. The decision to reuse the original symbol
 // is captured before signatures, indexes and bases can resolve more symbol types.
 type pendingInstantiatedMembers struct {
-	checker               *Checker
-	source                *instantiatedMemberSource
-	mapper                *TypeMapper
-	states                []uint32
-	instantiated          ast.SymbolTable
-	bases                 []inheritedPendingMembers
-	hasBases              bool
-	resolving             bool
-	hasOwnMembers         bool
-	hasRequiredOwnMembers bool
+	memberNames            *memberNames
+	materializedProperties []*ast.Symbol
+	checker                *Checker
+	source                 *instantiatedMemberSource
+	mapper                 *TypeMapper
+	states                 []uint32
+	instantiated           ast.SymbolTable
+	bases                  []inheritedPendingMembers
+	hasBases               bool
+	resolving              bool
+	hasOwnMembers          bool
+	hasRequiredOwnMembers  bool
 }
 
 func (p *pendingInstantiatedMembers) state(i int) uint32 {
@@ -77,6 +87,12 @@ func (p *pendingInstantiatedMembers) ownMember(name string) *ast.Symbol {
 }
 
 func (p *pendingInstantiatedMembers) get(name string) *ast.Symbol {
+	if names := p.memberNames; names != nil {
+		if i, ok := names.positions[name]; ok {
+			return p.materializedProperties[i]
+		}
+		return nil
+	}
 	existing := p.ownMember(name)
 	if existing != nil {
 		return existing
@@ -131,6 +147,9 @@ func (p *pendingInstantiatedMembers) ownTable() ast.SymbolTable {
 }
 
 func (p *pendingInstantiatedMembers) materialize(t *StructuredType) {
+	if p.memberNames != nil {
+		return
+	}
 	t.pendingMembers = nil
 	members := p.ownTable()
 	p.instantiated = nil
@@ -152,6 +171,74 @@ func (p *pendingInstantiatedMembers) materialize(t *StructuredType) {
 	} else {
 		t.properties = p.checker.getNamedMembers(members, t.symbol)
 	}
+	// Reentrant base resolution continues to mutate the table. Only completed
+	// tables whose every member is a named property can be recovered from a slice.
+	if !p.resolving {
+		p.keepTableOnDemand(t, members)
+	}
+}
+
+func (p *pendingInstantiatedMembers) keepTableOnDemand(t *StructuredType, members ast.SymbolTable) {
+	properties := t.properties
+	if len(properties) != len(members) {
+		return
+	}
+	for _, symbol := range properties {
+		if members[symbol.Name] != symbol {
+			return
+		}
+	}
+	names := p.source.lastMemberNames
+	if !hasMemberNames(names, properties) {
+		names = &memberNames{names: make([]string, len(properties)), positions: make(map[string]int, len(properties))}
+		for i, symbol := range properties {
+			names.names[i] = symbol.Name
+			names.positions[symbol.Name] = i
+		}
+		p.source.lastMemberNames = names
+	}
+	p.memberNames = names
+	p.materializedProperties = properties
+	// After complete materialization, lookups only need the shared name layout
+	// and this instance's properties. Release the inference/source/base graph.
+	// Keep hasBases and own-member flags for the optional-property shortcuts.
+	p.checker = nil
+	p.source = nil
+	p.mapper = nil
+	p.states = nil
+	p.bases = nil
+	p.instantiated = nil
+	t.members = nil
+	t.pendingMembers = p
+}
+
+func hasMemberNames(names *memberNames, properties []*ast.Symbol) bool {
+	if names == nil || len(names.names) != len(properties) {
+		return false
+	}
+	for i, symbol := range properties {
+		if names.names[i] != symbol.Name {
+			return false
+		}
+	}
+	return true
+}
+
+func (p *pendingInstantiatedMembers) materializeTable(t *StructuredType) {
+	if p.memberNames == nil {
+		p.materialize(t)
+		if t.pendingMembers != p {
+			return
+		}
+	}
+	members := make(ast.SymbolTable, len(p.materializedProperties))
+	for _, symbol := range p.materializedProperties {
+		members[symbol.Name] = symbol
+	}
+	t.members = members
+	t.pendingMembers = nil
+	p.materializedProperties = nil
+	p.memberNames = nil
 }
 
 func (c *Checker) pendingInstantiatedTable(source *InterfaceType, mapper *TypeMapper) *pendingInstantiatedMembers {
@@ -286,7 +373,7 @@ func (c *Checker) resolvePendingObjectTypeMembers(t *Type, p *pendingInstantiate
 		var base inheritedPendingMembers
 		if instantiatedBaseType.flags&TypeFlagsObject != 0 && instantiatedBaseType.objectFlags&ObjectFlagsMapped == 0 {
 			resolved := c.resolveStructuredTypeMembers(instantiatedBaseType)
-			if pending := resolved.pendingMembers; pending != nil && !pending.resolving {
+			if pending := resolved.pendingMembers; pending != nil && pending.memberNames == nil && !pending.resolving {
 				base.typ = resolved
 			}
 		}

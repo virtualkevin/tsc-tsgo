@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T08:38:38.099316+00:00",
+  "scope": "Default native differential parity and actual-Go API/emit/project integration validation after restricting the false conditional inference shortcut.",
+  "nativeSuiteStatus": "passed",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-lazy",
+    "sha256": "961e90a7e1d873477233c022716da08acc6f4b3f02df11c70d5e11360ca59ec3"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-lazy.provenance.json",
+    "sha256": "af8bdb6c4e6ceec2b4c5d0c2891f2d4919638f7d9f7d8b6bf9df8f61addd9304",
+    "builtAt": "2026-10-17T08:36:04.776Z",
+    "sourceSha256": "39b165a093813ad622f9b276a3a9d6c433d0d6a91199ee6c897f3d8e3ed03a59",
+    "buildTimeRevision": "2c63da5ecc859234c24f419888172c2aa0fe1242",
+    "sourceDirty": true,
+    "sourceFileCount": 5140,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": ["build", "-trimpath", "-o", "<binary>", "./cmd/tsgo"],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-lazy-corrected-parity.log",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 86665.114491
+      }
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-lazy-corrected-integration.log",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 31480.750146
+      }
+    }
+  ],
+  "priorCoverage": {
+    "report": "benchmarks/validation/lazy-native-initial.json",
+    "candidateSha256": "07a8d99c0c1c92ab750208564a9414c9465ba601f5e8fc125138c24bb0427a75",
+    "sourceSha256": "0e5c2e6741791925ad28d9c2c934d8eb280d51b0b9a30a3d9e26d4ede6c8453b",
+    "nativeResults": {
+      "parityCasesPerScheduler": 80,
+      "schedulers": ["default", "balanced", "dependency"],
+      "integrationCases": 12,
+      "nonWatchBuildAndLibraryCases": 29
+    },
+    "limitation": "Balanced/dependency parity and nonwatch build/library were not repeated after the focused conditional guard correction; their source hash is the initial candidate, not this corrected binary. Initial overall candidate was rejected for independent upstream conformance failure."
+  },
+  "independentConformance": {
+    "report": "benchmarks/validation/lazy-conformance.json",
+    "initialFailureReport": "benchmarks/validation/lazy-conformance-initial.json",
+    "notes": "Upstream inferTInParentheses.ts exposed a bug shared with original native TS; differential parity alone cannot establish correctness. Corrected full-conformance results are owned by the independent report."
+  },
+  "notes": [
+    "Only the conditional shortcut proof changed between initial and corrected candidates; native rerun scope was agreed as default80 parity+12 integrations.",
+    "No watch implementation changed; expansion watch evidence remains applicable without rerunning it.",
+    "Validation durations are not performance benchmark results."
+  ]
+}

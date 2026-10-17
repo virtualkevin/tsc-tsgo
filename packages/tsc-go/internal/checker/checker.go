@@ -21767,7 +21767,7 @@ func (c *Checker) getReducedType(t *Type) *Type {
 	case t.flags&TypeFlagsIntersection != 0:
 		if t.objectFlags&ObjectFlagsIsNeverIntersectionComputed == 0 {
 			t.objectFlags |= ObjectFlagsIsNeverIntersectionComputed
-			if core.Some(c.getPropertiesOfUnionOrIntersectionType(t), c.isNeverReducedProperty) {
+			if c.hasNeverReducedProperty(t) {
 				t.objectFlags |= ObjectFlagsIsNeverIntersection
 			}
 		}
@@ -24237,6 +24237,47 @@ func (c *Checker) getTypeFromConditionalTypeNode(node *ast.Node) *Type {
 	return links.resolvedType
 }
 
+// A required literal tag written directly in the extends type cannot depend on
+// inference. Two incompatible unit-valued tags therefore prove the false branch
+// without instantiating the rest of the target. A failed relation of permissive
+// instantiations is NOT such a proof: expanding [...infer T] to a wildcard can
+// change tuple shape, including inside callable properties and generic wrappers.
+func (c *Checker) hasInferenceIndependentTagMismatch(root *ConditionalRoot, checkType *Type, extendsType *Type, checkTypeDeferred bool, forConstraint bool) bool {
+	if checkTypeDeferred || forConstraint || checkType.flags&TypeFlagsObject == 0 || extendsType.flags&TypeFlagsObject == 0 ||
+		(checkType.objectFlags|extendsType.objectFlags)&(ObjectFlagsMapped|ObjectFlagsReverseMapped) != 0 {
+		return false
+	}
+	node := ast.SkipTypeParentheses(root.node.ExtendsType)
+	if node.Kind != ast.KindTypeLiteral {
+		return false
+	}
+	for _, member := range node.Members() {
+		if member.Kind != ast.KindPropertySignature || isOptionalDeclaration(member) || member.Symbol() == nil {
+			continue
+		}
+		annotation := member.Type()
+		if annotation == nil || ast.SkipTypeParentheses(annotation).Kind != ast.KindLiteralType {
+			continue
+		}
+		name := member.Symbol().Name
+		target := c.getPropertyOfType(extendsType, name)
+		if target == nil || target.Flags&ast.SymbolFlagsOptional != 0 || target.CheckFlags&ast.CheckFlagsPartial != 0 ||
+			len(target.Declarations) != 1 || target.Declarations[0] != member {
+			continue
+		}
+		source := c.getPropertyOfType(checkType, name)
+		if source == nil || source.Flags&ast.SymbolFlagsOptional != 0 || source.CheckFlags&ast.CheckFlagsPartial != 0 {
+			continue
+		}
+		sourceType, targetType := c.getTypeOfSymbol(source), c.getTypeOfSymbol(target)
+		if sourceType.flags&TypeFlagsUnit != 0 && targetType.flags&TypeFlagsUnit != 0 &&
+			!c.isTypeAssignableTo(sourceType, targetType) {
+			return true
+		}
+	}
+	return false
+}
+
 func (c *Checker) getConditionalType(root *ConditionalRoot, mapper *TypeMapper, forConstraint bool, alias *TypeAlias) *Type {
 	var result *Type
 	var extraTypes []*Type
@@ -24267,7 +24308,7 @@ func (c *Checker) getConditionalType(root *ConditionalRoot, mapper *TypeMapper, 
 		checkTuples := c.isSimpleTupleType(checkTypeNode) && c.isSimpleTupleType(extendsTypeNode) && len(checkTypeNode.Elements()) == len(extendsTypeNode.Elements())
 		checkTypeDeferred := c.isDeferredType(checkType, checkTuples)
 		var combinedMapper *TypeMapper
-		if len(root.inferTypeParameters) != 0 {
+		if len(root.inferTypeParameters) != 0 && !c.hasInferenceIndependentTagMismatch(root, checkType, extendsType, checkTypeDeferred, forConstraint) {
 			// When we're looking at making an inference for an infer type, when we get its constraint, it'll automagically be
 			// instantiated with the context, so it doesn't need the mapper for the inference context - however the constraint
 			// may refer to another _root_, _uncloned_ `infer` type parameter [1], or to something mapped by `mapper` [2].

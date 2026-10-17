@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "suite": "Pinned upstream Go TestSubmodule compiler conformance",
+  "completed_at": "2026-10-17T08:26:35.042002653Z",
+  "exit_code": 1,
+  "source": {
+    "base_commit": "2c63da5ecc859234c24f419888172c2aa0fe1242",
+    "uncommitted_changes": true,
+    "content_sha256": "0e5c2e6741791925ad28d9c2c934d8eb280d51b0b9a30a3d9e26d4ede6c8453b",
+    "digest_file_count": 5140,
+    "digest_algorithm": "sha256(JSON.stringify(sorted local source manifest))",
+    "verified_unchanged_through_validation": true,
+    "scope": "Complete local compiler cmd/internal/scripts trees, go.mod, go.sum, package.json, root build-provenance helper, including untracked/ignored sources and embedded declarations.",
+    "note": "Pending member-name layouts, lazy property predicates and conditional inference guard. No shared-global or TypeData experiment applied."
+  },
+  "fixtures": {
+    "typescript_go_commit": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript_commit": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "go_reference": "upstream/typescript-go/testdata/baselines/reference",
+    "typescript_reference": "upstream/TypeScript/tests/baselines/reference",
+    "auxiliary_declarations": "upstream/TypeScript/tests/lib"
+  },
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "working_directory": "packages/tsc-go",
+  "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/testrunner -run '^TestSubmodule$' -parallel 4 -timeout 30m",
+  "test_binary_flags": "No -trimpath; upstream test runner locates fixtures from source paths.",
+  "source_and_configuration_cases": {
+    "total": 14915,
+    "passed_parent_cases": 12796,
+    "fully_checked_cases": 12788,
+    "partially_checked_cases": 8,
+    "unsupported_cases_skipped": 2118,
+    "failed_cases": 1
+  },
+  "test_and_subtest_records": {
+    "passed": 113967,
+    "skipped": 2126,
+    "failed": 3,
+    "note": "Includes parent aggregate records; not a count of independent assertions. Skips are excluded from passed records."
+  },
+  "failed_cases": ["TestSubmodule/inferTInParentheses.ts"],
+  "failure_detail": "inferTInParentheses.ts/type: T2, T5 and T8 changed from [number] to never for infer tuples nested in function parameters. Error/emit/symbol/union-order checks passed; baseline not accepted.",
+  "unsupported_case_skip_categories": {
+    "alwaysStrict=false is unsupported": 52,
+    "esModuleInterop=false is unsupported": 24,
+    "unsupported baseUrl": 31,
+    "unsupported module kind AMD": 321,
+    "unsupported module kind System": 222,
+    "unsupported module kind UMD": 57,
+    "unsupported module resolution kind 1": 57,
+    "unsupported module resolution kind 2": 23,
+    "unsupported outFile": 87,
+    "unsupported target ES5": 1244
+  },
+  "inherited_skipped_output_checks": [
+    {
+      "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/grammarErrors.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+      "reason": "cls.d.ts is missing statements when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+      "reason": "No files are emitted."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    }
+  ],
+  "reported_package_elapsed_seconds": 142.314,
+  "timing_note": "Validation duration only; production build and other validation ran concurrently. Not a performance benchmark.",
+  "unit_validation": {
+    "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/core ./internal/ast ./internal/bundled ./internal/scanner ./internal/compiler ./internal/checker",
+    "exit_code": 0,
+    "passed_packages": [
+      "internal/core",
+      "internal/scanner",
+      "internal/bundled",
+      "internal/ast",
+      "internal/compiler",
+      "internal/checker"
+    ],
+    "passed_test_records": 1567,
+    "skipped_test_records": 0,
+    "failed_test_records": 0
+  },
+  "coverage_limits": [
+    "Unsupported options are skipped by the pinned upstream runner.",
+    "Eight output subchecks are explicitly skipped by the pinned runner; their parent cases are marked partially checked above.",
+    "Native CLI/API/emit/watch comparisons are tracked separately and are not implied by this conformance result."
+  ],
+  "raw_log_sha256": {
+    "conformance": "c850a3d0f4d1b38f6a0100e75f244b07de05958dcf23b2c58b3b743896384ef0",
+    "units": "dbda826cbb821ae1d293ee4d7dcb8f7156cefab78f32cc7801bfd1197c5c244a"
+  },
+  "failure_native_crosscheck": {
+    "compiler": "preserved original packages/tsc-ts/dist/tsc",
+    "command": "TSC_TS_LIB_DIR=/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs packages/tsc-ts/dist/tsc --ignoreConfig --noEmit --target es2015 /tmp/infer-parentheses-regression.ts",
+    "fixture": "Pinned inferTInParentheses.ts plus const t2: T2 = [1]; const t5: T5 = [1]; const t8: T8 = [1];",
+    "exit_code": 1,
+    "diagnostics": "Three TS2322 errors: number[] is not assignable to never. Original native shares this regression; pinned Go reference expects [number].",
+    "binary_sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+    "preserved_original_path": "packages/tsc-ts/dist/tsc-original",
+    "preserved_original_sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+    "verified_same_bytes_as_preserved_original": true
+  }
+}

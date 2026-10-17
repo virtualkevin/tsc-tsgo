@@ -937,7 +937,7 @@ func (t *StructuredType) ConstructSignatures() []*Signature {
 }
 
 func (t *StructuredType) Properties() []*ast.Symbol {
-	if p := t.pendingMembers; p != nil {
+	if p := t.pendingMembers; p != nil && p.memberNames == nil {
 		p.materialize(t)
 	}
 	return t.properties
@@ -945,7 +945,7 @@ func (t *StructuredType) Properties() []*ast.Symbol {
 
 func (t *StructuredType) Members() ast.SymbolTable {
 	if p := t.pendingMembers; p != nil {
-		p.materialize(t)
+		p.materializeTable(t)
 	}
 	return t.members
 }

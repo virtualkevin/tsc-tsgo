@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "suite": "Pinned upstream Go TestSubmodule compiler conformance",
+  "completed_at": "2026-10-17T08:37:43.464808483Z",
+  "exit_code": 0,
+  "source": {
+    "base_commit": "2c63da5ecc859234c24f419888172c2aa0fe1242",
+    "uncommitted_changes": true,
+    "content_sha256": "39b165a093813ad622f9b276a3a9d6c433d0d6a91199ee6c897f3d8e3ed03a59",
+    "digest_file_count": 5140,
+    "digest_algorithm": "sha256(JSON.stringify(sorted local source manifest))",
+    "verified_unchanged_through_validation": true,
+    "scope": "Complete local compiler cmd/internal/scripts trees, go.mod, go.sum, package.json, root build-provenance helper, including untracked/ignored sources and embedded declarations.",
+    "note": "Pending member-name layouts, lazy property predicates and corrected inference-independent literal-tag guard. No shared-global or TypeData experiment applied."
+  },
+  "fixtures": {
+    "typescript_go_commit": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript_commit": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "go_reference": "upstream/typescript-go/testdata/baselines/reference",
+    "typescript_reference": "upstream/TypeScript/tests/baselines/reference",
+    "auxiliary_declarations": "upstream/TypeScript/tests/lib"
+  },
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "working_directory": "packages/tsc-go",
+  "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/testrunner -run '^TestSubmodule$' -parallel 4 -timeout 30m",
+  "test_binary_flags": "No -trimpath; upstream test runner locates fixtures from source paths.",
+  "source_and_configuration_cases": {
+    "total": 14915,
+    "passed_parent_cases": 12797,
+    "fully_checked_cases": 12789,
+    "partially_checked_cases": 8,
+    "unsupported_cases_skipped": 2118,
+    "failed_cases": 0
+  },
+  "test_and_subtest_records": {
+    "passed": 113970,
+    "skipped": 2126,
+    "failed": 0,
+    "note": "Includes parent aggregate records; not a count of independent assertions. Skips are excluded from passed records."
+  },
+  "failed_cases": [],
+  "unsupported_case_skip_categories": {
+    "alwaysStrict=false is unsupported": 52,
+    "esModuleInterop=false is unsupported": 24,
+    "unsupported baseUrl": 31,
+    "unsupported module kind AMD": 321,
+    "unsupported module kind System": 222,
+    "unsupported module kind UMD": 57,
+    "unsupported module resolution kind 1": 57,
+    "unsupported module resolution kind 2": 23,
+    "unsupported outFile": 87,
+    "unsupported target ES5": 1244
+  },
+  "inherited_skipped_output_checks": [
+    {
+      "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/grammarErrors.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+      "reason": "cls.d.ts is missing statements when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+      "reason": "No files are emitted."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    }
+  ],
+  "reported_package_elapsed_seconds": 102.94,
+  "timing_note": "Validation duration only; production build and other validation ran concurrently. Not a performance benchmark.",
+  "targeted_regression": {
+    "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/testrunner -run '^TestSubmodule$/^inferTInParentheses.ts$' -parallel 4 -timeout 10m",
+    "exit_code": 0,
+    "case": "inferTInParentheses.ts",
+    "all_eight_subchecks_passed": true,
+    "raw_log_sha256": "efb5b21cf659a99a8b5c51e69e4e94ae4d96e00f3b4069639df07a88cda255f4"
+  },
+  "unit_validation": {
+    "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/core ./internal/ast ./internal/bundled ./internal/scanner ./internal/compiler ./internal/checker",
+    "exit_code": 0,
+    "passed_packages": [
+      "internal/core",
+      "internal/bundled",
+      "internal/scanner",
+      "internal/ast",
+      "internal/compiler",
+      "internal/checker"
+    ],
+    "passed_test_records": 1569,
+    "skipped_test_records": 0,
+    "failed_test_records": 0
+  },
+  "coverage_limits": [
+    "Unsupported options are skipped by the pinned upstream runner.",
+    "Eight output subchecks are explicitly skipped by the pinned runner; their parent cases are marked partially checked above.",
+    "Native CLI/API/emit/watch comparisons are tracked separately and are not implied by this conformance result."
+  ],
+  "raw_log_sha256": {
+    "conformance": "080c11f06e80853f195d5bb7d66bc2b306cc90cfd32f47c4af1cd6924068966f",
+    "units": "3f0443d60d4ac83ac9cb2f84518d69449ee031fd65608437b4e80016c900ac8c"
+  },
+  "corrects_initial_validation": "lazy-conformance-initial.json: broad conditional permissive-relation shortcut replaced by an inference-independent literal-tag proof."
+}

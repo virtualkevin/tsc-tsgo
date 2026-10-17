@@ -1032,34 +1032,37 @@ func (c *Checker) getUnmatchedProperties(source *Type, target *Type, requireOpti
 }
 
 func (c *Checker) getUnmatchedPropertiesWorker(source *Type, target *Type, requireOptionalProperties bool, matchDiscriminantProperties bool, propsOut *[]*ast.Symbol) *ast.Symbol {
-	properties := c.getPropertiesOfType(target)
-	for _, targetProp := range properties {
-		// TODO: remove this when we support static private identifier fields and find other solutions to get privateNamesAndStaticFields test to pass
-		if isStaticPrivateIdentifierProperty(targetProp) {
-			continue
-		}
-		if requireOptionalProperties || targetProp.Flags&ast.SymbolFlagsOptional == 0 && targetProp.CheckFlags&ast.CheckFlagsPartial == 0 {
-			sourceProp := c.getPropertyOfType(source, targetProp.Name)
-			if sourceProp == nil {
-				if propsOut == nil {
-					return targetProp
-				}
-				*propsOut = append(*propsOut, targetProp)
-			} else if matchDiscriminantProperties {
-				targetType := c.getTypeOfSymbol(targetProp)
-				if targetType.flags&TypeFlagsUnit != 0 {
-					sourceType := c.getTypeOfSymbol(sourceProp)
-					if !(sourceType.flags&TypeFlagsAny != 0 || c.getRegularTypeOfLiteralType(sourceType) == c.getRegularTypeOfLiteralType(targetType)) {
-						if propsOut == nil {
-							return targetProp
-						}
-						*propsOut = append(*propsOut, targetProp)
-					}
-				}
+	for _, targetProp := range c.getPropertiesOfType(target) {
+		if c.isUnmatchedProperty(source, targetProp, requireOptionalProperties, matchDiscriminantProperties) {
+			if propsOut == nil {
+				return targetProp
 			}
+			*propsOut = append(*propsOut, targetProp)
 		}
 	}
 	return nil
+}
+
+func (c *Checker) isUnmatchedProperty(source *Type, targetProp *ast.Symbol, requireOptionalProperties bool, matchDiscriminantProperties bool) bool {
+	if isStaticPrivateIdentifierProperty(targetProp) {
+		return false
+	}
+	if !requireOptionalProperties && (targetProp.Flags&ast.SymbolFlagsOptional != 0 || targetProp.CheckFlags&ast.CheckFlagsPartial != 0) {
+		return false
+	}
+	sourceProp := c.getPropertyOfType(source, targetProp.Name)
+	if sourceProp == nil {
+		return true
+	}
+	if !matchDiscriminantProperties {
+		return false
+	}
+	targetType := c.getTypeOfSymbol(targetProp)
+	if targetType.flags&TypeFlagsUnit == 0 {
+		return false
+	}
+	sourceType := c.getTypeOfSymbol(sourceProp)
+	return !(sourceType.flags&TypeFlagsAny != 0 || c.getRegularTypeOfLiteralType(sourceType) == c.getRegularTypeOfLiteralType(targetType))
 }
 
 func excludeProperties(properties []*ast.Symbol, excludedProperties collections.Set[string]) []*ast.Symbol {

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Race-detector validation of actual native parallel declaration/JS emit; instrumented build is not a performance measurement.",
+  "source": {
+    "revision": "2c63da5ecc859234c24f419888172c2aa0fe1242",
+    "dirty": true,
+    "sha256": "0e5c2e6741791925ad28d9c2c934d8eb280d51b0b9a30a3d9e26d4ede6c8453b",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+    "afterBuildSha256": "0e5c2e6741791925ad28d9c2c934d8eb280d51b0b9a30a3d9e26d4ede6c8453b",
+    "afterTestsSha256": "0e5c2e6741791925ad28d9c2c934d8eb280d51b0b9a30a3d9e26d4ede6c8453b",
+    "note": "Initial digest captured immediately after build launch after correcting an import path; shared compiler source was frozen and matching post-build/post-test content digests are required. Includes local sources and tests, not external Go module-cache/toolchain contents."
+  },
+  "build": {
+    "toolchain": "/tmp/tsc-toolchains/go/bin/go",
+    "version": "go1.26.9",
+    "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+    "args": ["build", "-race", "-trimpath", "-pgo=off", "-o", "/tmp/tsc-go-lazy-race", "./cmd/tsgo"],
+    "environment": {
+      "CGO_ENABLED": "1",
+      "GOFLAGS": ""
+    },
+    "exitCode": 0,
+    "log": "/tmp/tsc-go-lazy-race-build.log"
+  },
+  "binary": {
+    "path": "/tmp/tsc-go-lazy-race",
+    "sha256": "cdce479b4ff22e9c0f5a34bf8603c7527937a2a8d81d1f7bf99e8f71fb902671"
+  },
+  "test": {
+    "command": [
+      "node",
+      "--test",
+      "--test-isolation=none",
+      "--test-reporter=tap",
+      "packages/tsc-ts/tests/parallel-emit.test.mjs"
+    ],
+    "cwd": "/home/dev/tssss/tsc-tsgo",
+    "environment": {
+      "TSC_TS_BIN": "/tmp/tsc-go-lazy-race-launcher"
+    },
+    "launcherSha256": "dfd9ec065734389abefb929144aa07ce7957d92bf534027c332c1894417b76a9",
+    "nativeEnvironment": {
+      "GORACE": "halt_on_error=1 exitcode=66 log_path=/tmp/tsc-go-lazy-race-run/race"
+    },
+    "environmentNote": "Test replaces subprocess environment with PATH and TSC_TS_LIB_DIR; launcher sets GORACE inside that environment before execing the race binary.",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "counts": {
+      "tests": 3,
+      "suites": 0,
+      "pass": 3,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "nativeInvocationCount": 10,
+    "nativeArguments": [
+      "-p . --pretty false --singleThreaded",
+      "-p . --pretty false --checkers 3",
+      "-p . --pretty false --singleThreaded",
+      "-p . --pretty false --checkers 3",
+      "-p . --pretty false --singleThreaded",
+      "-p . --pretty false --checkers 3",
+      "-p . --pretty false --singleThreaded",
+      "-p . --pretty false --checkers 2",
+      "-p . --pretty false --checkers 3",
+      "-p . --pretty false --checkers 4"
+    ],
+    "log": "/tmp/tsc-go-lazy-race-tests.tap",
+    "logSha256": "c45b673cdfc248a1bf5c49f77fcd4264967b038f7c4e78aefb76925f3de19729",
+    "raceReports": []
+  },
+  "limitations": [
+    "Only these exercised paths and schedules are checked; a passing race detector run is not a proof of all concurrent behavior."
+  ],
+  "status": "passed"
+}

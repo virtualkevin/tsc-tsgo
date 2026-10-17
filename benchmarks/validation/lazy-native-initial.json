@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T08:31:57.590017+00:00",
+  "scope": "Native differential parity, API/emit/projects, non-watch build, and library validation of the initial lazy algorithm candidate.",
+  "nativeSuiteStatus": "passed",
+  "overallCandidateStatus": "rejected: independent upstream conformance regression",
+  "independentConformance": {
+    "report": "benchmarks/validation/lazy-conformance-initial.json",
+    "failure": "inferTInParentheses.ts: T2, T5, T8 change [number] to never under false conditional inference shortcut. Baseline not accepted.",
+    "interpretation": "Passing native differential tests does not establish correctness when original native TS shares the same bug. Candidate must be corrected and revalidated before performance use."
+  },
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-lazy",
+    "sha256": "07a8d99c0c1c92ab750208564a9414c9465ba601f5e8fc125138c24bb0427a75",
+    "preservedPath": "packages/tsc-go/dist/tsc-go-lazy-initial"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-lazy.provenance.json",
+    "sha256": "bbc411bdf45d7f7ffc174e459d9c63216900120332f459ef8b8b7b3ca9ca847d",
+    "builtAt": "2026-10-17T08:24:03.755Z",
+    "sourceSha256": "0e5c2e6741791925ad28d9c2c934d8eb280d51b0b9a30a3d9e26d4ede6c8453b",
+    "buildTimeRevision": "2c63da5ecc859234c24f419888172c2aa0fe1242",
+    "sourceDirty": true,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": ["build", "-trimpath", "-o", "<binary>", "./cmd/tsgo"],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    },
+    "preservedPath": "packages/tsc-go/dist/tsc-go-lazy-initial.provenance.json"
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy"
+  },
+  "runs": [
+    {
+      "name": "parity-default",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "environmentOverrides": {},
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-lazy-parity-default.log",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 111478.362975
+      }
+    },
+    {
+      "name": "parity-balanced",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "environmentOverrides": {
+        "TSC_GO_SCHEDULER": "balanced"
+      },
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-lazy-parity-balanced.log",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 56651.916935
+      }
+    },
+    {
+      "name": "parity-dependency",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "environmentOverrides": {
+        "TSC_GO_SCHEDULER": "dependency"
+      },
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-lazy-parity-dependency.log",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 56660.307139
+      }
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "environmentOverrides": {},
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-lazy-integration.log",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 37192.857046
+      }
+    },
+    {
+      "name": "build-library",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "--test-skip-pattern=watch",
+        "tests/build.test.mjs",
+        "tests/library-checking.test.mjs"
+      ],
+      "environmentOverrides": {},
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-lazy-build-library.log",
+      "counts": {
+        "tests": 29,
+        "suites": 0,
+        "pass": 29,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 129163.082095
+      }
+    }
+  ],
+  "notes": [
+    "No watch code changed; the11-case watch suite and6 repeated recreation tests passed for expansion and were not rerun.",
+    "Integration count12 excludes checker.test.mjs, which ignores TSC_TS_BIN and executes the original JS driver.",
+    "Nonwatch selection --test-skip-pattern=watch excludes watch scenarios before execution; Node reports29 selected tests and0 skipped.",
+    "Independent full Go conformance is recorded separately and found a real semantic regression, despite these native suites passing."
+  ]
+}

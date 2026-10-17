@@ -1171,8 +1171,8 @@ func (c *Checker) typesDefinitelyUnrelated(source *Type, target *Type) bool {
 	if isTupleType(source) && isTupleType(target) {
 		return tupleTypesDefinitelyUnrelated(source, target)
 	}
-	return c.getUnmatchedProperty(source, target, false /*requireOptionalProperties*/, true /*matchDiscriminantProperties*/) != nil &&
-		c.getUnmatchedProperty(target, source, false /*requireOptionalProperties*/, false /*matchDiscriminantProperties*/) != nil
+	return c.hasUnmatchedProperty(source, target, true /*matchDiscriminantProperties*/) &&
+		c.hasUnmatchedProperty(target, source, false /*matchDiscriminantProperties*/)
 }
 
 func tupleTypesDefinitelyUnrelated(source *Type, target *Type) bool {
