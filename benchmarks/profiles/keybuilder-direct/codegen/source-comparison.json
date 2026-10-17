@@ -1,0 +1,43 @@
+{
+  "baselineSource": {
+    "revision": "f1551e0dd417880cd007ae18353fa9c2d386f63d",
+    "dirty": true,
+    "sha256": "4937cfc277515b8b566162d078dd493524d406de94ced593a78f38bbd6c7aa5d"
+  },
+  "candidateSource": {
+    "revision": "bbf59a0cf7d7fe78cf3ab0bb35b1ddb650bc8bea",
+    "dirty": true,
+    "sha256": "1511f3d0d5c1af4b3f61deadb3837c2ff6dcf0b9a0c4311804e448409ff8bb36"
+  },
+  "buildSettingsEqual": true,
+  "differences": [
+    {
+      "path": "packages/tsc-go/internal/checker/keybuilder.go",
+      "baseline": {
+        "path": "packages/tsc-go/internal/checker/keybuilder.go",
+        "sha256": "3b166fd3070a40aea1590370e3bc8f3ffc4f93c8964d74a052f9fa8c19f2fcaf",
+        "executable": false
+      },
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/keybuilder.go",
+        "sha256": "67a96b9387677504cb07d0e3baac8f410e80b344555fd0638b03b1eb2d343725",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/keybuilder_direct_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/keybuilder_direct_test.go",
+        "sha256": "05d375ffe42c718c1fe0f2b5c10c8939f3dab8dc32fa06eff46b760a072a3e30",
+        "executable": false
+      }
+    }
+  ],
+  "productionDifferences": [
+    "packages/tsc-go/internal/checker/keybuilder.go"
+  ],
+  "testDifferences": [
+    "packages/tsc-go/internal/checker/keybuilder_direct_test.go"
+  ]
+}

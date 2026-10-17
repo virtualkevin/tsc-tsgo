@@ -50,19 +50,43 @@ func (b *keyBuilder) writeByte(c byte) {
 	if b.overflow == nil && b.n < len(b.buf) {
 		b.buf[b.n] = c
 		b.n++
-		return
+	} else {
+		b.writeByteOverflow(c)
 	}
-	b.writeBytes([]byte{c})
 }
 
 func (b *keyBuilder) writeUint32(value uint32) {
-	var bytes [4]byte
-	binary.LittleEndian.PutUint32(bytes[:], value)
-	b.writeBytes(bytes[:])
+	if b.overflow == nil && b.n <= len(b.buf)-4 {
+		binary.LittleEndian.PutUint32(b.buf[b.n:], value)
+		b.n += 4
+	} else {
+		b.writeUint32Overflow(value)
+	}
 }
 
 func (b *keyBuilder) writeUint64(value uint64) {
+	if b.overflow == nil && b.n <= len(b.buf)-8 {
+		binary.LittleEndian.PutUint64(b.buf[b.n:], value)
+		b.n += 8
+	} else {
+		b.writeUint64Overflow(value)
+	}
+}
+
+// Separate the temporary payload and streaming calls from the short writers.
+// These paths run only after the complete integer no longer fits inline.
+func (b *keyBuilder) writeByteOverflow(value byte) {
+	_, _ = b.stream().Write([]byte{value})
+}
+
+func (b *keyBuilder) writeUint32Overflow(value uint32) {
+	var bytes [4]byte
+	binary.LittleEndian.PutUint32(bytes[:], value)
+	_, _ = b.stream().Write(bytes[:])
+}
+
+func (b *keyBuilder) writeUint64Overflow(value uint64) {
 	var bytes [8]byte
 	binary.LittleEndian.PutUint64(bytes[:], value)
-	b.writeBytes(bytes[:])
+	_, _ = b.stream().Write(bytes[:])
 }

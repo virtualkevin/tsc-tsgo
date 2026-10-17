@@ -1,0 +1,9 @@
+# Direct integer cache-key writes
+
+The refinement writes short byte/uint32/uint64 fields directly into the existing128-byte buffer, with separate complete-value overflow helpers. The serialized bytes, full128-bit hash, lazy IDs and private overflow hasher lifetime remain unchanged. It builds on the experimental short-key candidate; the preceding four-workload result was mixed, not a universal speedup.
+
+Design and independent source/native-controller reviews are archived here. Preparation statements in older files describe their state before execution. `codegen/AUDIT.md` records completed generated-code and exact-source allocation inspection against the preceding buffered binary. Writer functions remain out of line; short integer stores remove generic writeBytes/memmove calls. This is not an inlining or runtime speed claim. The isolated51-case allocation screen remains zero allocations for tested lengths≤128 and one for longer tested lengths, not a whole-compiler allocation guarantee.
+
+Preserved binary `dist/tsc-go-keybuilder-direct` SHA25661313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10, source1511f3d0d5c1af4b3f61deadb3837c2ff6dcf0b9a0c4311804e448409ff8bb36 (5153files, bbf59a0dirty); sidecar584e002db3c7b12f2bc3db344c0430481ea2ab97b1d992c5d83e798fe60352aa. Normal Go1.26.9 build, no PGO/extra flags.
+
+Native80/80 and API/emit/project12/12 passed without skips; source, candidate, sidecar and comparators remained unchanged. Report: ../../validation/keybuilder-direct-native.json. Focused normal/race/checkptr each passed ten top-level tests and646 total records. Root tests passed2,329 records across ten packages. Full pinned conformance passed12,789 fully checked cases plus eight partially checked cases, with2,118 unsupported cases skipped and no failures. All five processes exited0 with sources/HEAD/pins unchanged. Report: ../../validation/keybuilder-direct-conformance.json. No timing claim follows from any validation duration.

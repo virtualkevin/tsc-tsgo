@@ -1,0 +1,157 @@
+=== RUN   TestAllocationScreen
+=== RUN   TestAllocationScreen/string/0
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytes/0
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytewise/0
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/legacy/0
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/0
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/5
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytes/5
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytewise/5
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/legacy/5
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/5
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/13
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytes/13
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytewise/13
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/legacy/13
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/13
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/64
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytes/64
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytewise/64
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/legacy/64
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/64
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/127
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytes/127
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytewise/127
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/legacy/127
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/127
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/128
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytes/128
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/bytewise/128
+    allocation_test.go:31: allocations_per_call=0
+=== RUN   TestAllocationScreen/legacy/128
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/128
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/129
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/bytes/129
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/bytewise/129
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/legacy/129
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/129
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/256
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/bytes/256
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/bytewise/256
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/legacy/256
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/256
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/1089
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/bytes/1089
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/bytewise/1089
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/legacy/1089
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/1089
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/string/4096
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/bytes/4096
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/bytewise/4096
+    allocation_test.go:31: allocations_per_call=1
+=== RUN   TestAllocationScreen/legacy/4096
+    allocation_test.go:37: allocations_per_call=0
+=== RUN   TestAllocationScreen/hash-only/4096
+    allocation_test.go:42: allocations_per_call=0
+=== RUN   TestAllocationScreen/indexed-key-map-hit
+    allocation_test.go:50: allocations_per_call=0
+--- PASS: TestAllocationScreen (0.08s)
+    --- PASS: TestAllocationScreen/string/0 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/0 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/0 (0.00s)
+    --- PASS: TestAllocationScreen/legacy/0 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/0 (0.00s)
+    --- PASS: TestAllocationScreen/string/5 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/5 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/5 (0.00s)
+    --- PASS: TestAllocationScreen/legacy/5 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/5 (0.00s)
+    --- PASS: TestAllocationScreen/string/13 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/13 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/13 (0.00s)
+    --- PASS: TestAllocationScreen/legacy/13 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/13 (0.00s)
+    --- PASS: TestAllocationScreen/string/64 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/64 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/64 (0.00s)
+    --- PASS: TestAllocationScreen/legacy/64 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/64 (0.00s)
+    --- PASS: TestAllocationScreen/string/127 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/127 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/127 (0.00s)
+    --- PASS: TestAllocationScreen/legacy/127 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/127 (0.00s)
+    --- PASS: TestAllocationScreen/string/128 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/128 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/128 (0.00s)
+    --- PASS: TestAllocationScreen/legacy/128 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/128 (0.00s)
+    --- PASS: TestAllocationScreen/string/129 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/129 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/129 (0.00s)
+    --- PASS: TestAllocationScreen/legacy/129 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/129 (0.00s)
+    --- PASS: TestAllocationScreen/string/256 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/256 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/256 (0.00s)
+    --- PASS: TestAllocationScreen/legacy/256 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/256 (0.00s)
+    --- PASS: TestAllocationScreen/string/1089 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/1089 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/1089 (0.01s)
+    --- PASS: TestAllocationScreen/legacy/1089 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/1089 (0.00s)
+    --- PASS: TestAllocationScreen/string/4096 (0.00s)
+    --- PASS: TestAllocationScreen/bytes/4096 (0.00s)
+    --- PASS: TestAllocationScreen/bytewise/4096 (0.05s)
+    --- PASS: TestAllocationScreen/legacy/4096 (0.00s)
+    --- PASS: TestAllocationScreen/hash-only/4096 (0.00s)
+    --- PASS: TestAllocationScreen/indexed-key-map-hit (0.00s)
+PASS
+ok  	example.com/tsc-keybuilder-screen	0.087s

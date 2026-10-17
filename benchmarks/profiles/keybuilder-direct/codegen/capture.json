@@ -1,0 +1,159 @@
+{
+  "scope": "Bounded static production-code inspection; no compiler rebuild or performance measurement",
+  "commands": [
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|getIndexedAccessKey|getTypeListKey|getConditionalTypeKey|\\(\\*keyBuilder\\)\\.(hash|stream|writeBytes|writeString|writeByte|writeUint32|writeUint64|writeByteOverflow|writeUint32Overflow|writeUint64Overflow))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*Checker\\)\\.instantiateTypeWithAlias$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|getIndexedAccessKey|getTypeListKey|getConditionalTypeKey|\\(\\*keyBuilder\\)\\.(hash|stream|writeBytes|writeString|writeByte|writeUint32|writeUint64|writeByteOverflow|writeUint32Overflow|writeUint64Overflow))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*Checker\\)\\.instantiateTypeWithAlias$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct"
+    ]
+  ],
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder",
+      "sha256": "9d87e9195e65a2113fec862d702faa313b51749c171cf92ddc6756eda0719b85",
+      "sidecarSha256": "a69df92a3a587b5f36e7823159c73cc57175b37176d7a91c5e5fadd2fa982e0c",
+      "source": {
+        "revision": "f1551e0dd417880cd007ae18353fa9c2d386f63d",
+        "dirty": true,
+        "sha256": "4937cfc277515b8b566162d078dd493524d406de94ced593a78f38bbd6c7aa5d"
+      },
+      "sourceFileCount": 5152,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "9d87e9195e65a2113fec862d702faa313b51749c171cf92ddc6756eda0719b85"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct",
+      "sha256": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10",
+      "sidecarSha256": "584e002db3c7b12f2bc3db344c0430481ea2ab97b1d992c5d83e798fe60352aa",
+      "source": {
+        "revision": "bbf59a0cf7d7fe78cf3ab0bb35b1ddb650bc8bea",
+        "dirty": true,
+        "sha256": "1511f3d0d5c1af4b3f61deadb3837c2ff6dcf0b9a0c4311804e448409ff8bb36"
+      },
+      "sourceFileCount": 5153,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10"
+    }
+  },
+  "artifacts": {
+    "baseline-helpers.asm": {
+      "bytes": 34155,
+      "sha256": "06643da7ff60b8e274873752e9af6cc7566bd4aca9d89843a7242f61758b5e4d"
+    },
+    "baseline-caller.asm": {
+      "bytes": 6310,
+      "sha256": "eed5a7f8fa6907447091b098369be3b7692f69a14e6c79184d64aedf0eed5387"
+    },
+    "candidate-helpers.asm": {
+      "bytes": 37231,
+      "sha256": "c83dcd6e216d3f6a719b3b9e394e2ff50c5f47880654debd1430c66520b36930"
+    },
+    "candidate-caller.asm": {
+      "bytes": 5984,
+      "sha256": "26bd80e27f3282025684652979377d59a5871d7b6e95c2cae0fa8c8b9d2f0b1a"
+    },
+    "baseline-symbols.txt": {
+      "bytes": 963,
+      "sha256": "d7611eafd10d1d478252b5543c27c3047fbca5a274603e13b336df47adb051b3"
+    },
+    "candidate-symbols.txt": {
+      "bytes": 1386,
+      "sha256": "eb88c8a7e15acfbf8bc4cdd80f79be0901f3ddb9e753928199198a8fb3818d26"
+    }
+  }
+}

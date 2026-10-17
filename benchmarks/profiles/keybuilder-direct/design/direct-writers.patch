@@ -1,0 +1,101 @@
+diff --git a/packages/tsc-go/internal/checker/keybuilder.go b/packages/tsc-go/internal/checker/keybuilder.go
+--- a/packages/tsc-go/internal/checker/keybuilder.go
++++ b/packages/tsc-go/internal/checker/keybuilder.go
+@@ -50,19 +50,43 @@
+ 	if b.overflow == nil && b.n < len(b.buf) {
+ 		b.buf[b.n] = c
+ 		b.n++
+-		return
++	} else {
++		b.writeByteOverflow(c)
+ 	}
+-	b.writeBytes([]byte{c})
+ }
+ 
+ func (b *keyBuilder) writeUint32(value uint32) {
+-	var bytes [4]byte
+-	binary.LittleEndian.PutUint32(bytes[:], value)
+-	b.writeBytes(bytes[:])
++	if b.overflow == nil && b.n <= len(b.buf)-4 {
++		binary.LittleEndian.PutUint32(b.buf[b.n:], value)
++		b.n += 4
++	} else {
++		b.writeUint32Overflow(value)
++	}
+ }
+ 
+ func (b *keyBuilder) writeUint64(value uint64) {
++	if b.overflow == nil && b.n <= len(b.buf)-8 {
++		binary.LittleEndian.PutUint64(b.buf[b.n:], value)
++		b.n += 8
++	} else {
++		b.writeUint64Overflow(value)
++	}
++}
++
++// Separate the temporary payload and streaming calls from the short writers.
++// These paths run only after the complete integer no longer fits inline.
++func (b *keyBuilder) writeByteOverflow(value byte) {
++	_, _ = b.stream().Write([]byte{value})
++}
++
++func (b *keyBuilder) writeUint32Overflow(value uint32) {
++	var bytes [4]byte
++	binary.LittleEndian.PutUint32(bytes[:], value)
++	_, _ = b.stream().Write(bytes[:])
++}
++
++func (b *keyBuilder) writeUint64Overflow(value uint64) {
+ 	var bytes [8]byte
+ 	binary.LittleEndian.PutUint64(bytes[:], value)
+-	b.writeBytes(bytes[:])
++	_, _ = b.stream().Write(bytes[:])
+ }
+diff --git a/packages/tsc-go/internal/checker/keybuilder_direct_test.go b/packages/tsc-go/internal/checker/keybuilder_direct_test.go
+new file mode 100644
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/keybuilder_direct_test.go
+@@ -0,0 +1,43 @@
++package checker
++
++import (
++	"encoding/binary"
++	"fmt"
++	"strings"
++	"testing"
++)
++
++// Existing mixed-write tests spill first through uint32. Exercise each new
++// direct writer at every prefix alignment, including uint64's first overflow.
++func TestBufferedDirectIntegerBoundaryTransitions(t *testing.T) {
++	for _, width := range []int{1, 4, 8} {
++		for prefix := 0; prefix <= 129; prefix++ {
++			t.Run(fmt.Sprintf("width%d/prefix%d", width, prefix), func(t *testing.T) {
++				data := strings.Repeat("p", prefix)
++				var b keyBuilder
++				b.writeString(data)
++				assertBufferedKeyBytes(t, &b, []byte(data))
++				expected := []byte(data)
++				switch width {
++				case 1:
++					b.writeByte(0xe5)
++					expected = append(expected, 0xe5)
++				case 4:
++					b.writeUint32(0x89abcdef)
++					expected = binary.LittleEndian.AppendUint32(expected, 0x89abcdef)
++				case 8:
++					b.writeUint64(0x0123456789abcdef)
++					expected = binary.LittleEndian.AppendUint64(expected, 0x0123456789abcdef)
++				}
++				assertBufferedKeyBytes(t, &b, expected)
++				if (b.overflow != nil) != (prefix+width > 128) {
++					t.Fatal("incorrect direct-writer overflow boundary")
++				}
++				// Exercise continuation after exact fit and after first/existing overflow.
++				b.writeUint64(0xfedcba9876543210)
++				expected = binary.LittleEndian.AppendUint64(expected, 0xfedcba9876543210)
++				assertBufferedKeyBytes(t, &b, expected)
++			})
++		}
++	}
++}

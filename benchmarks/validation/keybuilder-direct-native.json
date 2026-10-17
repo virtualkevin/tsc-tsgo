@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "node": {
+    "path": "/home/dev/.nvm/versions/node/v24.15.0/bin/node",
+    "version": "v24.15.0"
+  },
+  "recordedAt": "2026-10-17T13:43:10.015Z",
+  "scope": "Default native differential parity and actual-Go API/emit/project integrations after writing short integer cache-key fields directly into the inline buffer before the unchanged full 128-bit hash.",
+  "nativeSuiteStatus": "passed",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-keybuilder-direct",
+    "sha256": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-keybuilder-direct.provenance.json",
+    "sha256": "584e002db3c7b12f2bc3db344c0430481ea2ab97b1d992c5d83e798fe60352aa",
+    "builtAt": "2026-10-17T13:40:06.847Z",
+    "sourceSha256": "1511f3d0d5c1af4b3f61deadb3837c2ff6dcf0b9a0c4311804e448409ff8bb36",
+    "buildTimeRevision": "bbf59a0cf7d7fe78cf3ab0bb35b1ddb650bc8bea",
+    "sourceDirty": true,
+    "sourceFileCount": 5153,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": [
+        "build",
+        "-trimpath",
+        "-o",
+        "<binary>",
+        "./cmd/tsgo"
+      ],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "SHOW_FAILURES",
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE",
+    "PROJECTS_FILTER"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct",
+    "TSC_GO_BASELINE": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": [
+        "/home/dev/.nvm/versions/node/v24.15.0/bin/node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "log": "/tmp/keybuilder-direct-parity.log",
+      "logSha256": "3b11e21c7e021b08cf422f1e081da91774d8c4c3b5a21c6394cbdbf76ebcd5b6",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 52836.904153
+      },
+      "expectedTests": 80,
+      "passed": true
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "/home/dev/.nvm/versions/node/v24.15.0/bin/node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "log": "/tmp/keybuilder-direct-integration.log",
+      "logSha256": "78bbffa374760adf5f4a90206dd53e1a53019b6849137b50f7289b73bae7777f",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 30580.477348
+      },
+      "expectedTests": 12,
+      "passed": true
+    }
+  ],
+  "verifiedSourcesBinariesAndSidecarUnchanged": true,
+  "notes": [
+    "The candidate retains the 128-byte inline buffer and complete xxh3 hash, but writes short byte/uint32/uint64 fields directly with separate overflow helpers. Longer keys still spill into a private streaming hasher. Original relation maps remain unchanged; numeric relation keys and the CommonJS prepass guard are reverted. Focused normal/race/checkptr evidence is separate; these CLI suites do not imply a race-instrumented CLI build.",
+    "These suites compare diagnostics, API results, emitted outputs and project behavior; correctness is not inferred from compiler exit status alone.",
+    "Go units and full pinned upstream conformance are recorded separately for this source digest.",
+    "Go source immutability does not independently hash external module contents or every JavaScript harness/fixture file. SHOW_FAILURES is unset to prevent masking API differential failures; exactly one expected scriptc platform package is required.",
+    "Validation durations are not performance measurements."
+  ]
+}

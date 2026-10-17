@@ -1,0 +1,161 @@
+{
+  "scope": "Production assembly and isolated primitive allocation evidence only; no compiler speed or total allocation improvement claim",
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder",
+      "sha256": "9d87e9195e65a2113fec862d702faa313b51749c171cf92ddc6756eda0719b85",
+      "sidecarSha256": "a69df92a3a587b5f36e7823159c73cc57175b37176d7a91c5e5fadd2fa982e0c",
+      "source": {
+        "revision": "f1551e0dd417880cd007ae18353fa9c2d386f63d",
+        "dirty": true,
+        "sha256": "4937cfc277515b8b566162d078dd493524d406de94ced593a78f38bbd6c7aa5d"
+      },
+      "sourceFileCount": 5152,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "9d87e9195e65a2113fec862d702faa313b51749c171cf92ddc6756eda0719b85"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct",
+      "sha256": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10",
+      "sidecarSha256": "584e002db3c7b12f2bc3db344c0430481ea2ab97b1d992c5d83e798fe60352aa",
+      "source": {
+        "revision": "bbf59a0cf7d7fe78cf3ab0bb35b1ddb650bc8bea",
+        "dirty": true,
+        "sha256": "1511f3d0d5c1af4b3f61deadb3837c2ff6dcf0b9a0c4311804e448409ff8bb36"
+      },
+      "sourceFileCount": 5153,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10"
+    }
+  },
+  "sourceComparison": "source-comparison.json",
+  "framesExcludingSavedBP": {
+    "baseline": {
+      "getTypeListKey": 176,
+      "getIndexedAccessKey": 192,
+      "getConditionalTypeKey": 176,
+      "getRelationKey": 208,
+      "(*keyBuilder).hash": 16,
+      "(*keyBuilder).stream": 24,
+      "(*keyBuilder).writeBytes": 32,
+      "(*keyBuilder).writeString": 32,
+      "(*keyBuilder).writeByte": 40,
+      "(*Checker).instantiateTypeWithAlias": 648
+    },
+    "candidate": {
+      "getTypeListKey": 176,
+      "getIndexedAccessKey": 160,
+      "getConditionalTypeKey": 176,
+      "getRelationKey": 200,
+      "(*keyBuilder).hash": 16,
+      "(*keyBuilder).stream": 24,
+      "(*keyBuilder).writeString": 32,
+      "(*keyBuilder).writeByte": 16,
+      "(*keyBuilder).writeUint32": 16,
+      "(*keyBuilder).writeUint64": 16,
+      "(*keyBuilder).writeByteOverflow": 32,
+      "(*keyBuilder).writeUint32Overflow": 32,
+      "(*keyBuilder).writeUint64Overflow": 32,
+      "(*Checker).instantiateTypeWithAlias": 640
+    }
+  },
+  "symbolCodeBytes": {
+    "baseline": {
+      "(*Checker).instantiateTypeWithAlias": 2309,
+      "(*keyBuilder).hash": 98,
+      "(*keyBuilder).stream": 165,
+      "(*keyBuilder).writeByte": 133,
+      "(*keyBuilder).writeBytes": 234,
+      "(*keyBuilder).writeString": 218,
+      "getConditionalTypeKey": 244,
+      "getIndexedAccessKey": 296,
+      "getRelationKey": 429,
+      "getTypeListKey": 165
+    },
+    "candidate": {
+      "(*Checker).instantiateTypeWithAlias": 2263,
+      "(*keyBuilder).hash": 98,
+      "(*keyBuilder).stream": 165,
+      "(*keyBuilder).writeByte": 114,
+      "(*keyBuilder).writeByteOverflow": 81,
+      "(*keyBuilder).writeString": 218,
+      "(*keyBuilder).writeUint32": 113,
+      "(*keyBuilder).writeUint32Overflow": 71,
+      "(*keyBuilder).writeUint64": 115,
+      "(*keyBuilder).writeUint64Overflow": 74,
+      "getConditionalTypeKey": 244,
+      "getIndexedAccessKey": 237,
+      "getRelationKey": 367,
+      "getTypeListKey": 165
+    }
+  },
+  "findings": [
+    "All three dedicated primitive writer methods remain out of line in the production binary. Tiny-package -m=2 reports cost 81 against budget 80; this is not a claim that a one-node edit will make them inline.",
+    "Go inl.go line 814 disables early budget termination under -m=2; the captured diagnostic is the completed accounting for this screen.",
+    "The integer writer short branches use direct MOVL/MOVQ stores instead of calling generic writeBytes and runtime.memmove. Caller-to-writer calls remain.",
+    "writeBytes has no emitted production symbol; it remains reachable in the isolated test screen. writeString still uses memmove.",
+    "Both versions retain the 144-byte builder and same streaming overflow strategy. Short screen cases allocate zero; overflow cases allocate once. This does not establish that every compiler cache-hit path allocates zero."
+  ],
+  "allocationScreen": "allocation-summary.json",
+  "compilerBudgetSource": {
+    "path": "/tmp/tsc-toolchains/go/src/cmd/compile/internal/inline/inl.go",
+    "sha256": "bd0dd9143a3132bf7cfbd0bb12777fddec614310306af9f7cddb8d9cf69fe5dc",
+    "excerpt": "compiler-budget-excerpt.txt"
+  },
+  "allProcessesTerminal": true,
+  "compilerRebuiltByInspection": false
+}
