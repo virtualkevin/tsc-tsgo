@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync,copyFileSync,chmodSync,statSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {captureGoSources,readBuildProvenance,hashFile} from '/home/dev/tssss/tsc-tsgo/scripts/build-provenance.mjs';
+const root='/home/dev/tssss/tsc-tsgo',dir=root+'/benchmarks/profiles/node-pointer-candidate';
+const config=JSON.parse(readFileSync(dir+'/screen.json')),proposal=JSON.parse(readFileSync(root+'/benchmarks/results/node-pointer-screen/recording/proposal.json'));
+assert.equal(proposal.status,'passed');assert.equal(proposal.qualifiesForConfirmation,true);assert.ok(Object.values(proposal.gates).every(Boolean));assert.equal(hashFile(dir+'/COMPARISON_POLICY.md'),proposal.comparisonPolicySha256);
+const before=captureGoSources(root+'/packages/tsc-go');assert.equal(before.sha256,config.expected.baseline.source);
+const b=config.expected.candidate;assert.equal(hashFile(b.path),b.sha256);const provenance=readBuildProvenance(b.path,b.sha256);assert.equal(provenance.status,'verified');assert.equal(provenance.sidecarSha256,b.sidecarSha256);
+const result=spawnSync('git',['apply',dir+'/candidate.patch'],{cwd:root,encoding:'utf8'});assert.equal(result.status,0,result.stderr);
+const after=captureGoSources(root+'/packages/tsc-go');assert.equal(after.sha256,b.source);assert.deepEqual(after.files,provenance.metadata.source.files);
+const target=root+'/packages/tsc-go/dist/tsc-go';copyFileSync(b.path,target);chmodSync(target,statSync(b.path).mode&0o777);copyFileSync(b.path+'.provenance.json',target+'.provenance.json');assert.equal(hashFile(target),b.sha256);
+writeFileSync('/tmp/tsc-node-pointer-candidate/activation.json',JSON.stringify({status:'activated-for-validation',head:after.revision,beforeSource:before.sha256,afterSource:after.sha256,binarySha256:b.sha256,patchSha256:hashFile(dir+'/candidate.patch'),controllerSha256:hashFile('/tmp/tsc-node-pointer-candidate/activate.mjs')},null,2)+'\n',{flag:'wx'});console.log(after.sha256);

@@ -1,0 +1,5 @@
+# Independent three-node-table confirmations
+
+Prepared after the screening gates passed. Forward and reverse raw executable roles both normalize to unchanged/optimized. Each suite has19small-workload and11large-workload pairs, one warmup, matched GNU-time/RSS wrappers, and a90-minute overall bound with180-second invocation timeout. Both suites must independently pass the frozen policy in ../node-pointer-candidate/COMPARISON_POLICY.md. No pooled rescue or extra opportunistic samples.
+
+Full conformance and native/API validation passed; no confirmation has started. Production source/default executable are restored to exact source78b76607/binary2bdcca53. Both configurations passed preflight. The capture guard requires the passed full-validation and qualifying-screen reports and includes their hashes in the run snapshot. Controllers are adapted from the earlier tested confirmation harness; role-normalization/gate tests accompany them. Results do not directly measure original native performance.
