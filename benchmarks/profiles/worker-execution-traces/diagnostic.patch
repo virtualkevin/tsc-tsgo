@@ -1,0 +1,79 @@
+diff --git a/packages/tsc-go/cmd/tsgo/main.go b/packages/tsc-go/cmd/tsgo/main.go
+index 8d6816f..7c47e09 100644
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,8 +2,10 @@ package main
+ 
+ import (
+ 	"context"
++	"fmt"
+ 	"os"
+ 	"os/signal"
++	"runtime/trace"
+ 	"syscall"
+ 
+ 	"github.com/microsoft/typescript-go/internal/core"
+@@ -15,6 +17,24 @@ func main() {
+ }
+ 
+ func runMain() int {
++	if path := os.Getenv("TSC_GO_EXEC_TRACE"); path != "" {
++		file, err := os.OpenFile(path, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0o600)
++		if err != nil {
++			fmt.Fprintln(os.Stderr, err)
++			return 1
++		}
++		if err := trace.Start(file); err != nil {
++			file.Close()
++			fmt.Fprintln(os.Stderr, err)
++			return 1
++		}
++		defer func() {
++			trace.Stop()
++			if err := file.Close(); err != nil {
++				fmt.Fprintln(os.Stderr, err)
++			}
++		}()
++	}
+ 	core.ApplyDebugStackLimit()
+ 	args := os.Args[1:]
+ 	if len(args) > 0 {
+diff --git a/packages/tsc-go/internal/compiler/checkerpool.go b/packages/tsc-go/internal/compiler/checkerpool.go
+index d8ebd61..b7fcfe5 100644
+--- a/packages/tsc-go/internal/compiler/checkerpool.go
++++ b/packages/tsc-go/internal/compiler/checkerpool.go
+@@ -3,7 +3,9 @@ package compiler
+ import (
+ 	"context"
+ 	"os"
++	"runtime/trace"
+ 	"slices"
++	"strconv"
+ 	"sync"
+ 
+ 	"github.com/microsoft/typescript-go/internal/ast"
+@@ -158,14 +160,22 @@ func (p *checkerPool) GetGlobalDiagnostics() []*ast.Diagnostic {
+ // the provided files, processing only those assigned to its checker. Within each
+ // checker's set, files are visited in their original order.
+ func (p *checkerPool) forEachCheckerGroupDo(ctx context.Context, files []*ast.SourceFile, singleThreaded bool, cb func(c *checker.Checker, fileIndex int, file *ast.SourceFile)) {
+-	p.createCheckers()
++	ctx, batch := trace.NewTask(ctx, "checker.batch")
++	defer batch.End()
++	trace.Log(ctx, "file.count", strconv.Itoa(len(files)))
++	trace.WithRegion(ctx, "checker.initialize", p.createCheckers)
+ 
+ 	checkerCount := len(p.checkers)
+ 	wg := core.NewWorkGroup(singleThreaded)
+ 	for checkerIdx := range checkerCount {
+ 		wg.Queue(func() {
+-			p.locks[checkerIdx].Lock()
++			workerCtx, task := trace.NewTask(ctx, "checker.group")
++			defer task.End()
++			trace.Log(workerCtx, "checker.index", strconv.Itoa(checkerIdx))
++			trace.WithRegion(workerCtx, "checker.lock", func() { p.locks[checkerIdx].Lock() })
+ 			defer p.locks[checkerIdx].Unlock()
++			region := trace.StartRegion(workerCtx, "checker.files")
++			defer region.End()
+ 			for i, file := range files {
+ 				if checker := p.checkers[checkerIdx]; checker == p.fileAssociations[file] {
+ 					cb(checker, i, file)

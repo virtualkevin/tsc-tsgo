@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {copyFileSync,chmodSync,statSync,writeFileSync,existsSync} from 'node:fs';
+import {captureGoSources,hashFile,readBuildProvenance} from '/home/dev/tssss/tsc-tsgo/scripts/build-provenance.mjs';
+const root='/home/dev/tssss/tsc-tsgo',dir=root+'/benchmarks/profiles/worker-execution-traces';
+assert.ok(!existsSync(dir+'/restoration.json'));
+const before=captureGoSources(root+'/packages/tsc-go');assert.equal(before.sha256,'40701329d433aadae32b99754a08d00a6bbae76a6433e3615c2aa2a9d75747d8');
+const b=root+'/packages/tsc-go/dist/tsc-go-node-pointer',sha='8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f';
+assert.equal(hashFile(b),sha);const provenance=readBuildProvenance(b,sha);assert.equal(provenance.status,'verified');
+const p=spawnSync('git',['apply','--reverse',dir+'/diagnostic.patch'],{cwd:root,encoding:'utf8'});assert.equal(p.status,0,p.stderr);
+const after=captureGoSources(root+'/packages/tsc-go');assert.equal(after.sha256,'216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd');assert.deepEqual(after.files,provenance.metadata.source.files);
+const target=root+'/packages/tsc-go/dist/tsc-go';copyFileSync(b,target);chmodSync(target,statSync(b).mode&0o777);copyFileSync(b+'.provenance.json',target+'.provenance.json');assert.equal(hashFile(target),sha);
+writeFileSync(dir+'/restoration.json',JSON.stringify({status:'restored-retained-production',beforeSource:before.sha256,afterSource:after.sha256,binarySha256:sha,controllerSha256:hashFile('/tmp/tsc-worker-trace-draft/restore.mjs')},null,2)+'\n',{flag:'wx'});console.log(after.sha256);

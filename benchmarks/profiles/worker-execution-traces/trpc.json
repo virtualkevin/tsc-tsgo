@@ -1,0 +1,307 @@
+{
+  "status": "passed",
+  "binaries": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace": "e47da89407475fa69ab256326f49a9ef4f4e5188df1f00c7eb20b611261a272a"
+  },
+  "runs": [
+    {
+      "label": "1-baseline",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 167270,
+        "Types": 47643,
+        "Instantiations": 143473
+      },
+      "stdoutSha256": "e4449db24deb45454b7b84876354e1b2033cb5a9c141c2af762d14983df0134f"
+    },
+    {
+      "label": "1-disabled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 167270,
+        "Types": 47643,
+        "Instantiations": 143473
+      },
+      "stdoutSha256": "8d8907ba0a11a8bb3650a8b828e9c3ec656064045a9bfdadc9558a2931aabd13"
+    },
+    {
+      "label": "1-enabled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 167270,
+        "Types": 47643,
+        "Instantiations": 143473
+      },
+      "stdoutSha256": "f719e90e113a895ca3d84749b339238f94f1d121614f713e29e1f82319ac1e8d",
+      "traceSha256": "7df09102d43ca366004db96ec5db8735c5e2bb450b92643280f063b87f94d9f1",
+      "analysis": {
+        "status": "parsed",
+        "eventCounts": {
+          "Sync": 2,
+          "StateTransition": 75592,
+          "Metric": 24661,
+          "RangeBegin": 2222,
+          "RangeEnd": 2222,
+          "Label": 191,
+          "TaskBegin": 2,
+          "Log": 2,
+          "RegionBegin": 3,
+          "RegionEnd": 3,
+          "TaskEnd": 2
+        },
+        "batches": [
+          {
+            "taskId": 1,
+            "fileCount": 942,
+            "durationMs": 415.114176,
+            "startSkewMs": 0.0,
+            "finishSpreadMs": 0.0,
+            "lastWorkerOnlyMs": null,
+            "workers": [
+              {
+                "checker": 0,
+                "lockMs": 0.001024,
+                "filesMs": 415.047872,
+                "stateMs": {
+                  "Running": 413.868287,
+                  "Runnable": 1.087361,
+                  "Waiting": 0.092224
+                }
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "Diagnostic traced runs are not optimization timings.",
+          "Running includes runtime/GC work, not just semantic computation.",
+          "Worker state durations overlap across workers; do not sum as elapsed time.",
+          "Completion tails are observations, not achievable scheduling gains."
+        ]
+      }
+    },
+    {
+      "label": "4-baseline",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 186902,
+        "Types": 79462,
+        "Instantiations": 222416
+      },
+      "stdoutSha256": "0840c5e1a5152b8884fed4627492e55b0fe68a12d47348c039ff44f4f9d77eae"
+    },
+    {
+      "label": "4-disabled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 186902,
+        "Types": 79462,
+        "Instantiations": 222416
+      },
+      "stdoutSha256": "899dae7466353ce54b87ba886122777e86b5d042dcd7e4a38ea70db20486c2ce"
+    },
+    {
+      "label": "4-enabled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 186902,
+        "Types": 79462,
+        "Instantiations": 222416
+      },
+      "stdoutSha256": "2116a8449083c114fe5bcd309aa8e103d7bd7ddfb8a19235b8594fd53230a202",
+      "traceSha256": "35909a284cd45ae2dad10ffc5e88d1429de0d76db9ad0049ec1216864a1dba3a",
+      "analysis": {
+        "status": "parsed",
+        "eventCounts": {
+          "Sync": 2,
+          "StateTransition": 71384,
+          "Metric": 28752,
+          "RangeBegin": 2418,
+          "RangeEnd": 2418,
+          "Label": 220,
+          "TaskBegin": 5,
+          "Log": 5,
+          "RegionBegin": 9,
+          "RegionEnd": 9,
+          "TaskEnd": 5
+        },
+        "batches": [
+          {
+            "taskId": 1,
+            "fileCount": 942,
+            "durationMs": 208.69984,
+            "startSkewMs": 0.0288,
+            "finishSpreadMs": 47.800896,
+            "lastWorkerOnlyMs": 6.85792,
+            "workers": [
+              {
+                "checker": 3,
+                "lockMs": 0.00128,
+                "filesMs": 180.88224,
+                "stateMs": {
+                  "Running": 180.709824,
+                  "Runnable": 0.172416
+                }
+              },
+              {
+                "checker": 0,
+                "lockMs": 0.000832,
+                "filesMs": 160.834176,
+                "stateMs": {
+                  "Running": 160.805312,
+                  "Runnable": 0.028864
+                }
+              },
+              {
+                "checker": 1,
+                "lockMs": 0.000768,
+                "filesMs": 201.762048,
+                "stateMs": {
+                  "Running": 201.650496,
+                  "Runnable": 0.111552
+                }
+              },
+              {
+                "checker": 2,
+                "lockMs": 0.000704,
+                "filesMs": 208.607488,
+                "stateMs": {
+                  "Running": 205.484353,
+                  "Runnable": 2.995967,
+                  "Waiting": 0.127168
+                }
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "Diagnostic traced runs are not optimization timings.",
+          "Running includes runtime/GC work, not just semantic computation.",
+          "Worker state durations overlap across workers; do not sum as elapsed time.",
+          "Completion tails are observations, not achievable scheduling gains."
+        ]
+      }
+    }
+  ],
+  "scope": "Diagnostic smoke only; not performance evidence"
+}
