@@ -51,6 +51,36 @@ JSON records removals and the effective runtime/scheduler settings, including
 `TSC_TS_RECYCLE` and `TSC_TS_SIDE_STATE`. Clear experimental baseline controls when
 measuring its default policy.
 
+Repeatable `--candidate-env NAME=VALUE` sets a runtime/scheduler control only for
+the candidate, **after** shared `--unset-env` removals. Allowed names are `GOGC`,
+`GOMEMLIMIT`, `GOMAXPROCS`, `GODEBUG`, `TSC_GO_SCHEDULER`, and
+`TSC_GO_SHARED_GLOBALS`. Other names, including `TSC_TS_LIB_DIR`, are rejected;
+each name may be supplied once. Values are passed literally (including empty
+values and additional `=` characters); the compiler/runtime interprets them.
+This applies to discovery, preflight, warmups, and measured invocations, with or
+without RSS wrapping. Baseline and candidate may be the same binary:
+
+```sh
+npm run bench:projects -- \
+  --baseline packages/tsc-go/dist/tsc-go \
+  --candidate packages/tsc-go/dist/tsc-go \
+  --unset-env TSC_GO_SCHEDULER \
+  --candidate-env TSC_GO_SCHEDULER=dependency \
+  --projects typeorm,trpc --runs 7 --warmups 1 \
+  --output benchmarks/results/dependency-comparison.json
+```
+
+For controlled experiments, also clear other inherited runtime controls that
+should use defaults. Changing more than one knob measures their combined effect.
+The JSON retains `environment.compilerEnvironment` as the common environment
+after removals, and adds `environment.compilerEnvironments.baseline` and
+`.candidate` for the effective recorded controls, plus
+`environment.candidateEnvironmentOverrides` for the explicit override map.
+These contain the selected runtime/compiler controls already recorded by the
+harness, not the complete process environment. Existing diagnostic, input,
+binary, and provenance equality checks still apply; an override producing extra
+runtime output can fail the diagnostic comparison.
+
 The runner disables emit,
 incremental checking, composite mode, and `noCheck`; it preserves the project's
 other settings, including `skipLibCheck`. Every invocation starts a fresh process.

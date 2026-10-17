@@ -1,137 +1,85 @@
-# tsc-ts
+# TypeScript compiler in Go
 
-This fork is developing a Go implementation in [`packages/tsc-go`](packages/tsc-go/README.md).
-It starts from the pinned Go ancestor of this compiler and retains the TypeScript
-implementation below as the native performance and compatibility baseline.
+This fork develops a Go compiler from the pinned TypeScript-Go ancestor of
+Vercel's tsc-ts. The maintained implementation is in
+[`packages/tsc-go`](packages/tsc-go/README.md); the original TypeScript
+implementation remains available as a native performance and compatibility
+reference.
 
-```sh
-npm ci
-npm run build:go                    # requires Go 1.26+
-packages/tsc-go/dist/tsc-go --noEmit -p path/to/tsconfig.json
-npm run test:go                     # local Go unit tests
-```
+## Build and use
 
-The 10× speedup is an optimization target, not an achieved result. Reproducible
-measurements live in [`PERF.md`](PERF.md), with methodology and pinned workloads
-in [`benchmarks`](benchmarks/README.md). GitHub workflows are disabled for this
-fork; validation runs locally.
-
-<p>
-  <a href="https://vercel.com/labs#active-experiments"><img alt="Vercel Labs Experiment" src="https://img.shields.io/badge/LABS-EXPERIMENT-0a0a0a.svg?style=for-the-badge&amp;logo=Vercel&amp;labelColor=000000" height="28"></a>
-  <a href="https://github.com/vercel-labs/tsc-ts/blob/main/LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/github/license/vercel-labs/tsc-ts.svg?style=for-the-badge&amp;labelColor=000000" height="28"></a>
-</p>
-
-An experimental TypeScript port of the TypeScript 7.0.2 compiler ([TypeScript-Go](https://github.com/microsoft/typescript-go), or tsgo), compiled to native code with [scriptc](https://scriptc.dev).
-
-## Installation
-
-Install the compiler from npm:
-
-```sh
-npm install -D tsc-ts
-npx tsc-ts -p tsconfig.json
-```
-
-The `tsc-ts` package runs a native executable from a per-platform optional dependency (`@tsc-ts/darwin-arm64`, `@tsc-ts/linux-x64-gnu`, …). See [`packages/tsc-ts`](packages/tsc-ts/README.md).
-
-See [CHANGELOG.md](CHANGELOG.md) for release notes and [GitHub Releases](https://github.com/vercel-labs/tsc-ts/releases) for package archives.
-
-To build the packages for the current platform:
-
-```sh
-npm run pack:npm -w tsc-ts             # packages/tsc-ts/dist/npm/*.tgz
-npm run pack:npm -w tsc-ts -- --check  # also install the tarballs and compile a project
-```
-
-`-- --binary dist/tsc` packs an existing native build, relative to `packages/tsc-ts`, instead of building one.
-
-## Packages
-
-| Package                              | Description                                                                                       |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------- |
-| [`packages/tsc-ts`](packages/tsc-ts) | The compiler, written in TypeScript, with the `tsc-ts` command line and `--api` server.           |
-| [`packages/tsgo`](packages/tsgo)     | Reference builds of tsgo (its command line and per-stage drivers) that the tests compare against. |
-
-Tasks run with [Turborepo](https://turborepo.com).
-
-## Documentation
-
-[`apps/web`](apps/web/README.md) contains the tsc-ts compiler guides.
-
-```sh
-npm run dev:web
-npm run build:web
-```
-
-## Requirements
-
-- Node.js 24+ and npm
-- Go 1.26
-- A scriptc host: macOS, Linux, or Windows, with `clang` available for linking
-
-## Build
+Install Node.js 24+, npm, and Go 1.26 or newer, then run from the repository root:
 
 ```sh
 npm ci
-npm run fetch:upstream   # clone tsgo at the pinned commit
-npm run build            # the Node build of tsc-ts (packages/tsc-ts/dist) and the documentation site
-npm run build:oracle     # tsgo reference builds in packages/tsgo/dist
+npm run build
+node packages/tsc-go/bin/tsc-go.js --noEmit -p path/to/tsconfig.json
+npm test
 ```
 
-`package.json` pins scriptc `0.3.5`, with its `@scriptc/threads` package. The build fails with any other version.
+`npm run build` produces `packages/tsc-go/dist/tsc-go` (`tsc-go.exe` on Windows)
+and a build provenance sidecar. The binary embeds its standard library
+declarations and can run directly without Node or sibling data files. The Node
+launcher above selects the platform executable; it requires a completed build.
+Set `GO` to select a Go executable for building, or put Go on `PATH`. The test
+command requires `go` on `PATH` and runs the local Go unit suites.
 
-## Compiler
+The Go workspace is private and has no published npm package. Installing the
+upstream `tsc-ts` npm package installs the TypeScript reference implementation.
+Existing workspace names and package identities are retained in this fork.
 
-`packages/tsc-ts/src/compiler` is the compiler, ported from tsgo 7.0.2 as idiomatic TypeScript. Each part is compared with tsgo on TypeScript's test corpus (about 12,500 files, 17,000 units after splitting multi-file cases):
+## Development commands
 
-| Part                         | Compared with tsgo                                  | Status                   |
-| ---------------------------- | --------------------------------------------------- | ------------------------ |
-| Scanner                      | tokens, values, errors, rescans, JSDoc              | all files match          |
-| Parser and AST               | tree, diagnostics, API source file encoding         | all units match          |
-| Binder                       | symbols, tables, flow graph, name resolution        | all units match          |
-| Module resolution            | results, package IDs, `--traceResolution`           | all requests match       |
-| `tsconfig.json` and programs | `--showConfig`, `--listFilesOnly`, `--explainFiles` | all cases match          |
-| Command line and options     | output, errors, exit codes, `--locale`              | all cases match          |
-| Diagnostics catalog          | messages, 13 translations, output formats           | all match                |
-| JavaScript emit              | emitted files, 39 option sets                       | all compared units match |
-| Declaration emit             | `.d.ts` and `.d.ts.map` output, declaration errors  | all units match          |
-| `--build`, `--incremental`   | output, `.tsbuildinfo`, emitted files, `--watch`    | all scenarios match      |
-| Type checker                 | diagnostics per file                                | all files match          |
+| Command                                           | Purpose                                                                                                                                             |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run build` / `npm run build:go`              | Build the Go compiler.                                                                                                                              |
+| `npm test` / `npm run test:go`                    | Run local Go unit suites without upstream conformance fixtures.                                                                                     |
+| `npm run test:parity`                             | Compare prepared Go and native TypeScript binaries on focused fixtures; see the [prerequisites](packages/tsc-go/README.md#native-reference-parity). |
+| `npm run build:reference`                         | Build the original TypeScript compiler for Node.                                                                                                    |
+| `npm run build:reference:native`                  | Build the original TypeScript compiler with scriptc.                                                                                                |
+| `npm run test:reference`                          | Run the original TypeScript workspace test task through Turbo.                                                                                      |
+| `npm run build:all` / `npm run test:all`          | Run the previous root Turbo tasks across workspaces, including the reference implementation.                                                        |
+| `npm run fetch:upstream` / `npm run build:oracle` | Fetch pinned upstream inputs / build the independent Go oracle executables.                                                                         |
+| `npm run bench:projects -- --help`                | Show reproducible project benchmark options.                                                                                                        |
+| `npm run dev:web` / `npm run build:web`           | Serve / build the retained tsc-ts documentation site.                                                                                               |
+| `npm run lint` / `npm run format:check`           | Run the existing JavaScript/TypeScript lint and formatting tools.                                                                                   |
 
-The corpus scripts are in `packages/tsc-ts/scripts` (`*-corpus.mjs`).
+Reference and all-workspace testing need the pinned upstream inputs and oracle
+builds. Native reference builds additionally require a scriptc host with `clang`
+available for linking; the repository pins scriptc and `@scriptc/threads` to
+`0.3.5`. These are not prerequisites for building the Go executable directly
+with the Go toolchain. See the [reference package documentation](packages/tsc-ts/README.md)
+for its packaging and API instructions.
 
-## API server
+## Validation and performance
 
-`tsc-ts --api` serves the same API as TypeScript 7.0.2's `tsc --api`, over stdin and stdout, so tools that drive `tsc --api` (such as scriptc) can run `tsc-ts` instead.
+The 10× speedup is an optimization target, not an achieved result. Measurements
+are recorded in [`PERF.md`](PERF.md); [`benchmarks/README.md`](benchmarks/README.md)
+describes the pinned workloads, commands, and comparison methodology. The
+workloads cover tRPC, TypeORM, VS Code, and Sentry; their checked-in revisions and
+local measurements should not be treated as a reproduction of the tweet's
+unspecified environment.
 
-```sh
-npm run build -w tsc-ts
-node packages/tsc-ts/dist/tsc-ts/src/main.js --api --cwd path/to/project
-```
+Local Go tests, focused native parity checks, and upstream conformance tests
+provide different coverage. `npm test` does not run all of them. Follow the
+[Go package instructions](packages/tsc-go/README.md) to provision and run the
+conformance corpus; unsupported upstream test options remain explicit skips.
+Recorded results and limitations are in [`benchmarks/validation`](benchmarks/validation).
+Passing the available suites is not a claim of complete TypeScript compatibility.
+GitHub workflows are disabled for this fork; validation runs locally.
 
-Native builds read lib files from the executable's directory, or from `TSC_TS_LIB_DIR`:
+## Repository layout
 
-```sh
-npm run build:native -w tsc-ts       # packages/tsc-ts/dist/tsc
-npm run build:native:dev -w tsc-ts   # unoptimized, faster to build
-TSC_TS_LIB_DIR=upstream/typescript-go/internal/bundled/libs packages/tsc-ts/dist/tsc -p path/to/project
-```
-
-`TSC_TS_BIN=packages/tsc-ts/dist/tsc` runs the tsc-ts tests that take a native build against it.
-
-The server is checked against `tsc --api` 7.0.2 response by response, and scriptc builds the same programs with either. It runs on the tsc-ts compiler, natively or under Node.
-
-Language service methods are supported: `getCompletionsAtPosition`, `getJsDocTags`, `getDocumentationComment`, `getReferencesToSymbolInFile`, `getReferencedSymbolsForNode` and `getSignatureUsages`. Like `tsc --api`, completions that need auto imports (global identifiers, import statements, exhaustive `switch` cases) report `completion list needs auto imports`. The profiling methods (`startCPUProfile`, `stopCPUProfile`, `saveHeapProfile`) are not supported.
-
-## Testing
-
-```sh
-npm test                     # compare tsc-ts with tsgo
-npm run bench -w tsc-ts      # time tsc-ts against tsgo and TypeScript's JavaScript compiler
-npm run lint                 # oxlint
-npm run format               # oxfmt
-```
+| Path                                 | Role                                                              |
+| ------------------------------------ | ----------------------------------------------------------------- |
+| [`packages/tsc-go`](packages/tsc-go) | Primary Go compiler, CLI, API server, language server, and tests. |
+| [`packages/tsc-ts`](packages/tsc-ts) | Original TypeScript implementation and reference tests.           |
+| [`packages/tsgo`](packages/tsgo)     | Independent pinned upstream oracle builds and stage drivers.      |
+| [`benchmarks`](benchmarks)           | Reproducible measurements, profiles, and validation evidence.     |
+| [`apps/web`](apps/web/README.md)     | Retained guides for the original tsc-ts implementation.           |
 
 ## License
 
-[Apache-2.0](LICENSE). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for TypeScript-Go and other third-party notices.
+[Apache-2.0](LICENSE). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+and the Go package's `LICENSE`, `NOTICE.txt`, and `UPSTREAM.json` for source
+provenance and third-party notices.

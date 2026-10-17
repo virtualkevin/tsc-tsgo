@@ -95,6 +95,9 @@ test('records paired successful samples and provenance', (t) => {
   assert.equal(r.report.projects[0].preflight.baseline.fileCount, 1);
   assert.match(r.report.projects[0].preflight.baseline.inputs[0].sha256, /^[a-f0-9]{64}$/);
   assert.equal(r.report.candidateCheckers, null);
+  assert.deepEqual(r.report.environment.candidateEnvironmentOverrides, {});
+  assert.deepEqual(r.report.environment.compilerEnvironments.baseline, r.report.environment.compilerEnvironment);
+  assert.deepEqual(r.report.environment.compilerEnvironments.candidate, r.report.environment.compilerEnvironment);
   assert.equal(r.report.binaries.baseline.buildProvenance.status, 'absent');
   assert.deepEqual(r.report.projects[0].compilerArgs.baseline, r.report.projects[0].compilerArgs.candidate);
 });
@@ -287,3 +290,119 @@ test(
     }
   },
 );
+
+for (const wrapped of [false, true]) {
+  test(
+    `candidate-only environment reaches every phase with the same binary (${wrapped ? 'RSS' : 'plain'})`,
+    { skip: wrapped && process.platform !== 'linux' && 'RSS integration requires Linux GNU time' },
+    (t) => {
+      const f = fixture(t);
+      const callsPath = join(f.dir, 'environment-invocations.jsonl');
+      const overrides = {
+        GOGC: 'off',
+        GOMEMLIMIT: '256MiB',
+        GOMAXPROCS: '3',
+        GODEBUG: 'gcshrinkstackoff=1,madvdontneed=0',
+        TSC_GO_SCHEDULER: 'dependency',
+        TSC_GO_SHARED_GLOBALS: '',
+      };
+      const recordedKeys = [...Object.keys(overrides), 'TSC_TS_LIB_DIR', 'TSC_TS_CHECKERS'];
+      f.compiler(
+        'baseline',
+        `
+        const fs = process.getBuiltinModule('fs');
+        const args = process.argv.slice(2);
+        const env = Object.fromEntries(${JSON.stringify(recordedKeys)}.filter(k => process.env[k] !== undefined).map(k => [k, process.env[k]]));
+        fs.appendFileSync(${JSON.stringify(callsPath)}, JSON.stringify({args,env})+'\\n');
+        if (args.includes('--listFilesOnly')) console.log(process.cwd()+'/input.ts');
+      `,
+      );
+      const inherited = {
+        ...process.env,
+        GOGC: '37',
+        GOMEMLIMIT: '512MiB',
+        GOMAXPROCS: '2',
+        GODEBUG: 'gcshrinkstackoff=0',
+        TSC_GO_SCHEDULER: 'balanced',
+        TSC_GO_SHARED_GLOBALS: '1',
+        TSC_TS_CHECKERS: 'fixed',
+      };
+      const extra = Object.entries(overrides).flatMap(([name, value]) => ['--candidate-env', `${name}=${value}`]);
+      // Removals appear after overrides on the command line, but take effect first.
+      extra.push('--unset-env', 'GOGC', '--unset-env', 'TSC_GO_SCHEDULER', '--warmups', '1');
+      if (wrapped) extra.push('--measure-rss');
+      const result = f.run(f.baseline, extra, inherited);
+      assert.equal(result.status, 0, result.stderr);
+      const { report } = result;
+      assert.equal(report.schemaVersion, 1);
+      assert.equal(report.binaries.baseline.path, report.binaries.candidate.path);
+      assert.deepEqual(report.environment.candidateEnvironmentOverrides, overrides);
+      const common = report.environment.compilerEnvironment;
+      assert.equal(common.GOGC, undefined);
+      assert.equal(common.TSC_GO_SCHEDULER, undefined);
+      assert.equal(common.GOMEMLIMIT, '512MiB');
+      assert.equal(common.TSC_TS_CHECKERS, 'fixed');
+      assert.deepEqual(report.environment.compilerEnvironments.baseline, common);
+      assert.deepEqual(report.environment.compilerEnvironments.candidate, { ...common, ...overrides });
+      const calls = readFileSync(callsPath, 'utf8').trim().split('\n').map(JSON.parse);
+      // Baseline discovery/preflight, candidate discovery/preflight, warmups,
+      // first pair baseline/candidate, second pair candidate/baseline.
+      const sides = [
+        'baseline',
+        'baseline',
+        'candidate',
+        'candidate',
+        'baseline',
+        'candidate',
+        'baseline',
+        'candidate',
+        'candidate',
+        'baseline',
+      ];
+      assert.equal(calls.length, sides.length);
+      for (let i = 0; i < calls.length; i++) {
+        const side = sides[i];
+        const expected = report.environment.compilerEnvironments[side];
+        assert.deepEqual(
+          calls[i].env,
+          Object.fromEntries(recordedKeys.filter((k) => expected[k] !== undefined).map((k) => [k, expected[k]])),
+        );
+        assert.equal(calls[i].args.includes('--listFilesOnly'), i === 0 || i === 2);
+        assert.deepEqual(
+          calls[i].args,
+          i === 0 || i === 2 ? report.projects[0].fileDiscoveryArgs[side] : report.projects[0].compilerArgs[side],
+        );
+      }
+      assert.equal(report.projects[0].pairs.length, 2);
+      assert.equal(report.status, 'passed');
+    },
+  );
+}
+
+test('rejects malformed, semantic, and unrestricted candidate environment controls before invocation', () => {
+  for (const value of [
+    '',
+    'GOGC',
+    '=off',
+    ' GOGC=off',
+    'gogc=off',
+    'TSC_TS_LIB_DIR=/other/libs',
+    'PATH=/other/bin',
+    'NODE_OPTIONS=--require=other',
+    'TSC_TS_CHECKERS=fixed',
+    'TS_NODE_PROJECT=other',
+    '__proto__=other',
+  ]) {
+    const result = spawnSync(process.execPath, [runner, `--candidate-env=${value}`], { encoding: 'utf8' });
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /--candidate-env requires NAME=VALUE for an allowed runtime\/scheduler control/);
+  }
+});
+
+test('rejects duplicate candidate environment controls rather than silently changing the experiment', () => {
+  const result = spawnSync(process.execPath, [runner, '--candidate-env', 'GOGC=100', '--candidate-env', 'GOGC=off'], {
+    encoding: 'utf8',
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /--candidate-env repeats GOGC/);
+});

@@ -22,6 +22,7 @@ const { values } = parseArgs({
     candidate: { type: 'string' },
     'measure-rss': { type: 'boolean', default: false },
     'candidate-checkers': { type: 'string' },
+    'candidate-env': { type: 'string', multiple: true },
     'unset-env': { type: 'string', multiple: true },
     manifest: { type: 'string', default: 'benchmarks/workloads.json' },
     projects: { type: 'string' },
@@ -34,7 +35,7 @@ const { values } = parseArgs({
 });
 if (values.help) {
   console.log(
-    'node benchmarks/run.mjs --baseline PATH --candidate PATH [--candidate-checkers N] [--measure-rss] [--unset-env NAME] [--projects typeorm,trpc] [--runs 7] [--warmups 1] [--manifest PATH] [--output PATH]',
+    'node benchmarks/run.mjs --baseline PATH --candidate PATH [--candidate-checkers N] [--candidate-env NAME=VALUE] [--measure-rss] [--unset-env NAME] [--projects typeorm,trpc] [--runs 7] [--warmups 1] [--manifest PATH] [--output PATH]',
   );
   process.exit(0);
 }
@@ -44,6 +45,32 @@ for (const name of unsetEnvironment) {
     throw new Error('--unset-env requires an environment name other than mandatory TSC_TS_LIB_DIR');
   delete compilerEnv[name];
 }
+// Only runtime/scheduler controls may differ; semantic inputs (including the
+// declaration libraries) remain shared. Apply overrides after shared removals.
+const candidateEnvironmentOverrides = {};
+const candidateEnvironmentNames = new Set([
+  'GOGC',
+  'GOMEMLIMIT',
+  'GOMAXPROCS',
+  'GODEBUG',
+  'TSC_GO_SCHEDULER',
+  'TSC_GO_SHARED_GLOBALS',
+]);
+for (const assignment of values['candidate-env'] ?? []) {
+  const separator = assignment.indexOf('=');
+  const name = assignment.slice(0, separator);
+  if (separator < 1 || !candidateEnvironmentNames.has(name))
+    throw new Error(
+      '--candidate-env requires NAME=VALUE for an allowed runtime/scheduler control; TSC_TS_LIB_DIR and other input controls are forbidden',
+    );
+  if (Object.hasOwn(candidateEnvironmentOverrides, name))
+    throw new Error(`--candidate-env repeats ${name}; supply each control once`);
+  candidateEnvironmentOverrides[name] = assignment.slice(separator + 1);
+}
+const compilerEnvironments = {
+  baseline: compilerEnv,
+  candidate: { ...compilerEnv, ...candidateEnvironmentOverrides },
+};
 const count = (name, min) => {
   const n = Number(values[name]);
   if (!Number.isSafeInteger(n) || n < min) throw new Error(`--${name} must be an integer >= ${min}`);
@@ -74,13 +101,13 @@ const output = resolve(root, values.output);
 mkdirSync(dirname(output), { recursive: true });
 const hash = (data) => createHash('sha256').update(data).digest('hex');
 const hashFile = (path) => hash(readFileSync(path));
-const run = (command, args, cwd = root) => {
+const run = (command, args, cwd = root, env = compilerEnv) => {
   const start = process.hrtime.bigint();
   const result = spawnSync(command, args, {
     cwd,
     encoding: 'utf8',
     timeout,
-    env: compilerEnv,
+    env,
     maxBuffer: 128 * 1024 * 1024,
   });
   const ms = Number(process.hrtime.bigint() - start) / 1e6;
@@ -93,10 +120,11 @@ const run = (command, args, cwd = root) => {
   };
 };
 let resourceWrapper;
-const runCompiler = (binary, args, cwd) =>
+// Select the comparison side explicitly: both sides may use the same executable.
+const runCompiler = (name, args, cwd) =>
   resourceWrapper
-    ? runWithResources(resourceWrapper, binary, args, { cwd, env: compilerEnv, timeout })
-    : run(binary, args, cwd);
+    ? runWithResources(resourceWrapper, binaries[name], args, { cwd, env: compilerEnvironments[name], timeout })
+    : run(binaries[name], args, cwd, compilerEnvironments[name]);
 const requireSuccess = (result, label) => {
   if (result.status !== 0)
     throw new Error(`${label} exited ${result.status}; no timing accepted.\n${result.stdout}\n${result.stderr}`);
@@ -110,6 +138,29 @@ const median = (ns) => {
 };
 const summarize = (ns) => ({ medianMs: median(ns), minMs: Math.min(...ns), maxMs: Math.max(...ns), samplesMs: ns });
 const cgroupV2 = readCgroupV2();
+const recordedCompilerEnvironment = (env) =>
+  Object.fromEntries(
+    [
+      'GOMAXPROCS',
+      'GOGC',
+      'GOMEMLIMIT',
+      'GODEBUG',
+      'TSC_GO_SCHEDULER',
+      'TSC_GO_SHARED_GLOBALS',
+      'TSC_TS_LIB_DIR',
+      'TSC_TS_CHECKERS',
+      'TSC_TS_CHECKERS_TRACE',
+      'TSC_TS_REGION',
+      'TSC_TS_RECYCLE',
+      'TSC_TS_SIDE_STATE',
+      'TSC_TS_ID_ORDER',
+      'TSC_TS_TIMELINE',
+      'TSC_TS_SMAPS',
+      'NODE_OPTIONS',
+    ]
+      .filter((k) => env[k] !== undefined)
+      .map((k) => [k, env[k]]),
+  );
 const report = {
   schemaVersion: 1,
   startedAt: new Date().toISOString(),
@@ -128,28 +179,12 @@ const report = {
     logicalCpus: cpus().length,
     availableParallelism: availableParallelism(),
     totalMemoryBytes: totalmem(),
-    compilerEnvironment: Object.fromEntries(
-      [
-        'GOMAXPROCS',
-        'GOGC',
-        'GOMEMLIMIT',
-        'GODEBUG',
-        'TSC_GO_SCHEDULER',
-        'TSC_GO_SHARED_GLOBALS',
-        'TSC_TS_LIB_DIR',
-        'TSC_TS_CHECKERS',
-        'TSC_TS_CHECKERS_TRACE',
-        'TSC_TS_REGION',
-        'TSC_TS_RECYCLE',
-        'TSC_TS_SIDE_STATE',
-        'TSC_TS_ID_ORDER',
-        'TSC_TS_TIMELINE',
-        'TSC_TS_SMAPS',
-        'NODE_OPTIONS',
-      ]
-        .filter((k) => compilerEnv[k] !== undefined)
-        .map((k) => [k, compilerEnv[k]]),
+    // Legacy field is the common environment after shared removals.
+    compilerEnvironment: recordedCompilerEnvironment(compilerEnv),
+    compilerEnvironments: Object.fromEntries(
+      Object.entries(compilerEnvironments).map(([name, env]) => [name, recordedCompilerEnvironment(env)]),
     ),
+    candidateEnvironmentOverrides,
     unsetEnvironment,
     cgroupV2,
   },
@@ -292,9 +327,9 @@ try {
     save();
     const canonicalFile = (file) => relative(cwd, resolve(cwd, file));
     let expectedFiles, expectedOutput, expectedInputs;
-    for (const [name, binary] of Object.entries(binaries)) {
+    for (const name of Object.keys(binaries)) {
       const files = requireSuccess(
-        await runCompiler(binary, fileDiscoveryArgs[name], cwd),
+        await runCompiler(name, fileDiscoveryArgs[name], cwd),
         `${p.name} ${name} file discovery`,
       );
       const paths = files.stdout.trim().split('\n').filter(Boolean);
@@ -304,7 +339,7 @@ try {
       if (expectedFiles && JSON.stringify(expectedFiles) !== JSON.stringify(canonical))
         throw new Error(`${p.name}: compilers read different file sets`);
       expectedFiles = canonical;
-      const check = requireOutcome(await runCompiler(binary, compilerArgs[name], cwd), `${p.name} ${name} preflight`);
+      const check = requireOutcome(await runCompiler(name, compilerArgs[name], cwd), `${p.name} ${name} preflight`);
       const signature = outputSignature(check);
       if (expectedOutput !== undefined && expectedOutput !== signature)
         throw new Error(`${p.name}: compiler diagnostics differ`);
@@ -326,7 +361,7 @@ try {
     }
     const sample = async (name, cpuCounters) => {
       if (cpuCounters) cpuCounters.before = readCgroupCpuStats(cgroupV2);
-      const result = await runCompiler(binaries[name], compilerArgs[name], cwd);
+      const result = await runCompiler(name, compilerArgs[name], cwd);
       if (cpuCounters) cpuCounters.after = readCgroupCpuStats(cgroupV2);
       requireOutcome(result, `${p.name} ${name}`);
       if (outputSignature(result) !== expectedOutput)
