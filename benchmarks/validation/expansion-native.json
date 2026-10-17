@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T07:42:01.038907+00:00",
+  "scope": "Native compiler parity, integration, build/watch, and platform compile validation; no performance measurements.",
+  "binaries": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    },
+    "initialGo": {
+      "path": "packages/tsc-go/dist/tsc-go-initial",
+      "sha256": "82162d21b98442d33f6e47eb45381958a8ae0f322c5c6904623ee4f252fdeea2"
+    },
+    "finalGo": {
+      "path": "packages/tsc-go/dist/tsc-go",
+      "sha256": "6749d967d1437efdbfe03479072a2352737900bc5057b27ee6730c1797fd9a06"
+    },
+    "initialExpansionGo": {
+      "path": "packages/tsc-go/dist/tsc-go (before watch fixes)",
+      "sha256": "33459ecbb76c66edd18f2674b73d322feb5469a70c226410fc3784d0b8c792f7"
+    }
+  },
+  "finalBuildProvenance": {
+    "builtAt": "2026-10-17T07:35:11.307Z",
+    "binarySha256": "6749d967d1437efdbfe03479072a2352737900bc5057b27ee6730c1797fd9a06",
+    "source": {
+      "revision": "b4a01daf237e4997aadef58bd9221028905a66bf",
+      "dirty": true,
+      "sha256": "a89092fd6263a978b86700f99c704c560d2cd7d1c26671ae8b180fefd83ffde5",
+      "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+      "fileCount": 5135
+    },
+    "preservedSidecar": "packages/tsc-go/dist/tsc-go-expansion.provenance.json",
+    "sidecarSha256": "089dc047adc091373d8eb932c71439db11fb7bd8589d7c0a66ea63ebc8e362bf",
+    "build": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": ["build", "-trimpath", "-o", "<binary>", "./cmd/tsgo"],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "runs": [
+    {
+      "name": "native integration",
+      "cwd": "packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "environment": {
+        "TSC_TS_BIN": "packages/tsc-go/dist/tsc-go"
+      },
+      "log": "/tmp/tsc-go-expansion-existing.log",
+      "counts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 199255.355365
+      },
+      "candidate": "initialExpansionGo"
+    },
+    {
+      "name": "native parity default",
+      "cwd": ".",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "environment": {},
+      "log": "/tmp/tsc-go-expansion-default-parity.log",
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 220230.427218
+      },
+      "candidate": "initialExpansionGo"
+    },
+    {
+      "name": "native parity balanced",
+      "cwd": ".",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "environment": {
+        "TSC_GO_SCHEDULER": "balanced"
+      },
+      "log": "/tmp/tsc-go-expansion-balanced-parity.log",
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 72751.397574
+      },
+      "candidate": "initialExpansionGo"
+    },
+    {
+      "name": "native parity dependency",
+      "cwd": ".",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "environment": {
+        "TSC_GO_SCHEDULER": "dependency"
+      },
+      "log": "/tmp/tsc-go-expansion-dependency-parity.log",
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 55280.543654
+      },
+      "candidate": "initialExpansionGo"
+    },
+    {
+      "name": "initial full build/watch and library suites",
+      "cwd": "packages/tsc-ts",
+      "command": ["node", "--test", "--test-reporter=spec", "tests/build.test.mjs", "tests/library-checking.test.mjs"],
+      "environment": {
+        "TSC_TS_BIN": "packages/tsc-go/dist/tsc-go"
+      },
+      "log": "/tmp/tsc-go-expansion-build-watch.log",
+      "counts": {
+        "tests": 40,
+        "pass": 35,
+        "fail": 5,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 264372.030288
+      },
+      "candidate": "initialExpansionGo",
+      "analysis": {
+        "nonWatchTestsPassed": 29,
+        "nonWatchBuildTestsPassed": 26,
+        "libraryTestsPassed": 3,
+        "libraryComparisons": {
+          "globalAugmentationRuns": 336,
+          "globalAugmentationRunsReportingLibraryErrors": 110,
+          "packageProjectRuns": 30
+        },
+        "initialWatchFailures": 5,
+        "resolution": "All 11 watch tests passed after fixes below. Non-watch tests carried forward because subsequent production edits affect watch handling only."
+      }
+    },
+    {
+      "name": "final full native watch suite",
+      "cwd": "packages/tsc-ts",
+      "command": ["node", "--test", "--test-reporter=spec", "--test-name-pattern=watch", "tests/build.test.mjs"],
+      "environment": {
+        "TSC_TS_BIN": "packages/tsc-go/dist/tsc-go"
+      },
+      "log": "/tmp/tsc-go-expansion-watch-presence.log",
+      "counts": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 23380.58657
+      },
+      "candidate": "finalGo"
+    },
+    {
+      "name": "project recreation race repeat 1",
+      "cwd": "packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "--test-name-pattern=removed project directory|recreated project directories",
+        "tests/build.test.mjs"
+      ],
+      "environment": {
+        "TSC_TS_BIN": "packages/tsc-go/dist/tsc-go"
+      },
+      "log": "/tmp/tsc-go-expansion-watch-repeat-1.log",
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 3236.13433
+      },
+      "candidate": "finalGo"
+    },
+    {
+      "name": "project recreation race repeat 2",
+      "cwd": "packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "--test-name-pattern=removed project directory|recreated project directories",
+        "tests/build.test.mjs"
+      ],
+      "environment": {
+        "TSC_TS_BIN": "packages/tsc-go/dist/tsc-go"
+      },
+      "log": "/tmp/tsc-go-expansion-watch-repeat-2.log",
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 3096.653812
+      },
+      "candidate": "finalGo"
+    },
+    {
+      "name": "project recreation race repeat 3",
+      "cwd": "packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "--test-name-pattern=removed project directory|recreated project directories",
+        "tests/build.test.mjs"
+      ],
+      "environment": {
+        "TSC_TS_BIN": "packages/tsc-go/dist/tsc-go"
+      },
+      "log": "/tmp/tsc-go-expansion-watch-repeat-3.log",
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 3235.042537
+      },
+      "candidate": "finalGo"
+    }
+  ],
+  "integrationCountClarification": "Earlier 13-test integration runs included checker.test.mjs, which compiles/runs the original JavaScript drivers/check.js and ignores TSC_TS_BIN. These 12 tests exercise the Go executable. Go parity separately reuses checker-cases.mjs across 80 cases per scheduler.",
+  "watchFixes": [
+    "Track symlink physical paths and cached target identity; invalidate all aliases for physical target or ancestor changes.",
+    "Keep absolute directory watches at every depth, with nonrecursive nearest-existing-ancestor fallbacks.",
+    "Invalidate cached missing config after project ancestor recreation; filter events against actual dependencies rather than broad fallback watch roots.",
+    "Emit build watch readiness after installing watches, eliminating edits racing initial/fallback registration.",
+    "Ignore stale termination callbacks after subscription replacement/removal.",
+    "Suppress repeated deletion reports only when prior config resolution recorded actual file absence; retain invalid-existing-to-missing transitions.",
+    "Linux PID observation helper reads children of every process thread, preserving worker-replacement assertions for Go."
+  ],
+  "additionalUnitEvidence": [
+    {
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "./internal/execute/build",
+        "./internal/execute/watchmanager",
+        "-count=1"
+      ],
+      "status": "passed",
+      "log": "/tmp/tsc-go-expansion-watch-presence-units.log",
+      "cwd": "packages/tsc-go"
+    },
+    {
+      "command": ["/tmp/tsc-toolchains/go/bin/go", "test", "./internal/execute", "-run", "^TestWatch", "-count=1"],
+      "status": "passed",
+      "provider": "root agent",
+      "notes": "Includes real ancestor relevance, unrelated-directory exclusion, and same-path/same-mtime directory replacement.",
+      "cwd": "packages/tsc-go"
+    }
+  ],
+  "pidObservationCrossCheck": {
+    "command": [
+      "node",
+      "--test",
+      "--test-name-pattern=--watch (restarts after a config edit|resumes memory restarts)",
+      "tests/build.test.mjs"
+    ],
+    "provider": "root agent",
+    "go": {
+      "passed": 2,
+      "failed": 0
+    },
+    "originalNative": {
+      "passed": 2,
+      "failed": 0
+    },
+    "cwd": "packages/tsc-ts"
+  },
+  "inheritedLimitations": [
+    {
+      "scenario": "--build --watch, files:[main.ts], unresolved import ./generated/value, generated directory already exists; create generated/value.ts after initial TS2307.",
+      "result": "Original native TS, preserved initial Go, and expanded Go all produced initial TS2307 and no second watch report within 5 seconds. This is not a regression from event relevance changes.",
+      "command": ["node", "/tmp/tsc-go-expansion-missing-import.mjs"],
+      "log": "/tmp/tsc-go-expansion-missing-import.log"
+    }
+  ],
+  "crossCompilation": {
+    "status": "passed",
+    "runtimeValidationClaimed": false,
+    "runs": [
+      {
+        "target": "windows/amd64",
+        "cwd": "packages/tsc-go",
+        "command": [
+          "/tmp/tsc-toolchains/go/bin/go",
+          "test",
+          "-c",
+          "-o",
+          "/tmp/tsc-go-expansion-windows.test.exe",
+          "./cmd/tsgo"
+        ],
+        "environment": {
+          "GOOS": "windows",
+          "GOARCH": "amd64",
+          "CGO_ENABLED": "0"
+        },
+        "status": "passed",
+        "exitCode": 0,
+        "log": "/tmp/tsc-go-expansion-cross-windows.log",
+        "outputSha256": "ad5f802feb287e1e6bc351a269c410f6ecbaea0419f51dfac72d1325398e377c"
+      },
+      {
+        "target": "darwin/amd64",
+        "cwd": "packages/tsc-go",
+        "command": [
+          "/tmp/tsc-toolchains/go/bin/go",
+          "test",
+          "-c",
+          "-o",
+          "/tmp/tsc-go-expansion-darwin.test",
+          "./cmd/tsgo"
+        ],
+        "environment": {
+          "GOOS": "darwin",
+          "GOARCH": "amd64",
+          "CGO_ENABLED": "0"
+        },
+        "status": "passed",
+        "exitCode": 0,
+        "log": "/tmp/tsc-go-expansion-cross-darwin.log",
+        "outputSha256": "b6b271ccc56fb8553e48cd47a302b6620322627af9d77fdd50e4d6f42443e929"
+      }
+    ]
+  }
+}
