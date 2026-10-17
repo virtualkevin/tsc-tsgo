@@ -97,22 +97,22 @@ func asRecursionId[T *ast.Node | *ast.Symbol | *Type](value T) RecursionId {
 }
 
 type Relation struct {
-	results map[CacheHashKey]RelationComparisonResult
+	results *relationResultCache
 }
 
 func (r *Relation) get(key CacheHashKey) RelationComparisonResult {
-	return r.results[key]
+	return r.results.get(key)
 }
 
 func (r *Relation) set(key CacheHashKey, result RelationComparisonResult) {
 	if r.results == nil {
-		r.results = make(map[CacheHashKey]RelationComparisonResult)
+		r.results = &relationResultCache{}
 	}
-	r.results[key] = result
+	r.results.set(key, result)
 }
 
 func (r *Relation) size() int {
-	return len(r.results)
+	return r.results.size()
 }
 
 func (c *Checker) isTypeIdenticalTo(source *Type, target *Type) bool {

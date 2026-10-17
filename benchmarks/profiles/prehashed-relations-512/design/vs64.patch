@@ -1,0 +1,75 @@
+--- probe-64/relation_results.go
++++ probe-512/relation_results.go
+@@ -2,7 +2,7 @@
+ 
+ // Relation keys are already full-width hashes. Keep both words for equality;
+ // their low bits only choose the first probe slot. No semantic key is narrowed.
+-const relationResultProbeLimit = 64
++const relationResultProbeLimit = 512
+ const relationResultInitialCapacity = 8
+ 
+ type relationResultCache struct {
+--- probe-64/relation_results_test.go
++++ probe-512/relation_results_test.go
+@@ -53,7 +53,7 @@
+ 	for _, collide := range []bool{false, true} {
+ 		t.Run(fmt.Sprintf("collide%t", collide), func(t *testing.T) {
+ 			random := rand.New(rand.NewPCG(17, 31))
+-			keys := make([]CacheHashKey, 512)
++			keys := make([]CacheHashKey, max(512, relationResultProbeLimit+64))
+ 			for i := range keys {
+ 				keys[i] = CacheHashKey{Hi: uint64(i), Lo: random.Uint64()}
+ 				if collide {
+@@ -123,7 +123,7 @@
+ 	if r.results.fallback != nil || r.get(CacheHashKey{Hi: 1000, Lo: ^uint64(0)}) != 0 {
+ 		t.Fatal("bounded full-chain miss did not remain a read-only table lookup")
+ 	}
+-	// The final key is at probe distance63. Replacement must find it before
++	// The final key is at the final permitted probe distance. Replacement must find it before
+ 	// considering exhaustion or growth, and must retain table mode/count.
+ 	last := CacheHashKey{Hi: relationResultProbeLimit - 1, Lo: ^uint64(0)}
+ 	capacity := len(r.results.keys)
+@@ -131,7 +131,7 @@
+ 	r.set(last, ^RelationComparisonResult(0))
+ 	want[last] = ^RelationComparisonResult(0)
+ 	if r.results.fallback != nil || len(r.results.keys) != capacity || &r.results.keys[0] != backing {
+-		t.Fatal("distance63 overwrite grew the table or triggered fallback")
++		t.Fatal("last-probe overwrite grew the table or triggered fallback")
+ 	}
+ 	assertRelationResults(t, &r, want)
+ 	key := CacheHashKey{Hi: 1000, Lo: ^uint64(0)}
+@@ -163,13 +163,13 @@
+ 	// Production only doubles capacity. A controlled smaller destination makes
+ 	// formerly separated buckets collide, exercising both transactional failure
+ 	// branches without assuming real-world doubling can trigger either one.
+-	for _, count := range []int{64, 65} {
++	for _, count := range []int{relationResultProbeLimit, relationResultProbeLimit + 1} {
+ 		t.Run(fmt.Sprintf("entries%d", count), func(t *testing.T) {
+-			store := newRelationResultTable(256)
++			store := newRelationResultTable(relationResultProbeLimit * 4)
+ 			r := Relation{results: &store}
+ 			want := make(map[CacheHashKey]RelationComparisonResult)
+ 			for i := 0; i < count; i++ {
+-				key := CacheHashKey{Hi: uint64(i), Lo: uint64(i * 128)}
++				key := CacheHashKey{Hi: uint64(i), Lo: uint64(i * relationResultProbeLimit * 2)}
+ 				value := RelationComparisonResult(i)
+ 				r.set(key, value)
+ 				want[key] = value
+@@ -177,7 +177,7 @@
+ 			oldKeys, oldValues, oldOccupied := store.keys, store.values, store.occupied
+ 			keysCopy, valuesCopy, occupiedCopy := slices.Clone(oldKeys), slices.Clone(oldValues), slices.Clone(oldOccupied)
+ 			pending := CacheHashKey{Hi: 9999}
+-			store.rebuild(128, pending, RelationComparisonResultOverflow)
++			store.rebuild(relationResultProbeLimit*2, pending, RelationComparisonResultOverflow)
+ 			want[pending] = RelationComparisonResultOverflow
+ 			if store.fallback == nil {
+ 				t.Fatal("forced rehash collision did not fall back")
+@@ -194,7 +194,7 @@
+ 	for _, collide := range []bool{false, true} {
+ 		t.Run(fmt.Sprintf("collide%t", collide), func(t *testing.T) {
+ 			var r Relation
+-			keys := make([]CacheHashKey, 256)
++			keys := make([]CacheHashKey, max(256, relationResultProbeLimit+1))
+ 			for i := range keys {
+ 				keys[i] = CacheHashKey{Hi: uint64(i), Lo: uint64(i)}
+ 				if collide {
