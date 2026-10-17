@@ -1,0 +1,27 @@
+Total: 23225216
+ROUTINE ======================== github.com/microsoft/typescript-go/internal/checker.(*Checker).newObjectType in internal/checker/checker.go
+    573313     573313 (flat, cum)  2.47% of Total
+         .          .  25004:func (c *Checker) newObjectType(objectFlags ObjectFlags, symbol *ast.Symbol) *Type {
+         .          .  25005:	var data TypeData
+         .          .  25006:	switch {
+         .          .  25007:	case objectFlags&ObjectFlagsClassOrInterface != 0:
+     15121      15121  25008:		data = &InterfaceType{}
+         .          .  25009:	case objectFlags&ObjectFlagsTuple != 0:
+         .          .  25010:		data = &TupleType{}
+         .          .  25011:	case objectFlags&ObjectFlagsReference != 0:
+    201326     201326  25012:		data = &TypeReference{}
+         .          .  25013:	case objectFlags&ObjectFlagsMapped != 0:
+     18432      18432  25014:		data = &MappedType{}
+         .          .  25015:	case objectFlags&ObjectFlagsReverseMapped != 0:
+         .          .  25016:		data = &ReverseMappedType{}
+         .          .  25017:	case objectFlags&ObjectFlagsEvolvingArray != 0:
+         .          .  25018:		data = &EvolvingArrayType{}
+         .          .  25019:	case objectFlags&ObjectFlagsInstantiationExpressionType != 0:
+      2521       2521  25020:		data = &InstantiationExpressionType{}
+         .          .  25021:	case objectFlags&ObjectFlagsAnonymous != 0:
+    335913     335913  25022:		data = &ObjectType{}
+         .          .  25023:	default:
+         .          .  25024:		panic("Unhandled case in newObjectType")
+         .          .  25025:	}
+         .          .  25026:	t := c.newType(TypeFlagsObject, objectFlags, data)
+         .          .  25027:	t.symbol = symbol

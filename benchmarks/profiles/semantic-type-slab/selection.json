@@ -1,0 +1,23 @@
+{
+  "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+  "baselineCheckerSourceSha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+  "scope": "Sampled cumulative allocations from normal-flag baseline captures; not live heap, exact object census, or removable CPU/wall budget. Type embeds its header; no separate header allocation is assumed.",
+  "workloads": {
+    "sentry": {
+      "profileSha256": "3272e41a8e0590f1e83a9c4f514c27de07017526663a2f9355b713c5a2eb3ab2",
+      "decodedLinesSha256": "3fae3228a89d67ae953c4a13d8ac8c89b5cb76a85c467cca4942f4a1b73e52bc",
+      "objectTypeEstimatedObjects": 335913,
+      "typeReferenceEstimatedObjects": 201326,
+      "totalEstimatedObjects": 23225216,
+      "selectedFraction": 0.023131711670625582
+    },
+    "vscode": {
+      "profileSha256": "646ce35577e17c1a6f3397202e4b720a27569170210e3872dab0159cba896c8b",
+      "decodedLinesSha256": "2cd85e24ee086353c650126931bf3b6dad887231e597dbe33fd48fabaf774c67",
+      "objectTypeEstimatedObjects": 335913,
+      "typeReferenceEstimatedObjects": 131096,
+      "totalEstimatedObjects": 17402575,
+      "selectedFraction": 0.02683562633690704
+    }
+  }
+}

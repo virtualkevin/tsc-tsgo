@@ -1,0 +1,31 @@
+diff --git a/packages/tsc-go/internal/checker/checker.go b/packages/tsc-go/internal/checker/checker.go
+index 0904719..94f9625 100644
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -667,6 +667,8 @@ type Checker struct {
+ 	symbolArena                                 core.Arena[ast.Symbol]
+ 	signatureArena                              core.Arena[Signature]
+ 	indexInfoArena                              core.Arena[IndexInfo]
++	objectTypeSlab                              semanticTypeSlab[ObjectType]
++	typeReferenceSlab                           semanticTypeSlab[TypeReference]
+ 	mergedSymbols                               map[*ast.Symbol]*ast.Symbol
+ 	factory                                     ast.NodeFactory
+ 	nodeLinks                                   core.LinkStore[*ast.Node, NodeLinks]
+@@ -25009,7 +25011,7 @@ func (c *Checker) newObjectType(objectFlags ObjectFlags, symbol *ast.Symbol) *Ty
+ 	case objectFlags&ObjectFlagsTuple != 0:
+ 		data = &TupleType{}
+ 	case objectFlags&ObjectFlagsReference != 0:
+-		data = &TypeReference{}
++		data = c.typeReferenceSlab.New()
+ 	case objectFlags&ObjectFlagsMapped != 0:
+ 		data = &MappedType{}
+ 	case objectFlags&ObjectFlagsReverseMapped != 0:
+@@ -25019,7 +25021,7 @@ func (c *Checker) newObjectType(objectFlags ObjectFlags, symbol *ast.Symbol) *Ty
+ 	case objectFlags&ObjectFlagsInstantiationExpressionType != 0:
+ 		data = &InstantiationExpressionType{}
+ 	case objectFlags&ObjectFlagsAnonymous != 0:
+-		data = &ObjectType{}
++		data = c.objectTypeSlab.New()
+ 	default:
+ 		panic("Unhandled case in newObjectType")
+ 	}
