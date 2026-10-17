@@ -1,0 +1,45 @@
+{
+  "status": "prepared and preflight-verified; no confirmation workload runs yet",
+  "policySha256": "9d1ccb2493990233542c83f5cda507ca7a3101951f39f55891ed2f613dd0ee43",
+  "files": {
+    "run-confirm.mjs": "c07f4ff56817bb71bd0b6d896ba57cf1e07610d9aa5ca98f3073060afd868dbe",
+    "common-screen.mjs": "a50fc9946e6ea792099e4b9b32b29ea408cb7ab668c82adf30d0a4c8a95ec5ea",
+    "record-confirm.mjs": "03aaeccb19be374e6b4c8516c4d98f2a9f4a4ff7691966bae813e8db1a82ffcc",
+    "confirmation-stats.mjs": "a573def65cac9570c6bb01a99b0d1be5e2a92147f8e705fe09ddf6709afb65c5",
+    "confirmation-stats.test.mjs": "c69697ed66478dd78857a05d75e1f486d0870425355ee687130ea4fd5108e5c5",
+    "confirmation-stats-test.log": "8c0ff2b61a4faaf367fa04228c128c1288fe83d5e195d0c3b2ddbde5b7a96e74",
+    "confirmation-stats-test-verified.log": "25b64bb2a239d0e9693213af44151e96da05d66f1e7af265245ca6ce21a8010f",
+    "indexed-confirm-forward.json": "a1f9162b4e40f48a48b710fdab3bb9f8925a090408d253257b541b03e9809568",
+    "indexed-confirm-reverse.json": "03d59dad3caf9b701fed9b4efc3088aa23fd863d3e4db0bbac9a63ceab4f1257",
+    "indexed-confirm-forward-preflight.json": "4c4e69f2e875849c9169ca0fd9f55cace6b18d904f2cee071db73911936b71ef",
+    "indexed-confirm-reverse-preflight.json": "e1b14f954ffbedbe009f75e54ef9b0309112542aab8f2ca8ae9220cc9d62b0e2"
+  },
+  "normalizationTests": {
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=spec",
+      "/tmp/tsc-indexed-bench/confirmation-stats.test.mjs"
+    ],
+    "execution": "outside filesystem sandbox",
+    "exitCode": 0,
+    "counts": {
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "namedTests": [
+      "reversed raw roles preserve canonical times, pair order and RSS direction",
+      "a favorable aggregate cannot hide a workload regression or memory breach",
+      "both aggregate summaries must pass independently"
+    ],
+    "initialAttempt": "Initial sandboxed output contained only one file-level pass and was insufficient evidence for the three named tests; preserved separately. Expanded execution explicitly reported all three."
+  },
+  "limits": [
+    "Postprocessing fixtures do not replace compiler correctness or actual confirmation runs.",
+    "Neither confirmation has started; configurations and scripts are frozen before timing."
+  ]
+}

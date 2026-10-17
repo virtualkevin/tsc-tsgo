@@ -1,0 +1,11 @@
+# Frozen indexed-storage confirmations
+
+Both configurations are prepared and preflight-verified before either confirmation runs. The unchanged-versus-indexed screen qualified under ../../results/indexed-symbol-aa/COMPARISON_POLICY.md. The attribution screen is complete; it is not an adoption reference.
+
+Each confirmation runs19pairs for TypeORM/tRPC and11for VSCode/Sentry, with one warmup and unchanged default runtime settings. The second reverses raw executable roles. record-confirm.mjs validates the raw report before normalizing each pair, timing summary and RSS summary back to unchanged/indexed. Each confirmation independently requires both aggregate ratios>=1.01, every workload summary>=0.98, and indexed median RSS<=1.05times unchanged. Both must pass; pooling cannot rescue a failure.
+
+The runner has a90-minute total bound to accommodate the larger fixed sample count, with the same180-second per-invocation limit. This bound is frozen before timing. Configuration values and runner/report deadlines are checked. The source/binary/sidecar/policy/harness/environment/input/sample integrity gates remain unchanged. No overlapping builds/tests/profiles or subagents are allowed during timing.
+
+The pure normalization/guard fixtures explicitly pass all three named tests with no skips. They check label-reversal invariance, differing paired versus marginal medians, RSS direction, rejection of a hidden workload regression or memory breach, and the requirement that both aggregate summaries pass. The initial sandboxed log only reported a file-level pass and is not counted as these three tests. preparation.json hashes every prepared source/config/log and records the verified test scope. No compiler or confirmation performance claim follows.
+
+Original execution paths are /tmp/tsc-indexed-bench. Copy these files there as needed. Invoke node run-confirm.mjs with a fresh result directory and either indexed-confirm-forward.json or indexed-confirm-reverse.json. Once the runner completes, invoke record-confirm.mjs with the same arguments. The helper module must be alongside the recorder. These controllers retain absolute workspace paths and require explicit adjustments on another machine. No confirmation workload has run at this checkpoint.
