@@ -8,6 +8,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
+import { cases as checkerCases } from '../../tsc-ts/tests/checker-cases.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const baseline = resolve(root, process.env.TSC_GO_BASELINE ?? 'packages/tsc-ts/dist/tsc');
@@ -59,7 +60,30 @@ const fixtures = [
         'import { twice } from "./helper.js";\nimport data from "./data.json";\nexport const n = twice(data.count);\nexport const bad: number = data.label;\n',
     },
   },
+  {
+    name: 'mapped union declaration order across checker histories',
+    files: {
+      'view.ts': 'export function view<F>(fields: F): { readonly [K in keyof F]: F[K] } { return fields; }\n',
+      'defs.ts':
+        'import { view } from "./view.js";\nexport const a = view({ kind: "a" as const, x: 1 });\nexport const b = view({ kind: "b" as const, y: "s" });\n',
+      'main.ts':
+        'import { a, b } from "./defs.js";\nexport const first = b;\nexport const pick = Math.random() > 0.5 ? a : b;\n',
+    },
+  },
 ];
+
+// These cases deliberately cross the flow-walk memoization threshold and cover
+// loop/reduce-label contexts, aliases, reference-key collisions, and generic
+// types whose narrowing depends on the source position.
+fixtures.push(
+  ...checkerCases
+    .filter(({ name }) => name.startsWith('flow analysis'))
+    .map(({ name, source }) => ({
+      name,
+      diagnostic: 'TS2322',
+      files: { 'main.ts': source.join('\n') + '\n' },
+    })),
+);
 
 const variants = [
   ['check', ['--noEmit']],

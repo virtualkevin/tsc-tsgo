@@ -3413,6 +3413,7 @@ func (b *NodeBuilderImpl) typeToTypeNode(t *Type) *ast.TypeNode {
 		var types []*Type
 		if t.flags&TypeFlagsUnion != 0 {
 			types = b.ch.formatUnionTypes(t.AsUnionType().types, expandingEnum)
+			types = b.ch.inDeclarationOrder(types)
 		} else {
 			types = t.AsIntersectionType().types
 		}

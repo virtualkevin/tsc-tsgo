@@ -2,6 +2,7 @@ package compiler
 
 import (
 	"context"
+	"os"
 	"slices"
 	"sync"
 
@@ -112,8 +113,16 @@ func (p *checkerPool) createCheckers() {
 		wg.RunAndWait()
 
 		p.fileAssociations = make(map[*ast.SourceFile]*checker.Checker, len(p.program.files))
+		var assignments []int
+		if os.Getenv("TSC_GO_SCHEDULER") == "balanced" {
+			assignments = balancedCheckerAssignments(checkerSchedulingWeights(p.program), checkerCount)
+		}
 		for i, file := range p.program.files {
-			p.fileAssociations[file] = p.checkers[i%checkerCount]
+			owner := i % checkerCount
+			if assignments != nil {
+				owner = assignments[i]
+			}
+			p.fileAssociations[file] = p.checkers[owner]
 		}
 	})
 }

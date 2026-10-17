@@ -341,6 +341,10 @@ func (c *Checker) sortSymbols(symbols []*ast.Symbol) {
 }
 
 func (c *Checker) compareSymbolsWorker(s1, s2 *ast.Symbol) int {
+	return c.compareSymbolsWithOrder(s1, s2, nil)
+}
+
+func (c *Checker) compareSymbolsWithOrder(s1, s2 *ast.Symbol, order *declarationTypeOrder) int {
 	if s1 == s2 {
 		return 0
 	}
@@ -361,6 +365,12 @@ func (c *Checker) compareSymbolsWorker(s1, s2 *ast.Symbol) int {
 	}
 	if r := strings.Compare(s1.Name, s2.Name); r != 0 {
 		return r
+	}
+	if order != nil {
+		if order.structuralTies {
+			return 0
+		}
+		order.usedIDs = true
 	}
 	// Fall back to symbol IDs. This is a last resort that should happen only when symbols have
 	// no declaration and duplicate names.
@@ -390,6 +400,10 @@ func (c *Checker) compareNodes(n1, n2 *ast.Node) int {
 }
 
 func CompareTypes(t1, t2 *Type) int {
+	return compareTypesWithOrder(t1, t2, nil)
+}
+
+func compareTypesWithOrder(t1, t2 *Type, order *declarationTypeOrder) int {
 	if t1 == t2 {
 		return 0
 	}
@@ -407,7 +421,7 @@ func CompareTypes(t1, t2 *Type) int {
 		return c
 	}
 	// Order named types by name and, in the case of aliased types, by alias type arguments.
-	if c := compareTypeNames(t1, t2); c != 0 {
+	if c := compareTypeNamesWithOrder(t1, t2, order); c != 0 {
 		return c
 	}
 	// We have unnamed types or types with identical names. Now sort by data specific to the type.
@@ -416,7 +430,7 @@ func CompareTypes(t1, t2 *Type) int {
 		// Only distinguished by type IDs, handled below.
 	case t1.flags&TypeFlagsObject != 0:
 		// Order unnamed or identically named object types by symbol.
-		if c := t1.checker.compareSymbols(t1.symbol, t2.symbol); c != 0 {
+		if c := t1.checker.compareSymbolsWithOrder(t1.symbol, t2.symbol, order); c != 0 {
 			return c
 		}
 		// When object types have the same or no symbol, order by kind. We order type references before other kinds.
@@ -432,7 +446,7 @@ func CompareTypes(t1, t2 *Type) int {
 			// Here we know we have references to instantiations of the same type because we have matching targets.
 			if r1.node == nil && r2.node == nil {
 				// Non-deferred type references with the same target are sorted by their type argument lists.
-				if c := compareTypeLists(t1.AsTypeReference().resolvedTypeArguments, t2.AsTypeReference().resolvedTypeArguments); c != 0 {
+				if c := compareTypeListsWithOrder(t1.AsTypeReference().resolvedTypeArguments, t2.AsTypeReference().resolvedTypeArguments, order); c != 0 {
 					return c
 				}
 			} else {
@@ -442,7 +456,7 @@ func CompareTypes(t1, t2 *Type) int {
 				}
 				// Instantiations of the same deferred type reference are ordered by their associated type mappers
 				// (which reflect the mapping of in-scope type parameters to type arguments).
-				if c := compareTypeMappers(t1.AsObjectType().mapper, t2.AsObjectType().mapper); c != 0 {
+				if c := compareTypeMappersWithOrder(t1.AsObjectType().mapper, t2.AsObjectType().mapper, order); c != 0 {
 					return c
 				}
 			}
@@ -457,7 +471,7 @@ func CompareTypes(t1, t2 *Type) int {
 			if c := int(t1.objectFlags&ObjectFlagsObjectTypeKindMask) - int(t2.objectFlags&ObjectFlagsObjectTypeKindMask); c != 0 {
 				return c
 			}
-			if c := compareTypeMappers(t1.AsObjectType().mapper, t2.AsObjectType().mapper); c != 0 {
+			if c := compareTypeMappersWithOrder(t1.AsObjectType().mapper, t2.AsObjectType().mapper, order); c != 0 {
 				return c
 			}
 		}
@@ -466,7 +480,7 @@ func CompareTypes(t1, t2 *Type) int {
 		o1 := t1.AsUnionType().origin
 		o2 := t2.AsUnionType().origin
 		if o1 == nil && o2 == nil {
-			if c := compareTypeLists(t1.Types(), t2.Types()); c != 0 {
+			if c := compareTypeListsWithOrder(t1.Types(), t2.Types(), order); c != 0 {
 				return c
 			}
 		} else if o1 == nil {
@@ -474,18 +488,18 @@ func CompareTypes(t1, t2 *Type) int {
 		} else if o2 == nil {
 			return -1
 		} else {
-			if c := CompareTypes(o1, o2); c != 0 {
+			if c := compareTypesWithOrder(o1, o2, order); c != 0 {
 				return c
 			}
 		}
 	case t1.flags&TypeFlagsIntersection != 0:
 		// Intersections are ordered by their constituent type lists.
-		if c := compareTypeLists(t1.Types(), t2.Types()); c != 0 {
+		if c := compareTypeListsWithOrder(t1.Types(), t2.Types(), order); c != 0 {
 			return c
 		}
 	case t1.flags&(TypeFlagsEnum|TypeFlagsEnumLiteral|TypeFlagsUniqueESSymbol) != 0:
 		// Enum members are ordered by their symbol (and thus their declaration order).
-		if c := t1.checker.compareSymbols(t1.symbol, t2.symbol); c != 0 {
+		if c := t1.checker.compareSymbolsWithOrder(t1.symbol, t2.symbol, order); c != 0 {
 			return c
 		}
 	case t1.flags&TypeFlagsStringLiteral != 0:
@@ -508,50 +522,56 @@ func CompareTypes(t1, t2 *Type) int {
 			return -1
 		}
 	case t1.flags&TypeFlagsTypeParameter != 0:
-		if c := t1.checker.compareSymbols(t1.symbol, t2.symbol); c != 0 {
+		if c := t1.checker.compareSymbolsWithOrder(t1.symbol, t2.symbol, order); c != 0 {
 			return c
 		}
 	case t1.flags&TypeFlagsIndex != 0:
-		if c := CompareTypes(t1.AsIndexType().target, t2.AsIndexType().target); c != 0 {
+		if c := compareTypesWithOrder(t1.AsIndexType().target, t2.AsIndexType().target, order); c != 0 {
 			return c
 		}
 		if c := int(t1.AsIndexType().indexFlags) - int(t2.AsIndexType().indexFlags); c != 0 {
 			return c
 		}
 	case t1.flags&TypeFlagsIndexedAccess != 0:
-		if c := CompareTypes(t1.AsIndexedAccessType().objectType, t2.AsIndexedAccessType().objectType); c != 0 {
+		if c := compareTypesWithOrder(t1.AsIndexedAccessType().objectType, t2.AsIndexedAccessType().objectType, order); c != 0 {
 			return c
 		}
-		if c := CompareTypes(t1.AsIndexedAccessType().indexType, t2.AsIndexedAccessType().indexType); c != 0 {
+		if c := compareTypesWithOrder(t1.AsIndexedAccessType().indexType, t2.AsIndexedAccessType().indexType, order); c != 0 {
 			return c
 		}
 	case t1.flags&TypeFlagsConditional != 0:
 		if c := t1.checker.compareNodes(t1.AsConditionalType().root.node.AsNode(), t2.AsConditionalType().root.node.AsNode()); c != 0 {
 			return c
 		}
-		if c := compareTypeMappers(t1.AsConditionalType().mapper, t2.AsConditionalType().mapper); c != 0 {
+		if c := compareTypeMappersWithOrder(t1.AsConditionalType().mapper, t2.AsConditionalType().mapper, order); c != 0 {
 			return c
 		}
 	case t1.flags&TypeFlagsSubstitution != 0:
-		if c := CompareTypes(t1.AsSubstitutionType().baseType, t2.AsSubstitutionType().baseType); c != 0 {
+		if c := compareTypesWithOrder(t1.AsSubstitutionType().baseType, t2.AsSubstitutionType().baseType, order); c != 0 {
 			return c
 		}
-		if c := CompareTypes(t1.AsSubstitutionType().constraint, t2.AsSubstitutionType().constraint); c != 0 {
+		if c := compareTypesWithOrder(t1.AsSubstitutionType().constraint, t2.AsSubstitutionType().constraint, order); c != 0 {
 			return c
 		}
 	case t1.flags&TypeFlagsTemplateLiteral != 0:
 		if c := slices.Compare(t1.AsTemplateLiteralType().texts, t2.AsTemplateLiteralType().texts); c != 0 {
 			return c
 		}
-		if c := compareTypeLists(t1.AsTemplateLiteralType().types, t2.AsTemplateLiteralType().types); c != 0 {
+		if c := compareTypeListsWithOrder(t1.AsTemplateLiteralType().types, t2.AsTemplateLiteralType().types, order); c != 0 {
 			return c
 		}
 	case t1.flags&TypeFlagsStringMapping != 0:
-		if c := CompareTypes(t1.AsStringMappingType().target, t2.AsStringMappingType().target); c != 0 {
+		if c := compareTypesWithOrder(t1.AsStringMappingType().target, t2.AsStringMappingType().target, order); c != 0 {
 			return c
 		}
 	}
-	// Fall back to type IDs. This results in type creation order for built-in types.
+	// Built-in singleton order is stable; other IDs reflect checker history.
+	if order != nil && t1.flags&TypeFlagsSingleton == 0 {
+		if order.structuralTies {
+			return 0
+		}
+		order.usedIDs = true
+	}
 	return int(t1.id) - int(t2.id)
 }
 
@@ -564,11 +584,15 @@ func getSortOrderFlags(t *Type) int {
 }
 
 func compareTypeNames(t1, t2 *Type) int {
+	return compareTypeNamesWithOrder(t1, t2, nil)
+}
+
+func compareTypeNamesWithOrder(t1, t2 *Type, order *declarationTypeOrder) int {
 	s1 := getTypeNameSymbol(t1)
 	s2 := getTypeNameSymbol(t2)
 	if s1 == s2 {
 		if t1.alias != nil {
-			return compareTypeLists(t1.alias.typeArguments, t2.alias.typeArguments)
+			return compareTypeListsWithOrder(t1.alias.typeArguments, t2.alias.typeArguments, order)
 		}
 		return 0
 	}
@@ -635,11 +659,15 @@ func compareElementLabels(n1, n2 *ast.Node) int {
 }
 
 func compareTypeLists(s1, s2 []*Type) int {
+	return compareTypeListsWithOrder(s1, s2, nil)
+}
+
+func compareTypeListsWithOrder(s1, s2 []*Type, order *declarationTypeOrder) int {
 	if len(s1) != len(s2) {
 		return len(s1) - len(s2)
 	}
 	for i, t1 := range s1 {
-		if c := CompareTypes(t1, s2[i]); c != 0 {
+		if c := compareTypesWithOrder(t1, s2[i], order); c != 0 {
 			return c
 		}
 	}
@@ -647,6 +675,10 @@ func compareTypeLists(s1, s2 []*Type) int {
 }
 
 func compareTypeMappers(m1, m2 *TypeMapper) int {
+	return compareTypeMappersWithOrder(m1, m2, nil)
+}
+
+func compareTypeMappersWithOrder(m1, m2 *TypeMapper, order *declarationTypeOrder) int {
 	if m1 == m2 {
 		return 0
 	}
@@ -665,24 +697,27 @@ func compareTypeMappers(m1, m2 *TypeMapper) int {
 	case TypeMapperKindSimple:
 		m1 := m1.data.(*SimpleTypeMapper)
 		m2 := m2.data.(*SimpleTypeMapper)
-		if c := CompareTypes(m1.source, m2.source); c != 0 {
+		if c := compareTypesWithOrder(m1.source, m2.source, order); c != 0 {
 			return c
 		}
-		return CompareTypes(m1.target, m2.target)
+		return compareTypesWithOrder(m1.target, m2.target, order)
 	case TypeMapperKindArray:
 		m1 := m1.data.(*ArrayTypeMapper)
 		m2 := m2.data.(*ArrayTypeMapper)
-		if c := compareTypeLists(m1.sources, m2.sources); c != 0 {
+		if c := compareTypeListsWithOrder(m1.sources, m2.sources, order); c != 0 {
 			return c
 		}
-		return compareTypeLists(m1.targets, m2.targets)
+		return compareTypeListsWithOrder(m1.targets, m2.targets, order)
 	case TypeMapperKindMerged:
 		m1 := m1.data.(*MergedTypeMapper)
 		m2 := m2.data.(*MergedTypeMapper)
-		if c := compareTypeMappers(m1.m1, m2.m1); c != 0 {
+		if c := compareTypeMappersWithOrder(m1.m1, m2.m1, order); c != 0 {
 			return c
 		}
-		return compareTypeMappers(m1.m2, m2.m2)
+		return compareTypeMappersWithOrder(m1.m2, m2.m2, order)
+	}
+	if order != nil && order.structuralTies {
+		return compareOtherTypeMappers(m1, m2, order)
 	}
 	return 0
 }

@@ -20688,7 +20688,9 @@ func (c *Checker) instantiateSymbol(symbol *ast.Symbol, m *TypeMapper) *ast.Symb
 	result.Declarations = symbol.Declarations
 	result.Parent = symbol.Parent
 	result.ValueDeclaration = symbol.ValueDeclaration
-	resultLinks := c.valueSymbolLinks.Get(result)
+	// newSymbol allocated a fresh arena slot, and only its fields have been set
+	// since then: no link entry can exist for this result yet.
+	resultLinks := c.valueSymbolLinks.New(result)
 	resultLinks.target = symbol
 	resultLinks.mapper = m
 	resultLinks.nameType = links.nameType

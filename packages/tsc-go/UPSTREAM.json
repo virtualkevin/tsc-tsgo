@@ -2,16 +2,12 @@
   "repository": "https://github.com/microsoft/typescript-go",
   "commit": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
   "strategy": "Maintained source fork of the exact Go ancestor of tsc-ts; performance changes are applied directly to Go source.",
-  "included": [
-    "cmd",
-    "internal",
-    "go.mod",
-    "go.sum",
-    "LICENSE",
-    "NOTICE.txt"
-  ],
+  "included": ["cmd", "internal", "go.mod", "go.sum", "LICENSE", "NOTICE.txt"],
   "localChanges": [
     "TSC_TS_LIB_DIR environment override in internal/bundled/bundled.go",
-    "npm workspace build and launcher"
+    "npm workspace build and launcher",
+    "Opt-in deterministic balanced checker scheduling via TSC_GO_SCHEDULER=balanced",
+    "Deterministic union declaration ordering ported from tsc-ts commit d3e96c17c42be94d8cc3b842174376ddc5a558c0",
+    "LinkStore.New fresh-key insertion avoids redundant symbol-link lookup in instantiateSymbol"
   ]
 }
