@@ -1,0 +1,28 @@
+{
+  "status": "restored",
+  "beforeSource": "fa8703adec5de5e3f803dba41e81a3a02a8111cdb4e4aa6752c9e908fd3c4a82",
+  "afterSource": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+  "fileCount": 5153,
+  "binarySha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+  "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d",
+  "diagnosticBinarySha256": "5f038b8c3ae8c7ac7b7003c9a41367a5dbcabfeaf3b24b45ad1b1f553c41c080",
+  "operations": [
+    {
+      "path": "packages/tsc-go/cmd/tsgo/main.go",
+      "remove": false
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "remove": false
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/semantic_census.go",
+      "remove": true
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/semantic_census_test.go",
+      "remove": true
+    }
+  ],
+  "controllerSha256": "7d5df13843d9cc7f9e1c82d01bd23c19a98468170186b8f5947d30e70fc9df01"
+}

@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync,unlinkSync,copyFileSync,chmodSync,statSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {captureGoSources,readBuildProvenance,hashFile,sha256} from '../../../scripts/build-provenance.mjs';
+const root=process.cwd(), pkg=root+'/packages/tsc-go', archive=root+'/benchmarks/profiles/semantic-census-validation';
+const read=p=>JSON.parse(readFileSync(p,'utf8'));
+const saved=read(archive+'/source-final.json'), build=read(archive+'/build-final.json');
+const baseline=pkg+'/dist/tsc-go-keybuilder-saturated', target=pkg+'/dist/tsc-go';
+const baselineHash='2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303';
+const bp=readBuildProvenance(baseline,baselineHash); assert.equal(bp.status,'verified');
+assert.equal(bp.sidecarSha256,'c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d');
+const before=captureGoSources(pkg); assert.equal(before.sha256,saved.sourceSha256);
+for(const binary of [target,build.binary]) {assert.equal(hashFile(binary),build.binarySha256);assert.equal(hashFile(binary+'.provenance.json'),build.sidecarSha256);}
+const old=new Map(bp.metadata.source.files.map(f=>[f.path,f]));
+const ops=saved.files.map(f=>{assert.equal(hashFile(root+'/'+f.path),f.sha256);assert.equal(hashFile(archive+'/source/'+f.path),f.sha256);if(!old.has(f.path))return {path:f.path,remove:true}; const result=spawnSync('git',['show',saved.head+':'+f.path],{maxBuffer:16*1024*1024});assert.equal(result.status,0);assert.equal(sha256(result.stdout),old.get(f.path).sha256);return {path:f.path,data:result.stdout};});
+assert.equal(ops.filter(o=>o.remove).length,2);
+for(const op of ops)if(op.remove)unlinkSync(root+'/'+op.path);else writeFileSync(root+'/'+op.path,op.data);
+const after=captureGoSources(pkg);assert.equal(after.sha256,'78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337');assert.deepEqual(after.files,bp.metadata.source.files);
+copyFileSync(baseline,target);chmodSync(target,statSync(baseline).mode&0o777);copyFileSync(baseline+'.provenance.json',target+'.provenance.json');
+assert.equal(hashFile(target),baselineHash);assert.equal(hashFile(target+'.provenance.json'),bp.sidecarSha256);assert.equal(hashFile(build.binary),build.binarySha256);
+const report={status:'restored',beforeSource:before.sha256,afterSource:after.sha256,fileCount:after.files.length,binarySha256:hashFile(target),sidecarSha256:bp.sidecarSha256,diagnosticBinarySha256:hashFile(build.binary),operations:ops.map(o=>({path:o.path,remove:!!o.remove})),controllerSha256:hashFile(archive+'/restore.mjs')};
+writeFileSync(root+'/benchmarks/validation/semantic-census-restoration.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(report));

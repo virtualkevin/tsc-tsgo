@@ -1,0 +1,278 @@
+{
+  "status": "passed",
+  "source": {
+    "head": "8e2561ec9a721d10799124e14e95038588bc8863",
+    "sourceSha256": "fa8703adec5de5e3f803dba41e81a3a02a8111cdb4e4aa6752c9e908fd3c4a82",
+    "fileCount": 5155,
+    "files": [
+      {
+        "path": "packages/tsc-go/cmd/tsgo/main.go",
+        "sha256": "7939dd6beeddb42122bb88bdd364477d8789ed3281f3342356d6210228a1ea55",
+        "executable": false
+      },
+      {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "798a007772be5124156328bdc54cc9d5098d54263a441c95ab939e63e3f3753c",
+        "executable": false
+      },
+      {
+        "path": "packages/tsc-go/internal/checker/semantic_census.go",
+        "sha256": "ee7b6f06102635729b538fcb3f808e82c00eda0500acdb356125609d4e093cce",
+        "executable": false
+      },
+      {
+        "path": "packages/tsc-go/internal/checker/semantic_census_test.go",
+        "sha256": "fdfbf0ac0feebdcf2064e1ed2537d5ac645d607a0e0906cc8fbbcb801b65927d",
+        "executable": false
+      }
+    ],
+    "sixTestBinarySha256": "5f038b8c3ae8c7ac7b7003c9a41367a5dbcabfeaf3b24b45ad1b1f553c41c080"
+  },
+  "build": {
+    "status": "built",
+    "sourceSha256": "fa8703adec5de5e3f803dba41e81a3a02a8111cdb4e4aa6752c9e908fd3c4a82",
+    "head": "8e2561ec9a721d10799124e14e95038588bc8863",
+    "binary": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-census",
+    "binarySha256": "5f038b8c3ae8c7ac7b7003c9a41367a5dbcabfeaf3b24b45ad1b1f553c41c080",
+    "sidecarSha256": "ef3b70b962ca2931f926a99b816cdd550c2f4de96d560a3a1bb4fe8ac8631e89",
+    "unchangedBinaryAfterTestOnlyExtension": true
+  },
+  "tests": {
+    "focused-seven": {
+      "namedPasses": 9,
+      "topLevelPasses": 7,
+      "packages": [
+        "github.com/microsoft/typescript-go/internal/checker"
+      ],
+      "skips": 0
+    },
+    "race-seven": {
+      "namedPasses": 9,
+      "topLevelPasses": 7,
+      "packages": [
+        "github.com/microsoft/typescript-go/internal/checker"
+      ],
+      "skips": 0
+    },
+    "checkptr-seven": {
+      "namedPasses": 9,
+      "topLevelPasses": 7,
+      "packages": [
+        "github.com/microsoft/typescript-go/internal/checker"
+      ],
+      "skips": 0
+    },
+    "api-enabled": {
+      "namedPasses": 6,
+      "topLevelPasses": 6,
+      "packages": [
+        "github.com/microsoft/typescript-go/internal/checker"
+      ],
+      "skips": 0
+    },
+    "root": {
+      "namedPasses": 2347,
+      "topLevelPasses": 121,
+      "packages": [
+        "github.com/microsoft/typescript-go/internal/core",
+        "github.com/microsoft/typescript-go/internal/scanner",
+        "github.com/microsoft/typescript-go/internal/bundled",
+        "github.com/microsoft/typescript-go/internal/ast",
+        "github.com/microsoft/typescript-go/internal/compiler",
+        "github.com/microsoft/typescript-go/internal/checker",
+        "github.com/microsoft/typescript-go/internal/execute/watchmanager",
+        "github.com/microsoft/typescript-go/internal/execute",
+        "github.com/microsoft/typescript-go/internal/execute/build",
+        "github.com/microsoft/typescript-go/cmd/tsgo"
+      ],
+      "skips": 0
+    }
+  },
+  "cli": {
+    "status": "passed",
+    "summarySha256": "d2fe9367325ef9fb77516a1ceb70c0f9501afd62c2269a00f87a62d40c4c4384",
+    "checks": [
+      {
+        "case": "clean",
+        "checkers": 1,
+        "labels": 0,
+        "semanticCounters": {
+          "Files": 72,
+          "Lines": 56217,
+          "Identifiers": 48378,
+          "Symbols": 31355,
+          "Types": 343,
+          "Instantiations": 306
+        },
+        "records": 339,
+        "diagnosticAdditions": 0,
+        "overflowCalls": 0
+      },
+      {
+        "case": "clean",
+        "checkers": 1,
+        "labels": 1,
+        "semanticCounters": {
+          "Files": 72,
+          "Lines": 56217,
+          "Identifiers": 48378,
+          "Symbols": 31355,
+          "Types": 343,
+          "Instantiations": 306
+        },
+        "records": 339,
+        "diagnosticAdditions": 0,
+        "overflowCalls": 0
+      },
+      {
+        "case": "clean",
+        "checkers": 4,
+        "labels": 0,
+        "semanticCounters": {
+          "Files": 72,
+          "Lines": 56217,
+          "Identifiers": 48378,
+          "Symbols": 32009,
+          "Types": 712,
+          "Instantiations": 396
+        },
+        "records": 471,
+        "diagnosticAdditions": 0,
+        "overflowCalls": 0
+      },
+      {
+        "case": "clean",
+        "checkers": 4,
+        "labels": 1,
+        "semanticCounters": {
+          "Files": 72,
+          "Lines": 56217,
+          "Identifiers": 48378,
+          "Symbols": 32009,
+          "Types": 712,
+          "Instantiations": 396
+        },
+        "records": 471,
+        "diagnosticAdditions": 0,
+        "overflowCalls": 0
+      },
+      {
+        "case": "errors",
+        "checkers": 1,
+        "labels": 0,
+        "semanticCounters": {
+          "Files": 73,
+          "Lines": 56229,
+          "Identifiers": 48400,
+          "Symbols": 31367,
+          "Types": 346,
+          "Instantiations": 10325
+        },
+        "records": 10358,
+        "diagnosticAdditions": 3,
+        "overflowCalls": 0
+      },
+      {
+        "case": "errors",
+        "checkers": 1,
+        "labels": 1,
+        "semanticCounters": {
+          "Files": 73,
+          "Lines": 56229,
+          "Identifiers": 48400,
+          "Symbols": 31367,
+          "Types": 346,
+          "Instantiations": 10325
+        },
+        "records": 10358,
+        "diagnosticAdditions": 3,
+        "overflowCalls": 0
+      },
+      {
+        "case": "errors",
+        "checkers": 4,
+        "labels": 0,
+        "semanticCounters": {
+          "Files": 73,
+          "Lines": 56229,
+          "Identifiers": 48400,
+          "Symbols": 32022,
+          "Types": 715,
+          "Instantiations": 10415
+        },
+        "records": 10490,
+        "diagnosticAdditions": 3,
+        "overflowCalls": 0
+      },
+      {
+        "case": "errors",
+        "checkers": 4,
+        "labels": 1,
+        "semanticCounters": {
+          "Files": 73,
+          "Lines": 56229,
+          "Identifiers": 48400,
+          "Symbols": 32022,
+          "Types": 715,
+          "Instantiations": 10415
+        },
+        "records": 10490,
+        "diagnosticAdditions": 3,
+        "overflowCalls": 0
+      }
+    ],
+    "scope": "Actual observer label-mode fields, census digests, no overflow on these fixtures; no sharing eligibility or workload CPU claim."
+  },
+  "artifacts": [
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/build-final.json",
+      "sha256": "92fcf43e527d8c105f0b04bda39ea2a8dce523fa02a67c9dc9c8531529245292",
+      "bytes": 470
+    },
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/cli-postcheck.json",
+      "sha256": "7bc28bf2de5fdd329728fb114efd1e2178bd158f71f969f62352633123253a0a",
+      "bytes": 3052
+    },
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/semantic-census.patch",
+      "sha256": "770b3cd257e1342226fc3fded2ed038e9e2745014d6db8ee748f6238a9f24461",
+      "bytes": 25690
+    },
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/source/packages/tsc-go/cmd/tsgo/main.go",
+      "sha256": "7939dd6beeddb42122bb88bdd364477d8789ed3281f3342356d6210228a1ea55",
+      "bytes": 1157
+    },
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/source/packages/tsc-go/internal/checker/checker.go",
+      "sha256": "798a007772be5124156328bdc54cc9d5098d54263a441c95ab939e63e3f3753c",
+      "bytes": 1422923
+    },
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/source/packages/tsc-go/internal/checker/semantic_census.go",
+      "sha256": "ee7b6f06102635729b538fcb3f808e82c00eda0500acdb356125609d4e093cce",
+      "bytes": 8944
+    },
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/source/packages/tsc-go/internal/checker/semantic_census_test.go",
+      "sha256": "fdfbf0ac0feebdcf2064e1ed2537d5ac645d607a0e0906cc8fbbcb801b65927d",
+      "bytes": 9923
+    },
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/source-final.json",
+      "sha256": "fbc9ec57ef77ec989843911cf368822384d057b90644424b6fdf979b93c9dcfd",
+      "bytes": 1020
+    },
+    {
+      "path": "benchmarks/profiles/semantic-census-validation/validation.tar.gz",
+      "sha256": "132c251f238b6e8e83415e0457c0bdb6f6d60284f239ca08dc084af15d9b575e",
+      "bytes": 1295497
+    }
+  ],
+  "limitations": [
+    "Diagnostic-only; no workload CPU measurement or sharing eligibility established.",
+    "Initial CLI fixture failure preserved alongside corrected run.",
+    "No full conformance or native suite newly run for diagnostic build."
+  ]
+}
