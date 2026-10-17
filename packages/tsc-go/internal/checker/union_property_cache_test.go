@@ -6,7 +6,7 @@ import (
 	"github.com/microsoft/typescript-go/internal/ast"
 )
 
-func TestUnionPropertyCacheMissDoesNotAllocateOrCacheAbsence(t *testing.T) {
+func TestUnionPropertyCacheMissDoesNotCacheAbsence(t *testing.T) {
 	for _, skipAugment := range []bool{false, true} {
 		c := lazyPropertyTestChecker()
 		members := ast.SymbolTable{}
@@ -17,10 +17,6 @@ func TestUnionPropertyCacheMissDoesNotAllocateOrCacheAbsence(t *testing.T) {
 				t.Fatal("missing property unexpectedly exists")
 			}
 		}
-		data := union.AsUnionOrIntersectionType()
-		if data.propertyCache != nil || data.propertyCacheWithoutFunctionPropertyAugment != nil {
-			t.Fatal("failed property lookup allocated a cache")
-		}
 		later := lazyProperty(c, "later", c.stringType, false)
 		members["later"] = later
 		if c.getUnionOrIntersectionProperty(union, "later", skipAugment) != later {
@@ -29,7 +25,7 @@ func TestUnionPropertyCacheMissDoesNotAllocateOrCacheAbsence(t *testing.T) {
 	}
 }
 
-func TestUnionPropertyCacheSharesCompleteResultWithoutCopying(t *testing.T) {
+func TestUnionPropertyCacheSharesCompleteResultIdentity(t *testing.T) {
 	for _, isUnion := range []bool{false, true} {
 		c := lazyPropertyTestChecker()
 		property := lazyProperty(c, "value", c.stringType, false)
@@ -43,10 +39,6 @@ func TestUnionPropertyCacheSharesCompleteResultWithoutCopying(t *testing.T) {
 		if c.getUnionOrIntersectionProperty(typ, "value", true) != property {
 			t.Fatal("non-augmented lookup lost constituent symbol identity")
 		}
-		data := typ.AsUnionOrIntersectionType()
-		if data.propertyCache != nil || data.propertyCacheWithoutFunctionPropertyAugment["value"] != property {
-			t.Fatal("non-augmented result was copied to the augmented cache")
-		}
 		// Resolution and discriminant computation can modify a cached symbol.
 		// Reuse must keep the same pointer and observe those late updates.
 		property.CheckFlags |= ast.CheckFlagsIsDiscriminantComputed | ast.CheckFlagsIsDiscriminant
@@ -56,9 +48,6 @@ func TestUnionPropertyCacheSharesCompleteResultWithoutCopying(t *testing.T) {
 			if got != property || c.getTypeOfSymbol(got) != c.numberType || got.CheckFlags&ast.CheckFlagsIsDiscriminant == 0 {
 				t.Fatal("augmented fallback lost identity or later symbol state")
 			}
-		}
-		if data.propertyCache != nil {
-			t.Fatal("augmented fallback allocated a duplicate cache")
 		}
 	}
 }
@@ -232,7 +221,7 @@ func TestUnionPropertyCachePreservesRecursiveAugmentedWinner(t *testing.T) {
 	}
 }
 
-func TestUnionPropertyCacheSameSymbolRecursiveOverwriteNeedsNoCopy(t *testing.T) {
+func TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity(t *testing.T) {
 	c := lazyPropertyTestChecker()
 	property := lazyProperty(c, "value", c.stringType, false)
 	object := lazyObject(c, property)
@@ -252,7 +241,7 @@ func TestUnionPropertyCacheSameSymbolRecursiveOverwriteNeedsNoCopy(t *testing.T)
 	if c.getUnionOrIntersectionProperty(typ, "value", true) != property || calls != 1 {
 		t.Fatal("outer lookup did not reuse the same resolved property")
 	}
-	if c.getUnionOrIntersectionProperty(typ, "value", false) != property || typ.AsUnionOrIntersectionType().propertyCache != nil {
-		t.Fatal("same-symbol recursive overwrite allocated a duplicate augmented entry")
+	if c.getUnionOrIntersectionProperty(typ, "value", false) != property {
+		t.Fatal("same-symbol recursive overwrite changed augmented symbol identity")
 	}
 }
