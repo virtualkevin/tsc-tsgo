@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "suite": "Pinned upstream Go TestSubmodule compiler conformance",
+  "completed_at": "2026-10-17T10:53:58.968948577Z",
+  "exit_code": 0,
+  "source": {
+    "base_commit": "d797bcf889102eb50098281004f15d2c97fdab71",
+    "uncommitted_changes": true,
+    "content_sha256": "9c86a02c17a5d2c6892ae925667031b33ae16027c1d0338430a46df5a28b97b7",
+    "digest_file_count": 5147,
+    "digest_algorithm": "sha256(JSON.stringify(sorted local source manifest))",
+    "verified_unchanged_through_validation": true,
+    "scope": "Complete local compiler cmd/internal/scripts trees, go.mod, go.sum, package.json, root build-provenance helper, including untracked/ignored sources and embedded declarations.",
+    "note": "Compact Type representation retains original complete allocation pointer plus immutable kind. Factories pass matching kinds; exact and embedded-range accessors preserve allocation identity. PointerLinkStore experiment is not integrated."
+  },
+  "fixtures": {
+    "typescript_go_commit": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript_commit": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "go_reference": "upstream/typescript-go/testdata/baselines/reference",
+    "typescript_reference": "upstream/TypeScript/tests/baselines/reference",
+    "auxiliary_declarations": "upstream/TypeScript/tests/lib"
+  },
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "working_directory": "packages/tsc-go",
+  "environment": {
+    "GOFLAGS": ""
+  },
+  "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/testrunner -run '^TestSubmodule$' -parallel 4 -timeout 30m",
+  "test_binary_flags": "No -trimpath; upstream test runner locates fixtures from source paths.",
+  "source_manifest_logs": {
+    "before": "/tmp/type-data-source-before.json",
+    "after": "/tmp/type-data-source-after.json"
+  },
+  "source_and_configuration_cases": {
+    "total": 14915,
+    "passed_parent_cases": 12797,
+    "fully_checked_cases": 12789,
+    "partially_checked_cases": 8,
+    "unsupported_cases_skipped": 2118,
+    "failed_cases": 0
+  },
+  "test_and_subtest_records": {
+    "passed": 113970,
+    "skipped": 2126,
+    "failed": 0,
+    "note": "Includes parent aggregate records; not a count of independent assertions. Skips are excluded from passed records."
+  },
+  "failed_cases": [],
+  "unsupported_case_skip_categories": {
+    "alwaysStrict=false is unsupported": 52,
+    "esModuleInterop=false is unsupported": 24,
+    "unsupported baseUrl": 31,
+    "unsupported module kind AMD": 321,
+    "unsupported module kind System": 222,
+    "unsupported module kind UMD": 57,
+    "unsupported module resolution kind 1": 57,
+    "unsupported module resolution kind 2": 23,
+    "unsupported outFile": 87,
+    "unsupported target ES5": 1244
+  },
+  "inherited_skipped_output_checks": [
+    {
+      "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/grammarErrors.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+      "reason": "cls.d.ts is missing statements when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+      "reason": "No files are emitted."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    }
+  ],
+  "reported_package_elapsed_seconds": 115.455,
+  "timing_note": "Validation duration only; production build and other validation ran concurrently. Not a performance benchmark.",
+  "unit_validation": {
+    "command": "npm test",
+    "cwd": "repository root",
+    "environment": {
+      "PATH_prefix": "/tmp/tsc-toolchains/go/bin",
+      "GOFLAGS": "-json",
+      "CGO_ENABLED": "1"
+    },
+    "resolved_alias": "npm run test:go -> npm test -w @tsc-ts/go -> go test ./internal/core ./internal/ast ./internal/bundled ./internal/scanner ./internal/compiler ./internal/checker ./cmd/tsgo ./internal/execute ./internal/execute/build ./internal/execute/watchmanager",
+    "exit_code": 0,
+    "passed_packages": [
+      "internal/core",
+      "internal/bundled",
+      "internal/scanner",
+      "internal/ast",
+      "internal/compiler",
+      "internal/checker",
+      "internal/execute",
+      "internal/execute/watchmanager",
+      "internal/execute/build",
+      "cmd/tsgo"
+    ],
+    "cache_note": "Cached package results are listed separately; checker and conformance run against the captured source.",
+    "passed_test_records": 1689,
+    "skipped_test_records": 0,
+    "failed_test_records": 0,
+    "cached_packages": [
+      "internal/ast",
+      "internal/bundled",
+      "internal/core",
+      "internal/scanner"
+    ],
+    "package_test_record_counts": {
+      "internal/core": {
+        "pass": 12
+      },
+      "internal/bundled": {
+        "pass": 5
+      },
+      "internal/scanner": {
+        "pass": 1
+      },
+      "internal/ast": {
+        "pass": 548
+      },
+      "internal/compiler": {
+        "pass": 24
+      },
+      "internal/checker": {
+        "pass": 1045
+      },
+      "internal/execute": {
+        "pass": 4
+      },
+      "internal/execute/watchmanager": {
+        "pass": 13
+      },
+      "internal/execute/build": {
+        "pass": 17
+      },
+      "cmd/tsgo": {
+        "pass": 20
+      }
+    }
+  },
+  "coverage_limits": [
+    "Unsupported options are skipped by the pinned upstream runner.",
+    "Eight output subchecks are explicitly skipped by the pinned runner; their parent cases are marked partially checked above.",
+    "Native CLI/API/emit/watch comparisons are tracked separately and are not implied by this conformance result."
+  ],
+  "raw_log_sha256": {
+    "conformance": "762a888329df24b48a84600f24c318dd66a0bfd28bf2ed71eacd3522dcbb012c",
+    "units": "81eac97ce0a8f68f686c0e9feaf19445c3e1b921f8bfd5b943ee08b9a1cab10c"
+  },
+  "process_capture": {
+    "runner": "/tmp/run-type-data-validation.py",
+    "mechanism": "Python subprocess.run returncode; all numeric child statuses captured without shell assignment."
+  },
+  "safety_validation_report": "benchmarks/validation/type-data-focused.json"
+}

@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "scope": "Compact Type header original-allocation pointer and kind-range safety validation",
+  "toolchain": "go1.26.9 linux/amd64",
+  "source": {
+    "revision": "d797bcf889102eb50098281004f15d2c97fdab71",
+    "dirty": true,
+    "sha256": "9c86a02c17a5d2c6892ae925667031b33ae16027c1d0338430a46df5a28b97b7",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "sourceAfterSha256": "9c86a02c17a5d2c6892ae925667031b33ae16027c1d0338430a46df5a28b97b7",
+  "sourceUnchanged": true,
+  "runs": [
+    {
+      "name": "focused",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/checker",
+        "-run",
+        "^(TestTypeData|TestCopiedTypeHeader)",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exitCode": 0,
+      "log": "/tmp/type-data-focused.jsonl",
+      "logSha256": "afbf75f76c73db4e6667020c45ee0d5ae86ebaeaed90a13ec655c9a851933567",
+      "stderr": "/tmp/type-data-focused.stderr",
+      "testRecordCounts": {
+        "pass": 41
+      },
+      "topLevelPassingTests": [
+        "TestTypeDataHeaderLayout",
+        "TestTypeDataAccessorContracts",
+        "TestTypeDataRetainsConcreteTailAcrossGC",
+        "TestCopiedTypeHeaderRetainsOriginalAllocation",
+        "TestTypeDataProductionConstructors"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^(TestTypeData|TestCopiedTypeHeader)",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exitCode": 0,
+      "log": "/tmp/type-data-checkptr.jsonl",
+      "logSha256": "9d8b2d67625de4c0e4b342394630fc8dc5926b187ae7f68339e53a441c16c805",
+      "stderr": "/tmp/type-data-checkptr.stderr",
+      "testRecordCounts": {
+        "pass": 41
+      },
+      "topLevelPassingTests": [
+        "TestTypeDataHeaderLayout",
+        "TestTypeDataAccessorContracts",
+        "TestTypeDataRetainsConcreteTailAcrossGC",
+        "TestCopiedTypeHeaderRetainsOriginalAllocation",
+        "TestTypeDataProductionConstructors"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^(TestTypeData|TestCopiedTypeHeader)",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exitCode": 0,
+      "log": "/tmp/type-data-race.jsonl",
+      "logSha256": "3d3139beee5cf6c82629460cffd5499228ff50cff43301de6fe3baeb17e69e17",
+      "stderr": "/tmp/type-data-race.stderr",
+      "testRecordCounts": {
+        "pass": 41
+      },
+      "topLevelPassingTests": [
+        "TestTypeDataHeaderLayout",
+        "TestTypeDataAccessorContracts",
+        "TestTypeDataRetainsConcreteTailAcrossGC",
+        "TestCopiedTypeHeaderRetainsOriginalAllocation",
+        "TestTypeDataProductionConstructors"
+      ]
+    },
+    {
+      "name": "compile-386",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-c",
+        "-o",
+        "/tmp/type-data-checker-386.test",
+        "./internal/checker"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "0",
+        "GOARCH": "386",
+        "GOOS": "linux"
+      },
+      "exitCode": 0,
+      "log": "/tmp/type-data-compile-386.jsonl",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "/tmp/type-data-compile-386.stderr",
+      "testBinarySha256": "30c20be9c47c45cc7e30491c669e4fff9a21d6605fd8149eb6a570d8800fcdad",
+      "execution": "Cross-compiled; focused tests also executed using host386 compatibility support."
+    },
+    {
+      "name": "compile-arm64",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-c",
+        "-o",
+        "/tmp/type-data-checker-arm64.test",
+        "./internal/checker"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "0",
+        "GOARCH": "arm64",
+        "GOOS": "linux"
+      },
+      "exitCode": 0,
+      "log": "/tmp/type-data-compile-arm64.jsonl",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "/tmp/type-data-compile-arm64.stderr",
+      "testBinarySha256": "c468db2ba3022cdddef983464ca3230ceb93b2827b16a4e389fa46dad720989c",
+      "execution": "Cross-compiled only; not executed on target architecture."
+    },
+    {
+      "name": "execute-386",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "test2json",
+        "-t",
+        "-p",
+        "checker/linux386",
+        "/tmp/type-data-checker-386.test",
+        "-test.v",
+        "-test.run",
+        "^(TestTypeData|TestCopiedTypeHeader)",
+        "-test.count=1"
+      ],
+      "exitCode": 0,
+      "log": "/tmp/type-data-run-386.jsonl",
+      "logSha256": "c487b2689b66256b779b37b424c13712589b7b2b95b4c319d04c4d3be59f291e",
+      "scope": "Focused TypeData tests executed using linux/386 cross-compiled binary on host compatibility support.",
+      "testRecordCounts": {
+        "pass": 41
+      },
+      "topLevelPassingTests": [
+        "TestTypeDataHeaderLayout",
+        "TestTypeDataAccessorContracts",
+        "TestTypeDataRetainsConcreteTailAcrossGC",
+        "TestCopiedTypeHeaderRetainsOriginalAllocation",
+        "TestTypeDataProductionConstructors"
+      ]
+    }
+  ],
+  "observedAmd64HeaderBytes": {
+    "priorInterface": 56,
+    "candidatePointerKind": 48
+  },
+  "limits": [
+    "Header size is not an allocation/RSS or performance measurement.",
+    "The386 binary also passed focused execution through host compatibility support; arm64 was compiled only.",
+    "Focused safety tests do not replace full compiler conformance or native parity, tracked separately."
+  ],
+  "observed386HeaderBytes": {
+    "priorInterface": 32,
+    "candidatePointerKind": 32
+  }
+}

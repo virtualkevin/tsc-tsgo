@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T10:45:49.232Z",
+  "scope": "Default native differential parity and actual-Go API/emit/project integrations after replacing Type interface payloads with original allocation pointers and immutable representation kinds.",
+  "nativeSuiteStatus": "passed",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-type-data",
+    "sha256": "cae2e8b37bddc0ebd69a6f5b169a4623cddb65342a59ab692445e4a9b85ff20a"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-type-data.provenance.json",
+    "sha256": "9fb1905936fc2931978378b9b1d53bce495f48a1d6de941e4512bb8906917f1e",
+    "builtAt": "2026-10-17T10:43:11.878Z",
+    "sourceSha256": "9c86a02c17a5d2c6892ae925667031b33ae16027c1d0338430a46df5a28b97b7",
+    "buildTimeRevision": "d797bcf889102eb50098281004f15d2c97fdab71",
+    "sourceDirty": true,
+    "sourceFileCount": 5147,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": [
+        "build",
+        "-trimpath",
+        "-o",
+        "<binary>",
+        "./cmd/tsgo"
+      ],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE",
+    "PROJECTS_FILTER"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data",
+    "TSC_GO_BASELINE": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "/tmp/type-data-parity.log",
+      "logSha256": "186002cb593fd267db9394eb5d84089e541ff81f64b11f064b1c766d48bc8968",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 95674.44448
+      },
+      "expectedTests": 80,
+      "passed": true
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "/tmp/type-data-integration.log",
+      "logSha256": "8b737f6be5db875c0540b0c6f27e2bde30c784fd2c91b70b3594aa9cb35b2d14",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 37751.552662
+      },
+      "expectedTests": 12,
+      "passed": true
+    }
+  ],
+  "verifiedSourcesBinariesAndSidecarUnchanged": true,
+  "notes": [
+    "The source digest includes original-allocation Type pointers, compact representation kinds, range accessors, layout assertions and focused constructor/GC regression tests. Earlier property-cache, mapper and LinkStore experiments are reverted; their semantic tests remain.",
+    "These suites compare diagnostics, API results, emitted outputs and project behavior; correctness is not inferred from compiler exit status alone.",
+    "Go units and full pinned upstream conformance are recorded separately for this source digest.",
+    "Validation durations are not performance measurements."
+  ]
+}
