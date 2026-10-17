@@ -1,0 +1,37 @@
+{
+  "productionBaseRevision": "7437132",
+  "replacesNumericBasedPatch": "6291b284b57bc038d06aa5760721cb1bfba75763bf5015bf717ef45275bcc1f6",
+  "includesNumericRelationKeys": false,
+  "patchSha256": "d3a9248bb3f7874b3271023f2845637a9d0fbce943d612dc8ae14149bf0626e1",
+  "files": [
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "baseSha256": "5f4ea48686c739b07e5b9c54551cd35783884c26f047bcaba8209480776d2eb1",
+      "draftSha256": "761427dae0126839bb6803be7fd88bed3dc4924d31b20edee1d72ca0d68981ee"
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/keybuilder.go",
+      "baseSha256": null,
+      "draftSha256": "3b166fd3070a40aea1590370e3bc8f3ffc4f93c8964d74a052f9fa8c19f2fcaf"
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/keybuilder_test.go",
+      "baseSha256": null,
+      "draftSha256": "dba4b569b9e5528d1f8e59c91f1ff1ee369abcb406700c3a3af9f7013a82648a"
+    }
+  ],
+  "buildsOrTestsRun": false,
+  "applyCheckAgainstRollback": "passed: git apply --check /tmp/tsc-small-keybuilder-rebased/small-keybuilder.patch",
+  "auditSha256": "6a347d7e581ffaae0ce69c76a3c608de7e92b2c4479f30fae667796ff10d2da6",
+  "rollbackSource": {
+    "checker.go": "5f4ea48686c739b07e5b9c54551cd35783884c26f047bcaba8209480776d2eb1",
+    "relater.go": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae",
+    "relation_keys_api_test.go": "e32a99d280fc626e4812705d21fe3f856ca9a7688777b91368d1c96a1dbae5ec"
+  },
+  "independentRebaseReview": {
+    "reviewer": "/root/correctness",
+    "scope": "source-only",
+    "blockers": false,
+    "verified": "Three patch files; byte-identical reviewed new buffer/tests; original128-bit relations; no numeric leftovers; retained API test hash unchanged."
+  }
+}

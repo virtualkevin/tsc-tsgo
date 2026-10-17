@@ -1,0 +1,11 @@
+# Short-key buffering candidate
+
+The design and reviews describe an exact-byte serialization change: up to128 bytes are buffered inline before the same full128-bit xxh3 hash. Longer keys use a private streaming hasher. Relation maps retain their original full-hash keys; the numeric interner and CommonJS guard are absent.
+
+`design/` records the source-only draft and prior rollback base. `review/` contains initial and rebased independent reviews. `codegen/` records the completed production-binary inspection and exact-source isolated allocation screen; see its AUDIT.md for limitations. The source-only preparation statements in older documents are historical, superseded by these completed captures.
+
+Preserved compiler `dist/tsc-go-small-keybuilder` has SHA2569d87e9195e65a2113fec862d702faa313b51749c171cf92ddc6756eda0719b85, source4937cfc277515b8b566162d078dd493524d406de94ced593a78f38bbd6c7aa5d (5152 files, f1551e0 dirty). Sidecar SHA256a69df92a3a587b5f36e7823159c73cc57175b37176d7a91c5e5fadd2fa982e0c. Normal Go1.26.9 build, no PGO or extra flags.
+
+Native validation passed80 differential cases and12 API/emit/project integrations with unchanged compiler provenance and comparators. Report: ../../validation/small-keybuilder-native.json. Its controller clears SHOW_FAILURES to prevent masked API mismatches and verifies the selected scriptc platform package. The final controller additionally records Node path/version and child signals and documents the external-source hashing limits. Its SHA256e628deff5a45225a9253e52cd14047c89ea82573a46ce0cb41f6313494525e90 matches the independently reviewed controller. There is no evidence that the masking environment setting affected prior runs.
+
+Focused normal/race/checkptr runs each passed nine top-level tests and255 total records. Root units passed1,938 records across ten packages. Full pinned conformance passed12,789 fully checked cases plus eight partially checked cases;2,118 unsupported cases were skipped and no failures occurred. All five processes exited0 with unchanged sources/HEAD/pins. Final report: ../../validation/small-keybuilder-conformance.json. The separate controller and its coverage limits are archived here. No benchmark or10× result is inferred from code generation, allocation counts or validation durations.

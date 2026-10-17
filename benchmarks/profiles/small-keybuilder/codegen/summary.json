@@ -1,0 +1,193 @@
+{
+  "scope": "Bounded static production-code inspection; no compiler rebuild or performance measurement",
+  "commands": [
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|getIndexedAccessKey|getTypeListKey|getConditionalTypeKey|\\(\\*keyBuilder\\)\\.(hash|stream|writeBytes|writeString|writeByte|writeUint32|writeUint64))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*Checker\\)\\.instantiateTypeWithAlias$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|getIndexedAccessKey|getTypeListKey|getConditionalTypeKey|\\(\\*keyBuilder\\)\\.(hash|stream|writeBytes|writeString|writeByte|writeUint32|writeUint64))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*Checker\\)\\.instantiateTypeWithAlias$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder"
+    ]
+  ],
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pointer-linkstore",
+      "sha256": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+      "sidecarSha256": "97d330f15385fa956d521349254195da088c60ee6bec2717ac4757efc43156f2",
+      "source": {
+        "revision": "a0f10e17ee7a75c8ba9e227303adbd336e3a2c8a",
+        "dirty": true,
+        "sha256": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d"
+      },
+      "sourceFileCount": 5148,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-small-keybuilder",
+      "sha256": "9d87e9195e65a2113fec862d702faa313b51749c171cf92ddc6756eda0719b85",
+      "sidecarSha256": "a69df92a3a587b5f36e7823159c73cc57175b37176d7a91c5e5fadd2fa982e0c",
+      "source": {
+        "revision": "f1551e0dd417880cd007ae18353fa9c2d386f63d",
+        "dirty": true,
+        "sha256": "4937cfc277515b8b566162d078dd493524d406de94ced593a78f38bbd6c7aa5d"
+      },
+      "sourceFileCount": 5152,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "9d87e9195e65a2113fec862d702faa313b51749c171cf92ddc6756eda0719b85"
+    }
+  },
+  "artifacts": {
+    "baseline-helpers.asm": {
+      "bytes": 20154,
+      "sha256": "3a80991dce9acee1092609ef49482710e648c7e5bbdb131d6a647d0e85035c13"
+    },
+    "baseline-caller.asm": {
+      "bytes": 6322,
+      "sha256": "4c4ad8814fd8a70591b10fd310d7e525de2c0f6be278f74fcb85d56cfa54aa31"
+    },
+    "candidate-helpers.asm": {
+      "bytes": 34155,
+      "sha256": "06643da7ff60b8e274873752e9af6cc7566bd4aca9d89843a7242f61758b5e4d"
+    },
+    "candidate-caller.asm": {
+      "bytes": 6310,
+      "sha256": "eed5a7f8fa6907447091b098369be3b7692f69a14e6c79184d64aedf0eed5387"
+    },
+    "baseline-symbols.txt": {
+      "bytes": 478,
+      "sha256": "c0756e84ab31375eecc9801a40d6dd0db66cca4169c77de85d9332384608a8f8"
+    },
+    "candidate-symbols.txt": {
+      "bytes": 963,
+      "sha256": "d7611eafd10d1d478252b5543c27c3047fbca5a274603e13b336df47adb051b3"
+    }
+  },
+  "buildSettingsEqual": true,
+  "inspectionSession": {
+    "id": 3882,
+    "exitCode": 0
+  },
+  "allProcessesTerminal": true,
+  "compilerRebuilt": false,
+  "observedFrameBytes": {
+    "getTypeListKey": [
+      1216,
+      176
+    ],
+    "getIndexedAccessKey": [
+      1208,
+      192
+    ],
+    "getConditionalTypeKey": [
+      1224,
+      176
+    ],
+    "getRelationKey": [
+      1240,
+      208
+    ],
+    "instantiateTypeWithAlias": [
+      1680,
+      648
+    ]
+  },
+  "observedBuilderZeroedBytes": [
+    1184,
+    144
+  ],
+  "performanceClaim": null
+}
