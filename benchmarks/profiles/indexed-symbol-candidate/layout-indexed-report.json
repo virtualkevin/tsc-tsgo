@@ -1,0 +1,29 @@
+{
+  "candidateBinarySha256": "3c3b18fa41dfaad20ea334e4f425ebcbfada4d7cdd2547865007714ba55194a5",
+  "controlBinarySha256": "a92d065b4609b3974984fabc940cb16ebf76e1391ed13d27dc8f2a26faf3b421",
+  "method": "Concrete struct sizes read from normal executables via debug/elf and debug/dwarf",
+  "toolSourceSha256": "31298f5fa1d428de7c75d8b55ad5cc3cce25675babe2a89f695ff5a02c822c99",
+  "results": {
+    "packages/tsc-go/dist/tsc-go-keybuilder-saturated": {
+      "github.com/microsoft/typescript-go/internal/ast.Symbol": 96,
+      "github.com/microsoft/typescript-go/internal/binder.Binder": 288,
+      "github.com/microsoft/typescript-go/internal/checker.Checker": 4752
+    },
+    "packages/tsc-go/dist/tsc-go-symbol-handles": {
+      "github.com/microsoft/typescript-go/internal/ast.Symbol": 104,
+      "github.com/microsoft/typescript-go/internal/ast.SymbolAllocator": 32,
+      "github.com/microsoft/typescript-go/internal/binder.Binder": 296,
+      "github.com/microsoft/typescript-go/internal/checker.Checker": 4760
+    },
+    "packages/tsc-go/dist/tsc-go-symbol-indexed": {
+      "github.com/microsoft/typescript-go/internal/ast.Symbol": 104,
+      "github.com/microsoft/typescript-go/internal/ast.SymbolAllocator": 32,
+      "github.com/microsoft/typescript-go/internal/binder.Binder": 296,
+      "github.com/microsoft/typescript-go/internal/checker.Checker": 6832
+    }
+  },
+  "limitations": [
+    "Sizes are not heap size classes, page occupancy, RSS or timing.",
+    "Inspection overlapped non-performance validation."
+  ]
+}

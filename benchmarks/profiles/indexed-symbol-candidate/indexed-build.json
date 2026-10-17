@@ -1,0 +1,59 @@
+{
+  "variant": "allocation handles plus sparse indexed ValueSymbolLinks",
+  "binarySha256": "3c3b18fa41dfaad20ea334e4f425ebcbfada4d7cdd2547865007714ba55194a5",
+  "sidecarSha256": "e1e50c59ac60b3f6419a424befbf86738aa52616b21c53f08db76a75f71495de",
+  "sourceSha256": "c8a7bd150f663db3b46e1262e5e39b0865da004e3aeced71f6ead8a9af96589e",
+  "sourceFiles": 5159,
+  "sourceRevision": "131ebca7025e4bddbbb9e32ae999338ff186c4f3",
+  "sourceDirty": true,
+  "controlBinarySha256": "a92d065b4609b3974984fabc940cb16ebf76e1391ed13d27dc8f2a26faf3b421",
+  "controlSourceSha256": "8eef1a9cc14abdb788c257debaf02091e427e6e86dc0941fc29c55d2806b39ab",
+  "exactChangedFilesVsControl": [
+    "packages/tsc-go/internal/ast/symbol_links.go",
+    "packages/tsc-go/internal/ast/symbol_links_test.go",
+    "packages/tsc-go/internal/checker/checker.go",
+    "packages/tsc-go/internal/core/indexedpointerlinkstore.go",
+    "packages/tsc-go/internal/core/indexedpointerlinkstore_test.go"
+  ],
+  "exactChangedFilesVsBaseline": [
+    "packages/tsc-go/internal/ast/symbol.go",
+    "packages/tsc-go/internal/ast/symbol_allocator.go",
+    "packages/tsc-go/internal/ast/symbol_allocator_test.go",
+    "packages/tsc-go/internal/ast/symbol_links.go",
+    "packages/tsc-go/internal/ast/symbol_links_test.go",
+    "packages/tsc-go/internal/binder/binder.go",
+    "packages/tsc-go/internal/checker/checker.go",
+    "packages/tsc-go/internal/core/indexedpointerlinkstore.go",
+    "packages/tsc-go/internal/core/indexedpointerlinkstore_test.go"
+  ],
+  "buildSettingsMatch": true,
+  "buildSettings": {
+    "toolchain": {
+      "CGO_ENABLED": "1",
+      "GO386": "",
+      "GOAMD64": "v1",
+      "GOARCH": "amd64",
+      "GOARM": "",
+      "GOARM64": "",
+      "GOEXPERIMENT": "",
+      "GOMIPS": "",
+      "GOMIPS64": "",
+      "GOOS": "linux",
+      "GOPPC64": "",
+      "GORISCV64": "",
+      "GOVERSION": "go1.26.9"
+    },
+    "arguments": [
+      "build",
+      "-trimpath",
+      "-o",
+      "<binary>",
+      "./cmd/tsgo"
+    ],
+    "extraFlagsPresent": false,
+    "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "profile": null,
+    "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+  },
+  "validation": "pending; no workload measurement"
+}

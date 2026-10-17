@@ -1,0 +1,28 @@
+{
+  "candidateBinarySha256": "3c3b18fa41dfaad20ea334e4f425ebcbfada4d7cdd2547865007714ba55194a5",
+  "controlBinarySha256": "a92d065b4609b3974984fabc940cb16ebf76e1391ed13d27dc8f2a26faf3b421",
+  "sourceSha256": "c8a7bd150f663db3b46e1262e5e39b0865da004e3aeced71f6ead8a9af96589e",
+  "tool": "/tmp/tsc-toolchains/go/bin/go tool nm -size / objdump -s",
+  "files": {
+    "symbols.txt": "2008e678ef186c39c87a47accf64afe4cbbac97542048e37fdbc7a2de9f32567",
+    "indexed-caller.asm": "21e7ccccbe1807109d6ed05995a2abfd4722d31e79b0b0e14936bb9993006a23",
+    "control-caller.asm": "5116319774803110f58ccdecd51543989d96078a32c7bd428ada21b3f4dce8b8",
+    "control-symbols.txt": "fb12bb5c342a3f371e99d91d500b447dbeb9c1bec620a63b27de0de94309c614",
+    "indexed-get.asm": "644cf3c86338958aa3a2fc7c1588fff56398cb46caa7b1829e3a8fa2136e8b61",
+    "control-instantiated-caller.asm": "325353f0fc925da03323cc8081983bf5659cd42ca10c5467945a0664d590db71",
+    "indexed-caller-symbols.txt": "5bbc122494691a932c1139dfb47a0d902418ece1c612f7ec8aac4513e2c582dd",
+    "indexed-instantiated-caller.asm": "3364a848b79af86f9a0c70c2406b2a4830bc283edd86d63b694d2342ed88f7ce"
+  },
+  "observations": [
+    "Indexed Get is an out-of-line 364-byte function; its radix entry walk is inlined and contains shifted/masked indices and dependent typed pointer loads with nil/identity checks. No panicIndex call occurs in this specific Get disassembly.",
+    "Indexed hits bypass pointer hashing/probing. Index zero and identity collision paths retain calls to PointerLinkStore.Get; missing pages invoke ensureEntry and allocate typed values.",
+    "The ast wrapper and private handle load inline in actual getTypeOfInstantiatedSymbol. The core indexed getter remains a call.",
+    "getTypeOfInstantiatedSymbol code grows180 to197 bytes versus handle-only control; both reserve40 stack bytes.",
+    "Control PointerLinkStore.Get is174 bytes, but calls a separate slot routine; comparing these getter sizes alone does not compare complete lookup instruction footprints.",
+    "The separately archived getTypeOfSymbol disassembly is the dispatcher, not the direct links-access caller; no indexed-lookup conclusion is inferred from it."
+  ],
+  "limitations": [
+    "No timings, workload allocation/page occupancy counts or speed conclusions.",
+    "Observations apply to inspected production instantiations and callers, not every generic instantiation or bounds check."
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T15:30:53.798Z",
+  "status": "passed",
+  "scope": "Actual race-instrumented Go CLI on the existing three parallel-emit tests; not all compiler APIs or arbitrary same-store mutation.",
+  "sourceSha256": "c8a7bd150f663db3b46e1262e5e39b0865da004e3aeced71f6ead8a9af96589e",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-symbol-indexed-race",
+    "sha256": "01fc7812c01e5842ac7c99e157361512f106fbb786449ed62191bd47d525adaf"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-symbol-indexed-race.provenance.json",
+    "sha256": "dc012a4841a7232a6cb443336722f87fa4aba59f7fce14605919a3a430c29f28",
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": [
+        "build",
+        "-race",
+        "-trimpath",
+        "-o",
+        "<binary>",
+        "./cmd/tsgo"
+      ],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    },
+    "sourceRevision": "131ebca7025e4bddbbb9e32ae999338ff186c4f3",
+    "sourceDirty": true
+  },
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=spec",
+    "tests/parallel-emit.test.mjs"
+  ],
+  "cwd": "packages/tsc-ts",
+  "environment": {
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-symbol-indexed-race",
+    "GORACE": "unset; race runtime defaults"
+  },
+  "exitCode": 0,
+  "error": null,
+  "counts": {
+    "tests": 3,
+    "suites": 0,
+    "pass": 3,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 53872.712354
+  },
+  "log": "/tmp/tsc-indexed-integration/indexed-race-emit.log",
+  "logSha256": "b06745f0c17e0a0a18d7f111fc351cd0ab8e33a3d718bb77e5390a7bd7a8d93f",
+  "sourcesBinaryAndSidecarUnchanged": true,
+  "notes": [
+    "The suite child environment retains PATH and explicit shared library directory; no custom GORACE is required. The instrumented runtime defaults to reporting races and nonzero status, and each test asserts compiler status/outputs.",
+    "Three tests cover ten CLI invocations: single-threaded versus three-checker emit, noEmitOnError, and declaration ordering at two/three/four checkers.",
+    "The instrumented binary is excluded from all performance measurements."
+  ]
+}

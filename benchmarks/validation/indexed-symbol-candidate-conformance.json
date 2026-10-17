@@ -1,0 +1,509 @@
+{
+  "variant": "indexed",
+  "sourceSha256": "c8a7bd150f663db3b46e1262e5e39b0865da004e3aeced71f6ead8a9af96589e",
+  "head": "131ebca7025e4bddbbb9e32ae999338ff186c4f3",
+  "controllerSha256": "39ec4a77ceac56d642cf2f92ecafbf0a5a52885bbf743e403f4569a1c74c9e3c",
+  "summaryHelperSha256": "aebdb6e5d2e21df0faddc0d1e66a1103cac58c5c38f91db1cf2d8f5579866431",
+  "expectedFocusedTests": [
+    "TestIndexedPointerLinksBoundariesIdentityAndReplacement",
+    "TestIndexedPointerLinksReadonlyMissesAndReaders",
+    "TestIndexedPointerLinksTypedRootsAndDisplacedValues",
+    "TestIndexedSymbolLinksAllocationDomains",
+    "TestSymbolAllocationHandleConcurrentOwners",
+    "TestSymbolAllocationHandleExhaustionDoesNotWrap",
+    "TestSymbolAllocationHandlesPreserveLazySemanticIDs",
+    "TestValueSymbolLinksReplacementKeepsPublishedPointers",
+    "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC"
+  ],
+  "pins": {
+    "TypeScript": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "typescript-go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b"
+  },
+  "runs": [
+    {
+      "name": "focused",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/core",
+        "./internal/ast",
+        "./internal/checker",
+        "-run",
+        "^Test(SymbolAllocation|IndexedPointerLinks|IndexedSymbolLinksAllocationDomains$|ValueSymbolLinks)",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/tsc-indexed-integration/indexed/focused.jsonl",
+      "stderr": "/tmp/tsc-indexed-integration/indexed/focused.stderr",
+      "stdout_sha256": "2c85df15f07d7a9806b2d28af9ad227555412456e347842d01ae29b02e2d3fe3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": {
+        "tests": [
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksBoundariesIdentityAndReplacement",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksReadonlyMissesAndReaders",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksTypedRootsAndDisplacedValues",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandlesPreserveLazySemanticIDs",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandleExhaustionDoesNotWrap",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandleConcurrentOwners",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestIndexedSymbolLinksAllocationDomains",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/checker",
+            "Test": "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/checker",
+            "Test": "TestValueSymbolLinksReplacementKeepsPublishedPointers",
+            "Action": "pass"
+          }
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/core": "pass",
+          "github.com/microsoft/typescript-go/internal/ast": "pass",
+          "github.com/microsoft/typescript-go/internal/checker": "pass"
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-race",
+        "./internal/core",
+        "./internal/ast",
+        "./internal/checker",
+        "-run",
+        "^Test(SymbolAllocation|IndexedPointerLinks|IndexedSymbolLinksAllocationDomains$|ValueSymbolLinks)",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/tsc-indexed-integration/indexed/race.jsonl",
+      "stderr": "/tmp/tsc-indexed-integration/indexed/race.stderr",
+      "stdout_sha256": "06cd404958abdda99b89f32abc2515f3f7620000ae2ac8767f479db016b11c8c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": {
+        "tests": [
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksBoundariesIdentityAndReplacement",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksReadonlyMissesAndReaders",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksTypedRootsAndDisplacedValues",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandlesPreserveLazySemanticIDs",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandleExhaustionDoesNotWrap",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandleConcurrentOwners",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestIndexedSymbolLinksAllocationDomains",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/checker",
+            "Test": "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/checker",
+            "Test": "TestValueSymbolLinksReplacementKeepsPublishedPointers",
+            "Action": "pass"
+          }
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/core": "pass",
+          "github.com/microsoft/typescript-go/internal/ast": "pass",
+          "github.com/microsoft/typescript-go/internal/checker": "pass"
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/core",
+        "./internal/ast",
+        "./internal/checker",
+        "-run",
+        "^Test(SymbolAllocation|IndexedPointerLinks|IndexedSymbolLinksAllocationDomains$|ValueSymbolLinks)",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/tsc-indexed-integration/indexed/checkptr.jsonl",
+      "stderr": "/tmp/tsc-indexed-integration/indexed/checkptr.stderr",
+      "stdout_sha256": "b1b554072d4cc068bd7ed80eadcbab279c851e908e038721b38164d60a900cb7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": {
+        "tests": [
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksBoundariesIdentityAndReplacement",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksReadonlyMissesAndReaders",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/core",
+            "Test": "TestIndexedPointerLinksTypedRootsAndDisplacedValues",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandlesPreserveLazySemanticIDs",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandleExhaustionDoesNotWrap",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestSymbolAllocationHandleConcurrentOwners",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/ast",
+            "Test": "TestIndexedSymbolLinksAllocationDomains",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/checker",
+            "Test": "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+            "Action": "pass"
+          },
+          {
+            "Package": "github.com/microsoft/typescript-go/internal/checker",
+            "Test": "TestValueSymbolLinksReplacementKeepsPublishedPointers",
+            "Action": "pass"
+          }
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/core": "pass",
+          "github.com/microsoft/typescript-go/internal/ast": "pass",
+          "github.com/microsoft/typescript-go/internal/checker": "pass"
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "root-npm",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/tsc-indexed-integration/indexed/root-npm.jsonl",
+      "stderr": "/tmp/tsc-indexed-integration/indexed/root-npm.stderr",
+      "stdout_sha256": "2457675dda0d988a3695039e4e350d251da82b704cd233101463ede0a36ca880",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": {
+        "test_records": {
+          "pass": 2345
+        },
+        "top_level_records": {
+          "pass": 121
+        },
+        "passing_top_level_tests": [
+          "TestIndexedPointerLinksBoundariesIdentityAndReplacement",
+          "TestIndexedPointerLinksReadonlyMissesAndReaders",
+          "TestIndexedPointerLinksTypedRootsAndDisplacedValues",
+          "TestLinkStoreConcurrentExistingKeyReads",
+          "TestLinkStoreNewPreservesIdentityAndValues",
+          "TestLinkStoreNewAndGetPreserveEntriesAcrossGrowth",
+          "TestLinkStoreNewAcceptsNilPointerKey",
+          "TestPointerLinkStoreDifferential",
+          "TestPointerLinkStoreNilAndReplacement",
+          "TestPointerLinkStoreCollisionsAndGrowth",
+          "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+          "TestPointerLinkStoreConcurrentReadOnlyCopies",
+          "TestPatternOverlappingMatch",
+          "TestBreadthFirstSearchParallel",
+          "TestSymbolAllocationHandlesPreserveLazySemanticIDs",
+          "TestSymbolAllocationHandleExhaustionDoesNotWrap",
+          "TestLibraryDirectoryOverride",
+          "TestRelativeLibraryDirectoryOverride",
+          "TestDefaultLibraryDirectory",
+          "TestTestingLibPath",
+          "TestEmbeddedLibs",
+          "TestSymbolAllocationHandleConcurrentOwners",
+          "TestIndexedSymbolLinksAllocationDomains",
+          "TestPositionMapRoundtrip",
+          "TestPositionMapFourByte",
+          "TestPositionMapTwoByte",
+          "TestPositionMapASCII",
+          "TestPositionMapMultipleNonASCII",
+          "TestPositionMapLoneSurrogateSentinel",
+          "TestDeepCloneNodeSanityCheck",
+          "TestScanStringPreservesLoneSurrogates",
+          "TestActiveMapperCacheLifetime",
+          "TestActiveMapperCacheInvalidation",
+          "TestBalancedCheckerAssignments",
+          "TestActiveMapperCacheSurvivesNestedMapperGrowth",
+          "TestActiveMapperCacheDistinguishesAliases",
+          "TestActiveMapperCachePreservesAliasSymbolIDOrder",
+          "TestActiveMapperCacheDoesNotBypassInstantiationLimits",
+          "TestActiveMapperSplitCachesKeepNestedPopulation",
+          "TestActiveMapperSplitCachesSeparateAliasesAndInvalidateBoth",
+          "TestActiveMapperSplitCachesClearDuringNestedWorker",
+          "TestCheckerSchedulingSkipsUncheckedFiles",
+          "TestCrossProductPruningMatchesEagerOrder",
+          "TestCrossProductUnitNormalization",
+          "TestCrossProductLateMemberResolutionGuard",
+          "TestDependencyCheckerGroups",
+          "TestCrossProductPruningDoesNotAlterInput",
+          "TestDependencyCheckerAssignments",
+          "TestInferenceVariancesConcreteReferencesSkipMeasurement",
+          "TestInferenceVariancesDeferredArgumentsStayConservative",
+          "TestCheckerSchedulingImportsUseResolvedFileIdentity",
+          "TestInferenceVariancesClassStaticSideGuards",
+          "TestBufferedDirectIntegerBoundaryTransitions",
+          "TestBufferedKeyBuilderSaturatedStreamingLength",
+          "TestBufferedKeyBuilderStreamingBoundaries",
+          "TestBufferedKeyBuilderIntegerEncoding",
+          "TestBufferedKeyBuilderPreservesLazyIdAssignmentOrder",
+          "TestBufferedKeyBuilderAliasAndTypeEncoding",
+          "TestBufferedKeyBuilderNestedBuildersAreIndependent",
+          "TestBufferedTemplateKeyRetainsTextBoundaries",
+          "TestLazyIntersectionReductionMatchesEagerProperties",
+          "TestLazyUnmatchedPropertyMatchesEagerScan",
+          "TestLazyUnmatchedPropertyDoesNotSynthesizeBroadUnion",
+          "TestLazyUnmatchedPropertyContinuesPastIndexedUnionConstituent",
+          "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+          "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+          "TestPendingMemberNamesDuplicateAllocationOrder",
+          "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+          "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+          "TestPendingMembersSnapshotKeepAndClone",
+          "TestPendingMembersFrozenMapPositions",
+          "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+          "TestPendingOptionalQueriesDoNotInstantiateMembers",
+          "TestProgram",
+          "TestIncludeProcessorDiagnosticsWithMissingFileCasing",
+          "TestPrimitiveUnionRelationsMatchFullRelater",
+          "TestTemplateCachesKeepCompleteInputs",
+          "TestTemplateCachesReportOversizedProductsAtEveryUse",
+          "TestTypeAccessorContracts",
+          "TestTypeRetainsConcreteTailAcrossGC",
+          "TestCopiedTypeHeaderRetainsOriginalAllocation",
+          "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+          "TestUnionPropertyCacheSharesCompleteResultIdentity",
+          "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+          "TestUnionPropertyCacheDoesNotReusePartialResults",
+          "TestUnionPropertyCachePreservesReentrantPopulation",
+          "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+          "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity",
+          "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+          "TestValueSymbolLinksReplacementKeepsPublishedPointers",
+          "TestConditionalInferenceFalseBranchAndDeferredGuards",
+          "TestConditionalInferenceVariadicTupleInsideCallable",
+          "TestConditionalInferenceLiteralTagWithoutStrictNullChecks",
+          "TestCrossProductComplexityErrorsStillReportEachUse",
+          "TestInferenceVariancesPreserveGenericAliasAndContravariantInference",
+          "TestInferenceVariancesInvalidAnnotationsStillReport",
+          "TestJsxManagedAttributesReportsInstantiationDepthAtEachUse",
+          "TestLazyIntersectionAPIPreservesSparseGenericMembers",
+          "TestLazyIntersectionAPIPrivateOptionalPatternAndRecursiveProperties",
+          "TestPendingMembersAPISparseLookupThenEnumeration",
+          "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+          "TestPendingMembersAPIRecursiveBaseAndPrivateStatic",
+          "TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics",
+          "TestRelationKeysColdRecursiveConstraints",
+          "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions",
+          "TestTracerPushPreservesEndArgMutations",
+          "TestGetSymbolAtLocation",
+          "TestResolveDesiredDirsKeepsConcreteShallowProjects",
+          "TestKnownWatchDirectoriesAcceptAllAbsoluteDepths",
+          "TestRemovedTemporaryProjectKeepsNearestExistingWatch",
+          "TestReplacedWatchTerminationDoesNotScheduleObsoleteRebuild",
+          "TestWatchSourceCacheDetectsSameTimeLinkReplacement",
+          "TestWatchTracksPhysicalTargetsAndEvictsAllAliases",
+          "TestWatchAncestorEventsExcludeUnrelatedDirectories",
+          "TestWatchAncestorReplacementEvictsSameTimeSources",
+          "TestWatchMissingConfigRetriesOnlyItsOwnDirectoryEvents",
+          "TestWatchReadinessWaitsForWatchReconciliation",
+          "TestBuildOrderGenerator",
+          "TestWatchSupervisorReplacesWorkerAndStopsOrphans",
+          "TestWatchSupervisorHelper",
+          "TestWatchMemoryPolicyMatchesNativeEnvironment"
+        ],
+        "package_status": {
+          "github.com/microsoft/typescript-go/internal/core": "pass",
+          "github.com/microsoft/typescript-go/internal/bundled": "pass",
+          "github.com/microsoft/typescript-go/internal/ast": "pass",
+          "github.com/microsoft/typescript-go/internal/scanner": "pass",
+          "github.com/microsoft/typescript-go/internal/compiler": "pass",
+          "github.com/microsoft/typescript-go/internal/checker": "pass",
+          "github.com/microsoft/typescript-go/internal/execute/watchmanager": "pass",
+          "github.com/microsoft/typescript-go/internal/execute": "pass",
+          "github.com/microsoft/typescript-go/internal/execute/build": "pass",
+          "github.com/microsoft/typescript-go/cmd/tsgo": "pass"
+        },
+        "cached_packages": [],
+        "scope": "Current root npm test alias, forced uncached with GOFLAGS=-json -count=1.",
+        "integrity_errors": []
+      },
+      "passed": true
+    },
+    {
+      "name": "conformance",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/testrunner",
+        "-run",
+        "^TestSubmodule$",
+        "-parallel",
+        "4",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/tsc-indexed-integration/indexed/conformance.jsonl",
+      "stderr": "/tmp/tsc-indexed-integration/indexed/conformance.stderr",
+      "stdout_sha256": "dfea84f912841a1da0975d736cf3d315268a1c2601e6570d942195fb2e096137",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": {
+        "test_records": {
+          "pass": 113970,
+          "skip": 2126
+        },
+        "top_level_records": {
+          "pass": 1
+        },
+        "passing_top_level_tests": [
+          "TestSubmodule"
+        ],
+        "package_status": {
+          "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+        },
+        "cached_packages": [],
+        "source_configuration_cases": {
+          "total": 14915,
+          "fully_checked": 12789,
+          "partially_checked": 8,
+          "unsupported_skipped": 2118,
+          "failed": 0
+        },
+        "skip_categories": {
+          "unsupported target ES5": 1244,
+          "unsupported module kind System": 222,
+          "alwaysStrict=false is unsupported": 52,
+          "unsupported module kind AMD": 321,
+          "unsupported outFile": 87,
+          "esModuleInterop=false is unsupported": 24,
+          "unsupported module resolution kind 2": 23,
+          "unsupported module resolution kind 1": 57,
+          "unsupported baseUrl": 31,
+          "unsupported module kind UMD": 57
+        },
+        "partial_output_skips": [
+          {
+            "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+            "reason": "cls.d.ts is missing statements when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+            "reason": "Nondeterministic contents when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+            "reason": "Nondeterministic contents when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/grammarErrors.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+            "reason": "No files are emitted."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          }
+        ],
+        "failed_tests": [],
+        "integrity_errors": []
+      },
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Compiler integration tests, root units and complete pinned conformance; no workload timing claim.",
+  "sourceAndPinsUnchanged": true
+}

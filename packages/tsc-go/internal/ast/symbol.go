@@ -18,6 +18,8 @@ type Symbol struct {
 	id               atomic.Uint64
 	Parent           *Symbol
 	ExportSymbol     *Symbol
+	// Allocation-only lookup handle, immutable after publication; independent of id.
+	linkIndex uint32
 }
 
 func (s *Symbol) IsExternalModule() bool {
