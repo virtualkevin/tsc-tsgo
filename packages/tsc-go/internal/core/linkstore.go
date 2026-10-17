@@ -12,7 +12,12 @@ func (s *LinkStore[K, V]) Get(key K) *V {
 	if value != nil {
 		return value
 	}
-	return s.New(key)
+	if s.entries == nil {
+		s.entries = make(map[K]*V)
+	}
+	value = s.arena.New()
+	s.entries[key] = value
+	return value
 }
 
 // New inserts a zero-valued entry for a key that has never been added to this
