@@ -1,0 +1,13 @@
+# Go port working notes
+
+- Goal: a complete Go compiler with equivalent behavior, then a measured 10× end-to-end type-checking speedup over the original native tsc-ts implementation.
+- Original repository baseline: `d3e96c1`; native build uses locked scriptc 0.3.5 with the repository's speed optimization and detached-exit flags. Node execution is not the performance baseline.
+- Starting Go implementation: maintained source fork of the exact compiler ancestor, Microsoft TypeScript-Go `2bd066d87f5bafd315be9f40889d0a60b9e58e0b`. Preserve licensing and distinguish inherited code from new optimizations.
+- Target workloads from the supplied screenshots: VS Code, Sentry, TypeORM, tRPC. Screenshots provide no revisions, commands, machine specification, or raw measurements. Independently pinned snapshots must be identified as new measurements, not reproductions of the quoted ratios.
+- Benchmark requirements: same sources/options/libs, cold process per sample, warm filesystem cache identified, no incremental result reuse, successful checks and diagnostics parity, alternating execution order, raw samples and toolchain/CPU metadata. No successful speedup claim for failed or skipped work.
+- Initial audit: the old benchmark omits native tsc-ts whole-project checking and ignores process failures. A new correctness-gated harness is under development.
+- Initial optimization candidates: checker scheduling and duplicated semantic work; profile allocations and GC before changing runtime policy. Full correctness is a constraint; do not remove checks to obtain speedups.
+- GitHub Actions CI and release workflows moved to `.github/workflows-disabled/` at user request. Validation runs locally. Commit `3979390` pushed to main.
+- Environment: Linux x86_64, 8 logical CPUs, approximately 39 GiB RAM; Node 24.15.0, npm 11.12.1, Go 1.26.9 installed under `/tmp/tsc-toolchains/go`, clang/lld 18 installed. Standard sandbox networking failed DNS; approved escalated network commands succeed. No environment-status tool or network-policy snapshot is exposed here.
+- Toolchain setup: locked npm install completed; scriptc postinstall required `npm rebuild scriptc --foreground-scripts`; pinned upstream compiler and TypeScript corpus downloaded.
+- Status: initial Go port, reproducible workloads, and correctness harness underway. No performance result yet; 10× target remains unproven.
