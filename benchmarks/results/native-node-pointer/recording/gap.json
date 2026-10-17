@@ -1,0 +1,22 @@
+{
+  "meaning": "Required further acceleration of this measured Go build to reach 10x original native; arithmetic only, not a forecast",
+  "formula": "10 * Go median time / original native median time",
+  "workloads": [
+    {
+      "name": "typeorm",
+      "requiredGoAcceleration": 19.620075806202436
+    },
+    {
+      "name": "trpc",
+      "requiredGoAcceleration": 15.652082777259483
+    },
+    {
+      "name": "vscode",
+      "requiredGoAcceleration": 17.533001888786483
+    },
+    {
+      "name": "sentry",
+      "requiredGoAcceleration": 20.468821591313286
+    }
+  ]
+}
