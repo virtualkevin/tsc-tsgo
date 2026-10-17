@@ -21363,25 +21363,38 @@ func (c *Checker) getPropertyOfUnionOrIntersectionType(t *Type, name string, ski
 // these partial properties when identifying discriminant properties, but otherwise they are filtered out
 // and do not appear to be present in the union type.
 func (c *Checker) getUnionOrIntersectionProperty(t *Type, name string, skipObjectFunctionPropertyAugment bool) *ast.Symbol {
-	var cache ast.SymbolTable
+	data := t.AsUnionOrIntersectionType()
+	cache := data.propertyCache
 	if skipObjectFunctionPropertyAugment {
-		cache = ast.GetSymbolTable(&t.AsUnionOrIntersectionType().propertyCacheWithoutFunctionPropertyAugment)
-	} else {
-		cache = ast.GetSymbolTable(&t.AsUnionOrIntersectionType().propertyCache)
+		cache = data.propertyCacheWithoutFunctionPropertyAugment
 	}
 	if prop := cache[name]; prop != nil {
 		return prop
 	}
+	if !skipObjectFunctionPropertyAugment {
+		// Complete non-augmented results also answer augmented requests. An
+		// existing augmented result has precedence; partial results cannot
+		// stand in for a lookup that may find Object or Function properties.
+		if prop := data.propertyCacheWithoutFunctionPropertyAugment[name]; prop != nil && prop.CheckFlags&ast.CheckFlagsPartial == 0 {
+			return prop
+		}
+	}
 	prop := c.createUnionOrIntersectionProperty(t, name, skipObjectFunctionPropertyAugment)
 	if prop != nil {
-		cache[name] = prop
-		// Propagate an entry from the non-augmented cache to the augmented cache unless the property is partial.
-		if skipObjectFunctionPropertyAugment && prop.CheckFlags&ast.CheckFlagsPartial == 0 {
-			augmentedCache := ast.GetSymbolTable(&t.AsUnionOrIntersectionType().propertyCache)
-			if augmentedCache[name] == nil {
-				augmentedCache[name] = prop
+		// Creation can recursively populate this type's cache. Refetch the
+		// selected map after it returns, and allocate only for a found symbol.
+		if skipObjectFunctionPropertyAugment {
+			cache = ast.GetSymbolTable(&data.propertyCacheWithoutFunctionPropertyAugment)
+			// A recursive lookup may have published this same name first. The
+			// old eager copy preserved that complete symbol as the augmented
+			// winner even when this outer lookup replaces the unaugmented one.
+			if previous := cache[name]; previous != nil && previous != prop && previous.CheckFlags&ast.CheckFlagsPartial == 0 && data.propertyCache[name] == nil {
+				ast.GetSymbolTable(&data.propertyCache)[name] = previous
 			}
+		} else {
+			cache = ast.GetSymbolTable(&data.propertyCache)
 		}
+		cache[name] = prop
 	}
 	return prop
 }

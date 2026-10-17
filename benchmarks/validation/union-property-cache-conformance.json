@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "suite": "Pinned upstream Go TestSubmodule compiler conformance",
+  "completed_at": "2026-10-17T09:43:44.936122317Z",
+  "exit_code": 0,
+  "source": {
+    "base_commit": "0f75af21f05fae083cdd3d698800b919be4e96bf",
+    "uncommitted_changes": true,
+    "content_sha256": "aebfb2c1ea0652a18beb343ca7ca73fc1aabafe992bbbfad12a9a478518f5b55",
+    "digest_file_count": 5144,
+    "digest_algorithm": "sha256(JSON.stringify(sorted local source manifest))",
+    "verified_unchanged_through_validation": true,
+    "scope": "Complete local compiler cmd/internal/scripts trees, go.mod, go.sum, package.json, root build-provenance helper, including untracked/ignored sources and embedded declarations.",
+    "note": "Deferred union/intersection property cache allocation with complete nonaugmented fallback and preservation of recursive augmented winners. Active-mapper and LinkStore experiments reverted; semantic regression tests retained."
+  },
+  "fixtures": {
+    "typescript_go_commit": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript_commit": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "go_reference": "upstream/typescript-go/testdata/baselines/reference",
+    "typescript_reference": "upstream/TypeScript/tests/baselines/reference",
+    "auxiliary_declarations": "upstream/TypeScript/tests/lib"
+  },
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "working_directory": "packages/tsc-go",
+  "environment": {
+    "GOFLAGS": ""
+  },
+  "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/testrunner -run '^TestSubmodule$' -parallel 4 -timeout 30m",
+  "test_binary_flags": "No -trimpath; upstream test runner locates fixtures from source paths.",
+  "source_manifest_logs": {
+    "before": "/tmp/union-property-cache-source-before.json",
+    "after": "/tmp/union-property-cache-source-after.json"
+  },
+  "source_and_configuration_cases": {
+    "total": 14915,
+    "passed_parent_cases": 12797,
+    "fully_checked_cases": 12789,
+    "partially_checked_cases": 8,
+    "unsupported_cases_skipped": 2118,
+    "failed_cases": 0
+  },
+  "test_and_subtest_records": {
+    "passed": 113970,
+    "skipped": 2126,
+    "failed": 0,
+    "note": "Includes parent aggregate records; not a count of independent assertions. Skips are excluded from passed records."
+  },
+  "failed_cases": [],
+  "unsupported_case_skip_categories": {
+    "alwaysStrict=false is unsupported": 52,
+    "esModuleInterop=false is unsupported": 24,
+    "unsupported baseUrl": 31,
+    "unsupported module kind AMD": 321,
+    "unsupported module kind System": 222,
+    "unsupported module kind UMD": 57,
+    "unsupported module resolution kind 1": 57,
+    "unsupported module resolution kind 2": 23,
+    "unsupported outFile": 87,
+    "unsupported target ES5": 1244
+  },
+  "inherited_skipped_output_checks": [
+    {
+      "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/grammarErrors.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+      "reason": "cls.d.ts is missing statements when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+      "reason": "No files are emitted."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    }
+  ],
+  "reported_package_elapsed_seconds": 91.395,
+  "timing_note": "Validation duration only; production build and other validation ran concurrently. Not a performance benchmark.",
+  "unit_validation": {
+    "command": "/tmp/tsc-toolchains/go/bin/go test -json ./internal/core ./internal/ast ./internal/bundled ./internal/scanner ./internal/compiler ./internal/checker",
+    "exit_code": 0,
+    "passed_packages": [
+      "internal/core",
+      "internal/ast",
+      "internal/scanner",
+      "internal/bundled",
+      "internal/compiler",
+      "internal/checker"
+    ],
+    "cache_note": "Cached package results are listed separately; checker and conformance run against the captured source.",
+    "passed_test_records": 1594,
+    "skipped_test_records": 0,
+    "failed_test_records": 0,
+    "cached_packages": ["internal/ast", "internal/core", "internal/scanner"]
+  },
+  "coverage_limits": [
+    "Unsupported options are skipped by the pinned upstream runner.",
+    "Eight output subchecks are explicitly skipped by the pinned runner; their parent cases are marked partially checked above.",
+    "Native CLI/API/emit/watch comparisons are tracked separately and are not implied by this conformance result."
+  ],
+  "raw_log_sha256": {
+    "conformance": "2541aded4d09deec6b1a4a4e30a20c648ecab432e4d1558d7f4c95ba764b4ae0",
+    "units": "5d04e47360bbece4bb1e133677c07d609fc34795a7ce8e32c4e5498f1d01ee0c"
+  },
+  "process_capture": {
+    "runner": "/tmp/run-union-property-cache-validation.py",
+    "mechanism": "Python subprocess.run returncode; both numeric child statuses captured without shell assignment."
+  }
+}
