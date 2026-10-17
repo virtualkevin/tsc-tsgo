@@ -889,7 +889,7 @@ type Checker struct {
 	ctx                                         context.Context
 	packagesMap                                 map[string]bool
 	activeMappers                               []*TypeMapper
-	activeTypeMappersCaches                     []activeTypeMapperCache
+	activeTypeMappersCaches                     []map[CacheHashKey]*Type
 	ambientModulesOnce                          sync.Once
 	ambientModules                              []*ast.Symbol
 	withinUnreachableCode                       bool
@@ -22038,11 +22038,6 @@ func (c *Checker) instantiateType(t *Type, m *TypeMapper) *Type {
 	return c.instantiateTypeWithAlias(t, m, nil /*alias*/)
 }
 
-type activeTypeMapperCache struct {
-	types   map[TypeId]*Type
-	aliases map[CacheHashKey]*Type
-}
-
 func (c *Checker) instantiateTypeWithAlias(t *Type, m *TypeMapper, alias *TypeAlias) *Type {
 	// Check for type variables in the alias, so things like `type Brand<T> = number & {}` can potentially be copied with new alias type args, despite them being unreferenced.
 	// This is the behavior most people using aliases expect, and prevents the cache from leaking type parameters outside their scope of validity.
@@ -22061,27 +22056,16 @@ func (c *Checker) instantiateTypeWithAlias(t *Type, m *TypeMapper, alias *TypeAl
 		return c.errorType
 	}
 	index := c.findActiveMapper(m)
-	var key CacheHashKey
 	if index == -1 {
 		c.pushActiveMapper(m)
-		// A newly active mapper always has an empty cache, and this outer
-		// instantiation is not cached. Preserve writeAlias's lazy symbol ID
-		// assignment before instantiating, without constructing an unused key.
-		if alias != nil {
-			ast.GetSymbolId(alias.symbol)
-		}
-	} else if alias == nil {
-		if cachedType, ok := c.activeTypeMappersCaches[index].types[t.id]; ok {
-			return cachedType
-		}
-	} else {
-		var b keyBuilder
-		b.writeType(t)
-		b.writeAlias(alias)
-		key = b.hash()
-		if cachedType, ok := c.activeTypeMappersCaches[index].aliases[key]; ok {
-			return cachedType
-		}
+	}
+	var b keyBuilder
+	b.writeType(t)
+	b.writeAlias(alias)
+	key := b.hash()
+	cache := c.activeTypeMappersCaches[core.IfElse(index != -1, index, len(c.activeTypeMappersCaches)-1)]
+	if cachedType, ok := cache[key]; ok {
+		return cachedType
 	}
 	c.TotalInstantiationCount++
 	c.instantiationCount++
@@ -22089,21 +22073,7 @@ func (c *Checker) instantiateTypeWithAlias(t *Type, m *TypeMapper, alias *TypeAl
 	result := c.instantiateTypeWorker(t, m, alias)
 	if index == -1 {
 		c.popActiveMapper()
-	} else if alias == nil {
-		// Recursion can grow the stack and populate this cache. Refetch it
-		// by index instead of retaining a slice element or an earlier nil map.
-		cache := c.activeTypeMappersCaches[index].types
-		if cache == nil {
-			cache = make(map[TypeId]*Type, 1)
-			c.activeTypeMappersCaches[index].types = cache
-		}
-		cache[t.id] = result
 	} else {
-		cache := c.activeTypeMappersCaches[index].aliases
-		if cache == nil {
-			cache = make(map[CacheHashKey]*Type, 1)
-			c.activeTypeMappersCaches[index].aliases = cache
-		}
 		cache[key] = result
 	}
 	c.instantiationDepth--
@@ -22115,10 +22085,13 @@ func (c *Checker) pushActiveMapper(mapper *TypeMapper) {
 
 	lastIndex := len(c.activeTypeMappersCaches)
 	if cap(c.activeTypeMappersCaches) > lastIndex {
-		// The cap may contain empty maps from popActiveMapper; reuse them.
+		// The cap may contain an empty map from popActiveMapper; reuse it.
 		c.activeTypeMappersCaches = c.activeTypeMappersCaches[:lastIndex+1]
+		if c.activeTypeMappersCaches[lastIndex] == nil {
+			c.activeTypeMappersCaches[lastIndex] = make(map[CacheHashKey]*Type, 1)
+		}
 	} else {
-		c.activeTypeMappersCaches = append(c.activeTypeMappersCaches, activeTypeMapperCache{})
+		c.activeTypeMappersCaches = append(c.activeTypeMappersCaches, make(map[CacheHashKey]*Type, 1))
 	}
 }
 
@@ -22126,10 +22099,9 @@ func (c *Checker) popActiveMapper() {
 	c.activeMappers[len(c.activeMappers)-1] = nil
 	c.activeMappers = c.activeMappers[:len(c.activeMappers)-1]
 
-	// Clear both maps, but leave them in the list for later reuse.
+	// Clear the map, but leave it in the list for later reuse.
 	lastIndex := len(c.activeTypeMappersCaches) - 1
-	clear(c.activeTypeMappersCaches[lastIndex].types)
-	clear(c.activeTypeMappersCaches[lastIndex].aliases)
+	clear(c.activeTypeMappersCaches[lastIndex])
 	c.activeTypeMappersCaches = c.activeTypeMappersCaches[:lastIndex]
 }
 
@@ -22139,8 +22111,7 @@ func (c *Checker) findActiveMapper(mapper *TypeMapper) int {
 
 func (c *Checker) clearActiveMapperCaches() {
 	for _, cache := range c.activeTypeMappersCaches {
-		clear(cache.types)
-		clear(cache.aliases)
+		clear(cache)
 	}
 }
 
