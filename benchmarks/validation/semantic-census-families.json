@@ -1,0 +1,220 @@
+{
+  "status": "checked-with-preserved-counter-mismatch",
+  "workloads": [
+    {
+      "name": "trpc",
+      "originalStatus": "passed",
+      "comparisons": [
+        {
+          "owners": 1,
+          "variant": "unlabeled",
+          "counterDifferences": {},
+          "censusSha256": "c85824611c8d1ac3a4409ed6619529aa7d1feb0684a4103f28b0932189f66ccb",
+          "calls": 150184,
+          "records": 4
+        },
+        {
+          "owners": 1,
+          "variant": "labeled",
+          "counterDifferences": {},
+          "censusSha256": "562079cf5be68c0796aa5e0a48b2701ec65533d99b1b0d8d167ab2b9037db243",
+          "calls": 150184,
+          "records": 4
+        },
+        {
+          "owners": 4,
+          "variant": "unlabeled",
+          "counterDifferences": {},
+          "censusSha256": "1d19ab0895e9fb470ede6587b38206e2c59529de5e930e8e669f7979f9c67000",
+          "calls": 231985,
+          "records": 16
+        },
+        {
+          "owners": 4,
+          "variant": "labeled",
+          "counterDifferences": {},
+          "censusSha256": "2e3196d38c063730cc7e2b93883dbdd57edf07dfc6db35dd6d0e30e7b4baa947",
+          "calls": 231985,
+          "records": 16
+        }
+      ],
+      "analysisSha256": "1ebdca05f50c76539bf190c6c8b112781214519fa6c1e3290625475f7ac33c33",
+      "summarySha256": "20011ebc44a7ef4519c32e56cf5e205494e9a778028ba73fd754493fee311992"
+    },
+    {
+      "name": "typeorm",
+      "originalStatus": "failed",
+      "comparisons": [
+        {
+          "owners": 1,
+          "variant": "unlabeled",
+          "counterDifferences": {},
+          "censusSha256": "a291fcd293bdba8b652500d865df7f6a68a8f2184041b75fd4d064150fcdf232",
+          "calls": 436980,
+          "records": 4
+        },
+        {
+          "owners": 1,
+          "variant": "labeled",
+          "counterDifferences": {},
+          "censusSha256": "8b083e4aa836c9d10f69fb80916bb4320fa6e99986b061a02f5f08ec2dcdf750",
+          "calls": 436980,
+          "records": 4
+        },
+        {
+          "owners": 4,
+          "variant": "unlabeled",
+          "counterDifferences": {},
+          "censusSha256": "155c60deb7a88123424d0d4942e6991cc717de5ddd5c10758faea3f013d5ef1c",
+          "calls": 551761,
+          "records": 16
+        },
+        {
+          "owners": 4,
+          "variant": "labeled",
+          "counterDifferences": {
+            "Symbols": [
+              461599,
+              461595
+            ]
+          },
+          "censusSha256": "900e7d6a4c6231ded074220f3cb84149575944b2ba07ff1e158d3c77f2e2f438",
+          "calls": 551761,
+          "records": 16
+        }
+      ],
+      "analysisSha256": "ac567e6f66710c914b1e3eddf2c07017e2ed2f1aea939fe04aaad227ee9e67c2",
+      "summarySha256": "a190d758ff93888e6bf57b4e6c8e2d11ef2b04671438f293a5f32d840e0d4f9a"
+    },
+    {
+      "name": "vscode",
+      "originalStatus": "passed",
+      "comparisons": [
+        {
+          "owners": 1,
+          "variant": "unlabeled",
+          "counterDifferences": {},
+          "censusSha256": "0fbd5ab23b3c708125c8f06f8c3281f1f517ef831f8886ca6f631614dd556fcd",
+          "calls": 5957528,
+          "records": 4
+        },
+        {
+          "owners": 1,
+          "variant": "labeled",
+          "counterDifferences": {},
+          "censusSha256": "620f6c225f96e8d54b1da17f0ca8ecdcf2a0ac080e0c2bcaa482fdb69aed9a96",
+          "calls": 5957528,
+          "records": 4
+        },
+        {
+          "owners": 4,
+          "variant": "unlabeled",
+          "counterDifferences": {},
+          "censusSha256": "c0d90edb4c34d5e1e0003d2b9bfa46ec00140d0f437881e622e25156080d6747",
+          "calls": 7832005,
+          "records": 16
+        },
+        {
+          "owners": 4,
+          "variant": "labeled",
+          "counterDifferences": {},
+          "censusSha256": "79ee08be5eabc6feb130b51a43bc0c19cd48625f9366a25d4ec4da4d50a04909",
+          "calls": 7832005,
+          "records": 16
+        }
+      ],
+      "analysisSha256": "d6e788739994cf517bc87adc5f194ba44c5290ee00fc571e8d1281306b2fcac7",
+      "summarySha256": "71508eeb925232c3d212e6ecdc1fdb7f7c89d05cfb08c35ffd9e9c1a6fa90747"
+    },
+    {
+      "name": "sentry",
+      "originalStatus": "passed",
+      "comparisons": [
+        {
+          "owners": 1,
+          "variant": "unlabeled",
+          "counterDifferences": {},
+          "censusSha256": "605adecbb966a3a696a09a662ac0727fb3cedac94cfa41083b70bd26ce1280c1",
+          "calls": 6536963,
+          "records": 4
+        },
+        {
+          "owners": 1,
+          "variant": "labeled",
+          "counterDifferences": {},
+          "censusSha256": "feb88201fda264bae04a8e5ee4def43b009383082b2adf6183ac277ffd723599",
+          "calls": 6536963,
+          "records": 4
+        },
+        {
+          "owners": 4,
+          "variant": "unlabeled",
+          "counterDifferences": {},
+          "censusSha256": "e49f0333085dffbaea76b060aa19377b059c4fb4572ec1a1550785769448d5b8",
+          "calls": 12357199,
+          "records": 16
+        },
+        {
+          "owners": 4,
+          "variant": "labeled",
+          "counterDifferences": {},
+          "censusSha256": "419e3ef0ccc764e77f1b9307fc33abfb924d814f2bb93a24d94c996cea55a59b",
+          "calls": 12357199,
+          "records": 16
+        }
+      ],
+      "analysisSha256": "7bfab53b75f0569c9dcb7a9d2f142704366ded319ae362c2cbf6cd9b0089c966",
+      "summarySha256": "8067be3d67e12743fc719467fb236aee50fb8cc0f26efd3b5a505e6d5249e804"
+    }
+  ],
+  "limitations": [
+    "Single profiled samples are not performance comparisons.",
+    "TypeORM strict comparison failed on Symbols; baseline variability observed separately does not establish root cause.",
+    "Family aggregates cannot identify repeated equivalent work."
+  ],
+  "tests": {
+    "normal-final": {
+      "namedPasses": 11,
+      "topLevelPasses": 9
+    },
+    "race-final": {
+      "namedPasses": 11,
+      "topLevelPasses": 9
+    }
+  },
+  "cli": {
+    "comparisons": 8,
+    "sha256": "cfc27bb0f90d9fb6b6773f918db567e71740e5ac89dc4f0f54dcf3e50b7b5fef"
+  },
+  "archiveSha256": "66188dd627ba064e96af54a179f139922952011e3193b96a7daab1edbb7bd627",
+  "archiveBytes": 26259038,
+  "sourceSha256": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493",
+  "restoration": {
+    "status": "restored",
+    "beforeSource": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493",
+    "afterSource": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+    "fileCount": 5153,
+    "binarySha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+    "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d",
+    "diagnosticBinarySha256": "b919e1c0e13a644bc2dfad2dba114f14e072942b08becd7ccb73740288a9407a",
+    "operations": [
+      {
+        "path": "packages/tsc-go/cmd/tsgo/main.go",
+        "remove": false
+      },
+      {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "remove": false
+      },
+      {
+        "path": "packages/tsc-go/internal/checker/semantic_census.go",
+        "remove": true
+      },
+      {
+        "path": "packages/tsc-go/internal/checker/semantic_census_test.go",
+        "remove": true
+      }
+    ],
+    "controllerSha256": "49b20a2fb12c885b4d38df719031df8d90e5707b0c294b04050caed5675a58f8"
+  }
+}

@@ -1,0 +1,839 @@
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,10 +2,13 @@
+ 
+ import (
+ 	"context"
++	"fmt"
+ 	"os"
+ 	"os/signal"
++	"strings"
+ 	"syscall"
+ 
++	"github.com/microsoft/typescript-go/internal/checker"
+ 	"github.com/microsoft/typescript-go/internal/core"
+ 	"github.com/microsoft/typescript-go/internal/execute"
+ )
+@@ -17,6 +20,18 @@
+ func runMain() int {
+ 	core.ApplyDebugStackLimit()
+ 	args := os.Args[1:]
++	if os.Getenv("TSC_GO_CENSUS") != "" {
++		for _, arg := range args {
++			if !strings.HasPrefix(arg, "-") {
++				continue
++			}
++			switch strings.ToLower(strings.TrimLeft(strings.SplitN(arg, "=", 2)[0], "-")) {
++			case "api", "lsp", "w", "watch", "b", "build":
++				fmt.Fprintln(os.Stderr, "semantic census supports ordinary one-shot CLI compilation only")
++				return 1
++			}
++		}
++	}
+ 	if len(args) > 0 {
+ 		switch args[0] {
+ 		case "--lsp":
+@@ -28,5 +43,9 @@
+ 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+ 	defer stop()
+ 	result := execute.CommandLine(ctx, newSystem(), args, nil)
++	if err := checker.FlushSemanticCensus(); err != nil {
++		fmt.Fprintln(os.Stderr, err)
++		return 1
++	}
+ 	return int(result.Status)
+ }
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -899,7 +899,8 @@
+ 	typeToStringNodebuilder                     *NodeBuilder
+ 
+ 	mu     sync.Mutex
+-	tracer *Tracer // Optional tracer for trace events and type recording (for --generateTrace)
++	tracer *Tracer         // Optional tracer for trace events and type recording (for --generateTrace)
++	census *semanticCensus // Diagnostic draft only; never a benchmark compiler.
+ }
+ 
+ func NewChecker(program Program, tracer *Tracer) (*Checker, *sync.Mutex) {
+@@ -907,6 +908,7 @@
+ 
+ 	c := &Checker{}
+ 	c.id = nextCheckerID.Add(1)
++	c.census = newSemanticCensus(c.id)
+ 	c.tracer = tracer
+ 	c.program = program
+ 	c.compilerOptions = program.Options()
+@@ -8393,6 +8395,11 @@
+ 	if cached != nil && cached != c.resolvingSignature && candidatesOutArray == nil {
+ 		return cached
+ 	}
++	var census *censusSpan
++	if c.census != nil {
++		census = c.beginCensus(censusKey{family: "resolved-signature-miss", node: node, mode: uint32(checkMode), candidates: candidatesOutArray != nil, resolving: cached == c.resolvingSignature})
++		defer census.finish(c)
++	}
+ 	saveResolutionStart := c.resolutionStart
+ 	if cached == nil {
+ 		// If we haven't already done so, temporarily reset the resolution stack. This allows us to
+@@ -8425,6 +8432,10 @@
+ 		} else {
+ 			links.resolvedSignature = cached
+ 		}
++	}
++	if census != nil {
++		census.returnedNormally = true
++		census.deferred = result == c.resolvingSignature
+ 	}
+ 	return result
+ }
+@@ -13914,6 +13925,9 @@
+ func (c *Checker) addDiagnostic(diagnostic *ast.Diagnostic) {
+ 	// Discard diagnostics created while at the maximum number of recursive TypeToString invocations.
+ 	if c.serializationLevel < maxSerializationLevel {
++		if c.census != nil {
++			c.census.diagnostics++
++		}
+ 		c.diagnostics.Add(diagnostic)
+ 	}
+ }
+@@ -13921,6 +13935,9 @@
+ func (c *Checker) addSuggestionDiagnostic(diagnostic *ast.Diagnostic) {
+ 	// Discard diagnostics created while at the maximum number of recursive TypeToString invocations.
+ 	if c.serializationLevel < maxSerializationLevel {
++		if c.census != nil {
++			c.census.diagnostics++
++		}
+ 		c.suggestionDiagnostics.Add(diagnostic)
+ 	}
+ }
+@@ -17235,6 +17252,11 @@
+ func (c *Checker) getDeclaredTypeOfClassOrInterface(symbol *ast.Symbol) *Type {
+ 	links := c.declaredTypeLinks.Get(symbol)
+ 	if links.declaredType == nil {
++		var census *censusSpan
++		if c.census != nil {
++			census = c.beginCensus(censusKey{family: "class-interface-construction-miss", node: censusSymbolOrigin(symbol), symbol: symbol})
++			defer census.finish(c)
++		}
+ 		kind := core.IfElse(symbol.Flags&ast.SymbolFlagsClass != 0, ObjectFlagsClass, ObjectFlagsInterface)
+ 		t := c.newObjectType(kind, symbol)
+ 		links.declaredType = t
+@@ -17257,6 +17279,9 @@
+ 			d.instantiations = make(map[CacheHashKey]*Type)
+ 			d.instantiations[getTypeListKey(d.resolvedTypeArguments)] = t
+ 			d.target = t
++		}
++		if census != nil {
++			census.returnedNormally = true
+ 		}
+ 	}
+ 	return links.declaredType
+@@ -19714,6 +19739,11 @@
+ 	if links.resolvedSignature != nil {
+ 		return links.resolvedSignature
+ 	}
++	var census *censusSpan
++	if c.census != nil {
++		census = c.beginCensus(censusKey{family: "signature-construction-miss", node: declaration})
++		defer census.finish(c)
++	}
+ 	var parameters []*ast.Symbol
+ 	var flags SignatureFlags
+ 	var thisParameter *ast.Symbol
+@@ -19782,6 +19812,9 @@
+ 		flags |= SignatureFlagsAbstract
+ 	}
+ 	links.resolvedSignature = c.newSignature(flags, declaration, typeParameters, thisParameter, parameters, nil /*resolvedReturnType*/, nil /*resolvedTypePredicate*/, minArgumentCount)
++	if census != nil {
++		census.returnedNormally = true
++	}
+ 	return links.resolvedSignature
+ }
+ 
+@@ -22006,6 +22039,9 @@
+ 		return t
+ 	}
+ 	if c.instantiationDepth == 100 || c.instantiationCount >= 5_000_000 {
++		if c.census != nil {
++			c.census.budgetRejections++
++		}
+ 		// We have reached 100 recursive type instantiations, or 5M type instantiations caused by the same statement
+ 		// or expression. There is a very high likelihood we're dealing with a combination of infinite generic types
+ 		// that perpetually generate new type identities, so we stop the recursion here by yielding the error type.
+@@ -22026,6 +22062,11 @@
+ 	cache := c.activeTypeMappersCaches[core.IfElse(index != -1, index, len(c.activeTypeMappersCaches)-1)]
+ 	if cachedType, ok := cache[key]; ok {
+ 		return cachedType
++	}
++	var census *censusSpan
++	if c.census != nil {
++		census = c.beginCensus(censusKey{family: "type-instantiation-miss", node: censusSymbolOrigin(t.symbol), typ: t, mapper: m, alias: alias})
++		defer census.finish(c)
+ 	}
+ 	c.TotalInstantiationCount++
+ 	c.instantiationCount++
+@@ -22037,6 +22078,10 @@
+ 		cache[key] = result
+ 	}
+ 	c.instantiationDepth--
++	if census != nil {
++		census.returnedNormally = true
++		census.errorResult = result == c.errorType
++	}
+ 	return result
+ }
+ 
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/semantic_census.go
+@@ -0,0 +1,253 @@
++package checker
++
++// Diagnostic-only draft. This file is not part of the production compiler.
++import (
++	"context"
++	"encoding/json"
++	"fmt"
++	"os"
++	"runtime/pprof"
++	"strconv"
++	"sync"
++	"time"
++
++	"github.com/microsoft/typescript-go/internal/ast"
++)
++
++const censusRecordLimit = 50_000
++
++var censusFamilies = [...]string{"signature-construction-miss", "resolved-signature-miss", "class-interface-construction-miss", "type-instantiation-miss"}
++
++type censusKey struct {
++	family                                                        string
++	node                                                          *ast.Node
++	symbol                                                        *ast.Symbol
++	typ                                                           *Type
++	mapper                                                        *TypeMapper
++	alias                                                         *TypeAlias
++	mode                                                          uint32
++	candidates, resolving                                         bool
++	flowDepth, instantiationDepth, activeMappers, resolutionStart int
++}
++
++type censusRecord struct {
++	ID                                                                                               int
++	Family, NodeAddress, SymbolAddress, TypeAddress, MapperAddress, AliasAddress                     string
++	File                                                                                             string
++	Pos, End                                                                                         int
++	Kind                                                                                             uint16
++	Mode                                                                                             uint32
++	Candidates, Resolving                                                                            bool
++	FlowDepth, InstantiationDepth, ActiveMappers, ResolutionStart                                    int
++	Calls, ReturnedNormally, ErrorResults, DeferredResults, DiagnosticSpans, NestedSameRawKeyEntries uint64
++	InclusiveNanoseconds, ExclusiveNanoseconds                                                       int64
++	TypesCreated, Instantiations                                                                     uint64
++	Active                                                                                           int `json:"-"`
++	labelContext                                                                                     context.Context
++}
++
++type semanticCensus struct {
++	familyOnly       bool
++	familyRecords    [4]*censusRecord
++	spanPool         []*censusSpan
++	checkerID        uint32
++	records          map[censusKey]*censusRecord
++	ordered          []*censusRecord
++	overflow         censusRecord
++	stack            []*censusSpan
++	diagnostics      uint64
++	budgetRejections uint64
++	cpuLabels        bool
++}
++
++type censusSpan struct {
++	owner                                   *semanticCensus
++	record                                  *censusRecord
++	start                                   time.Time
++	children                                int64
++	diagnostics                             uint64
++	types, instantiations                   uint32
++	returnedNormally, errorResult, deferred bool
++	parentContext                           context.Context
++}
++
++var censusRegistry struct {
++	sync.Mutex
++	checkers []*semanticCensus
++}
++
++func newSemanticCensus(id uint32) *semanticCensus {
++	if os.Getenv("TSC_GO_CENSUS") == "" {
++		return nil
++	}
++	s := &semanticCensus{checkerID: id, familyOnly: os.Getenv("TSC_GO_CENSUS_MODE") == "families", cpuLabels: os.Getenv("TSC_GO_CENSUS_CPU_LABELS") == "1"}
++	if !s.familyOnly {
++		s.records = make(map[censusKey]*censusRecord)
++	}
++	s.overflow.ID = -1
++	s.overflow.Family = "unclassified-record-limit-overflow"
++	if s.cpuLabels {
++		s.overflow.labelContext = pprof.WithLabels(context.Background(), pprof.Labels("census_checker", strconv.FormatUint(uint64(id), 10), "census_record", "overflow", "census_family", "unclassified-record-limit-overflow"))
++	}
++	censusRegistry.Lock()
++	censusRegistry.checkers = append(censusRegistry.checkers, s)
++	censusRegistry.Unlock()
++	return s
++}
++
++func (c *Checker) beginCensus(key censusKey) *censusSpan {
++	s := c.census
++	key.flowDepth = len(c.flowLoopStack)
++	key.instantiationDepth = int(c.instantiationDepth)
++	key.activeMappers = len(c.activeMappers)
++	key.resolutionStart = c.resolutionStart
++	var r *censusRecord
++	if s.familyOnly {
++		index := -1
++		for i, family := range censusFamilies {
++			if family == key.family {
++				index = i
++				break
++			}
++		}
++		if index < 0 {
++			panic("unknown census family")
++		}
++		r = s.familyRecords[index]
++		if r == nil {
++			r = &censusRecord{ID: len(s.ordered), Family: key.family}
++			if s.cpuLabels {
++				r.labelContext = pprof.WithLabels(context.Background(), pprof.Labels("census_checker", strconv.FormatUint(uint64(s.checkerID), 10), "census_record", strconv.Itoa(r.ID), "census_family", r.Family))
++			}
++			s.familyRecords[index] = r
++			s.ordered = append(s.ordered, r)
++		}
++	} else {
++		r = s.records[key]
++		if r == nil {
++			if len(s.records) >= censusRecordLimit {
++				r = &s.overflow
++			} else {
++				r = &censusRecord{ID: len(s.ordered), Family: key.family, NodeAddress: fmt.Sprintf("%p", key.node), SymbolAddress: fmt.Sprintf("%p", key.symbol), TypeAddress: fmt.Sprintf("%p", key.typ), MapperAddress: fmt.Sprintf("%p", key.mapper), AliasAddress: fmt.Sprintf("%p", key.alias), Mode: key.mode, Candidates: key.candidates, Resolving: key.resolving, FlowDepth: key.flowDepth, InstantiationDepth: key.instantiationDepth, ActiveMappers: key.activeMappers, ResolutionStart: key.resolutionStart}
++				if n := key.node; n != nil {
++					r.Pos = n.Pos()
++					r.End = n.End()
++					r.Kind = uint16(n.Kind)
++					if f := ast.GetSourceFileOfNode(n); f != nil {
++						r.File = f.FileName()
++					}
++				}
++				if s.cpuLabels {
++					r.labelContext = pprof.WithLabels(context.Background(), pprof.Labels("census_checker", strconv.FormatUint(uint64(s.checkerID), 10), "census_record", strconv.Itoa(r.ID), "census_family", r.Family))
++				}
++				s.records[key] = r
++				s.ordered = append(s.ordered, r)
++			}
++		}
++	}
++	r.Calls++
++	if r.Active > 0 && !s.familyOnly {
++		r.NestedSameRawKeyEntries++
++	}
++	r.Active++
++	var span *censusSpan
++	if s.familyOnly {
++		depth := len(s.stack)
++		if depth == len(s.spanPool) {
++			s.spanPool = append(s.spanPool, new(censusSpan))
++		}
++		span = s.spanPool[depth]
++	} else {
++		span = new(censusSpan)
++	}
++	*span = censusSpan{owner: s, record: r, diagnostics: s.diagnostics, types: c.TypeCount, instantiations: c.TotalInstantiationCount, parentContext: context.Background()}
++	if len(s.stack) > 0 {
++		span.parentContext = s.stack[len(s.stack)-1].record.labelContext
++	}
++	if s.cpuLabels {
++		pprof.SetGoroutineLabels(r.labelContext)
++	}
++	s.stack = append(s.stack, span)
++	span.start = time.Now()
++	return span
++}
++
++func (span *censusSpan) finish(c *Checker) {
++	elapsed := time.Since(span.start).Nanoseconds()
++	s, r := span.owner, span.record
++	if len(s.stack) == 0 || s.stack[len(s.stack)-1] != span {
++		panic("census span stack mismatch")
++	}
++	s.stack = s.stack[:len(s.stack)-1]
++	if len(s.stack) > 0 {
++		s.stack[len(s.stack)-1].children += elapsed
++	}
++	r.Active--
++	r.InclusiveNanoseconds += elapsed
++	r.ExclusiveNanoseconds += elapsed - span.children
++	r.TypesCreated += uint64(c.TypeCount - span.types)
++	r.Instantiations += uint64(c.TotalInstantiationCount - span.instantiations)
++	if span.returnedNormally {
++		r.ReturnedNormally++
++	}
++	if span.errorResult {
++		r.ErrorResults++
++	}
++	if span.deferred {
++		r.DeferredResults++
++	}
++	if s.diagnostics != span.diagnostics {
++		r.DiagnosticSpans++
++	}
++	if s.cpuLabels {
++		pprof.SetGoroutineLabels(span.parentContext)
++	}
++}
++
++// Uses existing AST/symbol fields only; it must never resolve a type or force a lazy ID.
++func censusSymbolOrigin(s *ast.Symbol) *ast.Node {
++	if s == nil {
++		return nil
++	}
++	if s.ValueDeclaration != nil {
++		return s.ValueDeclaration
++	}
++	if len(s.Declarations) > 0 {
++		return s.Declarations[0]
++	}
++	return nil
++}
++
++// Call only once after an ordinary, non-watch CLI compilation has joined all workers.
++// API/LSP/watch mode is intentionally outside this diagnostic draft's lifecycle.
++func FlushSemanticCensus() error {
++	path := os.Getenv("TSC_GO_CENSUS")
++	if path == "" {
++		return nil
++	}
++	censusRegistry.Lock()
++	defer censusRegistry.Unlock()
++	for _, s := range censusRegistry.checkers {
++		if len(s.stack) != 0 {
++			return fmt.Errorf("checker %d has active census spans", s.checkerID)
++		}
++	}
++	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0o600)
++	if err != nil {
++		return err
++	}
++	encoder := json.NewEncoder(f)
++	header := map[string]any{"schemaVersion": 1, "kind": "diagnostic-construction-census", "recordLimitPerChecker": censusRecordLimit, "semanticallyEquivalentResultsProven": false, "limitations": []string{"Origins and raw pointer contexts are not context-complete semantic identities; every record remains unclassified for sharing.", "Pointer identities apply only within this process. File/position/kind is not a cross-process equivalence proof.", "Elapsed time includes scheduling/GC and instrumentation effects; it is not CPU time or a speedup estimate.", "Nested creation and instantiation counters are inclusive; do not sum them as distinct work.", "Optional CPU labels perturb execution and require an uninstrumented control. Labels assume the standalone CLI owns goroutine profiling labels; inherited labels on spawned work prevent an automatic exclusive-CPU interpretation.", "Only selected miss boundaries and the type-instantiation budget guard are instrumented; other computations and limits remain uncovered.", "Overflow combines unrelated requests; its recursion count is not meaningful and its cost is unclassified.", "familyOnly records aggregate all contexts by family, retain no raw pointer keys, and do not count same-key recursion. They cannot establish repeated or equivalent work."}}
++	if err = encoder.Encode(header); err != nil {
++		f.Close()
++		return err
++	}
++	for _, s := range censusRegistry.checkers {
++		value := map[string]any{"familyOnly": s.familyOnly, "checkerId": s.checkerID, "cpuLabels": s.cpuLabels, "diagnosticAdditions": s.diagnostics, "instantiationBudgetRejections": s.budgetRejections, "records": s.ordered, "overflow": s.overflow}
++		if err = encoder.Encode(value); err != nil {
++			f.Close()
++			return err
++		}
++	}
++	return f.Close()
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/semantic_census_test.go
+@@ -0,0 +1,395 @@
++package checker
++
++import (
++	"bytes"
++	"context"
++	"encoding/json"
++	"io"
++	"maps"
++	"os"
++	"path/filepath"
++	"runtime/pprof"
++	"strings"
++	"sync"
++	"testing"
++
++	"github.com/microsoft/typescript-go/internal/ast"
++	"github.com/microsoft/typescript-go/internal/core"
++	"github.com/microsoft/typescript-go/internal/parser"
++)
++
++func TestSemanticCensusInstantiationLimits(t *testing.T) {
++	for _, limit := range []string{"depth", "count"} {
++		t.Run(limit, func(t *testing.T) {
++			censusTestEnvironment(t)
++			c := activeMapperTestChecker()
++			c.census = newSemanticCensus(1)
++			input := c.newTypeParameter(nil)
++			target := c.newIntrinsicType(TypeFlagsString, "string")
++			c.errorType = c.newIntrinsicType(TypeFlagsAny, "error")
++			mapper := newSimpleTypeMapper(input, target)
++			c.pushActiveMapper(mapper)
++			defer c.popActiveMapper()
++			if c.instantiateType(input, mapper) != target {
++				t.Fatal("failed to prime mapper cache with census enabled")
++			}
++			if limit == "depth" {
++				c.instantiationDepth = 100
++			} else {
++				c.instantiationCount = 5_000_000
++			}
++			file := parser.ParseSourceFile(ast.SourceFileParseOptions{FileName: "/census-limits.ts", Path: "/census-limits.ts"}, "type First = string;\ntype Second = string;\n", core.ScriptKindTS)
++			for _, statement := range file.Statements.Nodes {
++				c.currentNode = statement.Name()
++				if c.instantiateType(input, mapper) != c.errorType {
++					t.Fatal("cached type bypassed limit with census enabled")
++				}
++			}
++			diagnostics := c.diagnostics.GetDiagnosticsForFile(file.FileName())
++			if len(diagnostics) != 2 || diagnostics[0].Code() != 2589 || diagnostics[1].Code() != 2589 || diagnostics[0].Pos() == diagnostics[1].Pos() {
++				t.Fatal("census changed per-use instantiation-limit diagnostics")
++			}
++			if c.TotalInstantiationCount != 1 || c.census.budgetRejections != 2 || c.census.diagnostics != 2 {
++				t.Fatal("budget rejection accounting lost or performed semantic work")
++			}
++			if len(c.census.ordered) != 1 || c.census.ordered[0].Calls != 1 || c.census.ordered[0].ReturnedNormally != 1 || len(c.census.stack) != 0 {
++				t.Fatal("rejected requests were counted as completed instantiation misses")
++			}
++		})
++	}
++}
++
++//go:noinline
++func semanticCensusRuntimeLabels(t *testing.T) map[string]string {
++	t.Helper()
++	var output bytes.Buffer
++	if err := pprof.Lookup("goroutine").WriteTo(&output, 1); err != nil {
++		t.Fatal(err)
++	}
++	for _, block := range strings.Split(output.String(), "\n\n") {
++		if !strings.Contains(block, "semanticCensusRuntimeLabels") {
++			continue
++		}
++		labels := map[string]string{}
++		for _, line := range strings.Split(block, "\n") {
++			if text, ok := strings.CutPrefix(line, "# labels: "); ok {
++				if err := json.Unmarshal([]byte(text), &labels); err != nil {
++					t.Fatal(err)
++				}
++			}
++		}
++		return labels
++	}
++	t.Fatal("current goroutine absent from runtime label probe")
++	return nil
++}
++
++func TestSemanticCensusRuntimeLabels(t *testing.T) {
++	censusTestEnvironment(t)
++	t.Setenv("TSC_GO_CENSUS_CPU_LABELS", "1")
++	done := make(chan struct{})
++	go func() {
++		defer close(done)
++		pprof.SetGoroutineLabels(context.Background())
++		defer pprof.SetGoroutineLabels(context.Background())
++		c := &Checker{census: newSemanticCensus(77)}
++		check := func(record, family string) {
++			want := map[string]string{}
++			if record != "" {
++				want = map[string]string{"census_checker": "77", "census_record": record, "census_family": family}
++			}
++			if got := semanticCensusRuntimeLabels(t); !maps.Equal(got, want) {
++				t.Fatalf("runtime labels: got %v, want %v", got, want)
++			}
++		}
++		check("", "")
++		outer := c.beginCensus(censusKey{family: "outer"})
++		check("0", "outer")
++		inner := c.beginCensus(censusKey{family: "inner"})
++		check("1", "inner")
++		inner.returnedNormally = true
++		inner.finish(c)
++		check("0", "outer")
++		outer.returnedNormally = true
++		outer.finish(c)
++		check("", "")
++		outer = c.beginCensus(censusKey{family: "outer"})
++		check("0", "outer")
++		outer.returnedNormally = true
++		outer.finish(c)
++		check("", "")
++		for i := len(c.census.records); i < censusRecordLimit; i++ {
++			c.census.records[censusKey{family: "occupied", mode: uint32(i)}] = &c.census.overflow
++		}
++		overflow := c.beginCensus(censusKey{family: "capped"})
++		check("overflow", "unclassified-record-limit-overflow")
++		overflow.returnedNormally = true
++		overflow.finish(c)
++		check("", "")
++	}()
++	<-done
++}
++
++func censusTestEnvironment(t *testing.T) string {
++	t.Helper()
++	path := filepath.Join(t.TempDir(), "census.jsonl")
++	t.Setenv("TSC_GO_CENSUS", path)
++	t.Setenv("TSC_GO_CENSUS_CPU_LABELS", "0")
++	t.Setenv("TSC_GO_CENSUS_MODE", "")
++	censusRegistry.Lock()
++	saved := censusRegistry.checkers
++	censusRegistry.checkers = nil
++	censusRegistry.Unlock()
++	t.Cleanup(func() { censusRegistry.Lock(); censusRegistry.checkers = saved; censusRegistry.Unlock() })
++	return path
++}
++
++func TestSemanticCensusNestedAccounting(t *testing.T) {
++	censusTestEnvironment(t)
++	c := &Checker{TypeCount: 10, TotalInstantiationCount: 20, census: newSemanticCensus(1)}
++	outer := c.beginCensus(censusKey{family: "outer"})
++	c.TypeCount += 2
++	c.TotalInstantiationCount += 3
++	inner := c.beginCensus(censusKey{family: "inner"})
++	c.TypeCount += 5
++	c.TotalInstantiationCount += 7
++	inner.returnedNormally = true
++	inner.finish(c)
++	c.census.diagnostics++
++	outer.returnedNormally = true
++	outer.finish(c)
++	a, b := outer.record, inner.record
++	if a.TypesCreated != 7 || a.Instantiations != 10 || b.TypesCreated != 5 || b.Instantiations != 7 {
++		t.Fatal("inclusive creation attribution changed", a, b)
++	}
++	if a.DiagnosticSpans != 1 || b.DiagnosticSpans != 0 {
++		t.Fatal("diagnostic attributed outside its active span")
++	}
++	if a.InclusiveNanoseconds-a.ExclusiveNanoseconds != b.InclusiveNanoseconds {
++		t.Fatal("nested elapsed cost counted twice")
++	}
++	if a.ExclusiveNanoseconds < 0 || b.ExclusiveNanoseconds < 0 || a.Active != 0 || b.Active != 0 || len(c.census.stack) != 0 {
++		t.Fatal("span lifetime/accounting invariant failed")
++	}
++}
++
++func TestSemanticCensusReentrantAndAbortedSpans(t *testing.T) {
++	censusTestEnvironment(t)
++	c := &Checker{census: newSemanticCensus(1)}
++	key := censusKey{family: "same-raw-key"}
++	outer := c.beginCensus(key)
++	inner := c.beginCensus(key)
++	inner.returnedNormally = true
++	inner.deferred = true
++	inner.finish(c)
++	innerElapsed := inner.record.InclusiveNanoseconds
++	outer.returnedNormally = true
++	outer.errorResult = true
++	outer.finish(c)
++	r := outer.record
++	if r.Calls != 2 || r.ReturnedNormally != 2 || r.DeferredResults != 1 || r.ErrorResults != 1 || r.NestedSameRawKeyEntries != 1 {
++		t.Fatal("reentrant state lost", r)
++	}
++	if r.ExclusiveNanoseconds != r.InclusiveNanoseconds-innerElapsed {
++		t.Fatal("same-record recursive cost was double counted")
++	}
++	func() {
++		defer func() {
++			if recover() == nil {
++				t.Error("expected test panic")
++			}
++		}()
++		span := c.beginCensus(censusKey{family: "aborted"})
++		defer span.finish(c)
++		panic("intentional diagnostic test")
++	}()
++	aborted := c.census.ordered[1]
++	if aborted.Calls != 1 || aborted.ReturnedNormally != 0 || aborted.Active != 0 || len(c.census.stack) != 0 {
++		t.Fatal("panic was recorded as normal completion")
++	}
++}
++
++func TestSemanticCensusRecordCap(t *testing.T) {
++	censusTestEnvironment(t)
++	c := &Checker{census: newSemanticCensus(1)}
++	sentinel := &censusRecord{}
++	for i := 0; i < censusRecordLimit; i++ {
++		c.census.records[censusKey{family: "occupied", mode: uint32(i)}] = sentinel
++	}
++	for _, name := range []string{"overflow-a", "overflow-b"} {
++		span := c.beginCensus(censusKey{family: name})
++		span.returnedNormally = true
++		span.finish(c)
++	}
++	if len(c.census.records) != censusRecordLimit || len(c.census.ordered) != 0 {
++		t.Fatal("record cap exceeded")
++	}
++	if c.census.overflow.Calls != 2 || c.census.overflow.ReturnedNormally != 2 || c.census.overflow.ID != -1 || c.census.overflow.Active != 0 {
++		t.Fatal("overflow work was silently lost")
++	}
++}
++
++func TestSemanticCensusFlushRejectsActiveAndExistingOutput(t *testing.T) {
++	path := censusTestEnvironment(t)
++	c := &Checker{census: newSemanticCensus(1)}
++	span := c.beginCensus(censusKey{family: "active"})
++	if err := FlushSemanticCensus(); err == nil {
++		t.Fatal("flushed active checker")
++	}
++	if _, err := os.Stat(path); !os.IsNotExist(err) {
++		t.Fatal("active flush created output", err)
++	}
++	span.returnedNormally = true
++	span.finish(c)
++	if err := FlushSemanticCensus(); err != nil {
++		t.Fatal(err)
++	}
++	before, err := os.ReadFile(path)
++	if err != nil {
++		t.Fatal(err)
++	}
++	if err := FlushSemanticCensus(); err == nil {
++		t.Fatal("overwrote prior census")
++	}
++	after, err := os.ReadFile(path)
++	if err != nil || string(after) != string(before) {
++		t.Fatal("existing census changed", err)
++	}
++}
++
++func TestSemanticCensusParallelOwners(t *testing.T) {
++	path := censusTestEnvironment(t)
++	var wg sync.WaitGroup
++	for id := uint32(1); id <= 4; id++ {
++		wg.Add(1)
++		go func(id uint32) {
++			defer wg.Done()
++			c := &Checker{census: newSemanticCensus(id)}
++			for i := 0; i < 20; i++ {
++				span := c.beginCensus(censusKey{family: "owned"})
++				c.TypeCount++
++				span.returnedNormally = true
++				span.finish(c)
++			}
++		}(id)
++	}
++	wg.Wait()
++	if err := FlushSemanticCensus(); err != nil {
++		t.Fatal(err)
++	}
++	f, err := os.Open(path)
++	if err != nil {
++		t.Fatal(err)
++	}
++	defer f.Close()
++	dec := json.NewDecoder(f)
++	var header map[string]any
++	if err := dec.Decode(&header); err != nil {
++		t.Fatal(err)
++	}
++	if header["semanticallyEquivalentResultsProven"] != false {
++		t.Fatal("collector claimed semantic equivalence")
++	}
++	seen := map[uint32]bool{}
++	for {
++		var record struct {
++			CheckerID uint32         `json:"checkerId"`
++			Records   []censusRecord `json:"records"`
++		}
++		err := dec.Decode(&record)
++		if err == io.EOF {
++			break
++		}
++		if err != nil {
++			t.Fatal(err)
++		}
++		if seen[record.CheckerID] || len(record.Records) != 1 || record.Records[0].Calls != 20 || record.Records[0].TypesCreated != 20 {
++			t.Fatal("checker data mixed or missing", record)
++		}
++		seen[record.CheckerID] = true
++	}
++	if len(seen) != 4 {
++		t.Fatal("missing checker owners", seen)
++	}
++}
++
++func TestSemanticCensusFamilyAggregation(t *testing.T) {
++	path := censusTestEnvironment(t)
++	t.Setenv("TSC_GO_CENSUS_MODE", "families")
++	c := &Checker{census: newSemanticCensus(1)}
++	s := c.census
++	outer := c.beginCensus(censusKey{family: censusFamilies[0], mode: 1})
++	inner := c.beginCensus(censusKey{family: censusFamilies[0], mode: 2})
++	if outer == inner || outer.record != inner.record {
++		t.Fatal("family recursion requires separate spans and shared aggregate")
++	}
++	c.TypeCount += 2
++	inner.returnedNormally = true
++	inner.finish(c)
++	outer.returnedNormally = true
++	outer.finish(c)
++	r := s.ordered[0]
++	if r.TypesCreated != 4 || r.NestedSameRawKeyEntries != 0 || r.Calls != 2 || r.Active != 0 {
++		t.Fatal("incorrect identity or inclusive accounting")
++	}
++	for i := 0; i < censusRecordLimit+1; i++ {
++		span := c.beginCensus(censusKey{family: censusFamilies[i%4], mode: uint32(i)})
++		if span != outer || span.returnedNormally || span.children != 0 {
++			t.Fatal("span reuse failed")
++		}
++		span.returnedNormally = true
++		span.finish(c)
++	}
++	if s.records != nil || len(s.ordered) != 4 || len(s.spanPool) != 2 || s.overflow.Calls != 0 {
++		t.Fatal("retained pointer keys or overflowed")
++	}
++	var calls uint64
++	for _, r := range s.ordered {
++		calls += r.Calls
++		if r.NodeAddress != "" || r.SymbolAddress != "" || r.TypeAddress != "" || r.MapperAddress != "" || r.AliasAddress != "" || r.NestedSameRawKeyEntries != 0 || r.ExclusiveNanoseconds < 0 {
++			t.Fatal("unexpected detail or invalid accounting")
++		}
++	}
++	if calls != censusRecordLimit+3 {
++		t.Fatal("lost calls", calls)
++	}
++	if err := FlushSemanticCensus(); err != nil {
++		t.Fatal(err)
++	}
++	data, err := os.ReadFile(path)
++	if err != nil {
++		t.Fatal(err)
++	}
++	if !bytes.Contains(data, []byte(`"familyOnly":true`)) {
++		t.Fatal("mode missing from output")
++	}
++}
++
++func TestSemanticCensusFamilyRuntimeLabels(t *testing.T) {
++	censusTestEnvironment(t)
++	t.Setenv("TSC_GO_CENSUS_MODE", "families")
++	t.Setenv("TSC_GO_CENSUS_CPU_LABELS", "1")
++	done := make(chan struct{})
++	go func() {
++		defer close(done)
++		pprof.SetGoroutineLabels(context.Background())
++		defer pprof.SetGoroutineLabels(context.Background())
++		c := &Checker{census: newSemanticCensus(17)}
++		for repeat := 0; repeat < 2; repeat++ {
++			outer := c.beginCensus(censusKey{family: censusFamilies[0]})
++			inner := c.beginCensus(censusKey{family: censusFamilies[1]})
++			if got := semanticCensusRuntimeLabels(t); got["census_record"] != "1" || got["census_family"] != censusFamilies[1] || got["census_checker"] != "17" {
++				t.Fatal("inner labels", got)
++			}
++			inner.finish(c)
++			if got := semanticCensusRuntimeLabels(t); got["census_record"] != "0" || got["census_family"] != censusFamilies[0] {
++				t.Fatal("parent labels", got)
++			}
++			outer.finish(c)
++			if got := semanticCensusRuntimeLabels(t); len(got) != 0 {
++				t.Fatal("labels leaked", got)
++			}
++		}
++	}()
++	<-done
++}

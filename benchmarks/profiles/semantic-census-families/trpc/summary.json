@@ -1,0 +1,410 @@
+{
+  "status": "passed",
+  "purpose": "diagnostic pilot; single samples are not optimization speedup evidence",
+  "project": {
+    "name": "trpc",
+    "repository": "https://github.com/trpc/trpc.git",
+    "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+    "directory": "upstream/benchmarks/trpc",
+    "project": "packages/server/tsconfig.json",
+    "lockfile": "pnpm-lock.yaml",
+    "install": [
+      "corepack",
+      "pnpm",
+      "install",
+      "--frozen-lockfile",
+      "--ignore-scripts",
+      "--filter",
+      "@trpc/server..."
+    ],
+    "scope": "tRPC server package only; explicitly not the entire monorepo or the unknown tweet configuration."
+  },
+  "preflight": {
+    "status": "passed",
+    "head": "e64135aeada0c292003dba6fcbf8f2a27587f176",
+    "workspace": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493",
+    "diagnosticSource": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493",
+    "build": {
+      "binary": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+      "binarySha256": "b919e1c0e13a644bc2dfad2dba114f14e072942b08becd7ccb73740288a9407a",
+      "sidecarSha256": "4f87321aba901d998b6f10dbd159f46e5d77fbf293d3edda706ee8975a2b4e21",
+      "sourceSha256": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493"
+    },
+    "basis": "Build sidecar source manifest matches captured current source; build script verifies before/after source identity."
+  },
+  "immutable": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families": "b919e1c0e13a644bc2dfad2dba114f14e072942b08becd7ccb73740288a9407a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated.provenance.json": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families.provenance.json": "4f87321aba901d998b6f10dbd159f46e5d77fbf293d3edda706ee8975a2b4e21",
+    "/tmp/tsc-census-families/run-workload.py": "ef7acc8e4b8538373216df78eedc591c3a5eba3f6d6c37092221749da67dcbb9",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/workloads.json": "381aea45ee219aae6da910ad8702368d43602aca2db516cbf13e271aeb4ce7b8",
+    "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/pnpm-lock.yaml": "d6c2f4b63bd8554e6dd3f1498044adc93f74fdfb8007749c8f1399b3bf23385a"
+  },
+  "runs": [
+    {
+      "name": "1-base-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.19009017099597258,
+      "stdoutSha256": "48909f7d5074e5382f7f3570cbe03faa89dd1c3dea4f1efbd776a18df6f78ade",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "1-observed-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.20618278400070267,
+      "stdoutSha256": "48909f7d5074e5382f7f3570cbe03faa89dd1c3dea4f1efbd776a18df6f78ade",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "1-base",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/trpc/1-base-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.8959519209965947,
+      "stdoutSha256": "ce1b1f567e2741776a4c78e0815b99c4f5c6f935bd930e1f7382791f23a998ff",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": {
+        "/tmp/tsc-census-families/trpc/1-base-profiles/368638-memprofile.pb.gz": "e56824e841178eeba38cc4e41730c86debfe30f10417219a0bb38fb17d7aca35",
+        "/tmp/tsc-census-families/trpc/1-base-profiles/368638-cpuprofile.pb.gz": "13edc265eaa5338cb611282df4c52771cf1bf962b7c47972d88f6e55fa089d23"
+      }
+    },
+    {
+      "name": "1-unlabeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/trpc/1-unlabeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.8331534870012547,
+      "stdoutSha256": "f05b8b54888938874a9afd577b68179fe141ba66c52008f0afa0ba06a8d9f3b2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "census": {
+        "sha256": "c85824611c8d1ac3a4409ed6619529aa7d1feb0684a4103f28b0932189f66ccb",
+        "records": 4,
+        "overflowCalls": 0,
+        "calls": 150184,
+        "owners": 1
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/trpc/1-unlabeled-profiles/368652-cpuprofile.pb.gz": "bdd12726eb9342f4e9196d90e2d093d9ef7da031aba80dc5be95321557520b01",
+        "/tmp/tsc-census-families/trpc/1-unlabeled-profiles/368652-memprofile.pb.gz": "19a3ab06396e536cb26a0c378ebce79fd8c30b91cc12bc3f4c90d201d31dac46"
+      }
+    },
+    {
+      "name": "1-labeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/trpc/1-labeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.8626509980022092,
+      "stdoutSha256": "f1c7d32bafc950846edac50a78b041d0f113fcb1af0c4d3d27e02f4ece66af30",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "census": {
+        "sha256": "562079cf5be68c0796aa5e0a48b2701ec65533d99b1b0d8d167ab2b9037db243",
+        "records": 4,
+        "overflowCalls": 0,
+        "calls": 150184,
+        "owners": 1
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/trpc/1-labeled-profiles/368666-memprofile.pb.gz": "57d3a0bd13360c999f8f411cb16a0e293fb2f0a4c02e534e1b3c5b35d8fe167c",
+        "/tmp/tsc-census-families/trpc/1-labeled-profiles/368666-cpuprofile.pb.gz": "b293b27c970dc2d681cf30d954efef7559ab5435f8da65f4fb19ea8b9e1160c2"
+      }
+    },
+    {
+      "name": "4-base-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.20741584099596366,
+      "stdoutSha256": "48909f7d5074e5382f7f3570cbe03faa89dd1c3dea4f1efbd776a18df6f78ade",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "4-observed-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.19549255500169238,
+      "stdoutSha256": "48909f7d5074e5382f7f3570cbe03faa89dd1c3dea4f1efbd776a18df6f78ade",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "4-base",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/trpc/4-base-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.6395499300051597,
+      "stdoutSha256": "c6be30885d0ae4b47933ecc8238c98dcc0efc111e483da2a023a36b8674ac5c6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": {
+        "/tmp/tsc-census-families/trpc/4-base-profiles/368706-memprofile.pb.gz": "35b3e3cc733e5e3459506d166e00ada06195d349f0e0568cf325f0aea1c8e291",
+        "/tmp/tsc-census-families/trpc/4-base-profiles/368706-cpuprofile.pb.gz": "4eb27b7beb449e2e5530abe036f767cafb155ef42bf4c495943248f2b03c8649"
+      }
+    },
+    {
+      "name": "4-unlabeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/trpc/4-unlabeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.5822385829960695,
+      "stdoutSha256": "bc545131ab6e4d6abfda1ccf5b5654b21376fb118ab0a3357af2f99287323643",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "census": {
+        "sha256": "1d19ab0895e9fb470ede6587b38206e2c59529de5e930e8e669f7979f9c67000",
+        "records": 16,
+        "overflowCalls": 0,
+        "calls": 231985,
+        "owners": 4
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/trpc/4-unlabeled-profiles/368719-memprofile.pb.gz": "e44670ef34743e08a10f6bff5151c074cac7a0583f43e01128d1e17b2b69aa34",
+        "/tmp/tsc-census-families/trpc/4-unlabeled-profiles/368719-cpuprofile.pb.gz": "f97b237a857e51fcfd5b2eb113b8cde34c0ecbd8ae22f0682fc0c81f341a8238"
+      }
+    },
+    {
+      "name": "4-labeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/trpc/4-labeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "exit": 0,
+      "elapsedSeconds": 0.6233268569994834,
+      "stdoutSha256": "f3c655968712a4f2af49d538a64ae8d5f22f8ba1e7559aae8b7be09fe9ec2b1e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "census": {
+        "sha256": "2e3196d38c063730cc7e2b93883dbdd57edf07dfc6db35dd6d0e30e7b4baa947",
+        "records": 16,
+        "overflowCalls": 0,
+        "calls": 231985,
+        "owners": 4
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/trpc/4-labeled-profiles/368733-cpuprofile.pb.gz": "ff7239c1c652894825685a2a462820d91722d1366298c74244c96dd5097c5948",
+        "/tmp/tsc-census-families/trpc/4-labeled-profiles/368733-memprofile.pb.gz": "2a9a49fc6fb964ded7181233caf63c86499384c38bea84c1657414941c20f3e9"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "1-unlabeled",
+      "status": "passed",
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 167270,
+        "Types": 47643,
+        "Instantiations": 143473
+      }
+    },
+    {
+      "name": "1-labeled",
+      "status": "passed",
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 167270,
+        "Types": 47643,
+        "Instantiations": 143473
+      }
+    },
+    {
+      "name": "4-unlabeled",
+      "status": "passed",
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 186902,
+        "Types": 79462,
+        "Instantiations": 222416
+      }
+    },
+    {
+      "name": "4-labeled",
+      "status": "passed",
+      "counters": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 186902,
+        "Types": 79462,
+        "Instantiations": 222416
+      }
+    }
+  ]
+}

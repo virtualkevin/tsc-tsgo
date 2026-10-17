@@ -1,0 +1,73 @@
+{
+  "scope": "Sampled instrumented CPU only; no equivalent-result or removable-work claim",
+  "runs": [
+    {
+      "name": "1-base",
+      "totalCpuNs": 11350000000,
+      "taggedCpuNs": 0,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {},
+      "rawSha256": "9c265c4fbbf2e9ee6bb7e4f2e67efc2b00252d36551c9849e7bafdda09b58aef",
+      "jointLabelReferencesValid": true
+    },
+    {
+      "name": "1-labeled",
+      "totalCpuNs": 11660000000,
+      "taggedCpuNs": 2390000000,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {
+        "class-interface-construction-miss": 20000000,
+        "resolved-signature-miss": 2010000000,
+        "type-instantiation-miss": 350000000,
+        "signature-construction-miss": 10000000
+      },
+      "rawSha256": "120d3ee445958fa1bebc562680389460ee15bee749cf5592a3722f7ebb418b4b",
+      "jointLabelReferencesValid": true,
+      "overflowCallFraction": 0.0
+    },
+    {
+      "name": "1-unlabeled",
+      "totalCpuNs": 11380000000,
+      "taggedCpuNs": 0,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {},
+      "rawSha256": "d8d0a83240053a4a15545e365035a9350080191674b71d7374f5214f0981e7d7",
+      "jointLabelReferencesValid": true,
+      "overflowCallFraction": 0.0
+    },
+    {
+      "name": "4-base",
+      "totalCpuNs": 13110000000,
+      "taggedCpuNs": 0,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {},
+      "rawSha256": "6e0d6efc0dec542e5f413c72ed55d0dd295c3561f861d0efb63d6df6b6dc1f88",
+      "jointLabelReferencesValid": true
+    },
+    {
+      "name": "4-labeled",
+      "totalCpuNs": 12990000000,
+      "taggedCpuNs": 3210000000,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {
+        "class-interface-construction-miss": 20000000,
+        "signature-construction-miss": 30000000,
+        "type-instantiation-miss": 650000000,
+        "resolved-signature-miss": 2510000000
+      },
+      "rawSha256": "880f6616d167499781b95b292d72db56b1aee5069ebb6735ac84ce1f4c48997d",
+      "jointLabelReferencesValid": true,
+      "overflowCallFraction": 0.0
+    },
+    {
+      "name": "4-unlabeled",
+      "totalCpuNs": 12700000000,
+      "taggedCpuNs": 0,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {},
+      "rawSha256": "3d99a715c3b413865d2f892c55e591997cfbd1abb36103cfce44cd9a4dbe5d07",
+      "jointLabelReferencesValid": true,
+      "overflowCallFraction": 0.0
+    }
+  ]
+}

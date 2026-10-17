@@ -1,0 +1,35 @@
+File: tsc-go-semantic-families
+Build ID: a9c915e31046ea34deef1c8d74bf31f3b5677748
+Type: cpu
+Time: 2026-10-17 18:57:40 UTC
+Duration: 558.68ms, Total samples = 2.73s (488.65%)
+Active filters:
+   tagfocus=census_family=resolved-signature-miss
+Showing nodes accounting for 0.25s, 9.16% of 2.73s total
+Showing top 25 nodes out of 322
+      flat  flat%   sum%        cum   cum%
+     0.01s  0.37%  0.37%      0.05s  1.83%  github.com/microsoft/typescript-go/internal/ast.(*Node).ForEachChild
+     0.01s  0.37%  0.73%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/ast.(*Node).Locals (inline)
+     0.01s  0.37%  1.10%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/ast.(*Node).Modifiers
+     0.01s  0.37%  1.47%      0.04s  1.47%  github.com/microsoft/typescript-go/internal/ast.visit (inline)
+     0.01s  0.37%  1.83%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.(*Checker).beginCensus
+     0.01s  0.37%  2.20%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkParameter
+     0.01s  0.37%  2.56%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.(*Checker).compareSymbolsWorker
+     0.01s  0.37%  2.93%      0.03s  1.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).ensureAssignmentsMarked
+     0.01s  0.37%  3.30%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getConstraintDeclaration
+     0.01s  0.37%  3.66%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getDeclaredTypeOfClassOrInterface
+     0.01s  0.37%  4.03%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getMinTypeArgumentCount
+     0.01s  0.37%  4.40%      0.02s  0.73%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getReducedType
+     0.01s  0.37%  4.76%      0.02s  0.73%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newInstantiatedSymbolWithLinks
+     0.01s  0.37%  5.13%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newType
+     0.01s  0.37%  5.49%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.(*keyBuilder).writeByte
+     0.01s  0.37%  5.86%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type]
+     0.01s  0.37%  6.23%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.isReservedMemberName
+     0.01s  0.37%  6.59%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.resolvedPropertiesAreOptional
+     0.01s  0.37%  6.96%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/checker.shouldMarkIdentifierAliasReferenced
+     0.01s  0.37%  7.33%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow
+     0.01s  0.37%  7.69%      0.01s  0.37%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot
+     0.01s  0.37%  8.06%      0.01s  0.37%  internal/runtime/maps.(*ctrlGroup).setEmpty (inline)
+     0.01s  0.37%  8.42%      0.01s  0.37%  internal/runtime/maps.(*table).uncheckedPutSlot
+     0.01s  0.37%  8.79%      0.01s  0.37%  internal/runtime/maps.ctrlGroup.matchH2
+     0.01s  0.37%  9.16%      0.01s  0.37%  runtime.(*mspan).writeHeapBitsSmall

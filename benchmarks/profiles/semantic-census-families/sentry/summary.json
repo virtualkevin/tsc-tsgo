@@ -1,0 +1,425 @@
+{
+  "status": "passed",
+  "purpose": "diagnostic profiling; symbol-count differences retained explicitly after unchanged-baseline variability audit; no exact-counter equivalence claim when different; no optimization speedup evidence",
+  "project": {
+    "name": "sentry",
+    "repository": "https://github.com/getsentry/sentry.git",
+    "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+    "directory": "upstream/benchmarks/sentry",
+    "project": "tsconfig.json",
+    "lockfile": "pnpm-lock.yaml",
+    "install": [
+      "corepack",
+      "pnpm",
+      "install",
+      "--frozen-lockfile",
+      "--ignore-scripts"
+    ],
+    "scope": "Root frontend configuration; referenced icons and scraps declarations must be built before benchmarking.",
+    "prepare": [
+      "node",
+      "node_modules/typescript-7/bin/tsc",
+      "--build",
+      "static/packages/icons",
+      "static/packages/scraps/tsconfig.test.json",
+      "--pretty",
+      "false"
+    ]
+  },
+  "preflight": {
+    "status": "passed",
+    "head": "e64135aeada0c292003dba6fcbf8f2a27587f176",
+    "workspace": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493",
+    "diagnosticSource": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493",
+    "build": {
+      "binary": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+      "binarySha256": "b919e1c0e13a644bc2dfad2dba114f14e072942b08becd7ccb73740288a9407a",
+      "sidecarSha256": "4f87321aba901d998b6f10dbd159f46e5d77fbf293d3edda706ee8975a2b4e21",
+      "sourceSha256": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493"
+    },
+    "basis": "Build sidecar source manifest matches captured current source; build script verifies before/after source identity."
+  },
+  "immutable": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families": "b919e1c0e13a644bc2dfad2dba114f14e072942b08becd7ccb73740288a9407a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated.provenance.json": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families.provenance.json": "4f87321aba901d998b6f10dbd159f46e5d77fbf293d3edda706ee8975a2b4e21",
+    "/tmp/tsc-census-families/run-workload-v2.py": "cfe1e1d2e8af959f6942396ac0d4d6b6f2336169febe2505779e77691a0cdfb2",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/workloads.json": "381aea45ee219aae6da910ad8702368d43602aca2db516cbf13e271aeb4ce7b8",
+    "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/pnpm-lock.yaml": "1f30f0aa4b3707dff3d826d7b1b77a0dbd7c4b3c1bb2c0fd34227685a62be132"
+  },
+  "runs": [
+    {
+      "name": "1-base-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 3.4965343859948916,
+      "stdoutSha256": "53e6d1479113a0ddd3458ab2b7fd1418ab25d368bd887f7a9bf0ea8d1a1dfa6f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "1-observed-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 3.30307709799672,
+      "stdoutSha256": "53e6d1479113a0ddd3458ab2b7fd1418ab25d368bd887f7a9bf0ea8d1a1dfa6f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "1-base",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/sentry/1-base-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 65.89335471700178,
+      "stdoutSha256": "86d239cf485f99082f87ca244dd9023283bea6dc7fb96d14fbb26106a259c45b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": {
+        "/tmp/tsc-census-families/sentry/1-base-profiles/370347-cpuprofile.pb.gz": "b7685f5cdc984afc279aa7bcc59a7172bf25ec9865ab6b6b647f5118cc124468",
+        "/tmp/tsc-census-families/sentry/1-base-profiles/370347-memprofile.pb.gz": "b09969476b568adbd3bdbf594ccf6b8d49de85fb4578621a96d8794d4f7443c9"
+      }
+    },
+    {
+      "name": "1-unlabeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/sentry/1-unlabeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 67.92293810199772,
+      "stdoutSha256": "485b9fb4610f18c54fdfad3f41ac067b25ec7eeee3c7b1d76ba9c03d90f4cec9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counterDifferences": {},
+      "allSemanticCountersMatch": true,
+      "census": {
+        "sha256": "605adecbb966a3a696a09a662ac0727fb3cedac94cfa41083b70bd26ce1280c1",
+        "records": 4,
+        "overflowCalls": 0,
+        "calls": 6536963,
+        "owners": 1
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/sentry/1-unlabeled-profiles/370406-cpuprofile.pb.gz": "09714dc7975238990e2e762f093873500c2063686ff0edb457cebb73f76b8e9f",
+        "/tmp/tsc-census-families/sentry/1-unlabeled-profiles/370406-memprofile.pb.gz": "95808a51b9c387c3a0dbd9d0ccce842a4942126ac4c529e55cbe8461a3d97fb8"
+      }
+    },
+    {
+      "name": "1-labeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/sentry/1-labeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 68.91073490800045,
+      "stdoutSha256": "33abbc22aaf3c41deb87f30a0f42472aead658d5c270b8007a0299ee763e191e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counterDifferences": {},
+      "allSemanticCountersMatch": true,
+      "census": {
+        "sha256": "feb88201fda264bae04a8e5ee4def43b009383082b2adf6183ac277ffd723599",
+        "records": 4,
+        "overflowCalls": 0,
+        "calls": 6536963,
+        "owners": 1
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/sentry/1-labeled-profiles/370984-memprofile.pb.gz": "95348d0dfb4bf9236608165c56acbcf1258a1d8c38b4c0946291bc1781b9d67a",
+        "/tmp/tsc-census-families/sentry/1-labeled-profiles/370984-cpuprofile.pb.gz": "efe27da15bbf64c77985f1c3d8ae0612eca401d3b65e5c57ae9b711dd077255e"
+      }
+    },
+    {
+      "name": "4-base-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 3.3276514329991187,
+      "stdoutSha256": "53e6d1479113a0ddd3458ab2b7fd1418ab25d368bd887f7a9bf0ea8d1a1dfa6f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "4-observed-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 3.1120267959995545,
+      "stdoutSha256": "53e6d1479113a0ddd3458ab2b7fd1418ab25d368bd887f7a9bf0ea8d1a1dfa6f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "4-base",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/sentry/4-base-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 31.294906379000167,
+      "stdoutSha256": "6afb95ce1a89d3f6b241d84984cf95a31d75fdc67e2eab619733f082efe91254",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": {
+        "/tmp/tsc-census-families/sentry/4-base-profiles/371047-memprofile.pb.gz": "3b9dca81bee37b84394239ba480235d12756dc0825c31e4f969a03f94511b544",
+        "/tmp/tsc-census-families/sentry/4-base-profiles/371047-cpuprofile.pb.gz": "b800175dcc0674afa168b5e04c5fe838ad8ba8d8e1a4c497867563bf29040fd0"
+      }
+    },
+    {
+      "name": "4-unlabeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/sentry/4-unlabeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 32.11997880999843,
+      "stdoutSha256": "870c9dfb3ef2cc6825077d5854cae65be3d75542cc6e81b2e357e94cd4fe666f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counterDifferences": {},
+      "allSemanticCountersMatch": true,
+      "census": {
+        "sha256": "e49f0333085dffbaea76b060aa19377b059c4fb4572ec1a1550785769448d5b8",
+        "records": 16,
+        "overflowCalls": 0,
+        "calls": 12357199,
+        "owners": 4
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/sentry/4-unlabeled-profiles/371075-cpuprofile.pb.gz": "905aca60ca6e3de243b2bfc736cf3b91d409eca0bc49d4fe2ea14197ed1fa7aa",
+        "/tmp/tsc-census-families/sentry/4-unlabeled-profiles/371075-memprofile.pb.gz": "738e6be1bc8b4c6d91d77cbb8da551c47add610364ac4b662baf797c2fb9d085"
+      }
+    },
+    {
+      "name": "4-labeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/sentry/4-labeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "exit": 0,
+      "elapsedSeconds": 34.51436189599917,
+      "stdoutSha256": "01f349fe5a94d3d0691708570a1e7501895c75330a139c58b62a896f10c2545d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counterDifferences": {},
+      "allSemanticCountersMatch": true,
+      "census": {
+        "sha256": "419e3ef0ccc764e77f1b9307fc33abfb924d814f2bb93a24d94c996cea55a59b",
+        "records": 16,
+        "overflowCalls": 0,
+        "calls": 12357199,
+        "owners": 4
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/sentry/4-labeled-profiles/371095-cpuprofile.pb.gz": "bab0d2fb987fb7df3afc911c611b783e41329bf3d6b46d41822d598b826c880b",
+        "/tmp/tsc-census-families/sentry/4-labeled-profiles/371095-memprofile.pb.gz": "42281df31e56adf5a66867dd5d44e9d228cc1182ab8b60769c508cd635611fbd"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "1-unlabeled",
+      "status": "passed",
+      "counters": {
+        "Files": 13290,
+        "Lines": 2130849,
+        "Identifiers": 2594398,
+        "Symbols": 3700758,
+        "Types": 1798696,
+        "Instantiations": 5974204
+      }
+    },
+    {
+      "name": "1-labeled",
+      "status": "passed",
+      "counters": {
+        "Files": 13290,
+        "Lines": 2130849,
+        "Identifiers": 2594398,
+        "Symbols": 3700758,
+        "Types": 1798696,
+        "Instantiations": 5974204
+      }
+    },
+    {
+      "name": "4-unlabeled",
+      "status": "passed",
+      "counters": {
+        "Files": 13290,
+        "Lines": 2130849,
+        "Identifiers": 2594398,
+        "Symbols": 5032829,
+        "Types": 2725687,
+        "Instantiations": 11722854
+      }
+    },
+    {
+      "name": "4-labeled",
+      "status": "passed",
+      "counters": {
+        "Files": 13290,
+        "Lines": 2130849,
+        "Identifiers": 2594398,
+        "Symbols": 5032829,
+        "Types": 2725687,
+        "Instantiations": 11722854
+      }
+    }
+  ]
+}

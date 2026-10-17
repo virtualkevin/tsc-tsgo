@@ -1,0 +1,418 @@
+{
+  "status": "passed",
+  "purpose": "diagnostic profiling; symbol-count differences retained explicitly after unchanged-baseline variability audit; no exact-counter equivalence claim when different; no optimization speedup evidence",
+  "project": {
+    "name": "vscode",
+    "repository": "https://github.com/microsoft/vscode.git",
+    "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+    "directory": "upstream/benchmarks/vscode",
+    "project": "src/tsconfig.json",
+    "lockfile": "package-lock.json",
+    "install": [
+      "npm",
+      "ci",
+      "--ignore-scripts"
+    ],
+    "scope": "VS Code client sources; repository typecheck-client configuration. Native runtime modules are not built. Electron declarations are fetched by the repository checksum-verified setup script.",
+    "prepare": [
+      "node",
+      "build/npm/electronTypes.ts"
+    ]
+  },
+  "preflight": {
+    "status": "passed",
+    "head": "e64135aeada0c292003dba6fcbf8f2a27587f176",
+    "workspace": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493",
+    "diagnosticSource": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493",
+    "build": {
+      "binary": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+      "binarySha256": "b919e1c0e13a644bc2dfad2dba114f14e072942b08becd7ccb73740288a9407a",
+      "sidecarSha256": "4f87321aba901d998b6f10dbd159f46e5d77fbf293d3edda706ee8975a2b4e21",
+      "sourceSha256": "8e1b824c43afddebff5a68bdcbf4e2a6b58d1a88f387f6c43dfabfef7b7f6493"
+    },
+    "basis": "Build sidecar source manifest matches captured current source; build script verifies before/after source identity."
+  },
+  "immutable": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families": "b919e1c0e13a644bc2dfad2dba114f14e072942b08becd7ccb73740288a9407a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated.provenance.json": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families.provenance.json": "4f87321aba901d998b6f10dbd159f46e5d77fbf293d3edda706ee8975a2b4e21",
+    "/tmp/tsc-census-families/run-workload-v2.py": "cfe1e1d2e8af959f6942396ac0d4d6b6f2336169febe2505779e77691a0cdfb2",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/workloads.json": "381aea45ee219aae6da910ad8702368d43602aca2db516cbf13e271aeb4ce7b8",
+    "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/package-lock.json": "819cbd150198a84ebe73843245f9d65de85251b917bea7b3c186886d7d3754aa"
+  },
+  "runs": [
+    {
+      "name": "1-base-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 8.694296904999646,
+      "stdoutSha256": "65e013c0a0e31c0d9f3f7028f373de2af495958efd2c5d62c662a3cb78f8a8a8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "1-observed-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 7.142354633004288,
+      "stdoutSha256": "65e013c0a0e31c0d9f3f7028f373de2af495958efd2c5d62c662a3cb78f8a8a8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "1-base",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/vscode/1-base-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 117.77018904400029,
+      "stdoutSha256": "0658b7ec3357731259d480fe609b327e00551e314db1a7b6490cf712e5d644d5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": {
+        "/tmp/tsc-census-families/vscode/1-base-profiles/369403-memprofile.pb.gz": "d46178ca773e3470645ba7268c0d4abd862b0945388f4132b4fc7e8b4826245b",
+        "/tmp/tsc-census-families/vscode/1-base-profiles/369403-cpuprofile.pb.gz": "babc6b3ff4427ae48035d3941331cf827cb2252816414dae0449176d56251add"
+      }
+    },
+    {
+      "name": "1-unlabeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/vscode/1-unlabeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 134.78819996299717,
+      "stdoutSha256": "cc44c029768a9edaf87f603b879bc079a9314772dc4d8b8ed7d9cfcdb62ea739",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counterDifferences": {},
+      "allSemanticCountersMatch": true,
+      "census": {
+        "sha256": "0fbd5ab23b3c708125c8f06f8c3281f1f517ef831f8886ca6f631614dd556fcd",
+        "records": 4,
+        "overflowCalls": 0,
+        "calls": 5957528,
+        "owners": 1
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/vscode/1-unlabeled-profiles/369468-memprofile.pb.gz": "0b9b703aee2dbb2c443bbb5475b16300403057fdb350342010fcc4215041ff9f",
+        "/tmp/tsc-census-families/vscode/1-unlabeled-profiles/369468-cpuprofile.pb.gz": "fb61c2d3087d374c59f3705b98201dde9ef2904452038c2304ac50b1440ee6f9"
+      }
+    },
+    {
+      "name": "1-labeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/vscode/1-labeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 125.73515486699762,
+      "stdoutSha256": "d2f9fc175eca24241b9e772b326f9f4b6f91773beac39c85bfc01190bb2a8172",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counterDifferences": {},
+      "allSemanticCountersMatch": true,
+      "census": {
+        "sha256": "620f6c225f96e8d54b1da17f0ca8ecdcf2a0ac080e0c2bcaa482fdb69aed9a96",
+        "records": 4,
+        "overflowCalls": 0,
+        "calls": 5957528,
+        "owners": 1
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/vscode/1-labeled-profiles/369551-memprofile.pb.gz": "9116c90a3ecefe2341324fb6eb7cca2c6b9b1d1c2f4325ced6dfafbeb6ccfe3d",
+        "/tmp/tsc-census-families/vscode/1-labeled-profiles/369551-cpuprofile.pb.gz": "58d722b93c11104506a9a4952433e94c5305c2154f308ff18bc7db9dd739368f"
+      }
+    },
+    {
+      "name": "4-base-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 8.445668797998223,
+      "stdoutSha256": "65e013c0a0e31c0d9f3f7028f373de2af495958efd2c5d62c662a3cb78f8a8a8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "4-observed-inputs",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--listFilesOnly"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 7.686671699993894,
+      "stdoutSha256": "65e013c0a0e31c0d9f3f7028f373de2af495958efd2c5d62c662a3cb78f8a8a8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "4-base",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/vscode/4-base-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 59.37827101700532,
+      "stdoutSha256": "fddc1f78215afe8ff58c857af69ca362f1e715b778b022f8723010c9c3893e22",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": {
+        "/tmp/tsc-census-families/vscode/4-base-profiles/369673-cpuprofile.pb.gz": "635f5bffe1879237f132ac73379eaece9a0cace78850299b57316e3ddf9da955",
+        "/tmp/tsc-census-families/vscode/4-base-profiles/369673-memprofile.pb.gz": "cd272acb977b9a4a15184a4eb2531d6f51799077975d3fab9b560d1167681dce"
+      }
+    },
+    {
+      "name": "4-unlabeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/vscode/4-unlabeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 54.03877233399544,
+      "stdoutSha256": "cdbc0957a7b18a2a8e375f80c078e151b6868a43e44150a2fdc9169137e9b09a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counterDifferences": {},
+      "allSemanticCountersMatch": true,
+      "census": {
+        "sha256": "c0d90edb4c34d5e1e0003d2b9bfa46ec00140d0f437881e622e25156080d6747",
+        "records": 16,
+        "overflowCalls": 0,
+        "calls": 7832005,
+        "owners": 4
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/vscode/4-unlabeled-profiles/369698-memprofile.pb.gz": "3361be1407d73658129ca19c7dd045fd4a8c2b9059a778af0703e5163e0f85a5",
+        "/tmp/tsc-census-families/vscode/4-unlabeled-profiles/369698-cpuprofile.pb.gz": "8734dacacb9b8f782e3b1745f29b0e8fd4b4635841bf02b8e4b23ad4e69a6b1d"
+      }
+    },
+    {
+      "name": "4-labeled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-semantic-families",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "/tmp/tsc-census-families/vscode/4-labeled-profiles"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "exit": 0,
+      "elapsedSeconds": 45.4949585860013,
+      "stdoutSha256": "346e3f3c4f4dd59c188fec7e63e89d1e9867918bccd20ea14d679c8cf39bf5bc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counterDifferences": {},
+      "allSemanticCountersMatch": true,
+      "census": {
+        "sha256": "79ee08be5eabc6feb130b51a43bc0c19cd48625f9366a25d4ec4da4d50a04909",
+        "records": 16,
+        "overflowCalls": 0,
+        "calls": 7832005,
+        "owners": 4
+      },
+      "profiles": {
+        "/tmp/tsc-census-families/vscode/4-labeled-profiles/369731-cpuprofile.pb.gz": "e930d22121410a8fa2b737ff63fd45e5f4638afd88ba49b18996f793791f2a28",
+        "/tmp/tsc-census-families/vscode/4-labeled-profiles/369731-memprofile.pb.gz": "42bfaa5dc9012891fcc6bbb987c00d4ee0d6d02b2bb01fc1b9353f005b52298f"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "1-unlabeled",
+      "status": "passed",
+      "counters": {
+        "Files": 11563,
+        "Lines": 4036783,
+        "Identifiers": 7444484,
+        "Symbols": 6121187,
+        "Types": 3267740,
+        "Instantiations": 4217548
+      }
+    },
+    {
+      "name": "1-labeled",
+      "status": "passed",
+      "counters": {
+        "Files": 11563,
+        "Lines": 4036783,
+        "Identifiers": 7444484,
+        "Symbols": 6121187,
+        "Types": 3267740,
+        "Instantiations": 4217548
+      }
+    },
+    {
+      "name": "4-unlabeled",
+      "status": "passed",
+      "counters": {
+        "Files": 11563,
+        "Lines": 4036783,
+        "Identifiers": 7444484,
+        "Symbols": 6846185,
+        "Types": 4277160,
+        "Instantiations": 5915965
+      }
+    },
+    {
+      "name": "4-labeled",
+      "status": "passed",
+      "counters": {
+        "Files": 11563,
+        "Lines": 4036783,
+        "Identifiers": 7444484,
+        "Symbols": 6846185,
+        "Types": 4277160,
+        "Instantiations": 5915965
+      }
+    }
+  ]
+}

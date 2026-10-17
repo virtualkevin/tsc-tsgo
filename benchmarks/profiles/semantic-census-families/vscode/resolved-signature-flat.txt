@@ -1,0 +1,36 @@
+File: tsc-go-semantic-families
+Build ID: a9c915e31046ea34deef1c8d74bf31f3b5677748
+Type: cpu
+Time: 2026-10-17 19:08:28 UTC
+Duration: 44.55s, Total samples = 204.13s (458.17%)
+Active filters:
+   tagfocus=census_family=resolved-signature-miss
+Showing nodes accounting for 26.22s, 12.84% of 204.13s total
+Dropped 1383 nodes (cum <= 1.02s)
+Showing top 25 nodes out of 427
+      flat  flat%   sum%        cum   cum%
+     6.59s  3.23%  3.23%      6.59s  3.23%  internal/runtime/maps.ctrlGroup.matchH2 (inline)
+     3.13s  1.53%  4.76%      3.15s  1.54%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot
+     2.23s  1.09%  5.85%      2.23s  1.09%  internal/runtime/maps.h1 (inline)
+     1.56s  0.76%  6.62%      1.64s   0.8%  runtime.findObject
+     1.43s   0.7%  7.32%      8.40s  4.12%  runtime.mapaccess1_fast64
+     1.09s  0.53%  7.85%      1.09s  0.53%  aeshashbody
+     0.95s  0.47%  8.32%      2.70s  1.32%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow
+     0.88s  0.43%  8.75%      3.18s  1.56%  runtime.mapaccess1_faststr
+     0.83s  0.41%  9.16%      2.30s  1.13%  runtime.mapaccess1
+     0.75s  0.37%  9.52%      0.75s  0.37%  runtime.memclrNoHeapPointers
+     0.61s   0.3%  9.82%      0.61s   0.3%  memeqbody
+     0.58s  0.28% 10.11%      4.43s  2.17%  github.com/microsoft/typescript-go/internal/binder.(*NameResolver).Resolve
+     0.55s  0.27% 10.38%      0.55s  0.27%  internal/runtime/maps.(*ctrlGroup).setEmpty (inline)
+     0.54s  0.26% 10.64%      0.54s  0.26%  runtime.(*mspan).markBitsForIndex (inline)
+     0.52s  0.25% 10.90%      0.52s  0.25%  runtime.memhash64
+     0.47s  0.23% 11.13%      0.47s  0.23%  internal/runtime/maps.(*Map).directoryAt (inline)
+     0.45s  0.22% 11.35%      0.97s  0.48%  internal/runtime/maps.(*Map).getWithoutKeySmallFastStr
+     0.43s  0.21% 11.56%      0.43s  0.21%  runtime.nextFreeFast (inline)
+     0.42s  0.21% 11.76%     16.68s  8.17%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkObjectLiteral
+     0.41s   0.2% 11.96%      0.79s  0.39%  runtime.tryDeferToSpanScan
+     0.38s  0.19% 12.15%      6.39s  3.13%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getResolvedSymbol
+     0.37s  0.18% 12.33%      0.40s   0.2%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newType
+     0.36s  0.18% 12.51%     14.69s  7.20%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfVariableOrParameterOrProperty
+     0.35s  0.17% 12.68%      0.35s  0.17%  runtime.heapSetTypeSmallHeader (inline)
+     0.34s  0.17% 12.84%      6.62s  3.24%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromTypes

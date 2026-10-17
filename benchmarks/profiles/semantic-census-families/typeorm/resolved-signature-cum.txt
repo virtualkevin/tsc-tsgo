@@ -1,0 +1,36 @@
+File: tsc-go-semantic-families
+Build ID: a9c915e31046ea34deef1c8d74bf31f3b5677748
+Type: cpu
+Time: 2026-10-17 18:58:33 UTC
+Duration: 2.76s, Total samples = 12.99s (470.11%)
+Active filters:
+   tagfocus=census_family=resolved-signature-miss
+Showing nodes accounting for 0.06s, 0.46% of 12.99s total
+Dropped 254 nodes (cum <= 0.06s)
+Showing top 25 nodes out of 423
+      flat  flat%   sum%        cum   cum%
+     0.03s  0.23%  0.23%      2.43s 18.71%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getResolvedSignature
+         0     0%  0.23%      2.43s 18.71%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveSignature
+     0.02s  0.15%  0.38%      2.37s 18.24%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker
+         0     0%  0.38%      2.36s 18.17%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx
+         0     0%  0.38%      2.33s 17.94%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkCallExpression
+         0     0%  0.38%      2.24s 17.24%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElementWorker
+         0     0%  0.38%      2.23s 17.17%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElement
+     0.01s 0.077%  0.46%      2.23s 17.17%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveCallExpression
+         0     0%  0.46%      2.22s 17.09%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElements
+         0     0%  0.46%      2.16s 16.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpression (inline)
+         0     0%  0.46%      1.86s 14.32%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceFile
+         0     0%  0.46%      1.85s 14.24%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveCall
+         0     0%  0.46%      1.82s 14.01%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getDiagnostics
+         0     0%  0.46%      1.78s 13.70%  github.com/microsoft/typescript-go/internal/checker.(*Checker).chooseOverload
+         0     0%  0.46%      1.77s 13.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).GetDiagnostics (inline)
+         0     0%  0.46%      1.77s 13.63%  github.com/microsoft/typescript-go/internal/compiler.(*Program).getBindAndCheckDiagnosticsWithChecker
+         0     0%  0.46%      1.70s 13.09%  github.com/microsoft/typescript-go/internal/compiler.(*Program).getSemanticDiagnosticsWithChecker
+         0     0%  0.46%      1.69s 13.01%  github.com/microsoft/typescript-go/internal/compiler.(*Program).collectCheckerDiagnosticsFromFiles.func1
+         0     0%  0.46%      1.66s 12.78%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkBlock
+         0     0%  0.46%      1.66s 12.78%  github.com/microsoft/typescript-go/internal/compiler.(*checkerPool).forEachCheckerGroupDo.func1
+         0     0%  0.46%      1.63s 12.55%  github.com/microsoft/typescript-go/internal/core.(*parallelWorkGroup).Queue.func1
+         0     0%  0.46%      1.60s 12.32%  sync.(*WaitGroup).Go.func1
+         0     0%  0.46%      1.33s 10.24%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionStatement
+         0     0%  0.46%      1.29s  9.93%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isSignatureApplicable
+         0     0%  0.46%      1.25s  9.62%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWithContextualType

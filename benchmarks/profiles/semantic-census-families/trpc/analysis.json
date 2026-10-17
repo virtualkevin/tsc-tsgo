@@ -1,0 +1,70 @@
+{
+  "scope": "Sampled instrumented CPU only; no equivalent-result or removable-work claim",
+  "runs": [
+    {
+      "name": "1-base",
+      "totalCpuNs": 2310000000,
+      "taggedCpuNs": 0,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {},
+      "rawSha256": "b6465b41150c39a897b333fc23976a794196525a74af800723e29bde3f635963",
+      "jointLabelReferencesValid": true
+    },
+    {
+      "name": "1-labeled",
+      "totalCpuNs": 2200000000,
+      "taggedCpuNs": 310000000,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {
+        "resolved-signature-miss": 170000000,
+        "type-instantiation-miss": 140000000
+      },
+      "rawSha256": "57c83d57ce67e9a942028a59d477b70cffc6104b204ac356e261e39938a9660d",
+      "jointLabelReferencesValid": true,
+      "overflowCallFraction": 0.0
+    },
+    {
+      "name": "1-unlabeled",
+      "totalCpuNs": 2140000000,
+      "taggedCpuNs": 0,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {},
+      "rawSha256": "d81d61cb08a772185c1fbd9f685846d9e52bd8b6316ee307346f6861caa0f99b",
+      "jointLabelReferencesValid": true,
+      "overflowCallFraction": 0.0
+    },
+    {
+      "name": "4-base",
+      "totalCpuNs": 2820000000,
+      "taggedCpuNs": 0,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {},
+      "rawSha256": "0a539d93a6a49b9eefcb25559aca999360ea67df999b25a735484b4fa7dcdc9b",
+      "jointLabelReferencesValid": true
+    },
+    {
+      "name": "4-labeled",
+      "totalCpuNs": 2730000000,
+      "taggedCpuNs": 580000000,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {
+        "resolved-signature-miss": 300000000,
+        "type-instantiation-miss": 270000000,
+        "class-interface-construction-miss": 10000000
+      },
+      "rawSha256": "959d0bf3b0e18079ea15bd95652ec0c4f5842da9945fe05f6dbece55738a7066",
+      "jointLabelReferencesValid": true,
+      "overflowCallFraction": 0.0
+    },
+    {
+      "name": "4-unlabeled",
+      "totalCpuNs": 2610000000,
+      "taggedCpuNs": 0,
+      "overflowCpuNs": 0,
+      "familyCpuNs": {},
+      "rawSha256": "b7f5b75d4f34fe549e9b8cd14df80338aaa3864acf3af95290748d346f8db143",
+      "jointLabelReferencesValid": true,
+      "overflowCallFraction": 0.0
+    }
+  ]
+}
