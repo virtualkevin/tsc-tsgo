@@ -1,0 +1,88 @@
+File: tsc-go-node-pointer
+Build ID: 15af3668b3053a71304a82aaa639569aa27b0a22
+Type: alloc_objects
+Time: 2026-10-17 21:40:39 UTC
+Showing nodes accounting for 315612, 95.07% of 331970 total
+Dropped 135 nodes (cum <= 1659)
+Showing top 80 nodes out of 273
+      flat  flat%   sum%        cum   cum%
+     65536 19.74% 19.74%      65536 19.74%  os.newFile
+     32768  9.87% 29.61%      32768  9.87%  os.DirFS
+     21845  6.58% 36.19%      21845  6.58%  sync.(*WaitGroup).Go
+     17644  5.31% 41.51%      17644  5.31%  github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.string,go.shape.struct { github.com/microsoft/typescript-go/internal/packagejson.JSONValue; github.com/microsoft/typescript-go/internal/packagejson.objectKind github.com/microsoft/typescript-go/internal/packagejson.objectKind }]).Set (inline)
+     13444  4.05% 45.56%      19998  6.02%  os.statNolog
+     12537  3.78% 49.33%      12537  3.78%  internal/bytealg.MakeNoZero
+     10923  3.29% 52.62%      10923  3.29%  github.com/microsoft/typescript-go/internal/module.GetConditions
+     10923  3.29% 55.91%      10923  3.29%  internal/sync.newEntryNode[go.shape.interface {},go.shape.interface {}] (inline)
+      8192  2.47% 58.38%       8192  2.47%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewAwaitExpression
+      8192  2.47% 60.85%       8192  2.47%  github.com/microsoft/typescript-go/internal/collections.(*SyncMap[go.shape.struct { github.com/microsoft/typescript-go/internal/module.containingDirectory string; github.com/microsoft/typescript-go/internal/module.moduleName string; github.com/microsoft/typescript-go/internal/module.resolutionMode github.com/microsoft/typescript-go/internal/core.ModuleKind; github.com/microsoft/typescript-go/internal/module.redirectConfigName string },go.shape.*uint8]).LoadOrStore
+      7545  2.27% 63.12%       7545  2.27%  slices.Grow[go.shape.[]go.shape.*uint8,go.shape.*uint8] (inline)
+      6554  1.97% 65.10%       6554  1.97%  syscall.ByteSliceFromString
+      5958  1.79% 66.89%       5958  1.79%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.DeclarationBase; github.com/microsoft/typescript-go/internal/ast.ExportableBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; IsTypeOnly bool; PropertyName *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.name *github.com/microsoft/typescript-go/internal/ast.Node },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.DeclarationBase; github.com/microsoft/typescript-go/internal/ast.ExportableBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; IsTypeOnly bool; PropertyName *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.name *github.com/microsoft/typescript-go/internal/ast.Node }] (inline)
+      5706  1.72% 68.61%       5706  1.72%  runtime.mallocgc
+      5689  1.71% 70.32%       5689  1.71%  os.dirFS.join
+      5643  1.70% 72.02%       9740  2.93%  github.com/microsoft/typescript-go/internal/tspath.pathComponents
+      5543  1.67% 73.69%       5543  1.67%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }] (inline)
+      5463  1.65% 75.34%       5463  1.65%  github.com/microsoft/typescript-go/internal/compiler.(*parseTask).addSubTask
+      5461  1.65% 76.98%       5461  1.65%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewExportSpecifier
+      5461  1.65% 78.63%       5461  1.65%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewImportClause
+      4761  1.43% 80.06%       4761  1.43%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LiteralExpressionBase },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LiteralExpressionBase }] (inline)
+      4681  1.41% 81.47%       4681  1.41%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewBindingElement
+      4681  1.41% 82.88%       4681  1.41%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewExportDeclaration
+      4681  1.41% 84.29%       4681  1.41%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewImportDeclaration
+      4579  1.38% 85.67%       4579  1.38%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.TypeNodeBase; Literal *github.com/microsoft/typescript-go/internal/ast.Node },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.TypeNodeBase; Literal *github.com/microsoft/typescript-go/internal/ast.Node }] (inline)
+      4097  1.23% 86.91%       4097  1.23%  strings.genSplit
+      3277  0.99% 87.89%       3277  0.99%  github.com/microsoft/typescript-go/internal/nativepath.Realpath
+      3277  0.99% 88.88%       3277  0.99%  internal/sync.newIndirectNode[go.shape.interface {},go.shape.interface {}] (inline)
+      3072  0.93% 89.81%      86042 25.92%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseListIndex
+      2979   0.9% 90.70%       2979   0.9%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewArrowFunction
+      2765  0.83% 91.54%       2765  0.83%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.NamedMemberBase; github.com/microsoft/typescript-go/internal/ast.TypeElementBase; github.com/microsoft/typescript-go/internal/ast.TypeSyntaxBase; Type *github.com/microsoft/typescript-go/internal/ast.Node; Initializer *github.com/microsoft/typescript-go/internal/ast.Node },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.NamedMemberBase; github.com/microsoft/typescript-go/internal/ast.TypeElementBase; github.com/microsoft/typescript-go/internal/ast.TypeSyntaxBase; Type *github.com/microsoft/typescript-go/internal/ast.Node; Initializer *github.com/microsoft/typescript-go/internal/ast.Node }] (inline)
+      2521  0.76% 92.30%       2521  0.76%  github.com/microsoft/typescript-go/internal/compiler.getParseTaskData (inline)
+      2341  0.71% 93.00%      20910  6.30%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).readPackageJsonPeerDependencies
+      2341  0.71% 93.71%      46232 13.93%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).tryExtension
+      2136  0.64% 94.35%       2136  0.64%  github.com/microsoft/typescript-go/internal/parser.(*Parser).internIdentifier (inline)
+      1820  0.55% 94.90%     123912 37.33%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).resolveImportsAndModuleAugmentations
+       521  0.16% 95.06%      23712  7.14%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).getPackageJsonInfo
+        55 0.017% 95.07%       3837  1.16%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseJSDocCommentWorker
+         0     0% 95.07%      17644  5.31%  github.com/go-json-experiment/json.Unmarshal
+         0     0% 95.07%      17644  5.31%  github.com/go-json-experiment/json.UnmarshalDecode
+         0     0% 95.07%      17644  5.31%  github.com/go-json-experiment/json.makeDefaultArshaler.makeStructArshaler.func7
+         0     0% 95.07%      17644  5.31%  github.com/go-json-experiment/json.makeMethodArshaler.func7
+         0     0% 95.07%      17644  5.31%  github.com/go-json-experiment/json.unmarshalDecode
+         0     0% 95.07%       5543  1.67%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewIdentifier
+         0     0% 95.07%       5958  1.79%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewImportSpecifier
+         0     0% 95.07%       4579  1.38%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewLiteralTypeNode
+         0     0% 95.07%       2765  0.83%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewPropertySignatureDeclaration
+         0     0% 95.07%       4663  1.40%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewStringLiteral
+         0     0% 95.07%      14564  4.39%  github.com/microsoft/typescript-go/internal/bundled.(*wrappedFS).DirectoryExists
+         0     0% 95.07%      43891 13.22%  github.com/microsoft/typescript-go/internal/bundled.(*wrappedFS).FileExists
+         0     0% 95.07%      65751 19.81%  github.com/microsoft/typescript-go/internal/bundled.(*wrappedFS).ReadFile
+         0     0% 95.07%       3277  0.99%  github.com/microsoft/typescript-go/internal/bundled.(*wrappedFS).Realpath
+         0     0% 95.07%      17644  5.31%  github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.string,go.shape.struct { github.com/microsoft/typescript-go/internal/packagejson.JSONValue; github.com/microsoft/typescript-go/internal/packagejson.objectKind github.com/microsoft/typescript-go/internal/packagejson.objectKind }]).UnmarshalJSONFrom
+         0     0% 95.07%      14200  4.28%  github.com/microsoft/typescript-go/internal/collections.(*SyncMap[go.shape.string,go.shape.*uint8]).LoadOrStore
+         0     0% 95.07%     153613 46.27%  github.com/microsoft/typescript-go/internal/compiler.(*compilerHost).GetSourceFile
+         0     0% 95.07%       1781  0.54%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).loadSourceFileMetaData
+         0     0% 95.07%     153613 46.27%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).parseSourceFile
+         0     0% 95.07%      10923  3.29%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).resolveAutomaticTypeDirectives
+         0     0% 95.07%      10923  3.29%  github.com/microsoft/typescript-go/internal/compiler.(*filesParser).parse
+         0     0% 95.07%      35289 10.63%  github.com/microsoft/typescript-go/internal/compiler.(*filesParser).start
+         0     0% 95.07%     314595 94.77%  github.com/microsoft/typescript-go/internal/compiler.(*filesParser).start.func1
+         0     0% 95.07%     290229 87.43%  github.com/microsoft/typescript-go/internal/compiler.(*parseTask).load
+         0     0% 95.07%      10923  3.29%  github.com/microsoft/typescript-go/internal/compiler.(*parseTask).loadAutomaticTypeDirectives
+         0     0% 95.07%      10923  3.29%  github.com/microsoft/typescript-go/internal/compiler.NewProgram
+         0     0% 95.07%      10923  3.29%  github.com/microsoft/typescript-go/internal/compiler.processAllProgramFiles
+         0     0% 95.07%       5497  1.66%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.*uint8]).Clone
+         0     0% 95.07%       7545  2.27%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.*uint8]).NewSlice
+         0     0% 95.07%       4761  1.43%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LiteralExpressionBase }]).New
+         0     0% 95.07%       5958  1.79%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.DeclarationBase; github.com/microsoft/typescript-go/internal/ast.ExportableBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; IsTypeOnly bool; PropertyName *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.name *github.com/microsoft/typescript-go/internal/ast.Node }]).New
+         0     0% 95.07%       2765  0.83%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.NamedMemberBase; github.com/microsoft/typescript-go/internal/ast.TypeElementBase; github.com/microsoft/typescript-go/internal/ast.TypeSyntaxBase; Type *github.com/microsoft/typescript-go/internal/ast.Node; Initializer *github.com/microsoft/typescript-go/internal/ast.Node }]).New
+         0     0% 95.07%       5543  1.67%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }]).New
+         0     0% 95.07%       4579  1.38%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.TypeNodeBase; Literal *github.com/microsoft/typescript-go/internal/ast.Node }]).New
+         0     0% 95.07%      21845  6.58%  github.com/microsoft/typescript-go/internal/core.(*parallelWorkGroup).Queue
+         0     0% 95.07%     314595 94.77%  github.com/microsoft/typescript-go/internal/core.(*parallelWorkGroup).Queue.func1
+         0     0% 95.07%      10924  3.29%  github.com/microsoft/typescript-go/internal/execute.CommandLine
+         0     0% 95.07%      10923  3.29%  github.com/microsoft/typescript-go/internal/execute.performCompilation
+         0     0% 95.07%      10924  3.29%  github.com/microsoft/typescript-go/internal/execute.tscCompilation
+         0     0% 95.07%      17644  5.31%  github.com/microsoft/typescript-go/internal/json.Unmarshal (inline)
+         0     0% 95.07%      17644  5.31%  github.com/microsoft/typescript-go/internal/json.UnmarshalDecode (inline)
+         0     0% 95.07%       1781  0.54%  github.com/microsoft/typescript-go/internal/module.(*Resolver).GetPackageScopeForPath (inline)

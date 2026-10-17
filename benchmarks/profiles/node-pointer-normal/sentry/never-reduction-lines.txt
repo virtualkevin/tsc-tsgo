@@ -1,0 +1,55 @@
+Total: 23225216
+ROUTINE ======================== github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty in internal/checker/lazy_properties.go
+   1505508    3072076 (flat, cum) 13.23% of Total
+         .          .     13:func (c *Checker) hasNeverReducedProperty(t *Type) bool {
+         .          .     14:	if resolved := t.AsIntersectionType().resolvedProperties; resolved != nil {
+         .          .     15:		for _, prop := range resolved {
+         .          .     16:			if c.isNeverReducedProperty(prop) {
+         .          .     17:				return true
+         .          .     18:			}
+         .          .     19:		}
+         .          .     20:		return false
+         .          .     21:	}
+         .     675793     22:	skipped := c.getCostliestConstituent(t)
+         .          .     23:	byName := make(map[string][]*ast.Symbol)
+         .          .     24:	var names []string
+         .          .     25:	for _, current := range t.Types() {
+         .          .     26:		if current == skipped {
+         .          .     27:			continue
+         .          .     28:		}
+         .      42325     29:		for _, prop := range c.getPropertiesOfType(current) {
+         .          .     30:			props, seen := byName[prop.Name]
+         .          .     31:			if !seen {
+     70179      70179     32:				names = append(names, prop.Name)
+         .          .     33:			}
+         .          .     34:			if !slices.Contains(props, prop) {
+   1222337    1222337     35:				byName[prop.Name] = append(props, prop)
+         .          .     36:			}
+         .          .     37:		}
+         .          .     38:	}
+         .          .     39:	var skippedType *Type
+         .          .     40:	if skipped != nil {
+         .          .     41:		skippedType = c.getApparentType(skipped)
+         .          .     42:		if c.isErrorType(skippedType) || skippedType.flags&TypeFlagsNever != 0 {
+         .          .     43:			skippedType = nil
+         .          .     44:		}
+         .          .     45:	}
+         .          .     46:	// Preserve TypeScript Map insertion order. Iterating byName directly would
+         .          .     47:	// make property resolution and recursive side effects depend on Go map order.
+     81920      81920     48:	for _, name := range names {
+         .          .     49:		props := byName[name]
+         .          .     50:		if skippedType != nil {
+         .      10220     51:			prop := c.getPropertyOfTypeEx(skippedType, name, true, false)
+         .          .     52:			if prop != nil && !slices.Contains(props, prop) {
+    131072     131072     53:				props = append(props, prop)
+         .          .     54:			}
+         .          .     55:		}
+         .     610123     56:		if len(props) < 2 || !c.someLiteralOrPrivateProperty(props) {
+         .          .     57:			continue
+         .          .     58:		}
+         .     228107     59:		combined := c.getPropertyOfUnionOrIntersectionType(t, name, true)
+         .          .     60:		if combined != nil && c.isNeverReducedProperty(combined) {
+         .          .     61:			return true
+         .          .     62:		}
+         .          .     63:	}
+         .          .     64:	return false
