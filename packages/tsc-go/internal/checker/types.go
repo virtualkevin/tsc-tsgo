@@ -916,6 +916,7 @@ func (t *ConstrainedType) AsConstrainedType() *ConstrainedType { return t }
 
 type StructuredType struct {
 	ConstrainedType
+	pendingMembers     *pendingInstantiatedMembers
 	members            ast.SymbolTable
 	properties         []*ast.Symbol
 	signatures         []*Signature // Signatures (call + construct)
@@ -936,7 +937,17 @@ func (t *StructuredType) ConstructSignatures() []*Signature {
 }
 
 func (t *StructuredType) Properties() []*ast.Symbol {
+	if p := t.pendingMembers; p != nil {
+		p.materialize(t)
+	}
 	return t.properties
+}
+
+func (t *StructuredType) Members() ast.SymbolTable {
+	if p := t.pendingMembers; p != nil {
+		p.materialize(t)
+	}
+	return t.members
 }
 
 // Except for tuple type references and reverse mapped types, all object types have an associated symbol.
@@ -1002,6 +1013,8 @@ type InterfaceType struct {
 	declaredMembersResolved     bool
 	resolvedBaseConstructorType *Type
 	resolvedBaseTypes           []*Type
+	instantiatedMemberSource    *instantiatedMemberSource
+	lastMemberStates            []uint32
 	declaredMembers             ast.SymbolTable // Declared members
 	declaredCallSignatures      []*Signature    // Declared call signatures
 	declaredConstructSignatures []*Signature    // Declared construct signatures

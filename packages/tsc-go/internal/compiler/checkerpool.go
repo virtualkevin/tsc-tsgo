@@ -114,8 +114,11 @@ func (p *checkerPool) createCheckers() {
 
 		p.fileAssociations = make(map[*ast.SourceFile]*checker.Checker, len(p.program.files))
 		var assignments []int
-		if os.Getenv("TSC_GO_SCHEDULER") == "balanced" {
+		switch os.Getenv("TSC_GO_SCHEDULER") {
+		case "balanced":
 			assignments = balancedCheckerAssignments(checkerSchedulingWeights(p.program), checkerCount)
+		case "dependency":
+			assignments = dependencyCheckerAssignments(checkerSchedulingWeights(p.program), checkerSchedulingImports(p.program), checkerCount)
 		}
 		for i, file := range p.program.files {
 			owner := i % checkerCount

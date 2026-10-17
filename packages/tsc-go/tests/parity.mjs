@@ -20,6 +20,43 @@ for (const path of [baseline, candidate, libs]) {
 
 const fixtures = [
   {
+    name: 'primitive unions preserve enum assignments, freshness, and comparison narrowing',
+    files: {
+      'main.ts': `export enum N { One = 1, Two = 2 }
+export enum Other { One = 1 }
+export enum S { A = "a", B = "b" }
+export const numeric: N.One | "missing" = 1;
+// @ts-expect-error distinct numeric enums are incompatible
+export const wrongEnum: N.One | "missing" = Other.One;
+// @ts-expect-error wrong numeric enum value
+export const wrongValue: N.One | "missing" = 3;
+// @ts-expect-error raw strings do not satisfy string enum members
+export const rawString: S.A | "missing" = "a";
+export const enumString: "a" | "missing" = S.A;
+export const fresh: "a" | "b" = "a";
+export const big: 1n | 2n = 1n;
+// @ts-expect-error absent bigint literal
+export const wrongBig: 1n | 2n = 3n;
+export const bool: true | "missing" = true;
+// @ts-expect-error absent boolean literal
+export const wrongBool: true | "missing" = false;
+export type Fits<T, U> = T extends U ? true : false;
+export const fit: Fits<"a", "a" | "b"> = true;
+export const miss: Fits<"e", "a" | "b" | "c" | "d"> = false;
+// @ts-expect-error primitive source is broader than the literal union
+export const broad: "a" | "b" = "value" as string;
+export function compare(value: string, choice: "a" | "b") {
+  if (value === choice) { const narrowed: "a" | "b" = value; return narrowed; }
+  return undefined;
+}
+export function impossible(value: 1 | 2) {
+  // @ts-expect-error disjoint primitive unions cannot compare equal
+  return value === "a";
+}
+`,
+    },
+  },
+  {
     name: 'generics, conditional types, classes, and declarations',
     files: {
       'types.ts':

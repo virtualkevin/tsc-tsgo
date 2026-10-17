@@ -181,6 +181,31 @@ func (c *Checker) isTypeRelatedTo(source *Type, target *Type, relation *Relation
 		if relation == c.comparableRelation && target.flags&TypeFlagsNever == 0 && c.isSimpleTypeRelatedTo(target, source, relation, nil) || c.isSimpleTypeRelatedTo(source, target, relation, nil) {
 			return true
 		}
+		// Decide primitive-to-union checks without setting up a relater when membership
+		// or the primitive union rules suffice. Larger undecided unions retain the
+		// full relation path, which caches their results.
+		if target.flags&TypeFlagsUnion != 0 && source.flags&TypeFlagsStructuredOrInstantiable == 0 {
+			if containsType(target.Types(), source) {
+				return true
+			}
+			if target.objectFlags&ObjectFlagsPrimitiveUnion != 0 {
+				if c.isLiteralRelatedByPrimitiveUnionForms(source, target, relation) {
+					return c.literalRelatedToPrimitiveUnion(source, target)
+				}
+				if types := target.Types(); len(types) < 4 {
+					for _, t := range types {
+						u := t
+						if isFreshLiteralType(u) {
+							u = u.AsLiteralType().regularType
+						}
+						if source == u || relation == c.comparableRelation && u.flags&TypeFlagsNever == 0 && c.isSimpleTypeRelatedTo(u, source, relation, nil) || c.isSimpleTypeRelatedTo(source, u, relation, nil) {
+							return true
+						}
+					}
+					return false
+				}
+			}
+		}
 	} else if !((source.flags|target.flags)&(TypeFlagsUnionOrIntersection|TypeFlagsIndexedAccess|TypeFlagsConditional|TypeFlagsSubstitution) != 0) {
 		// We have excluded types that may simplify to other forms, so types must have identical flags
 		if source.flags != target.flags {
@@ -201,6 +226,33 @@ func (c *Checker) isTypeRelatedTo(source *Type, target *Type, relation *Relation
 		return c.checkTypeRelatedTo(source, target, relation, nil /*errorNode*/)
 	}
 	return false
+}
+
+// A literal relates to a primitive union only through its base primitive or its
+// alternate freshness form. Numeric and enum literals retain the enum compatibility
+// rules for assignment; comparability must also consider the reverse direction.
+func (c *Checker) isLiteralRelatedByPrimitiveUnionForms(source *Type, target *Type, relation *Relation) bool {
+	return relation != c.comparableRelation && target.objectFlags&ObjectFlagsPrimitiveUnion != 0 && source.flags&TypeFlagsEnumLiteral == 0 &&
+		(source.flags&(TypeFlagsStringLiteral|TypeFlagsBooleanLiteral|TypeFlagsBigIntLiteral) != 0 ||
+			(relation == c.subtypeRelation || relation == c.strictSubtypeRelation) && source.flags&TypeFlagsNumberLiteral != 0)
+}
+
+func (c *Checker) literalRelatedToPrimitiveUnion(source *Type, target *Type) bool {
+	literal := source.AsLiteralType()
+	alternateForm := literal.regularType
+	if source == literal.regularType {
+		alternateForm = literal.freshType
+	}
+	var primitive *Type
+	switch {
+	case source.flags&TypeFlagsStringLiteral != 0:
+		primitive = c.stringType
+	case source.flags&TypeFlagsNumberLiteral != 0:
+		primitive = c.numberType
+	case source.flags&TypeFlagsBigIntLiteral != 0:
+		primitive = c.bigintType
+	}
+	return primitive != nil && containsType(target.Types(), primitive) || alternateForm != nil && containsType(target.Types(), alternateForm)
 }
 
 func (c *Checker) isSimpleTypeRelatedTo(source *Type, target *Type, relation *Relation, errorReporter ErrorReporter) bool {
@@ -681,9 +733,7 @@ func (c *Checker) elaborateArrowFunction(node *ast.Node, source *Type, target *T
 func (c *Checker) isWeakType(t *Type) bool {
 	if t.flags&TypeFlagsObject != 0 {
 		resolved := c.resolveStructuredTypeMembers(t)
-		return len(resolved.signatures) == 0 && len(resolved.indexInfos) == 0 && len(resolved.properties) > 0 && core.Every(resolved.properties, func(p *ast.Symbol) bool {
-			return p.Flags&ast.SymbolFlagsOptional != 0
-		})
+		return len(resolved.signatures) == 0 && len(resolved.indexInfos) == 0 && hasResolvedProperties(resolved) && resolvedPropertiesAreOptional(resolved)
 	}
 	if t.flags&TypeFlagsSubstitution != 0 {
 		return c.isWeakType(t.AsSubstitutionType().baseType)
@@ -2974,31 +3024,8 @@ func (r *Relater) typeRelatedToSomeType(source *Type, target *Type, reportErrors
 		if containsType(targetTypes, source) {
 			return TernaryTrue
 		}
-		if r.relation != r.c.comparableRelation && target.objectFlags&ObjectFlagsPrimitiveUnion != 0 && source.flags&TypeFlagsEnumLiteral == 0 &&
-			(source.flags&(TypeFlagsStringLiteral|TypeFlagsBooleanLiteral|TypeFlagsBigIntLiteral) != 0 ||
-				(r.relation == r.c.subtypeRelation || r.relation == r.c.strictSubtypeRelation) && source.flags&TypeFlagsNumberLiteral != 0) {
-			// When relating a literal type to a union of primitive types, we know the relation is false unless
-			// the union contains the base primitive type or the literal type in one of its fresh/regular forms.
-			// We exclude numeric literals for non-subtype relations because numeric literals are assignable to
-			// numeric enum literals with the same value. Similarly, we exclude enum literal types because
-			// identically named enum types are related (see isEnumTypeRelatedTo). We exclude the comparable
-			// relation in entirety because it needs to be checked in both directions.
-			var alternateForm *Type
-			if source == source.AsLiteralType().regularType {
-				alternateForm = source.AsLiteralType().freshType
-			} else {
-				alternateForm = source.AsLiteralType().regularType
-			}
-			var primitive *Type
-			switch {
-			case source.flags&TypeFlagsStringLiteral != 0:
-				primitive = r.c.stringType
-			case source.flags&TypeFlagsNumberLiteral != 0:
-				primitive = r.c.numberType
-			case source.flags&TypeFlagsBigIntLiteral != 0:
-				primitive = r.c.bigintType
-			}
-			if primitive != nil && containsType(targetTypes, primitive) || alternateForm != nil && containsType(targetTypes, alternateForm) {
+		if r.c.isLiteralRelatedByPrimitiveUnionForms(source, target, r.relation) {
+			if r.c.literalRelatedToPrimitiveUnion(source, target) {
 				return TernaryTrue
 			}
 			return TernaryFalse

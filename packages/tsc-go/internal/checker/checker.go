@@ -578,6 +578,7 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	instantiatedMemberLists                     map[instantiatedMemberListKey]*instantiatedMemberSource
 	id                                          uint32
 	program                                     Program
 	compilerOptions                             *core.CompilerOptions
@@ -4506,8 +4507,8 @@ func (c *Checker) getTypeWithoutSignatures(t *Type) *Type {
 		if len(resolved.signatures) != 0 {
 			result := c.newObjectType(ObjectFlagsAnonymous, t.symbol)
 			result.objectFlags |= ObjectFlagsMembersResolved
-			result.AsObjectType().members = resolved.members
-			result.AsObjectType().properties = resolved.properties
+			result.AsObjectType().members = resolved.Members()
+			result.AsObjectType().properties = resolved.Properties()
 			return result
 		}
 	case t.flags&TypeFlagsIntersection != 0:
@@ -10668,7 +10669,7 @@ func (c *Checker) getInstantiationExpressionType(exprType *Type, node *ast.Node)
 				hasApplicableSignature = hasApplicableSignature || len(callSignatures) != 0 || len(constructSignatures) != 0
 				if !core.Same(callSignatures, resolved.CallSignatures()) || !core.Same(constructSignatures, resolved.ConstructSignatures()) {
 					result := c.newObjectType(ObjectFlagsAnonymous|ObjectFlagsInstantiationExpressionType, c.newSymbol(ast.SymbolFlagsNone, ast.InternalSymbolNameInstantiationExpression))
-					c.setStructuredTypeMembers(result, resolved.members, callSignatures, constructSignatures, resolved.indexInfos)
+					c.setStructuredTypeMembers(result, resolved.Members(), callSignatures, constructSignatures, resolved.indexInfos)
 					result.AsInstantiationExpressionType().node = node
 					return result
 				}
@@ -15642,7 +15643,7 @@ func (c *Checker) cloneTypeAsModuleType(symbol *ast.Symbol, moduleType *Type, re
 	links.target = symbol
 	links.originatingImport = referenceParent
 	resolvedModuleType := c.resolveStructuredTypeMembers(moduleType)
-	c.valueSymbolLinks.Get(result).resolvedType = c.newAnonymousType(result, resolvedModuleType.members, nil, nil, resolvedModuleType.indexInfos)
+	c.valueSymbolLinks.Get(result).resolvedType = c.newAnonymousType(result, resolvedModuleType.Members(), nil, nil, resolvedModuleType.indexInfos)
 	return result
 }
 
@@ -18758,7 +18759,7 @@ func (c *Checker) getPropertiesOfType(t *Type) []*ast.Symbol {
 
 func (c *Checker) getPropertiesOfObjectType(t *Type) []*ast.Symbol {
 	if t.flags&TypeFlagsObject != 0 {
-		return c.resolveStructuredTypeMembers(t).properties
+		return c.resolveStructuredTypeMembers(t).Properties()
 	}
 	return nil
 }
@@ -18806,10 +18807,10 @@ func (c *Checker) getPropertyOfTypeEx(t *Type, name string, skipObjectFunctionPr
 	switch {
 	case t.flags&TypeFlagsObject != 0:
 		resolved := c.resolveStructuredTypeMembers(t)
-		symbol := resolved.members[name]
+		symbol := getResolvedMember(resolved, name)
 		if symbol != nil {
 			if !includeTypeOnlyMembers && t.symbol != nil && t.symbol.Flags&ast.SymbolFlagsValueModule != 0 && c.moduleSymbolLinks.Get(t.symbol).typeOnlyExportStarMap[name] != nil {
-				// If this is the type of a module, `resolved.members.get(name)` might have effectively skipped over
+				// If this is the type of a module, `resolved.Members().get(name)` might have effectively skipped over
 				// an `export type * from './foo'`, leaving `symbolIsValue` unable to see that the symbol is being
 				// viewed through a type-only export.
 				return nil
@@ -19015,6 +19016,7 @@ func (c *Checker) resolveObjectTypeMembers(t *Type, source *Type, typeParameters
 	var constructSignatures []*Signature
 	var indexInfos []*IndexInfo
 	var instantiated bool
+	var pending *pendingInstantiatedMembers
 	resolved := c.resolveDeclaredMembers(source)
 	if slices.Equal(typeParameters, typeArguments) {
 		members = resolved.declaredMembers
@@ -19024,12 +19026,19 @@ func (c *Checker) resolveObjectTypeMembers(t *Type, source *Type, typeParameters
 	} else {
 		instantiated = true
 		mapper = newTypeMapper(typeParameters, typeArguments)
-		members = c.instantiateSymbolTable(resolved.declaredMembers, mapper)
+		pending = c.pendingInstantiatedTable(resolved, mapper)
+		if pending == nil {
+			members = c.instantiateSymbolTable(resolved.declaredMembers, mapper)
+		}
 		callSignatures = c.instantiateSignatures(resolved.declaredCallSignatures, mapper)
 		constructSignatures = c.instantiateSignatures(resolved.declaredConstructSignatures, mapper)
 		indexInfos = c.instantiateIndexInfos(resolved.declaredIndexInfos, mapper)
 	}
 	baseTypes := c.getBaseTypes(source)
+	if pending != nil {
+		c.resolvePendingObjectTypeMembers(t, pending, baseTypes, mapper, typeArguments, callSignatures, constructSignatures, indexInfos)
+		return
+	}
 	if len(baseTypes) != 0 {
 		if !instantiated {
 			members = maps.Clone(members)
@@ -19258,7 +19267,7 @@ func (c *Checker) getSingleCallOrConstructSignature(t *Type) *Signature {
 func (c *Checker) getSingleSignature(t *Type, kind SignatureKind, allowMembers bool) *Signature {
 	if t.flags&TypeFlagsObject != 0 {
 		resolved := c.resolveStructuredTypeMembers(t)
-		if allowMembers || len(resolved.properties) == 0 && len(resolved.indexInfos) == 0 {
+		if allowMembers || !hasResolvedProperties(resolved) && len(resolved.indexInfos) == 0 {
 			if kind == SignatureKindCall && len(resolved.CallSignatures()) == 1 && len(resolved.ConstructSignatures()) == 0 {
 				return resolved.CallSignatures()[0]
 			}
@@ -20556,11 +20565,11 @@ func (c *Checker) resolveAnonymousTypeMembers(t *Type) {
 	d := t.AsObjectType()
 	if d.target != nil {
 		c.setStructuredTypeMembers(t, nil, nil, nil, nil)
-		members := c.createInstantiatedSymbolTable(c.getPropertiesOfObjectType(d.target), d.mapper)
+		pending := c.pendingInstantiatedList(c.getPropertiesOfObjectType(d.target), d.mapper)
 		callSignatures := c.instantiateSignatures(c.getSignaturesOfType(d.target, SignatureKindCall), d.mapper)
 		constructSignatures := c.instantiateSignatures(c.getSignaturesOfType(d.target, SignatureKindConstruct), d.mapper)
 		indexInfos := c.instantiateIndexInfos(c.getIndexInfosOfType(d.target), d.mapper)
-		c.setStructuredTypeMembers(t, members, callSignatures, constructSignatures, indexInfos)
+		c.setPendingStructuredTypeMembers(t, pending, callSignatures, constructSignatures, indexInfos)
 		return
 	}
 	symbol := c.getMergedSymbol(t.symbol)
@@ -20605,7 +20614,7 @@ func (c *Checker) resolveAnonymousTypeMembers(t *Type) {
 		if baseConstructorIndexInfo != nil {
 			indexInfos = append(indexInfos, baseConstructorIndexInfo)
 		}
-		if symbol.Flags&ast.SymbolFlagsEnum != 0 && (c.getDeclaredTypeOfSymbol(symbol).flags&TypeFlagsEnum != 0 || core.Some(d.properties, func(prop *ast.Symbol) bool {
+		if symbol.Flags&ast.SymbolFlagsEnum != 0 && (c.getDeclaredTypeOfSymbol(symbol).flags&TypeFlagsEnum != 0 || core.Some(d.Properties(), func(prop *ast.Symbol) bool {
 			return c.getTypeOfSymbol(prop).flags&TypeFlagsNumberLike != 0
 		})) {
 			indexInfos = append(indexInfos, c.enumNumberIndexInfo)
@@ -20657,23 +20666,42 @@ func (c *Checker) instantiateSymbolTable(symbols ast.SymbolTable, m *TypeMapper)
 
 func (c *Checker) instantiateSymbol(symbol *ast.Symbol, m *TypeMapper) *ast.Symbol {
 	if symbol == nil {
-		return nil
+		return symbol
 	}
 	links := c.valueSymbolLinks.Get(symbol)
-	if m != nil && m.MapsThisOnly() && isThisless(symbol) {
+	if c.keepsSymbolLinksUnderInstantiation(symbol, m, links) {
 		return symbol
+	}
+	return c.newInstantiatedSymbolWithLinks(symbol, m, links)
+}
+
+func (c *Checker) keepsSymbolUnderInstantiation(symbol *ast.Symbol, m *TypeMapper) bool {
+	return c.keepsSymbolLinksUnderInstantiation(symbol, m, c.valueSymbolLinks.Get(symbol))
+}
+
+func (c *Checker) keepsSymbolLinksUnderInstantiation(symbol *ast.Symbol, m *TypeMapper, links *ValueSymbolLinks) bool {
+	if m != nil && m.MapsThisOnly() && isThisless(symbol) {
+		return true
 	}
 	// If the type of the symbol is already resolved, and if that type could not possibly
 	// be affected by instantiation, simply return the symbol itself.
 	if links.resolvedType != nil && !c.couldContainTypeVariables(links.resolvedType) {
 		if symbol.Flags&ast.SymbolFlagsSetAccessor == 0 {
-			return symbol
+			return true
 		}
 		// If we're a setter, check writeType.
 		if links.writeType != nil && !c.couldContainTypeVariables(links.writeType) {
-			return symbol
+			return true
 		}
 	}
+	return false
+}
+
+func (c *Checker) newInstantiatedSymbol(symbol *ast.Symbol, m *TypeMapper) *ast.Symbol {
+	return c.newInstantiatedSymbolWithLinks(symbol, m, c.valueSymbolLinks.Get(symbol))
+}
+
+func (c *Checker) newInstantiatedSymbolWithLinks(symbol *ast.Symbol, m *TypeMapper, links *ValueSymbolLinks) *ast.Symbol {
 	if symbol.CheckFlags&ast.CheckFlagsInstantiated != 0 {
 		// If symbol being instantiated is itself a instantiation, fetch the original target and combine the
 		// type mappers. This ensures that original type identities are properly preserved and that aliases
@@ -21310,7 +21338,7 @@ func (c *Checker) includeMixinType(t *Type, types []*Type, mixinFlags []bool, in
 func (c *Checker) getPropertyOfObjectType(t *Type, name string) *ast.Symbol {
 	if t.flags&TypeFlagsObject != 0 {
 		resolved := c.resolveStructuredTypeMembers(t)
-		symbol := resolved.members[name]
+		symbol := getResolvedMember(resolved, name)
 		if symbol != nil && c.symbolIsValue(symbol) {
 			return symbol
 		}
@@ -25055,6 +25083,7 @@ func (c *Checker) cloneTypeReference(source *Type) *Type {
 func (c *Checker) setStructuredTypeMembers(t *Type, members ast.SymbolTable, callSignatures []*Signature, constructSignatures []*Signature, indexInfos []*IndexInfo) {
 	t.objectFlags |= ObjectFlagsMembersResolved
 	data := t.AsStructuredType()
+	data.pendingMembers = nil
 	data.members = members
 	data.properties = c.getNamedMembers(members, t.symbol)
 	if len(callSignatures) != 0 {
@@ -26370,7 +26399,7 @@ func (c *Checker) IsEmptyAnonymousObjectType(t *Type) bool {
 }
 
 func (c *Checker) isEmptyResolvedType(t *StructuredType) bool {
-	return t.AsType() != c.anyFunctionType && len(t.properties) == 0 && len(t.signatures) == 0 && len(t.indexInfos) == 0
+	return t.AsType() != c.anyFunctionType && !hasResolvedProperties(t) && len(t.signatures) == 0 && len(t.indexInfos) == 0
 }
 
 func (c *Checker) isEmptyObjectType(t *Type) bool {
@@ -27004,7 +27033,7 @@ func (c *Checker) getPropertyTypeForIndexType(originalObjectType *Type, objectTy
 					c.addDiagnostic(createDiagnosticForNode(accessExpression, diagnostics.Property_0_does_not_exist_on_type_1, indexType.AsLiteralType().value, c.TypeToString(objectType)))
 					return c.undefinedType
 				} else if indexType.flags&(TypeFlagsNumber|TypeFlagsString) != 0 {
-					types := core.Map(objectType.AsStructuredType().properties, func(prop *ast.Symbol) *Type {
+					types := core.Map(objectType.AsStructuredType().Properties(), func(prop *ast.Symbol) *Type {
 						return c.getTypeOfSymbol(prop)
 					})
 					return c.getUnionType(append(types, c.undefinedType))
@@ -27231,7 +27260,7 @@ func (c *Checker) getPropertyNameFromIndex(indexType *Type, accessNode *ast.Node
 }
 
 func (c *Checker) isStringIndexSignatureOnlyTypeWorker(t *Type) bool {
-	return t.flags&TypeFlagsObject != 0 && !c.isGenericMappedType(t) && len(c.getPropertiesOfType(t)) == 0 && len(c.getIndexInfosOfType(t)) == 1 && c.getIndexInfoOfType(t, c.stringType) != nil ||
+	return t.flags&TypeFlagsObject != 0 && !c.isGenericMappedType(t) && !c.hasPropertiesOfType(t) && len(c.getIndexInfosOfType(t)) == 1 && c.getIndexInfoOfType(t, c.stringType) != nil ||
 		t.flags&TypeFlagsUnionOrIntersection != 0 && core.Every(t.Types(), c.isStringIndexSignatureOnlyType)
 }
 
@@ -30903,7 +30932,7 @@ func (c *Checker) isFunctionObjectType(t *Type) bool {
 	// We do a quick check for a "bind" property before performing the more expensive subtype
 	// check. This gives us a quicker out in the common case where an object type is not a function.
 	resolved := c.resolveStructuredTypeMembers(t)
-	return len(resolved.signatures) != 0 || resolved.members["bind"] != nil && c.isTypeSubtypeOf(t, c.globalFunctionType)
+	return len(resolved.signatures) != 0 || getResolvedMember(resolved, "bind") != nil && c.isTypeSubtypeOf(t, c.globalFunctionType)
 }
 
 func (c *Checker) getTypeWithFacts(t *Type, include TypeFacts) *Type {
@@ -31395,7 +31424,7 @@ func (c *Checker) getSymbolAtLocation(node *ast.Node, ignoreErrors bool) *ast.Sy
 			// member should more exactly be the kind of (declarationless) symbol we want.
 			// (See #44364 and #45031 for relevant implementation PRs)
 			if metaProp.KeywordToken == ast.KindImportKeyword && node.Text() == "meta" {
-				return c.getGlobalImportMetaExpressionType().AsObjectType().members["meta"]
+				return getResolvedMember(c.getGlobalImportMetaExpressionType().AsStructuredType(), "meta")
 			}
 			// no other meta properties are valid syntax, thus no others should have symbols
 			return nil

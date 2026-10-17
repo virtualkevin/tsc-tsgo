@@ -270,7 +270,10 @@ func getReferencedFiles(program *compiler.Program, file *ast.SourceFile) *collec
 	checker, done := program.GetTypeCheckerForFileExclusive(context.TODO(), file)
 	defer done()
 	for _, importName := range file.Imports() {
-		addReferencedFilesFromImportLiteral(file, &referencedFiles, checker, importName)
+		// Resolve every import, including require calls outside variable initializers.
+		// GetSymbolAtLocation returns nil for e.g. exports.x = require("./dep").x,
+		// which otherwise leaves the dependency out of incremental build info.
+		addReferencedFilesFromSymbol(file, &referencedFiles, checker.ResolveExternalModuleName(importName))
 	}
 
 	sourceFileDirectory := tspath.GetDirectoryPath(file.FileName())
