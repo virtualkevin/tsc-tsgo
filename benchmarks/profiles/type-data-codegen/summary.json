@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "scope": "Static ELF/DWARF and targeted machine-code inspection only; no compiler timing or memory benchmark, no compiler rebuild by this audit.",
+  "binaries": {
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data",
+      "sha256": "cae2e8b37bddc0ebd69a6f5b169a4623cddb65342a59ab692445e4a9b85ff20a",
+      "sidecarSha256": "9fb1905936fc2931978378b9b1d53bce495f48a1d6de941e4512bb8906917f1e",
+      "sourceSha256": "9c86a02c17a5d2c6892ae925667031b33ae16027c1d0338430a46df5a28b97b7",
+      "sourceRevision": "d797bcf889102eb50098281004f15d2c97fdab71",
+      "sourceDirty": true,
+      "sourceFileCount": 5147,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      }
+    },
+    "reference": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy",
+      "sha256": "961e90a7e1d873477233c022716da08acc6f4b3f02df11c70d5e11360ca59ec3",
+      "sidecarSha256": "af8bdb6c4e6ceec2b4c5d0c2891f2d4919638f7d9f7d8b6bf9df8f61addd9304",
+      "sourceSha256": "39b165a093813ad622f9b276a3a9d6c433d0d6a91199ee6c897f3d8e3ed03a59",
+      "sourceRevision": "2c63da5ecc859234c24f419888172c2aa0fe1242",
+      "sourceDirty": true,
+      "sourceFileCount": 5140,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      }
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "run",
+        "/tmp/tsc-type-data-codegen/dwarf-inline.go",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data"
+      ],
+      "environmentOverrides": {
+        "GOFLAGS": ""
+      },
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "output": "candidate-inline.json"
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "run",
+        "/tmp/tsc-type-data-codegen/dwarf-layout.go",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data"
+      ],
+      "environmentOverrides": {
+        "GOFLAGS": ""
+      },
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "output": "candidate-layout.json"
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "run",
+        "/tmp/tsc-type-data-codegen/dwarf-inline.go",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy"
+      ],
+      "environmentOverrides": {
+        "GOFLAGS": ""
+      },
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "output": "reference-inline.json"
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "run",
+        "/tmp/tsc-type-data-codegen/dwarf-layout.go",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy"
+      ],
+      "environmentOverrides": {
+        "GOFLAGS": ""
+      },
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "output": "reference-layout.json"
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.(newType|newIntrinsicTypeEx|newObjectType)$",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data"
+      ],
+      "output": "candidate-constructors.asm"
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.(newType|newObjectType|typeResolutionHasProperty|setStructuredTypeMembers|isReducibleIntersection)$",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy"
+      ],
+      "output": "reference-selected.asm"
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.(typeResolutionHasProperty|setStructuredTypeMembers|isReducibleIntersection)$",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data"
+      ],
+      "output": "candidate-selected.asm"
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "nm",
+        "-size",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data"
+      ],
+      "postFilter": "checker\\.\\(\\*Type\\)\\.As(ConstrainedType|StructuredType|ObjectType|TypeReference|InterfaceType|UnionOrIntersectionType)$",
+      "output": "candidate-accessor-symbols.txt",
+      "matches": 0
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "nm",
+        "-size",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-type-data"
+      ],
+      "postFilter": "checker\\.\\(\\*Checker\\)\\.(newType|newObjectType)$",
+      "output": "candidate-constructor-symbols.txt"
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "nm",
+        "-size",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy"
+      ],
+      "postFilter": "checker\\.\\(\\*Checker\\)\\.(newType|newObjectType)$",
+      "output": "reference-constructor-symbols.txt"
+    }
+  ],
+  "accessors": {
+    "AsConstrainedType": {
+      "candidateInlineInstances": 2,
+      "referenceInlineInstances": 2
+    },
+    "AsInterfaceType": {
+      "candidateInlineInstances": 60,
+      "referenceInlineInstances": 60
+    },
+    "AsObjectType": {
+      "candidateInlineInstances": 16,
+      "referenceInlineInstances": 16
+    },
+    "AsStructuredType": {
+      "candidateInlineInstances": 13,
+      "referenceInlineInstances": 13
+    },
+    "AsTypeReference": {
+      "candidateInlineInstances": 130,
+      "referenceInlineInstances": 130
+    },
+    "AsUnionOrIntersectionType": {
+      "candidateInlineInstances": 196,
+      "referenceInlineInstances": 7
+    }
+  },
+  "constructorSymbolBytes": {
+    "candidate": {
+      "newType": 283,
+      "newObjectType": 390
+    },
+    "reference": {
+      "newType": 345,
+      "newObjectType": 411
+    }
+  },
+  "hazards": [
+    "The reference is preserved lazy Go, not an isolated same-source baseline; codegen comparisons explain representation only.",
+    "DWARF inline counts are static sites, not runtime frequency or a speed estimate.",
+    "Private allocation pointer and immutable kind must always match; future shapes require range/layout/test updates.",
+    "Nominal struct sizes do not establish allocator bytes or peak RSS.",
+    "Observed GC write barriers and typed heap allocation support the source invariant but do not replace checkptr, race, GC and conformance tests."
+  ],
+  "artifactFiles": [
+    {
+      "path": "candidate-accessor-symbols.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "candidate-constructor-symbols.txt",
+      "sha256": "e75dad94ca2d8f45513996f2e949636505107fd07b5216ddb6ba33e739b35e33",
+      "bytes": 192
+    },
+    {
+      "path": "candidate-constructors.asm",
+      "sha256": "e95e74776a4934cf679d9aeda00394473839eb38038915e088a57d71bc9d66bd",
+      "bytes": 9698
+    },
+    {
+      "path": "candidate-inline.json",
+      "sha256": "61477375b9fbec840f939c594f1219bb2b5f6d3b07d7609f34d0bf245df07ec2",
+      "bytes": 6737
+    },
+    {
+      "path": "candidate-layout.json",
+      "sha256": "3e40e34bde28f917bfe9325136a9c87976a7da10f699928ed60a0cf393cbd011",
+      "bytes": 7068
+    },
+    {
+      "path": "candidate-selected.asm",
+      "sha256": "d94a3a9399615d1f601cea63841c5dd66e8b52c8e5467c8c8237372acb9bc57e",
+      "bytes": 28436
+    },
+    {
+      "path": "dwarf-inline.go",
+      "sha256": "754fdbdc7f3b6ba89c62e8c7e06ea1cfa87e0bf5428d8036ec6347165f7156af",
+      "bytes": 1990
+    },
+    {
+      "path": "dwarf-layout.go",
+      "sha256": "33c9e9b04157db918b843cac7dccaee202e4019a694c495322b2ff45a5d01b68",
+      "bytes": 1460
+    },
+    {
+      "path": "reference-constructor-symbols.txt",
+      "sha256": "31937c5cc5e4738a75943dbdc9232c621dfa1834bd8796d248a918ca0ed23e17",
+      "bytes": 192
+    },
+    {
+      "path": "reference-inline.json",
+      "sha256": "52ddb86bed1e6899eda03bb638bfe2c83dbd174356a1e197a56effa590062b79",
+      "bytes": 6669
+    },
+    {
+      "path": "reference-layout.json",
+      "sha256": "b87ceaf27a5452742d59bcea1c6f19cd92144d1a1e7278d1155afe8ea263770d",
+      "bytes": 6956
+    },
+    {
+      "path": "reference-selected.asm",
+      "sha256": "60a18ccc29b3321725c3d6444644229ed7c9546e36b075082914a4ba83f59a82",
+      "bytes": 37852
+    }
+  ],
+  "allInspectionSessionsTerminal": true
+}

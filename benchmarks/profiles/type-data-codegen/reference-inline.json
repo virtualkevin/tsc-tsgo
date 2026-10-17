@@ -1,0 +1,159 @@
+{
+  "github.com/microsoft/typescript-go/internal/checker.(*Checker).newIntrinsicTypeEx": {
+    "inlineInstanceCount": 26,
+    "sampleCallLines": [
+      24999,
+      979,
+      24999,
+      24999,
+      24999,
+      24999,
+      984,
+      24999
+    ],
+    "sampleContainers": [
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker",
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker",
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker",
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker",
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker",
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker",
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker",
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker"
+    ]
+  },
+  "github.com/microsoft/typescript-go/internal/checker.(*Checker).newObjectType": {
+    "inlineInstanceCount": 0,
+    "sampleCallLines": null,
+    "sampleContainers": null
+  },
+  "github.com/microsoft/typescript-go/internal/checker.(*Checker).newType": {
+    "inlineInstanceCount": 0,
+    "sampleCallLines": null,
+    "sampleContainers": null
+  },
+  "github.com/microsoft/typescript-go/internal/checker.(*Type).AsConstrainedType": {
+    "inlineInstanceCount": 2,
+    "sampleCallLines": [
+      18719,
+      27391
+    ],
+    "sampleContainers": [
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).typeResolutionHasProperty",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getResolvedBaseConstraint"
+    ]
+  },
+  "github.com/microsoft/typescript-go/internal/checker.(*Type).AsInterfaceType": {
+    "inlineInstanceCount": 60,
+    "sampleCallLines": [
+      690,
+      1535,
+      1531,
+      1527,
+      1214,
+      1217,
+      1218,
+      668
+    ],
+    "sampleContainers": [
+      "github.com/microsoft/typescript-go/internal/api.newTypeResponse",
+      "github.com/microsoft/typescript-go/internal/api.(*Session).handleGetLocalTypeParametersOfType.func1",
+      "github.com/microsoft/typescript-go/internal/api.(*Session).handleGetOuterTypeParametersOfType.func1",
+      "github.com/microsoft/typescript-go/internal/api.(*Session).handleGetTypeParametersOfType.func1",
+      "github.com/microsoft/typescript-go/internal/ls.endOfRequiredTypeParameters",
+      "github.com/microsoft/typescript-go/internal/ls.endOfRequiredTypeParameters",
+      "github.com/microsoft/typescript-go/internal/ls.endOfRequiredTypeParameters",
+      "github.com/microsoft/typescript-go/internal/ls.getQuickInfoAndDeclarationAtLocation.func10"
+    ]
+  },
+  "github.com/microsoft/typescript-go/internal/checker.(*Type).AsObjectType": {
+    "inlineInstanceCount": 16,
+    "sampleCallLines": [
+      406,
+      406,
+      1031,
+      4512,
+      4513,
+      19217,
+      20567,
+      22302
+    ],
+    "sampleContainers": [
+      "github.com/microsoft/typescript-go/internal/ls.reclassifyByType",
+      "github.com/microsoft/typescript-go/internal/ls.reclassifyByType",
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeWithoutSignatures",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeWithoutSignatures",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getSignatureInstantiation",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveAnonymousTypeMembers",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getObjectTypeInstantiation"
+    ]
+  },
+  "github.com/microsoft/typescript-go/internal/checker.(*Type).AsStructuredType": {
+    "inlineInstanceCount": 13,
+    "sampleCallLines": [
+      3970,
+      18996,
+      25128,
+      26443,
+      27082,
+      31508,
+      568,
+      356
+    ],
+    "sampleContainers": [
+      "github.com/microsoft/typescript-go/internal/ls.setMemberDeclaredBySpreadAssignment",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).setStructuredTypeMembers",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).IsEmptyAnonymousObjectType",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyTypeForIndexType",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getSymbolAtLocation",
+      "github.com/microsoft/typescript-go/internal/checker.(*NodeBuilderImpl).getResolvedTypeWithoutAbstractConstructSignatures",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).setPendingStructuredTypeMembers"
+    ]
+  },
+  "github.com/microsoft/typescript-go/internal/checker.(*Type).AsTypeReference": {
+    "inlineInstanceCount": 130,
+    "sampleCallLines": [
+      683,
+      776,
+      31355,
+      776,
+      776,
+      776,
+      776,
+      17373
+    ],
+    "sampleContainers": [
+      "github.com/microsoft/typescript-go/internal/api.newTypeResponse",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTupleType",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).typeHasProtectedAccessibleBase",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).isConstTypeVariable",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).padTupleType",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).padTupleType",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).padTupleType",
+      "github.com/microsoft/typescript-go/internal/checker.(*keyBuilder).writeGenericTypeReferences.func1"
+    ]
+  },
+  "github.com/microsoft/typescript-go/internal/checker.(*Type).AsUnionOrIntersectionType": {
+    "inlineInstanceCount": 7,
+    "sampleCallLines": [
+      18770,
+      21368,
+      21370,
+      21380,
+      27348,
+      113,
+      764
+    ],
+    "sampleContainers": [
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfUnionOrIntersectionType",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).isNoInferTargetType",
+      "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasUnmatchedProperty",
+      "github.com/microsoft/typescript-go/internal/checker.(*Type).Types"
+    ]
+  }
+}

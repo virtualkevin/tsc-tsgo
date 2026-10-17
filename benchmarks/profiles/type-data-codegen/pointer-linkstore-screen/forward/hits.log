@@ -1,0 +1,42 @@
+goos: linux
+goarch: amd64
+pkg: github.com/microsoft/typescript-go/internal/core
+cpu: Intel Xeon Processor (Cascadelake)
+BenchmarkPointerLinkStoreHits/n=4096/shuffled/map-4     	10884728	        25.03 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/shuffled/map-4     	12069092	        20.11 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/shuffled/map-4     	11900839	        19.59 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/shuffled/pointer-4 	14568493	        19.38 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/shuffled/pointer-4 	15965989	        14.34 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/shuffled/pointer-4 	15099112	        15.61 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/locality90/map-4   	15802860	        15.87 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/locality90/map-4   	15871170	        15.49 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/locality90/map-4   	14894461	        15.92 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/locality90/pointer-4         	23216794	        10.83 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/locality90/pointer-4         	23257791	        10.59 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=4096/locality90/pointer-4         	22241172	        12.28 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/shuffled/map-4              	  924715	       238.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/shuffled/map-4              	 1000000	       234.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/shuffled/map-4              	 1153682	       232.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/shuffled/pointer-4          	 1583028	       152.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/shuffled/pointer-4          	 1699528	       139.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/shuffled/pointer-4          	 1637602	       155.1 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/locality90/map-4            	 5208927	        61.37 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/locality90/map-4            	 3154243	        63.57 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/locality90/map-4            	 4572793	        46.56 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/locality90/pointer-4        	 8840929	        24.96 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/locality90/pointer-4        	10654294	        23.12 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=65536/locality90/pointer-4        	10842375	        23.69 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/shuffled/map-4            	  368362	       736.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/shuffled/map-4            	  547903	       553.6 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/shuffled/map-4            	  522363	       457.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/shuffled/pointer-4        	  949477	       330.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/shuffled/pointer-4        	  922863	       266.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/shuffled/pointer-4        	  911164	       273.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/locality90/map-4          	 2446897	       118.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/locality90/map-4          	 1944318	       125.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/locality90/map-4          	 2452369	       105.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/locality90/pointer-4      	 3413156	        75.19 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/locality90/pointer-4      	 3002637	        75.25 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPointerLinkStoreHits/n=1048576/locality90/pointer-4      	 2844286	        86.81 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/microsoft/typescript-go/internal/core	36.262s

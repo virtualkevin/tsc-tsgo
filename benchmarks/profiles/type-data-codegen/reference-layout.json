@@ -1,0 +1,313 @@
+{
+  "ConditionalType": {
+    "fields": [
+      {
+        "name": "ConstrainedType",
+        "offset": 0,
+        "size": 64,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ConstrainedType"
+      }
+    ],
+    "size": 144
+  },
+  "ConstrainedType": {
+    "fields": [
+      {
+        "name": "TypeBase",
+        "offset": 0,
+        "size": 56,
+        "type": "github.com/microsoft/typescript-go/internal/checker.TypeBase"
+      }
+    ],
+    "size": 64
+  },
+  "EvolvingArrayType": {
+    "fields": [
+      {
+        "name": "ObjectType",
+        "offset": 0,
+        "size": 192,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ObjectType"
+      }
+    ],
+    "size": 208
+  },
+  "IndexType": {
+    "fields": [
+      {
+        "name": "ConstrainedType",
+        "offset": 0,
+        "size": 64,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ConstrainedType"
+      }
+    ],
+    "size": 80
+  },
+  "IndexedAccessType": {
+    "fields": [
+      {
+        "name": "ConstrainedType",
+        "offset": 0,
+        "size": 64,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ConstrainedType"
+      }
+    ],
+    "size": 88
+  },
+  "InstantiationExpressionType": {
+    "fields": [
+      {
+        "name": "ObjectType",
+        "offset": 0,
+        "size": 192,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ObjectType"
+      }
+    ],
+    "size": 200
+  },
+  "InterfaceType": {
+    "fields": [
+      {
+        "name": "TypeReference",
+        "offset": 0,
+        "size": 224,
+        "type": "github.com/microsoft/typescript-go/internal/checker.TypeReference"
+      }
+    ],
+    "size": 416
+  },
+  "IntersectionType": {
+    "fields": [
+      {
+        "name": "UnionOrIntersectionType",
+        "offset": 0,
+        "size": 232,
+        "type": "github.com/microsoft/typescript-go/internal/checker.UnionOrIntersectionType"
+      }
+    ],
+    "size": 248
+  },
+  "IntrinsicType": {
+    "fields": [
+      {
+        "name": "TypeBase",
+        "offset": 0,
+        "size": 56,
+        "type": "github.com/microsoft/typescript-go/internal/checker.TypeBase"
+      }
+    ],
+    "size": 72
+  },
+  "LiteralType": {
+    "fields": [
+      {
+        "name": "TypeBase",
+        "offset": 0,
+        "size": 56,
+        "type": "github.com/microsoft/typescript-go/internal/checker.TypeBase"
+      }
+    ],
+    "size": 88
+  },
+  "MappedType": {
+    "fields": [
+      {
+        "name": "ObjectType",
+        "offset": 0,
+        "size": 192,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ObjectType"
+      }
+    ],
+    "size": 256
+  },
+  "ObjectType": {
+    "fields": [
+      {
+        "name": "StructuredType",
+        "offset": 0,
+        "size": 168,
+        "type": "github.com/microsoft/typescript-go/internal/checker.StructuredType"
+      }
+    ],
+    "size": 192
+  },
+  "ReverseMappedType": {
+    "fields": [
+      {
+        "name": "ObjectType",
+        "offset": 0,
+        "size": 192,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ObjectType"
+      }
+    ],
+    "size": 216
+  },
+  "StringMappingType": {
+    "fields": [
+      {
+        "name": "ConstrainedType",
+        "offset": 0,
+        "size": 64,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ConstrainedType"
+      }
+    ],
+    "size": 72
+  },
+  "StructuredType": {
+    "fields": [
+      {
+        "name": "ConstrainedType",
+        "offset": 0,
+        "size": 64,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ConstrainedType"
+      }
+    ],
+    "size": 168
+  },
+  "SubstitutionType": {
+    "fields": [
+      {
+        "name": "ConstrainedType",
+        "offset": 0,
+        "size": 64,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ConstrainedType"
+      }
+    ],
+    "size": 80
+  },
+  "TemplateLiteralType": {
+    "fields": [
+      {
+        "name": "ConstrainedType",
+        "offset": 0,
+        "size": 64,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ConstrainedType"
+      }
+    ],
+    "size": 112
+  },
+  "TupleType": {
+    "fields": [
+      {
+        "name": "InterfaceType",
+        "offset": 0,
+        "size": 416,
+        "type": "github.com/microsoft/typescript-go/internal/checker.InterfaceType"
+      }
+    ],
+    "size": 464
+  },
+  "Type": {
+    "fields": [
+      {
+        "name": "flags",
+        "offset": 0,
+        "size": 4,
+        "type": "github.com/microsoft/typescript-go/internal/checker.TypeFlags"
+      },
+      {
+        "name": "objectFlags",
+        "offset": 4,
+        "size": 4,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ObjectFlags"
+      },
+      {
+        "name": "id",
+        "offset": 8,
+        "size": 4,
+        "type": "github.com/microsoft/typescript-go/internal/checker.TypeId"
+      },
+      {
+        "name": "symbol",
+        "offset": 16,
+        "size": 8,
+        "type": "*github.com/microsoft/typescript-go/internal/ast.Symbol"
+      },
+      {
+        "name": "alias",
+        "offset": 24,
+        "size": 8,
+        "type": "*github.com/microsoft/typescript-go/internal/checker.TypeAlias"
+      },
+      {
+        "name": "checker",
+        "offset": 32,
+        "size": 8,
+        "type": "*github.com/microsoft/typescript-go/internal/checker.Checker"
+      },
+      {
+        "name": "data",
+        "offset": 40,
+        "size": 16,
+        "type": "github.com/microsoft/typescript-go/internal/checker.TypeData"
+      }
+    ],
+    "size": 56
+  },
+  "TypeBase": {
+    "fields": [
+      {
+        "name": "Type",
+        "offset": 0,
+        "size": 56,
+        "type": "github.com/microsoft/typescript-go/internal/checker.Type"
+      }
+    ],
+    "size": 56
+  },
+  "TypeParameter": {
+    "fields": [
+      {
+        "name": "ConstrainedType",
+        "offset": 0,
+        "size": 64,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ConstrainedType"
+      }
+    ],
+    "size": 104
+  },
+  "TypeReference": {
+    "fields": [
+      {
+        "name": "ObjectType",
+        "offset": 0,
+        "size": 192,
+        "type": "github.com/microsoft/typescript-go/internal/checker.ObjectType"
+      }
+    ],
+    "size": 224
+  },
+  "UnionOrIntersectionType": {
+    "fields": [
+      {
+        "name": "StructuredType",
+        "offset": 0,
+        "size": 168,
+        "type": "github.com/microsoft/typescript-go/internal/checker.StructuredType"
+      }
+    ],
+    "size": 232
+  },
+  "UnionType": {
+    "fields": [
+      {
+        "name": "UnionOrIntersectionType",
+        "offset": 0,
+        "size": 232,
+        "type": "github.com/microsoft/typescript-go/internal/checker.UnionOrIntersectionType"
+      }
+    ],
+    "size": 280
+  },
+  "UniqueESSymbolType": {
+    "fields": [
+      {
+        "name": "TypeBase",
+        "offset": 0,
+        "size": 56,
+        "type": "github.com/microsoft/typescript-go/internal/checker.TypeBase"
+      }
+    ],
+    "size": 72
+  }
+}

@@ -1,0 +1,7 @@
+# Pointer LinkStore synthetic hit screen
+
+Preserved existing experiment, not rerun during this audit. There are 72 samples: map and prototype pointer-table implementations, three populations, two streams, two execution orders, three short samples per cell. Both order variants favored the prototype in this synthetic hit-only loop; this establishes neither compiler speed nor peak compiler memory improvement.
+
+All hit samples reported zero bytes/allocations per operation and separate allocation assertions passed. Construction was not measured. Setup/population/explicit GC were excluded from hit timing. Source shape models 96-byte symbols and 56-byte links; no checker workload runs inside the loop. Per-run maxRssKiB in summary.json is the entire go-test process measurement, not an attribution to either table or a compiler memory result. ElapsedSeconds is experiment bookkeeping, not a performance comparison metric.
+
+summary.json retains exact commands, environment, toolchain, input source digests, source-after equality, sample values, and log hashes. Small raw logs and both benchmark ordering variants are included. pointerlinkstore.go is the preserved isolated prototype; it is not applied to production. Full isolated source snapshots and the digest manifest are not duplicated here, so source digests are provenance references, not a self-contained rebuild claim. Prior interrupted samples remain excluded.

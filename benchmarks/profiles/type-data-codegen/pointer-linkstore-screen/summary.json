@@ -1,0 +1,745 @@
+{
+  "scope": "Synthetic core Get-hit microbenchmark only; no whole-compiler or construction measurements. Fixed-shape96-byte Arena keys,56-byte values. This preserves earlier screening evidence; no new benchmarks were run during this audit.",
+  "samples": 72,
+  "rows": [
+    {
+      "order": "forward",
+      "population": 4096,
+      "stream": "locality90",
+      "mapMedianNs": 15.87,
+      "pointerMedianNs": 10.83,
+      "mapOverPointer": 1.4653739612188366,
+      "mapSamples": [
+        {
+          "iterations": 15802860,
+          "nsPerOp": 15.87,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 15871170,
+          "nsPerOp": 15.49,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 14894461,
+          "nsPerOp": 15.92,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 23216794,
+          "nsPerOp": 10.83,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 23257791,
+          "nsPerOp": 10.59,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 22241172,
+          "nsPerOp": 12.28,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "forward",
+      "population": 4096,
+      "stream": "shuffled",
+      "mapMedianNs": 20.11,
+      "pointerMedianNs": 15.61,
+      "mapOverPointer": 1.2882767456758488,
+      "mapSamples": [
+        {
+          "iterations": 10884728,
+          "nsPerOp": 25.03,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 12069092,
+          "nsPerOp": 20.11,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 11900839,
+          "nsPerOp": 19.59,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 14568493,
+          "nsPerOp": 19.38,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 15965989,
+          "nsPerOp": 14.34,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 15099112,
+          "nsPerOp": 15.61,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "forward",
+      "population": 65536,
+      "stream": "locality90",
+      "mapMedianNs": 61.37,
+      "pointerMedianNs": 23.69,
+      "mapOverPointer": 2.590544533558463,
+      "mapSamples": [
+        {
+          "iterations": 5208927,
+          "nsPerOp": 61.37,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 3154243,
+          "nsPerOp": 63.57,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 4572793,
+          "nsPerOp": 46.56,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 8840929,
+          "nsPerOp": 24.96,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 10654294,
+          "nsPerOp": 23.12,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 10842375,
+          "nsPerOp": 23.69,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "forward",
+      "population": 65536,
+      "stream": "shuffled",
+      "mapMedianNs": 234.4,
+      "pointerMedianNs": 152.2,
+      "mapOverPointer": 1.540078843626807,
+      "mapSamples": [
+        {
+          "iterations": 924715,
+          "nsPerOp": 238.3,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 1000000,
+          "nsPerOp": 234.4,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 1153682,
+          "nsPerOp": 232.8,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 1583028,
+          "nsPerOp": 152.2,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 1699528,
+          "nsPerOp": 139.3,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 1637602,
+          "nsPerOp": 155.1,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "forward",
+      "population": 1048576,
+      "stream": "locality90",
+      "mapMedianNs": 118.3,
+      "pointerMedianNs": 75.25,
+      "mapOverPointer": 1.572093023255814,
+      "mapSamples": [
+        {
+          "iterations": 2446897,
+          "nsPerOp": 118.3,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 1944318,
+          "nsPerOp": 125.4,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 2452369,
+          "nsPerOp": 105.7,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 3413156,
+          "nsPerOp": 75.19,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 3002637,
+          "nsPerOp": 75.25,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 2844286,
+          "nsPerOp": 86.81,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "forward",
+      "population": 1048576,
+      "stream": "shuffled",
+      "mapMedianNs": 553.6,
+      "pointerMedianNs": 273.2,
+      "mapOverPointer": 2.026354319180088,
+      "mapSamples": [
+        {
+          "iterations": 368362,
+          "nsPerOp": 736.7,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 547903,
+          "nsPerOp": 553.6,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 522363,
+          "nsPerOp": 457.8,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 949477,
+          "nsPerOp": 330.3,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 922863,
+          "nsPerOp": 266.2,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 911164,
+          "nsPerOp": 273.2,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "reverse",
+      "population": 4096,
+      "stream": "locality90",
+      "mapMedianNs": 14.45,
+      "pointerMedianNs": 12.25,
+      "mapOverPointer": 1.1795918367346938,
+      "mapSamples": [
+        {
+          "iterations": 17146178,
+          "nsPerOp": 14.08,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 15240157,
+          "nsPerOp": 14.45,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 15294398,
+          "nsPerOp": 16.26,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 15750832,
+          "nsPerOp": 14.04,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 19159944,
+          "nsPerOp": 12.25,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 18423190,
+          "nsPerOp": 12.18,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "reverse",
+      "population": 4096,
+      "stream": "shuffled",
+      "mapMedianNs": 24.86,
+      "pointerMedianNs": 17.52,
+      "mapOverPointer": 1.4189497716894977,
+      "mapSamples": [
+        {
+          "iterations": 11213012,
+          "nsPerOp": 24.86,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 10445000,
+          "nsPerOp": 20.31,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 13297216,
+          "nsPerOp": 26.01,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 16003929,
+          "nsPerOp": 17.52,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 9745258,
+          "nsPerOp": 22.66,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 15105562,
+          "nsPerOp": 16.02,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "reverse",
+      "population": 65536,
+      "stream": "locality90",
+      "mapMedianNs": 48.29,
+      "pointerMedianNs": 24.67,
+      "mapOverPointer": 1.957438184029185,
+      "mapSamples": [
+        {
+          "iterations": 6303130,
+          "nsPerOp": 46.66,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 4312470,
+          "nsPerOp": 48.29,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 4131270,
+          "nsPerOp": 52.97,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 11341640,
+          "nsPerOp": 20.69,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 10669274,
+          "nsPerOp": 24.67,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 10997695,
+          "nsPerOp": 45.13,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "reverse",
+      "population": 65536,
+      "stream": "shuffled",
+      "mapMedianNs": 284.9,
+      "pointerMedianNs": 205.2,
+      "mapOverPointer": 1.388401559454191,
+      "mapSamples": [
+        {
+          "iterations": 750680,
+          "nsPerOp": 284.9,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 774578,
+          "nsPerOp": 297.2,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 1055794,
+          "nsPerOp": 231.8,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 1745914,
+          "nsPerOp": 223.9,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 1693154,
+          "nsPerOp": 205.2,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 1809952,
+          "nsPerOp": 132.0,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "reverse",
+      "population": 1048576,
+      "stream": "locality90",
+      "mapMedianNs": 109.8,
+      "pointerMedianNs": 79.09,
+      "mapOverPointer": 1.3882918194462004,
+      "mapSamples": [
+        {
+          "iterations": 2034846,
+          "nsPerOp": 108.4,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 2257800,
+          "nsPerOp": 110.3,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 2449536,
+          "nsPerOp": 109.8,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 3166736,
+          "nsPerOp": 79.09,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 2851598,
+          "nsPerOp": 81.52,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 3153118,
+          "nsPerOp": 74.21,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    },
+    {
+      "order": "reverse",
+      "population": 1048576,
+      "stream": "shuffled",
+      "mapMedianNs": 595.5,
+      "pointerMedianNs": 353.7,
+      "mapOverPointer": 1.6836301950805768,
+      "mapSamples": [
+        {
+          "iterations": 398096,
+          "nsPerOp": 844.2,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 451046,
+          "nsPerOp": 493.7,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 388941,
+          "nsPerOp": 595.5,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ],
+      "pointerSamples": [
+        {
+          "iterations": 649640,
+          "nsPerOp": 314.5,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 701917,
+          "nsPerOp": 353.7,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        },
+        {
+          "iterations": 530370,
+          "nsPerOp": 386.6,
+          "bytesPerOp": 0,
+          "allocsPerOp": 0
+        }
+      ]
+    }
+  ],
+  "runs": {
+    "forward": {
+      "order": "forward",
+      "sourceSha256": "a49c3f9e5da5f29025e09ff06c1bdb15c6fa87d583759729a2348d43aeeaf9aa",
+      "sourceRoot": "/tmp/tsc-pointer-linkstore-eval",
+      "sourceDigestAlgorithm": "sha256 compact JSON sorted {path,sha256} files",
+      "environment": {
+        "GOFLAGS": "",
+        "GOGC": "100",
+        "GOMAXPROCS": "4",
+        "GOMEMLIMIT": "off",
+        "GODEBUG": null,
+        "GOEXPERIMENT": null,
+        "CGO_ENABLED": null
+      },
+      "toolchain": "go version go1.26.9 linux/amd64",
+      "runs": [
+        {
+          "name": "allocations",
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "test",
+            "-json",
+            "./internal/core",
+            "-run",
+            "^TestPointerLinkStoreBenchHitAllocations$",
+            "-count=1"
+          ],
+          "cwd": "/tmp/tsc-pointer-linkstore-eval/packages/tsc-go",
+          "exitCode": 0,
+          "elapsedSeconds": 0.3564116954803467,
+          "maxRssKiB": 112512,
+          "log": "/tmp/tsc-pointer-linkstore-bench/forward/allocations.log",
+          "logSha256": "e06fd70387ecf78f425b706e566d2704a326b7c81a0ad948a7182a1793903a29"
+        },
+        {
+          "name": "hits",
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "test",
+            "./internal/core",
+            "-run",
+            "^$",
+            "-bench",
+            "^BenchmarkPointerLinkStoreHits$",
+            "-benchmem",
+            "-benchtime=200ms",
+            "-count=3"
+          ],
+          "cwd": "/tmp/tsc-pointer-linkstore-eval/packages/tsc-go",
+          "exitCode": 0,
+          "elapsedSeconds": 36.602107763290405,
+          "maxRssKiB": 252104,
+          "log": "/tmp/tsc-pointer-linkstore-bench/forward/hits.log",
+          "logSha256": "f20b14ee54c13ee13821c9c0e9dce7f16b13234541e115d4086cc0b3ddc94576"
+        }
+      ],
+      "scope": "Synthetic isolated core microbenchmark; no compiler integration/performance claim.",
+      "sourceAfterSha256": "a49c3f9e5da5f29025e09ff06c1bdb15c6fa87d583759729a2348d43aeeaf9aa",
+      "sourceUnchanged": true
+    },
+    "reverse": {
+      "order": "reverse",
+      "sourceSha256": "2c44666d088e80f3ccb941aa8cd3acf017cfbbf7699794f798f8a82b53069aa8",
+      "sourceRoot": "/tmp/tsc-pointer-linkstore-eval",
+      "sourceDigestAlgorithm": "sha256 compact JSON sorted {path,sha256} files",
+      "environment": {
+        "GOFLAGS": "",
+        "GOGC": "100",
+        "GOMAXPROCS": "4",
+        "GOMEMLIMIT": "off",
+        "GODEBUG": null,
+        "GOEXPERIMENT": null,
+        "CGO_ENABLED": null
+      },
+      "toolchain": "go version go1.26.9 linux/amd64",
+      "runs": [
+        {
+          "name": "allocations",
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "test",
+            "-json",
+            "./internal/core",
+            "-run",
+            "^TestPointerLinkStoreBenchHitAllocations$",
+            "-count=1"
+          ],
+          "cwd": "/tmp/tsc-pointer-linkstore-eval/packages/tsc-go",
+          "exitCode": 0,
+          "elapsedSeconds": 0.9848716259002686,
+          "maxRssKiB": 112000,
+          "log": "/tmp/tsc-pointer-linkstore-bench/reverse/allocations.log",
+          "logSha256": "9dedf91bb16524013bbf5be743ffb9487f9ec83d68eecf306158132a31a38930"
+        },
+        {
+          "name": "hits",
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "test",
+            "./internal/core",
+            "-run",
+            "^$",
+            "-bench",
+            "^BenchmarkPointerLinkStoreHits$",
+            "-benchmem",
+            "-benchtime=200ms",
+            "-count=3"
+          ],
+          "cwd": "/tmp/tsc-pointer-linkstore-eval/packages/tsc-go",
+          "exitCode": 0,
+          "elapsedSeconds": 35.098742723464966,
+          "maxRssKiB": 265272,
+          "log": "/tmp/tsc-pointer-linkstore-bench/reverse/hits.log",
+          "logSha256": "d2e02d8f84f4b16c7c08c4df9b00fa822c9ce297ab9304c2d0e8c9663d53c07f"
+        }
+      ],
+      "scope": "Synthetic isolated core microbenchmark; no compiler integration/performance claim.",
+      "sourceAfterSha256": "2c44666d088e80f3ccb941aa8cd3acf017cfbbf7699794f798f8a82b53069aa8",
+      "sourceUnchanged": true
+    }
+  },
+  "allHitSamplesZeroAllocation": true,
+  "constructionRun": false,
+  "priorInterruptedSamplesExcluded": true,
+  "limits": [
+    "Three short samples per cell are screening evidence, not confidence intervals.",
+    "Both order variants favor the pointer table, but runtime/memory workload effects remain unmeasured.",
+    "Allocation/setup plus explicit GC excluded from hit timing.",
+    "The microbench key and value layouts model ASTSymbol/ValueSymbolLinks widths; they do not execute compiler algorithms."
+  ],
+  "sourceSummarySha256": "a937917ff37c3c92e91a5cbaac43de1dd47af6a6a397e7a3db172e4fec195e59",
+  "artifactFiles": [
+    {
+      "path": "forward/hits.log",
+      "sha256": "f20b14ee54c13ee13821c9c0e9dce7f16b13234541e115d4086cc0b3ddc94576"
+    },
+    {
+      "path": "forward/allocations.log",
+      "sha256": "e06fd70387ecf78f425b706e566d2704a326b7c81a0ad948a7182a1793903a29"
+    },
+    {
+      "path": "reverse/hits.log",
+      "sha256": "d2e02d8f84f4b16c7c08c4df9b00fa822c9ce297ab9304c2d0e8c9663d53c07f"
+    },
+    {
+      "path": "reverse/allocations.log",
+      "sha256": "9dedf91bb16524013bbf5be743ffb9487f9ec83d68eecf306158132a31a38930"
+    },
+    {
+      "path": "pointerlinkstore_bench_test.go",
+      "sha256": "8b578bb17f9cc89b2f12ea758a7d1f624aa306c11ae802000b4fb034032c79b4"
+    },
+    {
+      "path": "pointerlinkstore_bench_reverse_test.go",
+      "sha256": "e7931f0c03fcb609d47edcc85154a5240906da9068807006b34b5c1c41883286"
+    },
+    {
+      "path": "pointerlinkstore.go",
+      "sha256": "e26dc36149fc749f6ab208a761df309f8005f7f4a59bf806b9ae409d8da86315",
+      "origin": "/tmp/tsc-pointer-linkstore-eval/packages/tsc-go/internal/core/pointerlinkstore.go"
+    }
+  ]
+}
