@@ -1,0 +1,74 @@
+{
+  "status": "analyzed",
+  "phaseWindows": {
+    "beforeWorkers": {
+      "wallMs": 172.37408,
+      "stwUnionMs": 2.828992,
+      "concurrentMarkUnionMs": 87.615359
+    },
+    "workers": {
+      "wallMs": 208.636288,
+      "stwUnionMs": 0.19712,
+      "concurrentMarkUnionMs": 26.931712
+    },
+    "afterWorkers": {
+      "wallMs": 158.293057,
+      "stwUnionMs": 0.514112,
+      "concurrentMarkUnionMs": 75.772736
+    }
+  },
+  "workerRanges": [
+    {
+      "task": 2,
+      "checker": 3,
+      "filesMs": 180.88224,
+      "assistWallMs": 0.0,
+      "assistWallFraction": 0.0,
+      "stwOverlapMs": 0.0,
+      "concurrentMarkOverlapMs": 0.0
+    },
+    {
+      "task": 3,
+      "checker": 0,
+      "filesMs": 160.834176,
+      "assistWallMs": 0.0,
+      "assistWallFraction": 0.0,
+      "stwOverlapMs": 0.0,
+      "concurrentMarkOverlapMs": 0.0
+    },
+    {
+      "task": 4,
+      "checker": 1,
+      "filesMs": 201.762048,
+      "assistWallMs": 0.251648,
+      "assistWallFraction": 0.0012472514156874539,
+      "stwOverlapMs": 0.19712,
+      "concurrentMarkOverlapMs": 20.073792
+    },
+    {
+      "task": 5,
+      "checker": 2,
+      "filesMs": 208.607488,
+      "assistWallMs": 0.129152,
+      "assistWallFraction": 0.0006191148804783077,
+      "stwOverlapMs": 0.19712,
+      "concurrentMarkOverlapMs": 26.931712
+    }
+  ],
+  "rangeCounts": {
+    "RangeBegin": 247,
+    "RangeEnd": 247
+  },
+  "incompleteRanges": [],
+  "totalTraceWallMs": 539.303425,
+  "stwUnionMs": 3.540224,
+  "concurrentMarkUnionMs": 190.319807,
+  "limitations": [
+    "Assist wall ranges may include waiting/descheduling and are not GC CPU costs.",
+    "STW/mark/assist intervals overlap and must not be added.",
+    "Concurrent mark overlap does not mean the worker stops computing.",
+    "Only complete ranges contribute; incomplete capture-boundary ranges are listed.",
+    "Single instrumented traces do not establish achievable speedups.",
+    "These extendedDiagnostics runs force two final collections; after-worker GC is not representative of benchmark flags."
+  ]
+}

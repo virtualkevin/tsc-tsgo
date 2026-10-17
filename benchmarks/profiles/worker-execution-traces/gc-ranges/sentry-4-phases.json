@@ -1,0 +1,75 @@
+{
+  "status": "analyzed",
+  "phaseWindows": {
+    "beforeWorkers": {
+      "wallMs": 2836.066816,
+      "stwUnionMs": 4.082112,
+      "concurrentMarkUnionMs": 1328.38496
+    },
+    "workers": {
+      "wallMs": 24642.391424,
+      "stwUnionMs": 3.16,
+      "concurrentMarkUnionMs": 7420.688448
+    },
+    "afterWorkers": {
+      "wallMs": 3777.857217,
+      "stwUnionMs": 0.57696,
+      "concurrentMarkUnionMs": 3255.088448
+    }
+  },
+  "workerRanges": [
+    {
+      "task": 2,
+      "checker": 3,
+      "filesMs": 22391.36672,
+      "assistWallMs": 1.616192,
+      "assistWallFraction": 7.217924748454122e-05,
+      "stwOverlapMs": 3.16,
+      "concurrentMarkOverlapMs": 7420.688448
+    },
+    {
+      "task": 3,
+      "checker": 1,
+      "filesMs": 24642.384256,
+      "assistWallMs": 0.6624,
+      "assistWallFraction": 2.6880515826658165e-05,
+      "stwOverlapMs": 3.16,
+      "concurrentMarkOverlapMs": 7420.688448
+    },
+    {
+      "task": 4,
+      "checker": 0,
+      "filesMs": 21966.999552,
+      "assistWallMs": 0.89824,
+      "assistWallFraction": 4.0890427382842966e-05,
+      "stwOverlapMs": 3.16,
+      "concurrentMarkOverlapMs": 7420.688448
+    },
+    {
+      "task": 5,
+      "checker": 2,
+      "filesMs": 22374.362304,
+      "assistWallMs": 0.567616,
+      "assistWallFraction": 2.5369035876321886e-05,
+      "stwOverlapMs": 3.16,
+      "concurrentMarkOverlapMs": 7420.688448
+    }
+  ],
+  "rangeCounts": {
+    "RangeBegin": 2681,
+    "RangeEnd": 2681,
+    "RangeActive": 27
+  },
+  "incompleteRanges": [],
+  "totalTraceWallMs": 31256.315457,
+  "stwUnionMs": 7.819072,
+  "concurrentMarkUnionMs": 12004.161856,
+  "limitations": [
+    "Assist wall ranges may include waiting/descheduling and are not GC CPU costs.",
+    "STW/mark/assist intervals overlap and must not be added.",
+    "Concurrent mark overlap does not mean the worker stops computing.",
+    "Only complete ranges contribute; incomplete capture-boundary ranges are listed.",
+    "Single instrumented traces do not establish achievable speedups.",
+    "These extendedDiagnostics runs force two final collections; after-worker GC is not representative of benchmark flags."
+  ]
+}

@@ -1,0 +1,20 @@
+test_generation_active_does_not_reset_start (test_analyze.Tests.test_generation_active_does_not_reset_start) ... ok
+test_incomplete_background_gc_is_reported (test_analyze.Tests.test_incomplete_background_gc_is_reported) ... ok
+test_partial_worker_assist_rejected (test_analyze.Tests.test_partial_worker_assist_rejected) ... ok
+test_phase_windows_cover_capture (test_analyze.Tests.test_phase_windows_cover_capture) ... FAIL
+test_unfinished_worker_rejected (test_analyze.Tests.test_unfinished_worker_rejected) ... ok
+test_union_does_not_double_count (test_analyze.Tests.test_union_does_not_double_count) ... ok
+
+======================================================================
+FAIL: test_phase_windows_cover_capture (test_analyze.Tests.test_phase_windows_cover_capture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tsc-trace-gc/test_analyze.py", line 16, in test_phase_windows_cover_capture
+    r=analyze(fixture().splitlines());self.assertEqual(sum(v['wallMs'] for v in r['phaseWindows'].values()),r['totalTraceWallMs']);self.assertEqual(r['phaseWindows']['beforeWorkers']['wallMs'],3/1e6)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 9.999999999999999e-06 != 1e-05
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=1)
