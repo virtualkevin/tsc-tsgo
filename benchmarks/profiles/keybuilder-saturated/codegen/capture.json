@@ -1,0 +1,183 @@
+{
+  "scope": "Bounded static production-code inspection; no compiler rebuild or performance measurement",
+  "commands": [
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|getIndexedAccessKey|getTypeListKey|getConditionalTypeKey|\\(\\*keyBuilder\\)\\.(hash|stream|writeBytes|writeString|writeByte|writeUint32|writeUint64|writeByteOverflow|writeUint32Overflow|writeUint64Overflow))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*Checker\\)\\.instantiateTypeWithAlias$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "nm",
+      "-size",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.(getRelationKey|getIndexedAccessKey|getTypeListKey|getConditionalTypeKey|\\(\\*keyBuilder\\)\\.(hash|stream|writeBytes|writeString|writeByte|writeUint32|writeUint64|writeByteOverflow|writeUint32Overflow|writeUint64Overflow))$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*Checker\\)\\.instantiateTypeWithAlias$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*keyBuilder\\)\\.(writeAlias|writeTypes)$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct"
+    ],
+    [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*keyBuilder\\)\\.(writeAlias|writeTypes)$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated"
+    ]
+  ],
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct",
+      "sha256": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10",
+      "sidecarSha256": "584e002db3c7b12f2bc3db344c0430481ea2ab97b1d992c5d83e798fe60352aa",
+      "source": {
+        "revision": "bbf59a0cf7d7fe78cf3ab0bb35b1ddb650bc8bea",
+        "dirty": true,
+        "sha256": "1511f3d0d5c1af4b3f61deadb3837c2ff6dcf0b9a0c4311804e448409ff8bb36"
+      },
+      "sourceFileCount": 5153,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+      "sha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+      "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d",
+      "source": {
+        "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+        "dirty": true,
+        "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337"
+      },
+      "sourceFileCount": 5153,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303"
+    }
+  },
+  "artifacts": {
+    "baseline-helpers.asm": {
+      "bytes": 37231,
+      "sha256": "c83dcd6e216d3f6a719b3b9e394e2ff50c5f47880654debd1430c66520b36930"
+    },
+    "baseline-caller.asm": {
+      "bytes": 5984,
+      "sha256": "26bd80e27f3282025684652979377d59a5871d7b6e95c2cae0fa8c8b9d2f0b1a"
+    },
+    "candidate-helpers.asm": {
+      "bytes": 36851,
+      "sha256": "1a529119a778db62447444911199a3b5838651343bf9ea542e1b44a2080b7cd4"
+    },
+    "candidate-caller.asm": {
+      "bytes": 6139,
+      "sha256": "dcdce2600bb8e47e646a6a90d374b2924d184b2dfa20fc48c68770ca39c57a0e"
+    },
+    "baseline-symbols.txt": {
+      "bytes": 1386,
+      "sha256": "eb88c8a7e15acfbf8bc4cdd80f79be0901f3ddb9e753928199198a8fb3818d26"
+    },
+    "candidate-symbols.txt": {
+      "bytes": 1088,
+      "sha256": "869b074151936c47e0825de64cd69bc55a94eb08e70f67c4a0008b4e71af99e2"
+    },
+    "baseline-nested-writers.asm": {
+      "bytes": 5471,
+      "sha256": "f6f2dadc6bc907dd7f5bf416203f67cb0d3012021946d3a8de1330e626b61e71"
+    },
+    "candidate-nested-writers.asm": {
+      "bytes": 9009,
+      "sha256": "75e0344b3010ed10c88f091de3fe21edc1ebd43b0a3def72edf5dd2b84799c63"
+    }
+  }
+}

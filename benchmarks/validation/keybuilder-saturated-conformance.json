@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "candidate": "saturated streaming length for direct buffered keyBuilder writers; original 128-bit relation keys",
+  "controller_sha256": "925bbb03a8dc75718db004035563b4fb6cc42c3a924fb9fa78b78559cf15da81",
+  "expected_source_sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+  "reviewed_files_sha256": {
+    "checker.go": "761427dae0126839bb6803be7fd88bed3dc4924d31b20edee1d72ca0d68981ee",
+    "keybuilder.go": "6c50894e0b6c481c2878af208c31f575e15829025a594261cda3e9e10a16d13a",
+    "keybuilder_direct_test.go": "e397e66d6cb2da4566e517ec75fdd00c2dcbe02eceea0915bba1ad1631dee3db",
+    "keybuilder_test.go": "dba4b569b9e5528d1f8e59c91f1ff1ee369abcb406700c3a3af9f7013a82648a",
+    "relater.go": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae",
+    "relation_keys_api_test.go": "e32a99d280fc626e4812705d21fe3f856ca9a7688777b91368d1c96a1dbae5ec"
+  },
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "fixture_revisions_before": {
+    "typescript_go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript": "4d4f005c8541e0255a9d8791205fdce326e462bc"
+  },
+  "fixture_revisions_after": {
+    "typescript_go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript": "4d4f005c8541e0255a9d8791205fdce326e462bc"
+  },
+  "fixtures_unchanged": true,
+  "source_snapshots": {
+    "source-before": {
+      "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+      "dirty": true,
+      "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+      "file_count": 5153
+    },
+    "source-after-focused": {
+      "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+      "dirty": true,
+      "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+      "file_count": 5153
+    },
+    "source-after-race": {
+      "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+      "dirty": true,
+      "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+      "file_count": 5153
+    },
+    "source-after-checkptr": {
+      "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+      "dirty": true,
+      "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+      "file_count": 5153
+    },
+    "source-after-root-npm": {
+      "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+      "dirty": true,
+      "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+      "file_count": 5153
+    },
+    "source-after-conformance": {
+      "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+      "dirty": true,
+      "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+      "file_count": 5153
+    },
+    "source-after": {
+      "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+      "dirty": true,
+      "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+      "file_count": 5153
+    }
+  },
+  "source_unchanged": true,
+  "cleared_environment_variable_names": [],
+  "processes": [
+    {
+      "name": "focused",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/checker",
+        "-run",
+        "^(TestBuffered|TestRelationKeys)",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOTOOLCHAIN": "local",
+        "GOARCH": null,
+        "GOOS": null,
+        "GOGC": null,
+        "GOMEMLIMIT": null,
+        "GOMAXPROCS": null
+      },
+      "exit_code": 0,
+      "timeout_seconds": 2400,
+      "duration_seconds_not_benchmark": 49.93990812099946,
+      "error": null,
+      "stdout": "/tmp/keybuilder-saturated-validation-main/focused.jsonl",
+      "stderr": "/tmp/keybuilder-saturated-validation-main/focused.stderr",
+      "stdout_sha256": "63e7c7cc4db035cb8c569c08966416228b8f9463bd7170b23ea76185ce54a76d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^(TestBuffered|TestRelationKeys)",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOTOOLCHAIN": "local",
+        "GOARCH": null,
+        "GOOS": null,
+        "GOGC": null,
+        "GOMEMLIMIT": null,
+        "GOMAXPROCS": null
+      },
+      "exit_code": 0,
+      "timeout_seconds": 2400,
+      "duration_seconds_not_benchmark": 79.60617040600118,
+      "error": null,
+      "stdout": "/tmp/keybuilder-saturated-validation-main/race.jsonl",
+      "stderr": "/tmp/keybuilder-saturated-validation-main/race.stderr",
+      "stdout_sha256": "7fec91861be15ded2e3858b594fc14577c43ccb05dcce2bdb709a9fd7bc23778",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^(TestBuffered|TestRelationKeys)",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOTOOLCHAIN": "local",
+        "GOARCH": null,
+        "GOOS": null,
+        "GOGC": null,
+        "GOMEMLIMIT": null,
+        "GOMAXPROCS": null
+      },
+      "exit_code": 0,
+      "timeout_seconds": 2400,
+      "duration_seconds_not_benchmark": 60.903020174999256,
+      "error": null,
+      "stdout": "/tmp/keybuilder-saturated-validation-main/checkptr.jsonl",
+      "stderr": "/tmp/keybuilder-saturated-validation-main/checkptr.stderr",
+      "stdout_sha256": "974f2501376ac7012cf6518572dce664d1b5f90e8fae5ac0a61674f4ec12bc9a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "root-npm",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "environment": {
+        "GOFLAGS": "-json -count=1",
+        "CGO_ENABLED": "1",
+        "GOTOOLCHAIN": "local",
+        "GOARCH": null,
+        "GOOS": null,
+        "GOGC": null,
+        "GOMEMLIMIT": null,
+        "GOMAXPROCS": null
+      },
+      "exit_code": 0,
+      "timeout_seconds": 3600,
+      "duration_seconds_not_benchmark": 109.36305525299758,
+      "error": null,
+      "stdout": "/tmp/keybuilder-saturated-validation-main/root-npm.jsonl",
+      "stderr": "/tmp/keybuilder-saturated-validation-main/root-npm.stderr",
+      "stdout_sha256": "e54d4b4c97f54dbfb365b55fd5aa6788e6a6c4dd46ab53a63e65c7bef5c3c045",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "conformance",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/testrunner",
+        "-run",
+        "^TestSubmodule$",
+        "-parallel",
+        "4",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOTOOLCHAIN": "local",
+        "GOARCH": null,
+        "GOOS": null,
+        "GOGC": null,
+        "GOMEMLIMIT": null,
+        "GOMAXPROCS": null
+      },
+      "exit_code": 0,
+      "timeout_seconds": 2400,
+      "duration_seconds_not_benchmark": 72.99517106799976,
+      "error": null,
+      "stdout": "/tmp/keybuilder-saturated-validation-main/conformance.jsonl",
+      "stderr": "/tmp/keybuilder-saturated-validation-main/conformance.stderr",
+      "stdout_sha256": "c680f5f5204e66d29706af618c07db398628c488f4d01ebbd5c43fc0db02b3a7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "suites": {
+    "focused": {
+      "test_records": {
+        "pass": 655
+      },
+      "top_level_records": {
+        "pass": 11
+      },
+      "passing_top_level_tests": [
+        "TestBufferedDirectIntegerBoundaryTransitions",
+        "TestBufferedKeyBuilderSaturatedStreamingLength",
+        "TestBufferedKeyBuilderStreamingBoundaries",
+        "TestBufferedKeyBuilderIntegerEncoding",
+        "TestBufferedKeyBuilderPreservesLazyIdAssignmentOrder",
+        "TestBufferedKeyBuilderAliasAndTypeEncoding",
+        "TestBufferedKeyBuilderNestedBuildersAreIndependent",
+        "TestBufferedTemplateKeyRetainsTextBoundaries",
+        "TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics",
+        "TestRelationKeysColdRecursiveConstraints",
+        "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": [],
+      "integrity_errors": []
+    },
+    "race": {
+      "test_records": {
+        "pass": 655
+      },
+      "top_level_records": {
+        "pass": 11
+      },
+      "passing_top_level_tests": [
+        "TestBufferedDirectIntegerBoundaryTransitions",
+        "TestBufferedKeyBuilderSaturatedStreamingLength",
+        "TestBufferedKeyBuilderStreamingBoundaries",
+        "TestBufferedKeyBuilderIntegerEncoding",
+        "TestBufferedKeyBuilderPreservesLazyIdAssignmentOrder",
+        "TestBufferedKeyBuilderAliasAndTypeEncoding",
+        "TestBufferedKeyBuilderNestedBuildersAreIndependent",
+        "TestBufferedTemplateKeyRetainsTextBoundaries",
+        "TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics",
+        "TestRelationKeysColdRecursiveConstraints",
+        "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": [],
+      "integrity_errors": []
+    },
+    "checkptr": {
+      "test_records": {
+        "pass": 655
+      },
+      "top_level_records": {
+        "pass": 11
+      },
+      "passing_top_level_tests": [
+        "TestBufferedDirectIntegerBoundaryTransitions",
+        "TestBufferedKeyBuilderSaturatedStreamingLength",
+        "TestBufferedKeyBuilderStreamingBoundaries",
+        "TestBufferedKeyBuilderIntegerEncoding",
+        "TestBufferedKeyBuilderPreservesLazyIdAssignmentOrder",
+        "TestBufferedKeyBuilderAliasAndTypeEncoding",
+        "TestBufferedKeyBuilderNestedBuildersAreIndependent",
+        "TestBufferedTemplateKeyRetainsTextBoundaries",
+        "TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics",
+        "TestRelationKeysColdRecursiveConstraints",
+        "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/checker": "pass"
+      },
+      "cached_packages": [],
+      "integrity_errors": []
+    },
+    "root-npm": {
+      "test_records": {
+        "pass": 2338
+      },
+      "top_level_records": {
+        "pass": 114
+      },
+      "passing_top_level_tests": [
+        "TestLinkStoreConcurrentExistingKeyReads",
+        "TestLinkStoreNewPreservesIdentityAndValues",
+        "TestLinkStoreNewAndGetPreserveEntriesAcrossGrowth",
+        "TestLinkStoreNewAcceptsNilPointerKey",
+        "TestPointerLinkStoreDifferential",
+        "TestPointerLinkStoreNilAndReplacement",
+        "TestPointerLinkStoreCollisionsAndGrowth",
+        "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+        "TestPointerLinkStoreConcurrentReadOnlyCopies",
+        "TestPatternOverlappingMatch",
+        "TestBreadthFirstSearchParallel",
+        "TestScanStringPreservesLoneSurrogates",
+        "TestPositionMapMultipleNonASCII",
+        "TestPositionMapLoneSurrogateSentinel",
+        "TestPositionMapTwoByte",
+        "TestPositionMapFourByte",
+        "TestPositionMapASCII",
+        "TestPositionMapRoundtrip",
+        "TestLibraryDirectoryOverride",
+        "TestRelativeLibraryDirectoryOverride",
+        "TestDefaultLibraryDirectory",
+        "TestTestingLibPath",
+        "TestEmbeddedLibs",
+        "TestDeepCloneNodeSanityCheck",
+        "TestActiveMapperCacheLifetime",
+        "TestActiveMapperCacheInvalidation",
+        "TestActiveMapperCacheSurvivesNestedMapperGrowth",
+        "TestActiveMapperCacheDistinguishesAliases",
+        "TestActiveMapperCachePreservesAliasSymbolIDOrder",
+        "TestActiveMapperCacheDoesNotBypassInstantiationLimits",
+        "TestBalancedCheckerAssignments",
+        "TestActiveMapperSplitCachesKeepNestedPopulation",
+        "TestActiveMapperSplitCachesSeparateAliasesAndInvalidateBoth",
+        "TestActiveMapperSplitCachesClearDuringNestedWorker",
+        "TestCrossProductPruningMatchesEagerOrder",
+        "TestCrossProductUnitNormalization",
+        "TestCrossProductLateMemberResolutionGuard",
+        "TestCheckerSchedulingSkipsUncheckedFiles",
+        "TestCrossProductPruningDoesNotAlterInput",
+        "TestInferenceVariancesConcreteReferencesSkipMeasurement",
+        "TestInferenceVariancesDeferredArgumentsStayConservative",
+        "TestInferenceVariancesClassStaticSideGuards",
+        "TestDependencyCheckerGroups",
+        "TestDependencyCheckerAssignments",
+        "TestCheckerSchedulingImportsUseResolvedFileIdentity",
+        "TestBufferedDirectIntegerBoundaryTransitions",
+        "TestBufferedKeyBuilderSaturatedStreamingLength",
+        "TestBufferedKeyBuilderStreamingBoundaries",
+        "TestBufferedKeyBuilderIntegerEncoding",
+        "TestBufferedKeyBuilderPreservesLazyIdAssignmentOrder",
+        "TestBufferedKeyBuilderAliasAndTypeEncoding",
+        "TestBufferedKeyBuilderNestedBuildersAreIndependent",
+        "TestBufferedTemplateKeyRetainsTextBoundaries",
+        "TestLazyIntersectionReductionMatchesEagerProperties",
+        "TestLazyUnmatchedPropertyMatchesEagerScan",
+        "TestLazyUnmatchedPropertyDoesNotSynthesizeBroadUnion",
+        "TestLazyUnmatchedPropertyContinuesPastIndexedUnionConstituent",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+        "TestPendingOptionalQueriesDoNotInstantiateMembers",
+        "TestIncludeProcessorDiagnosticsWithMissingFileCasing",
+        "TestProgram",
+        "TestPrimitiveUnionRelationsMatchFullRelater",
+        "TestTemplateCachesKeepCompleteInputs",
+        "TestTemplateCachesReportOversizedProductsAtEveryUse",
+        "TestTypeAccessorContracts",
+        "TestTypeRetainsConcreteTailAcrossGC",
+        "TestCopiedTypeHeaderRetainsOriginalAllocation",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity",
+        "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+        "TestValueSymbolLinksReplacementKeepsPublishedPointers",
+        "TestConditionalInferenceFalseBranchAndDeferredGuards",
+        "TestConditionalInferenceVariadicTupleInsideCallable",
+        "TestConditionalInferenceLiteralTagWithoutStrictNullChecks",
+        "TestCrossProductComplexityErrorsStillReportEachUse",
+        "TestInferenceVariancesPreserveGenericAliasAndContravariantInference",
+        "TestInferenceVariancesInvalidAnnotationsStillReport",
+        "TestJsxManagedAttributesReportsInstantiationDepthAtEachUse",
+        "TestLazyIntersectionAPIPreservesSparseGenericMembers",
+        "TestLazyIntersectionAPIPrivateOptionalPatternAndRecursiveProperties",
+        "TestPendingMembersAPISparseLookupThenEnumeration",
+        "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+        "TestPendingMembersAPIRecursiveBaseAndPrivateStatic",
+        "TestRelationKeysRecursiveGenericAssignmentsAndDiagnostics",
+        "TestRelationKeysColdRecursiveConstraints",
+        "TestRelationKeysRepeatedFailureDiagnosticsKeepUsePositions",
+        "TestTracerPushPreservesEndArgMutations",
+        "TestGetSymbolAtLocation",
+        "TestResolveDesiredDirsKeepsConcreteShallowProjects",
+        "TestKnownWatchDirectoriesAcceptAllAbsoluteDepths",
+        "TestRemovedTemporaryProjectKeepsNearestExistingWatch",
+        "TestReplacedWatchTerminationDoesNotScheduleObsoleteRebuild",
+        "TestWatchSourceCacheDetectsSameTimeLinkReplacement",
+        "TestWatchTracksPhysicalTargetsAndEvictsAllAliases",
+        "TestWatchAncestorEventsExcludeUnrelatedDirectories",
+        "TestWatchAncestorReplacementEvictsSameTimeSources",
+        "TestWatchMissingConfigRetriesOnlyItsOwnDirectoryEvents",
+        "TestWatchReadinessWaitsForWatchReconciliation",
+        "TestBuildOrderGenerator",
+        "TestWatchSupervisorReplacesWorkerAndStopsOrphans",
+        "TestWatchSupervisorHelper",
+        "TestWatchMemoryPolicyMatchesNativeEnvironment"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/core": "pass",
+        "github.com/microsoft/typescript-go/internal/scanner": "pass",
+        "github.com/microsoft/typescript-go/internal/bundled": "pass",
+        "github.com/microsoft/typescript-go/internal/ast": "pass",
+        "github.com/microsoft/typescript-go/internal/compiler": "pass",
+        "github.com/microsoft/typescript-go/internal/checker": "pass",
+        "github.com/microsoft/typescript-go/internal/execute/watchmanager": "pass",
+        "github.com/microsoft/typescript-go/internal/execute": "pass",
+        "github.com/microsoft/typescript-go/internal/execute/build": "pass",
+        "github.com/microsoft/typescript-go/cmd/tsgo": "pass"
+      },
+      "cached_packages": [],
+      "scope": "Current root npm test alias, forced uncached with GOFLAGS=-json -count=1.",
+      "integrity_errors": []
+    },
+    "conformance": {
+      "test_records": {
+        "pass": 113970,
+        "skip": 2126
+      },
+      "top_level_records": {
+        "pass": 1
+      },
+      "passing_top_level_tests": [
+        "TestSubmodule"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+      },
+      "cached_packages": [],
+      "source_configuration_cases": {
+        "total": 14915,
+        "fully_checked": 12789,
+        "partially_checked": 8,
+        "unsupported_skipped": 2118,
+        "failed": 0
+      },
+      "skip_categories": {
+        "unsupported target ES5": 1244,
+        "unsupported module kind AMD": 321,
+        "unsupported module kind System": 222,
+        "alwaysStrict=false is unsupported": 52,
+        "unsupported outFile": 87,
+        "esModuleInterop=false is unsupported": 24,
+        "unsupported module resolution kind 1": 57,
+        "unsupported baseUrl": 31,
+        "unsupported module resolution kind 2": 23,
+        "unsupported module kind UMD": 57
+      },
+      "partial_output_skips": [
+        {
+          "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+          "reason": "cls.d.ts is missing statements when run concurrently."
+        },
+        {
+          "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+          "reason": "Nondeterministic contents when run concurrently."
+        },
+        {
+          "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+          "reason": "Nondeterministic contents when run concurrently."
+        },
+        {
+          "test": "TestSubmodule/grammarErrors.ts/output",
+          "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+        },
+        {
+          "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+          "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+        },
+        {
+          "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+          "reason": "No files are emitted."
+        },
+        {
+          "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+          "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+        },
+        {
+          "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+          "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+        }
+      ],
+      "failed_tests": [],
+      "integrity_errors": []
+    }
+  },
+  "validation_incomplete": false,
+  "failure": null,
+  "signal": null,
+  "coverage_limits": [
+    "Go test compiles normal/race/checkptr test binaries; this controller does not build or validate the separately produced release/native binary.",
+    "Focused regexp requires exactly eleven named top-level tests; actual nested subtest counts are recorded, with no focused skips permitted.",
+    "Race instrumentation covers executed code paths; no claim of deliberate simultaneous checker mutation.",
+    "Root npm test executes ten packages uncached, followed sequentially by the full pinned TestSubmodule suite.",
+    "Unsupported and partially checked conformance cases are counted separately; they are not full semantic passes.",
+    "Pinned revision identity is checked before/after; TypeScript corpus content is not independently hashed by this controller.",
+    "Native CLI/API/parallel emit validation is separate; durations here are not performance measurements."
+  ],
+  "passed": true
+}

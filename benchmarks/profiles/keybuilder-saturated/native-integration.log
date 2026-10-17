@@ -1,0 +1,26 @@
+compared 41370 responses
+✔ tsc-ts --api answers like tsc --api (16650.295634ms)
+✔ tsc-ts --api tracks projects and open files like tsc --api (365.155958ms)
+✔ tsc-ts --api keeps JSDoc of statements retained by top-level await reparsing (228.252521ms)
+compared 5089 completions in completions
+compared 11494 completions in services
+compared 5280 completions in project
+✔ tsc-ts --api completes like tsc --api (13110.648301ms)
+compared 5952 responses
+✔ tsc-ts --api answers language service queries like tsc --api (services) (2757.988547ms)
+compared 2390 responses
+✔ tsc-ts --api answers language service queries like tsc --api (project) (1543.610076ms)
+✔ tsc-ts runs tsc without --api (124.539999ms)
+✔ emit on checker threads matches emit on one checker (9783.720979ms)
+✔ under noEmitOnError, emit on checker threads matches emit on one checker (2902.89836ms)
+✔ declaration files are the same with any number of checkers (2676.859239ms)
+✔ projects reduced from real-world code match tsgo (10559.755689ms)
+✔ tsc-ts matches tsgo on a project (13170.949965ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34884.314052

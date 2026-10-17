@@ -8,9 +8,10 @@ import (
 
 // keyBuilder owns one serialization. Short keys hash the inline bytes directly;
 // longer keys preserve the same streaming hash without retaining the full input.
-// A builder must not be copied after its first write.
+// A builder must not be copied after its first write or explicit stream creation.
 type keyBuilder struct {
-	buf      [128]byte
+	buf [128]byte
+	// n is the inline length, saturated to len(buf) after entering streaming mode.
 	n        int
 	overflow *xxh3.Hasher
 }
@@ -26,6 +27,7 @@ func (b *keyBuilder) stream() *xxh3.Hasher {
 	if b.overflow == nil {
 		b.overflow = new(xxh3.Hasher)
 		_, _ = b.overflow.Write(b.buf[:b.n])
+		b.n = len(b.buf)
 	}
 	return b.overflow
 }
@@ -47,7 +49,7 @@ func (b *keyBuilder) writeString(s string) {
 }
 
 func (b *keyBuilder) writeByte(c byte) {
-	if b.overflow == nil && b.n < len(b.buf) {
+	if b.n < len(b.buf) {
 		b.buf[b.n] = c
 		b.n++
 	} else {
@@ -56,7 +58,7 @@ func (b *keyBuilder) writeByte(c byte) {
 }
 
 func (b *keyBuilder) writeUint32(value uint32) {
-	if b.overflow == nil && b.n <= len(b.buf)-4 {
+	if b.n <= len(b.buf)-4 {
 		binary.LittleEndian.PutUint32(b.buf[b.n:], value)
 		b.n += 4
 	} else {
@@ -65,7 +67,7 @@ func (b *keyBuilder) writeUint32(value uint32) {
 }
 
 func (b *keyBuilder) writeUint64(value uint64) {
-	if b.overflow == nil && b.n <= len(b.buf)-8 {
+	if b.n <= len(b.buf)-8 {
 		binary.LittleEndian.PutUint64(b.buf[b.n:], value)
 		b.n += 8
 	} else {

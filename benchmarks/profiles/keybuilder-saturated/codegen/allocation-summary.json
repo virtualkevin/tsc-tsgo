@@ -1,0 +1,113 @@
+{
+  "scope": "Exact-source isolated primitive allocation screen, not compiler workload performance",
+  "source": {
+    "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/keybuilder.go",
+    "sha256": "6c50894e0b6c481c2878af208c31f575e15829025a594261cda3e9e10a16d13a",
+    "verbatimCopy": "/tmp/tsc-keybuilder-saturated-codegen/allocation-screen/keybuilder.go",
+    "copySha256": "6c50894e0b6c481c2878af208c31f575e15829025a594261cda3e9e10a16d13a",
+    "matchesProductionSidecar": true
+  },
+  "toolchain": {
+    "GOAMD64": "v1",
+    "GOARCH": "amd64",
+    "GOEXPERIMENT": "",
+    "GOFLAGS": "",
+    "GOOS": "linux",
+    "GOVERSION": "go1.26.9"
+  },
+  "environment": {
+    "GOGC": null,
+    "GOMEMLIMIT": null,
+    "GOMAXPROCS": null,
+    "GODEBUG": null,
+    "GOFLAGS": null,
+    "GOEXPERIMENT": null
+  },
+  "commands": [
+    {
+      "cwd": "/tmp/tsc-keybuilder-saturated-codegen/allocation-screen",
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-run",
+        "^TestAllocationScreen$",
+        "-count=1",
+        "-v",
+        "."
+      ],
+      "output": "allocation.log",
+      "exitCode": 0
+    },
+    {
+      "cwd": "/tmp/tsc-keybuilder-saturated-codegen/allocation-screen",
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-gcflags=example.com/tsc-keybuilder-screen=-m=2",
+        "-run",
+        "^TestAllocationScreen$",
+        "-count=1",
+        "."
+      ],
+      "output": "escape.log",
+      "exitCode": 0
+    }
+  ],
+  "allocsPerRunSamples": 1000,
+  "subcases": 51,
+  "allocationsPerCall": {
+    "string/0": 0.0,
+    "bytes/0": 0.0,
+    "bytewise/0": 0.0,
+    "legacy/0": 0.0,
+    "hash-only/0": 0.0,
+    "string/5": 0.0,
+    "bytes/5": 0.0,
+    "bytewise/5": 0.0,
+    "legacy/5": 0.0,
+    "hash-only/5": 0.0,
+    "string/13": 0.0,
+    "bytes/13": 0.0,
+    "bytewise/13": 0.0,
+    "legacy/13": 0.0,
+    "hash-only/13": 0.0,
+    "string/64": 0.0,
+    "bytes/64": 0.0,
+    "bytewise/64": 0.0,
+    "legacy/64": 0.0,
+    "hash-only/64": 0.0,
+    "string/127": 0.0,
+    "bytes/127": 0.0,
+    "bytewise/127": 0.0,
+    "legacy/127": 0.0,
+    "hash-only/127": 0.0,
+    "string/128": 0.0,
+    "bytes/128": 0.0,
+    "bytewise/128": 0.0,
+    "legacy/128": 0.0,
+    "hash-only/128": 0.0,
+    "string/129": 1.0,
+    "bytes/129": 1.0,
+    "bytewise/129": 1.0,
+    "legacy/129": 0.0,
+    "hash-only/129": 0.0,
+    "string/256": 1.0,
+    "bytes/256": 1.0,
+    "bytewise/256": 1.0,
+    "legacy/256": 0.0,
+    "hash-only/256": 0.0,
+    "string/1089": 1.0,
+    "bytes/1089": 1.0,
+    "bytewise/1089": 1.0,
+    "legacy/1089": 0.0,
+    "hash-only/1089": 0.0,
+    "string/4096": 1.0,
+    "bytes/4096": 1.0,
+    "bytewise/4096": 1.0,
+    "legacy/4096": 0.0,
+    "hash-only/4096": 0.0,
+    "indexed-key-map-hit": 0.0
+  },
+  "allProcessesTerminal": true,
+  "compilerRebuilt": false
+}

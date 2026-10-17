@@ -1,0 +1,158 @@
+{
+  "scope": "Production codegen and isolated primitive allocation only; no compiler performance measurement",
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-direct",
+      "sha256": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10",
+      "sidecarSha256": "584e002db3c7b12f2bc3db344c0430481ea2ab97b1d992c5d83e798fe60352aa",
+      "source": {
+        "revision": "bbf59a0cf7d7fe78cf3ab0bb35b1ddb650bc8bea",
+        "dirty": true,
+        "sha256": "1511f3d0d5c1af4b3f61deadb3837c2ff6dcf0b9a0c4311804e448409ff8bb36"
+      },
+      "sourceFileCount": 5153,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "61313d4e088d42ef2baf236668a32a53cc9049af7c791e4698b8a6f32b3b0c10"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+      "sha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+      "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d",
+      "source": {
+        "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+        "dirty": true,
+        "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337"
+      },
+      "sourceFileCount": 5153,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      },
+      "sha256After": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303"
+    }
+  },
+  "framesExcludingSavedBP": {
+    "baseline": {
+      "getTypeListKey": 176,
+      "getIndexedAccessKey": 160,
+      "getConditionalTypeKey": 176,
+      "getRelationKey": 200,
+      "(*keyBuilder).hash": 16,
+      "(*keyBuilder).stream": 24,
+      "(*keyBuilder).writeString": 32,
+      "(*keyBuilder).writeByte": 16,
+      "(*keyBuilder).writeUint32": 16,
+      "(*keyBuilder).writeUint64": 16,
+      "(*keyBuilder).writeByteOverflow": 32,
+      "(*keyBuilder).writeUint32Overflow": 32,
+      "(*keyBuilder).writeUint64Overflow": 32,
+      "(*Checker).instantiateTypeWithAlias": 640
+    },
+    "candidate": {
+      "getTypeListKey": 176,
+      "getIndexedAccessKey": 160,
+      "getConditionalTypeKey": 176,
+      "getRelationKey": 200,
+      "(*keyBuilder).hash": 16,
+      "(*keyBuilder).stream": 24,
+      "(*keyBuilder).writeString": 32,
+      "(*keyBuilder).writeByteOverflow": 32,
+      "(*keyBuilder).writeUint32Overflow": 32,
+      "(*keyBuilder).writeUint64Overflow": 32,
+      "(*Checker).instantiateTypeWithAlias": 640
+    }
+  },
+  "symbolCodeBytes": {
+    "baseline": {
+      "(*Checker).instantiateTypeWithAlias": 2263,
+      "(*keyBuilder).hash": 98,
+      "(*keyBuilder).stream": 165,
+      "(*keyBuilder).writeByte": 114,
+      "(*keyBuilder).writeByteOverflow": 81,
+      "(*keyBuilder).writeString": 218,
+      "(*keyBuilder).writeUint32": 113,
+      "(*keyBuilder).writeUint32Overflow": 71,
+      "(*keyBuilder).writeUint64": 115,
+      "(*keyBuilder).writeUint64Overflow": 74,
+      "getConditionalTypeKey": 244,
+      "getIndexedAccessKey": 237,
+      "getRelationKey": 367,
+      "getTypeListKey": 165
+    },
+    "candidate": {
+      "(*Checker).instantiateTypeWithAlias": 2277,
+      "(*keyBuilder).hash": 98,
+      "(*keyBuilder).stream": 179,
+      "(*keyBuilder).writeByteOverflow": 81,
+      "(*keyBuilder).writeString": 218,
+      "(*keyBuilder).writeUint32Overflow": 71,
+      "(*keyBuilder).writeUint64Overflow": 74,
+      "getConditionalTypeKey": 298,
+      "getIndexedAccessKey": 285,
+      "getRelationKey": 684,
+      "getTypeListKey": 165
+    }
+  },
+  "findings": [
+    "All three primitive writer helpers are inlined in production: no emitted helper symbols, direct byte/integer stores at selected callers. Tiny-package inline cost76 each.",
+    "First two fixed-offset indexed-access uint32 writes have no guards/bounds checks; the third still checks capacity and bounds. General relation/alias writes retain bounds checks.",
+    "Cold overflow calls remain; stream now saturates n after copying the prefix. No buffer representation change.",
+    "Inlining increases some caller code sizes; getRelationKey367 to684 bytes. No runtime conclusion follows.",
+    "Same51 allocation cases pass with unchanged counts: zero through128, one above128, zero prepared-hash/indexed-map-hit."
+  ],
+  "allocationScreen": "allocation-summary.json",
+  "sourceComparison": "source-comparison.json",
+  "allProcessesTerminal": true,
+  "compilerRebuiltByInspection": false
+}
