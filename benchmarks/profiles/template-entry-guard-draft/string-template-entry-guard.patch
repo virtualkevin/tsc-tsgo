@@ -1,0 +1,153 @@
+--- a/packages/tsc-go/internal/checker/relater.go
++++ b/packages/tsc-go/internal/checker/relater.go
+@@ -176,6 +176,17 @@
+ 	}
+ 	if source == target {
+ 		return true
++	}
++	// A finite string literal cannot match a template whose fixed ends disagree.
++	// Keep template sources on the full path: their placeholders can report
++	// unreliable variance even when the fixed texts make the relation fail.
++	if source.flags&TypeFlagsStringLiteral != 0 && target.flags&TypeFlagsTemplateLiteral != 0 {
++		text := getStringLiteralValue(source)
++		texts := target.AsTemplateLiteralType().texts
++		start, end := texts[0], texts[len(texts)-1]
++		if len(text) < len(start)+len(end) || !strings.HasPrefix(text, start) || !strings.HasSuffix(text, end) {
++			return false
++		}
+ 	}
+ 	if relation != c.identityRelation {
+ 		if relation == c.comparableRelation && target.flags&TypeFlagsNever == 0 && c.isSimpleTypeRelatedTo(target, source, relation, nil) || c.isSimpleTypeRelatedTo(source, target, relation, nil) {
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/template_entry_guard_test.go
+@@ -0,0 +1,85 @@
++package checker
++
++import (
++	"fmt"
++	"testing"
++)
++
++func templateEntryGuardChecker() *Checker {
++	c := templateCacheTestChecker()
++	c.strictNullChecks = true
++	c.assignableRelation = &Relation{}
++	c.comparableRelation = &Relation{}
++	c.subtypeRelation = &Relation{}
++	c.strictSubtypeRelation = &Relation{}
++	c.identityRelation = &Relation{}
++	return c
++}
++
++// The full relater does not call the new entry guard for the top-level pair.
++// Explicit semantic expectations prevent both paths agreeing on a shared bug.
++func TestStringTemplateEntryGuardMatchesFullRelater(t *testing.T) {
++	cases := []struct {
++		name, text, start, end string
++		matches               bool
++	}{
++		{"prefix mismatch", "wrong-post", "pre-", "-post", false},
++		{"suffix mismatch", "pre-wrong", "pre-", "-post", false},
++		{"overlapping prefix suffix", "aaa", "aa", "aa", false},
++		{"empty source", "", "a", "", false},
++		{"nonempty suffix", "", "", "z", false},
++		{"unicode mismatch", "猫x犬", "犬", "犬", false},
++		{"nul mismatch", "a\x00x", "a\x00", "z", false},
++		{"ordinary match", "pre-x-post", "pre-", "-post", true},
++		{"empty interpolation", "pre--post", "pre-", "-post", true},
++		{"empty all", "", "", "", true},
++		{"unicode match", "猫😀犬", "猫", "犬", true},
++		{"nul match", "a\x00xz", "a\x00", "z", true},
++	}
++	for _, test := range cases {
++		for relationIndex := 0; relationIndex < 5; relationIndex++ {
++			for _, fresh := range []bool{false, true} {
++				t.Run(fmt.Sprintf("%s/relation%d/fresh%t", test.name, relationIndex, fresh), func(t *testing.T) {
++					c := templateEntryGuardChecker()
++					relations := []*Relation{c.assignableRelation, c.comparableRelation, c.subtypeRelation, c.strictSubtypeRelation, c.identityRelation}
++					relation := relations[relationIndex]
++					source := c.getStringLiteralType(test.text)
++					if fresh {
++						source = c.getFreshTypeOfLiteralType(source)
++					}
++					target := c.newTemplateLiteralType([]string{test.start, test.end}, []*Type{c.stringType})
++					c.reliabilityFlags = RelationComparisonResultReportsUnmeasurable
++					got := c.isTypeRelatedTo(source, target, relation)
++					flags := c.reliabilityFlags
++					if !test.matches && (c.freeRelater != nil || relation.size() != 0) {
++						t.Fatal("finite text rejection entered the relater or populated its cache")
++					}
++					// Do not let a previous fast/full result supply the oracle's answer.
++					relation.results = nil
++					c.reliabilityFlags = RelationComparisonResultReportsUnmeasurable
++					full := c.checkTypeRelatedTo(source, target, relation, nil)
++					want := test.matches && relation != c.identityRelation
++					if got != want || full != want || flags != c.reliabilityFlags {
++						t.Fatalf("entry=%v full=%v want=%v, flags=%v fullFlags=%v", got, full, want, flags, c.reliabilityFlags)
++					}
++				})
++			}
++		}
++	}
++}
++
++// Template sources are deliberately outside the guard. Even an obvious text
++// mismatch must retain variance reporting when a placeholder is a marker type.
++func TestStringTemplateEntryGuardPreservesTemplateVarianceReporting(t *testing.T) {
++	c := templateEntryGuardChecker()
++	c.markerSuperType = c.newTypeParameter(nil)
++	c.reportUnreliableMapper = newFunctionTypeMapper(c.reportUnreliableWorker)
++	source := c.newTemplateLiteralType([]string{"left-", ""}, []*Type{c.markerSuperType})
++	target := c.newTemplateLiteralType([]string{"right-", ""}, []*Type{c.stringType})
++	if c.isTypeRelatedTo(source, target, c.assignableRelation) {
++		t.Fatal("incompatible template texts related")
++	}
++	if c.reliabilityFlags&RelationComparisonResultReportsUnreliable == 0 {
++		t.Fatal("template placeholder variance effect was skipped")
++	}
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/template_entry_guard_api_test.go
+@@ -0,0 +1,42 @@
++package checker_test
++
++import (
++	"strings"
++	"testing"
++)
++
++func TestStringTemplateEntryGuardRepeatedDiagnostics(t *testing.T) {
++	const source = "declare const bad: 'wrong';\n" +
++		"declare let target: `pre-${string}-post`;\n" +
++		"target = bad;\ntarget = bad;\n" +
++		"const good: `pre-${string}-post` = 'pre-x-post';\n" +
++		"type InferMiddle<T extends string> = T extends `pre-${infer U}-post` ? U : never;\n" +
++		"const inferred: InferMiddle<'pre-x-post'> = 'x';\n" +
++		"function deferred<T extends string>(value: `pre-${T}-post`) { return value; }\n" +
++		"const result: 'pre-x-post' = deferred('pre-x-post');\n"
++	c, file := pendingAPIChecker(t, source)
++	bad := pendingVariableType(c, file, 0)
++	target := pendingVariableType(c, file, 1)
++	for range 2 {
++		if c.IsTypeAssignableTo(bad, target) {
++			t.Fatal("rejected literal became assignable")
++		}
++	}
++	first, second := strings.Index(source, "target = bad"), strings.LastIndex(source, "target = bad")
++	for attempt := 0; attempt < 2; attempt++ {
++		ds := c.GetDiagnostics(t.Context(), file)
++		if len(ds) != 2 {
++			t.Fatalf("query %d: want two assignment errors and valid inference, got %v", attempt, ds)
++		}
++		positions := map[int]bool{}
++		for _, d := range ds {
++			if d.Code() != 2322 || d.File() != file {
++				t.Fatalf("query %d: unexpected diagnostic %v", attempt, d)
++			}
++			positions[d.Pos()] = true
++		}
++		if !positions[first] || !positions[second] {
++			t.Fatalf("query %d: positions %v, want %d and %d", attempt, positions, first, second)
++		}
++	}
++}

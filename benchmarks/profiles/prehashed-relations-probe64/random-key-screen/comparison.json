@@ -1,0 +1,294 @@
+{
+  "scope": "Adaptive synthetic parameter calibration only; not compiler incidence, timing/memory measurement or probability estimate",
+  "sourceOfSeedSequences": "main.go: PCG(seed1=1..10,seed2=0x9e3779b97f4a7c15 XOR seed1), two Uint64 outputs per full key",
+  "sequentiallyChosenProbeLimits": [
+    64,
+    128,
+    256,
+    512
+  ],
+  "perSeedLimit": 1000000,
+  "loadThreshold": 0.75,
+  "fallbackCounts": {
+    "64": 10,
+    "128": 10,
+    "256": 1,
+    "512": 0
+  },
+  "rows": [
+    {
+      "seed": 1,
+      "64": {
+        "fallback": true,
+        "entries": 1482,
+        "capacityBeforeOrFinal": 2048,
+        "loadBefore": 0.72314453125
+      },
+      "128": {
+        "fallback": true,
+        "entries": 746283,
+        "capacityBeforeOrFinal": 1048576,
+        "loadBefore": 0.7117099761962891
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 2,
+      "64": {
+        "fallback": true,
+        "entries": 5982,
+        "capacityBeforeOrFinal": 8192,
+        "loadBefore": 0.7301025390625
+      },
+      "128": {
+        "fallback": true,
+        "entries": 11881,
+        "capacityBeforeOrFinal": 16384,
+        "loadBefore": 0.72509765625
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 3,
+      "64": {
+        "fallback": true,
+        "entries": 6018,
+        "capacityBeforeOrFinal": 8192,
+        "loadBefore": 0.7344970703125
+      },
+      "128": {
+        "fallback": true,
+        "entries": 189512,
+        "capacityBeforeOrFinal": 262144,
+        "loadBefore": 0.7229270935058594
+      },
+      "256": {
+        "fallback": true,
+        "entries": 765996,
+        "capacityBeforeOrFinal": 1048576,
+        "loadBefore": 0.7305097579956055
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 4,
+      "64": {
+        "fallback": true,
+        "entries": 376,
+        "capacityBeforeOrFinal": 512,
+        "loadBefore": 0.732421875
+      },
+      "128": {
+        "fallback": true,
+        "entries": 24236,
+        "capacityBeforeOrFinal": 32768,
+        "loadBefore": 0.739593505859375
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 5,
+      "64": {
+        "fallback": true,
+        "entries": 5149,
+        "capacityBeforeOrFinal": 8192,
+        "loadBefore": 0.62841796875
+      },
+      "128": {
+        "fallback": true,
+        "entries": 11687,
+        "capacityBeforeOrFinal": 16384,
+        "loadBefore": 0.7132568359375
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 6,
+      "64": {
+        "fallback": true,
+        "entries": 2895,
+        "capacityBeforeOrFinal": 4096,
+        "loadBefore": 0.70654296875
+      },
+      "128": {
+        "fallback": true,
+        "entries": 5942,
+        "capacityBeforeOrFinal": 8192,
+        "loadBefore": 0.7252197265625
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 7,
+      "64": {
+        "fallback": true,
+        "entries": 5835,
+        "capacityBeforeOrFinal": 8192,
+        "loadBefore": 0.712158203125
+      },
+      "128": {
+        "fallback": true,
+        "entries": 5868,
+        "capacityBeforeOrFinal": 8192,
+        "loadBefore": 0.7161865234375
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 8,
+      "64": {
+        "fallback": true,
+        "entries": 382,
+        "capacityBeforeOrFinal": 512,
+        "loadBefore": 0.744140625
+      },
+      "128": {
+        "fallback": true,
+        "entries": 193636,
+        "capacityBeforeOrFinal": 262144,
+        "loadBefore": 0.7386589050292969
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 9,
+      "64": {
+        "fallback": true,
+        "entries": 3055,
+        "capacityBeforeOrFinal": 4096,
+        "loadBefore": 0.74560546875
+      },
+      "128": {
+        "fallback": true,
+        "entries": 377854,
+        "capacityBeforeOrFinal": 524288,
+        "loadBefore": 0.7206974029541016
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    },
+    {
+      "seed": 10,
+      "64": {
+        "fallback": true,
+        "entries": 10313,
+        "capacityBeforeOrFinal": 16384,
+        "loadBefore": 0.62939453125
+      },
+      "128": {
+        "fallback": true,
+        "entries": 24332,
+        "capacityBeforeOrFinal": 32768,
+        "loadBefore": 0.742523193359375
+      },
+      "256": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      },
+      "512": {
+        "fallback": false,
+        "entries": 1000000,
+        "capacityBeforeOrFinal": 2097152,
+        "loadBefore": null
+      }
+    }
+  ],
+  "conclusion": "512 survived this finite sample, unlike64/128/256; this motivates an isolated512 candidate, not production adoption. It permits eight times the original maximum table probe comparisons.",
+  "allProcessesTerminal": true,
+  "productionModified": false,
+  "compilerWorkloadsRun": false
+}

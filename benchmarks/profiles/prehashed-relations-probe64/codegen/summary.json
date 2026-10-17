@@ -1,0 +1,194 @@
+{
+  "scope": "Read-only production objdump evidence; no runtime or allocation measurement",
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+      "sha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+      "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d",
+      "source": {
+        "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+        "dirty": true,
+        "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337"
+      },
+      "sourceFileCount": 5153,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      }
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-prehashed-relations",
+      "sha256": "4b7a58bac052c7c474bde440fa43bd5866aa4cfd57284c78d3fe88e6b5a6e838",
+      "sidecarSha256": "488a3476e97301565e6d1402dee7973d08bfcfae58d720091d2555c892be11a5",
+      "source": {
+        "revision": "c7ceb93131606b0b0809118a7e111de00856cdd8",
+        "dirty": true,
+        "sha256": "f5e6e4418b084a529efbf62506a0639bedfe3b555816ade86c06c5a3f0fb54d4"
+      },
+      "sourceFileCount": 5155,
+      "build": {
+        "toolchain": {
+          "CGO_ENABLED": "1",
+          "GO386": "",
+          "GOAMD64": "v1",
+          "GOARCH": "amd64",
+          "GOARM": "",
+          "GOARM64": "",
+          "GOEXPERIMENT": "",
+          "GOMIPS": "",
+          "GOMIPS64": "",
+          "GOOS": "linux",
+          "GOPPC64": "",
+          "GORISCV64": "",
+          "GOVERSION": "go1.26.9"
+        },
+        "arguments": [
+          "build",
+          "-trimpath",
+          "-o",
+          "<binary>",
+          "./cmd/tsgo"
+        ],
+        "extraFlagsPresent": false,
+        "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "profile": null,
+        "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+      }
+    }
+  },
+  "framesExcludingSavedBP": {
+    "baseline": {
+      "(*Checker).isTypeRelatedTo": 120,
+      "(*Relater).recursiveTypeRelatedTo": 616
+    },
+    "candidate": {
+      "(*relationResultCache).get": 24,
+      "(*relationResultCache).set": 216,
+      "(*relationResultCache).rebuild": 296,
+      "(*Checker).isTypeRelatedTo": 104,
+      "(*Relater).recursiveTypeRelatedTo": 552,
+      "(*Relater).resetMaybeStack": 88
+    }
+  },
+  "symbolCodeBytes": {
+    "baseline": {
+      "(*Checker).isTypeRelatedTo": 1208,
+      "(*Relater).recursiveTypeRelatedTo": 4311
+    },
+    "candidate": {
+      "(*Checker).isTypeRelatedTo": 1168,
+      "(*Relater).recursiveTypeRelatedTo": 3581,
+      "(*Relater).resetMaybeStack": 421,
+      "(*relationResultCache).get": 345,
+      "(*relationResultCache).rebuild": 2329,
+      "(*relationResultCache).set": 1917
+    }
+  },
+  "callsInCapturedExcerpts": {
+    "baseline": {
+      "(*Checker).isTypeRelatedTo": [
+        "runtime.mapaccess1(SB)"
+      ],
+      "(*Relater).recursiveTypeRelatedTo": [
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).typeToStringEx(SB)",
+        "runtime.convT32(SB)",
+        "runtime.convT64(SB)",
+        "runtime.convTstring(SB)",
+        "runtime.gcWriteBarrier2(SB)",
+        "runtime.makemap_small(SB)",
+        "runtime.mapaccess1(SB)",
+        "runtime.mapaccess2(SB)",
+        "runtime.mapassign(SB)",
+        "runtime.mapassign_faststr(SB)",
+        "runtime.newobject(SB)"
+      ]
+    },
+    "candidate": {
+      "(*relationResultCache).get": [
+        "runtime.mapaccess1(SB)",
+        "runtime.morestack_noctxt.abi0(SB)",
+        "runtime.panicBounds(SB)"
+      ],
+      "(*relationResultCache).set": [
+        "github.com/microsoft/typescript-go/internal/checker.(*relationResultCache).rebuild(SB)",
+        "runtime.gcWriteBarrier2(SB)",
+        "runtime.makemap(SB)",
+        "runtime.makeslice(SB)",
+        "runtime.mapassign(SB)",
+        "runtime.morestack_noctxt.abi0(SB)",
+        "runtime.panicBounds(SB)",
+        "runtime.wbMove(SB)",
+        "runtime.wbZero(SB)"
+      ],
+      "(*relationResultCache).rebuild": [
+        "runtime.gcWriteBarrier2(SB)",
+        "runtime.makemap(SB)",
+        "runtime.makeslice(SB)",
+        "runtime.mapassign(SB)",
+        "runtime.morestack_noctxt.abi0(SB)",
+        "runtime.panicBounds(SB)",
+        "runtime.wbMove(SB)",
+        "runtime.wbZero(SB)"
+      ],
+      "(*Checker).isTypeRelatedTo": [
+        "github.com/microsoft/typescript-go/internal/checker.(*relationResultCache).get(SB)"
+      ],
+      "(*Relater).recursiveTypeRelatedTo": [
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).typeToStringEx(SB)",
+        "github.com/microsoft/typescript-go/internal/checker.(*Relater).resetMaybeStack(SB)",
+        "github.com/microsoft/typescript-go/internal/checker.(*relationResultCache).get(SB)",
+        "github.com/microsoft/typescript-go/internal/checker.(*relationResultCache).set(SB)",
+        "runtime.convT32(SB)",
+        "runtime.convT64(SB)",
+        "runtime.convTstring(SB)",
+        "runtime.gcWriteBarrier2(SB)",
+        "runtime.makemap_small(SB)",
+        "runtime.mapaccess2(SB)",
+        "runtime.mapassign(SB)",
+        "runtime.mapassign_faststr(SB)",
+        "runtime.newobject(SB)"
+      ],
+      "(*Relater).resetMaybeStack": [
+        "github.com/microsoft/typescript-go/internal/checker.(*relationResultCache).set(SB)",
+        "runtime.gcWriteBarrier2(SB)",
+        "runtime.newobject(SB)"
+      ]
+    }
+  },
+  "findings": [
+    "Relation wrappers inline but cache get/set/rebuild remain calls. find/bitmap/slot helpers are inlined into these methods.",
+    "Table get directly masks prehash low bits, tests occupancy with BTQ, compares both64-bit key words, and loads uint32 value. Bitmap, key and value bounds checks remain.",
+    "Fallback get/set use runtime.mapaccess1/mapassign; table path does not rehash key via runtime.",
+    "New table allocation emits three makeslice calls; bulk store changes retain write barrier operations. No allocation amount or escape rate inferred.",
+    "useFallback is inlined into multiple failure branches, contributing code size to set/rebuild. resetMaybeStack is out of line in candidate, whereas baseline body was inline at inspected callers."
+  ],
+  "sourceComparison": "source-comparison.json",
+  "allProcessesTerminal": true,
+  "compilerRebuilt": false,
+  "testsRun": false,
+  "workloadsRun": false
+}

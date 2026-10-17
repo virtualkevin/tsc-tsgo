@@ -1,0 +1,46 @@
+{
+  "baselineSource": {
+    "revision": "23a5f1ba45e446c4a013edd9980f76e86f616e82",
+    "dirty": true,
+    "sha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337"
+  },
+  "candidateSource": {
+    "revision": "c7ceb93131606b0b0809118a7e111de00856cdd8",
+    "dirty": true,
+    "sha256": "f5e6e4418b084a529efbf62506a0639bedfe3b555816ade86c06c5a3f0fb54d4"
+  },
+  "buildSettingsEqual": true,
+  "differences": [
+    {
+      "path": "packages/tsc-go/internal/checker/relater.go",
+      "baseline": {
+        "path": "packages/tsc-go/internal/checker/relater.go",
+        "sha256": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae",
+        "executable": false
+      },
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/relater.go",
+        "sha256": "b6a0747b797f5811b21ca5d3a6352a1526b2f73879e5f25034d0773ecb447633",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/relation_results.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/relation_results.go",
+        "sha256": "3cd5b016faa007cbd4d2482a5031a0bddbdfe133d0bde9b31e520dd4a0898478",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/relation_results_test.go",
+      "baseline": null,
+      "candidate": {
+        "path": "packages/tsc-go/internal/checker/relation_results_test.go",
+        "sha256": "64db5db2bb2287713ee2b22466d2837137953bbcdf183289132c61f1af0f37db",
+        "executable": false
+      }
+    }
+  ]
+}

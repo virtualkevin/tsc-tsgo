@@ -1,0 +1,128 @@
+{
+  "scope": "Synthetic parameter screening; no compiler workload/correctness validation or time/memory claim",
+  "probeLimit": 512,
+  "loadThreshold": 0.75,
+  "baselineSourceSha256": "52c91919596b9fcb1091a110916d5b8d1c5b687e192c8c27a120d6066a652c85",
+  "variantSourceSha256": "3f359b2dbc9814edbb93c92213aa927924bf1e796ada0300642a705160afa4f1",
+  "driverSha256": "7465fef177bdc45a6ca9997c20c30fbc6b6c571e9e4bb64ec399b9be5f02c097",
+  "parameterPatchSha256": "2de1689e23626805d7dc2e57ab94efc9f486d4df9a37acfe7237b96dc1a38c2e",
+  "binarySha256": "10b89b69c3864e038c69dba47b5f0af8531545b3b0fc29c93df83b7d9792e4bb",
+  "commands": [
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "build",
+        "-o",
+        "screen",
+        "."
+      ],
+      "cwd": "/tmp/tsc-prehashed-relation-random-screen/probe-512",
+      "stdout": "build.stdout",
+      "stderr": "build.stderr",
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "./screen"
+      ],
+      "cwd": "/tmp/tsc-prehashed-relation-random-screen/probe-512",
+      "stdout": "results.stdout",
+      "stderr": "results.stderr",
+      "exitCode": 0
+    }
+  ],
+  "environment": {
+    "unset": [
+      "GOFLAGS",
+      "GOWORK",
+      "GOGC",
+      "GOMEMLIMIT",
+      "GODEBUG"
+    ],
+    "GOMAXPROCS": "1"
+  },
+  "rows": [
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 1,
+      "seed2": 11400714819323198484
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 2,
+      "seed2": 11400714819323198487
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 3,
+      "seed2": 11400714819323198486
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 4,
+      "seed2": 11400714819323198481
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 5,
+      "seed2": 11400714819323198480
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 6,
+      "seed2": 11400714819323198483
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 7,
+      "seed2": 11400714819323198482
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 8,
+      "seed2": 11400714819323198493
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 9,
+      "seed2": 11400714819323198492
+    },
+    {
+      "fallback": false,
+      "finalCapacity": 2097152,
+      "finalCount": 1000000,
+      "limit": 1000000,
+      "seed1": 10,
+      "seed2": 11400714819323198495
+    }
+  ],
+  "fallbacks": 0,
+  "allProcessesTerminal": true
+}

@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "node": {
+    "path": "/home/dev/.nvm/versions/node/v24.15.0/bin/node",
+    "version": "v24.15.0"
+  },
+  "recordedAt": "2026-10-17T14:27:54.512Z",
+  "scope": "Default native differential parity and actual-Go API/emit/project integrations after replacing Relation.results with full-width prehashed storage and bounded-probe Go-map fallback.",
+  "nativeSuiteStatus": "passed",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-prehashed-relations",
+    "sha256": "4b7a58bac052c7c474bde440fa43bd5866aa4cfd57284c78d3fe88e6b5a6e838"
+  },
+  "buildProvenance": {
+    "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-prehashed-relations.provenance.json",
+    "sha256": "488a3476e97301565e6d1402dee7973d08bfcfae58d720091d2555c892be11a5",
+    "builtAt": "2026-10-17T14:19:19.394Z",
+    "sourceSha256": "f5e6e4418b084a529efbf62506a0639bedfe3b555816ade86c06c5a3f0fb54d4",
+    "buildTimeRevision": "c7ceb93131606b0b0809118a7e111de00856cdd8",
+    "sourceDirty": true,
+    "sourceFileCount": 5155,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": [
+        "build",
+        "-trimpath",
+        "-o",
+        "<binary>",
+        "./cmd/tsgo"
+      ],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/relater.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/relater.go",
+        "sha256": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/relater.go",
+        "sha256": "b6a0747b797f5811b21ca5d3a6352a1526b2f73879e5f25034d0773ecb447633",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/relation_results.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/relation_results.go",
+        "sha256": "3cd5b016faa007cbd4d2482a5031a0bddbdfe133d0bde9b31e520dd4a0898478",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/relation_results_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/relation_results_test.go",
+        "sha256": "64db5db2bb2287713ee2b22466d2837137953bbcdf183289132c61f1af0f37db",
+        "executable": false
+      }
+    }
+  ],
+  "repositoryStartingHead": "c7ceb93131606b0b0809118a7e111de00856cdd8",
+  "sourceBefore": {
+    "sha256": "f5e6e4418b084a529efbf62506a0639bedfe3b555816ade86c06c5a3f0fb54d4",
+    "revision": "c7ceb93131606b0b0809118a7e111de00856cdd8",
+    "dirty": true,
+    "fileCount": 5155
+  },
+  "sourceAfter": {
+    "sha256": "f5e6e4418b084a529efbf62506a0639bedfe3b555816ade86c06c5a3f0fb54d4",
+    "revision": "c7ceb93131606b0b0809118a7e111de00856cdd8",
+    "dirty": true,
+    "fileCount": 5155
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "CPUPROFILE",
+    "GLIBC_TUNABLES",
+    "GOCOVERDIR",
+    "GODEBUG",
+    "GOEXPERIMENT",
+    "GOGC",
+    "GOMAXPROCS",
+    "GOMEMLIMIT",
+    "GOTRACEBACK",
+    "HEAPCHECK",
+    "HEAPPROFILE",
+    "LD_PRELOAD",
+    "LLVM_PROFILE_FILE",
+    "MALLOC_ARENA_MAX",
+    "MALLOC_CONF",
+    "MALLOC_TRIM_THRESHOLD_",
+    "NODE_OPTIONS",
+    "PPROF_PATH",
+    "PROJECTS_FILTER",
+    "SHOW_FAILURES",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_GO_WATCH_PARENT_PID",
+    "TSC_GO_WATCH_TEST_DIR",
+    "TSC_TS_BUNDLED_LIBS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_CHECKERS_TRACE",
+    "TSC_TS_ID_ORDER",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_REGION",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_SMAPS",
+    "TSC_TS_TIMELINE",
+    "TSC_TS_WATCH_MEMORY",
+    "TSC_TS_WATCH_PROCESS",
+    "TS_GO_DEBUG_STACK_LIMIT",
+    "TS_WATCH_DEBUG"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-prehashed-relations",
+    "TSC_GO_BASELINE": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-prehashed-relations"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": [
+        "/home/dev/.nvm/versions/node/v24.15.0/bin/node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "timedOut": false,
+      "timeoutMs": 900000,
+      "log": "/tmp/prehashed-relations-native-validation/parity.log",
+      "logSha256": "087d1a039b6a144e6d01cc13524acb17f4131f90f883dad7684df9282b54d78f",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 54542.6329
+      },
+      "expectedTests": 80,
+      "passed": true
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "/home/dev/.nvm/versions/node/v24.15.0/bin/node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "timedOut": false,
+      "timeoutMs": 900000,
+      "log": "/tmp/prehashed-relations-native-validation/integration.log",
+      "logSha256": "47576633966ff78a5f4ef09a9ed8a932c47cfc791680cfc6503912c3c94ac7bb",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 30970.76241
+      },
+      "expectedTests": 12,
+      "passed": true
+    }
+  ],
+  "verifiedSourcesBinariesAndSidecarUnchanged": true,
+  "notes": [
+    "Exact candidate/source/sidecar identities, identical production build settings and three-file delta versus preserved saturated baseline are verified before suites. Full128-bit key equality and saturated key construction are retained.",
+    "SHOW_FAILURES is cleared so API mismatches cannot be masked.80 parity and12 actual-Go integrations are required, with no skipped/cancelled/todo tests.",
+    "Go units, race/checkptr and full pinned upstream conformance are separate; these normal CLI suites do not imply race-instrumented CLI validation.",
+    "Source and HEAD plus candidate/baseline/comparator binaries and sidecars are checked unchanged; external module contents and every JS fixture are not independently hashed.",
+    "Report and logs are written only under the fresh /tmp output directory. Validation durations are not performance measurements."
+  ]
+}

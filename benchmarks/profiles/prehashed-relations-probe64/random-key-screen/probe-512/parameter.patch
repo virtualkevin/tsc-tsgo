@@ -1,0 +1,11 @@
+--- probe-64/relation_results.go
++++ probe-512/relation_results.go
+@@ -2,7 +2,7 @@
+ 
+ // Relation keys are already full-width hashes. Keep both words for equality;
+ // their low bits only choose the first probe slot. No semantic key is narrowed.
+-const relationResultProbeLimit = 64
++const relationResultProbeLimit = 512
+ const relationResultInitialCapacity = 8
+ 
+ type relationResultCache struct {

@@ -1,0 +1,240 @@
+{
+  "scope": "Synthetic deterministic random-key mode-incidence screen only; no timings, memory measurement or actual compiler incidence claim",
+  "source": {
+    "source": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relation_results.go",
+    "sourceSha256": "3cd5b016faa007cbd4d2482a5031a0bddbdfe133d0bde9b31e520dd4a0898478",
+    "copySha256": "52c91919596b9fcb1091a110916d5b8d1c5b687e192c8c27a120d6066a652c85",
+    "onlyTransformation": "package checker -> package main",
+    "sourceUnmodified": true
+  },
+  "productionCandidate": {
+    "binarySha256": "4b7a58bac052c7c474bde440fa43bd5866aa4cfd57284c78d3fe88e6b5a6e838",
+    "sourceSha256": "f5e6e4418b084a529efbf62506a0639bedfe3b555816ade86c06c5a3f0fb54d4",
+    "sidecarSha256": "488a3476e97301565e6d1402dee7973d08bfcfae58d720091d2555c892be11a5"
+  },
+  "screenBinarySha256": "df0fbdf5518d21d6e9dc0862ee371536321cdb55b9b6071e45fb9d88a782f52c",
+  "driverSha256": "7465fef177bdc45a6ca9997c20c30fbc6b6c571e9e4bb64ec399b9be5f02c097",
+  "goExecutable": {
+    "path": "/tmp/tsc-toolchains/go/bin/go",
+    "sha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9"
+  },
+  "toolchain": {
+    "CGO_ENABLED": "1",
+    "GOAMD64": "v1",
+    "GOARCH": "amd64",
+    "GOEXPERIMENT": "",
+    "GOFLAGS": "",
+    "GOOS": "linux",
+    "GOVERSION": "go1.26.9",
+    "GOWORK": ""
+  },
+  "commands": [
+    {
+      "cwd": "/tmp/tsc-prehashed-relation-random-screen",
+      "argv": [
+        "env",
+        "-u",
+        "GOFLAGS",
+        "-u",
+        "GOWORK",
+        "-u",
+        "GOGC",
+        "-u",
+        "GOMEMLIMIT",
+        "-u",
+        "GODEBUG",
+        "GOMAXPROCS=1",
+        "/tmp/tsc-toolchains/go/bin/go",
+        "build",
+        "-o",
+        "screen",
+        "."
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "cwd": "/tmp/tsc-prehashed-relation-random-screen",
+      "argv": [
+        "env",
+        "-u",
+        "GOGC",
+        "-u",
+        "GOMEMLIMIT",
+        "-u",
+        "GODEBUG",
+        "GOMAXPROCS=1",
+        "./screen"
+      ],
+      "stdout": "results.jsonl",
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "version"
+      ],
+      "exitCode": 0,
+      "stdout": "go version go1.26.9 linux/amd64\n"
+    },
+    {
+      "cwd": "/tmp/tsc-prehashed-relation-random-screen",
+      "argv": [
+        "env",
+        "-u",
+        "GOFLAGS",
+        "-u",
+        "GOWORK",
+        "-u",
+        "GOGC",
+        "-u",
+        "GOMEMLIMIT",
+        "-u",
+        "GODEBUG",
+        "GOMAXPROCS=1",
+        "/tmp/tsc-toolchains/go/bin/go",
+        "env",
+        "-json",
+        "GOVERSION",
+        "GOOS",
+        "GOARCH",
+        "GOAMD64",
+        "GOEXPERIMENT",
+        "CGO_ENABLED",
+        "GOFLAGS",
+        "GOWORK"
+      ],
+      "stdout": "toolchain.json",
+      "exitCode": 0
+    }
+  ],
+  "rows": [
+    {
+      "attemptedInsert": 1482,
+      "capacityBefore": 2048,
+      "countAfter": 1482,
+      "entriesBefore": 1481,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.72314453125,
+      "seed1": 1,
+      "seed2": 11400714819323198484
+    },
+    {
+      "attemptedInsert": 5982,
+      "capacityBefore": 8192,
+      "countAfter": 5982,
+      "entriesBefore": 5981,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.7301025390625,
+      "seed1": 2,
+      "seed2": 11400714819323198487
+    },
+    {
+      "attemptedInsert": 6018,
+      "capacityBefore": 8192,
+      "countAfter": 6018,
+      "entriesBefore": 6017,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.7344970703125,
+      "seed1": 3,
+      "seed2": 11400714819323198486
+    },
+    {
+      "attemptedInsert": 376,
+      "capacityBefore": 512,
+      "countAfter": 376,
+      "entriesBefore": 375,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.732421875,
+      "seed1": 4,
+      "seed2": 11400714819323198481
+    },
+    {
+      "attemptedInsert": 5149,
+      "capacityBefore": 8192,
+      "countAfter": 5149,
+      "entriesBefore": 5148,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.62841796875,
+      "seed1": 5,
+      "seed2": 11400714819323198480
+    },
+    {
+      "attemptedInsert": 2895,
+      "capacityBefore": 4096,
+      "countAfter": 2895,
+      "entriesBefore": 2894,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.70654296875,
+      "seed1": 6,
+      "seed2": 11400714819323198483
+    },
+    {
+      "attemptedInsert": 5835,
+      "capacityBefore": 8192,
+      "countAfter": 5835,
+      "entriesBefore": 5834,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.712158203125,
+      "seed1": 7,
+      "seed2": 11400714819323198482
+    },
+    {
+      "attemptedInsert": 382,
+      "capacityBefore": 512,
+      "countAfter": 382,
+      "entriesBefore": 381,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.744140625,
+      "seed1": 8,
+      "seed2": 11400714819323198493
+    },
+    {
+      "attemptedInsert": 3055,
+      "capacityBefore": 4096,
+      "countAfter": 3055,
+      "entriesBefore": 3054,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.74560546875,
+      "seed1": 9,
+      "seed2": 11400714819323198492
+    },
+    {
+      "attemptedInsert": 10313,
+      "capacityBefore": 16384,
+      "countAfter": 10313,
+      "entriesBefore": 10312,
+      "fallback": true,
+      "limit": 1000000,
+      "loadBefore": 0.62939453125,
+      "seed1": 10,
+      "seed2": 11400714819323198495
+    }
+  ],
+  "result": {
+    "seeds": 10,
+    "fallbacks": 10,
+    "attemptedInsertMin": 376,
+    "attemptedInsertMax": 10313,
+    "attemptedInsertMedian": 4102.0,
+    "reasonInference": "All loads before transition below75%, so set took direct probe-exhaustion fallback, not growth/capacity. Reason inferred from unchanged source, not instrumented."
+  },
+  "limitations": [
+    "Finite fixed-seed PCG sample, not a general probability estimate",
+    "Independent pseudorandom full128 keys differ from compiler key distributions and update mixes",
+    "Stop immediately at first fallback; no measurement of subsequent performance",
+    "No actual compiler workload executed",
+    "GOMAXPROCS1 screen for resource control, no timing claim"
+  ],
+  "allProcessesTerminal": true,
+  "mainModified": false
+}
