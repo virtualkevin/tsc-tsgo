@@ -1,0 +1,44 @@
+{
+  "name": "same-binary-aa",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+      "sha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+      "source": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "revisionLabel": "Saturated baseline A/A",
+      "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+      "sha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+      "source": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "revisionLabel": "Saturated baseline A/A",
+      "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "sourceDifference": [],
+  "sourceCounts": {
+    "baseline": 5153,
+    "candidate": 5153
+  },
+  "methodology": "Same preserved saturated compiler binary on both sides; nine alternating pairs TypeORM/tRPC and five VS Code/Sentry, one warmup each. Default runtime/checker/GC settings, identical GNU time wrappers and libraries, fresh compiler process each invocation. All samples retained. This estimates within-session variability, not candidate speed. No builds, tests or profiles during measurement. A separate confirmation policy will be frozen after this calibration and before examining indexed-candidate timing. Native target is not measured here.",
+  "workspaceSource": "c8a7bd150f663db3b46e1262e5e39b0865da004e3aeced71f6ead8a9af96589e"
+}

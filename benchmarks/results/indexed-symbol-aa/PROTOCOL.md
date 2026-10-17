@@ -1,0 +1,9 @@
+# Indexed-storage measurement protocol
+
+The first stage is same-binary A/A using the preserved saturated baseline on both sides. Fixed sample counts are9alternating pairs for TypeORM/tRPC and5for VS Code/Sentry, with one warmup each. Every process is fresh, filesystem caches are warm, and both sides use identical GNU time wrappers, runtime environments, inputs and clean diagnostic requirements. No samples are dropped for being slow. Failures preserve partial evidence and stop the stage.
+
+Calibration is exploratory within-session noise evidence, not proof of statistical independence or a confidence interval for all future runs. Before viewing any candidate timings, freeze the subsequent screening/confirmation sample counts, practical thresholds, summaries, and treatment of inconclusive results based on this calibration. Do not promote small effects merely because one summary favors the candidate. Workload/RSS regressions matter separately from aggregate speed.
+
+Three compiler variants remain required: unchanged saturated baseline; identical allocation handles with PointerLinkStore; handles plus indexed storage. The final comparison must be indexed versus unchanged baseline; comparison against the handle-only control isolates lookup benefit. A fresh native comparison is required for the original10× goal. Never multiply historical Go/Go ratios or count correctness durations as benchmarks.
+
+The common module and runner adapt the prior validated A/B harness without changing its input/diagnostic/environment/wrapper/sample integrity checks. Configuration pins exact binaries, sidecars, source manifests and complete source differences; the runner freezes HEAD and harness/controller/config identities. A/A has an empty source difference. The current production candidate is unchanged while the preserved saturated binary is timed. No subagents are used.
