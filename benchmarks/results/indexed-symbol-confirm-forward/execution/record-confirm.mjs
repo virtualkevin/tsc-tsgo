@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {join,resolve,relative} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {normalizeProject,evaluateResults} from './confirmation-stats.mjs';
+import {root,load,hashFile,validateReport,capture,config,configPath} from './common-screen.mjs';
+assert.ok(['indexed-confirm-forward','indexed-confirm-reverse'].includes(config.name));
+const reversed=config.name==='indexed-confirm-reverse';
+const roles={unchanged:reversed?'candidate':'baseline',indexed:reversed?'baseline':'candidate'};
+assert.deepEqual(config.canonicalRoles,roles);
+assert.deepEqual(config.groups,[{name:'small',projects:['typeorm','trpc'],runs:19},{name:'large',projects:['vscode','sentry'],runs:11}]);
+assert.equal(config.expected[roles.unchanged].sha256,'2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303');
+assert.equal(config.expected[roles.indexed].sha256,'3c3b18fa41dfaad20ea334e4f425ebcbfada4d7cdd2547865007714ba55194a5');
+const dir=resolve(process.argv[2]),summary=load(join(dir,'summary.json'));
+assert.equal(summary.status,'passed');assert.equal(summary.totalTimeoutMs,90*60*1000);assert.equal(summary.perInvocationTimeoutMs,180000);assert.deepEqual(capture(),summary.snapshot);
+for(const [path,h] of Object.entries(summary.controllerFiles))assert.equal(hashFile(path),h);
+const results=[];
+for(const run of summary.runs){assert.equal(run.status,'passed');assert.equal(hashFile(run.output),run.reportSha256);const report=load(run.output),group=config.groups.find(g=>g.name===run.name);assert.deepEqual(validateReport(report,group,summary.snapshot,summary.unsetEnvironment),run.results);
+ for(const p of report.projects)results.push(normalizeProject(p,roles,group.runs));}
+assert.deepEqual(results.map(r=>r.name),['typeorm','trpc','vscode','sentry']);
+const {aggregates,gates}=evaluateResults(results);
+const proposal={status:'passed',recorderSha256:hashFile(fileURLToPath(import.meta.url)),statsModuleSha256:hashFile(fileURLToPath(new URL('./confirmation-stats.mjs',import.meta.url))),experiment:config.name,canonicalRoles:roles,ratioMeaning:'unchanged time / indexed time, irrespective of raw labels',summarySha256:hashFile(join(dir,'summary.json')),configSha256:hashFile(configPath),comparisonPolicySha256:config.comparisonPolicySha256,results,aggregates,gates,passesThisConfirmation:Object.values(gates).every(Boolean),limitations:['This result alone cannot promote the candidate; both independent confirmations must pass every gate.','All raw pairs retained and normalized individually before summaries.','No pooled rescue, statistical-confidence claim, native-target comparison or historical ratio multiplication.']};
+const out=join(dir,'recording');mkdirSync(out);writeFileSync(join(out,'proposal.json'),JSON.stringify(proposal,null,2)+'\n');
+const labels={typeorm:'TypeORM source + tests; Node20 compatibility',trpc:'tRPC server',vscode:'VS Code client',sentry:'Sentry frontend'};
+const rows=results.map(r=>`| Indexed symbol links confirmation ${reversed?'2 (raw roles reversed)':'1'} (capture ${summary.repositoryStartingHead.slice(0,7)}); default settings; GNU time wrapped | ${labels[r.name]} | Go saturated baseline | ${r.baselineMedianMs.toFixed(2)} | ${r.candidateMedianMs.toFixed(2)} | ${r.baselineOverCandidate.toFixed(3)}× | ${r.runs} | Normalized unchanged/indexed; identical ${r.files.toLocaleString('en-US')} inputs; clean diagnostics; median peak RSS unchanged/indexed ${r.baselineMedianRssMiB.toFixed(1)}/${r.candidateMedianRssMiB.toFixed(1)} MiB; paired median ${r.pairedMedian.toFixed(3)}; [samples](${relative(root,dir)}/${r.name==='typeorm'||r.name==='trpc'?'small':'large'}.json). |`).join('\n')+'\n';
+writeFileSync(join(out,'PERF.rows.md'),rows);
+console.log(JSON.stringify({experiment:config.name,results,aggregates,gates,passesThisConfirmation:proposal.passesThisConfirmation},null,2));

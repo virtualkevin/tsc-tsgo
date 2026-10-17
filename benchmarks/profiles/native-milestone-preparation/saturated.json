@@ -1,0 +1,41 @@
+{
+  "name": "native-milestone-saturated",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+      "revisionLabel": "Preserved original native tsc-ts; historical build sidecar absent"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+      "sha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+      "source": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+      "revisionLabel": "Saturated baseline A/A",
+      "sidecarSha256": "c398c606655dcc0a59c8f0167014380bbf77a836866ef1bad81422516d08de8d"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+  "currentNativeSourceSha256": "c8fda9057fe820236882146736f5ecbd28fb84a8875e283dc1fbeaa8a196b1dd",
+  "comparisonPolicySha256": "9d1ccb2493990233542c83f5cda507ca7a3101951f39f55891ed2f613dd0ee43",
+  "totalTimeoutMs": 5400000,
+  "perInvocationTimeoutMs": 180000,
+  "methodology": "Direct original native artifact versus retained Go, after indexed-storage retention decision only. Nine alternating fresh-process pairs TypeORM/tRPC and five VS Code/Sentry, one warmup each, identical GNU time/RSS wrappers, same physical libraries and project settings, default runtime/checker settings; native worker count is not assumed equal to Go. All samples retained. Both ratio of medians and median of paired native/Go ratios reported per workload. No historical speedup multiplication. A finite current-gap measurement, not universal performance or statistical-confidence evidence. Native binary SHA pinned but historical build provenance sidecar absent. No concurrent builds/tests/profiles."
+}
