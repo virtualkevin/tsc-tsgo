@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T08:05:52.163540+00:00",
+  "scope": "Native parity and actual-Go integration validation of a PGO-only code-generation experiment; no performance conclusions from test durations.",
+  "status": "passed",
+  "sourceCommit": "e0a3b2747c4456bd9833a08ac11ff40d612d90ce",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-pgo",
+    "sha256": "1dae86336c301870297fd92a352d4ec6d9ef4bb4d42a4d955c07747eb3a3d847"
+  },
+  "profile": {
+    "path": "benchmarks/profiles/expansion/cpu.pprof",
+    "sha256": "f0c774f76ea6695dde72e179a4a5cbe34856b1f9386a0e67e8dc357094f2c19a"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-pgo.provenance.json",
+    "sha256": "344a124256c91f3c92ca847a43c3100c4a1239b81a51c606ec45390e98da3fac",
+    "builtAt": "2026-10-17T08:03:31.834Z",
+    "sourceSha256": "a89092fd6263a978b86700f99c704c560d2cd7d1c26671ae8b180fefd83ffde5",
+    "buildTimeRevision": "ce2510159a57e794ea84a501d8bd687ea6996237",
+    "sourceDirty": false,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": ["build", "-trimpath", "-o", "<binary>", "-pgo=<profile>", "./cmd/tsgo"],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": {
+        "sha256": "f0c774f76ea6695dde72e179a4a5cbe34856b1f9386a0e67e8dc357094f2c19a"
+      },
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pgo",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-pgo"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-pgo-parity.log",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 57559.080362
+      }
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "exitCode": 0,
+      "log": "/tmp/tsc-go-pgo-integration.log",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 41034.015689
+      }
+    }
+  ],
+  "notes": [
+    "Default scheduler tested; this changes compiler code generation only. Full conformance was not repeated, per agreed scope; source digest equals the validated expansion compiler.",
+    "Integration count12 excludes checker.test.mjs, which ignores TSC_TS_BIN and executes the original JS driver.",
+    "PGO profile is an unweighted merge of these four benchmark workload profiles; runtime settings are unchanged."
+  ]
+}
