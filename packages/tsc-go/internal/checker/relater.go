@@ -97,16 +97,16 @@ func asRecursionId[T *ast.Node | *ast.Symbol | *Type](value T) RecursionId {
 }
 
 type Relation struct {
-	results map[RelationKey]RelationComparisonResult
+	results map[CacheHashKey]RelationComparisonResult
 }
 
-func (r *Relation) get(key RelationKey) RelationComparisonResult {
+func (r *Relation) get(key CacheHashKey) RelationComparisonResult {
 	return r.results[key]
 }
 
-func (r *Relation) set(key RelationKey, result RelationComparisonResult) {
+func (r *Relation) set(key CacheHashKey, result RelationComparisonResult) {
 	if r.results == nil {
-		r.results = make(map[RelationKey]RelationComparisonResult)
+		r.results = make(map[CacheHashKey]RelationComparisonResult)
 	}
 	r.results[key] = result
 }
@@ -216,7 +216,7 @@ func (c *Checker) isTypeRelatedTo(source *Type, target *Type, relation *Relation
 		}
 	}
 	if source.flags&TypeFlagsObject != 0 && target.flags&TypeFlagsObject != 0 {
-		id, _ := c.getRelationKey(source, target, IntersectionStateNone, relation == c.identityRelation, false)
+		id, _ := getRelationKey(source, target, IntersectionStateNone, relation == c.identityRelation, false)
 		related := relation.get(id)
 		if related != RelationComparisonResultNone {
 			return related&RelationComparisonResultSucceeded != 0
@@ -423,7 +423,7 @@ func (c *Checker) checkTypeRelatedToEx(
 	result := r.isRelatedToEx(source, target, RecursionFlagsBoth, errorNode != nil /*reportErrors*/, headMessage, IntersectionStateNone)
 	if r.overflow {
 		// Record this relation as having failed such that we don't attempt the overflowing operation again.
-		id, _ := c.getRelationKey(source, target, IntersectionStateNone, relation == c.identityRelation, false /*ignoreConstraints*/)
+		id, _ := getRelationKey(source, target, IntersectionStateNone, relation == c.identityRelation, false /*ignoreConstraints*/)
 		relation.set(id, RelationComparisonResultFailed|core.IfElse(r.relationCount <= 0, RelationComparisonResultComplexityOverflow, RelationComparisonResultStackDepthOverflow))
 		if tr := c.tracer; tr != nil {
 			tr.Instant(tracing.PhaseCheckTypes, "checkTypeRelatedTo_DepthLimit", map[string]any{"sourceId": source.id, "targetId": target.id, "depth": len(r.sourceStack), "targetDepth": len(r.targetStack)})
@@ -2603,8 +2603,8 @@ type Relater struct {
 	errorNode      *ast.Node
 	errorChain     *ErrorChain
 	relatedInfo    []*ast.Diagnostic
-	maybeKeys      []RelationKey
-	maybeKeysSet   collections.Set[RelationKey]
+	maybeKeys      []CacheHashKey
+	maybeKeysSet   collections.Set[CacheHashKey]
 	sourceStack    []*Type
 	targetStack    []*Type
 	maybeCount     int
@@ -3094,7 +3094,7 @@ func (r *Relater) recursiveTypeRelatedTo(source *Type, target *Type, reportError
 		// important to have well-defined behavior even in cases that shouldn't normally occur.
 		return TernaryFalse
 	}
-	id, constrained := r.c.getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, false /*ignoreConstraints*/)
+	id, constrained := getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, false /*ignoreConstraints*/)
 	if entry := r.relation.get(id); entry != RelationComparisonResultNone {
 		if reportErrors && entry&RelationComparisonResultFailed != 0 && entry&RelationComparisonResultOverflow == 0 {
 			// We are elaborating errors and the cached result is a failure not due to a comparison overflow,
@@ -3125,7 +3125,7 @@ func (r *Relater) recursiveTypeRelatedTo(source *Type, target *Type, reportError
 	// type parameters. For such keys we also check against the key we would have gotten if all type parameters
 	// were unconstrained.
 	if constrained {
-		broadestEquivalentId, _ := r.c.getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, true /*ignoreConstraints*/)
+		broadestEquivalentId, _ := getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, true /*ignoreConstraints*/)
 		if r.maybeKeysSet.Has(broadestEquivalentId) {
 			return TernaryMaybe
 		}

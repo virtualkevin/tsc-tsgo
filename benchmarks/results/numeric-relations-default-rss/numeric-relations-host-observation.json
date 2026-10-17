@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T12:55:34.548835+00:00",
+  "scope": "Observation during numeric relation-key large-project benchmark; no process was terminated.",
+  "firstObservation": {
+    "command": "ps -eo pid,ppid,etime,pcpu,comm --sort=-pcpu | head -18",
+    "selectedRows": [
+      {
+        "pid": 274784,
+        "ppid": 274783,
+        "elapsed": "00:12",
+        "pcpu": 486,
+        "comm": "tsc-go-numeric-"
+      },
+      {
+        "pid": 275071,
+        "ppid": 274811,
+        "elapsed": "00:00",
+        "pcpu": 93.8,
+        "comm": "ncdu"
+      },
+      {
+        "pid": 274811,
+        "ppid": 3841,
+        "elapsed": "00:04",
+        "pcpu": 4.9,
+        "comm": "zsh"
+      }
+    ]
+  },
+  "followUp": {
+    "command": "ps -p 274811,275071 -o pid,ppid,etime,time,comm",
+    "selectedRows": [
+      {
+        "pid": 274811,
+        "ppid": 3841,
+        "elapsed": "00:25",
+        "cpuTime": "00:00:00",
+        "comm": "zsh"
+      }
+    ],
+    "scannerPidPresent": false
+  },
+  "limitations": [
+    "Exact observation timestamps were not captured; recordedAt is when this note was written.",
+    "ps CPU percentages are lifetime averages, not a measured per-sample load overlap.",
+    "The harness saves warmup/pair progress after a complete timed pair, so the incomplete large report cannot determine whether this observation overlapped preflight, warmup, or the first measured pair.",
+    "This observation does not identify the scanner owner or prove it caused the cross-session baseline shift.",
+    "All samples are retained; no automatic exclusion, speed claim, or further confirmation is implied."
+  ],
+  "crossSessionContext": "Same preserved pointer reference had higher small-workload wall and ancestor CPU medians than the earlier CJS experiment; CPU model/count and visible5.6-CPU ancestor quota remain the same. Only within-run comparisons should be used."
+}
