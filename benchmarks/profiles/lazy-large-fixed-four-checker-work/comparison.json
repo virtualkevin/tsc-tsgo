@@ -1,0 +1,394 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "purpose": "Untimed fixed-four versus saved single-checker creation counters; concurrent validation may run. No elapsed-time, speed, memory, or total-semantic-work claims.",
+  "startedAt": "2026-10-17T09:44:49.613725+00:00",
+  "sourceBenchmark": "benchmarks/results/lazy-default-large.json",
+  "sourceBenchmarkSha256": "62ef251b59f06ff7a103eeab3ae13cc28e8c4038f91aa600ab10997717451de4",
+  "singleCheckerEvidence": "benchmarks/profiles/lazy-large-single-checker-work/comparison.json",
+  "singleCheckerEvidenceSha256": "96ff46756edc8aceffd9f50ae7b0f08b8559c59debd9472503471d9a247390f0",
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy",
+      "sha256": "961e90a7e1d873477233c022716da08acc6f4b3f02df11c70d5e11360ca59ec3"
+    }
+  },
+  "candidateSourceSha256": "39b165a093813ad622f9b276a3a9d6c433d0d6a91199ee6c897f3d8e3ed03a59",
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "environmentOverrides": {
+    "TSC_TS_LIB_DIR": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs",
+    "TSC_TS_CHECKERS_TRACE": "1"
+  },
+  "requestedCheckers": 4,
+  "collectorBudgetSeconds": 180,
+  "nativeDefaultPolicy": "auto (availableParallelism, memory/library adjustment); this experiment explicitly requests four, not native default.",
+  "goDefaultPolicy": "four (explicitly requested here)",
+  "limitations": [
+    "One parallel sample per workload/compiler; native work stealing, retirement and ambient scheduling can change per-worker counts.",
+    "Types count allocations including initialization; Instantiations count worker calls after active mapper misses, not equal-cost operations or all semantic work.",
+    "Native trace covers each worker generation; indices are not deduplicated. Reporting-main Types are added separately because native mainThreadChecks(shared=true) is false.",
+    "Native reporting-main Instantiations are unreported in the parallel path, so native all-checker Instantiations and its 4/1 ratio remain unavailable.",
+    "Higher aggregate counts indicate extra creation under this schedule, not measured duplicate identities or a realizable speedup."
+  ],
+  "projects": [
+    {
+      "name": "sentry",
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "scope": "Root frontend configuration; referenced icons and scraps declarations must be built before benchmarking.",
+      "configSha256": "5af98444a087983efb2f50f2d878b7937b8550d86dd00dcf882e5c33afe8eb3c",
+      "lockfileSha256": "1f30f0aa4b3707dff3d826d7b1b77a0dbd7c4b3c1bb2c0fd34227685a62be132",
+      "inputCount": 13290,
+      "inputFileListSha256": "ca37f82d60e3863bd4cddbc6af04e991dc230ab6eebadfaf2d228dc1ecf260d6",
+      "status": "complete",
+      "runs": {
+        "baseline": {
+          "args": [
+            "-p",
+            "tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "sentry-baseline.stdout.log",
+          "stderr": "sentry-baseline.stderr.log",
+          "stdoutSha256": "c431b9124b4cedf78477b5672f5c4a0504b9a826807c0d5763f41fd9ece45a1c",
+          "stderrSha256": "17692f7fe0dc0b016f2188c866beb420155e6e0a6ec3bcf0976f1b56ccef457b",
+          "extendedCounters": {
+            "Files": 13290,
+            "Lines": 2130849,
+            "Identifiers": 2594398,
+            "Symbols": 1454672,
+            "Types": 83,
+            "Instantiations": 0,
+            "Memory allocs": 0
+          },
+          "workerRecords": [
+            {
+              "index": 1,
+              "checkedFiles": 2618,
+              "counters": {
+                "Types": 642254,
+                "Instantiations": 2023249,
+                "SymbolLinkEntries": 109628,
+                "NodeLinkEntries": 45401,
+                "Signatures": 88279,
+                "RelationEntries": 408881
+              }
+            },
+            {
+              "index": 0,
+              "checkedFiles": 3031,
+              "counters": {
+                "Types": 646780,
+                "Instantiations": 2269964,
+                "SymbolLinkEntries": 115843,
+                "NodeLinkEntries": 59468,
+                "Signatures": 100340,
+                "RelationEntries": 566941
+              }
+            },
+            {
+              "index": 2,
+              "checkedFiles": 2805,
+              "counters": {
+                "Types": 568228,
+                "Instantiations": 1780847,
+                "SymbolLinkEntries": 115934,
+                "NodeLinkEntries": 45067,
+                "Signatures": 90688,
+                "RelationEntries": 585671
+              }
+            },
+            {
+              "index": 3,
+              "checkedFiles": 1180,
+              "counters": {
+                "Types": 668415,
+                "Instantiations": 1846557,
+                "SymbolLinkEntries": 120966,
+                "NodeLinkEntries": 83034,
+                "Signatures": 92550,
+                "RelationEntries": 470459
+              }
+            }
+          ],
+          "actualWorkerIndices": [0, 1, 2, 3],
+          "workerGenerations": 4,
+          "plannedFiles": 9634,
+          "workerOnlyCounters": {
+            "Types": 2525677,
+            "Instantiations": 7920617,
+            "SymbolLinkEntries": 462371,
+            "NodeLinkEntries": 232970,
+            "Signatures": 371857,
+            "RelationEntries": 2031952
+          },
+          "reportingMainTypes": 83,
+          "totalCounters": {
+            "Types": 2525760,
+            "Instantiations": null
+          },
+          "instantiationCoverage": "Unavailable: main reporting checker is not traced in compileInParallel; worker-only sum is retained separately.",
+          "versusSingleChecker": {
+            "Types": {
+              "single": 1792408,
+              "fixedFour": 2525760,
+              "extra": 733352,
+              "fourOverOne": 1.4091434539457535
+            },
+            "Instantiations": null
+          }
+        },
+        "candidate": {
+          "args": [
+            "-p",
+            "tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "sentry-candidate.stdout.log",
+          "stderr": "sentry-candidate.stderr.log",
+          "stdoutSha256": "6514b4cb59f58d4e7f6b69c6a1a1b5b9099d34572c4abf28b95568430e400656",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "extendedCounters": {
+            "Files": 13290,
+            "Lines": 2130849,
+            "Identifiers": 2594398,
+            "Symbols": 5032829,
+            "Types": 2725687,
+            "Instantiations": 11722854,
+            "Memory allocs": 44980106
+          },
+          "totalCounters": {
+            "Types": 2725687,
+            "Instantiations": 11722854
+          },
+          "versusSingleChecker": {
+            "Types": {
+              "single": 1798696,
+              "fixedFour": 2725687,
+              "extra": 926991,
+              "fourOverOne": 1.5153683557421598
+            },
+            "Instantiations": {
+              "single": 5974204,
+              "fixedFour": 11722854,
+              "extra": 5748650,
+              "fourOverOne": 1.962245346827795
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "vscode",
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "scope": "VS Code client sources; repository typecheck-client configuration. Native runtime modules are not built. Electron declarations are fetched by the repository checksum-verified setup script.",
+      "configSha256": "6c35a05a6798601b37cd28c535f4e7258ffdf34e271fbf6a4411d328f1db2332",
+      "lockfileSha256": "819cbd150198a84ebe73843245f9d65de85251b917bea7b3c186886d7d3754aa",
+      "inputCount": 11563,
+      "inputFileListSha256": "e8b7b3641f42ac1ce3f09b21f3b5fc7af06d6917173fb8b3bad194acbd9a7c41",
+      "status": "complete",
+      "runs": {
+        "baseline": {
+          "args": [
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "vscode-baseline.stdout.log",
+          "stderr": "vscode-baseline.stderr.log",
+          "stdoutSha256": "4b5095fc0623c64eb662b34a7f665e165bbac4d75716467a98a8df53e612c19b",
+          "stderrSha256": "daff94a7d8232cf07093d9f9163d0cd2f4b5e21a008e662e6493a95becec6122",
+          "extendedCounters": {
+            "Files": 11563,
+            "Lines": 4036783,
+            "Identifiers": 7444484,
+            "Symbols": 2923596,
+            "Types": 85,
+            "Instantiations": 0,
+            "Memory allocs": 0
+          },
+          "workerRecords": [
+            {
+              "index": 0,
+              "checkedFiles": 4588,
+              "counters": {
+                "Types": 927722,
+                "Instantiations": 1478994,
+                "SymbolLinkEntries": 251679,
+                "NodeLinkEntries": 186128,
+                "Signatures": 249009,
+                "RelationEntries": 457910
+              }
+            },
+            {
+              "index": 2,
+              "checkedFiles": 918,
+              "counters": {
+                "Types": 884003,
+                "Instantiations": 1351033,
+                "SymbolLinkEntries": 172563,
+                "NodeLinkEntries": 168136,
+                "Signatures": 194365,
+                "RelationEntries": 639273
+              }
+            },
+            {
+              "index": 1,
+              "checkedFiles": 3380,
+              "counters": {
+                "Types": 993723,
+                "Instantiations": 1389885,
+                "SymbolLinkEntries": 249713,
+                "NodeLinkEntries": 187103,
+                "Signatures": 240830,
+                "RelationEntries": 658540
+              }
+            },
+            {
+              "index": 3,
+              "checkedFiles": 1522,
+              "counters": {
+                "Types": 1224567,
+                "Instantiations": 1302273,
+                "SymbolLinkEntries": 212796,
+                "NodeLinkEntries": 251073,
+                "Signatures": 238437,
+                "RelationEntries": 597783
+              }
+            }
+          ],
+          "actualWorkerIndices": [0, 1, 2, 3],
+          "workerGenerations": 4,
+          "plannedFiles": 10408,
+          "workerOnlyCounters": {
+            "Types": 4030015,
+            "Instantiations": 5522185,
+            "SymbolLinkEntries": 886751,
+            "NodeLinkEntries": 792440,
+            "Signatures": 922641,
+            "RelationEntries": 2353506
+          },
+          "reportingMainTypes": 85,
+          "totalCounters": {
+            "Types": 4030100,
+            "Instantiations": null
+          },
+          "instantiationCoverage": "Unavailable: main reporting checker is not traced in compileInParallel; worker-only sum is retained separately.",
+          "versusSingleChecker": {
+            "Types": {
+              "single": 3270735,
+              "fixedFour": 4030100,
+              "extra": 759365,
+              "fourOverOne": 1.232169527644398
+            },
+            "Instantiations": null
+          }
+        },
+        "candidate": {
+          "args": [
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "vscode-candidate.stdout.log",
+          "stderr": "vscode-candidate.stderr.log",
+          "stdoutSha256": "d3a59ef8dd9777a53b3bd3ad79f4ecdc88a50c475d3861b6a00bd5b2166b79ac",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "extendedCounters": {
+            "Files": 11563,
+            "Lines": 4036783,
+            "Identifiers": 7444484,
+            "Symbols": 6846185,
+            "Types": 4277160,
+            "Instantiations": 5915965,
+            "Memory allocs": 44640402
+          },
+          "totalCounters": {
+            "Types": 4277160,
+            "Instantiations": 5915965
+          },
+          "versusSingleChecker": {
+            "Types": {
+              "single": 3267740,
+              "fixedFour": 4277160,
+              "extra": 1009420,
+              "fourOverOne": 1.3089046252149803
+            },
+            "Instantiations": {
+              "single": 4217548,
+              "fixedFour": 5915965,
+              "extra": 1698417,
+              "fourOverOne": 1.402702470724696
+            }
+          }
+        }
+      }
+    }
+  ],
+  "finishedAt": "2026-10-17T09:47:17.155492+00:00"
+}
