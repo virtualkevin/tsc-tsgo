@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "toolchain": "go version go1.26.9 linux/amd64",
+  "fixture_revisions": {
+    "typescript_go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+    "typescript": "4d4f005c8541e0255a9d8791205fdce326e462bc"
+  },
+  "source_before": {
+    "revision": "8291ee5c9dc14ee2a2c244a4ec56b5c4128a0568",
+    "dirty": true,
+    "sha256": "02093082d3baa33b0e2d3f2f77b916a7fe01907c96d894b6805eeeab0648c014",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "source_after": {
+    "revision": "8291ee5c9dc14ee2a2c244a4ec56b5c4128a0568",
+    "dirty": true,
+    "sha256": "02093082d3baa33b0e2d3f2f77b916a7fe01907c96d894b6805eeeab0648c014",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "source_unchanged": true,
+  "source_scope": "Complete captureGoSources manifest, including cmd/internal/scripts, go.mod/go.sum/package.json, build-provenance helper and untracked/ignored sources. Captures declaration transformer guard and all compiler/test sources.",
+  "source_file_count": 5149,
+  "coverage_limits": [
+    "Targeted suite uses thirteen fixture-name prefixes and covers eighteen actual pinned source cases, including five related sibling fixtures; exact selected cases are listed.",
+    "Root npm test normal-mode alias covers ten packages; no race/checkptr validation is claimed for this traversal guard.",
+    "Full pinned conformance includes supported diagnostics/emit/type baselines; unsupported and partial skips are separate.",
+    "Native CLI/API/parallel emit gate is separately owned by parent.",
+    "No test durations are performance measurements."
+  ],
+  "suites": {
+    "targeted": {
+      "test_records": {
+        "pass": 163
+      },
+      "top_level_records": {
+        "pass": 1
+      },
+      "passing_top_level_tests": [
+        "TestSubmodule"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+      },
+      "cached_packages": [],
+      "source_configuration_cases": {
+        "total": 18,
+        "fully_checked": 18,
+        "partially_checked": 0,
+        "unsupported_skipped": 0,
+        "failed": 0
+      },
+      "skip_categories": {},
+      "partial_output_skips": [],
+      "failed_tests": []
+    },
+    "root-npm": {
+      "test_records": {
+        "pass": 1683
+      },
+      "top_level_records": {
+        "pass": 103
+      },
+      "passing_top_level_tests": [
+        "TestLinkStoreConcurrentExistingKeyReads",
+        "TestLinkStoreNewPreservesIdentityAndValues",
+        "TestLinkStoreNewAndGetPreserveEntriesAcrossGrowth",
+        "TestLinkStoreNewAcceptsNilPointerKey",
+        "TestPointerLinkStoreDifferential",
+        "TestPointerLinkStoreNilAndReplacement",
+        "TestPointerLinkStoreCollisionsAndGrowth",
+        "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+        "TestPointerLinkStoreConcurrentReadOnlyCopies",
+        "TestPatternOverlappingMatch",
+        "TestBreadthFirstSearchParallel",
+        "TestLibraryDirectoryOverride",
+        "TestRelativeLibraryDirectoryOverride",
+        "TestDefaultLibraryDirectory",
+        "TestTestingLibPath",
+        "TestEmbeddedLibs",
+        "TestScanStringPreservesLoneSurrogates",
+        "TestPositionMapRoundtrip",
+        "TestPositionMapMultipleNonASCII",
+        "TestPositionMapLoneSurrogateSentinel",
+        "TestPositionMapTwoByte",
+        "TestPositionMapASCII",
+        "TestPositionMapFourByte",
+        "TestDeepCloneNodeSanityCheck",
+        "TestBalancedCheckerAssignments",
+        "TestCheckerSchedulingSkipsUncheckedFiles",
+        "TestDependencyCheckerGroups",
+        "TestDependencyCheckerAssignments",
+        "TestCheckerSchedulingImportsUseResolvedFileIdentity",
+        "TestIncludeProcessorDiagnosticsWithMissingFileCasing",
+        "TestProgram",
+        "TestActiveMapperCacheLifetime",
+        "TestActiveMapperCacheInvalidation",
+        "TestActiveMapperCacheSurvivesNestedMapperGrowth",
+        "TestActiveMapperCacheDistinguishesAliases",
+        "TestActiveMapperCachePreservesAliasSymbolIDOrder",
+        "TestActiveMapperCacheDoesNotBypassInstantiationLimits",
+        "TestActiveMapperSplitCachesKeepNestedPopulation",
+        "TestActiveMapperSplitCachesSeparateAliasesAndInvalidateBoth",
+        "TestActiveMapperSplitCachesClearDuringNestedWorker",
+        "TestCrossProductPruningMatchesEagerOrder",
+        "TestCrossProductUnitNormalization",
+        "TestCrossProductLateMemberResolutionGuard",
+        "TestCrossProductPruningDoesNotAlterInput",
+        "TestInferenceVariancesConcreteReferencesSkipMeasurement",
+        "TestInferenceVariancesDeferredArgumentsStayConservative",
+        "TestInferenceVariancesClassStaticSideGuards",
+        "TestLazyIntersectionReductionMatchesEagerProperties",
+        "TestLazyUnmatchedPropertyMatchesEagerScan",
+        "TestLazyUnmatchedPropertyDoesNotSynthesizeBroadUnion",
+        "TestLazyUnmatchedPropertyContinuesPastIndexedUnionConstituent",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+        "TestPendingOptionalQueriesDoNotInstantiateMembers",
+        "TestPrimitiveUnionRelationsMatchFullRelater",
+        "TestTemplateCachesKeepCompleteInputs",
+        "TestTemplateCachesReportOversizedProductsAtEveryUse",
+        "TestTypeAccessorContracts",
+        "TestTypeRetainsConcreteTailAcrossGC",
+        "TestCopiedTypeHeaderRetainsOriginalAllocation",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity",
+        "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+        "TestValueSymbolLinksReplacementKeepsPublishedPointers",
+        "TestConditionalInferenceFalseBranchAndDeferredGuards",
+        "TestConditionalInferenceVariadicTupleInsideCallable",
+        "TestConditionalInferenceLiteralTagWithoutStrictNullChecks",
+        "TestCrossProductComplexityErrorsStillReportEachUse",
+        "TestInferenceVariancesPreserveGenericAliasAndContravariantInference",
+        "TestInferenceVariancesInvalidAnnotationsStillReport",
+        "TestJsxManagedAttributesReportsInstantiationDepthAtEachUse",
+        "TestLazyIntersectionAPIPreservesSparseGenericMembers",
+        "TestLazyIntersectionAPIPrivateOptionalPatternAndRecursiveProperties",
+        "TestPendingMembersAPISparseLookupThenEnumeration",
+        "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+        "TestPendingMembersAPIRecursiveBaseAndPrivateStatic",
+        "TestTracerPushPreservesEndArgMutations",
+        "TestGetSymbolAtLocation",
+        "TestWatchSourceCacheDetectsSameTimeLinkReplacement",
+        "TestWatchTracksPhysicalTargetsAndEvictsAllAliases",
+        "TestWatchAncestorEventsExcludeUnrelatedDirectories",
+        "TestWatchAncestorReplacementEvictsSameTimeSources",
+        "TestResolveDesiredDirsKeepsConcreteShallowProjects",
+        "TestKnownWatchDirectoriesAcceptAllAbsoluteDepths",
+        "TestRemovedTemporaryProjectKeepsNearestExistingWatch",
+        "TestReplacedWatchTerminationDoesNotScheduleObsoleteRebuild",
+        "TestWatchMissingConfigRetriesOnlyItsOwnDirectoryEvents",
+        "TestWatchReadinessWaitsForWatchReconciliation",
+        "TestBuildOrderGenerator",
+        "TestWatchSupervisorReplacesWorkerAndStopsOrphans",
+        "TestWatchSupervisorHelper",
+        "TestWatchMemoryPolicyMatchesNativeEnvironment"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/core": "pass",
+        "github.com/microsoft/typescript-go/internal/bundled": "pass",
+        "github.com/microsoft/typescript-go/internal/scanner": "pass",
+        "github.com/microsoft/typescript-go/internal/ast": "pass",
+        "github.com/microsoft/typescript-go/internal/compiler": "pass",
+        "github.com/microsoft/typescript-go/internal/checker": "pass",
+        "github.com/microsoft/typescript-go/internal/execute": "pass",
+        "github.com/microsoft/typescript-go/internal/execute/watchmanager": "pass",
+        "github.com/microsoft/typescript-go/internal/execute/build": "pass",
+        "github.com/microsoft/typescript-go/cmd/tsgo": "pass"
+      },
+      "cached_packages": [
+        "github.com/microsoft/typescript-go/internal/ast",
+        "github.com/microsoft/typescript-go/internal/bundled",
+        "github.com/microsoft/typescript-go/internal/core",
+        "github.com/microsoft/typescript-go/internal/execute",
+        "github.com/microsoft/typescript-go/internal/execute/watchmanager",
+        "github.com/microsoft/typescript-go/internal/scanner"
+      ],
+      "scope": "Exact current root npm test alias; actual package results above are authoritative. Expected current alias has ten Go packages."
+    },
+    "conformance": {
+      "test_records": {
+        "pass": 113970,
+        "skip": 2126
+      },
+      "top_level_records": {
+        "pass": 1
+      },
+      "passing_top_level_tests": [
+        "TestSubmodule"
+      ],
+      "package_status": {
+        "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+      },
+      "cached_packages": [],
+      "source_configuration_cases": {
+        "total": 14915,
+        "fully_checked": 12789,
+        "partially_checked": 8,
+        "unsupported_skipped": 2118,
+        "failed": 0
+      },
+      "skip_categories": {
+        "unsupported target ES5": 1244,
+        "unsupported module kind AMD": 321,
+        "unsupported module kind System": 222,
+        "alwaysStrict=false is unsupported": 52,
+        "unsupported outFile": 87,
+        "esModuleInterop=false is unsupported": 24,
+        "unsupported module resolution kind 1": 57,
+        "unsupported baseUrl": 31,
+        "unsupported module resolution kind 2": 23,
+        "unsupported module kind UMD": 57
+      },
+      "partial_output_skips": [
+        {
+          "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+          "reason": "cls.d.ts is missing statements when run concurrently."
+        },
+        {
+          "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+          "reason": "Nondeterministic contents when run concurrently."
+        },
+        {
+          "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+          "reason": "Nondeterministic contents when run concurrently."
+        },
+        {
+          "test": "TestSubmodule/grammarErrors.ts/output",
+          "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+        },
+        {
+          "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+          "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+        },
+        {
+          "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+          "reason": "No files are emitted."
+        },
+        {
+          "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+          "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+        },
+        {
+          "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+          "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+        }
+      ],
+      "failed_tests": []
+    }
+  },
+  "processes": [
+    {
+      "name": "targeted",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/testrunner",
+        "-run",
+        "^TestSubmodule$/(declarationEmitExpandoWithGenericConstraint|declarationEmitLateBoundAssignments|declarationEmitExpandoPropertyPrivateName|isolatedDeclarationErrorsExpandoFunctions|jsDeclarationEmitExportAssignedFunctionWithExtraTypedefsMembers|jsDeclarationEmitExportAssignedArray|declarationEmitBindingPatterns|declarationEmitDestructuringWithOptionalBindingParameters|expandoFunctionNestedAssigments|jsDeclarationsExportDoubleAssignmentInClosure|amdLikeInputDeclarationEmit|moduleExportsElementAccessAssignment|jsExportAssignmentNonMutableLocation)",
+        "-parallel",
+        "4",
+        "-timeout",
+        "10m",
+        "-count=1"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/cjs-prepass-validation-main/targeted.jsonl",
+      "stderr": "/tmp/cjs-prepass-validation-main/targeted.stderr",
+      "stdout_sha256": "85313815506a465295017a153338b7aef7df6bcb5e143c8b71949259a0fa0732",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "root-npm",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "environment": {
+        "GOFLAGS": "-json",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/cjs-prepass-validation-main/root-npm.jsonl",
+      "stderr": "/tmp/cjs-prepass-validation-main/root-npm.stderr",
+      "stdout_sha256": "8b97045075782a023720e9c77ac2e14b214017d24f107bf8f37ab9f8b98e03ab",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "conformance",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/testrunner",
+        "-run",
+        "^TestSubmodule$",
+        "-parallel",
+        "4",
+        "-timeout",
+        "30m"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1",
+        "GOARCH": null,
+        "GOOS": null
+      },
+      "exit_code": 0,
+      "stdout": "/tmp/cjs-prepass-validation-main/conformance.jsonl",
+      "stderr": "/tmp/cjs-prepass-validation-main/conformance.stderr",
+      "stdout_sha256": "15e1647bb45285508c3a8c26025ecf296ae48472405a7ff38aff9c74e6d8f8c9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Minimal CommonJS declaration-prepass guard: eighteen pinned declaration fixtures selected by thirteen name prefixes, root npm ten-package alias, and full pinned upstream conformance.",
+  "controller_report_sha256": "fcc7ab56e4fa2fad81a37919d14626f4ee055665c3908f4c93e00f2391a76def",
+  "controller_report_path": "/tmp/cjs-prepass-validation-main/validation.json",
+  "targeted_actual_cases": [
+    "TestSubmodule/expandoFunctionNestedAssigments.ts",
+    "TestSubmodule/declarationEmitExpandoPropertyPrivateName.ts",
+    "TestSubmodule/declarationEmitLateBoundAssignments.ts",
+    "TestSubmodule/amdLikeInputDeclarationEmit.ts",
+    "TestSubmodule/jsDeclarationEmitExportAssignedArray.ts",
+    "TestSubmodule/declarationEmitExpandoWithGenericConstraint.ts",
+    "TestSubmodule/jsDeclarationEmitExportAssignedFunctionWithExtraTypedefsMembers.ts",
+    "TestSubmodule/jsExportAssignmentNonMutableLocation.ts",
+    "TestSubmodule/moduleExportsElementAccessAssignment.ts",
+    "TestSubmodule/moduleExportsElementAccessAssignment2.ts",
+    "TestSubmodule/declarationEmitDestructuringWithOptionalBindingParameters.ts",
+    "TestSubmodule/jsDeclarationsExportDoubleAssignmentInClosure.ts",
+    "TestSubmodule/declarationEmitLateBoundAssignments2.ts",
+    "TestSubmodule/isolatedDeclarationErrorsExpandoFunctions.ts",
+    "TestSubmodule/declarationEmitBindingPatternsFunctionExpr.ts",
+    "TestSubmodule/declarationEmitBindingPatternsUnused.ts",
+    "TestSubmodule/expandoFunctionNestedAssigmentsDeclared.ts",
+    "TestSubmodule/declarationEmitBindingPatterns.ts"
+  ],
+  "duration_note": "Concurrent correctness validation and production builds; elapsed test times are not performance measurements.",
+  "targeted_fixture_names": [
+    "declarationEmitExpandoWithGenericConstraint",
+    "declarationEmitLateBoundAssignments",
+    "declarationEmitExpandoPropertyPrivateName",
+    "isolatedDeclarationErrorsExpandoFunctions",
+    "jsDeclarationEmitExportAssignedFunctionWithExtraTypedefsMembers",
+    "jsDeclarationEmitExportAssignedArray",
+    "declarationEmitBindingPatterns",
+    "declarationEmitDestructuringWithOptionalBindingParameters",
+    "expandoFunctionNestedAssigments",
+    "jsDeclarationsExportDoubleAssignmentInClosure",
+    "amdLikeInputDeclarationEmit",
+    "moduleExportsElementAccessAssignment",
+    "jsExportAssignmentNonMutableLocation"
+  ],
+  "targeted_coverage": {
+    "nil_indicator": "TS exported and global expandos, generic constraints, late symbol/string/numeric assignments, nested function/default-parameter/loop assignments",
+    "positive_indicator": "JS export-assigned functions/arrays, nested double assignment in a closure, and CommonJS symbol members",
+    "diagnostics": "Pinned TS4032 private-name declaration diagnostic, TS9007 and TS9023 isolated-declaration diagnostics",
+    "lexical_hooks": "Destructuring/default/optional parameters and nested loop/function scopes",
+    "limitations": "Branch classification is based on fixture source and binder semantics; the baseline harness compares diagnostics and emitted/type/symbol baselines, not internal branch counters."
+  }
+}

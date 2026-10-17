@@ -1,0 +1,274 @@
+{
+  "scope": "Source-only audit of existing current CPU profile summaries, no new runs",
+  "binarySha256": "b1a592d593d3415603062016bfd35b11b810f31f9a49b008ec2292e661a15322",
+  "sourceSha256": "6beaa7324ec7dbf09a8b2776bda64b6d5b0d2e93ead3b27ccc4d3aabf5c43d3d",
+  "capturePath": "/tmp/tsc-pointer-current-profiles/capture.json",
+  "summaryEvidencePath": "/tmp/tsc-pointer-current-profiles/summary-evidence.json",
+  "captureSha256": "54502c5cd55997bcc747381b2f46148a15c9d55ef4a4aac365a923100246fd5d",
+  "workloads": {
+    "typeorm": {
+      "sampleHeader": "Duration: 2.38s, Total samples = 11.28s (474.86%)",
+      "selectedFunctions": {
+        "runtime.gcBgMarkWorker": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "1.78s",
+          "cumulativePercent": "15.78%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "1.19s",
+          "cumulativePercent": "10.55%"
+        },
+        "github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).setupDiagnosticContext": {
+          "flat": "0.13s",
+          "flatPercent": "1.15%",
+          "cumulative": "0.94s",
+          "cumulativePercent": "8.33%"
+        },
+        "github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).visitCJSExportAssignments": {
+          "flat": "0.05s",
+          "flatPercent": "0.44%",
+          "cumulative": "0.76s",
+          "cumulativePercent": "6.74%"
+        },
+        "github.com/microsoft/typescript-go/internal/compiler.(*Program).getDeclarationDiagnosticsForFile": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.68s",
+          "cumulativePercent": "6.03%"
+        },
+        "github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).visitNestedExpression": {
+          "flat": "0.02s",
+          "flatPercent": "0.18%",
+          "cumulative": "0.67s",
+          "cumulativePercent": "5.94%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias": {
+          "flat": "0.05s",
+          "flatPercent": "0.44%",
+          "cumulative": "0.43s",
+          "cumulativePercent": "3.81%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.42s",
+          "cumulativePercent": "3.72%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.40s",
+          "cumulativePercent": "3.55%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeEx": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.18s",
+          "cumulativePercent": "1.60%"
+        }
+      },
+      "absenceMeaning": "Not present among top300 cumulative nodes; not proof of zero cost."
+    },
+    "trpc": {
+      "sampleHeader": "Duration: 489.36ms, Total samples = 2.26s (461.83%)",
+      "selectedFunctions": {
+        "runtime.gcBgMarkWorker": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.33s",
+          "cumulativePercent": "14.60%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.28s",
+          "cumulativePercent": "12.39%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol": {
+          "flat": "0.01s",
+          "flatPercent": "0.44%",
+          "cumulative": "0.27s",
+          "cumulativePercent": "11.95%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias": {
+          "flat": "0.03s",
+          "flatPercent": "1.33%",
+          "cumulative": "0.19s",
+          "cumulativePercent": "8.41%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.16s",
+          "cumulativePercent": "7.08%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalType": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.12s",
+          "cumulativePercent": "5.31%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalTypeInstantiation": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.11s",
+          "cumulativePercent": "4.87%"
+        },
+        "github.com/microsoft/typescript-go/internal/compiler.(*Program).getDeclarationDiagnosticsForFile": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.05s",
+          "cumulativePercent": "2.21%"
+        },
+        "github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).visitCJSExportAssignments": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "0.05s",
+          "cumulativePercent": "2.21%"
+        }
+      },
+      "absenceMeaning": "Not present among top300 cumulative nodes; not proof of zero cost."
+    },
+    "vscode": {
+      "sampleHeader": "Duration: 34.25s, Total samples = 152.30s (444.67%)",
+      "selectedFunctions": {
+        "runtime.gcBgMarkWorker": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "30.34s",
+          "cumulativePercent": "19.92%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol": {
+          "flat": "0.21s",
+          "flatPercent": "0.14%",
+          "cumulative": "28.71s",
+          "cumulativePercent": "18.85%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias": {
+          "flat": "0.33s",
+          "flatPercent": "0.22%",
+          "cumulative": "9.17s",
+          "cumulativePercent": "6.02%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker": {
+          "flat": "0.06s",
+          "flatPercent": "0.039%",
+          "cumulative": "8.70s",
+          "cumulativePercent": "5.71%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers": {
+          "flat": "0.14s",
+          "flatPercent": "0.092%",
+          "cumulative": "7.92s",
+          "cumulativePercent": "5.20%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeEx": {
+          "flat": "0.02s",
+          "flatPercent": "0.013%",
+          "cumulative": "5.50s",
+          "cumulativePercent": "3.61%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalTypeInstantiation": {
+          "flat": "0.05s",
+          "flatPercent": "0.033%",
+          "cumulative": "5.44s",
+          "cumulativePercent": "3.57%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalType": {
+          "flat": "0.01s",
+          "flatPercent": "0.0066%",
+          "cumulative": "4.74s",
+          "cumulativePercent": "3.11%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize": {
+          "flat": "0.01s",
+          "flatPercent": "0.0066%",
+          "cumulative": "2.27s",
+          "cumulativePercent": "1.49%"
+        }
+      },
+      "absenceMeaning": "Not present among top300 cumulative nodes; not proof of zero cost."
+    },
+    "sentry": {
+      "sampleHeader": "Duration: 29.28s, Total samples = 123.57s (422.10%)",
+      "selectedFunctions": {
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol": {
+          "flat": "0.10s",
+          "flatPercent": "0.081%",
+          "cumulative": "27.95s",
+          "cumulativePercent": "22.62%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias": {
+          "flat": "0.54s",
+          "flatPercent": "0.44%",
+          "cumulative": "23.68s",
+          "cumulativePercent": "19.16%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker": {
+          "flat": "0.09s",
+          "flatPercent": "0.073%",
+          "cumulative": "23.14s",
+          "cumulativePercent": "18.73%"
+        },
+        "runtime.gcBgMarkWorker": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "20.53s",
+          "cumulativePercent": "16.61%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers": {
+          "flat": "0.27s",
+          "flatPercent": "0.22%",
+          "cumulative": "16.59s",
+          "cumulativePercent": "13.43%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalTypeInstantiation": {
+          "flat": "0.01s",
+          "flatPercent": "0.0081%",
+          "cumulative": "10.58s",
+          "cumulativePercent": "8.56%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalType": {
+          "flat": "0.02s",
+          "flatPercent": "0.016%",
+          "cumulative": "9.40s",
+          "cumulativePercent": "7.61%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeEx": {
+          "flat": "0.07s",
+          "flatPercent": "0.057%",
+          "cumulative": "9.01s",
+          "cumulativePercent": "7.29%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize": {
+          "flat": "0",
+          "flatPercent": "0%",
+          "cumulative": "3.73s",
+          "cumulativePercent": "3.02%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).addTypeToUnion": {
+          "flat": "0.14s",
+          "flatPercent": "0.11%",
+          "cumulative": "3.48s",
+          "cumulativePercent": "2.82%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.compareTypesWithOrder": {
+          "flat": "1.37s",
+          "flatPercent": "1.11%",
+          "cumulative": "3.28s",
+          "cumulativePercent": "2.65%"
+        },
+        "github.com/microsoft/typescript-go/internal/checker.getRelationKey": {
+          "flat": "0.74s",
+          "flatPercent": "0.6%",
+          "cumulative": "2.22s",
+          "cumulativePercent": "1.80%"
+        }
+      },
+      "absenceMeaning": "Not present among top300 cumulative nodes; not proof of zero cost."
+    }
+  }
+}
