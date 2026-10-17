@@ -1,0 +1,307 @@
+File: tsc-go-pointer-linkstore
+Build ID: 57edf35d267dfd7792093cd0dd3f372d1dc700b4
+Type: alloc_space
+Time: 2026-10-17 12:03:50 UTC
+Showing nodes accounting for 2972.95MB, 58.00% of 5125.36MB total
+Showing top 300 nodes out of 1757
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%  4856.77MB 94.76%  github.com/microsoft/typescript-go/internal/core.(*parallelWorkGroup).Queue.func1
+         0     0%     0%  4849.69MB 94.62%  sync.(*WaitGroup).Go.func1
+         0     0%     0%  2842.48MB 55.46%  github.com/microsoft/typescript-go/internal/compiler.(*filesParser).start.func1
+       2MB 0.039% 0.039%  2828.05MB 55.18%  github.com/microsoft/typescript-go/internal/compiler.(*parseTask).load
+         0     0% 0.039%  2572.09MB 50.18%  github.com/microsoft/typescript-go/internal/compiler.(*compilerHost).GetSourceFile
+         0     0% 0.039%  2567.01MB 50.08%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).parseSourceFile
+    6.51MB  0.13%  0.17%  2445.98MB 47.72%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseListIndex
+         0     0%  0.17%  2438.43MB 47.58%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseStatement
+         0     0%  0.17%  2387.38MB 46.58%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseSourceFileWorker
+         0     0%  0.17%  2386.39MB 46.56%  github.com/microsoft/typescript-go/internal/parser.ParseSourceFile
+         0     0%  0.17%  2374.53MB 46.33%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseToplevelStatement
+         0     0%  0.17%  2161.01MB 42.16%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseList
+         0     0%  0.17%     2153MB 42.01%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseList.func1
+         0     0%  0.17%  1837.25MB 35.85%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseBlock
+         0     0%  0.17%  1837.25MB 35.85%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseFunctionBlock
+       1MB  0.02%  0.19%  1797.61MB 35.07%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseDelimitedList
+         0     0%  0.19%  1712.68MB 33.42%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseAssignmentExpressionOrHigher (inline)
+         0     0%  0.19%  1712.68MB 33.42%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseAssignmentExpressionOrHigherWorker
+         0     0%  0.19%  1686.51MB 32.91%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseBinaryExpressionOrHigher
+         0     0%  0.19%  1659.95MB 32.39%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseDeclaration
+         0     0%  0.19%  1657.81MB 32.35%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseLeftHandSideExpressionOrHigher
+         0     0%  0.19%  1657.29MB 32.34%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseUnaryExpressionOrHigher
+         0     0%  0.19%  1654.93MB 32.29%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseDeclarationWorker
+         0     0%  0.19%  1651.77MB 32.23%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseUpdateExpression
+         0     0%  0.19%  1638.02MB 31.96%  github.com/microsoft/typescript-go/internal/parser.doInContext[go.shape.*uint8] (inline)
+         0     0%  0.19%  1518.70MB 29.63%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseExpression
+         0     0%  0.19%  1344.27MB 26.23%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseCallExpressionRest
+         0     0%  0.19%  1331.07MB 25.97%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceFile
+         0     0%  0.19%  1328.55MB 25.92%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getDiagnostics
+         0     0%  0.19%  1326.55MB 25.88%  github.com/microsoft/typescript-go/internal/checker.(*Checker).GetDiagnostics (inline)
+         0     0%  0.19%  1326.55MB 25.88%  github.com/microsoft/typescript-go/internal/compiler.(*Program).getBindAndCheckDiagnosticsWithChecker
+         0     0%  0.19%  1323.09MB 25.81%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseExpressionOrLabeledStatement
+         0     0%  0.19%  1322.52MB 25.80%  github.com/microsoft/typescript-go/internal/compiler.(*Program).getSemanticDiagnosticsWithChecker
+         0     0%  0.19%  1322.01MB 25.79%  github.com/microsoft/typescript-go/internal/compiler.(*Program).collectCheckerDiagnosticsFromFiles.func1
+         0     0%  0.19%  1321.91MB 25.79%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElementWorker
+         0     0%  0.19%  1321.40MB 25.78%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElement
+         0     0%  0.19%  1320.49MB 25.76%  github.com/microsoft/typescript-go/internal/compiler.(*checkerPool).forEachCheckerGroupDo.func1
+         0     0%  0.19%  1319.90MB 25.75%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElements
+         0     0%  0.19%  1307.39MB 25.51%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseArgumentList
+         0     0%  0.19%  1305.94MB 25.48%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseArgumentOrArrayLiteralElement
+         0     0%  0.19%  1291.81MB 25.20%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseArgumentExpression
+         0     0%  0.19%  1238.32MB 24.16%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseMemberExpressionOrHigher
+         0     0%  0.19%  1072.95MB 20.93%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx
+         0     0%  0.19%  1072.95MB 20.93%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker
+         0     0%  0.19%  1051.30MB 20.51%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseArrowFunctionExpressionBody
+         0     0%  0.19%   987.82MB 19.27%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseFunctionBlockOrSemicolon
+         0     0%  0.19%   983.54MB 19.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParenthesizedArrowFunctionExpression
+         0     0%  0.19%   983.54MB 19.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).tryParseParenthesizedArrowFunctionExpression
+         0     0%  0.19%   982.82MB 19.18%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkBlock
+         0     0%  0.19%   962.03MB 18.77%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePrimaryExpression
+         0     0%  0.19%   936.07MB 18.26%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseClassDeclarationOrExpression
+         0     0%  0.19%   913.95MB 17.83%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseClassElement
+         0     0%  0.19%   891.68MB 17.40%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseClassDeclaration (inline)
+         0     0%  0.19%   840.81MB 16.40%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkClassDeclaration
+         0     0%  0.19%      836MB 16.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkCallExpression
+         0     0%  0.19%   827.60MB 16.15%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getResolvedSignature
+         0     0%  0.19%   812.40MB 15.85%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveSignature
+         0     0%  0.19%   783.02MB 15.28%  github.com/microsoft/typescript-go/internal/ast.(*Node).ForEachChild
+         0     0%  0.19%   758.41MB 14.80%  github.com/microsoft/typescript-go/internal/ast.visitNodeList (inline)
+         0     0%  0.19%   758.41MB 14.80%  github.com/microsoft/typescript-go/internal/ast.visitNodes (inline)
+         0     0%  0.19%   757.82MB 14.79%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveCallExpression
+    0.50MB 0.0098%   0.2%   756.26MB 14.76%  github.com/microsoft/typescript-go/internal/parser.(*Parser).createIdentifierWithDiagnostic
+         0     0%   0.2%   754.49MB 14.72%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePropertyOrMethodDeclaration
+         0     0%   0.2%   725.54MB 14.16%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bind
+         0     0%   0.2%   724.39MB 14.13%  sync.(*Once).doSlow
+         0     0%   0.2%   723.89MB 14.12%  sync.(*Once).Do (inline)
+         0     0%   0.2%   723.04MB 14.11%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindChildren
+         0     0%   0.2%   723.04MB 14.11%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindContainer
+         0     0%   0.2%   722.70MB 14.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkFunctionOrMethodDeclaration
+         0     0%   0.2%   722.04MB 14.09%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindEachStatementFunctionsFirst
+         0     0%   0.2%   707.38MB 13.80%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveCall
+         0     0%   0.2%   707.36MB 13.80%  github.com/microsoft/typescript-go/internal/binder.BindSourceFile.bindSourceFile.func1
+         0     0%   0.2%   705.58MB 13.77%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseMethodDeclaration
+         0     0%   0.2%   705.33MB 13.76%  github.com/microsoft/typescript-go/internal/ast.(*SourceFile).BindOnce.func1
+    0.50MB 0.0098%  0.21%   702.84MB 13.71%  github.com/microsoft/typescript-go/internal/checker.(*Checker).chooseOverload
+         0     0%  0.21%   702.32MB 13.70%  github.com/microsoft/typescript-go/internal/ast.(*SourceFile).BindOnce
+         0     0%  0.21%   700.79MB 13.67%  github.com/microsoft/typescript-go/internal/binder.BindSourceFile
+         0     0%  0.21%   700.79MB 13.67%  github.com/microsoft/typescript-go/internal/binder.bindSourceFile (inline)
+         0     0%  0.21%   699.01MB 13.64%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseVariableStatement
+         0     0%  0.21%   698.08MB 13.62%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpression (inline)
+         0     0%  0.21%   697.76MB 13.61%  github.com/microsoft/typescript-go/internal/compiler.(*Program).BindSourceFiles.func1
+         0     0%  0.21%   689.29MB 13.45%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindEachChild (inline)
+         0     0%  0.21%   667.85MB 13.03%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseVariableDeclarationList
+         0     0%  0.21%   618.10MB 12.06%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseVariableDeclarationWorker
+         0     0%  0.21%   609.51MB 11.89%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseVariableDeclarationAllowExclamation
+         0     0%  0.21%   606.47MB 11.83%  github.com/microsoft/typescript-go/internal/ast.visit (inline)
+         0     0%  0.21%   599.71MB 11.70%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewIdentifier
+         0     0%  0.21%   599.71MB 11.70%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }]).New
+         0     0%  0.21%   599.71MB 11.70%  github.com/microsoft/typescript-go/internal/parser.(*Parser).newIdentifier (inline)
+  599.71MB 11.70% 11.91%   599.71MB 11.70%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }] (inline)
+         0     0% 11.91%   592.02MB 11.55%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol
+         0     0% 11.91%   545.52MB 10.64%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionCachedEx
+         0     0% 11.91%   536.24MB 10.46%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkMethodDeclaration
+         0     0% 11.91%   507.86MB  9.91%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseInitializer
+         0     0% 11.91%   494.02MB  9.64%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseObjectLiteralExpression
+         0     0% 11.91%   479.05MB  9.35%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbol (inline)
+  171.16MB  3.34% 15.25%   479.05MB  9.35%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolEx
+         0     0% 15.25%   472.45MB  9.22%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseObjectLiteralElement
+         0     0% 15.25%   457.92MB  8.93%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionStatement
+         0     0% 15.25%   455.58MB  8.89%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWithContextualType
+         0     0% 15.25%   446.33MB  8.71%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkVariableLikeDeclaration
+         0     0% 15.25%   437.51MB  8.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfVariableOrParameterOrProperty
+         0     0% 15.25%   427.34MB  8.34%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseMemberExpressionRest
+         0     0% 15.25%   423.01MB  8.25%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeForVariableLikeDeclaration
+         0     0% 15.25%   421.70MB  8.23%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0]).New
+  421.70MB  8.23% 23.47%   421.70MB  8.23%  slices.Grow[go.shape.[]go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0] (inline)
+         0     0% 23.47%   415.74MB  8.11%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseIdentifierNameWithDiagnostic (inline)
+         0     0% 23.47%   406.82MB  7.94%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfVariableOrParameterOrPropertyWorker
+         0     0% 23.47%   406.82MB  7.94%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getWidenedTypeForVariableLikeDeclaration
+         0     0% 23.47%   392.89MB  7.67%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolAndAddToSymbolTable
+         0     0% 23.47%   390.07MB  7.61%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferTypeArguments
+         0     0% 23.47%   382.07MB  7.45%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePropertyAccessExpressionRest
+         0     0% 23.47%   373.22MB  7.28%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseIdentifierName (inline)
+         0     0% 23.47%   372.84MB  7.27%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseIfStatement
+         0     0% 23.47%   372.19MB  7.26%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkVariableDeclaration
+         0     0% 23.47%   372.19MB  7.26%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkVariableDeclarationList
+         0     0% 23.47%   359.33MB  7.01%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx
+         0     0% 23.47%   359.33MB  7.01%  github.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx
+         0     0% 23.47%   353.15MB  6.89%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindCallExpressionFlow
+         0     0% 23.47%   351.91MB  6.87%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkVariableStatement
+         0     0% 23.47%   350.13MB  6.83%  github.com/microsoft/typescript-go/internal/ast.(*CallExpression).ForEachChild
+         0     0% 23.47%   343.87MB  6.71%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseFunctionDeclaration
+         0     0% 23.47%   342.31MB  6.68%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isSignatureApplicable
+         0     0% 23.47%   340.62MB  6.65%  github.com/microsoft/typescript-go/internal/binder.(*Binder).newSymbol
+         0     0% 23.47%   332.59MB  6.49%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeclarationInitializer
+         0     0% 23.47%   331.42MB  6.47%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindExpressionStatement
+         0     0% 23.47%   321.34MB  6.27%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseExpressionAllowIn (inline)
+         0     0% 23.47%   312.95MB  6.11%  github.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo
+         0     0% 23.47%   301.09MB  5.87%  github.com/microsoft/typescript-go/internal/ast.(*ArrowFunction).ForEachChild
+         0     0% 23.47%   289.34MB  5.65%  github.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo
+         0     0% 23.47%   288.72MB  5.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkIfStatement
+         0     0% 23.47%   283.79MB  5.54%  github.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker
+         0     0% 23.47%   282.66MB  5.51%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkBinaryExpression (inline)
+         0     0% 23.47%   282.66MB  5.51%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkBinaryLikeExpression
+         0     0% 23.47%   277.32MB  5.41%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedTo (inline)
+         0     0% 23.47%   277.32MB  5.41%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isTypeRelatedTo
+         0     0% 23.47%   273.14MB  5.33%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAccessExpression
+         0     0% 23.47%   266.88MB  5.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias
+         0     0% 23.47%   266.88MB  5.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker
+   17.01MB  0.33% 23.80%   261.98MB  5.11%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkObjectLiteral
+         0     0% 23.80%   257.32MB  5.02%  github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType (partial-inline)
+         0     0% 23.80%   252.66MB  4.93%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers
+         0     0% 23.80%   246.02MB  4.80%  github.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo
+   26.53MB  0.52% 24.32%   245.58MB  4.79%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).resolveImportsAndModuleAugmentations
+         0     0% 24.32%   237.97MB  4.64%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindPropertyOrMethodOrAccessor
+         0     0% 24.32%   237.10MB  4.63%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseIdentifierWithDiagnostic
+         0     0% 24.32%   226.15MB  4.41%  github.com/microsoft/typescript-go/internal/ast.(*ClassDeclaration).ForEachChild
+         0     0% 24.32%   223.23MB  4.36%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionCached (inline)
+         0     0% 24.32%   220.26MB  4.30%  github.com/microsoft/typescript-go/internal/ast.(*VariableDeclarationList).ForEachChild (inline)
+         0     0% 24.32%   214.86MB  4.19%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionForMutableLocation
+         0     0% 24.32%   214.82MB  4.19%  github.com/microsoft/typescript-go/internal/ast.(*ObjectLiteralExpression).ForEachChild (inline)
+         0     0% 24.32%   212.70MB  4.15%  github.com/microsoft/typescript-go/internal/ast.(*VariableStatement).ForEachChild
+         0     0% 24.32%   209.08MB  4.08%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).insertAt
+         0     0% 24.32%   201.16MB  3.92%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseForOrForInOrForOfStatement
+         0     0% 24.32%   197.93MB  3.86%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkNonNullExpression
+         0     0% 24.32%   195.65MB  3.82%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseType
+         0     0% 24.32%   192.92MB  3.76%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseRightSideOfDot
+         0     0% 24.32%   192.80MB  3.76%  github.com/microsoft/typescript-go/internal/bundled.(*wrappedFS).ReadFile
+         0     0% 24.32%   192.80MB  3.76%  github.com/microsoft/typescript-go/internal/vfs/cachedvfs.(*FS).ReadFile
+         0     0% 24.32%   192.80MB  3.76%  github.com/microsoft/typescript-go/internal/vfs/osvfs.(*osFS).ReadFile
+         0     0% 24.32%   192.20MB  3.75%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewPropertyAccessExpression
+         0     0% 24.32%   192.20MB  3.75%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.MemberExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Expression *github.com/microsoft/typescript-go/internal/ast.Node; QuestionDotToken *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.name *github.com/microsoft/typescript-go/internal/ast.Node }]).New
+  192.20MB  3.75% 28.07%   192.20MB  3.75%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.MemberExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Expression *github.com/microsoft/typescript-go/internal/ast.Node; QuestionDotToken *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.name *github.com/microsoft/typescript-go/internal/ast.Node },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.MemberExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Expression *github.com/microsoft/typescript-go/internal/ast.Node; QuestionDotToken *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.name *github.com/microsoft/typescript-go/internal/ast.Node }] (inline)
+         0     0% 28.07%   191.30MB  3.73%  github.com/microsoft/typescript-go/internal/vfs/internal.(*Common).ReadFile
+         0     0% 28.07%   191.30MB  3.73%  io/fs.ReadFile
+         0     0% 28.07%   191.30MB  3.73%  os.dirFS.ReadFile
+         0     0% 28.07%   191.08MB  3.73%  github.com/microsoft/typescript-go/internal/checker.(*Relater).isPropertySymbolTypeRelated
+         0     0% 28.07%   191.08MB  3.73%  github.com/microsoft/typescript-go/internal/checker.(*Relater).propertyRelatedTo
+         0     0% 28.07%   189.30MB  3.69%  os.ReadFile
+         0     0% 28.07%   187.45MB  3.66%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkFunctionDeclaration
+         0     0% 28.07%   186.13MB  3.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAssignment
+  185.80MB  3.63% 31.70%   185.80MB  3.63%  os.readFileContents
+         0     0% 31.70%   185.71MB  3.62%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseReturnStatement
+         0     0% 31.70%   181.93MB  3.55%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseUnionOrIntersectionType
+         0     0% 31.70%   181.93MB  3.55%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseUnionTypeOrHigher (inline)
+         0     0% 31.70%   181.47MB  3.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfInstantiatedSymbol
+         0     0% 31.70%   180.41MB  3.52%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkIdentifier
+    0.50MB 0.0098% 31.71%   178.18MB  3.48%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromTypes
+         0     0% 31.71%   178.18MB  3.48%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferTypes
+         0     0% 31.71%   177.52MB  3.46%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParametersWorker
+         0     0% 31.71%   172.88MB  3.37%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseIntersectionTypeOrHigher
+         0     0% 31.71%   172.38MB  3.36%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeOperatorOrHigher
+         0     0% 31.71%      172MB  3.36%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParameterEx
+         0     0% 31.71%   171.50MB  3.35%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParametersWorker.func1
+         0     0% 31.71%   171.38MB  3.34%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePostfixTypeOrHigher
+         0     0% 31.71%   170.52MB  3.33%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseSimpleUnaryExpression
+         0     0% 31.71%   169.69MB  3.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeferredNode
+         0     0% 31.71%   169.69MB  3.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeferredNodes
+         0     0% 31.71%   169.69MB  3.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeferredNodes-range1 (inline)
+         0     0% 31.71%   169.69MB  3.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeferredNodes.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Node]).Values.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Node,go.shape.struct {}]).Keys.func1 (inline)
+         0     0% 31.71%   169.54MB  3.31%  github.com/microsoft/typescript-go/internal/module.(*Resolver).ResolveModuleName
+  168.66MB  3.29% 35.00%   168.66MB  3.29%  github.com/microsoft/typescript-go/internal/parser.(*Parser).internIdentifier (inline)
+         0     0% 35.00%   167.37MB  3.27%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseNonArrayType
+         0     0% 35.00%   165.97MB  3.24%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkConstructorDeclaration
+         0     0% 35.00%      164MB  3.20%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAccessExpressionOrQualifiedName
+         0     0% 35.00%   163.60MB  3.19%  github.com/microsoft/typescript-go/internal/ast.(*MethodDeclaration).ForEachChild
+         0     0% 35.00%   158.43MB  3.09%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get
+    8.67MB  0.17% 35.17%   154.49MB  3.01%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalTypeInstantiation
+    0.50MB 0.0098% 35.18%   154.03MB  3.01%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseSimpleArrowFunctionExpression
+         0     0% 35.18%   152.04MB  2.97%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkFunctionExpressionOrObjectLiteralMethodDeferred
+         0     0% 35.18%   152.01MB  2.97%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkFunctionExpressionOrObjectLiteralMethod
+         0     0% 35.18%   149.72MB  2.92%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewCallExpression
+         0     0% 35.18%   149.72MB  2.92%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LeftHandSideExpressionBase; github.com/microsoft/typescript-go/internal/ast.DeclarationBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Expression *github.com/microsoft/typescript-go/internal/ast.Node; QuestionDotToken *github.com/microsoft/typescript-go/internal/ast.Node; TypeArguments *github.com/microsoft/typescript-go/internal/ast.NodeList; Arguments *github.com/microsoft/typescript-go/internal/ast.NodeList }]).New
+  149.72MB  2.92% 38.10%   149.72MB  2.92%  slices.Grow[go.shape.75d950073f758f49844b3a765ccc244fd87a4ac4b15ea37dc0c59a9f052d3a20,go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LeftHandSideExpressionBase; github.com/microsoft/typescript-go/internal/ast.DeclarationBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Expression *github.com/microsoft/typescript-go/internal/ast.Node; QuestionDotToken *github.com/microsoft/typescript-go/internal/ast.Node; TypeArguments *github.com/microsoft/typescript-go/internal/ast.NodeList; Arguments *github.com/microsoft/typescript-go/internal/ast.NodeList }] (inline)
+         0     0% 38.10%   149.35MB  2.91%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParameters
+         0     0% 38.10%   149.12MB  2.91%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseArrayLiteralExpression
+         0     0% 38.10%   148.33MB  2.89%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeNode
+         0     0% 38.10%   148.33MB  2.89%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeNodeWorker
+         0     0% 38.10%   146.54MB  2.86%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).resolveNodeLike
+         0     0% 38.10%   146.54MB  2.86%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).resolveNodeLikeWorker
+         0     0% 38.10%   146.09MB  2.85%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType
+         0     0% 38.10%   146.03MB  2.85%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindVariableDeclarationFlow
+         0     0% 38.10%      146MB  2.85%  github.com/microsoft/typescript-go/internal/checker.(*Checker).contextuallyCheckFunctionExpressionOrObjectLiteralMethod
+         0     0% 38.10%   144.99MB  2.83%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkReturnStatement
+         0     0% 38.10%   143.18MB  2.79%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePropertyName (inline)
+         0     0% 38.10%   143.18MB  2.79%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePropertyNameWorker
+         0     0% 38.10%   142.22MB  2.77%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx
+         0     0% 38.10%   140.56MB  2.74%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType
+         0     0% 38.10%   139.98MB  2.73%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromObjectTypes
+         0     0% 38.10%   139.98MB  2.73%  github.com/microsoft/typescript-go/internal/checker.(*Checker).invokeOnce
+         0     0% 38.10%   139.46MB  2.72%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkClassLikeDeclaration
+  137.03MB  2.67% 40.77%   137.03MB  2.67%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newObjectType
+         0     0% 40.77%   135.15MB  2.64%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseAwaitExpression
+         0     0% 40.77%   133.77MB  2.61%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getReturnTypeFromBody
+         0     0% 40.77%   133.48MB  2.60%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToAndOptionallyElaborate
+         0     0% 40.77%   133.45MB  2.60%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseObjectTypeMembers
+         0     0% 40.77%   133.44MB  2.60%  github.com/microsoft/typescript-go/internal/ast.(*VariableDeclaration).ForEachChild
+         0     0% 40.77%   133.32MB  2.60%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseImportDeclarationOrImportEqualsDeclaration
+         0     0% 40.77%   130.57MB  2.55%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseLiteralExpression
+         0     0% 40.77%   130.44MB  2.54%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeMember
+         0     0% 40.77%   129.94MB  2.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker
+         0     0% 40.77%   129.94MB  2.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty (inline)
+         0     0% 40.77%   128.31MB  2.50%  github.com/microsoft/typescript-go/internal/parser.(*Parser).tryParseConstructorDeclaration
+  125.80MB  2.45% 43.23%   125.80MB  2.45%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow
+         0     0% 43.23%   125.76MB  2.45%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewNodeList
+         0     0% 43.23%   125.76MB  2.45%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { Loc github.com/microsoft/typescript-go/internal/core.TextRange; Nodes []*github.com/microsoft/typescript-go/internal/ast.Node }]).New
+         0     0% 43.23%   125.76MB  2.45%  github.com/microsoft/typescript-go/internal/parser.(*Parser).newNodeList (inline)
+  125.76MB  2.45% 45.68%   125.76MB  2.45%  slices.Grow[go.shape.[]go.shape.struct { Loc github.com/microsoft/typescript-go/internal/core.TextRange; Nodes []*github.com/microsoft/typescript-go/internal/ast.Node },go.shape.struct { Loc github.com/microsoft/typescript-go/internal/core.TextRange; Nodes []*github.com/microsoft/typescript-go/internal/ast.Node }] (inline)
+         0     0% 45.68%   124.31MB  2.43%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalType
+         0     0% 45.68%   123.75MB  2.41%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseBinaryExpressionRest
+         0     0% 45.68%   122.92MB  2.40%  github.com/microsoft/typescript-go/internal/checker.(*Relater).signaturesRelatedTo
+         0     0% 45.68%   122.41MB  2.39%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveObjectTypeMembers
+         0     0% 45.68%   120.88MB  2.36%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePropertyOrMethodSignature
+         0     0% 45.68%   119.75MB  2.34%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getReturnTypeOfSignature
+         0     0% 45.68%   119.57MB  2.33%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeReference
+         0     0% 45.68%   118.56MB  2.31%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeAnnotation
+       5MB 0.098% 45.78%   117.23MB  2.29%  github.com/microsoft/typescript-go/internal/core.Map[go.shape.*uint8,go.shape.*uint8] (inline)
+         0     0% 45.78%   116.98MB  2.28%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LiteralExpressionBase }]).New
+  116.98MB  2.28% 48.06%   116.98MB  2.28%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LiteralExpressionBase },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LiteralExpressionBase }] (inline)
+         0     0% 48.06%   116.11MB  2.27%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindBlockScopedDeclaration
+         0     0% 48.06%   115.86MB  2.26%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseIdentifierOrPatternWithDiagnostic
+         0     0% 48.06%   115.24MB  2.25%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseFunctionExpression
+         0     0% 48.06%   114.83MB  2.24%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveTypeReferenceMembers
+       3MB 0.059% 48.12%   114.80MB  2.24%  github.com/microsoft/typescript-go/internal/checker.(*Relater).signatureRelatedTo
+         0     0% 48.12%   113.54MB  2.22%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseNewExpressionOrNewDotTarget
+         0     0% 48.12%   112.07MB  2.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseBracketedList
+         0     0% 48.12%   111.27MB  2.17%  github.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties (inline)
+         0     0% 48.12%   111.27MB  2.17%  github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize
+         0     0% 48.12%   111.23MB  2.17%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveNewExpression
+    1.55MB  0.03% 48.15%   110.80MB  2.16%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeEx
+         0     0% 48.15%   110.62MB  2.16%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewPropertyAssignment
+         0     0% 48.15%   110.62MB  2.16%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.NamedMemberBase; github.com/microsoft/typescript-go/internal/ast.ObjectLiteralElementBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Type *github.com/microsoft/typescript-go/internal/ast.Node; Initializer *github.com/microsoft/typescript-go/internal/ast.Node }]).New
+  110.62MB  2.16% 50.31%   110.62MB  2.16%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.NamedMemberBase; github.com/microsoft/typescript-go/internal/ast.ObjectLiteralElementBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Type *github.com/microsoft/typescript-go/internal/ast.Node; Initializer *github.com/microsoft/typescript-go/internal/ast.Node },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.NodeBase; github.com/microsoft/typescript-go/internal/ast.NamedMemberBase; github.com/microsoft/typescript-go/internal/ast.ObjectLiteralElementBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Type *github.com/microsoft/typescript-go/internal/ast.Node; Initializer *github.com/microsoft/typescript-go/internal/ast.Node }] (inline)
+         0     0% 50.31%   110.29MB  2.15%  github.com/microsoft/typescript-go/internal/checker.(*Checker).compareSignaturesRelated
+   13.01MB  0.25% 50.56%   110.28MB  2.15%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker
+         0     0% 50.56%   108.44MB  2.12%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeReference
+         0     0% 50.56%   107.64MB  2.10%  github.com/microsoft/typescript-go/internal/binder.(*Binder).newFlowNode (partial-inline)
+         0     0% 50.56%   107.64MB  2.10%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { Flags github.com/microsoft/typescript-go/internal/ast.FlowFlags; Node *github.com/microsoft/typescript-go/internal/ast.Node; Antecedent *github.com/microsoft/typescript-go/internal/ast.FlowNode; Antecedents *github.com/microsoft/typescript-go/internal/ast.FlowList }]).New
+  107.64MB  2.10% 52.66%   107.64MB  2.10%  slices.Grow[go.shape.[]go.shape.struct { Flags github.com/microsoft/typescript-go/internal/ast.FlowFlags; Node *github.com/microsoft/typescript-go/internal/ast.Node; Antecedent *github.com/microsoft/typescript-go/internal/ast.FlowNode; Antecedents *github.com/microsoft/typescript-go/internal/ast.FlowList },go.shape.struct { Flags github.com/microsoft/typescript-go/internal/ast.FlowFlags; Node *github.com/microsoft/typescript-go/internal/ast.Node; Antecedent *github.com/microsoft/typescript-go/internal/ast.FlowNode; Antecedents *github.com/microsoft/typescript-go/internal/ast.FlowList }] (inline)
+         0     0% 52.66%   106.69MB  2.08%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseInterfaceDeclaration
+         0     0% 52.66%   104.60MB  2.04%  github.com/microsoft/typescript-go/internal/ast.(*PropertyAssignment).ForEachChild
+         0     0% 52.66%   101.91MB  1.99%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseBindingIdentifierWithDiagnostic
+         0     0% 52.66%    99.30MB  1.94%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkAndAggregateReturnExpressionTypes
+         0     0% 52.66%    98.92MB  1.93%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isTypeAssignableTo (partial-inline)
+         0     0% 52.66%    97.05MB  1.89%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareModuleMember
+         0     0% 52.66%    95.52MB  1.86%  github.com/microsoft/typescript-go/internal/module.normalizePathForCJSResolution
+         0     0% 52.66%    95.26MB  1.86%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseImportClause
+         0     0% 52.66%    95.26MB  1.86%  github.com/microsoft/typescript-go/internal/parser.(*Parser).tryParseImportClause
+         0     0% 52.66%    93.75MB  1.83%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newInstantiatedSymbolWithLinks
+         0     0% 52.66%    93.10MB  1.82%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTryStatement
+         0     0% 52.66%    92.80MB  1.81%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewStringLiteral
+         0     0% 52.66%    92.54MB  1.81%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeAtFlowNode
+         0     0% 52.66%    91.53MB  1.79%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getFlowTypeOfReferenceEx
+   91.14MB  1.78% 54.44%    91.14MB  1.78%  slices.Grow[go.shape.[]go.shape.*uint8,go.shape.*uint8] (inline)
+   77.34MB  1.51% 55.95%    89.87MB  1.75%  github.com/microsoft/typescript-go/internal/core.(*LinkStore[go.shape.*github.com/microsoft/typescript-go/internal/ast.Node,go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSymbol *github.com/microsoft/typescript-go/internal/ast.Symbol }]).Get
+         0     0% 55.95%    89.19MB  1.74%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindParameter
+       1MB  0.02% 55.97%    88.64MB  1.73%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.*uint8]).NewSlice
+   21.13MB  0.41% 56.38%    87.31MB  1.70%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getObjectTypeInstantiation
+         0     0% 56.38%    86.84MB  1.69%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindVariableDeclarationOrBindingElement
+         0     0% 56.38%    86.64MB  1.69%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindIfStatement
+         0     0% 56.38%    86.27MB  1.68%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePossibleParenthesizedArrowFunctionExpression
+         0     0% 56.38%    85.26MB  1.66%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseNamedImports
+         0     0% 56.38%    83.56MB  1.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeReferenceType
+         0     0% 56.38%    83.29MB  1.63%  github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).New
+   83.29MB  1.63% 58.00%    83.29MB  1.63%  slices.Grow[go.shape.[]go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf] (inline)
+         0     0% 58.00%    82.12MB  1.60%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getNarrowedTypeOfSymbol
+         0     0% 58.00%    81.95MB  1.60%  github.com/microsoft/typescript-go/internal/ast.(*FunctionDeclaration).ForEachChild
+         0     0% 58.00%    81.07MB  1.58%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newSymbol
+         0     0% 58.00%       81MB  1.58%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeAssignableTo (inline)
+         0     0% 58.00%    80.12MB  1.56%  github.com/microsoft/typescript-go/internal/ast.(*Block).ForEachChild (inline)

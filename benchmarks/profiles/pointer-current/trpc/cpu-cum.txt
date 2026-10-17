@@ -1,0 +1,308 @@
+File: tsc-go-pointer-linkstore
+Build ID: 57edf35d267dfd7792093cd0dd3f372d1dc700b4
+Type: cpu
+Time: 2026-10-17 12:03:08 UTC
+Duration: 489.36ms, Total samples = 2.26s (461.83%)
+Showing nodes accounting for 0.69s, 30.53% of 2.26s total
+Showing top 300 nodes out of 1177
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      1.36s 60.18%  github.com/microsoft/typescript-go/internal/core.(*parallelWorkGroup).Queue.func1
+         0     0%     0%      1.35s 59.73%  sync.(*WaitGroup).Go.func1
+         0     0%     0%      0.66s 29.20%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElement
+         0     0%     0%      0.66s 29.20%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElementWorker
+         0     0%     0%      0.65s 28.76%  github.com/microsoft/typescript-go/internal/compiler.(*filesParser).start.func1
+         0     0%     0%      0.65s 28.76%  github.com/microsoft/typescript-go/internal/compiler.(*parseTask).load
+         0     0%     0%      0.64s 28.32%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceElements
+         0     0%     0%      0.55s 24.34%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkBlock
+         0     0%     0%      0.55s 24.34%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx
+         0     0%     0%      0.55s 24.34%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker
+         0     0%     0%      0.51s 22.57%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSourceFile
+         0     0%     0%      0.50s 22.12%  github.com/microsoft/typescript-go/internal/checker.(*Checker).GetDiagnostics (inline)
+         0     0%     0%      0.50s 22.12%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getDiagnostics
+         0     0%     0%      0.50s 22.12%  github.com/microsoft/typescript-go/internal/compiler.(*Program).getBindAndCheckDiagnosticsWithChecker
+         0     0%     0%      0.49s 21.68%  github.com/microsoft/typescript-go/internal/compiler.(*compilerHost).GetSourceFile
+         0     0%     0%      0.49s 21.68%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).parseSourceFile
+         0     0%     0%      0.47s 20.80%  github.com/microsoft/typescript-go/internal/compiler.(*Program).collectCheckerDiagnosticsFromFiles.func1
+         0     0%     0%      0.47s 20.80%  github.com/microsoft/typescript-go/internal/compiler.(*Program).getSemanticDiagnosticsWithChecker
+         0     0%     0%      0.46s 20.35%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseListIndex
+         0     0%     0%      0.46s 20.35%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseStatement
+         0     0%     0%      0.45s 19.91%  github.com/microsoft/typescript-go/internal/compiler.(*checkerPool).forEachCheckerGroupDo.func1
+         0     0%     0%      0.45s 19.91%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseSourceFileWorker
+         0     0%     0%      0.45s 19.91%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseToplevelStatement
+         0     0%     0%      0.45s 19.91%  github.com/microsoft/typescript-go/internal/parser.ParseSourceFile
+         0     0%     0%      0.44s 19.47%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkCallExpression
+         0     0%     0%      0.44s 19.47%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseDeclaration
+         0     0%     0%      0.44s 19.47%  runtime.systemstack
+         0     0%     0%      0.43s 19.03%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getResolvedSignature
+         0     0%     0%      0.43s 19.03%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveSignature
+         0     0%     0%      0.43s 19.03%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseDeclarationWorker
+         0     0%     0%      0.42s 18.58%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveCallExpression
+         0     0%     0%      0.41s 18.14%  runtime.mallocgc
+         0     0%     0%      0.37s 16.37%  github.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx
+         0     0%     0%      0.37s 16.37%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseList
+         0     0%     0%      0.36s 15.93%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpression (inline)
+         0     0%     0%      0.35s 15.49%  github.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo
+         0     0%     0%      0.34s 15.04%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeferredNode
+         0     0%     0%      0.34s 15.04%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkFunctionExpressionOrObjectLiteralMethodDeferred
+         0     0%     0%      0.34s 15.04%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx
+         0     0%     0%      0.34s 15.04%  github.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo
+         0     0%     0%      0.34s 15.04%  github.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker
+         0     0%     0%      0.34s 15.04%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseList.func1
+         0     0%     0%      0.33s 14.60%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeferredNodes
+         0     0%     0%      0.33s 14.60%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeferredNodes-range1 (inline)
+         0     0%     0%      0.33s 14.60%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeferredNodes.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Node]).Values.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Node,go.shape.struct {}]).Keys.func1 (inline)
+         0     0%     0%      0.33s 14.60%  runtime.gcBgMarkWorker
+         0     0%     0%      0.33s 14.60%  runtime.gcBgMarkWorker.func2
+         0     0%     0%      0.33s 14.60%  runtime.gcDrain
+         0     0%     0%      0.31s 13.72%  github.com/microsoft/typescript-go/internal/checker.(*Checker).chooseOverload
+         0     0%     0%      0.31s 13.72%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isTypeRelatedTo
+         0     0%     0%      0.31s 13.72%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveCall
+         0     0%     0%      0.30s 13.27%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedTo (inline)
+         0     0%     0%      0.29s 12.83%  github.com/microsoft/typescript-go/internal/ast.(*Node).ForEachChild
+         0     0%     0%      0.28s 12.39%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkVariableLikeDeclaration
+         0     0%     0%      0.28s 12.39%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers
+     0.01s  0.44%  0.44%      0.27s 11.95%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol
+     0.01s  0.44%  0.88%      0.26s 11.50%  github.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo
+     0.01s  0.44%  1.33%      0.25s 11.06%  github.com/microsoft/typescript-go/internal/ast.visitNodeList (inline)
+         0     0%  1.33%      0.25s 11.06%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionStatement
+     0.01s  0.44%  1.77%      0.24s 10.62%  github.com/microsoft/typescript-go/internal/ast.visitNodes (inline)
+         0     0%  1.77%      0.24s 10.62%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseDelimitedList
+         0     0%  1.77%      0.24s 10.62%  runtime.gcDrainMarkWorkerDedicated (inline)
+     0.05s  2.21%  3.98%      0.24s 10.62%  runtime.scanObject
+         0     0%  3.98%      0.22s  9.73%  runtime.mallocgcSmallScanNoHeader
+     0.03s  1.33%  5.31%      0.21s  9.29%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bind
+         0     0%  5.31%      0.21s  9.29%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkFunctionOrMethodDeclaration
+         0     0%  5.31%      0.21s  9.29%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkVariableDeclaration
+         0     0%  5.31%      0.21s  9.29%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkVariableDeclarationList
+         0     0%  5.31%      0.20s  8.85%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindChildren
+         0     0%  5.31%      0.20s  8.85%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindContainer
+         0     0%  5.31%      0.20s  8.85%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindEachChild (inline)
+     0.01s  0.44%  5.75%      0.20s  8.85%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindEachStatementFunctionsFirst
+         0     0%  5.75%      0.20s  8.85%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isTypeAssignableTo (inline)
+         0     0%  5.75%      0.20s  8.85%  sync.(*Once).Do (inline)
+         0     0%  5.75%      0.20s  8.85%  sync.(*Once).doSlow
+     0.03s  1.33%  7.08%      0.19s  8.41%  github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias
+         0     0%  7.08%      0.19s  8.41%  github.com/microsoft/typescript-go/internal/checker.(*Relater).isPropertySymbolTypeRelated
+         0     0%  7.08%      0.19s  8.41%  github.com/microsoft/typescript-go/internal/checker.(*Relater).propertyRelatedTo
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/ast.(*SourceFile).BindOnce
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/ast.(*SourceFile).BindOnce.func1
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/binder.BindSourceFile
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/binder.BindSourceFile.bindSourceFile.func1
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/binder.bindSourceFile (inline)
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAccessExpression
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeForVariableLikeDeclaration
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferTypeArguments
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveObjectTypeMembers
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/checker.(*Relater).unionOrIntersectionRelatedTo
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/compiler.(*Program).BindSourceFiles.func1
+         0     0%  7.08%      0.18s  7.96%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseObjectTypeMembers
+         0     0%  7.08%      0.18s  7.96%  runtime.(*mcache).nextFree
+         0     0%  7.08%      0.17s  7.52%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkFunctionDeclaration
+     0.01s  0.44%  7.52%      0.17s  7.52%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfVariableOrParameterOrProperty
+         0     0%  7.52%      0.17s  7.52%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveTypeReferenceMembers
+         0     0%  7.52%      0.17s  7.52%  github.com/microsoft/typescript-go/internal/checker.(*Relater).signatureRelatedTo
+         0     0%  7.52%      0.17s  7.52%  github.com/microsoft/typescript-go/internal/checker.(*Relater).signaturesRelatedTo
+         0     0%  7.52%      0.17s  7.52%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseType
+         0     0%  7.52%      0.17s  7.52%  github.com/microsoft/typescript-go/internal/parser.doInContext[go.shape.*uint8] (inline)
+         0     0%  7.52%      0.17s  7.52%  runtime.(*mcache).refill
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/checker.(*Checker).compareSignaturesRelated
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfVariableOrParameterOrPropertyWorker
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getWidenedTypeForVariableLikeDeclaration
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType (partial-inline)
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseInterfaceDeclaration
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeMember
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseUnionOrIntersectionType
+         0     0%  7.52%      0.16s  7.08%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseUnionTypeOrHigher (inline)
+         0     0%  7.52%      0.16s  7.08%  runtime.growslice
+         0     0%  7.52%      0.15s  6.64%  github.com/microsoft/typescript-go/internal/ast.visit (inline)
+         0     0%  7.52%      0.15s  6.64%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionCachedEx
+         0     0%  7.52%      0.15s  6.64%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkIdentifier
+         0     0%  7.52%      0.15s  6.64%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkVariableStatement
+         0     0%  7.52%      0.15s  6.64%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getVariancesWorker
+         0     0%  7.52%      0.15s  6.64%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePropertyOrMethodSignature
+         0     0%  7.52%      0.15s  6.64%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeAnnotation
+         0     0%  7.52%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/ast.(*NodeVisitor).VisitNode
+     0.01s  0.44%  7.96%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/ast.(*NodeVisitor).VisitNodes
+     0.01s  0.44%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/ast.(*NodeVisitor).VisitSlice
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkNonNullExpression
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeNode
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromTypes
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferTypes
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseIntersectionTypeOrHigher
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseModuleBlock
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseModuleDeclaration
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParameters
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParametersWorker
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePostfixTypeOrHigher
+         0     0%  8.41%      0.14s  6.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeOperatorOrHigher
+         0     0%  8.41%      0.14s  6.19%  runtime.newobject
+         0     0%  8.41%      0.13s  5.75%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWithContextualType
+         0     0%  8.41%      0.13s  5.75%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeNodeWorker
+         0     0%  8.41%      0.13s  5.75%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getVariances
+         0     0%  8.41%      0.13s  5.75%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseNonArrayType
+         0     0%  8.41%      0.13s  5.75%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParameterEx
+         0     0%  8.41%      0.13s  5.75%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseParametersWorker.func1
+         0     0%  8.41%      0.13s  5.75%  runtime.mallocgcSmallScanHeader
+         0     0%  8.41%      0.12s  5.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeReferenceNode
+         0     0%  8.41%      0.12s  5.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeReferenceOrImport
+         0     0%  8.41%      0.12s  5.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalType
+         0     0%  8.41%      0.12s  5.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx
+         0     0%  8.41%      0.12s  5.31%  runtime.(*mcentral).cacheSpan
+     0.08s  3.54% 11.95%      0.12s  5.31%  runtime.tryDeferToSpanScan
+         0     0% 11.95%      0.11s  4.87%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalTypeInstantiation
+         0     0% 11.95%      0.11s  4.87%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType
+     0.01s  0.44% 12.39%      0.11s  4.87%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfInstantiatedSymbol
+         0     0% 12.39%      0.11s  4.87%  github.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToEachType
+         0     0% 12.39%      0.11s  4.87%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).getPackageJsonInfo
+         0     0% 12.39%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeclarationInitializer
+         0     0% 12.39%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkIfStatement
+         0     0% 12.39%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAccessExpressionOrQualifiedName
+         0     0% 12.39%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeAliasReference
+         0     0% 12.39%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeReference
+         0     0% 12.39%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeReferenceType
+     0.01s  0.44% 12.83%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/checker.(*Checker).tryGetTypeAtPosition
+         0     0% 12.83%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToSomeType
+         0     0% 12.83%      0.10s  4.42%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseAmbientExternalModuleDeclaration
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfParameter
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isSignatureApplicable
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolvePendingObjectTypeMembers
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/checker.(*Relater).signatureRelatedTo.func1
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).resolveImportsAndModuleAugmentations
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/module.(*Resolver).ResolveModuleName
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).getPackageScopeForPath
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).resolveNodeLike
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).resolveNodeLikeWorker
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).transformSourceFile
+         0     0% 12.83%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).visitSourceFile
+     0.01s  0.44% 13.27%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/tspath.ForEachAncestorDirectoryStoppingAtGlobalCache[go.shape.*uint8]
+         0     0% 13.27%      0.09s  3.98%  github.com/microsoft/typescript-go/internal/tspath.ForEachAncestorDirectory[go.shape.*uint8]
+         0     0% 13.27%      0.09s  3.98%  runtime.(*mcentral).grow
+         0     0% 13.27%      0.09s  3.98%  runtime.gcDrainMarkWorkerIdle (inline)
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/ast.(*NodeVisitor).VisitSourceFile (inline)
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getNamedMembers
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getSimplifiedType
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromReferenceTypeArguments
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveAnonymousTypeMembers
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/checker.(*Relater).eachTypeRelatedToType
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).loadSourceFileMetaData
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/module.(*Resolver).GetPackageScopeForPath (inline)
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).getPackageScopeForPath.func1
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/parser.(*Parser).createIdentifierWithDiagnostic
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseClassDeclaration (inline)
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseClassDeclarationOrExpression
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseClassElement
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parsePropertyOrMethodDeclaration
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/transformers.(*Transformer).TransformSourceFile (inline)
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).visit
+         0     0% 13.27%      0.08s  3.54%  github.com/microsoft/typescript-go/internal/tspath.ForEachAncestorDirectoryStoppingAtGlobalCache[go.shape.*uint8].func1
+     0.08s  3.54% 16.81%      0.08s  3.54%  runtime.heapSetTypeSmallHeader (inline)
+     0.01s  0.44% 17.26%      0.08s  3.54%  runtime.scanSpan
+         0     0% 17.26%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/ast.(*InterfaceDeclaration).ForEachChild
+         0     0% 17.26%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/ast.(*Node).VisitEachChild (inline)
+         0     0% 17.26%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/ast.(*NodeVisitor).VisitEachChild (inline)
+         0     0% 17.26%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/ast.(*NodeVisitor).visitFunctionBody
+         0     0% 17.26%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/ast.(*NodeVisitor).visitNode
+         0     0% 17.26%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/ast.(*NodeVisitor).visitNodes
+     0.02s  0.88% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/binder.(*NameResolver).Resolve
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkBinaryExpression (inline)
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkBinaryLikeExpression
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkForOfStatement
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkReturnStatement
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToAndOptionallyElaborate
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getCostliestConstituent
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getMinArgumentCount (inline)
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getMinArgumentCountEx
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getNormalizedType
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType
+         0     0% 18.14%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getReducedType
+     0.02s  0.88% 19.03%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getSimplifiedConditionalType
+         0     0% 19.03%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeAtPosition (inline)
+         0     0% 19.03%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty
+         0     0% 19.03%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker.func1
+         0     0% 19.03%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/checker.(*Relater).typeArgumentsRelatedTo
+         0     0% 19.03%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeAliasDeclaration
+         0     0% 19.03%      0.07s  3.10%  github.com/microsoft/typescript-go/internal/printer.(*EmitContext).VisitFunctionBody
+         0     0% 19.03%      0.07s  3.10%  runtime.(*unwinder).next
+         0     0% 19.03%      0.07s  3.10%  runtime.copystack
+     0.04s  1.77% 20.80%      0.07s  3.10%  runtime.mapaccess1_faststr
+         0     0% 20.80%      0.07s  3.10%  runtime.mapassign_faststr
+         0     0% 20.80%      0.07s  3.10%  runtime.newstack
+     0.01s  0.44% 21.24%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/ast.(*Block).VisitEachChild
+         0     0% 21.24%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/ast.(*CallExpression).VisitEachChild
+         0     0% 21.24%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/ast.(*FunctionDeclaration).ForEachChild
+         0     0% 21.24%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/ast.(*ModuleDeclaration).ForEachChild
+         0     0% 21.24%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbol (inline)
+         0     0% 21.24%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolAndAddToSymbolTable
+     0.02s  0.88% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolEx
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkObjectLiteral
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkParameter
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkSignatureDeclaration
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).computeBaseConstraint
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getResolvedBaseConstraint
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getReturnTypeOfSignature
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty (inline)
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveMappedTypeMembers
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).setStructuredTypeMembers
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).sortSymbols
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*EmitResolver).CreateReturnTypeOfSignatureDeclaration
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*NodeBuilder).SerializeReturnTypeForSignature
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*NodeBuilderImpl).mapToTypeNodes
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*NodeBuilderImpl).pseudoTypeToNodeWithCheckerFallback
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*NodeBuilderImpl).serializeReturnTypeForSignature
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*NodeBuilderImpl).typeToTypeNode
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedTo (inline)
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/core.Map[go.shape.*uint8,go.shape.*uint8] (inline)
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).nodeLoadModuleByRelativeName
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseFunctionDeclaration
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseFunctionOrConstructorType
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseIdentifierNameWithDiagnostic (inline)
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseModuleOrNamespaceDeclaration
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).ensureType
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).transformFunctionDeclaration
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).transformTopLevelDeclaration
+         0     0% 22.12%      0.06s  2.65%  github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).visitDeclarationStatements
+     0.05s  2.21% 24.34%      0.06s  2.65%  runtime.(*spanSet).push
+     0.01s  0.44% 24.78%      0.06s  2.65%  runtime.(*unwinder).resolveInternal
+     0.05s  2.21% 26.99%      0.06s  2.65%  runtime.findObject
+     0.02s  0.88% 27.88%      0.06s  2.65%  runtime.pcvalue
+         0     0% 27.88%      0.06s  2.65%  runtime.scanObjectsSmall
+         0     0% 27.88%      0.06s  2.65%  slices.SortFunc[go.shape.[]*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.*uint8] (inline)
+         0     0% 27.88%      0.06s  2.65%  slices.pdqsortCmpFunc[go.shape.*uint8]
+     0.03s  1.33% 29.20%      0.05s  2.21%  gcWriteBarrier
+         0     0% 29.20%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/ast.(*ArrowFunction).VisitEachChild
+         0     0% 29.20%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/ast.(*VariableDeclaration).VisitEachChild
+         0     0% 29.20%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).IsAnySymbolAccessible
+         0     0% 29.20%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkBindingElement
+         0     0% 29.20%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionCached (inline)
+     0.01s  0.44% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).compareSymbolsWithOrder
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).compareSymbolsWorker
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getAliasForSymbolInContainer
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getAlternativeContainingModules
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getContainersOfSymbol
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getDeclaredTypeOfSymbol (inline)
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getFlowTypeOfReferenceEx
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getReducedApparentType
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getReturnTypeFromBody
+         0     0% 29.65%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeAliasInstantiation
+     0.01s  0.44% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeAtFlowNode
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getWithAlternativeContainers
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromObjectTypes
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).invokeOnce
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isSymbolAccessibleWorker
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Checker).tryGetDeclaredTypeOfSymbol
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/checker.(*Relater).someTypeRelatedToType
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/compiler.(*Program).collectDiagnosticsFromFiles.func1
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/compiler.(*Program).getDeclarationDiagnosticsForFile
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/compiler.getDeclarationDiagnostics
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/packagejson.Parse
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseBracketedList
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseMethodDeclaration
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTypeReference
+         0     0% 30.09%      0.05s  2.21%  github.com/microsoft/typescript-go/internal/transformers/declarations.(*DeclarationTransformer).visitCJSExportAssignments
+         0     0% 30.09%      0.05s  2.21%  internal/runtime/maps.(*table).rehash
+         0     0% 30.09%      0.05s  2.21%  internal/runtime/maps.newGroups (inline)
+         0     0% 30.09%      0.05s  2.21%  internal/runtime/maps.newarray
+         0     0% 30.09%      0.05s  2.21%  runtime.(*mcentral).uncacheSpan
+     0.01s  0.44% 30.53%      0.05s  2.21%  runtime.(*mspan).initHeapBits
