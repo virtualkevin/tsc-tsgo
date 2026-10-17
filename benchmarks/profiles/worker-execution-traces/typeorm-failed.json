@@ -1,0 +1,80 @@
+{
+  "status": "failed",
+  "binaries": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace": "e47da89407475fa69ab256326f49a9ef4f4e5188df1f00c7eb20b611261a272a"
+  },
+  "runs": [
+    {
+      "label": "1-baseline",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 3572,
+        "Lines": 386634,
+        "Identifiers": 444563,
+        "Symbols": 409443,
+        "Types": 185142,
+        "Instantiations": 324481
+      },
+      "stdoutSha256": "37f9fc7388f335b464d51d53420756572c40eda2acebd4341caf9b2d26642f07"
+    },
+    {
+      "label": "1-disabled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "1",
+        "--extendedDiagnostics",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 3572,
+        "Lines": 386634,
+        "Identifiers": 444563,
+        "Symbols": 409443,
+        "Types": 185142,
+        "Instantiations": 324481
+      },
+      "stdoutSha256": "6aba0362890786ef21851f0d10e63f0dd6fcb8422f885a7cd70efcdb9ff7a60e"
+    }
+  ],
+  "scope": "Diagnostic workload trace only; not performance evidence",
+  "workload": "typeorm",
+  "error": "AssertionError(('1-enabled', {'Files': 3572, 'Lines': 386634, 'Identifiers': 444563, 'Symbols': 409441, 'Types': 185142, 'Instantiations': 324481}, {'Files': 3572, 'Lines': 386634, 'Identifiers': 444563, 'Symbols': 409443, 'Types': 185142, 'Instantiations': 324481}))"
+}

@@ -1,0 +1,197 @@
+{
+  "status": "completed-with-symbol-counter-audit",
+  "binaries": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace": "e47da89407475fa69ab256326f49a9ef4f4e5188df1f00c7eb20b611261a272a"
+  },
+  "runs": [
+    {
+      "label": "4-baseline",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 3572,
+        "Lines": 386634,
+        "Identifiers": 444563,
+        "Symbols": 461595,
+        "Types": 257912,
+        "Instantiations": 425723
+      },
+      "stdoutSha256": "c60af0473d298ce9188a04507085dcf3b332af057664602e914ab67008f3f0c0",
+      "counterDifferences": {}
+    },
+    {
+      "label": "4-disabled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 3572,
+        "Lines": 386634,
+        "Identifiers": 444563,
+        "Symbols": 461593,
+        "Types": 257912,
+        "Instantiations": 425723
+      },
+      "stdoutSha256": "8a4d623796cbad9d8da0a811288400855695f0e1ff0ae954e3858abdbbee2d04",
+      "counterDifferences": {
+        "Symbols": [
+          461595,
+          461593
+        ]
+      }
+    },
+    {
+      "label": "4-enabled",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-worker-trace",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16"
+      ],
+      "returncode": 0,
+      "counters": {
+        "Files": 3572,
+        "Lines": 386634,
+        "Identifiers": 444563,
+        "Symbols": 461595,
+        "Types": 257912,
+        "Instantiations": 425723
+      },
+      "stdoutSha256": "9f3c45f29622aabd5c7228807cc8bb7458941480763ff011ecd874e5666798b1",
+      "counterDifferences": {},
+      "traceSha256": "39810f51e74a678f6d8ab66bc3be5f34d4506340356c5005928616b1fe659528",
+      "analysis": {
+        "status": "parsed",
+        "eventCounts": {
+          "Sync": 4,
+          "StateTransition": 342734,
+          "Metric": 125949,
+          "RangeBegin": 13907,
+          "RangeEnd": 13907,
+          "Label": 333,
+          "TaskBegin": 5,
+          "Log": 5,
+          "RegionBegin": 9,
+          "RegionEnd": 9,
+          "TaskEnd": 5,
+          "RangeActive": 2
+        },
+        "batches": [
+          {
+            "taskId": 1,
+            "fileCount": 3572,
+            "durationMs": 1320.912128,
+            "startSkewMs": 0.06272,
+            "finishSpreadMs": 171.914368,
+            "lastWorkerOnlyMs": 0.246464,
+            "workers": [
+              {
+                "checker": 3,
+                "lockMs": 0.0016,
+                "filesMs": 1169.842624,
+                "stateMs": {
+                  "Running": 1143.317377,
+                  "Runnable": 25.934335,
+                  "Waiting": 0.590912
+                }
+              },
+              {
+                "checker": 1,
+                "lockMs": 0.001408,
+                "filesMs": 1320.8448,
+                "stateMs": {
+                  "Running": 1311.26432,
+                  "Runnable": 8.82976,
+                  "Waiting": 0.75072
+                }
+              },
+              {
+                "checker": 2,
+                "lockMs": 0.001152,
+                "filesMs": 1148.898176,
+                "stateMs": {
+                  "Running": 1120.899904,
+                  "Runnable": 26.882112,
+                  "Waiting": 1.11616
+                }
+              },
+              {
+                "checker": 0,
+                "lockMs": 0.001024,
+                "filesMs": 1320.54944,
+                "stateMs": {
+                  "Running": 1313.693313,
+                  "Runnable": 6.736639,
+                  "Waiting": 0.119488
+                }
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "Diagnostic traced runs are not optimization timings.",
+          "Running includes runtime/GC work, not just semantic computation.",
+          "Worker state durations overlap across workers; do not sum as elapsed time.",
+          "Completion tails are observations, not achievable scheduling gains."
+        ]
+      }
+    }
+  ],
+  "scope": "Diagnostic workload trace only; Symbols equality is not assumed after six unchanged-baseline controls showed variability. Every difference retained; other counters and diagnostics must match. Not performance evidence",
+  "workload": "typeorm"
+}
