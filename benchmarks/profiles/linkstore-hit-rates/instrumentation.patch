@@ -1,0 +1,211 @@
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -11,10 +11,11 @@
+ )
+ 
+ func main() {
+-	os.Exit(runMain())
++	exitWithLinkStoreProfile(runMain())
+ }
+ 
+ func runMain() int {
++	defer core.WriteLinkStoreProfile()
+ 	core.ApplyDebugStackLimit()
+ 	args := os.Args[1:]
+ 	if len(args) > 0 {
+@@ -30,3 +31,9 @@
+ 	result := execute.CommandLine(ctx, newSystem(), args, nil)
+ 	return int(result.Status)
+ }
++
++// Flush even worker restart and parent-death paths that bypass runMain defers.
++func exitWithLinkStoreProfile(status int) {
++	core.WriteLinkStoreProfile()
++	os.Exit(status)
++}
+--- a/packages/tsc-go/cmd/tsgo/sys.go
++++ b/packages/tsc-go/cmd/tsgo/sys.go
+@@ -66,7 +66,7 @@
+ 	cwd, err := os.Getwd()
+ 	if err != nil {
+ 		fmt.Fprintf(os.Stderr, "Error getting current directory: %v\n", err)
+-		os.Exit(int(tsc.ExitStatusInvalidProject_OutputsSkipped))
++		exitWithLinkStoreProfile(int(tsc.ExitStatusInvalidProject_OutputsSkipped))
+ 	}
+ 
+ 	return &osSys{
+--- a/packages/tsc-go/cmd/tsgo/watchprocess.go
++++ b/packages/tsc-go/cmd/tsgo/watchprocess.go
+@@ -47,7 +47,7 @@
+ 			parent = expected
+ 		}
+ 		if os.Getppid() != parent {
+-			os.Exit(1)
++			exitWithLinkStoreProfile(1)
+ 		}
+ 		// Same-process-group terminal signals reach both processes. A killed
+ 		// supervisor cannot leave a watcher alive, including SIGKILL on the parent.
+@@ -60,7 +60,7 @@
+ 					return
+ 				case <-ticker.C:
+ 					if os.Getppid() != parent || processAliveSupported && !isProcessAlive(parent) {
+-						os.Exit(1)
++						exitWithLinkStoreProfile(1)
+ 					}
+ 				}
+ 			}
+@@ -112,7 +112,7 @@
+ }
+ func (s *osSys) RestartWatchBeforeRebuild() bool {
+ 	if s.watchChild && s.watchLimit > 0 && residentMemory() > s.watchLimit {
+-		os.Exit(watchRestartStatus)
++		exitWithLinkStoreProfile(watchRestartStatus)
+ 		return true
+ 	}
+ 	return false
+--- a/packages/tsc-go/internal/core/linkstore.go
++++ b/packages/tsc-go/internal/core/linkstore.go
+@@ -3,13 +3,28 @@
+ // Links store
+ 
+ type LinkStore[K comparable, V any] struct {
+-	entries map[K]*V
+-	arena   Arena[V]
++	entries        map[K]*V
++	arena          Arena[V]
++	profile        *linkStoreProfile
++	profileLastKey K
++	profileHasLast bool
+ }
+ 
+ func (s *LinkStore[K, V]) Get(key K) *V {
++	if linkStoreProfilePath != "" {
++		if s.profile == nil {
++			s.profile = newLinkStoreProfile[K, V]()
++		}
++		s.profile.getCalls.Add(1)
++		if s.profileHasLast && key == s.profileLastKey {
++			s.profile.lastInsertedMatches.Add(1)
++		}
++	}
+ 	value := s.entries[key]
+ 	if value != nil {
++		if s.profile != nil {
++			s.profile.mapHits.Add(1)
++		}
+ 		return value
+ 	}
+ 	if s.entries == nil {
+@@ -17,6 +32,10 @@
+ 	}
+ 	value = s.arena.New()
+ 	s.entries[key] = value
++	if s.profile != nil {
++		s.profileLastKey, s.profileHasLast = key, true
++		s.profile.insertions.Add(1)
++	}
+ 	return value
+ }
+ 
+@@ -25,11 +44,21 @@
+ // absent; use Get when it might already have links. As with Get, the returned
+ // pointer remains valid as the store grows.
+ func (s *LinkStore[K, V]) New(key K) *V {
++	if linkStoreProfilePath != "" {
++		if s.profile == nil {
++			s.profile = newLinkStoreProfile[K, V]()
++		}
++		s.profile.newCalls.Add(1)
++	}
+ 	if s.entries == nil {
+ 		s.entries = make(map[K]*V)
+ 	}
+ 	value := s.arena.New()
+ 	s.entries[key] = value
++	if s.profile != nil {
++		s.profileLastKey, s.profileHasLast = key, true
++		s.profile.insertions.Add(1)
++	}
+ 	return value
+ }
+ 
+--- /dev/null
++++ b/packages/tsc-go/internal/core/linkstore_profile.go
+@@ -0,0 +1,77 @@
++package core
++
++import (
++	"encoding/json"
++	"fmt"
++	"os"
++	"reflect"
++	"strconv"
++	"sync"
++	"sync/atomic"
++)
++
++// Exploratory instrumentation only. Atomic counters perturb execution and
++// these builds must never be used for performance timings.
++var linkStoreProfileOnce sync.Once
++var linkStoreProfilePath = os.Getenv("TSC_GO_LINKSTORE_PROFILE")
++var linkStoreProfiles struct {
++	sync.Mutex
++	entries []*linkStoreProfile
++}
++
++type linkStoreProfile struct {
++	id                  int
++	keyType             string
++	valueType           string
++	getCalls            atomic.Uint64
++	lastInsertedMatches atomic.Uint64
++	mapHits             atomic.Uint64
++	newCalls            atomic.Uint64
++	insertions          atomic.Uint64
++}
++
++func newLinkStoreProfile[K comparable, V any]() *linkStoreProfile {
++	linkStoreProfiles.Lock()
++	defer linkStoreProfiles.Unlock()
++	p := &linkStoreProfile{id: len(linkStoreProfiles.entries), keyType: reflect.TypeFor[K]().String(), valueType: reflect.TypeFor[V]().String()}
++	linkStoreProfiles.entries = append(linkStoreProfiles.entries, p)
++	return p
++}
++
++// WriteLinkStoreProfile writes per-instance counters after command completion.
++// Existing populated-store reads change counters only through atomic methods.
++func WriteLinkStoreProfile() {
++	linkStoreProfileOnce.Do(writeLinkStoreProfile)
++}
++
++func writeLinkStoreProfile() {
++	if linkStoreProfilePath == "" {
++		return
++	}
++	type entry struct {
++		ID                  int    `json:"id"`
++		KeyType             string `json:"keyType"`
++		ValueType           string `json:"valueType"`
++		GetCalls            uint64 `json:"getCalls"`
++		LastInsertedMatches uint64 `json:"lastInsertedMatches"`
++		MapHits             uint64 `json:"mapHits"`
++		NewCalls            uint64 `json:"newCalls"`
++		Insertions          uint64 `json:"insertions"`
++	}
++	linkStoreProfiles.Lock()
++	entries := make([]entry, 0, len(linkStoreProfiles.entries))
++	for _, p := range linkStoreProfiles.entries {
++		entries = append(entries, entry{p.id, p.keyType, p.valueType, p.getCalls.Load(), p.lastInsertedMatches.Load(), p.mapHits.Load(), p.newCalls.Load(), p.insertions.Load()})
++	}
++	linkStoreProfiles.Unlock()
++	data, err := json.MarshalIndent(struct {
++		Purpose string  `json:"purpose"`
++		Stores  []entry `json:"stores"`
++	}{"Exploratory last-inserted cache hit-rate instrumentation; not a benchmark", entries}, "", "  ")
++	if err == nil {
++		err = os.WriteFile(linkStoreProfilePath+"."+strconv.Itoa(os.Getpid())+".json", append(data, '\n'), 0644)
++	}
++	if err != nil {
++		fmt.Fprintf(os.Stderr, "LinkStore profile: %v\n", err)
++	}
++}

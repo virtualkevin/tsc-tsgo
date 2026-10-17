@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Isolated Get miss\u2192New split; correctness and compiler-code-generation evidence only, no performance measurement.",
+  "source": {
+    "baselineRevision": "87b892e455d96083a6b4dcba48682189e679d3c3",
+    "baselineDirty": false,
+    "baselineSha256": "39b165a093813ad622f9b276a3a9d6c433d0d6a91199ee6c897f3d8e3ed03a59",
+    "variantSha256": "c1c8af689f326b4f5aa03187ca2df9b0bf4a5ef8101c9fd68d638c40a3ccf17b",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))",
+    "productionChangedFiles": [
+      "packages/tsc-go/internal/core/linkstore.go"
+    ],
+    "testOnlyAddedFiles": [
+      "packages/tsc-go/internal/core/linkstore_split_race_test.go"
+    ]
+  },
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy",
+      "sha256": "961e90a7e1d873477233c022716da08acc6f4b3f02df11c70d5e11360ca59ec3",
+      "bytes": 38913412
+    },
+    "candidate": {
+      "path": "/tmp/tsc-go-linkstore-split",
+      "sha256": "9a2ea26e6eaadbea57522aeb8fd8d6af36ad24b29dee1ba1ad225123375db51c",
+      "bytes": 38957675
+    }
+  },
+  "build": {
+    "toolchain": "/tmp/tsc-toolchains/go/bin/go",
+    "version": "go1.26.9",
+    "cwd": "/tmp/tsc-linkstore-split-eval",
+    "command": [
+      "go",
+      "build",
+      "-trimpath",
+      "-pgo=off",
+      "-o",
+      "/tmp/tsc-go-linkstore-split",
+      "./cmd/tsgo"
+    ],
+    "environment": {
+      "GOFLAGS": ""
+    },
+    "exitCode": 0,
+    "log": "/tmp/tsc-linkstore-split-build.log"
+  },
+  "tests": {
+    "command": [
+      "go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/core"
+    ],
+    "toolchain": "/tmp/tsc-toolchains/go/bin/go",
+    "cwd": "/tmp/tsc-linkstore-split-eval",
+    "environment": {
+      "GOFLAGS": "",
+      "CGO_ENABLED": "1"
+    },
+    "runFilter": null,
+    "scope": "All tests in internal/core, including added concurrent-read test",
+    "exitCode": 0,
+    "topLevelPassCount": 6,
+    "passRecordCount": 12,
+    "failRecordCount": 0,
+    "skipRecordCount": 0,
+    "passedTestsAndSubtests": [
+      "TestLinkStoreConcurrentExistingKeyReads",
+      "TestLinkStoreNewPreservesIdentityAndValues",
+      "TestLinkStoreNewAndGetPreserveEntriesAcrossGrowth",
+      "TestLinkStoreNewAcceptsNilPointerKey",
+      "TestPatternOverlappingMatch",
+      "TestBreadthFirstSearchParallel/returns_fallback_when_no_other_result_found",
+      "TestBreadthFirstSearchParallel/early_termination",
+      "TestBreadthFirstSearchParallel/returns_a_stop_result_over_a_fallback",
+      "TestBreadthFirstSearchParallel/basic_functionality/find_specific_node",
+      "TestBreadthFirstSearchParallel/basic_functionality/visit_all_nodes",
+      "TestBreadthFirstSearchParallel/basic_functionality",
+      "TestBreadthFirstSearchParallel"
+    ],
+    "log": "benchmarks/profiles/linkstore-split/isolated-core-race.jsonl",
+    "logSha256": "945128b052313e8aac29e93c07fd1a552aa8fd60cdb1794e4294d6f8e053e3d0"
+  },
+  "codeGeneration": {
+    "inspection": "System nm -S --defined-only and bounded objdump -d --start-address/--stop-address",
+    "caller": "checker.(*Checker).getTypeOfInstantiatedSymbol",
+    "valueSymbolLinksShape": "d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf",
+    "baseline": {
+      "callerAddress": "0x8003c0",
+      "callerBytes": 180,
+      "getAddress": "0x903d00",
+      "getBytes": 274,
+      "newBytes": 229,
+      "call": "caller invokes LinkStore.Get"
+    },
+    "candidate": {
+      "callerAddress": "0x8019e0",
+      "callerBytes": 223,
+      "getStandaloneSymbolPresent": false,
+      "newAddress": "0x906dc0",
+      "newBytes": 229,
+      "call": "caller invokes runtime.mapaccess1_fast64 directly; non-nil branch skips LinkStore.New; nil branch calls New"
+    },
+    "conclusion": "ValueSymbolLinks.Get map-hit logic is inlined into this real checker hot caller; cold insertion remains out of line. Caller machine code grows43bytes. This proves code generation, not runtime benefit.",
+    "artifacts": [
+      {
+        "path": "benchmarks/profiles/linkstore-split/baseline-caller.asm",
+        "sha256": "67014da9d014305fd81bf8429bdd6c1b798119e30c67fc5eda8808d275410254"
+      },
+      {
+        "path": "benchmarks/profiles/linkstore-split/baseline-get.asm",
+        "sha256": "f5b54be0ca2bb1ff3e4ed17dd230b3517bd56a4436378d60b3440a72d3009450"
+      },
+      {
+        "path": "benchmarks/profiles/linkstore-split/candidate-caller.asm",
+        "sha256": "b58068f909cd22c955081fada65029baa0c6d6dd9712339ea5941817a904244d"
+      },
+      {
+        "path": "benchmarks/profiles/linkstore-split/candidate-new.asm",
+        "sha256": "a0f4c006da4d233a7b62d209663cf85afabcc9dae486582749cbf38d5414dc35"
+      }
+    ]
+  },
+  "abandonedDiagnosticAttempt": {
+    "command": [
+      "go",
+      "build",
+      "-trimpath",
+      "-pgo=off",
+      "-gcflags=github.com/microsoft/typescript-go/internal/checker=-m=2",
+      "./internal/checker"
+    ],
+    "status": "deliberately terminated",
+    "exitCode": 143,
+    "reason": "Go driver buffered roughly16GB of verbose diagnostic output before completion; switched to bounded assembly inspection.",
+    "cleanup": "Compiler and Go driver exited; deleted its owned go-build4037629113 directory and empty diagnostic log."
+  },
+  "limitations": [
+    "Full native parity/conformance not run on this isolated experiment. Existing core tests and static equivalence cover the changed container behavior.",
+    "All builds/tests terminal. No performance numbers collected."
+  ],
+  "publicationNote": "This is the isolated evaluation before main adoption. Its source manifest and candidate binary hashes intentionally differ from main, whose added concurrent-read test comment was clarified. Main unit validation is recorded separately in benchmarks/validation/linkstore-split-units.json. This isolated binary was not used for performance results."
+}

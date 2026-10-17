@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Untimed single-checker work counters; concurrent builds may run. No timing/speedup claim.",
+  "benchmarkEvidence": "benchmarks/results/lazy-default-large.json",
+  "startedAt": "2026-10-17T08:58:16.779687+00:00",
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "environmentOverrides": {
+    "TSC_TS_LIB_DIR": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs",
+    "TSC_TS_CHECKERS_TRACE": "1"
+  },
+  "definitions": {
+    "Types": "Created Type objects including initialization, one checker per process.",
+    "Instantiations": "Calls to instantiateTypeWorker after active mapper cache miss; not all checker work."
+  },
+  "binaries": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-lazy",
+      "sha256": "961e90a7e1d873477233c022716da08acc6f4b3f02df11c70d5e11360ca59ec3"
+    }
+  },
+  "candidateSourceSha256": "39b165a093813ad622f9b276a3a9d6c433d0d6a91199ee6c897f3d8e3ed03a59",
+  "status": "complete",
+  "projects": [
+    {
+      "name": "sentry",
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "scope": "Root frontend configuration; referenced icons and scraps declarations must be built before benchmarking.",
+      "configSha256": "5af98444a087983efb2f50f2d878b7937b8550d86dd00dcf882e5c33afe8eb3c",
+      "lockfileSha256": "1f30f0aa4b3707dff3d826d7b1b77a0dbd7c4b3c1bb2c0fd34227685a62be132",
+      "inputCount": 13290,
+      "inputFileListSha256": "ca37f82d60e3863bd4cddbc6af04e991dc230ab6eebadfaf2d228dc1ecf260d6",
+      "runs": {
+        "baseline": {
+          "args": [
+            "-p",
+            "tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "sentry-baseline.stdout.log",
+          "stderr": "sentry-baseline.stderr.log",
+          "stdoutSha256": "4baf6b4c3878a4584dcc4c314840d85e8e39e75432ccf338b555b24008525837",
+          "stderrSha256": "ba38db4ebf0de1569b2989e493cf8f74706479ac5e21a7d5c6b67eccb1035261",
+          "extendedCounters": {
+            "Files": 13290,
+            "Lines": 2130849,
+            "Identifiers": 2594398,
+            "Symbols": 1454672,
+            "Types": 1792408,
+            "Instantiations": 0,
+            "Memory allocs": 0
+          },
+          "workCounters": {
+            "Types": 1792408,
+            "Instantiations": 5008451,
+            "SymbolLinkEntries": 326292,
+            "NodeLinkEntries": 199227,
+            "Signatures": 279835,
+            "RelationEntries": 1626008
+          }
+        },
+        "candidate": {
+          "args": [
+            "-p",
+            "tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "sentry-candidate.stdout.log",
+          "stderr": "sentry-candidate.stderr.log",
+          "stdoutSha256": "01e0cffaba1298a7e65957a9c18fded376ac4b801c9cb01aefa9108ff778a2c2",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "extendedCounters": {
+            "Files": 13290,
+            "Lines": 2130849,
+            "Identifiers": 2594398,
+            "Symbols": 3700758,
+            "Types": 1798696,
+            "Instantiations": 5974204,
+            "Memory allocs": 33536028
+          },
+          "workCounters": {
+            "Types": 1798696,
+            "Instantiations": 5974204
+          }
+        }
+      },
+      "status": "complete",
+      "comparison": {
+        "Types": {
+          "native": 1792408,
+          "go": 1798696,
+          "difference": 6288,
+          "goOverNative": 1.003508129845437
+        },
+        "Instantiations": {
+          "native": 5008451,
+          "go": 5974204,
+          "difference": 965753,
+          "goOverNative": 1.1928246877128277
+        }
+      }
+    },
+    {
+      "name": "vscode",
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "scope": "VS Code client sources; repository typecheck-client configuration. Native runtime modules are not built. Electron declarations are fetched by the repository checksum-verified setup script.",
+      "configSha256": "6c35a05a6798601b37cd28c535f4e7258ffdf34e271fbf6a4411d328f1db2332",
+      "lockfileSha256": "819cbd150198a84ebe73843245f9d65de85251b917bea7b3c186886d7d3754aa",
+      "inputCount": 11563,
+      "inputFileListSha256": "e8b7b3641f42ac1ce3f09b21f3b5fc7af06d6917173fb8b3bad194acbd9a7c41",
+      "runs": {
+        "baseline": {
+          "args": [
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "vscode-baseline.stdout.log",
+          "stderr": "vscode-baseline.stderr.log",
+          "stdoutSha256": "179ad08ed0c7dc53f6a23dedf5f2aab550a766436974d53bd214672024e747b0",
+          "stderrSha256": "6f4ef9a92bc99228d6503673cfd4659daf1382dd5dfe226fd029ac55ae0726c5",
+          "extendedCounters": {
+            "Files": 11563,
+            "Lines": 4036783,
+            "Identifiers": 7444484,
+            "Symbols": 2923596,
+            "Types": 3270735,
+            "Instantiations": 0,
+            "Memory allocs": 0
+          },
+          "workCounters": {
+            "Types": 3270735,
+            "Instantiations": 4208367,
+            "SymbolLinkEntries": 731520,
+            "NodeLinkEntries": 750164,
+            "Signatures": 762758,
+            "RelationEntries": 2088338
+          }
+        },
+        "candidate": {
+          "args": [
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1",
+            "--extendedDiagnostics"
+          ],
+          "exitCode": 0,
+          "stdout": "vscode-candidate.stdout.log",
+          "stderr": "vscode-candidate.stderr.log",
+          "stdoutSha256": "ce7e3b3a657e2cad69ce0415038d8064a5220a1c9e5ce6120754384b835eee28",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "extendedCounters": {
+            "Files": 11563,
+            "Lines": 4036783,
+            "Identifiers": 7444484,
+            "Symbols": 6121187,
+            "Types": 3267740,
+            "Instantiations": 4217548,
+            "Memory allocs": 38622773
+          },
+          "workCounters": {
+            "Types": 3267740,
+            "Instantiations": 4217548
+          }
+        }
+      },
+      "status": "complete",
+      "comparison": {
+        "Types": {
+          "native": 3270735,
+          "go": 3267740,
+          "difference": -2995,
+          "goOverNative": 0.9990843036809769
+        },
+        "Instantiations": {
+          "native": 4208367,
+          "go": 4217548,
+          "difference": 9181,
+          "goOverNative": 1.0021816063095257
+        }
+      }
+    }
+  ],
+  "finishedAt": "2026-10-17T09:04:26.173983+00:00",
+  "benchmarkEvidenceSha256": "62ef251b59f06ff7a103eeab3ae13cc28e8c4038f91aa600ab10997717451de4",
+  "limitations": [
+    "Types and Instantiations count operations, not their cost or all semantic work.",
+    "Single-checker results do not measure duplication or scheduling under default parallel checking.",
+    "Original native tracing supplies populated single-checker instantiation counters; its default parallel extended statistics are not comparable.",
+    "Competing builds and instrumented runs were active; no elapsed times are used as performance evidence."
+  ]
+}

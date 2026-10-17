@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Main LinkStore Get/New split container race tests and compiler/checker unit validation; no performance measurement.",
+  "sourceBefore": {
+    "revision": "87b892e455d96083a6b4dcba48682189e679d3c3",
+    "dirty": true,
+    "sha256": "7a6e24817412d6dc121e517d453ac3978f19050409b19ac6145b86e03ee5b334",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "sourceAfter": {
+    "revision": "87b892e455d96083a6b4dcba48682189e679d3c3",
+    "dirty": true,
+    "sha256": "7a6e24817412d6dc121e517d453ac3978f19050409b19ac6145b86e03ee5b334",
+    "digestAlgorithm": "sha256(JSON.stringify(sorted local source manifest))"
+  },
+  "sourceUnchanged": true,
+  "runs": [
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/core"
+      ],
+      "toolchain": "/tmp/tsc-toolchains/go/bin/go",
+      "toolchainVersion": "go1.26.9",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": "",
+        "CGO_ENABLED": "1"
+      },
+      "exitCode": 0,
+      "runFilter": null,
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/core": {
+          "topLevelPassCount": 6,
+          "passRecordCount": 12,
+          "failRecordCount": 0,
+          "skipRecordCount": 0,
+          "packageStatus": "pass"
+        }
+      },
+      "log": "/tmp/linkstore-main-core-race.jsonl",
+      "logSha256": "96c2df7b2837de4fc9173eb51057876aea8670248d966f1e9a1ba27d235a2c34"
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-json",
+        "./internal/compiler",
+        "./internal/checker"
+      ],
+      "toolchain": "/tmp/tsc-toolchains/go/bin/go",
+      "toolchainVersion": "go1.26.9",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "environment": {
+        "GOFLAGS": ""
+      },
+      "exitCode": 0,
+      "runFilter": null,
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/compiler": {
+          "topLevelPassCount": 7,
+          "passRecordCount": 24,
+          "failRecordCount": 0,
+          "skipRecordCount": 0,
+          "packageStatus": "pass"
+        },
+        "github.com/microsoft/typescript-go/internal/checker": {
+          "topLevelPassCount": 36,
+          "passRecordCount": 980,
+          "failRecordCount": 0,
+          "skipRecordCount": 0,
+          "packageStatus": "pass"
+        }
+      },
+      "log": "/tmp/linkstore-main-compiler-checker.jsonl",
+      "logSha256": "fa120db795a74c1eac934ef0aac28fc091a421e0f3cd0a3225d4531db5281748"
+    }
+  ],
+  "isolatedCodegenEvidence": "benchmarks/profiles/linkstore-split/isolated-evaluation.json",
+  "scopeNotes": [
+    "All tests in each named package ran; no -run filter. Core package used the race detector; compiler/checker packages did not.",
+    "No broad conformance rerun for this equivalent container refactor. Native CLI/API/emit validation is recorded separately.",
+    "The isolated assembly evidence predates the main test-comment clarification and retains its own source/binary hashes."
+  ],
+  "status": "passed"
+}

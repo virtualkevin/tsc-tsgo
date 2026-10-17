@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-17T09:04:16.045Z",
+  "scope": "Default native differential parity and actual-Go API/emit/project integrations after splitting LinkStore existing-entry lookup from insertion.",
+  "nativeSuiteStatus": "passed",
+  "candidate": {
+    "path": "packages/tsc-go/dist/tsc-go-linkstore-split",
+    "sha256": "1f7c8035c582176397ffcec949cbc38124160067a2dab20c10e9b3aca58c22ec"
+  },
+  "buildProvenance": {
+    "path": "packages/tsc-go/dist/tsc-go-linkstore-split.provenance.json",
+    "sha256": "c2b5c505f2f7b6b78799e7a7ef5477038097a8bc108e53beae33820c62ed1afc",
+    "builtAt": "2026-10-17T09:00:47.500Z",
+    "sourceSha256": "7a6e24817412d6dc121e517d453ac3978f19050409b19ac6145b86e03ee5b334",
+    "buildTimeRevision": "87b892e455d96083a6b4dcba48682189e679d3c3",
+    "sourceDirty": true,
+    "sourceFileCount": 5141,
+    "settings": {
+      "toolchain": {
+        "CGO_ENABLED": "1",
+        "GO386": "",
+        "GOAMD64": "v1",
+        "GOARCH": "amd64",
+        "GOARM": "",
+        "GOARM64": "",
+        "GOEXPERIMENT": "",
+        "GOMIPS": "",
+        "GOMIPS64": "",
+        "GOOS": "linux",
+        "GOPPC64": "",
+        "GORISCV64": "",
+        "GOVERSION": "go1.26.9"
+      },
+      "arguments": ["build", "-trimpath", "-o", "<binary>", "./cmd/tsgo"],
+      "extraFlagsPresent": false,
+      "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profile": null,
+      "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+    }
+  },
+  "comparators": {
+    "nativeTypescript": {
+      "path": "packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4"
+    },
+    "pinnedGoOracle": {
+      "path": "packages/tsgo/dist/tsgo",
+      "sha256": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+    },
+    "scriptcApiOracle": {
+      "path": "node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc",
+      "sha256": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+    }
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE",
+    "PROJECTS_FILTER"
+  ],
+  "environment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-linkstore-split",
+    "TSC_GO_BASELINE": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-linkstore-split"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "command": ["node", "--test", "--test-reporter=spec", "packages/tsc-go/tests/parity.mjs"],
+      "exitCode": 0,
+      "error": null,
+      "log": "/tmp/linkstore-split-parity.log",
+      "logSha256": "0219dc291ada0763cb02cbdf41eccca4aa583ade7901fc792c35fd6372fecfa4",
+      "counts": {
+        "tests": 80,
+        "suites": 0,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 78376.159509
+      },
+      "expectedTests": 80,
+      "passed": true
+    },
+    {
+      "name": "integration",
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "/tmp/linkstore-split-integration.log",
+      "logSha256": "7bb6af12198c16cc5b63bdd0349a93906fc89bc869807ce6e8251d6db5de6ab7",
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 44182.695223
+      },
+      "expectedTests": 12,
+      "passed": true
+    }
+  ],
+  "verifiedSourcesBinariesAndSidecarUnchanged": true,
+  "notes": [
+    "The source digest includes the LinkStore split and concurrent-read regression; no direct-properties draft was applied.",
+    "These suites compare diagnostics, API results, emitted outputs and project behavior; correctness is not inferred from compiler exit status alone.",
+    "Independent Go race/unit results are recorded separately. Full upstream conformance was not repeated for this small LinkStore lookup split.",
+    "Validation durations are not performance measurements."
+  ]
+}

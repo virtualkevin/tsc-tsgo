@@ -1,0 +1,707 @@
+{
+  "purpose": "Exploratory LinkStore last-inserted hit-rate counts; instrumentation overhead makes runtime unsuitable for performance comparisons.",
+  "baseCommit": "87b892e455d96083a6b4dcba48682189e679d3c3",
+  "patch": "benchmarks/profiles/linkstore-hit-rates/instrumentation.patch",
+  "patchSha256": "c4563a6836618d97a1a2ad874410c3535ecb2a90504134f65bcc2d54c6b79244",
+  "sourceCopy": "/tmp/tsc-linkstore-run",
+  "sourceManifest": "/tmp/tsc-linkstore-run/source-manifest.json",
+  "sourceManifestSha256": "829d338304a6a5bc0e4e11f071be495eddd7d15476ca26d467907c7dca2fdeb9",
+  "binary": "/tmp/tsc-linkstore-run/tsc-go-instrumented",
+  "binarySha256": "3fd42bea07d3524a4b9ea1edf34454f28a5786c3f2b3debfc1406c4c1d2c10c4",
+  "buildCommand": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-o",
+    "/tmp/tsc-linkstore-run/tsc-go-instrumented",
+    "./cmd/tsgo"
+  ],
+  "buildCwd": "/tmp/tsc-linkstore-run/packages/tsc-go",
+  "buildEnvironment": {
+    "GOGC": "100"
+  },
+  "buildMetadata": "/tmp/tsc-linkstore-run/tsc-go-instrumented: go1.26.9\n\tpath\tgithub.com/microsoft/typescript-go/cmd/tsgo\n\tmod\tgithub.com/microsoft/typescript-go\t(devel)\t\n\tdep\tgithub.com/go-json-experiment/json\tv0.0.0-20260623181947-01eb4420fa68\th1:KZaTBSyshWX3MP5jukJcNSuXDQTO+rNpt0J564dX/eg=\n\tdep\tgithub.com/klauspost/cpuid/v2\tv2.2.10\th1:tBs3QSyvjDyFTq3uoc/9xFpCuOsJQFNPiAhYdw2skhE=\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.7\th1:TCavZi10wF49bT6iQZ9eT2keGZQpC69MTDfdJej5e94=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.21.0\th1:HLII4xRRTtCRkxYp4HNFF0Js/Og6q2i++KXbg0gHCwM=\n\tdep\tgolang.org/x/sys\tv0.46.0\th1:noSf2Fq6F8DBgS+LysIkx7rIExoNHJsxOAtPp4rthXw=\n\tdep\tgolang.org/x/term\tv0.44.0\th1:0rLvDRCtNj0gZkyIXhCyOb2OAzEhLVqc4B+hrsBhrmc=\n\tdep\tgolang.org/x/text\tv0.38.0\th1:sXmwo9DwP3OK9EZ7PqAdaooSGozfl/3a6/xJcbzPRhE=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tCGO_ENABLED=1\n\tbuild\tGOARCH=amd64\n\tbuild\tGOOS=linux\n\tbuild\tGOAMD64=v1\n",
+  "compilerEnvironment": {
+    "TSC_TS_LIB_DIR": "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs"
+  },
+  "unsetEnvironment": [
+    "GOGC",
+    "GOMEMLIMIT",
+    "GOMAXPROCS",
+    "GODEBUG",
+    "TSC_GO_SCHEDULER",
+    "TSC_GO_SHARED_GLOBALS",
+    "TSC_TS_CHECKERS",
+    "TSC_TS_REGION",
+    "TSC_TS_RECYCLE",
+    "TSC_TS_SIDE_STATE",
+    "TSC_TS_CHECKERS_TRACE"
+  ],
+  "timeoutSeconds": 300,
+  "runs": [
+    {
+      "name": "trpc",
+      "inputReport": "benchmarks/results/lazy-default.json",
+      "inputCommit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "fileListSha256": "b2f9aab6a69576e3ffd340095f00a811acd9be635249e9f82324a1928459d743",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "command": [
+        "/tmp/tsc-linkstore-run/tsc-go-instrumented",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "profileEnvironment": {
+        "TSC_GO_LINKSTORE_PROFILE": "/tmp/tsc-linkstore-run/counts-trpc"
+      },
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawProfiles": [
+        {
+          "path": "benchmarks/profiles/linkstore-hit-rates/counts-trpc.178012.json",
+          "sha256": "ee99f49ec455c8a4f8781a8b107af1dd5d0ada43f4d3c6084f3b424024eb3bb2",
+          "originalPath": "/tmp/tsc-linkstore-run/counts-trpc.178012.json"
+        }
+      ],
+      "totals": {
+        "stores": 281,
+        "getCalls": 801666,
+        "lastInsertedMatches": 101198,
+        "mapHits": 651328,
+        "newCalls": 37474,
+        "insertions": 187812,
+        "predictedGetHitRate": 0.12623462
+      },
+      "byStoreType": {
+        "*ast.Symbol -> checker.ValueSymbolLinks": {
+          "stores": 4,
+          "getCalls": 350046,
+          "lastInsertedMatches": 17904,
+          "mapHits": 311839,
+          "newCalls": 37474,
+          "insertions": 75681,
+          "predictedGetHitRate": 0.05114756
+        },
+        "*ast.Node -> checker.SymbolNodeLinks": {
+          "stores": 4,
+          "getCalls": 109357,
+          "lastInsertedMatches": 33846,
+          "mapHits": 84170,
+          "newCalls": 0,
+          "insertions": 25187,
+          "predictedGetHitRate": 0.30950008
+        },
+        "*ast.Node -> checker.TypeNodeLinks": {
+          "stores": 4,
+          "getCalls": 102666,
+          "lastInsertedMatches": 6267,
+          "mapHits": 75356,
+          "newCalls": 0,
+          "insertions": 27310,
+          "predictedGetHitRate": 0.0610426
+        },
+        "*ast.Symbol -> checker.AliasSymbolLinks": {
+          "stores": 4,
+          "getCalls": 67651,
+          "lastInsertedMatches": 18709,
+          "mapHits": 60427,
+          "newCalls": 0,
+          "insertions": 7224,
+          "predictedGetHitRate": 0.27655171
+        },
+        "*ast.Symbol -> checker.DeclaredTypeLinks": {
+          "stores": 4,
+          "getCalls": 27823,
+          "lastInsertedMatches": 3511,
+          "mapHits": 23010,
+          "newCalls": 0,
+          "insertions": 4813,
+          "predictedGetHitRate": 0.12619056
+        },
+        "*ast.Symbol -> checker.SymbolReferenceLinks": {
+          "stores": 4,
+          "getCalls": 24875,
+          "lastInsertedMatches": 2020,
+          "mapHits": 14209,
+          "newCalls": 0,
+          "insertions": 10666,
+          "predictedGetHitRate": 0.08120603
+        },
+        "*ast.Symbol -> checker.ModuleSymbolLinks": {
+          "stores": 4,
+          "getCalls": 19718,
+          "lastInsertedMatches": 1697,
+          "mapHits": 17061,
+          "newCalls": 0,
+          "insertions": 2657,
+          "predictedGetHitRate": 0.0860635
+        },
+        "*ast.Symbol -> checker.TypeAliasLinks": {
+          "stores": 4,
+          "getCalls": 18307,
+          "lastInsertedMatches": 4383,
+          "mapHits": 17104,
+          "newCalls": 0,
+          "insertions": 1203,
+          "predictedGetHitRate": 0.23941662
+        },
+        "*ast.Node -> checker.SignatureLinks": {
+          "stores": 4,
+          "getCalls": 17863,
+          "lastInsertedMatches": 606,
+          "mapHits": 9651,
+          "newCalls": 0,
+          "insertions": 8212,
+          "predictedGetHitRate": 0.03392487
+        },
+        "*ast.Symbol -> checker.MembersAndExportsLinks": {
+          "stores": 4,
+          "getCalls": 17754,
+          "lastInsertedMatches": 4884,
+          "mapHits": 13080,
+          "newCalls": 0,
+          "insertions": 4674,
+          "predictedGetHitRate": 0.27509294
+        },
+        "*ast.Symbol -> checker.MappedSymbolLinks": {
+          "stores": 4,
+          "getCalls": 17257,
+          "lastInsertedMatches": 262,
+          "mapHits": 3482,
+          "newCalls": 0,
+          "insertions": 13775,
+          "predictedGetHitRate": 0.01518224
+        },
+        "*ast.Node -> checker.DeclarationLinks": {
+          "stores": 4,
+          "getCalls": 7675,
+          "lastInsertedMatches": 143,
+          "mapHits": 6039,
+          "newCalls": 0,
+          "insertions": 1636,
+          "predictedGetHitRate": 0.01863192
+        },
+        "*ast.SourceFile -> checker.SourceFileLinks": {
+          "stores": 4,
+          "getCalls": 4344,
+          "lastInsertedMatches": 3542,
+          "mapHits": 4214,
+          "newCalls": 0,
+          "insertions": 130,
+          "predictedGetHitRate": 0.81537753
+        },
+        "*ast.Symbol -> checker.MarkedAssignmentSymbolLinks": {
+          "stores": 4,
+          "getCalls": 4002,
+          "lastInsertedMatches": 1260,
+          "mapHits": 3728,
+          "newCalls": 0,
+          "insertions": 274,
+          "predictedGetHitRate": 0.31484258
+        },
+        "*ast.Node -> checker.NodeLinks": {
+          "stores": 4,
+          "getCalls": 3482,
+          "lastInsertedMatches": 620,
+          "mapHits": 2523,
+          "newCalls": 0,
+          "insertions": 959,
+          "predictedGetHitRate": 0.17805859
+        },
+        "*ast.Symbol -> checker.VarianceLinks": {
+          "stores": 4,
+          "getCalls": 3376,
+          "lastInsertedMatches": 355,
+          "mapHits": 3002,
+          "newCalls": 0,
+          "insertions": 374,
+          "predictedGetHitRate": 0.10515403
+        },
+        "*ast.Node -> printer.emitNode": {
+          "stores": 66,
+          "getCalls": 1236,
+          "lastInsertedMatches": 52,
+          "mapHits": 52,
+          "newCalls": 0,
+          "insertions": 1184,
+          "predictedGetHitRate": 0.0420712
+        },
+        "*ast.Symbol -> checker.ReverseMappedSymbolLinks": {
+          "stores": 4,
+          "getCalls": 978,
+          "lastInsertedMatches": 6,
+          "mapHits": 162,
+          "newCalls": 0,
+          "insertions": 816,
+          "predictedGetHitRate": 0.00613497
+        },
+        "*ast.Symbol -> checker.ContainingSymbolLinks": {
+          "stores": 4,
+          "getCalls": 851,
+          "lastInsertedMatches": 157,
+          "mapHits": 772,
+          "newCalls": 0,
+          "insertions": 79,
+          "predictedGetHitRate": 0.18448884
+        },
+        "*ast.Node -> checker.ArrayLiteralLinks": {
+          "stores": 4,
+          "getCalls": 547,
+          "lastInsertedMatches": 384,
+          "mapHits": 433,
+          "newCalls": 0,
+          "insertions": 114,
+          "predictedGetHitRate": 0.70201097
+        },
+        "*ast.Node -> checker.NodeBuilderLinks": {
+          "stores": 104,
+          "getCalls": 504,
+          "lastInsertedMatches": 228,
+          "mapHits": 331,
+          "newCalls": 0,
+          "insertions": 173,
+          "predictedGetHitRate": 0.45238095
+        },
+        "*ast.Symbol -> checker.LateBoundLinks": {
+          "stores": 4,
+          "getCalls": 381,
+          "lastInsertedMatches": 80,
+          "mapHits": 129,
+          "newCalls": 0,
+          "insertions": 252,
+          "predictedGetHitRate": 0.20997375
+        },
+        "*ast.Node -> checker.DeclarationFileLinks": {
+          "stores": 4,
+          "getCalls": 324,
+          "lastInsertedMatches": 112,
+          "mapHits": 216,
+          "newCalls": 0,
+          "insertions": 108,
+          "predictedGetHitRate": 0.34567901
+        },
+        "*ast.Node -> checker.AssertionLinks": {
+          "stores": 4,
+          "getCalls": 257,
+          "lastInsertedMatches": 60,
+          "mapHits": 137,
+          "newCalls": 0,
+          "insertions": 120,
+          "predictedGetHitRate": 0.23346304
+        },
+        "*ast.Symbol -> checker.DeferredSymbolLinks": {
+          "stores": 4,
+          "getCalls": 147,
+          "lastInsertedMatches": 45,
+          "mapHits": 55,
+          "newCalls": 0,
+          "insertions": 92,
+          "predictedGetHitRate": 0.30612245
+        },
+        "*ast.Symbol -> checker.NodeBuilderSymbolLinks": {
+          "stores": 8,
+          "getCalls": 136,
+          "lastInsertedMatches": 32,
+          "mapHits": 106,
+          "newCalls": 0,
+          "insertions": 30,
+          "predictedGetHitRate": 0.23529412
+        },
+        "*ast.Symbol -> checker.ExportTypeLinks": {
+          "stores": 4,
+          "getCalls": 41,
+          "lastInsertedMatches": 0,
+          "mapHits": 0,
+          "newCalls": 0,
+          "insertions": 41,
+          "predictedGetHitRate": 0.0
+        },
+        "*ast.Symbol -> checker.SpreadLinks": {
+          "stores": 2,
+          "getCalls": 34,
+          "lastInsertedMatches": 17,
+          "mapHits": 17,
+          "newCalls": 0,
+          "insertions": 17,
+          "predictedGetHitRate": 0.5
+        },
+        "*ast.Node -> checker.SwitchStatementLinks": {
+          "stores": 3,
+          "getCalls": 26,
+          "lastInsertedMatches": 14,
+          "mapHits": 19,
+          "newCalls": 0,
+          "insertions": 7,
+          "predictedGetHitRate": 0.53846154
+        },
+        "*ast.Node -> checker.EnumMemberLinks": {
+          "stores": 2,
+          "getCalls": 8,
+          "lastInsertedMatches": 2,
+          "mapHits": 4,
+          "newCalls": 0,
+          "insertions": 4,
+          "predictedGetHitRate": 0.25
+        }
+      },
+      "stdoutLog": "benchmarks/profiles/linkstore-hit-rates/trpc-stdout.log",
+      "stderrLog": "benchmarks/profiles/linkstore-hit-rates/trpc-stderr.log"
+    },
+    {
+      "name": "sentry",
+      "inputReport": "benchmarks/results/lazy-default-large.json",
+      "inputCommit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "fileListSha256": "ca37f82d60e3863bd4cddbc6af04e991dc230ab6eebadfaf2d228dc1ecf260d6",
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "command": [
+        "/tmp/tsc-linkstore-run/tsc-go-instrumented",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "profileEnvironment": {
+        "TSC_GO_LINKSTORE_PROFILE": "/tmp/tsc-linkstore-run/counts-sentry"
+      },
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawProfiles": [
+        {
+          "path": "benchmarks/profiles/linkstore-hit-rates/counts-sentry.178025.json",
+          "sha256": "e452491ff39c71dda7d0a8c4e183fdfe6502997117c6f4a796779f09956eeb3e",
+          "originalPath": "/tmp/tsc-linkstore-run/counts-sentry.178025.json"
+        }
+      ],
+      "totals": {
+        "stores": 114,
+        "getCalls": 76532866,
+        "lastInsertedMatches": 10597969,
+        "mapHits": 68636408,
+        "newCalls": 1688083,
+        "insertions": 9584541,
+        "predictedGetHitRate": 0.13847605
+      },
+      "byStoreType": {
+        "*ast.Symbol -> checker.ValueSymbolLinks": {
+          "stores": 4,
+          "getCalls": 43258782,
+          "lastInsertedMatches": 1278104,
+          "mapHits": 40390446,
+          "newCalls": 1688083,
+          "insertions": 4556419,
+          "predictedGetHitRate": 0.02954554
+        },
+        "*ast.Node -> checker.SymbolNodeLinks": {
+          "stores": 4,
+          "getCalls": 13500151,
+          "lastInsertedMatches": 6442081,
+          "mapHits": 11912784,
+          "newCalls": 0,
+          "insertions": 1587367,
+          "predictedGetHitRate": 0.47718585
+        },
+        "*ast.Symbol -> checker.AliasSymbolLinks": {
+          "stores": 4,
+          "getCalls": 4279364,
+          "lastInsertedMatches": 1139452,
+          "mapHits": 4124232,
+          "newCalls": 0,
+          "insertions": 155132,
+          "predictedGetHitRate": 0.26626667
+        },
+        "*ast.Node -> checker.TypeNodeLinks": {
+          "stores": 4,
+          "getCalls": 3516882,
+          "lastInsertedMatches": 259911,
+          "mapHits": 2813351,
+          "newCalls": 0,
+          "insertions": 703531,
+          "predictedGetHitRate": 0.07390382
+        },
+        "*ast.Node -> checker.SignatureLinks": {
+          "stores": 4,
+          "getCalls": 2536892,
+          "lastInsertedMatches": 73574,
+          "mapHits": 1922084,
+          "newCalls": 0,
+          "insertions": 614808,
+          "predictedGetHitRate": 0.02900163
+        },
+        "*ast.Symbol -> checker.SymbolReferenceLinks": {
+          "stores": 4,
+          "getCalls": 1391938,
+          "lastInsertedMatches": 147365,
+          "mapHits": 974263,
+          "newCalls": 0,
+          "insertions": 417675,
+          "predictedGetHitRate": 0.10587038
+        },
+        "*ast.Symbol -> checker.MappedSymbolLinks": {
+          "stores": 4,
+          "getCalls": 1251678,
+          "lastInsertedMatches": 7407,
+          "mapHits": 452603,
+          "newCalls": 0,
+          "insertions": 799075,
+          "predictedGetHitRate": 0.00591766
+        },
+        "*ast.Symbol -> checker.ModuleSymbolLinks": {
+          "stores": 4,
+          "getCalls": 1236066,
+          "lastInsertedMatches": 77243,
+          "mapHits": 1203609,
+          "newCalls": 0,
+          "insertions": 32457,
+          "predictedGetHitRate": 0.062491
+        },
+        "*ast.Symbol -> checker.MembersAndExportsLinks": {
+          "stores": 4,
+          "getCalls": 1115921,
+          "lastInsertedMatches": 115997,
+          "mapHits": 937695,
+          "newCalls": 0,
+          "insertions": 178226,
+          "predictedGetHitRate": 0.10394732
+        },
+        "*ast.Symbol -> checker.TypeAliasLinks": {
+          "stores": 4,
+          "getCalls": 1084424,
+          "lastInsertedMatches": 56242,
+          "mapHits": 1061214,
+          "newCalls": 0,
+          "insertions": 23210,
+          "predictedGetHitRate": 0.05186348
+        },
+        "*ast.Node -> checker.JsxElementLinks": {
+          "stores": 4,
+          "getCalls": 863587,
+          "lastInsertedMatches": 201745,
+          "mapHits": 724548,
+          "newCalls": 0,
+          "insertions": 139039,
+          "predictedGetHitRate": 0.23361283
+        },
+        "*ast.Symbol -> checker.DeclaredTypeLinks": {
+          "stores": 4,
+          "getCalls": 742248,
+          "lastInsertedMatches": 33839,
+          "mapHits": 687659,
+          "newCalls": 0,
+          "insertions": 54589,
+          "predictedGetHitRate": 0.04558988
+        },
+        "*ast.SourceFile -> checker.SourceFileLinks": {
+          "stores": 4,
+          "getCalls": 438614,
+          "lastInsertedMatches": 309355,
+          "mapHits": 422346,
+          "newCalls": 0,
+          "insertions": 16268,
+          "predictedGetHitRate": 0.70530124
+        },
+        "*ast.Node -> checker.ArrayLiteralLinks": {
+          "stores": 4,
+          "getCalls": 370193,
+          "lastInsertedMatches": 240868,
+          "mapHits": 323227,
+          "newCalls": 0,
+          "insertions": 46966,
+          "predictedGetHitRate": 0.6506552
+        },
+        "*ast.Node -> checker.NodeLinks": {
+          "stores": 4,
+          "getCalls": 352361,
+          "lastInsertedMatches": 76658,
+          "mapHits": 240957,
+          "newCalls": 0,
+          "insertions": 111404,
+          "predictedGetHitRate": 0.21755529
+        },
+        "*ast.Symbol -> checker.VarianceLinks": {
+          "stores": 4,
+          "getCalls": 199301,
+          "lastInsertedMatches": 4321,
+          "mapHits": 197650,
+          "newCalls": 0,
+          "insertions": 1651,
+          "predictedGetHitRate": 0.02168077
+        },
+        "*ast.Symbol -> checker.MarkedAssignmentSymbolLinks": {
+          "stores": 4,
+          "getCalls": 181794,
+          "lastInsertedMatches": 74872,
+          "mapHits": 161578,
+          "newCalls": 0,
+          "insertions": 20216,
+          "predictedGetHitRate": 0.41185078
+        },
+        "*ast.Symbol -> checker.SpreadLinks": {
+          "stores": 4,
+          "getCalls": 80320,
+          "lastInsertedMatches": 40160,
+          "mapHits": 40160,
+          "newCalls": 0,
+          "insertions": 40160,
+          "predictedGetHitRate": 0.5
+        },
+        "*ast.Symbol -> checker.DeferredSymbolLinks": {
+          "stores": 4,
+          "getCalls": 46710,
+          "lastInsertedMatches": 8643,
+          "mapHits": 10737,
+          "newCalls": 0,
+          "insertions": 35973,
+          "predictedGetHitRate": 0.18503532
+        },
+        "*ast.Node -> checker.EnumMemberLinks": {
+          "stores": 4,
+          "getCalls": 28248,
+          "lastInsertedMatches": 1255,
+          "mapHits": 14989,
+          "newCalls": 0,
+          "insertions": 13259,
+          "predictedGetHitRate": 0.04442792
+        },
+        "*ast.Node -> printer.emitNode": {
+          "stores": 4,
+          "getCalls": 26925,
+          "lastInsertedMatches": 5,
+          "mapHits": 5,
+          "newCalls": 0,
+          "insertions": 26920,
+          "predictedGetHitRate": 0.0001857
+        },
+        "*ast.Symbol -> checker.LateBoundLinks": {
+          "stores": 4,
+          "getCalls": 18182,
+          "lastInsertedMatches": 3546,
+          "mapHits": 12106,
+          "newCalls": 0,
+          "insertions": 6076,
+          "predictedGetHitRate": 0.19502805
+        },
+        "*ast.Node -> checker.AssertionLinks": {
+          "stores": 4,
+          "getCalls": 7751,
+          "lastInsertedMatches": 2176,
+          "mapHits": 4232,
+          "newCalls": 0,
+          "insertions": 3519,
+          "predictedGetHitRate": 0.28073797
+        },
+        "*ast.Node -> checker.SwitchStatementLinks": {
+          "stores": 4,
+          "getCalls": 2968,
+          "lastInsertedMatches": 2598,
+          "mapHits": 2604,
+          "newCalls": 0,
+          "insertions": 364,
+          "predictedGetHitRate": 0.87533693
+        },
+        "*ast.Node -> checker.NodeBuilderLinks": {
+          "stores": 4,
+          "getCalls": 1355,
+          "lastInsertedMatches": 543,
+          "mapHits": 1308,
+          "newCalls": 0,
+          "insertions": 47,
+          "predictedGetHitRate": 0.40073801
+        },
+        "*ast.Symbol -> checker.ReverseMappedSymbolLinks": {
+          "stores": 4,
+          "getCalls": 136,
+          "lastInsertedMatches": 2,
+          "mapHits": 3,
+          "newCalls": 0,
+          "insertions": 133,
+          "predictedGetHitRate": 0.01470588
+        },
+        "*ast.Symbol -> checker.ExportTypeLinks": {
+          "stores": 4,
+          "getCalls": 27,
+          "lastInsertedMatches": 0,
+          "mapHits": 0,
+          "newCalls": 0,
+          "insertions": 27,
+          "predictedGetHitRate": 0.0
+        },
+        "*ast.Symbol -> checker.ContainingSymbolLinks": {
+          "stores": 3,
+          "getCalls": 26,
+          "lastInsertedMatches": 7,
+          "mapHits": 13,
+          "newCalls": 0,
+          "insertions": 13,
+          "predictedGetHitRate": 0.26923077
+        },
+        "*ast.Node -> checker.DeclarationLinks": {
+          "stores": 2,
+          "getCalls": 21,
+          "lastInsertedMatches": 0,
+          "mapHits": 5,
+          "newCalls": 0,
+          "insertions": 16,
+          "predictedGetHitRate": 0.0
+        },
+        "*ast.Symbol -> checker.NodeBuilderSymbolLinks": {
+          "stores": 1,
+          "getCalls": 1,
+          "lastInsertedMatches": 0,
+          "mapHits": 0,
+          "newCalls": 0,
+          "insertions": 1,
+          "predictedGetHitRate": 0.0
+        }
+      },
+      "stdoutLog": "benchmarks/profiles/linkstore-hit-rates/sentry-stdout.log",
+      "stderrLog": "benchmarks/profiles/linkstore-hit-rates/sentry-stderr.log"
+    }
+  ],
+  "recordedAt": "2026-10-17T09:01:25.564205+00:00",
+  "counterInvariants": {
+    "status": "passed for every registered store",
+    "checks": ["lastInsertedMatches <= mapHits <= getCalls", "insertions == newCalls + getCalls - mapHits"]
+  },
+  "limitations": [
+    "No speed or allocation-performance conclusions: atomic counters and registry instrumentation perturb execution.",
+    "Counts cover Get only; Has and TryGet were not instrumented.",
+    "One run per workload at default checker count4; no scheduling/generalization claim.",
+    "Runtime work overlapped another untimed work-count experiment; this is not a benchmark window.",
+    "No speed or memory claims. These measured counts describe instrumented runs, not the performance or memory behavior of an actual cache implementation.",
+    "Default four-checker assignment was used. Counts and hit rates can depend on scheduling, checker count, source traversal, and workload version."
+  ],
+  "recommendation": "Defer the generic last-insert cache: dominant ValueSymbolLinks.Get has only 2.96% predicted hits in Sentry. SymbolNodeLinks.Get has 47.72% and could justify a narrower later experiment; no speedup is inferred.",
+  "sourceManifestFileCount": 5146,
+  "sourceManifestNote": "Full copied-source manifest remains in the temporary experiment directory; base commit plus committed instrumentation.patch reconstruct the source. The manifest digest and count identify the measured copy without duplicating source contents.",
+  "reproduction": {
+    "exportCommand": ["git", "archive", "87b892e455d96083a6b4dcba48682189e679d3c3", "packages/tsc-go"],
+    "applyCommand": ["git", "apply", "instrumentation.patch"],
+    "notes": [
+      "Export tracked packages/tsc-go into a separate directory and apply the patch at that directory root.",
+      "Use the recorded build command and runtime arguments, adjusting absolute copy/output-prefix paths to the new location. Restore compilerEnvironment and remove unsetEnvironment before each workload invocation.",
+      "Each normal process writes TSC_GO_LINKSTORE_PROFILE.PID.json. Aggregate store types using the included runner, and verify recorded counter invariants."
+    ]
+  },
+  "aggregationRunner": "benchmarks/profiles/linkstore-hit-rates/run.py",
+  "aggregationRunnerSha256": "91aeda14353fd098adc0604e5685c4c11df369d2635c1db8605cc1744e951355",
+  "instrumentationReadme": "benchmarks/profiles/linkstore-hit-rates/INSTRUMENTATION.md"
+}
