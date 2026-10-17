@@ -1,0 +1,48 @@
+{
+  "variant": "handle-only control; original PointerLinkStore retained",
+  "binarySha256": "a92d065b4609b3974984fabc940cb16ebf76e1391ed13d27dc8f2a26faf3b421",
+  "sidecarSha256": "86085fc5311feb56795078b64ffba93c4e82ed677ee961120b59f9ca884e3a40",
+  "sourceSha256": "8eef1a9cc14abdb788c257debaf02091e427e6e86dc0941fc29c55d2806b39ab",
+  "sourceFiles": 5155,
+  "sourceRevision": "e94bc1f0dd96ac097f1941144df7fb46e6b86fb7",
+  "sourceDirty": true,
+  "baselineBinarySha256": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+  "baselineSourceSha256": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+  "exactChangedFiles": [
+    "packages/tsc-go/internal/ast/symbol.go",
+    "packages/tsc-go/internal/ast/symbol_allocator.go",
+    "packages/tsc-go/internal/ast/symbol_allocator_test.go",
+    "packages/tsc-go/internal/binder/binder.go",
+    "packages/tsc-go/internal/checker/checker.go"
+  ],
+  "buildSettingsMatch": true,
+  "buildSettings": {
+    "toolchain": {
+      "CGO_ENABLED": "1",
+      "GO386": "",
+      "GOAMD64": "v1",
+      "GOARCH": "amd64",
+      "GOARM": "",
+      "GOARM64": "",
+      "GOEXPERIMENT": "",
+      "GOMIPS": "",
+      "GOMIPS64": "",
+      "GOOS": "linux",
+      "GOPPC64": "",
+      "GORISCV64": "",
+      "GOVERSION": "go1.26.9"
+    },
+    "arguments": [
+      "build",
+      "-trimpath",
+      "-o",
+      "<binary>",
+      "./cmd/tsgo"
+    ],
+    "extraFlagsPresent": false,
+    "extraFlagsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "profile": null,
+    "dependencyScope": "Local sources and go.mod/go.sum are hashed; external module-cache contents and toolchain files are not hashed"
+  },
+  "validation": "pending in separate control/validation.json; no workload measurements"
+}

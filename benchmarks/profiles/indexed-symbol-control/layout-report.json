@@ -1,0 +1,33 @@
+{
+  "method": "debug/elf and debug/dwarf read concrete struct sizes from preserved normal Go binaries; no program or benchmark executed",
+  "toolSourceSha256": "31298f5fa1d428de7c75d8b55ad5cc3cce25675babe2a89f695ff5a02c822c99",
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "run",
+    "/tmp/tsc-indexed-integration/layout.go",
+    "packages/tsc-go/dist/tsc-go-keybuilder-saturated",
+    "packages/tsc-go/dist/tsc-go-symbol-handles"
+  ],
+  "cwd": "/home/dev/tssss/tsc-tsgo",
+  "results": {
+    "packages/tsc-go/dist/tsc-go-keybuilder-saturated": {
+      "github.com/microsoft/typescript-go/internal/ast.Symbol": 96,
+      "github.com/microsoft/typescript-go/internal/binder.Binder": 288,
+      "github.com/microsoft/typescript-go/internal/checker.Checker": 4752
+    },
+    "packages/tsc-go/dist/tsc-go-symbol-handles": {
+      "github.com/microsoft/typescript-go/internal/ast.Symbol": 104,
+      "github.com/microsoft/typescript-go/internal/ast.SymbolAllocator": 32,
+      "github.com/microsoft/typescript-go/internal/binder.Binder": 296,
+      "github.com/microsoft/typescript-go/internal/checker.Checker": 4760
+    }
+  },
+  "binarySha256": {
+    "packages/tsc-go/dist/tsc-go-keybuilder-saturated": "2bdcca53f630535846054eada84cae8afaa32b4faab21de029eca41c79e26303",
+    "packages/tsc-go/dist/tsc-go-symbol-handles": "a92d065b4609b3974984fabc940cb16ebf76e1391ed13d27dc8f2a26faf3b421"
+  },
+  "limitations": [
+    "Struct byte sizes only, not heap allocation size classes, page occupancy, RSS or performance.",
+    "Concurrent non-performance compiler validation was running; no elapsed time is reported."
+  ]
+}

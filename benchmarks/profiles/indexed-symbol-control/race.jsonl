@@ -1,0 +1,33 @@
+{"Time":"2026-10-17T15:09:51.500123413Z","Action":"start","Package":"github.com/microsoft/typescript-go/internal/core"}
+{"Time":"2026-10-17T15:09:51.521719788Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/core","Output":"testing: warning: no tests to run\n"}
+{"Time":"2026-10-17T15:09:51.521859543Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/core","Output":"PASS\n"}
+{"Time":"2026-10-17T15:09:52.523960454Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/core","Output":"ok  \tgithub.com/microsoft/typescript-go/internal/core\t1.024s [no tests to run]\n"}
+{"Time":"2026-10-17T15:09:52.524032142Z","Action":"pass","Package":"github.com/microsoft/typescript-go/internal/core","Elapsed":1.024}
+{"Time":"2026-10-17T15:11:56.69766254Z","Action":"start","Package":"github.com/microsoft/typescript-go/internal/ast"}
+{"Time":"2026-10-17T15:11:56.718163688Z","Action":"run","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandlesPreserveLazySemanticIDs"}
+{"Time":"2026-10-17T15:11:56.718226019Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandlesPreserveLazySemanticIDs","Output":"=== RUN   TestSymbolAllocationHandlesPreserveLazySemanticIDs\n"}
+{"Time":"2026-10-17T15:11:56.718280954Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandlesPreserveLazySemanticIDs","Output":"--- PASS: TestSymbolAllocationHandlesPreserveLazySemanticIDs (0.00s)\n"}
+{"Time":"2026-10-17T15:11:56.718298011Z","Action":"pass","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandlesPreserveLazySemanticIDs","Elapsed":0}
+{"Time":"2026-10-17T15:11:56.718414288Z","Action":"run","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandleExhaustionDoesNotWrap"}
+{"Time":"2026-10-17T15:11:56.71842858Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandleExhaustionDoesNotWrap","Output":"=== RUN   TestSymbolAllocationHandleExhaustionDoesNotWrap\n"}
+{"Time":"2026-10-17T15:11:56.718524556Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandleExhaustionDoesNotWrap","Output":"--- PASS: TestSymbolAllocationHandleExhaustionDoesNotWrap (0.00s)\n"}
+{"Time":"2026-10-17T15:11:56.718530512Z","Action":"pass","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandleExhaustionDoesNotWrap","Elapsed":0}
+{"Time":"2026-10-17T15:11:56.718634459Z","Action":"run","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandleConcurrentOwners"}
+{"Time":"2026-10-17T15:11:56.718648465Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandleConcurrentOwners","Output":"=== RUN   TestSymbolAllocationHandleConcurrentOwners\n"}
+{"Time":"2026-10-17T15:11:56.720763115Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandleConcurrentOwners","Output":"--- PASS: TestSymbolAllocationHandleConcurrentOwners (0.00s)\n"}
+{"Time":"2026-10-17T15:11:56.720800157Z","Action":"pass","Package":"github.com/microsoft/typescript-go/internal/ast","Test":"TestSymbolAllocationHandleConcurrentOwners","Elapsed":0}
+{"Time":"2026-10-17T15:11:56.720805663Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/ast","Output":"PASS\n"}
+{"Time":"2026-10-17T15:11:57.724512527Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/ast","Output":"ok  \tgithub.com/microsoft/typescript-go/internal/ast\t1.027s\n"}
+{"Time":"2026-10-17T15:11:57.724564529Z","Action":"pass","Package":"github.com/microsoft/typescript-go/internal/ast","Elapsed":1.027}
+{"Time":"2026-10-17T15:12:33.534663304Z","Action":"start","Package":"github.com/microsoft/typescript-go/internal/checker"}
+{"Time":"2026-10-17T15:12:33.557793279Z","Action":"run","Package":"github.com/microsoft/typescript-go/internal/checker","Test":"TestValueSymbolLinksRetainInstantiatedGraphAcrossGC"}
+{"Time":"2026-10-17T15:12:33.557864181Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/checker","Test":"TestValueSymbolLinksRetainInstantiatedGraphAcrossGC","Output":"=== RUN   TestValueSymbolLinksRetainInstantiatedGraphAcrossGC\n"}
+{"Time":"2026-10-17T15:12:33.660522396Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/checker","Test":"TestValueSymbolLinksRetainInstantiatedGraphAcrossGC","Output":"--- PASS: TestValueSymbolLinksRetainInstantiatedGraphAcrossGC (0.10s)\n"}
+{"Time":"2026-10-17T15:12:33.660575712Z","Action":"pass","Package":"github.com/microsoft/typescript-go/internal/checker","Test":"TestValueSymbolLinksRetainInstantiatedGraphAcrossGC","Elapsed":0.1}
+{"Time":"2026-10-17T15:12:33.66059878Z","Action":"run","Package":"github.com/microsoft/typescript-go/internal/checker","Test":"TestValueSymbolLinksReplacementKeepsPublishedPointers"}
+{"Time":"2026-10-17T15:12:33.660603819Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/checker","Test":"TestValueSymbolLinksReplacementKeepsPublishedPointers","Output":"=== RUN   TestValueSymbolLinksReplacementKeepsPublishedPointers\n"}
+{"Time":"2026-10-17T15:12:33.686546301Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/checker","Test":"TestValueSymbolLinksReplacementKeepsPublishedPointers","Output":"--- PASS: TestValueSymbolLinksReplacementKeepsPublishedPointers (0.03s)\n"}
+{"Time":"2026-10-17T15:12:33.686602036Z","Action":"pass","Package":"github.com/microsoft/typescript-go/internal/checker","Test":"TestValueSymbolLinksReplacementKeepsPublishedPointers","Elapsed":0.03}
+{"Time":"2026-10-17T15:12:33.686931257Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/checker","Output":"PASS\n"}
+{"Time":"2026-10-17T15:12:34.69142914Z","Action":"output","Package":"github.com/microsoft/typescript-go/internal/checker","Output":"ok  \tgithub.com/microsoft/typescript-go/internal/checker\t1.157s\n"}
+{"Time":"2026-10-17T15:12:34.691476864Z","Action":"pass","Package":"github.com/microsoft/typescript-go/internal/checker","Elapsed":1.157}
