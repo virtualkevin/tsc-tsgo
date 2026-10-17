@@ -1,0 +1,45 @@
+{
+  "status": "retained",
+  "beforeSource": "78b76607d79c501f3c35fcbbec5a880561699244c7d65daab6f27f42b22f9337",
+  "afterSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+  "records": [
+    {
+      "direction": "forward",
+      "summarySha256": "3d64190f30f499ab0e50660d942aed6c7fe76086ae37bb3314c53f4cd3b40313",
+      "proposalSha256": "2e2d632bebd555bdcd761b1a85dfab84c88c6683fbf8f35aa47b5c30ddac6813",
+      "aggregates": {
+        "ratioOfMediansGeometricMean": 1.0297835116028586,
+        "pairedMedianGeometricMean": 1.0329852134735424
+      },
+      "gates": {
+        "bothAggregatesAtLeast101": true,
+        "allWorkloadSummariesAtLeast098": true,
+        "allWorkloadMedianRssAtMost105": true
+      },
+      "passes": true
+    },
+    {
+      "direction": "reverse",
+      "summarySha256": "d6d2df5d0d260183432fd9ddf064e62b1f4b1834256fb6aaa7357f9fa10840f3",
+      "proposalSha256": "0a400874af71ec5357cb093b09f6ac81397fad8a32642c25981da31cbf1b264f",
+      "aggregates": {
+        "ratioOfMediansGeometricMean": 1.026311980094603,
+        "pairedMedianGeometricMean": 1.0224991872343472
+      },
+      "gates": {
+        "bothAggregatesAtLeast101": true,
+        "allWorkloadSummariesAtLeast098": true,
+        "allWorkloadMedianRssAtMost105": true
+      },
+      "passes": true
+    }
+  ],
+  "validations": {
+    "conformance": "81249e90c492680fe53f9f4e815e710ca172a0332c4901ec94676742dd2fa56d",
+    "native": "aa081c58d246b203b62558cd2467e64eaddf551df0dc1120d570f8fe58250428"
+  },
+  "patchSha256": "5295ac31ff13584f4efcc4a2a37cbd11276005e483d01e0d18bf268be0737813",
+  "controllerSha256": "db8f99242273b3e995a574536942654c8cbfc50f53c943eb4ce1d1b708df5b83",
+  "limitation": "Go/Go confirmation only; native-relative 10x remains unproven."
+}

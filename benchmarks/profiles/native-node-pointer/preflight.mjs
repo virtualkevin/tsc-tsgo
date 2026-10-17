@@ -1,0 +1,1 @@
+import {capture,groups,config} from './common-native.mjs';const s=capture(); console.log(JSON.stringify({experiment:config.name,groups,source:s.workspaceSource,nativeSourceSha256:s.currentNativeSources.sha256,nativeProvenance:s.binaries.baseline.buildProvenance.status}));

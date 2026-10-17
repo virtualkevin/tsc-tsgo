@@ -670,9 +670,9 @@ type Checker struct {
 	mergedSymbols                               map[*ast.Symbol]*ast.Symbol
 	factory                                     ast.NodeFactory
 	nodeLinks                                   core.LinkStore[*ast.Node, NodeLinks]
-	signatureLinks                              core.LinkStore[*ast.Node, SignatureLinks]
-	symbolNodeLinks                             core.LinkStore[*ast.Node, SymbolNodeLinks]
-	typeNodeLinks                               core.LinkStore[*ast.Node, TypeNodeLinks]
+	signatureLinks                              core.PointerLinkStore[ast.Node, SignatureLinks]
+	symbolNodeLinks                             core.PointerLinkStore[ast.Node, SymbolNodeLinks]
+	typeNodeLinks                               core.PointerLinkStore[ast.Node, TypeNodeLinks]
 	enumMemberLinks                             core.LinkStore[*ast.Node, EnumMemberLinks]
 	assertionLinks                              core.LinkStore[*ast.Node, AssertionLinks]
 	arrayLiteralLinks                           core.LinkStore[*ast.Node, ArrayLiteralLinks]
