@@ -1,0 +1,31 @@
+{
+  "proposalSha256": "eb4428c949a97c80592c8171070f7371c9d712fbf9cae9aa1cb4e80e08ea024d",
+  "formula": "targetGoMs = nativeMedianMs / 10; requiredGoAcceleration = currentGoMedianMs / targetGoMs",
+  "scope": "Arithmetic from this direct default-settings milestone only; not a prediction or redefinition of the goal",
+  "workloads": [
+    {
+      "name": "typeorm",
+      "targetGoMs": 132.7704888,
+      "currentGoMs": 2521.058802,
+      "requiredGoAcceleration": 18.988096110707396
+    },
+    {
+      "name": "trpc",
+      "targetGoMs": 33.8577453,
+      "currentGoMs": 478.445436,
+      "requiredGoAcceleration": 14.131048354244664
+    },
+    {
+      "name": "vscode",
+      "targetGoMs": 2028.1485777000003,
+      "currentGoMs": 37467.540464,
+      "requiredGoAcceleration": 18.473765125476977
+    },
+    {
+      "name": "sentry",
+      "targetGoMs": 1354.9709611,
+      "currentGoMs": 28757.519022,
+      "requiredGoAcceleration": 21.223716114664118
+    }
+  ]
+}

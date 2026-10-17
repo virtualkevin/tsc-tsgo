@@ -1,0 +1,9 @@
+# Direct original-native versus restored-Go milestone
+
+This is the direct target comparison after indexed-storage rejection and exact baseline restoration. Native artifact525c0fe9 versus saturated Go2bdcca53, source78b76607; repository capture2a0852a. Nine alternating fresh-process pairs TypeORM/tRPC and five VSCode/Sentry, one warmup each. Both sides use the same GNU time/RSS wrapper, physical libraries, pinned input contents, noEmit/noIncremental/noCheck=false settings and default runtime/checker policies. All samples retained; no concurrent build/test/profile/benchmark. Source-only audit work did not alter timed inputs or compiler sources.
+
+Execution, source/HEAD/binary/sidecar/configuration/harness/policy/input/diagnostic/wrapper and numerical integrity checks passed. Go was slower in every measured pair for all four workloads. Ratios mean native time divided by Go time; both the ratio of medians and paired median are reported. The goal requires10×, not merely1×. No historical Go/Go ratios are multiplied into these results.
+
+Native has no historical build provenance sidecar; its executable is pinned and current tracked native source is separately hashed, without reconstructing the artifact's historical build. The Go artifact has verified local build metadata. Default native worker count is not assumed equal to Go and was not traced during this run. These finite measurements are not a statistical-confidence claim, a universal performance result, or a substitute for separate compiler correctness evidence. GNU time records command peak RSS, not aggregate tree memory or Go heap; no per-command user/system CPU is captured.
+
+`../recording/gap.json` only calculates the remaining acceleration implied by these medians. It is not an optimization forecast or an additional benchmark.
