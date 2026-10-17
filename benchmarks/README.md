@@ -34,7 +34,15 @@ TypeORM uses identical `--module node20 --moduleResolution node16` overrides
 for both compilers because its original `node10` resolution was removed in TS7.
 The package's complete source and test scope is retained.
 
-Both executables get exactly the same project and flags. The runner disables emit,
+Both executables get the same project and semantic flags. Optional
+`--candidate-checkers N` (an integer from 1 through 256) passes `--checkers N`
+only to the Go candidate, preserving the original baseline's scheduling. This
+applies consistently to file discovery, preflight, warmup, and timed runs.
+JSON records `candidateCheckers` and each project's actual `compilerArgs` and
+`fileDiscoveryArgs` arrays for both executables. Without the option both receive
+identical flags.
+
+The runner disables emit,
 incremental checking, composite mode, and `noCheck`; it preserves the project's
 other settings, including `skipLibCheck`. Every invocation starts a fresh process.
 Warmup and source discovery leave the filesystem cache warm; these are not cold

@@ -17,6 +17,7 @@ const { values } = parseArgs({
   options: {
     baseline: { type: 'string' },
     candidate: { type: 'string' },
+    'candidate-checkers': { type: 'string' },
     manifest: { type: 'string', default: 'benchmarks/workloads.json' },
     projects: { type: 'string' },
     runs: { type: 'string', default: '7' },
@@ -28,7 +29,7 @@ const { values } = parseArgs({
 });
 if (values.help) {
   console.log(
-    'node benchmarks/run.mjs --baseline PATH --candidate PATH [--projects typeorm,trpc] [--runs 7] [--warmups 1] [--manifest PATH] [--output PATH]',
+    'node benchmarks/run.mjs --baseline PATH --candidate PATH [--candidate-checkers N] [--projects typeorm,trpc] [--runs 7] [--warmups 1] [--manifest PATH] [--output PATH]',
   );
   process.exit(0);
 }
@@ -40,6 +41,15 @@ const count = (name, min) => {
 const runs = count('runs', 1),
   warmups = count('warmups', 0),
   timeout = count('timeout', 1);
+const candidateCheckers = values['candidate-checkers'] === undefined ? null : Number(values['candidate-checkers']);
+if (
+  candidateCheckers !== null &&
+  (!/^\d+$/.test(values['candidate-checkers']) ||
+    !Number.isSafeInteger(candidateCheckers) ||
+    candidateCheckers < 1 ||
+    candidateCheckers > 256)
+)
+  throw new Error('--candidate-checkers must be an integer from 1 to 256');
 if (!values.baseline || !values.candidate) throw new Error('--baseline and --candidate executable paths are required');
 const binaries = { baseline: resolve(values.baseline), candidate: resolve(values.candidate) };
 const manifestPath = resolve(root, values.manifest);
@@ -115,6 +125,7 @@ const report = {
   binaries: Object.fromEntries(Object.entries(binaries).map(([k, path]) => [k, { path, sha256: hashFile(path) }])),
   runs,
   warmups,
+  candidateCheckers,
   timeoutMs: timeout,
   projects: [],
 };
@@ -141,6 +152,15 @@ try {
       '--pretty',
       'false',
     ];
+    // Checker count changes candidate scheduling only. Keep the original baseline
+    // scheduling and every semantic option unchanged.
+    const compilerArgs = {
+      baseline: args,
+      candidate: candidateCheckers === null ? [...args] : [...args, '--checkers', String(candidateCheckers)],
+    };
+    const fileDiscoveryArgs = Object.fromEntries(
+      Object.entries(compilerArgs).map(([name, compilerArgs]) => [name, [...compilerArgs, '--listFilesOnly']]),
+    );
     const expectedExit = p.expectedExit ?? 0;
     if (
       expectedExit !== 0 &&
@@ -180,6 +200,8 @@ try {
       scope: p.scope,
       cwd,
       args,
+      compilerArgs,
+      fileDiscoveryArgs,
       expectedExit,
       diagnosticCount: p.diagnosticCount ?? 0,
       diagnosticsSha256: p.diagnosticsSha256 ?? null,
@@ -194,7 +216,7 @@ try {
     const canonicalFile = (file) => relative(cwd, resolve(cwd, file));
     let expectedFiles, expectedOutput, expectedInputs;
     for (const [name, binary] of Object.entries(binaries)) {
-      const files = requireSuccess(run(binary, [...args, '--listFilesOnly'], cwd), `${p.name} ${name} file discovery`);
+      const files = requireSuccess(run(binary, fileDiscoveryArgs[name], cwd), `${p.name} ${name} file discovery`);
       const paths = files.stdout.trim().split('\n').filter(Boolean);
       if (!paths.length || files.stderr)
         throw new Error(`${p.name} ${name}: empty source set or file discovery errors`);
@@ -202,7 +224,7 @@ try {
       if (expectedFiles && JSON.stringify(expectedFiles) !== JSON.stringify(canonical))
         throw new Error(`${p.name}: compilers read different file sets`);
       expectedFiles = canonical;
-      const check = requireOutcome(run(binary, args, cwd), `${p.name} ${name} preflight`);
+      const check = requireOutcome(run(binary, compilerArgs[name], cwd), `${p.name} ${name} preflight`);
       const signature = outputSignature(check);
       if (expectedOutput !== undefined && expectedOutput !== signature)
         throw new Error(`${p.name}: compiler diagnostics differ`);
@@ -222,7 +244,7 @@ try {
       };
     }
     const sample = (name) => {
-      const result = requireOutcome(run(binaries[name], args, cwd), `${p.name} ${name}`);
+      const result = requireOutcome(run(binaries[name], compilerArgs[name], cwd), `${p.name} ${name}`);
       if (outputSignature(result) !== expectedOutput)
         throw new Error(`${p.name} ${name}: output changed during timing`);
       return result.ms;

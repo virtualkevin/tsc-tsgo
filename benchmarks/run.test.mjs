@@ -93,6 +93,43 @@ test('records paired successful samples and provenance', (t) => {
   assert.deepEqual(r.report.projects[0].pairs[1].order, ['candidate', 'baseline']);
   assert.equal(r.report.projects[0].preflight.baseline.fileCount, 1);
   assert.match(r.report.projects[0].preflight.baseline.inputs[0].sha256, /^[a-f0-9]{64}$/);
+  assert.equal(r.report.candidateCheckers, null);
+  assert.deepEqual(r.report.projects[0].compilerArgs.baseline, r.report.projects[0].compilerArgs.candidate);
+});
+test('candidate checker count is recorded and used only for every candidate invocation', (t) => {
+  const f = fixture(t);
+  const code = (name) => `
+    const fs = process.getBuiltinModule('fs');
+    const args = process.argv.slice(2);
+    fs.appendFileSync(${JSON.stringify(join(f.dir, 'invocations.jsonl'))}, JSON.stringify({name:${JSON.stringify(name)},args})+'\\n');
+    if (args.includes('--listFilesOnly')) console.log(process.cwd()+'/input.ts');
+  `;
+  f.compiler('baseline', code('baseline'));
+  const candidate = f.compiler('candidate', code('candidate'));
+  const r = f.run(candidate, ['--candidate-checkers', '3', '--warmups', '1']);
+  assert.equal(r.status, 0, r.stderr);
+  assert.equal(r.report.candidateCheckers, 3);
+  const entry = r.report.projects[0];
+  assert.deepEqual(entry.compilerArgs.baseline, entry.args);
+  assert.deepEqual(entry.compilerArgs.candidate, [...entry.args, '--checkers', '3']);
+  const calls = readFileSync(join(f.dir, 'invocations.jsonl'), 'utf8')
+    .trim()
+    .split('\n')
+    .map((line) => JSON.parse(line));
+  for (const name of ['baseline', 'candidate']) {
+    const ownCalls = calls.filter((call) => call.name === name);
+    assert.equal(ownCalls.length, 5); // file discovery, preflight, warmup, two timed runs
+    assert.deepEqual(ownCalls[0].args, entry.fileDiscoveryArgs[name]);
+    assert.deepEqual(entry.fileDiscoveryArgs[name], [...entry.compilerArgs[name], '--listFilesOnly']);
+    for (const call of ownCalls.slice(1)) assert.deepEqual(call.args, entry.compilerArgs[name]);
+  }
+});
+test('rejects candidate checker counts outside integer range 1..256 before running compilers', () => {
+  for (const value of ['0', '257', '-1', '1.5', 'NaN', '1e2', '']) {
+    const r = spawnSync(process.execPath, [runner, `--candidate-checkers=${value}`], { encoding: 'utf8' });
+    assert.equal(r.status, 1);
+    assert.match(r.stderr, /--candidate-checkers must be an integer from 1 to 256/);
+  }
 });
 test('rejects compiler errors instead of timing a fast failure', (t) => {
   const f = fixture(t),
