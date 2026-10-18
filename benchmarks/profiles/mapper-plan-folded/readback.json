@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "focusedTestsPerMode": 7,
+  "cases": [
+    {
+      "leaves": 1,
+      "medians": {
+        "recursive": {
+          "ns": 2.395,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "plan": {
+          "ns": 9.21,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "compile": {
+          "ns": 182.1,
+          "bytesAllocated": 64,
+          "allocations": 2
+        }
+      },
+      "idealizedAmortizationQueries": null
+    },
+    {
+      "leaves": 2,
+      "medians": {
+        "recursive": {
+          "ns": 5.364,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "plan": {
+          "ns": 13.92,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "compile": {
+          "ns": 687.9,
+          "bytesAllocated": 384,
+          "allocations": 7
+        }
+      },
+      "idealizedAmortizationQueries": null
+    },
+    {
+      "leaves": 4,
+      "medians": {
+        "recursive": {
+          "ns": 11.75,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "plan": {
+          "ns": 11.13,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "compile": {
+          "ns": 1057.0,
+          "bytesAllocated": 528,
+          "allocations": 8
+        }
+      },
+      "idealizedAmortizationQueries": 1705
+    },
+    {
+      "leaves": 8,
+      "medians": {
+        "recursive": {
+          "ns": 30.33,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "plan": {
+          "ns": 11.72,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "compile": {
+          "ns": 2058.0,
+          "bytesAllocated": 816,
+          "allocations": 9
+        }
+      },
+      "idealizedAmortizationQueries": 111
+    },
+    {
+      "leaves": 32,
+      "medians": {
+        "recursive": {
+          "ns": 254.2,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "plan": {
+          "ns": 18.94,
+          "bytesAllocated": 0,
+          "allocations": 0
+        },
+        "compile": {
+          "ns": 15854.0,
+          "bytesAllocated": 5888,
+          "allocations": 21
+        }
+      },
+      "idealizedAmortizationQueries": 68
+    }
+  ],
+  "scope": "Synthetic fixed-order costs. Idealized amortization divides compile time by evaluation savings; excludes lookup, graph construction, GC and retained-memory cost. Not workload speedup.",
+  "rawBenchmarkSha256": "9ae56c16f0b295df541cebb8f11ce29f71b0d28ed3c147d4a18cb1b12ce218cf"
+}
