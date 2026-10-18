@@ -38,3 +38,7 @@ The successful archive contains27rawfiles,7,589,595compressed bytes. Every archi
 `codegen.py` checks both executable hashes and preserves three representative callers. Instruction bytes baseline/candidate: getTypeOfInstantiatedSymbol180/180, newInstantiatedSymbolWithLinks559/560, getTypeOfMappedSymbol1147/1147. Calls switch from PointerLinkStore Get/New to OwnedSymbolLinks Get/New. Counts exclude out-of-line store bodies, data footprint and cache/GC behavior; they establish neither equal cost nor speedup.
 
 The frozen comparison policy uses nine alternating pairs for TypeORM/tRPC and five for VSCode/Sentry, one warmup, fresh processes, default settings and matched RSS. Both aggregate ratios must reach1.01; every workload summary must reach0.98; median RSS must stay within1.05baseline. Passing requires two independent19/11confirmations, second reversed roles, each passing separately. No post-failure samples or payload/layout/owner-check retuning. An accepted change requires a fresh original-native milestone. The10×native-relative goal remains unmet.
+
+## Completed screen: rejected
+
+Capturef2527e0, all28pairs valid. Aggregate ratio of medians1.0212380255629596 passes1.01, paired aggregate1.0014176655303098 fails; both required. Per-workload and RSS gates pass. Complete raw results and execution archive are in `../../results/owned-symbol-links-screen/`. No confirmations or post-screen retuning. Production remains unchanged; earlier unmeasured status describes the validation checkpoint.

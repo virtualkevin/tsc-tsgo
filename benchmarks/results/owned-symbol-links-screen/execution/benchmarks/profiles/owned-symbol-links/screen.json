@@ -1,0 +1,90 @@
+{
+  "name": "owned-symbol-links",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-owned-symbol-links",
+      "sha256": "846238805dd7dc4701e740b00a978fc3e3d5be3559b85f2c5d4d32cf57fc282e",
+      "source": "60633bf2f119fbc990b6d3b99c360a23ad23359592a1b42830d7960ec61a0661",
+      "sidecarSha256": "81eb106d2bb55ffca334294acee0db54d8d316957597a1c14ad7c2cec6530d9c",
+      "revisionLabel": "Owned symbol links"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/ast/ownedsymbollinks.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/ast/ownedsymbollinks.go",
+        "sha256": "c508d399e06b8f677d28dde179587eca99d10028f7abf8c38ec8dc27ec12fc8a",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/ownedsymbollinks_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/ast/ownedsymbollinks_test.go",
+        "sha256": "415c9947383f8d1eb6c38c189af433322e5b55bce93dea90e4b238811e47d851",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/symbol.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ast/symbol.go",
+        "sha256": "7c2e4e59c0b72fa384559d77db10be01b7aa5529047ef12a81e544d17c051aa6",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ast/symbol.go",
+        "sha256": "595266b168cadd5df13269c613acd3d65dba7ae5b4c10c437ba03f98dcf8ddcf",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "2ed6c2464d0d9a29ebae109640dc5a4ca529464683889e7b11ae5c6f43648001",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5156
+  },
+  "comparisonPolicySha256": "ca8344d456b3a2bddaabead72e1c214521c4275f07cb9f0bd8a987e7f991eff0",
+  "methodology": "Frozen owned symbol links candidate against retained node-pointer Go; nine small-workload/five large-workload alternating pairs, one warmup, default settings, matched RSS, identical physical inputs. Full correctness and two independent confirmations required before retention."
+}
