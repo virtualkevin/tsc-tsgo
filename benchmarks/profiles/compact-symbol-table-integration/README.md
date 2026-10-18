@@ -1,4 +1,4 @@
-# Compact mutable symbol-table candidate: validated, unpromoted
+# Compact mutable symbol-table candidate: validated, rejected
 
 This candidate replaces the compiler's `ast.SymbolTable` maps with shared mutable storage containing up to eight exact-string entries and a built-in map fallback. Nil state, present-nil values, aliases, clones, deletion, and mutation during iteration are preserved at the migrated consumers. Small-table enumeration snapshots original keys and reads current values, so iteration alone does not force map materialization. See the earlier isolated prototype and type-checked storage audit for design evidence and limitations.
 
@@ -35,4 +35,4 @@ The original service controller reported failure solely because `internal/ls/cha
 
 ## Performance status
 
-No workload timing has run at this checkpoint. `COMPARISON_POLICY.md` freezes nine alternating pairs for TypeORM/tRPC and five for VSCode/Sentry, default settings, identical inputs and matched GNU-time RSS. Both aggregate summaries must reach 1.01, every workload summary must reach 0.98, and each median RSS must remain within 1.05 of baseline. Passing requires two further independent confirmations before promotion; no layout/capacity/dispatch retuning or opportunistic samples after a failed screen. A fresh original-native comparison is required after an accepted change. The requested 10× target remains unmet.
+The frozen screen at capture `2c197d1` completed and rejected this candidate. See [complete results](../../results/compact-symbol-table-screen/README.md) and the four rows in PERF.md. Both aggregate summaries fail 1.01; VS Code's paired median and both Sentry summaries fail 0.98. Median RSS gates pass. No confirmations, extra samples or post-failure layout/capacity/dispatch/iteration tuning will be run for this candidate. All raw samples remain preserved, including the large difference between Sentry's two summary ratios. Production remains the retained baseline. The original-native 10× target remains unmet.

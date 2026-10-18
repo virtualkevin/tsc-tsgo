@@ -1,0 +1,7 @@
+# Compact mutable symbol-table screen: rejected
+
+Compact symbol-table screen completed and rejected (capture2c197d1): ratio-of-medians/paired median typeorm 0.994982/1.005627, trpc 1.012538/1.003748, vscode 0.981609/0.973118, sentry 0.812606/0.976000. Aggregate ratios 0.946807/0.989508 both miss1.01. VSCode paired median and both Sentry summaries miss0.98. All median RSS gates pass. Execution, diagnostic, input, source and binary integrity checks passed; this is not performance acceptance. No confirmations, extra samples, capacity/layout/dispatch/iteration retuning or pooling with previous candidates. Production remains retained source216d40c7/defaultbinary8fe4bd80. No native-relative improvement claimed;10×unmet.
+
+All 28 paired samples are preserved in small.json and large.json with physical-input, diagnostic and resource evidence. recording/proposal.json contains the gate decision. execution/ preserves the frozen controllers, policy, configuration, actual stdout/stderr and their SHA256 manifest. Runner6696 and recorder33243 both terminated successfully.
+
+Sentry has a substantial difference between its ratio-of-medians (0.813) and median paired ratio (0.976); all raw samples remain visible, and neither summary is substituted for the other. This finite screen does not prove a universal regression or identify its cause. It does reject this candidate under the frozen practical policy.
