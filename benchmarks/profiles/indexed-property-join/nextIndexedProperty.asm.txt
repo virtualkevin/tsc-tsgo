@@ -1,0 +1,150 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.(*Checker).nextIndexedProperty(SB) github.com/microsoft/typescript-go/internal/checker/indexed_property_relation.go
+  indexed_property_relation.go:33	0x888a20		4c8d6424d8		LEAQ -0x28(SP), R12										
+  indexed_property_relation.go:33	0x888a25		4d3b6610		CMPQ R12, 0x10(R14)										
+  indexed_property_relation.go:33	0x888a29		0f8644020000		JBE 0x888c73											
+  indexed_property_relation.go:33	0x888a2f		55			PUSHQ BP											
+  indexed_property_relation.go:33	0x888a30		4889e5			MOVQ SP, BP											
+  indexed_property_relation.go:33	0x888a33		4881eca0000000		SUBQ $0xa0, SP											
+  indexed_property_relation.go:33	0x888a3a		660f1f440000		NOPW 0(AX)(AX*1)										
+  indexed_property_relation.go:34	0x888a40		483998000d0000		CMPQ 0xd00(AX), BX										
+  indexed_property_relation.go:34	0x888a47		0f84c5000000		JE 0x888b12											
+  indexed_property_relation.go:34	0x888a4d		48898424b0000000	MOVQ AX, 0xb0(SP)										
+  indexed_property_relation.go:34	0x888a55		48898c24c0000000	MOVQ CX, 0xc0(SP)										
+  indexed_property_relation.go:34	0x888a5d		4889bc24c8000000	MOVQ DI, 0xc8(SP)										
+  indexed_property_relation.go:37	0x888a65		4889d8			MOVQ BX, AX											
+  indexed_property_relation.go:37	0x888a68		bb07000000		MOVL $0x7, BX											
+  indexed_property_relation.go:37	0x888a6d		e80efeffff		CALL github.com/microsoft/typescript-go/internal/checker.sparsePropertyMembers(SB)		
+  indexed_property_relation.go:37	0x888a72		84db			TESTL BL, BL											
+  indexed_property_relation.go:38	0x888a74		0f8485000000		JE 0x888aff											
+  indexed_property_relation.go:37	0x888a7a		4889442430		MOVQ AX, 0x30(SP)										
+  indexed_property_relation.go:41	0x888a7f		488b8c24b0000000	MOVQ 0xb0(SP), CX										
+  indexed_property_relation.go:41	0x888a87		488b81a80d0000		MOVQ 0xda8(CX), AX										
+  indexed_property_relation.go:41	0x888a8e		bb20000000		MOVL $0x20, BX											
+  indexed_property_relation.go:41	0x888a93		e8e8fdffff		CALL github.com/microsoft/typescript-go/internal/checker.sparsePropertyMembers(SB)		
+  indexed_property_relation.go:41	0x888a98		84db			TESTL BL, BL											
+  indexed_property_relation.go:42	0x888a9a		7450			JE 0x888aec											
+  indexed_property_relation.go:41	0x888a9c		4889442438		MOVQ AX, 0x38(SP)										
+  indexed_property_relation.go:45	0x888aa1		488b9424c0000000	MOVQ 0xc0(SP), DX										
+  indexed_property_relation.go:45	0x888aa9		488b5208		MOVQ 0x8(DX), DX										
+  indexed_property_relation.go:45	0x888aad		4889542428		MOVQ DX, 0x28(SP)										
+  indexed_property_relation.go:46	0x888ab2		488d4c2440		LEAQ 0x40(SP), CX										
+  indexed_property_relation.go:46	0x888ab7		440f1139		MOVUPS X15, 0(CX)										
+  indexed_property_relation.go:46	0x888abb		440f117910		MOVUPS X15, 0x10(CX)										
+  indexed_property_relation.go:46	0x888ac0		440f117920		MOVUPS X15, 0x20(CX)										
+  indexed_property_relation.go:46	0x888ac5		440f117930		MOVUPS X15, 0x30(CX)										
+  indexed_property_relation.go:46	0x888aca		440f117940		MOVUPS X15, 0x40(CX)										
+  indexed_property_relation.go:46	0x888acf		440f117950		MOVUPS X15, 0x50(CX)										
+  indexed_property_relation.go:46	0x888ad4		488d05c5145600		LEAQ 0x5614c5(IP), AX										
+  indexed_property_relation.go:46	0x888adb		488b5c2430		MOVQ 0x30(SP), BX										
+  indexed_property_relation.go:46	0x888ae0		e83bbbb9ff		CALL runtime.mapIterStart(SB)									
+  indexed_property_relation.go:46	0x888ae5		488b442428		MOVQ 0x28(SP), AX										
+  indexed_property_relation.go:46	0x888aea		eb49			JMP 0x888b35											
+  indexed_property_relation.go:43	0x888aec		488b8424c8000000	MOVQ 0xc8(SP), AX										
+  indexed_property_relation.go:43	0x888af4		31db			XORL BX, BX											
+  indexed_property_relation.go:43	0x888af6		4881c4a0000000		ADDQ $0xa0, SP											
+  indexed_property_relation.go:43	0x888afd		5d			POPQ BP												
+  indexed_property_relation.go:43	0x888afe		c3			RET												
+  indexed_property_relation.go:39	0x888aff		488b8424c8000000	MOVQ 0xc8(SP), AX										
+  indexed_property_relation.go:39	0x888b07		31db			XORL BX, BX											
+  indexed_property_relation.go:39	0x888b09		4881c4a0000000		ADDQ $0xa0, SP											
+  indexed_property_relation.go:39	0x888b10		5d			POPQ BP												
+  indexed_property_relation.go:39	0x888b11		c3			RET												
+  indexed_property_relation.go:35	0x888b12		4889f8			MOVQ DI, AX											
+  indexed_property_relation.go:35	0x888b15		31db			XORL BX, BX											
+  indexed_property_relation.go:35	0x888b17		4881c4a0000000		ADDQ $0xa0, SP											
+  indexed_property_relation.go:35	0x888b1e		5d			POPQ BP												
+  indexed_property_relation.go:35	0x888b1f		90			NOPL												
+  indexed_property_relation.go:35	0x888b20		c3			RET												
+  indexed_property_relation.go:35	0x888b21		48894c2420		MOVQ CX, 0x20(SP)										
+  indexed_property_relation.go:46	0x888b26		488d442440		LEAQ 0x40(SP), AX										
+  indexed_property_relation.go:46	0x888b2b		e850bbb9ff		CALL runtime.mapIterNext(SB)									
+  indexed_property_relation.go:46	0x888b30		488b442420		MOVQ 0x20(SP), AX										
+  indexed_property_relation.go:46	0x888b35		4889442420		MOVQ AX, 0x20(SP)										
+  indexed_property_relation.go:46	0x888b3a		488b542440		MOVQ 0x40(SP), DX										
+  indexed_property_relation.go:46	0x888b3f		90			NOPL												
+  indexed_property_relation.go:46	0x888b40		4885d2			TESTQ DX, DX											
+  indexed_property_relation.go:46	0x888b43		7460			JE 0x888ba5											
+  indexed_property_relation.go:46	0x888b45		488b0a			MOVQ 0(DX), CX											
+  indexed_property_relation.go:46	0x888b48		488b7a08		MOVQ 0x8(DX), DI										
+  indexed_property_relation.go:47	0x888b4c		488b9424c0000000	MOVQ 0xc0(SP), DX										
+  indexed_property_relation.go:47	0x888b54		488b5a18		MOVQ 0x18(DX), BX										
+  indexed_property_relation.go:47	0x888b58		488d05c1a65300		LEAQ 0x53a6c1(IP), AX										
+  indexed_property_relation.go:47	0x888b5f		90			NOPL												
+  indexed_property_relation.go:47	0x888b60		e8fbb3b8ff		CALL runtime.mapaccess2_faststr(SB)								
+  indexed_property_relation.go:47	0x888b65		84db			TESTL BL, BL											
+  indexed_property_relation.go:47	0x888b67		7425			JE 0x888b8e											
+  indexed_property_relation.go:47	0x888b69		488b08			MOVQ 0(AX), CX											
+  indexed_property_relation.go:47	0x888b6c		488b9424c8000000	MOVQ 0xc8(SP), DX										
+  indexed_property_relation.go:47	0x888b74		4839ca			CMPQ DX, CX											
+  indexed_property_relation.go:47	0x888b77		7f0e			JG 0x888b87											
+  indexed_property_relation.go:47	0x888b79		488b5c2420		MOVQ 0x20(SP), BX										
+  indexed_property_relation.go:47	0x888b7e		6690			NOPW												
+  indexed_property_relation.go:47	0x888b80		4839cb			CMPQ BX, CX											
+  indexed_property_relation.go:47	0x888b83		7f9c			JG 0x888b21											
+  indexed_property_relation.go:47	0x888b85		eb14			JMP 0x888b9b											
+  indexed_property_relation.go:47	0x888b87		488b5c2420		MOVQ 0x20(SP), BX										
+  indexed_property_relation.go:47	0x888b8c		eb0d			JMP 0x888b9b											
+  indexed_property_relation.go:47	0x888b8e		488b9424c8000000	MOVQ 0xc8(SP), DX										
+  indexed_property_relation.go:47	0x888b96		488b5c2420		MOVQ 0x20(SP), BX										
+  indexed_property_relation.go:47	0x888b9b		4889d9			MOVQ BX, CX											
+  indexed_property_relation.go:47	0x888b9e		6690			NOPW												
+  indexed_property_relation.go:47	0x888ba0		e97cffffff		JMP 0x888b21											
+  indexed_property_relation.go:51	0x888ba5		488d4c2440		LEAQ 0x40(SP), CX										
+  indexed_property_relation.go:51	0x888baa		440f1139		MOVUPS X15, 0(CX)										
+  indexed_property_relation.go:51	0x888bae		440f117910		MOVUPS X15, 0x10(CX)										
+  indexed_property_relation.go:51	0x888bb3		440f117920		MOVUPS X15, 0x20(CX)										
+  indexed_property_relation.go:51	0x888bb8		440f117930		MOVUPS X15, 0x30(CX)										
+  indexed_property_relation.go:51	0x888bbd		440f117940		MOVUPS X15, 0x40(CX)										
+  indexed_property_relation.go:51	0x888bc2		440f117950		MOVUPS X15, 0x50(CX)										
+  indexed_property_relation.go:51	0x888bc7		488d05d2135600		LEAQ 0x5613d2(IP), AX										
+  indexed_property_relation.go:51	0x888bce		488b5c2438		MOVQ 0x38(SP), BX										
+  indexed_property_relation.go:51	0x888bd3		e848bab9ff		CALL runtime.mapIterStart(SB)									
+  indexed_property_relation.go:51	0x888bd8		488b442420		MOVQ 0x20(SP), AX										
+  indexed_property_relation.go:51	0x888bdd		eb14			JMP 0x888bf3											
+  indexed_property_relation.go:51	0x888bdf		48894c2420		MOVQ CX, 0x20(SP)										
+  indexed_property_relation.go:51	0x888be4		488d442440		LEAQ 0x40(SP), AX										
+  indexed_property_relation.go:51	0x888be9		e892bab9ff		CALL runtime.mapIterNext(SB)									
+  indexed_property_relation.go:51	0x888bee		488b442420		MOVQ 0x20(SP), AX										
+  indexed_property_relation.go:51	0x888bf3		488b542440		MOVQ 0x40(SP), DX										
+  indexed_property_relation.go:51	0x888bf8		4885d2			TESTQ DX, DX											
+  indexed_property_relation.go:51	0x888bfb		7468			JE 0x888c65											
+  indexed_property_relation.go:51	0x888bfd		4889442420		MOVQ AX, 0x20(SP)										
+  indexed_property_relation.go:51	0x888c02		488b0a			MOVQ 0(DX), CX											
+  indexed_property_relation.go:51	0x888c05		488b7a08		MOVQ 0x8(DX), DI										
+  indexed_property_relation.go:52	0x888c09		488b9424c0000000	MOVQ 0xc0(SP), DX										
+  indexed_property_relation.go:52	0x888c11		488b5a18		MOVQ 0x18(DX), BX										
+  indexed_property_relation.go:52	0x888c15		488d0504a65300		LEAQ 0x53a604(IP), AX										
+  indexed_property_relation.go:52	0x888c1c		0f1f4000		NOPL 0(AX)											
+  indexed_property_relation.go:52	0x888c20		e83bb3b8ff		CALL runtime.mapaccess2_faststr(SB)								
+  indexed_property_relation.go:52	0x888c25		84db			TESTL BL, BL											
+  indexed_property_relation.go:52	0x888c27		7425			JE 0x888c4e											
+  indexed_property_relation.go:52	0x888c29		488b08			MOVQ 0(AX), CX											
+  indexed_property_relation.go:52	0x888c2c		488b9424c8000000	MOVQ 0xc8(SP), DX										
+  indexed_property_relation.go:52	0x888c34		4839ca			CMPQ DX, CX											
+  indexed_property_relation.go:52	0x888c37		7f0e			JG 0x888c47											
+  indexed_property_relation.go:52	0x888c39		488b5c2420		MOVQ 0x20(SP), BX										
+  indexed_property_relation.go:52	0x888c3e		6690			NOPW												
+  indexed_property_relation.go:52	0x888c40		4839cb			CMPQ BX, CX											
+  indexed_property_relation.go:52	0x888c43		7f9a			JG 0x888bdf											
+  indexed_property_relation.go:52	0x888c45		eb14			JMP 0x888c5b											
+  indexed_property_relation.go:52	0x888c47		488b5c2420		MOVQ 0x20(SP), BX										
+  indexed_property_relation.go:52	0x888c4c		eb0d			JMP 0x888c5b											
+  indexed_property_relation.go:52	0x888c4e		488b9424c8000000	MOVQ 0xc8(SP), DX										
+  indexed_property_relation.go:52	0x888c56		488b5c2420		MOVQ 0x20(SP), BX										
+  indexed_property_relation.go:52	0x888c5b		4889d9			MOVQ BX, CX											
+  indexed_property_relation.go:52	0x888c5e		6690			NOPW												
+  indexed_property_relation.go:52	0x888c60		e97affffff		JMP 0x888bdf											
+  indexed_property_relation.go:56	0x888c65		bb01000000		MOVL $0x1, BX											
+  indexed_property_relation.go:56	0x888c6a		4881c4a0000000		ADDQ $0xa0, SP											
+  indexed_property_relation.go:56	0x888c71		5d			POPQ BP												
+  indexed_property_relation.go:56	0x888c72		c3			RET												
+  indexed_property_relation.go:33	0x888c73		4889442408		MOVQ AX, 0x8(SP)										
+  indexed_property_relation.go:33	0x888c78		48895c2410		MOVQ BX, 0x10(SP)										
+  indexed_property_relation.go:33	0x888c7d		48894c2418		MOVQ CX, 0x18(SP)										
+  indexed_property_relation.go:33	0x888c82		48897c2420		MOVQ DI, 0x20(SP)										
+  indexed_property_relation.go:33	0x888c87		e8746dc0ff		CALL runtime.morestack_noctxt.abi0(SB)								
+  indexed_property_relation.go:33	0x888c8c		488b442408		MOVQ 0x8(SP), AX										
+  indexed_property_relation.go:33	0x888c91		488b5c2410		MOVQ 0x10(SP), BX										
+  indexed_property_relation.go:33	0x888c96		488b4c2418		MOVQ 0x18(SP), CX										
+  indexed_property_relation.go:33	0x888c9b		488b7c2420		MOVQ 0x20(SP), DI										
+  indexed_property_relation.go:33	0x888ca0		e97bfdffff		JMP github.com/microsoft/typescript-go/internal/checker.(*Checker).nextIndexedProperty(SB)	

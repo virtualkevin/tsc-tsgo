@@ -1,0 +1,1336 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo(SB) github.com/microsoft/typescript-go/internal/checker/relater.go
+  relater.go:4130	0x8e7700		4c8da42408ffffff		LEAQ 0xffffff08(SP), R12																		
+  relater.go:4130	0x8e7708		4d3b6610			CMPQ R12, 0x10(R14)																			
+  relater.go:4130	0x8e770c		0f86a7180000			JBE 0x8e8fb9																				
+  relater.go:4130	0x8e7712		55				PUSHQ BP																				
+  relater.go:4130	0x8e7713		4889e5				MOVQ SP, BP																				
+  relater.go:4130	0x8e7716		4881ec70010000			SUBQ $0x170, SP																				
+  relater.go:4130	0x8e771d		4889b424a0010000		MOVQ SI, 0x1a0(SP)																			
+  relater.go:4131	0x8e7725		488b5008			MOVQ 0x8(AX), DX																			
+  relater.go:4131	0x8e7729		4c8b10				MOVQ 0(AX), R10																				
+  relater.go:4131	0x8e772c		418402				TESTB AL, 0(R10)																			
+  relater.go:4131	0x8e772f		49399200100000			CMPQ 0x1000(R10), DX																			
+  relater.go:4131	0x8e7736		0f840d090000			JE 0x8e8049																				
+  relater.go:4131	0x8e773c		4889842480010000		MOVQ AX, 0x180(SP)																			
+  relater.go:4131	0x8e7744		48899c2488010000		MOVQ BX, 0x188(SP)																			
+  relater.go:4131	0x8e774c		48898c2490010000		MOVQ CX, 0x190(SP)																			
+  relater.go:4131	0x8e7754		4088bc2498010000		MOVB DI, 0x198(SP)																			
+  relater.go:4131	0x8e775c		44888424a8010000		MOVB R8, 0x1a8(SP)																			
+  relater.go:4131	0x8e7764		44898c24ac010000		MOVL R9, 0x1ac(SP)																			
+  checker.go:23390	0x8e776c		8b5104				MOVL 0x4(CX), DX																			
+  checker.go:23390	0x8e776f		0fbae202			BTL $0x2, DX																				
+  checker.go:23390	0x8e7773		7204				JB 0x8e7779																				
+  checker.go:23390	0x8e7775		31d2				XORL DX, DX																				
+  checker.go:23390	0x8e7777		eb49				JMP 0x8e77c2																				
+  checker.go:23390	0x8e7779		4889c8				MOVQ CX, AX																				
+  checker.go:23390	0x8e777c		0f1f4000			NOPL 0(AX)																				
+  checker.go:23390	0x8e7780		e89b5a0100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23390	0x8e7785		8b4804				MOVL 0x4(AX), CX																			
+  checker.go:23390	0x8e7788		0fbae103			BTL $0x3, CX																				
+  checker.go:23390	0x8e778c		0f92c1				SETB CL																					
+  relater.go:4136	0x8e778f		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4136	0x8e7797		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4131	0x8e779f		0fb6bc2498010000		MOVZX 0x198(SP), DI																			
+  relater.go:4277	0x8e77a7		440fb68424a8010000		MOVZX 0x1a8(SP), R8																			
+  relater.go:4277	0x8e77b0		448b8c24ac010000		MOVL 0x1ac(SP), R9																			
+  relater.go:4135	0x8e77b8		89ca				MOVL CX, DX																				
+  types.go:715		0x8e77ba		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  relater.go:4135	0x8e77c2		84d2				TESTL DL, DL																				
+  relater.go:4135	0x8e77c4		0f840f070000			JE 0x8e7ed9																				
+  relater.go:4136	0x8e77ca		488b00				MOVQ 0(AX), AX																				
+  relater.go:4136	0x8e77cd		e88e62f4ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).isArrayOrTupleType(SB)										
+  relater.go:4136	0x8e77d2		84c0				TESTL AL, AL																				
+  relater.go:4136	0x8e77d4		0f8479060000			JE 0x8e7e53																				
+  types.go:715		0x8e77da		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  types.go:715		0x8e77e2		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e77e6		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e77ea		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e77ee		ffd1				CALL CX																					
+  types.go:776		0x8e77f0		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e77f7		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e77fb		488d15ceffc400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e7802		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e7805		0f859a170000			JNE 0x8e8fa5																				
+  types.go:693		0x8e780b		488b4930			MOVQ 0x30(CX), CX																			
+  relater.go:4137	0x8e780f		80b9cc01000000			CMPB 0x1cc(CX), $0x0																			
+  relater.go:4137	0x8e7816		740d				JE 0x8e7825																				
+  relater.go:4140	0x8e7818		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4137	0x8e7820		e9cb000000			JMP 0x8e78f0																				
+  checker.go:23386	0x8e7825		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  checker.go:23386	0x8e782d		8b4b04				MOVL 0x4(BX), CX																			
+  checker.go:23386	0x8e7830		0fbae102			BTL $0x2, CX																				
+  checker.go:23386	0x8e7834		7204				JB 0x8e783a																				
+  checker.go:23386	0x8e7836		31c9				XORL CX, CX																				
+  checker.go:23386	0x8e7838		eb35				JMP 0x8e786f																				
+  relater.go:4137	0x8e783a		488b8c2480010000		MOVQ 0x180(SP), CX																			
+  relater.go:4137	0x8e7842		488b09				MOVQ 0(CX), CX																				
+  relater.go:4137	0x8e7845		48898c2438010000		MOVQ CX, 0x138(SP)																			
+  checker.go:23386	0x8e784d		4889d8				MOVQ BX, AX																				
+  checker.go:23386	0x8e7850		e8cb590100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23386	0x8e7855		488b8c2438010000		MOVQ 0x138(SP), CX																			
+  checker.go:23386	0x8e785d		483981d00d0000			CMPQ 0xdd0(CX), AX																			
+  checker.go:23386	0x8e7864		0f94c1				SETE CL																					
+  checker.go:23390	0x8e7867		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4137	0x8e786f		84c9				TESTL CL, CL																				
+  relater.go:4137	0x8e7871		7407				JE 0x8e787a																				
+  relater.go:4137	0x8e7873		b901000000			MOVL $0x1, CX																				
+  relater.go:4137	0x8e7878		eb6e				JMP 0x8e78e8																				
+  checker.go:23390	0x8e787a		8b4b04				MOVL 0x4(BX), CX																			
+  checker.go:23390	0x8e787d		0fbae102			BTL $0x2, CX																				
+  checker.go:23390	0x8e7881		7204				JB 0x8e7887																				
+  checker.go:23390	0x8e7883		31c9				XORL CX, CX																				
+  checker.go:23390	0x8e7885		eb61				JMP 0x8e78e8																				
+  checker.go:23390	0x8e7887		4889d8				MOVQ BX, AX																				
+  checker.go:23390	0x8e788a		e891590100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23390	0x8e788f		8b4804				MOVL 0x4(AX), CX																			
+  checker.go:23390	0x8e7892		0fbae103			BTL $0x3, CX																				
+  relater.go:4137	0x8e7896		720c				JB 0x8e78a4																				
+  relater.go:4140	0x8e7898		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4140	0x8e78a0		31c9				XORL CX, CX																				
+  relater.go:4137	0x8e78a2		eb44				JMP 0x8e78e8																				
+  types.go:715		0x8e78a4		488b8c2488010000		MOVQ 0x188(SP), CX																			
+  types.go:715		0x8e78ac		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e78b0		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e78b4		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e78b8		ffd1				CALL CX																					
+  types.go:776		0x8e78ba		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e78c1		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e78c5		488d1504ffc400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e78cc		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e78cf		0f85bc160000			JNE 0x8e8f91																				
+  types.go:693		0x8e78d5		488b4930			MOVQ 0x30(CX), CX																			
+  relater.go:4137	0x8e78d9		0fb689cc010000			MOVZX 0x1cc(CX), CX																			
+  relater.go:4140	0x8e78e0		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4137	0x8e78e8		84c9				TESTL CL, CL																				
+  relater.go:4137	0x8e78ea		0f8558050000			JNE 0x8e7e48																				
+  relater.go:4140	0x8e78f0		488b8c2480010000		MOVQ 0x180(SP), CX																			
+  relater.go:4140	0x8e78f8		488b01				MOVQ 0(CX), AX																				
+  relater.go:4140	0x8e78fb		0f1f440000			NOPL 0(AX)(AX*1)																			
+  relater.go:4140	0x8e7900		e8fb5df4ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeReferenceArity(SB)										
+  relater.go:4140	0x8e7905		48898424b8000000		MOVQ AX, 0xb8(SP)																			
+  relater.go:4141	0x8e790d		488b8c2480010000		MOVQ 0x180(SP), CX																			
+  relater.go:4141	0x8e7915		488b01				MOVQ 0(CX), AX																				
+  relater.go:4141	0x8e7918		488b9c2490010000		MOVQ 0x190(SP), BX																			
+  relater.go:4141	0x8e7920		e8db5df4ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeReferenceArity(SB)										
+  relater.go:4141	0x8e7925		4889842490000000		MOVQ AX, 0x90(SP)																			
+  checker.go:23390	0x8e792d		488b8c2488010000		MOVQ 0x188(SP), CX																			
+  checker.go:23390	0x8e7935		8b5104				MOVL 0x4(CX), DX																			
+  checker.go:23390	0x8e7938		0fbae202			BTL $0x2, DX																				
+  checker.go:23390	0x8e793c		7321				JAE 0x8e795f																				
+  checker.go:23390	0x8e793e		4889c8				MOVQ CX, AX																				
+  checker.go:23390	0x8e7941		e8da580100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23390	0x8e7946		8b4804				MOVL 0x4(AX), CX																			
+  checker.go:23390	0x8e7949		0fbae103			BTL $0x3, CX																				
+  relater.go:4143	0x8e794d		7217				JB 0x8e7966																				
+  relater.go:4162	0x8e794f		488b842490000000		MOVQ 0x90(SP), AX																			
+  checker.go:23390	0x8e7957		488b8c2488010000		MOVQ 0x188(SP), CX																			
+  relater.go:4143	0x8e795f		ba01000000			MOVL $0x1, DX																				
+  relater.go:4143	0x8e7964		eb44				JMP 0x8e79aa																				
+  types.go:715		0x8e7966		488b8c2488010000		MOVQ 0x188(SP), CX																			
+  types.go:715		0x8e796e		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e7972		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e7976		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e797a		ffd1				CALL CX																					
+  types.go:776		0x8e797c		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e7983		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e7987		488d1542fec400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e798e		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e7991		0f85e7150000			JNE 0x8e8f7e																				
+  types.go:693		0x8e7997		488b4930			MOVQ 0x30(CX), CX																			
+  relater.go:4144	0x8e799b		8b89c8010000			MOVL 0x1c8(CX), CX																			
+  relater.go:4144	0x8e79a1		0fbae102			BTL $0x2, CX																				
+  relater.go:4144	0x8e79a5		0f92c1				SETB CL																					
+  relater.go:4148	0x8e79a8		89ca				MOVL CX, DX																				
+  relater.go:4148	0x8e79aa		88542441			MOVB DL, 0x41(SP)																			
+  types.go:715		0x8e79ae		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  types.go:715		0x8e79b6		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e79ba		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e79be		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e79c2		ffd1				CALL CX																					
+  types.go:776		0x8e79c4		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e79cb		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e79cf		488d15fafdc400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e79d6		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e79d9		0f858c150000			JNE 0x8e8f6b																				
+  checker.go:23390	0x8e79df		488b842488010000		MOVQ 0x188(SP), AX																			
+  checker.go:23390	0x8e79e7		8b5004				MOVL 0x4(AX), DX																			
+  types.go:693		0x8e79ea		488b4930			MOVQ 0x30(CX), CX																			
+  relater.go:4148	0x8e79ee		8b89c8010000			MOVL 0x1c8(CX), CX																			
+  relater.go:4148	0x8e79f4		894c2454			MOVL CX, 0x54(SP)																			
+  checker.go:23390	0x8e79f8		0fbae202			BTL $0x2, DX																				
+  checker.go:23390	0x8e79fc		731c				JAE 0x8e7a1a																				
+  checker.go:23390	0x8e79fe		6690				NOPW																					
+  checker.go:23390	0x8e7a00		e81b580100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23390	0x8e7a05		8b4804				MOVL 0x4(AX), CX																			
+  checker.go:23390	0x8e7a08		0fbae103			BTL $0x3, CX																				
+  relater.go:4150	0x8e7a0c		7210				JB 0x8e7a1e																				
+  relater.go:4178	0x8e7a0e		488b842488010000		MOVQ 0x188(SP), AX																			
+  relater.go:4148	0x8e7a16		8b4c2454			MOVL 0x54(SP), CX																			
+  relater.go:4150	0x8e7a1a		31d2				XORL DX, DX																				
+  relater.go:4150	0x8e7a1c		eb3f				JMP 0x8e7a5d																				
+  types.go:715		0x8e7a1e		488b8c2488010000		MOVQ 0x188(SP), CX																			
+  types.go:715		0x8e7a26		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e7a2a		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e7a2e		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e7a32		ffd1				CALL CX																					
+  types.go:776		0x8e7a34		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e7a3b		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e7a3f		488d158afdc400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e7a46		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e7a49		0f8509150000			JNE 0x8e8f58																				
+  types.go:693		0x8e7a4f		488b4930			MOVQ 0x30(CX), CX																			
+  relater.go:4151	0x8e7a53		488b89b8010000			MOVQ 0x1b8(CX), CX																			
+  relater.go:4155	0x8e7a5a		4889ca				MOVQ CX, DX																				
+  relater.go:4155	0x8e7a5d		48899424b0000000		MOVQ DX, 0xb0(SP)																			
+  types.go:715		0x8e7a65		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  types.go:715		0x8e7a6d		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e7a71		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e7a75		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e7a79		ffd1				CALL CX																					
+  types.go:776		0x8e7a7b		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e7a82		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e7a86		488d1543fdc400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e7a8d		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e7a90		0f85af140000			JNE 0x8e8f45																				
+  types.go:693		0x8e7a96		488b4930			MOVQ 0x30(CX), CX																			
+  relater.go:4155	0x8e7a9a		488b89b8010000			MOVQ 0x1b8(CX), CX																			
+  relater.go:4155	0x8e7aa1		48898c2488000000		MOVQ CX, 0x88(SP)																			
+  relater.go:4148	0x8e7aa9		0fb6542441			MOVZX 0x41(SP), DX																			
+  relater.go:4148	0x8e7aae		84d2				TESTL DL, DL																				
+  relater.go:4156	0x8e7ab0		740a				JE 0x8e7abc																				
+  relater.go:4168	0x8e7ab2		488bb424b8000000		MOVQ 0xb8(SP), SI																			
+  relater.go:4156	0x8e7aba		eb11				JMP 0x8e7acd																				
+  relater.go:4156	0x8e7abc		488bb424b8000000		MOVQ 0xb8(SP), SI																			
+  relater.go:4156	0x8e7ac4		4839ce				CMPQ SI, CX																				
+  relater.go:4156	0x8e7ac7		0f8cb4020000			JL 0x8e7d81																				
+  relater.go:4148	0x8e7acd		8b7c2454			MOVL 0x54(SP), DI																			
+  relater.go:4148	0x8e7ad1		f7c70c000000			TESTL $0xc, DI																				
+  relater.go:4162	0x8e7ad7		7538				JNE 0x8e7b11																				
+  relater.go:4162	0x8e7ad9		4c8b842490000000		MOVQ 0x90(SP), R8																			
+  relater.go:4162	0x8e7ae1		4c8b8c24b0000000		MOVQ 0xb0(SP), R9																			
+  relater.go:4162	0x8e7ae9		4d39c8				CMPQ R8, R9																				
+  relater.go:4162	0x8e7aec		0f8cbe010000			JL 0x8e7cb0																				
+  relater.go:4148	0x8e7af2		f7c70c000000			TESTL $0xc, DI																				
+  relater.go:4168	0x8e7af8		7517				JNE 0x8e7b11																				
+  relater.go:4168	0x8e7afa		660f1f440000			NOPW 0(AX)(AX*1)																			
+  relater.go:4148	0x8e7b00		84d2				TESTL DL, DL																				
+  relater.go:4168	0x8e7b02		0f85a0000000			JNE 0x8e7ba8																				
+  relater.go:4168	0x8e7b08		4939f0				CMPQ R8, SI																				
+  relater.go:4168	0x8e7b0b		0f8c97000000			JL 0x8e7ba8																				
+  relater.go:4178	0x8e7b11		488b8c2480010000		MOVQ 0x180(SP), CX																			
+  relater.go:4178	0x8e7b19		488b01				MOVQ 0(CX), AX																				
+  relater.go:4178	0x8e7b1c		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4178	0x8e7b24		e8d7b2f3ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeArguments(SB)										
+  relater.go:4178	0x8e7b29		4889842410010000		MOVQ AX, 0x110(SP)																			
+  relater.go:4178	0x8e7b31		48899c2498000000		MOVQ BX, 0x98(SP)																			
+  relater.go:4179	0x8e7b39		488b8c2480010000		MOVQ 0x180(SP), CX																			
+  relater.go:4179	0x8e7b41		488b01				MOVQ 0(CX), AX																				
+  relater.go:4179	0x8e7b44		488b9c2490010000		MOVQ 0x190(SP), BX																			
+  relater.go:4179	0x8e7b4c		e8afb2f3ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeArguments(SB)										
+  relater.go:4179	0x8e7b51		4889842400010000		MOVQ AX, 0x100(SP)																			
+  relater.go:4179	0x8e7b59		48895c2478			MOVQ BX, 0x78(SP)																			
+  types.go:715		0x8e7b5e		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  types.go:715		0x8e7b66		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e7b6a		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e7b6e		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e7b72		ffd1				CALL CX																					
+  types.go:776		0x8e7b74		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e7b7b		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e7b7f		488d154afcc400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e7b86		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e7b89		0f85a1130000			JNE 0x8e8f30																				
+  types.go:693		0x8e7b8f		488b4930			MOVQ 0x30(CX), CX																			
+  checker.go:23346	0x8e7b93		488b91a0010000			MOVQ 0x1a0(CX), DX																			
+  checker.go:23346	0x8e7b9a		488b89a8010000			MOVQ 0x1a8(CX), CX																			
+  checker.go:23346	0x8e7ba1		31c0				XORL AX, AX																				
+  checker.go:23346	0x8e7ba3		e9c4090000			JMP 0x8e856c																				
+  relater.go:4131	0x8e7ba8		0fb6942498010000		MOVZX 0x198(SP), DX																			
+  relater.go:4131	0x8e7bb0		84d2				TESTL DL, DL																				
+  relater.go:4169	0x8e7bb2		0f84ed000000			JE 0x8e7ca5																				
+  relater.go:4170	0x8e7bb8		4939c9				CMPQ R9, CX																				
+  relater.go:4170	0x8e7bbb		7d74				JGE 0x8e7c31																				
+  relater.go:4171	0x8e7bbd		488d051cdd4800			LEAQ 0x48dd1c(IP), AX																			
+  relater.go:4171	0x8e7bc4		e877c3b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4171	0x8e7bc9		4889842458010000		MOVQ AX, 0x158(SP)																			
+  relater.go:4171	0x8e7bd1		488b842488000000		MOVQ 0x88(SP), AX																			
+  relater.go:4171	0x8e7bd9		e882f9b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4171	0x8e7bde		488d0d1b9b4700			LEAQ 0x479b1b(IP), CX																			
+  relater.go:4171	0x8e7be5		488b942458010000		MOVQ 0x158(SP), DX																			
+  relater.go:4171	0x8e7bed		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4171	0x8e7bf0		833d1929610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4171	0x8e7bf7		7413				JE 0x8e7c0c																				
+  relater.go:4171	0x8e7bf9		4c8b4208			MOVQ 0x8(DX), R8																			
+  relater.go:4171	0x8e7bfd		0f1f00				NOPL 0(AX)																				
+  relater.go:4171	0x8e7c00		e8fb98baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4171	0x8e7c05		498903				MOVQ AX, 0(R11)																				
+  relater.go:4171	0x8e7c08		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4171	0x8e7c0c		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4171	0x8e7c10		488b1d19f45a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Target_requires_0_element_s_but_source_may_have_fewer(SB), BX						
+  relater.go:4171	0x8e7c17		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4171	0x8e7c1f		4889d1				MOVQ DX, CX																				
+  relater.go:4171	0x8e7c22		bf01000000			MOVL $0x1, DI																				
+  relater.go:4171	0x8e7c27		4889fe				MOVQ DI, SI																				
+  relater.go:4171	0x8e7c2a		e871660000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4171	0x8e7c2f		eb74				JMP 0x8e7ca5																				
+  relater.go:4173	0x8e7c31		488d05a8dc4800			LEAQ 0x48dca8(IP), AX																			
+  relater.go:4173	0x8e7c38		e803c3b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4173	0x8e7c3d		4889842458010000		MOVQ AX, 0x158(SP)																			
+  relater.go:4173	0x8e7c45		488b842490000000		MOVQ 0x90(SP), AX																			
+  relater.go:4173	0x8e7c4d		e80ef9b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4173	0x8e7c52		488d0da79a4700			LEAQ 0x479aa7(IP), CX																			
+  relater.go:4173	0x8e7c59		488b942458010000		MOVQ 0x158(SP), DX																			
+  relater.go:4173	0x8e7c61		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4173	0x8e7c64		833da528610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4173	0x8e7c6b		7410				JE 0x8e7c7d																				
+  relater.go:4173	0x8e7c6d		4c8b4208			MOVQ 0x8(DX), R8																			
+  relater.go:4173	0x8e7c71		e88a98baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4173	0x8e7c76		498903				MOVQ AX, 0(R11)																				
+  relater.go:4173	0x8e7c79		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4173	0x8e7c7d		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4173	0x8e7c81		488b1db0f35a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Target_allows_only_0_element_s_but_source_may_have_more(SB), BX						
+  relater.go:4173	0x8e7c88		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4173	0x8e7c90		4889d1				MOVQ DX, CX																				
+  relater.go:4173	0x8e7c93		bf01000000			MOVL $0x1, DI																				
+  relater.go:4173	0x8e7c98		4889fe				MOVQ DI, SI																				
+  relater.go:4173	0x8e7c9b		0f1f440000			NOPL 0(AX)(AX*1)																			
+  relater.go:4173	0x8e7ca0		e8fb650000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4176	0x8e7ca5		31c0				XORL AX, AX																				
+  relater.go:4176	0x8e7ca7		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4176	0x8e7cae		5d				POPQ BP																					
+  relater.go:4176	0x8e7caf		c3				RET																					
+  relater.go:4131	0x8e7cb0		0fb68c2498010000		MOVZX 0x198(SP), CX																			
+  relater.go:4131	0x8e7cb8		0f1f840000000000		NOPL 0(AX)(AX*1)																			
+  relater.go:4131	0x8e7cc0		84c9				TESTL CL, CL																				
+  relater.go:4163	0x8e7cc2		0f84ad000000			JE 0x8e7d75																				
+  relater.go:4164	0x8e7cc8		488d0571dc4800			LEAQ 0x48dc71(IP), AX																			
+  relater.go:4164	0x8e7ccf		e86cc2b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4164	0x8e7cd4		4889842450010000		MOVQ AX, 0x150(SP)																			
+  relater.go:4164	0x8e7cdc		488b8424b0000000		MOVQ 0xb0(SP), AX																			
+  relater.go:4164	0x8e7ce4		e877f8b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4164	0x8e7ce9		488d0d109a4700			LEAQ 0x479a10(IP), CX																			
+  relater.go:4164	0x8e7cf0		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4164	0x8e7cf8		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4164	0x8e7cfb		833d0e28610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4164	0x8e7d02		7410				JE 0x8e7d14																				
+  relater.go:4164	0x8e7d04		488b4a08			MOVQ 0x8(DX), CX																			
+  relater.go:4164	0x8e7d08		e8f397baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4164	0x8e7d0d		498903				MOVQ AX, 0(R11)																				
+  relater.go:4164	0x8e7d10		49894b08			MOVQ CX, 0x8(R11)																			
+  relater.go:4164	0x8e7d14		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4164	0x8e7d18		488b842490000000		MOVQ 0x90(SP), AX																			
+  relater.go:4164	0x8e7d20		e83bf8b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4164	0x8e7d25		488d0dd4994700			LEAQ 0x4799d4(IP), CX																			
+  relater.go:4164	0x8e7d2c		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4164	0x8e7d34		48894a10			MOVQ CX, 0x10(DX)																			
+  relater.go:4164	0x8e7d38		833dd127610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4164	0x8e7d3f		90				NOPL																					
+  relater.go:4164	0x8e7d40		7410				JE 0x8e7d52																				
+  relater.go:4164	0x8e7d42		4c8b4218			MOVQ 0x18(DX), R8																			
+  relater.go:4164	0x8e7d46		e8b597baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4164	0x8e7d4b		498903				MOVQ AX, 0(R11)																				
+  relater.go:4164	0x8e7d4e		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4164	0x8e7d52		48894218			MOVQ AX, 0x18(DX)																			
+  relater.go:4164	0x8e7d56		488b1dcbf25a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Source_has_0_element_s_but_target_allows_only_1(SB), BX							
+  relater.go:4164	0x8e7d5d		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4164	0x8e7d65		4889d1				MOVQ DX, CX																				
+  relater.go:4164	0x8e7d68		bf02000000			MOVL $0x2, DI																				
+  relater.go:4164	0x8e7d6d		4889fe				MOVQ DI, SI																				
+  relater.go:4164	0x8e7d70		e82b650000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4166	0x8e7d75		31c0				XORL AX, AX																				
+  relater.go:4166	0x8e7d77		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4166	0x8e7d7e		5d				POPQ BP																					
+  relater.go:4166	0x8e7d7f		90				NOPL																					
+  relater.go:4166	0x8e7d80		c3				RET																					
+  relater.go:4131	0x8e7d81		0fb6942498010000		MOVZX 0x198(SP), DX																			
+  relater.go:4131	0x8e7d89		84d2				TESTL DL, DL																				
+  relater.go:4157	0x8e7d8b		0f84ac000000			JE 0x8e7e3d																				
+  relater.go:4158	0x8e7d91		488d05a8db4800			LEAQ 0x48dba8(IP), AX																			
+  relater.go:4158	0x8e7d98		e8a3c1b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4158	0x8e7d9d		4889842450010000		MOVQ AX, 0x150(SP)																			
+  relater.go:4158	0x8e7da5		488b8424b8000000		MOVQ 0xb8(SP), AX																			
+  relater.go:4158	0x8e7dad		e8aef7b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4158	0x8e7db2		488d0d47994700			LEAQ 0x479947(IP), CX																			
+  relater.go:4158	0x8e7db9		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4158	0x8e7dc1		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4158	0x8e7dc4		833d4527610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4158	0x8e7dcb		7410				JE 0x8e7ddd																				
+  relater.go:4158	0x8e7dcd		488b4a08			MOVQ 0x8(DX), CX																			
+  relater.go:4158	0x8e7dd1		e82a97baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4158	0x8e7dd6		498903				MOVQ AX, 0(R11)																				
+  relater.go:4158	0x8e7dd9		49894b08			MOVQ CX, 0x8(R11)																			
+  relater.go:4158	0x8e7ddd		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4158	0x8e7de1		488b842488000000		MOVQ 0x88(SP), AX																			
+  relater.go:4158	0x8e7de9		e872f7b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4158	0x8e7dee		488d0d0b994700			LEAQ 0x47990b(IP), CX																			
+  relater.go:4158	0x8e7df5		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4158	0x8e7dfd		48894a10			MOVQ CX, 0x10(DX)																			
+  relater.go:4158	0x8e7e01		833d0827610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4158	0x8e7e08		7410				JE 0x8e7e1a																				
+  relater.go:4158	0x8e7e0a		4c8b4218			MOVQ 0x18(DX), R8																			
+  relater.go:4158	0x8e7e0e		e8ed96baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4158	0x8e7e13		498903				MOVQ AX, 0(R11)																				
+  relater.go:4158	0x8e7e16		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4158	0x8e7e1a		48894218			MOVQ AX, 0x18(DX)																			
+  relater.go:4158	0x8e7e1e		488b1dfbf15a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Source_has_0_element_s_but_target_requires_1(SB), BX							
+  relater.go:4158	0x8e7e25		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4158	0x8e7e2d		4889d1				MOVQ DX, CX																				
+  relater.go:4158	0x8e7e30		bf02000000			MOVL $0x2, DI																				
+  relater.go:4158	0x8e7e35		4889fe				MOVQ DI, SI																				
+  relater.go:4158	0x8e7e38		e863640000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4160	0x8e7e3d		31c0				XORL AX, AX																				
+  relater.go:4160	0x8e7e3f		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4160	0x8e7e46		5d				POPQ BP																					
+  relater.go:4160	0x8e7e47		c3				RET																					
+  relater.go:4138	0x8e7e48		31c0				XORL AX, AX																				
+  relater.go:4138	0x8e7e4a		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4138	0x8e7e51		5d				POPQ BP																					
+  relater.go:4138	0x8e7e52		c3				RET																					
+  types.go:715		0x8e7e53		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  types.go:715		0x8e7e5b		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e7e5f		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e7e63		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e7e67		ffd1				CALL CX																					
+  types.go:776		0x8e7e69		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e7e70		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e7e74		488d1555f9c400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e7e7b		0f1f440000			NOPL 0(AX)(AX*1)																			
+  types.go:693		0x8e7e80		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e7e83		0f85c9060000			JNE 0x8e8552																				
+  types.go:693		0x8e7e89		488b5130			MOVQ 0x30(CX), DX																			
+  relater.go:4251	0x8e7e8d		8b92c8010000			MOVL 0x1c8(DX), DX																			
+  relater.go:4251	0x8e7e93		f7c20c000000			TESTL $0xc, DX																				
+  relater.go:4251	0x8e7e99		7533				JNE 0x8e7ece																				
+  relater.go:4255	0x8e7e9b		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:1025	0x8e7ea3		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  utilities.go:837	0x8e7eab		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4131	0x8e7eb3		0fb6bc2498010000		MOVZX 0x198(SP), DI																			
+  relater.go:4277	0x8e7ebb		440fb68424a8010000		MOVZX 0x1a8(SP), R8																			
+  relater.go:4277	0x8e7ec4		448b8c24ac010000		MOVL 0x1ac(SP), R9																			
+  relater.go:4251	0x8e7ecc		eb0b				JMP 0x8e7ed9																				
+  relater.go:4252	0x8e7ece		31c0				XORL AX, AX																				
+  relater.go:4252	0x8e7ed0		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4252	0x8e7ed7		5d				POPQ BP																					
+  relater.go:4252	0x8e7ed8		c3				RET																					
+  relater.go:4255	0x8e7ed9		488b5008			MOVQ 0x8(AX), DX																			
+  relater.go:4255	0x8e7edd		4c8b10				MOVQ 0(AX), R10																				
+  relater.go:4255	0x8e7ee0		493992e00f0000			CMPQ 0xfe0(R10), DX																			
+  relater.go:4255	0x8e7ee7		7409				JE 0x8e7ef2																				
+  relater.go:4255	0x8e7ee9		493992e80f0000			CMPQ 0xfe8(R10), DX																			
+  relater.go:4255	0x8e7ef0		757c				JNE 0x8e7f6e																				
+  utilities.go:837	0x8e7ef2		8b5304				MOVL 0x4(BX), DX																			
+  utilities.go:837	0x8e7ef5		0fbae207			BTL $0x7, DX																				
+  relater.go:4255	0x8e7ef9		7304				JAE 0x8e7eff																				
+  relater.go:4255	0x8e7efb		31d2				XORL DX, DX																				
+  relater.go:4255	0x8e7efd		eb71				JMP 0x8e7f70																				
+  relater.go:4255	0x8e7eff		4c89d0				MOVQ R10, AX																				
+  relater.go:4255	0x8e7f02		e8795ef4ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).isEmptyArrayLiteralType(SB)										
+  relater.go:4255	0x8e7f07		84c0				TESTL AL, AL																				
+  relater.go:4255	0x8e7f09		741c				JE 0x8e7f27																				
+  relater.go:4256	0x8e7f0b		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:1025	0x8e7f13		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  relater.go:1025	0x8e7f1b		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:1025	0x8e7f23		31d2				XORL DX, DX																				
+  relater.go:4255	0x8e7f25		eb49				JMP 0x8e7f70																				
+  checker.go:23390	0x8e7f27		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  checker.go:23390	0x8e7f2f		8b5304				MOVL 0x4(BX), DX																			
+  checker.go:23390	0x8e7f32		0fbae202			BTL $0x2, DX																				
+  checker.go:23390	0x8e7f36		7204				JB 0x8e7f3c																				
+  checker.go:23390	0x8e7f38		31c9				XORL CX, CX																				
+  checker.go:23390	0x8e7f3a		eb1b				JMP 0x8e7f57																				
+  checker.go:23390	0x8e7f3c		4889d8				MOVQ BX, AX																				
+  checker.go:23390	0x8e7f3f		90				NOPL																					
+  checker.go:23390	0x8e7f40		e8db520100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23390	0x8e7f45		8b4804				MOVL 0x4(AX), CX																			
+  checker.go:23390	0x8e7f48		0fbae103			BTL $0x3, CX																				
+  checker.go:23390	0x8e7f4c		0f92c1				SETB CL																					
+  relater.go:1025	0x8e7f4f		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4255	0x8e7f57		83f101				XORL $0x1, CX																				
+  relater.go:4256	0x8e7f5a		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4255	0x8e7f62		89ca				MOVL CX, DX																				
+  relater.go:1025	0x8e7f64		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  relater.go:4255	0x8e7f6c		eb02				JMP 0x8e7f70																				
+  relater.go:4255	0x8e7f6e		31d2				XORL DX, DX																				
+  relater.go:4255	0x8e7f70		88542443			MOVB DL, 0x43(SP)																			
+  relater.go:4256	0x8e7f74		488b00				MOVQ 0(AX), AX																				
+  relater.go:1025	0x8e7f77		89d7				MOVL DX, DI																				
+  relater.go:1025	0x8e7f79		31f6				XORL SI, SI																				
+  relater.go:1025	0x8e7f7b		4531c0				XORL R8, R8																				
+  relater.go:1025	0x8e7f7e		6690				NOPW																					
+  relater.go:1025	0x8e7f80		e89bccfeff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker(SB)									
+  relater.go:4257	0x8e7f85		4885c0				TESTQ AX, AX																				
+  relater.go:4257	0x8e7f88		7552				JNE 0x8e7fdc																				
+  utilities.go:837	0x8e7f8a		488b9c2490010000		MOVQ 0x190(SP), BX																			
+  utilities.go:837	0x8e7f92		8b4b04				MOVL 0x4(BX), CX																			
+  utilities.go:837	0x8e7f95		0fbae107			BTL $0x7, CX																				
+  relater.go:4263	0x8e7f99		0f8352020000			JAE 0x8e81f1																				
+  relater.go:4264	0x8e7f9f		488b8c2480010000		MOVQ 0x180(SP), CX																			
+  relater.go:4264	0x8e7fa7		488b01				MOVQ 0(CX), AX																				
+  relater.go:4264	0x8e7faa		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4264	0x8e7fb2		e82962f2ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType(SB)										
+  relater.go:4264	0x8e7fb7		488bbc24a0010000		MOVQ 0x1a0(SP), DI																			
+  relater.go:4264	0x8e7fbf		90				NOPL																					
+  relater.go:4264	0x8e7fc0		e89bcffeff			CALL github.com/microsoft/typescript-go/internal/checker.excludeProperties(SB)												
+  relater.go:4264	0x8e7fc5		4889842448010000		MOVQ AX, 0x148(SP)																			
+  relater.go:4264	0x8e7fcd		48899c24e0000000		MOVQ BX, 0xe0(SP)																			
+  relater.go:4264	0x8e7fd5		31c9				XORL CX, CX																				
+  relater.go:4264	0x8e7fd7		e999000000			JMP 0x8e8075																				
+  relater.go:4131	0x8e7fdc		0fb6942498010000		MOVZX 0x198(SP), DX																			
+  relater.go:4131	0x8e7fe4		84d2				TESTL DL, DL																				
+  relater.go:4258	0x8e7fe6		7456				JE 0x8e803e																				
+  relater.go:1025	0x8e7fe8		48898424f8000000		MOVQ AX, 0xf8(SP)																			
+  relater.go:4258	0x8e7ff0		488b942480010000		MOVQ 0x180(SP), DX																			
+  relater.go:4258	0x8e7ff8		488b02				MOVQ 0(DX), AX																				
+  relater.go:4258	0x8e7ffb		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4258	0x8e8003		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  relater.go:4258	0x8e800b		e8f0cafeff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).shouldReportUnmatchedPropertyError(SB)								
+  relater.go:4258	0x8e8010		84c0				TESTL AL, AL																				
+  relater.go:4258	0x8e8012		742a				JE 0x8e803e																				
+  relater.go:4259	0x8e8014		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4259	0x8e801c		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4259	0x8e8024		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  relater.go:4259	0x8e802c		488bbc24f8000000		MOVQ 0xf8(SP), DI																			
+  relater.go:4259	0x8e8034		0fb6742443			MOVZX 0x43(SP), SI																			
+  relater.go:4259	0x8e8039		e8021d0000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportUnmatchedProperty(SB)										
+  relater.go:4261	0x8e803e		31c0				XORL AX, AX																				
+  relater.go:4261	0x8e8040		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4261	0x8e8047		5d				POPQ BP																					
+  relater.go:4261	0x8e8048		c3				RET																					
+  relater.go:4132	0x8e8049		4889f7				MOVQ SI, DI																				
+  relater.go:4132	0x8e804c		e80f2f0000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesIdenticalTo(SB)										
+  relater.go:4132	0x8e8051		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4132	0x8e8058		5d				POPQ BP																					
+  relater.go:4132	0x8e8059		c3				RET																					
+  relater.go:4264	0x8e805a		488b8c24d8000000		MOVQ 0xd8(SP), CX																			
+  relater.go:4264	0x8e8062		48ffc1				INCQ CX																					
+  relater.go:4264	0x8e8065		488b842448010000		MOVQ 0x148(SP), AX																			
+  relater.go:4264	0x8e806d		488b9c24e0000000		MOVQ 0xe0(SP), BX																			
+  relater.go:4264	0x8e8075		4839cb				CMPQ BX, CX																				
+  relater.go:4264	0x8e8078		0f8e6b010000			JLE 0x8e81e9																				
+  relater.go:4264	0x8e807e		48898c24d8000000		MOVQ CX, 0xd8(SP)																			
+  relater.go:4264	0x8e8086		488b14c8			MOVQ 0(AX)(CX*8), DX																			
+  relater.go:4264	0x8e808a		4889942420010000		MOVQ DX, 0x120(SP)																			
+  relater.go:4265	0x8e8092		488bb42480010000		MOVQ 0x180(SP), SI																			
+  relater.go:4265	0x8e809a		488b06				MOVQ 0(SI), AX																				
+  relater.go:4265	0x8e809d		488b4a08			MOVQ 0x8(DX), CX																			
+  relater.go:4265	0x8e80a1		488b7a10			MOVQ 0x10(DX), DI																			
+  relater.go:4265	0x8e80a5		488b9c2490010000		MOVQ 0x190(SP), BX																			
+  relater.go:4265	0x8e80ad		e8ae7bf3ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfObjectType(SB)										
+  relater.go:4265	0x8e80b2		4885c0				TESTQ AX, AX																				
+  relater.go:4265	0x8e80b5		75a3				JNE 0x8e805a																				
+  relater.go:4131	0x8e80b7		0fb6942498010000		MOVZX 0x198(SP), DX																			
+  relater.go:4131	0x8e80bf		90				NOPL																					
+  relater.go:4131	0x8e80c0		84d2				TESTL DL, DL																				
+  relater.go:4266	0x8e80c2		0f8416010000			JE 0x8e81de																				
+  relater.go:4267	0x8e80c8		488b942480010000		MOVQ 0x180(SP), DX																			
+  relater.go:4267	0x8e80d0		488b02				MOVQ 0(DX), AX																				
+  printer.go:255	0x8e80d3		488b9c2420010000		MOVQ 0x120(SP), BX																			
+  printer.go:255	0x8e80db		31c9				XORL CX, CX																				
+  printer.go:255	0x8e80dd		bfffffff3f			MOVL $0x3fffffff, DI																			
+  printer.go:255	0x8e80e2		be04000000			MOVL $0x4, SI																				
+  printer.go:255	0x8e80e7		e8540ffeff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).symbolToStringEx(SB)										
+  printer.go:255	0x8e80ec		48898424f0000000		MOVQ AX, 0xf0(SP)																			
+  printer.go:255	0x8e80f4		48895c2460			MOVQ BX, 0x60(SP)																			
+  relater.go:4267	0x8e80f9		488b942480010000		MOVQ 0x180(SP), DX																			
+  relater.go:4267	0x8e8101		488b02				MOVQ 0(DX), AX																				
+  printer.go:174	0x8e8104		90				NOPL																					
+  printer.go:178	0x8e8105		488b9c2490010000		MOVQ 0x190(SP), BX																			
+  printer.go:178	0x8e810d		31c9				XORL CX, CX																				
+  printer.go:178	0x8e810f		bf00401000			MOVL $0x104000, DI																			
+  printer.go:178	0x8e8114		31f6				XORL SI, SI																				
+  printer.go:178	0x8e8116		e84509feff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).typeToStringEx(SB)											
+  printer.go:178	0x8e811b		48898424e8000000		MOVQ AX, 0xe8(SP)																			
+  printer.go:178	0x8e8123		48895c2458			MOVQ BX, 0x58(SP)																			
+  relater.go:4267	0x8e8128		488d0511d84800			LEAQ 0x48d811(IP), AX																			
+  relater.go:4267	0x8e812f		e80cbeb3ff			CALL runtime.newobject(SB)																		
+  relater.go:4267	0x8e8134		4889842450010000		MOVQ AX, 0x150(SP)																			
+  relater.go:4267	0x8e813c		488b8424f0000000		MOVQ 0xf0(SP), AX																			
+  relater.go:4267	0x8e8144		488b5c2460			MOVQ 0x60(SP), BX																			
+  relater.go:4267	0x8e8149		e892f4b9ff			CALL runtime.convTstring(SB)																		
+  relater.go:4267	0x8e814e		488d156b934700			LEAQ 0x47936b(IP), DX																			
+  relater.go:4267	0x8e8155		4c8b842450010000		MOVQ 0x150(SP), R8																			
+  relater.go:4267	0x8e815d		498910				MOVQ DX, 0(R8)																				
+  relater.go:4267	0x8e8160		833da923610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4267	0x8e8167		7410				JE 0x8e8179																				
+  relater.go:4267	0x8e8169		498b4808			MOVQ 0x8(R8), CX																			
+  relater.go:4267	0x8e816d		e88e93baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4267	0x8e8172		498903				MOVQ AX, 0(R11)																				
+  relater.go:4267	0x8e8175		49894b08			MOVQ CX, 0x8(R11)																			
+  relater.go:4267	0x8e8179		49894008			MOVQ AX, 0x8(R8)																			
+  relater.go:4267	0x8e817d		488b8424e8000000		MOVQ 0xe8(SP), AX																			
+  relater.go:4267	0x8e8185		488b5c2458			MOVQ 0x58(SP), BX																			
+  relater.go:4267	0x8e818a		e851f4b9ff			CALL runtime.convTstring(SB)																		
+  relater.go:4267	0x8e818f		488d0d2a934700			LEAQ 0x47932a(IP), CX																			
+  relater.go:4267	0x8e8196		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4267	0x8e819e		48894a10			MOVQ CX, 0x10(DX)																			
+  relater.go:4267	0x8e81a2		833d6723610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4267	0x8e81a9		7410				JE 0x8e81bb																				
+  relater.go:4267	0x8e81ab		4c8b4218			MOVQ 0x18(DX), R8																			
+  relater.go:4267	0x8e81af		e84c93baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4267	0x8e81b4		498903				MOVQ AX, 0(R11)																				
+  relater.go:4267	0x8e81b7		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4267	0x8e81bb		48894218			MOVQ AX, 0x18(DX)																			
+  relater.go:4267	0x8e81bf		488b1daae65a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Property_0_does_not_exist_on_type_1(SB), BX								
+  relater.go:4267	0x8e81c6		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4267	0x8e81ce		4889d1				MOVQ DX, CX																				
+  relater.go:4267	0x8e81d1		bf02000000			MOVL $0x2, DI																				
+  relater.go:4267	0x8e81d6		4889fe				MOVQ DI, SI																				
+  relater.go:4267	0x8e81d9		e8c2600000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4269	0x8e81de		31c0				XORL AX, AX																				
+  relater.go:4269	0x8e81e0		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4269	0x8e81e7		5d				POPQ BP																					
+  relater.go:4269	0x8e81e8		c3				RET																					
+  relater.go:4275	0x8e81e9		488b9c2490010000		MOVQ 0x190(SP), BX																			
+  relater.go:4275	0x8e81f1		488b8c2480010000		MOVQ 0x180(SP), CX																			
+  relater.go:4275	0x8e81f9		488b01				MOVQ 0(CX), AX																				
+  relater.go:4275	0x8e81fc		0f1f4000			NOPL 0(AX)																				
+  relater.go:4275	0x8e8200		e8db5ff2ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType(SB)										
+  relater.go:4276	0x8e8205		4881fb00010000			CMPQ BX, $0x100																				
+  relater.go:4276	0x8e820c		7c62				JL 0x8e8270																				
+  set.go:39		0x8e820e		488b9424a0010000		MOVQ 0x1a0(SP), DX																			
+  set.go:39		0x8e8216		4885d2				TESTQ DX, DX																				
+  set.go:39		0x8e8219		7407				JE 0x8e8222																				
+  set.go:39		0x8e821b		488b12				MOVQ 0(DX), DX																				
+  set.go:39		0x8e821e		6690				NOPW																					
+  set.go:39		0x8e8220		eb02				JMP 0x8e8224																				
+  set.go:39		0x8e8222		31d2				XORL DX, DX																				
+  relater.go:4276	0x8e8224		4885d2				TESTQ DX, DX																				
+  relater.go:4276	0x8e8227		7547				JNE 0x8e8270																				
+  relater.go:4277	0x8e8229		0fb6bc2498010000		MOVZX 0x198(SP), DI																			
+  relater.go:4277	0x8e8231		0fb6b424a8010000		MOVZX 0x1a8(SP), SI																			
+  relater.go:4277	0x8e8239		448b8424ac010000		MOVL 0x1ac(SP), R8																			
+  relater.go:4277	0x8e8241		4989c1				MOVQ AX, R9																				
+  relater.go:4277	0x8e8244		4989da				MOVQ BX, R10																				
+  relater.go:4277	0x8e8247		4989cb				MOVQ CX, R11																				
+  relater.go:4277	0x8e824a		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4277	0x8e8252		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4277	0x8e825a		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  relater.go:4277	0x8e8262		e8590afaff			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).indexedPropertiesRelatedTo(SB)									
+  relater.go:4277	0x8e8267		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4277	0x8e826e		5d				POPQ BP																					
+  relater.go:4277	0x8e826f		c3				RET																					
+  checker.go:23390	0x8e8270		488b942488010000		MOVQ 0x188(SP), DX																			
+  checker.go:23390	0x8e8278		8b7204				MOVL 0x4(DX), SI																			
+  checker.go:23390	0x8e827b		0fbae602			BTL $0x2, SI																				
+  checker.go:23390	0x8e827f		90				NOPL																					
+  checker.go:23390	0x8e8280		7207				JB 0x8e8289																				
+  checker.go:23390	0x8e8282		31f6				XORL SI, SI																				
+  checker.go:23390	0x8e8284		e98b000000			JMP 0x8e8314																				
+  relater.go:4275	0x8e8289		48898c24c8000000		MOVQ CX, 0xc8(SP)																			
+  relater.go:4275	0x8e8291		48899c24c0000000		MOVQ BX, 0xc0(SP)																			
+  relater.go:4275	0x8e8299		4889842428010000		MOVQ AX, 0x128(SP)																			
+  checker.go:23390	0x8e82a1		4889d0				MOVQ DX, AX																				
+  checker.go:23390	0x8e82a4		e8774f0100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23390	0x8e82a9		8b4804				MOVL 0x4(AX), CX																			
+  checker.go:23390	0x8e82ac		0fbae103			BTL $0x3, CX																				
+  relater.go:4279	0x8e82b0		7348				JAE 0x8e82fa																				
+  checker.go:23390	0x8e82b2		488b842490010000		MOVQ 0x190(SP), AX																			
+  checker.go:23390	0x8e82ba		8b5004				MOVL 0x4(AX), DX																			
+  checker.go:23390	0x8e82bd		0fbae202			BTL $0x2, DX																				
+  checker.go:23390	0x8e82c1		7204				JB 0x8e82c7																				
+  checker.go:23390	0x8e82c3		31c9				XORL CX, CX																				
+  checker.go:23390	0x8e82c5		eb17				JMP 0x8e82de																				
+  checker.go:23390	0x8e82c7		e8544f0100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23390	0x8e82cc		8b4804				MOVL 0x4(AX), CX																			
+  checker.go:23390	0x8e82cf		0fbae103			BTL $0x3, CX																				
+  checker.go:23390	0x8e82d3		0f92c1				SETB CL																					
+  relater.go:4285	0x8e82d6		488b842490010000		MOVQ 0x190(SP), AX																			
+  relater.go:4280	0x8e82de		488b842428010000		MOVQ 0x128(SP), AX																			
+  relater.go:4280	0x8e82e6		488b9c24c0000000		MOVQ 0xc0(SP), BX																			
+  relater.go:4279	0x8e82ee		89ce				MOVL CX, SI																				
+  relater.go:4280	0x8e82f0		488b8c24c8000000		MOVQ 0xc8(SP), CX																			
+  relater.go:4279	0x8e82f8		eb1a				JMP 0x8e8314																				
+  relater.go:4280	0x8e82fa		488b842428010000		MOVQ 0x128(SP), AX																			
+  relater.go:4280	0x8e8302		488b8c24c8000000		MOVQ 0xc8(SP), CX																			
+  relater.go:4280	0x8e830a		488b9c24c0000000		MOVQ 0xc0(SP), BX																			
+  relater.go:4280	0x8e8312		31f6				XORL SI, SI																				
+  relater.go:4279	0x8e8314		4088742444			MOVB SI, 0x44(SP)																			
+  relater.go:4280	0x8e8319		488bbc24a0010000		MOVQ 0x1a0(SP), DI																			
+  relater.go:4280	0x8e8321		e83accfeff			CALL github.com/microsoft/typescript-go/internal/checker.excludeProperties(SB)												
+  relater.go:4280	0x8e8326		4889842448010000		MOVQ AX, 0x148(SP)																			
+  relater.go:4280	0x8e832e		48899c24e0000000		MOVQ BX, 0xe0(SP)																			
+  relater.go:4280	0x8e8336		0fb69424a8010000		MOVZX 0x1a8(SP), DX																			
+  relater.go:4280	0x8e833e		0fb6742444			MOVZX 0x44(SP), SI																			
+  relater.go:4280	0x8e8343		31c9				XORL CX, CX																				
+  relater.go:4280	0x8e8345		bfffffffff			MOVL $-0x1, DI																				
+  relater.go:4280	0x8e834a		eb03				JMP 0x8e834f																				
+  relater.go:4280	0x8e834c		48ffc1				INCQ CX																					
+  relater.go:4280	0x8e834f		4839cb				CMPQ BX, CX																				
+  relater.go:4280	0x8e8352		0f8eef010000			JLE 0x8e8547																				
+  relater.go:4280	0x8e8358		48898c24d8000000		MOVQ CX, 0xd8(SP)																			
+  relater.go:4280	0x8e8360		40887c2442			MOVB DI, 0x42(SP)																			
+  relater.go:4280	0x8e8365		4c8b0cc8			MOVQ 0(AX)(CX*8), R9																			
+  relater.go:4280	0x8e8369		4c898c2408010000		MOVQ R9, 0x108(SP)																			
+  relater.go:4281	0x8e8371		458b11				MOVL 0(R9), R10																				
+  relater.go:4281	0x8e8374		4d8b5908			MOVQ 0x8(R9), R11																			
+  relater.go:4281	0x8e8378		4d8b6110			MOVQ 0x10(R9), R12																			
+  relater.go:4282	0x8e837c		410fbae216			BTL $0x16, R10																				
+  relater.go:4282	0x8e8381		0f829c000000			JB 0x8e8423																				
+  relater.go:4279	0x8e8387		4084f6				TESTL SI, SI																				
+  relater.go:4282	0x8e838a		7508				JNE 0x8e8394																				
+  relater.go:4282	0x8e838c		41b801000000			MOVL $0x1, R8																				
+  relater.go:4282	0x8e8392		eb60				JMP 0x8e83f4																				
+  relater.go:4281	0x8e8394		4c89a424d0000000		MOVQ R12, 0xd0(SP)																			
+  relater.go:4281	0x8e839c		4c899c2430010000		MOVQ R11, 0x130(SP)																			
+  relater.go:4282	0x8e83a4		4c89d8				MOVQ R11, AX																				
+  relater.go:4282	0x8e83a7		4c89e3				MOVQ R12, BX																				
+  relater.go:4282	0x8e83aa		e8b1800100			CALL github.com/microsoft/typescript-go/internal/checker.isNumericLiteralName(SB)											
+  relater.go:4280	0x8e83af		488b8c24d8000000		MOVQ 0xd8(SP), CX																			
+  relater.go:4131	0x8e83b7		0fb69424a8010000		MOVZX 0x1a8(SP), DX																			
+  relater.go:4280	0x8e83bf		488b9c24e0000000		MOVQ 0xe0(SP), BX																			
+  relater.go:4279	0x8e83c7		0fb6742444			MOVZX 0x44(SP), SI																			
+  relater.go:4279	0x8e83cc		0fb67c2442			MOVZX 0x42(SP), DI																			
+  relater.go:4282	0x8e83d1		4c8b8c2408010000		MOVQ 0x108(SP), R9																			
+  relater.go:4282	0x8e83d9		4c8b9c2430010000		MOVQ 0x130(SP), R11																			
+  relater.go:4282	0x8e83e1		4c8ba424d0000000		MOVQ 0xd0(SP), R12																			
+  relater.go:4282	0x8e83e9		4189c0				MOVL AX, R8																				
+  relater.go:4280	0x8e83ec		488b842448010000		MOVQ 0x148(SP), AX																			
+  relater.go:4282	0x8e83f4		4584c0				TESTL R8, R8																				
+  relater.go:4282	0x8e83f7		7409				JE 0x8e8402																				
+  relater.go:4282	0x8e83f9		41ba01000000			MOVL $0x1, R10																				
+  relater.go:4282	0x8e83ff		90				NOPL																					
+  relater.go:4282	0x8e8400		eb24				JMP 0x8e8426																				
+  relater.go:4282	0x8e8402		4983fc06			CMPQ R12, $0x6																				
+  relater.go:4282	0x8e8406		7516				JNE 0x8e841e																				
+  relater.go:4282	0x8e8408		41813b6c656e67			CMPL 0(R11), $0x676e656c																		
+  relater.go:4282	0x8e840f		750d				JNE 0x8e841e																				
+  relater.go:4282	0x8e8411		6641817b047468			CMPW 0x4(R11), $0x6874																			
+  relater.go:4282	0x8e8418		410f94c2			SETE R10																				
+  relater.go:4282	0x8e841c		eb08				JMP 0x8e8426																				
+  relater.go:4282	0x8e841e		4531d2				XORL R10, R10																				
+  relater.go:4282	0x8e8421		eb03				JMP 0x8e8426																				
+  relater.go:4282	0x8e8423		4531d2				XORL R10, R10																				
+  relater.go:4282	0x8e8426		4584d2				TESTL R10, R10																				
+  relater.go:4282	0x8e8429		0f841dffffff			JE 0x8e834c																				
+  relater.go:4131	0x8e842f		84d2				TESTL DL, DL																				
+  relater.go:4282	0x8e8431		7413				JE 0x8e8446																				
+  relater.go:4282	0x8e8433		458b11				MOVL 0(R9), R10																				
+  relater.go:4282	0x8e8436		410fbae218			BTL $0x18, R10																				
+  relater.go:4282	0x8e843b		0f1f440000			NOPL 0(AX)(AX*1)																			
+  relater.go:4282	0x8e8440		0f8306ffffff			JAE 0x8e834c																				
+  relater.go:4283	0x8e8446		488b942480010000		MOVQ 0x180(SP), DX																			
+  relater.go:4283	0x8e844e		488b02				MOVQ 0(DX), AX																				
+  checker.go:18756	0x8e8451		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  checker.go:18756	0x8e8459		4c89d9				MOVQ R11, CX																				
+  checker.go:18756	0x8e845c		4c89e7				MOVQ R12, DI																				
+  checker.go:18756	0x8e845f		31f6				XORL SI, SI																				
+  checker.go:18756	0x8e8461		4189f0				MOVL SI, R8																				
+  checker.go:18756	0x8e8464		e87762f2ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx(SB)										
+  relater.go:4284	0x8e8469		4885c0				TESTQ AX, AX																				
+  relater.go:4284	0x8e846c		0f849b000000			JE 0x8e850d																				
+  relater.go:4284	0x8e8472		488bb42408010000		MOVQ 0x108(SP), SI																			
+  relater.go:4284	0x8e847a		4839f0				CMPQ AX, SI																				
+  relater.go:4284	0x8e847d		750a				JNE 0x8e8489																				
+  relater.go:4284	0x8e847f		0fb67c2442			MOVZX 0x42(SP), DI																			
+  relater.go:4284	0x8e8484		e989000000			JMP 0x8e8512																				
+  relater.go:4285	0x8e8489		48c784246801000000000000	MOVQ $0x0, 0x168(SP)																			
+  relater.go:4285	0x8e8495		488d1524e30200			LEAQ github.com/microsoft/typescript-go/internal/checker.(*Checker).getNonMissingTypeOfSymbol-fm(SB), DX								
+  relater.go:4285	0x8e849c		4889942460010000		MOVQ DX, 0x160(SP)																			
+  relater.go:4285	0x8e84a4		488b942480010000		MOVQ 0x180(SP), DX																			
+  relater.go:4285	0x8e84ac		4c8b22				MOVQ 0(DX), R12																				
+  relater.go:4285	0x8e84af		4c89a42468010000		MOVQ R12, 0x168(SP)																			
+  relater.go:4285	0x8e84b7		4c8b6208			MOVQ 0x8(DX), R12																			
+  relater.go:4285	0x8e84bb		4c8b2a				MOVQ 0(DX), R13																				
+  relater.go:4285	0x8e84be		4d39a5f80f0000			CMPQ 0xff8(R13), R12																			
+  relater.go:4285	0x8e84c5		410f94c3			SETE R11																				
+  relater.go:4285	0x8e84c9		488b9c2488010000		MOVQ 0x188(SP), BX																			
+  relater.go:4285	0x8e84d1		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  relater.go:4285	0x8e84d9		4889c7				MOVQ AX, DI																				
+  relater.go:4285	0x8e84dc		4c8d842460010000		LEAQ 0x160(SP), R8																			
+  relater.go:4285	0x8e84e4		440fb68c2498010000		MOVZX 0x198(SP), R9																			
+  relater.go:4285	0x8e84ed		448b9424ac010000		MOVL 0x1ac(SP), R10																			
+  relater.go:4285	0x8e84f5		4889d0				MOVQ DX, AX																				
+  relater.go:4285	0x8e84f8		e8230b0000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).propertyRelatedTo(SB)										
+  relater.go:4285	0x8e84fd		0f1f00				NOPL 0(AX)																				
+  relater.go:4286	0x8e8500		84c0				TESTL AL, AL																				
+  relater.go:4286	0x8e8502		7438				JE 0x8e853c																				
+  relater.go:4289	0x8e8504		0fb67c2442			MOVZX 0x42(SP), DI																			
+  relater.go:4289	0x8e8509		21c7				ANDL AX, DI																				
+  relater.go:4289	0x8e850b		eb05				JMP 0x8e8512																				
+  relater.go:4289	0x8e850d		0fb67c2442			MOVZX 0x42(SP), DI																			
+  relater.go:4280	0x8e8512		488b842448010000		MOVQ 0x148(SP), AX																			
+  relater.go:4280	0x8e851a		488b8c24d8000000		MOVQ 0xd8(SP), CX																			
+  relater.go:4131	0x8e8522		0fb69424a8010000		MOVZX 0x1a8(SP), DX																			
+  relater.go:4280	0x8e852a		488b9c24e0000000		MOVQ 0xe0(SP), BX																			
+  relater.go:4279	0x8e8532		0fb6742444			MOVZX 0x44(SP), SI																			
+  relater.go:4279	0x8e8537		e910feffff			JMP 0x8e834c																				
+  relater.go:4287	0x8e853c		31c0				XORL AX, AX																				
+  relater.go:4287	0x8e853e		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4287	0x8e8545		5d				POPQ BP																					
+  relater.go:4287	0x8e8546		c3				RET																					
+  relater.go:4293	0x8e8547		89f8				MOVL DI, AX																				
+  relater.go:4293	0x8e8549		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4293	0x8e8550		5d				POPQ BP																					
+  relater.go:4293	0x8e8551		c3				RET																					
+  types.go:693		0x8e8552		488d1d07b46000			LEAQ 0x60b407(IP), BX																			
+  types.go:693		0x8e8559		488d0da0c85400			LEAQ 0x54c8a0(IP), CX																			
+  types.go:693		0x8e8560		e8fb79b3ff			CALL runtime.panicdottypeI(SB)																		
+  checker.go:23346	0x8e8565		488d5310			LEAQ 0x10(BX), DX																			
+  checker.go:23346	0x8e8569		48ffc0				INCQ AX																					
+  checker.go:23346	0x8e856c		4839c8				CMPQ AX, CX																				
+  checker.go:23346	0x8e856f		7d11				JGE 0x8e8582																				
+  checker.go:23346	0x8e8571		4889d3				MOVQ DX, BX																				
+  checker.go:23346	0x8e8574		8b12				MOVL 0(DX), DX																				
+  checker.go:23347	0x8e8576		f7c20b000000			TESTL $0xb, DX																				
+  checker.go:23347	0x8e857c		75e7				JNE 0x8e8565																				
+  checker.go:23347	0x8e857e		6690				NOPW																					
+  checker.go:23347	0x8e8580		eb03				JMP 0x8e8585																				
+  relater.go:4180	0x8e8582		4889c8				MOVQ CX, AX																				
+  relater.go:4180	0x8e8585		4889442470			MOVQ AX, 0x70(SP)																			
+  types.go:715		0x8e858a		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  types.go:715		0x8e8592		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e8596		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e859a		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e859e		6690				NOPW																					
+  types.go:715		0x8e85a0		ffd1				CALL CX																					
+  types.go:776		0x8e85a2		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e85a9		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e85ad		488d151cf2c400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e85b4		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e85b7		0f8560090000			JNE 0x8e8f1d																				
+  types.go:693		0x8e85bd		488b5130			MOVQ 0x30(CX), DX																			
+  checker.go:23356	0x8e85c1		488bb2a8010000			MOVQ 0x1a8(DX), SI																			
+  checker.go:23356	0x8e85c8		488b92a0010000			MOVQ 0x1a0(DX), DX																			
+  checker.go:23356	0x8e85cf		4889f0				MOVQ SI, AX																				
+  checker.go:23356	0x8e85d2		eb03				JMP 0x8e85d7																				
+  checker.go:23356	0x8e85d4		4c89c6				MOVQ R8, SI																				
+  checker.go:23356	0x8e85d7		4885f6				TESTQ SI, SI																				
+  checker.go:23356	0x8e85da		7e19				JLE 0x8e85f5																				
+  checker.go:23357	0x8e85dc		488d7eff			LEAQ -0x1(SI), DI																			
+  checker.go:23357	0x8e85e0		4989f8				MOVQ DI, R8																				
+  checker.go:23357	0x8e85e3		48c1e704			SHLQ $0x4, DI																				
+  checker.go:23357	0x8e85e7		8b3c17				MOVL 0(DI)(DX*1), DI																			
+  checker.go:23357	0x8e85ea		f7c70b000000			TESTL $0xb, DI																				
+  checker.go:23357	0x8e85f0		75e2				JNE 0x8e85d4																				
+  checker.go:23358	0x8e85f2		4829f0				SUBQ SI, AX																				
+  set.go:39		0x8e85f5		488b9424a0010000		MOVQ 0x1a0(SP), DX																			
+  set.go:39		0x8e85fd		0f1f00				NOPL 0(AX)																				
+  set.go:39		0x8e8600		4885d2				TESTQ DX, DX																				
+  set.go:39		0x8e8603		7405				JE 0x8e860a																				
+  set.go:39		0x8e8605		488b12				MOVQ 0(DX), DX																				
+  set.go:39		0x8e8608		eb02				JMP 0x8e860c																				
+  set.go:39		0x8e860a		31d2				XORL DX, DX																				
+  relater.go:4181	0x8e860c		4889442468			MOVQ AX, 0x68(SP)																			
+  relater.go:4182	0x8e8611		4885d2				TESTQ DX, DX																				
+  relater.go:4182	0x8e8614		0f95c2				SETNE DL																				
+  relater.go:4183	0x8e8617		488b742470			MOVQ 0x70(SP), SI																			
+  relater.go:4183	0x8e861c		488bbc24b8000000		MOVQ 0xb8(SP), DI																			
+  relater.go:4183	0x8e8624		448b442454			MOVL 0x54(SP), R8																			
+  relater.go:4183	0x8e8629		4c8b8c2490000000		MOVQ 0x90(SP), R9																			
+  relater.go:4183	0x8e8631		4c8b942488010000		MOVQ 0x188(SP), R10																			
+  relater.go:4183	0x8e8639		31c9				XORL CX, CX																				
+  relater.go:4183	0x8e863b		bbffffffff			MOVL $-0x1, BX																				
+  relater.go:4183	0x8e8640		eb0c				JMP 0x8e864e																				
+  relater.go:4183	0x8e8642		48ffc1				INCQ CX																					
+  relater.go:4193	0x8e8645		4c89e8				MOVQ R13, AX																				
+  relater.go:4183	0x8e8648		4c89e7				MOVQ R12, DI																				
+  relater.go:4193	0x8e864b		4d89f9				MOVQ R15, R9																				
+  relater.go:4183	0x8e864e		4839cf				CMPQ DI, CX																				
+  relater.go:4183	0x8e8651		0f8e79080000			JLE 0x8e8ed0																				
+  relater.go:4183	0x8e8657		48898c24a8000000		MOVQ CX, 0xa8(SP)																			
+  relater.go:4183	0x8e865f		885c2442			MOVB BL, 0x42(SP)																			
+  relater.go:4183	0x8e8663		88542445			MOVB DL, 0x45(SP)																			
+  checker.go:23390	0x8e8667		458b5a04			MOVL 0x4(R10), R11																			
+  checker.go:23390	0x8e866b		410fbae302			BTL $0x2, R11																				
+  checker.go:23390	0x8e8670		734a				JAE 0x8e86bc																				
+  checker.go:23390	0x8e8672		4c89d0				MOVQ R10, AX																				
+  checker.go:23390	0x8e8675		e8a64b0100			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)												
+  checker.go:23390	0x8e867a		8b4804				MOVL 0x4(AX), CX																			
+  checker.go:23390	0x8e867d		0fbae103			BTL $0x3, CX																				
+  relater.go:4185	0x8e8681		7244				JB 0x8e86c7																				
+  relater.go:4193	0x8e8683		488b442468			MOVQ 0x68(SP), AX																			
+  relater.go:4190	0x8e8688		488b8c24a8000000		MOVQ 0xa8(SP), CX																			
+  relater.go:4183	0x8e8690		0fb6542445			MOVZX 0x45(SP), DX																			
+  relater.go:4183	0x8e8695		0fb65c2442			MOVZX 0x42(SP), BX																			
+  relater.go:4192	0x8e869a		488b742470			MOVQ 0x70(SP), SI																			
+  relater.go:4190	0x8e869f		488bbc24b8000000		MOVQ 0xb8(SP), DI																			
+  relater.go:4148	0x8e86a7		448b442454			MOVL 0x54(SP), R8																			
+  relater.go:4193	0x8e86ac		4c8b8c2490000000		MOVQ 0x90(SP), R9																			
+  checker.go:23390	0x8e86b4		4c8b942488010000		MOVQ 0x188(SP), R10																			
+  relater.go:4185	0x8e86bc		41bb04000000			MOVL $0x4, R11																				
+  relater.go:4185	0x8e86c2		e99a000000			JMP 0x8e8761																				
+  types.go:715		0x8e86c7		488b8c2488010000		MOVQ 0x188(SP), CX																			
+  types.go:715		0x8e86cf		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e86d3		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e86d7		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e86db		ffd1				CALL CX																					
+  types.go:776		0x8e86dd		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e86e4		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e86e8		488d15e1f0c400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e86ef		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e86f2		0f8512080000			JNE 0x8e8f0a																				
+  types.go:693		0x8e86f8		488b5130			MOVQ 0x30(CX), DX																			
+  relater.go:4186	0x8e86fc		488bb2a8010000			MOVQ 0x1a8(DX), SI																			
+  relater.go:4186	0x8e8703		488b8424a8000000		MOVQ 0xa8(SP), AX																			
+  relater.go:4186	0x8e870b		4839f0				CMPQ AX, SI																				
+  relater.go:4186	0x8e870e		0f83f1070000			JAE 0x8e8f05																				
+  relater.go:4186	0x8e8714		488b92a0010000			MOVQ 0x1a0(DX), DX																			
+  relater.go:4186	0x8e871b		4889c6				MOVQ AX, SI																				
+  relater.go:4186	0x8e871e		48c1e604			SHLQ $0x4, SI																				
+  relater.go:4186	0x8e8722		8b1416				MOVL 0(SI)(DX*1), DX																			
+  relater.go:4193	0x8e8725		488b442468			MOVQ 0x68(SP), AX																			
+  relater.go:4190	0x8e872a		488b8c24a8000000		MOVQ 0xa8(SP), CX																			
+  relater.go:4183	0x8e8732		0fb65c2442			MOVZX 0x42(SP), BX																			
+  relater.go:4192	0x8e8737		488b742470			MOVQ 0x70(SP), SI																			
+  relater.go:4190	0x8e873c		488bbc24b8000000		MOVQ 0xb8(SP), DI																			
+  relater.go:4148	0x8e8744		448b442454			MOVL 0x54(SP), R8																			
+  relater.go:4193	0x8e8749		4c8b8c2490000000		MOVQ 0x90(SP), R9																			
+  checker.go:23390	0x8e8751		4c8b942488010000		MOVQ 0x188(SP), R10																			
+  relater.go:4190	0x8e8759		4189d3				MOVL DX, R11																				
+  relater.go:4183	0x8e875c		0fb6542445			MOVZX 0x45(SP), DX																			
+  relater.go:4190	0x8e8761		4989fc				MOVQ DI, R12																				
+  relater.go:4190	0x8e8764		4829cf				SUBQ CX, DI																				
+  relater.go:4190	0x8e8767		48ffcf				DECQ DI																					
+  relater.go:4148	0x8e876a		41f7c00c000000			TESTL $0xc, R8																				
+  relater.go:4192	0x8e8771		7420				JE 0x8e8793																				
+  relater.go:4192	0x8e8773		4839f1				CMPQ CX, SI																				
+  relater.go:4192	0x8e8776		7c1b				JL 0x8e8793																				
+  relater.go:4193	0x8e8778		4839f8				CMPQ AX, DI																				
+  relater.go:4193	0x8e877b		7d05				JGE 0x8e8782																				
+  relater.go:4181	0x8e877d		4989c5				MOVQ AX, R13																				
+  relater.go:4193	0x8e8780		eb06				JMP 0x8e8788																				
+  relater.go:4193	0x8e8782		4989c5				MOVQ AX, R13																				
+  relater.go:4193	0x8e8785		4889f8				MOVQ DI, AX																				
+  relater.go:4193	0x8e8788		4d89cf				MOVQ R9, R15																				
+  relater.go:4193	0x8e878b		4929c1				SUBQ AX, R9																				
+  relater.go:4193	0x8e878e		49ffc9				DECQ R9																					
+  relater.go:4193	0x8e8791		eb09				JMP 0x8e879c																				
+  relater.go:4193	0x8e8793		4989c5				MOVQ AX, R13																				
+  relater.go:4193	0x8e8796		4d89cf				MOVQ R9, R15																				
+  relater.go:4197	0x8e8799		4989c9				MOVQ CX, R9																				
+  relater.go:4190	0x8e879c		4889bc24a0000000		MOVQ DI, 0xa0(SP)																			
+  relater.go:4197	0x8e87a4		4c898c2480000000		MOVQ R9, 0x80(SP)																			
+  relater.go:4190	0x8e87ac		44895c244c			MOVL R11, 0x4c(SP)																			
+  relater.go:4198	0x8e87b1		4d85c9				TESTQ R9, R9																				
+  relater.go:4198	0x8e87b4		7d07				JGE 0x8e87bd																				
+  relater.go:4198	0x8e87b6		31c0				XORL AX, AX																				
+  relater.go:4198	0x8e87b8		e9ab000000			JMP 0x8e8868																				
+  types.go:715		0x8e87bd		488b8c2490010000		MOVQ 0x190(SP), CX																			
+  types.go:715		0x8e87c5		488b5128			MOVQ 0x28(CX), DX																			
+  types.go:715		0x8e87c9		488b4130			MOVQ 0x30(CX), AX																			
+  types.go:715		0x8e87cd		488b4a40			MOVQ 0x40(DX), CX																			
+  types.go:715		0x8e87d1		ffd1				CALL CX																					
+  types.go:776		0x8e87d3		488b88a8000000			MOVQ 0xa8(AX), CX																			
+  types.go:693		0x8e87da		488b4128			MOVQ 0x28(CX), AX																			
+  types.go:693		0x8e87de		488d15ebefc400			LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX			
+  types.go:693		0x8e87e5		4839d0				CMPQ AX, DX																				
+  types.go:693		0x8e87e8		0f8501070000			JNE 0x8e8eef																				
+  types.go:693		0x8e87ee		488b5130			MOVQ 0x30(CX), DX																			
+  relater.go:4199	0x8e87f2		488bb2a8010000			MOVQ 0x1a8(DX), SI																			
+  relater.go:4199	0x8e87f9		488bbc2480000000		MOVQ 0x80(SP), DI																			
+  relater.go:4199	0x8e8801		4839f7				CMPQ DI, SI																				
+  relater.go:4199	0x8e8804		0f83e0060000			JAE 0x8e8eea																				
+  relater.go:4199	0x8e880a		488b92a0010000			MOVQ 0x1a0(DX), DX																			
+  relater.go:4199	0x8e8811		48c1e704			SHLQ $0x4, DI																				
+  relater.go:4199	0x8e8815		8b1417				MOVL 0(DI)(DX*1), DX																			
+  relater.go:4183	0x8e8818		488b8c24a8000000		MOVQ 0xa8(SP), CX																			
+  relater.go:4183	0x8e8820		0fb65c2442			MOVZX 0x42(SP), BX																			
+  relater.go:4192	0x8e8825		488b742470			MOVQ 0x70(SP), SI																			
+  relater.go:4239	0x8e882a		488bbc24a0000000		MOVQ 0xa0(SP), DI																			
+  relater.go:4148	0x8e8832		448b442454			MOVL 0x54(SP), R8																			
+  relater.go:4229	0x8e8837		4c8b8c2480000000		MOVQ 0x80(SP), R9																			
+  checker.go:23390	0x8e883f		4c8b942488010000		MOVQ 0x188(SP), R10																			
+  relater.go:4201	0x8e8847		448b5c244c			MOVL 0x4c(SP), R11																			
+  relater.go:4183	0x8e884c		4c8ba424b8000000		MOVQ 0xb8(SP), R12																			
+  relater.go:4193	0x8e8854		4c8b6c2468			MOVQ 0x68(SP), R13																			
+  relater.go:4193	0x8e8859		4c8bbc2490000000		MOVQ 0x90(SP), R15																			
+  relater.go:4201	0x8e8861		89d0				MOVL DX, AX																				
+  relater.go:4183	0x8e8863		0fb6542445			MOVZX 0x45(SP), DX																			
+  relater.go:4201	0x8e8868		0fbae003			BTL $0x3, AX																				
+  relater.go:4201	0x8e886c		730b				JAE 0x8e8879																				
+  relater.go:4201	0x8e886e		410fbae303			BTL $0x3, R11																				
+  relater.go:4201	0x8e8873		0f832f020000			JAE 0x8e8aa8																				
+  relater.go:4207	0x8e8879		410fbae303			BTL $0x3, R11																				
+  relater.go:4207	0x8e887e		6690				NOPW																					
+  relater.go:4207	0x8e8880		730b				JAE 0x8e888d																				
+  relater.go:4207	0x8e8882		a90c000000			TESTL $0xc, AX																				
+  relater.go:4207	0x8e8887		0f84a6020000			JE 0x8e8b33																				
+  relater.go:4213	0x8e888d		0fbae000			BTL $0x0, AX																				
+  relater.go:4213	0x8e8891		730b				JAE 0x8e889e																				
+  relater.go:4213	0x8e8893		410fbae300			BTL $0x0, R11																				
+  relater.go:4213	0x8e8898		0f8363030000			JAE 0x8e8c01																				
+  relater.go:4201	0x8e889e		89442448			MOVL AX, 0x48(SP)																			
+  relater.go:4183	0x8e88a2		84d2				TESTL DL, DL																				
+  relater.go:4220	0x8e88a4		0f84d0000000			JE 0x8e897a																				
+  relater.go:4221	0x8e88aa		41f7c30c000000			TESTL $0xc, R11																				
+  relater.go:4221	0x8e88b1		7507				JNE 0x8e88ba																				
+  relater.go:4221	0x8e88b3		a90c000000			TESTL $0xc, AX																				
+  relater.go:4221	0x8e88b8		7404				JE 0x8e88be																				
+  relater.go:4221	0x8e88ba		31d2				XORL DX, DX																				
+  relater.go:4221	0x8e88bc		eb05				JMP 0x8e88c3																				
+  relater.go:4221	0x8e88be		ba01000000			MOVL $0x1, DX																				
+  relater.go:4224	0x8e88c3		84d2				TESTL DL, DL																				
+  relater.go:4224	0x8e88c5		7513				JNE 0x8e88da																				
+  relater.go:4201	0x8e88c7		89442450			MOVL AX, 0x50(SP)																			
+  relater.go:4224	0x8e88cb		31c0				XORL AX, AX																				
+  relater.go:4224	0x8e88cd		88442446			MOVB AL, 0x46(SP)																			
+  relater.go:4228	0x8e88d1		8b442450			MOVL 0x50(SP), AX																			
+  relater.go:4224	0x8e88d5		e988000000			JMP 0x8e8962																				
+  relater.go:4224	0x8e88da		88542447			MOVB DL, 0x47(SP)																			
+  number.go:215		0x8e88de		90				NOPL																					
+  itoa.go:51		0x8e88df		4889c8				MOVQ CX, AX																				
+  itoa.go:51		0x8e88e2		bb0a000000			MOVL $0xa, BX																				
+  itoa.go:51		0x8e88e7		e8f421b2ff			CALL internal/strconv.FormatInt(SB)																	
+  set.go:20		0x8e88ec		488b8c24a0010000		MOVQ 0x1a0(SP), CX																			
+  set.go:20		0x8e88f4		488d15a5a94d00			LEAQ 0x4da9a5(IP), DX																			
+  set.go:20		0x8e88fb		4889df				MOVQ BX, DI																				
+  set.go:20		0x8e88fe		4889cb				MOVQ CX, BX																				
+  set.go:20		0x8e8901		4889c1				MOVQ AX, CX																				
+  set.go:20		0x8e8904		4889d0				MOVQ DX, AX																				
+  set.go:20		0x8e8907		e854b6b2ff			CALL runtime.mapaccess2_faststr(SB)																	
+  relater.go:4228	0x8e890c		8b442448			MOVL 0x48(SP), AX																			
+  relater.go:4183	0x8e8910		488b8c24a8000000		MOVQ 0xa8(SP), CX																			
+  relater.go:4183	0x8e8918		0fb6542447			MOVZX 0x47(SP), DX																			
+  relater.go:4192	0x8e891d		488b742470			MOVQ 0x70(SP), SI																			
+  relater.go:4239	0x8e8922		488bbc24a0000000		MOVQ 0xa0(SP), DI																			
+  relater.go:4148	0x8e892a		448b442454			MOVL 0x54(SP), R8																			
+  relater.go:4229	0x8e892f		4c8b8c2480000000		MOVQ 0x80(SP), R9																			
+  checker.go:23390	0x8e8937		4c8b942488010000		MOVQ 0x188(SP), R10																			
+  relater.go:4228	0x8e893f		448b5c244c			MOVL 0x4c(SP), R11																			
+  relater.go:4183	0x8e8944		4c8ba424b8000000		MOVQ 0xb8(SP), R12																			
+  relater.go:4193	0x8e894c		4c8b6c2468			MOVQ 0x68(SP), R13																			
+  relater.go:4193	0x8e8951		4c8bbc2490000000		MOVQ 0x90(SP), R15																			
+  relater.go:4224	0x8e8959		885c2446			MOVB BL, 0x46(SP)																			
+  relater.go:4183	0x8e895d		0fb65c2442			MOVZX 0x42(SP), BX																			
+  relater.go:4224	0x8e8962		0fb67c2446			MOVZX 0x46(SP), DI																			
+  relater.go:4224	0x8e8967		4084ff				TESTL DI, DI																				
+  relater.go:4224	0x8e896a		0f85d2fcffff			JNE 0x8e8642																				
+  relater.go:4239	0x8e8970		488bbc24a0000000		MOVQ 0xa0(SP), DI																			
+  relater.go:4224	0x8e8978		eb02				JMP 0x8e897c																				
+  relater.go:4224	0x8e897a		31d2				XORL DX, DX																				
+  relater.go:4228	0x8e897c		488bbc2498000000		MOVQ 0x98(SP), DI																			
+  relater.go:4228	0x8e8984		4839cf				CMPQ DI, CX																				
+  relater.go:4228	0x8e8987		0f8658050000			JBE 0x8e8ee5																				
+  relater.go:4228	0x8e898d		88542445			MOVB DL, 0x45(SP)																			
+  relater.go:4228	0x8e8991		488b942480010000		MOVQ 0x180(SP), DX																			
+  relater.go:4228	0x8e8999		488b12				MOVQ 0(DX), DX																				
+  relater.go:4228	0x8e899c		488bb42410010000		MOVQ 0x110(SP), SI																			
+  relater.go:4228	0x8e89a4		488b1cce			MOVQ 0(SI)(CX*8), BX																			
+  relater.go:4228	0x8e89a8		4121c3				ANDL AX, R11																				
+  relater.go:4228	0x8e89ab		410fbae301			BTL $0x1, R11																				
+  relater.go:4228	0x8e89b0		0f92c1				SETB CL																					
+  relater.go:4228	0x8e89b3		4889d0				MOVQ DX, AX																				
+  relater.go:4228	0x8e89b6		e86573f6ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).removeMissingType(SB)										
+  relater.go:4229	0x8e89bb		488b542478			MOVQ 0x78(SP), DX																			
+  relater.go:4229	0x8e89c0		488bb42480000000		MOVQ 0x80(SP), SI																			
+  relater.go:4229	0x8e89c8		4839f2				CMPQ DX, SI																				
+  relater.go:4229	0x8e89cb		0f860a050000			JBE 0x8e8edb																				
+  relater.go:4228	0x8e89d1		4889842418010000		MOVQ AX, 0x118(SP)																			
+  relater.go:4229	0x8e89d9		488bbc2400010000		MOVQ 0x100(SP), DI																			
+  relater.go:4229	0x8e89e1		488b1cf7			MOVQ 0(DI)(SI*8), BX																			
+  relater.go:4207	0x8e89e5		448b44244c			MOVL 0x4c(SP), R8																			
+  relater.go:4207	0x8e89ea		410fbae003			BTL $0x3, R8																				
+  relater.go:4231	0x8e89ef		7320				JAE 0x8e8a11																				
+  relater.go:4231	0x8e89f1		448b442448			MOVL 0x48(SP), R8																			
+  relater.go:4231	0x8e89f6		410fbae002			BTL $0x2, R8																				
+  relater.go:4231	0x8e89fb		7319				JAE 0x8e8a16																				
+  relater.go:4232	0x8e89fd		488b942480010000		MOVQ 0x180(SP), DX																			
+  relater.go:4232	0x8e8a05		488b02				MOVQ 0(DX), AX																				
+  checker.go:24643	0x8e8a08		31c9				XORL CX, CX																				
+  checker.go:24643	0x8e8a0a		e831d5f4ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).createArrayTypeEx(SB)										
+  relater.go:4232	0x8e8a0f		eb1d				JMP 0x8e8a2e																				
+  relater.go:4234	0x8e8a11		448b442448			MOVL 0x48(SP), R8																			
+  relater.go:4234	0x8e8a16		488b942480010000		MOVQ 0x180(SP), DX																			
+  relater.go:4234	0x8e8a1e		488b02				MOVQ 0(DX), AX																				
+  relater.go:4234	0x8e8a21		410fbae001			BTL $0x1, R8																				
+  relater.go:4234	0x8e8a26		0f92c1				SETB CL																					
+  relater.go:4234	0x8e8a29		e8f272f6ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).removeMissingType(SB)										
+  relater.go:4236	0x8e8a2e		488b9c2418010000		MOVQ 0x118(SP), BX																			
+  relater.go:4236	0x8e8a36		4889c1				MOVQ AX, CX																				
+  relater.go:4236	0x8e8a39		bf03000000			MOVL $0x3, DI																				
+  relater.go:4236	0x8e8a3e		0fb6b42498010000		MOVZX 0x198(SP), SI																			
+  relater.go:4236	0x8e8a46		4531c0				XORL R8, R8																				
+  relater.go:4236	0x8e8a49		448b8c24ac010000		MOVL 0x1ac(SP), R9																			
+  relater.go:4236	0x8e8a51		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4236	0x8e8a59		e84251ffff			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx(SB)											
+  relater.go:4236	0x8e8a5e		6690				NOPW																					
+  relater.go:4237	0x8e8a60		84c0				TESTL AL, AL																				
+  relater.go:4237	0x8e8a62		0f841f020000			JE 0x8e8c87																				
+  relater.go:4247	0x8e8a68		0fb65c2442			MOVZX 0x42(SP), BX																			
+  relater.go:4247	0x8e8a6d		21c3				ANDL AX, BX																				
+  relater.go:4183	0x8e8a6f		488b8c24a8000000		MOVQ 0xa8(SP), CX																			
+  relater.go:4192	0x8e8a77		488b742470			MOVQ 0x70(SP), SI																			
+  relater.go:4148	0x8e8a7c		448b442454			MOVL 0x54(SP), R8																			
+  checker.go:23390	0x8e8a81		4c8b942488010000		MOVQ 0x188(SP), R10																			
+  relater.go:4183	0x8e8a89		4c8ba424b8000000		MOVQ 0xb8(SP), R12																			
+  relater.go:4193	0x8e8a91		4c8b6c2468			MOVQ 0x68(SP), R13																			
+  relater.go:4193	0x8e8a96		4c8bbc2490000000		MOVQ 0x90(SP), R15																			
+  relater.go:4183	0x8e8a9e		0fb6542445			MOVZX 0x45(SP), DX																			
+  relater.go:4247	0x8e8aa3		e99afbffff			JMP 0x8e8642																				
+  relater.go:4131	0x8e8aa8		0fb68c2498010000		MOVZX 0x198(SP), CX																			
+  relater.go:4131	0x8e8ab0		84c9				TESTL CL, CL																				
+  relater.go:4202	0x8e8ab2		7474				JE 0x8e8b28																				
+  relater.go:4203	0x8e8ab4		488d0525ce4800			LEAQ 0x48ce25(IP), AX																			
+  relater.go:4203	0x8e8abb		0f1f440000			NOPL 0(AX)(AX*1)																			
+  relater.go:4203	0x8e8ac0		e87bb4b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4203	0x8e8ac5		4889842458010000		MOVQ AX, 0x158(SP)																			
+  relater.go:4203	0x8e8acd		488b842480000000		MOVQ 0x80(SP), AX																			
+  relater.go:4203	0x8e8ad5		e886eab9ff			CALL runtime.convT64(SB)																		
+  relater.go:4203	0x8e8ada		488d0d1f8c4700			LEAQ 0x478c1f(IP), CX																			
+  relater.go:4203	0x8e8ae1		488b942458010000		MOVQ 0x158(SP), DX																			
+  relater.go:4203	0x8e8ae9		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4203	0x8e8aec		833d1d1a610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4203	0x8e8af3		7410				JE 0x8e8b05																				
+  relater.go:4203	0x8e8af5		4c8b4208			MOVQ 0x8(DX), R8																			
+  relater.go:4203	0x8e8af9		e8028abaff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4203	0x8e8afe		498903				MOVQ AX, 0(R11)																				
+  relater.go:4203	0x8e8b01		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4203	0x8e8b05		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4203	0x8e8b09		488b1d38e55a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Source_provides_no_match_for_variadic_element_at_position_0_in_target(SB), BX				
+  relater.go:4203	0x8e8b10		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4203	0x8e8b18		4889d1				MOVQ DX, CX																				
+  relater.go:4203	0x8e8b1b		bf01000000			MOVL $0x1, DI																				
+  relater.go:4203	0x8e8b20		4889fe				MOVQ DI, SI																				
+  relater.go:4203	0x8e8b23		e878570000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4205	0x8e8b28		31c0				XORL AX, AX																				
+  relater.go:4205	0x8e8b2a		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4205	0x8e8b31		5d				POPQ BP																					
+  relater.go:4205	0x8e8b32		c3				RET																					
+  relater.go:4131	0x8e8b33		0fb6942498010000		MOVZX 0x198(SP), DX																			
+  relater.go:4131	0x8e8b3b		0f1f440000			NOPL 0(AX)(AX*1)																			
+  relater.go:4131	0x8e8b40		84d2				TESTL DL, DL																				
+  relater.go:4208	0x8e8b42		0f84ad000000			JE 0x8e8bf5																				
+  relater.go:4209	0x8e8b48		488d05f1cd4800			LEAQ 0x48cdf1(IP), AX																			
+  relater.go:4209	0x8e8b4f		e8ecb3b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4209	0x8e8b54		4889842450010000		MOVQ AX, 0x150(SP)																			
+  relater.go:4209	0x8e8b5c		488b8424a8000000		MOVQ 0xa8(SP), AX																			
+  relater.go:4209	0x8e8b64		e8f7e9b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4209	0x8e8b69		488d0d908b4700			LEAQ 0x478b90(IP), CX																			
+  relater.go:4209	0x8e8b70		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4209	0x8e8b78		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4209	0x8e8b7b		833d8e19610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4209	0x8e8b82		7410				JE 0x8e8b94																				
+  relater.go:4209	0x8e8b84		488b4a08			MOVQ 0x8(DX), CX																			
+  relater.go:4209	0x8e8b88		e87389baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4209	0x8e8b8d		498903				MOVQ AX, 0(R11)																				
+  relater.go:4209	0x8e8b90		49894b08			MOVQ CX, 0x8(R11)																			
+  relater.go:4209	0x8e8b94		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4209	0x8e8b98		488b842480000000		MOVQ 0x80(SP), AX																			
+  relater.go:4209	0x8e8ba0		e8bbe9b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4209	0x8e8ba5		488d0d548b4700			LEAQ 0x478b54(IP), CX																			
+  relater.go:4209	0x8e8bac		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4209	0x8e8bb4		48894a10			MOVQ CX, 0x10(DX)																			
+  relater.go:4209	0x8e8bb8		833d5119610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4209	0x8e8bbf		90				NOPL																					
+  relater.go:4209	0x8e8bc0		7410				JE 0x8e8bd2																				
+  relater.go:4209	0x8e8bc2		4c8b4218			MOVQ 0x18(DX), R8																			
+  relater.go:4209	0x8e8bc6		e83589baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4209	0x8e8bcb		498903				MOVQ AX, 0(R11)																				
+  relater.go:4209	0x8e8bce		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4209	0x8e8bd2		48894218			MOVQ AX, 0x18(DX)																			
+  relater.go:4209	0x8e8bd6		488b1d73e45a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Variadic_element_at_position_0_in_source_does_not_match_element_at_position_1_in_target(SB), BX		
+  relater.go:4209	0x8e8bdd		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4209	0x8e8be5		4889d1				MOVQ DX, CX																				
+  relater.go:4209	0x8e8be8		bf02000000			MOVL $0x2, DI																				
+  relater.go:4209	0x8e8bed		4889fe				MOVQ DI, SI																				
+  relater.go:4209	0x8e8bf0		e8ab560000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4211	0x8e8bf5		31c0				XORL AX, AX																				
+  relater.go:4211	0x8e8bf7		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4211	0x8e8bfe		5d				POPQ BP																					
+  relater.go:4211	0x8e8bff		90				NOPL																					
+  relater.go:4211	0x8e8c00		c3				RET																					
+  relater.go:4131	0x8e8c01		0fb68c2498010000		MOVZX 0x198(SP), CX																			
+  relater.go:4131	0x8e8c09		84c9				TESTL CL, CL																				
+  relater.go:4214	0x8e8c0b		746f				JE 0x8e8c7c																				
+  relater.go:4215	0x8e8c0d		488d05cccc4800			LEAQ 0x48cccc(IP), AX																			
+  relater.go:4215	0x8e8c14		e827b3b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4215	0x8e8c19		4889842458010000		MOVQ AX, 0x158(SP)																			
+  relater.go:4215	0x8e8c21		488b842480000000		MOVQ 0x80(SP), AX																			
+  relater.go:4215	0x8e8c29		e832e9b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4215	0x8e8c2e		488d0dcb8a4700			LEAQ 0x478acb(IP), CX																			
+  relater.go:4215	0x8e8c35		488b942458010000		MOVQ 0x158(SP), DX																			
+  relater.go:4215	0x8e8c3d		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4215	0x8e8c40		833dc918610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4215	0x8e8c47		7410				JE 0x8e8c59																				
+  relater.go:4215	0x8e8c49		4c8b4208			MOVQ 0x8(DX), R8																			
+  relater.go:4215	0x8e8c4d		e8ae88baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4215	0x8e8c52		498903				MOVQ AX, 0(R11)																				
+  relater.go:4215	0x8e8c55		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4215	0x8e8c59		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4215	0x8e8c5d		488b1ddce35a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Source_provides_no_match_for_required_element_at_position_0_in_target(SB), BX				
+  relater.go:4215	0x8e8c64		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4215	0x8e8c6c		4889d1				MOVQ DX, CX																				
+  relater.go:4215	0x8e8c6f		bf01000000			MOVL $0x1, DI																				
+  relater.go:4215	0x8e8c74		4889fe				MOVQ DI, SI																				
+  relater.go:4215	0x8e8c77		e824560000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4217	0x8e8c7c		31c0				XORL AX, AX																				
+  relater.go:4217	0x8e8c7e		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4217	0x8e8c85		5d				POPQ BP																					
+  relater.go:4217	0x8e8c86		c3				RET																					
+  relater.go:4131	0x8e8c87		0fb68c2498010000		MOVZX 0x198(SP), CX																			
+  relater.go:4131	0x8e8c8f		84c9				TESTL CL, CL																				
+  relater.go:4238	0x8e8c91		0f842e020000			JE 0x8e8ec5																				
+  relater.go:4238	0x8e8c97		488b8c2490000000		MOVQ 0x90(SP), CX																			
+  relater.go:4238	0x8e8c9f		90				NOPL																					
+  relater.go:4238	0x8e8ca0		4883f901			CMPQ CX, $0x1																				
+  relater.go:4238	0x8e8ca4		7e14				JLE 0x8e8cba																				
+  relater.go:4148	0x8e8ca6		8b4c2454			MOVL 0x54(SP), CX																			
+  relater.go:4148	0x8e8caa		f7c10c000000			TESTL $0xc, CX																				
+  relater.go:4239	0x8e8cb0		488b8c24b8000000		MOVQ 0xb8(SP), CX																			
+  relater.go:4238	0x8e8cb8		eb1c				JMP 0x8e8cd6																				
+  relater.go:4238	0x8e8cba		488b8c24b8000000		MOVQ 0xb8(SP), CX																			
+  relater.go:4238	0x8e8cc2		4883f901			CMPQ CX, $0x1																				
+  relater.go:4238	0x8e8cc6		0f8ef9010000			JLE 0x8e8ec5																				
+  relater.go:4148	0x8e8ccc		8b542454			MOVL 0x54(SP), DX																			
+  relater.go:4148	0x8e8cd0		f7c20c000000			TESTL $0xc, DX																				
+  relater.go:4239	0x8e8cd6		0f8438010000			JE 0x8e8e14																				
+  relater.go:4239	0x8e8cdc		488b9424a8000000		MOVQ 0xa8(SP), DX																			
+  relater.go:4239	0x8e8ce4		488b5c2470			MOVQ 0x70(SP), BX																			
+  relater.go:4239	0x8e8ce9		4839da				CMPQ DX, BX																				
+  relater.go:4239	0x8e8cec		0f8c22010000			JL 0x8e8e14																				
+  relater.go:4239	0x8e8cf2		488b742468			MOVQ 0x68(SP), SI																			
+  relater.go:4239	0x8e8cf7		488bbc24a0000000		MOVQ 0xa0(SP), DI																			
+  relater.go:4239	0x8e8cff		90				NOPL																					
+  relater.go:4239	0x8e8d00		4839fe				CMPQ SI, DI																				
+  relater.go:4239	0x8e8d03		0f8f0b010000			JG 0x8e8e14																				
+  relater.go:4239	0x8e8d09		4829f1				SUBQ SI, CX																				
+  relater.go:4239	0x8e8d0c		48ffc9				DECQ CX																					
+  relater.go:4239	0x8e8d0f		4839cb				CMPQ BX, CX																				
+  relater.go:4239	0x8e8d12		0f84fc000000			JE 0x8e8e14																				
+  relater.go:4239	0x8e8d18		48898c24e0000000		MOVQ CX, 0xe0(SP)																			
+  relater.go:4240	0x8e8d20		488d0599d04800			LEAQ 0x48d099(IP), AX																			
+  relater.go:4240	0x8e8d27		e814b2b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4240	0x8e8d2c		4889842440010000		MOVQ AX, 0x140(SP)																			
+  relater.go:4240	0x8e8d34		488b442470			MOVQ 0x70(SP), AX																			
+  relater.go:4240	0x8e8d39		e822e8b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4240	0x8e8d3e		488d0dbb894700			LEAQ 0x4789bb(IP), CX																			
+  relater.go:4240	0x8e8d45		488b942440010000		MOVQ 0x140(SP), DX																			
+  relater.go:4240	0x8e8d4d		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4240	0x8e8d50		833db917610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4240	0x8e8d57		7413				JE 0x8e8d6c																				
+  relater.go:4240	0x8e8d59		488b4a08			MOVQ 0x8(DX), CX																			
+  relater.go:4240	0x8e8d5d		0f1f00				NOPL 0(AX)																				
+  relater.go:4240	0x8e8d60		e89b87baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4240	0x8e8d65		498903				MOVQ AX, 0(R11)																				
+  relater.go:4240	0x8e8d68		49894b08			MOVQ CX, 0x8(R11)																			
+  relater.go:4240	0x8e8d6c		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4240	0x8e8d70		488b8424e0000000		MOVQ 0xe0(SP), AX																			
+  relater.go:4240	0x8e8d78		e8e3e7b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4240	0x8e8d7d		488d0d7c894700			LEAQ 0x47897c(IP), CX																			
+  relater.go:4240	0x8e8d84		488b942440010000		MOVQ 0x140(SP), DX																			
+  relater.go:4240	0x8e8d8c		48894a10			MOVQ CX, 0x10(DX)																			
+  relater.go:4240	0x8e8d90		833d7917610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4240	0x8e8d97		7413				JE 0x8e8dac																				
+  relater.go:4240	0x8e8d99		488b4a18			MOVQ 0x18(DX), CX																			
+  relater.go:4240	0x8e8d9d		0f1f00				NOPL 0(AX)																				
+  relater.go:4240	0x8e8da0		e85b87baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4240	0x8e8da5		498903				MOVQ AX, 0(R11)																				
+  relater.go:4240	0x8e8da8		49894b08			MOVQ CX, 0x8(R11)																			
+  relater.go:4240	0x8e8dac		48894218			MOVQ AX, 0x18(DX)																			
+  relater.go:4240	0x8e8db0		488b842480000000		MOVQ 0x80(SP), AX																			
+  relater.go:4240	0x8e8db8		e8a3e7b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4240	0x8e8dbd		488d0d3c894700			LEAQ 0x47893c(IP), CX																			
+  relater.go:4240	0x8e8dc4		488b942440010000		MOVQ 0x140(SP), DX																			
+  relater.go:4240	0x8e8dcc		48894a20			MOVQ CX, 0x20(DX)																			
+  relater.go:4240	0x8e8dd0		833d3917610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4240	0x8e8dd7		7413				JE 0x8e8dec																				
+  relater.go:4240	0x8e8dd9		4c8b4228			MOVQ 0x28(DX), R8																			
+  relater.go:4240	0x8e8ddd		0f1f00				NOPL 0(AX)																				
+  relater.go:4240	0x8e8de0		e81b87baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4240	0x8e8de5		498903				MOVQ AX, 0(R11)																				
+  relater.go:4240	0x8e8de8		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4240	0x8e8dec		48894228			MOVQ AX, 0x28(DX)																			
+  relater.go:4240	0x8e8df0		488b1d69e25a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Type_at_positions_0_through_1_in_source_is_not_compatible_with_type_at_position_2_in_target(SB), BX	
+  relater.go:4240	0x8e8df7		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4240	0x8e8dff		4889d1				MOVQ DX, CX																				
+  relater.go:4240	0x8e8e02		bf03000000			MOVL $0x3, DI																				
+  relater.go:4240	0x8e8e07		4889fe				MOVQ DI, SI																				
+  relater.go:4240	0x8e8e0a		e891540000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4240	0x8e8e0f		e9b1000000			JMP 0x8e8ec5																				
+  relater.go:4242	0x8e8e14		488d0525cb4800			LEAQ 0x48cb25(IP), AX																			
+  relater.go:4242	0x8e8e1b		0f1f440000			NOPL 0(AX)(AX*1)																			
+  relater.go:4242	0x8e8e20		e81bb1b3ff			CALL runtime.newobject(SB)																		
+  relater.go:4242	0x8e8e25		4889842450010000		MOVQ AX, 0x150(SP)																			
+  relater.go:4242	0x8e8e2d		488b8424a8000000		MOVQ 0xa8(SP), AX																			
+  relater.go:4242	0x8e8e35		e826e7b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4242	0x8e8e3a		488d0dbf884700			LEAQ 0x4788bf(IP), CX																			
+  relater.go:4242	0x8e8e41		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4242	0x8e8e49		48890a				MOVQ CX, 0(DX)																				
+  relater.go:4242	0x8e8e4c		833dbd16610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4242	0x8e8e53		7410				JE 0x8e8e65																				
+  relater.go:4242	0x8e8e55		488b4a08			MOVQ 0x8(DX), CX																			
+  relater.go:4242	0x8e8e59		e8a286baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4242	0x8e8e5e		498903				MOVQ AX, 0(R11)																				
+  relater.go:4242	0x8e8e61		49894b08			MOVQ CX, 0x8(R11)																			
+  relater.go:4242	0x8e8e65		48894208			MOVQ AX, 0x8(DX)																			
+  relater.go:4242	0x8e8e69		488b842480000000		MOVQ 0x80(SP), AX																			
+  relater.go:4242	0x8e8e71		e8eae6b9ff			CALL runtime.convT64(SB)																		
+  relater.go:4242	0x8e8e76		488d0d83884700			LEAQ 0x478883(IP), CX																			
+  relater.go:4242	0x8e8e7d		488b942450010000		MOVQ 0x150(SP), DX																			
+  relater.go:4242	0x8e8e85		48894a10			MOVQ CX, 0x10(DX)																			
+  relater.go:4242	0x8e8e89		833d8016610100			CMPL runtime.writeBarrier(SB), $0x0																	
+  relater.go:4242	0x8e8e90		7410				JE 0x8e8ea2																				
+  relater.go:4242	0x8e8e92		4c8b4218			MOVQ 0x18(DX), R8																			
+  relater.go:4242	0x8e8e96		e86586baff			CALL runtime.gcWriteBarrier2(SB)																	
+  relater.go:4242	0x8e8e9b		498903				MOVQ AX, 0(R11)																				
+  relater.go:4242	0x8e8e9e		4d894308			MOVQ R8, 0x8(R11)																			
+  relater.go:4242	0x8e8ea2		48894218			MOVQ AX, 0x18(DX)																			
+  relater.go:4242	0x8e8ea6		488b1dabe15a01			MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Type_at_position_0_in_source_is_not_compatible_with_type_at_position_1_in_target(SB), BX			
+  relater.go:4242	0x8e8ead		488b842480010000		MOVQ 0x180(SP), AX																			
+  relater.go:4242	0x8e8eb5		4889d1				MOVQ DX, CX																				
+  relater.go:4242	0x8e8eb8		bf02000000			MOVL $0x2, DI																				
+  relater.go:4242	0x8e8ebd		4889fe				MOVQ DI, SI																				
+  relater.go:4242	0x8e8ec0		e8db530000			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).reportError(SB)											
+  relater.go:4245	0x8e8ec5		31c0				XORL AX, AX																				
+  relater.go:4245	0x8e8ec7		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4245	0x8e8ece		5d				POPQ BP																					
+  relater.go:4245	0x8e8ecf		c3				RET																					
+  relater.go:4249	0x8e8ed0		89d8				MOVL BX, AX																				
+  relater.go:4249	0x8e8ed2		4881c470010000			ADDQ $0x170, SP																				
+  relater.go:4249	0x8e8ed9		5d				POPQ BP																					
+  relater.go:4249	0x8e8eda		c3				RET																					
+  relater.go:4229	0x8e8edb		0f1f440000			NOPL 0(AX)(AX*1)																			
+  relater.go:4229	0x8e8ee0		e8bb89baff			CALL runtime.panicBounds(SB)																		
+  relater.go:4228	0x8e8ee5		e8b689baff			CALL runtime.panicBounds(SB)																		
+  relater.go:4199	0x8e8eea		e8b189baff			CALL runtime.panicBounds(SB)																		
+  types.go:693		0x8e8eef		488d1d6aaa6000			LEAQ 0x60aa6a(IP), BX																			
+  types.go:693		0x8e8ef6		488d0d03bf5400			LEAQ 0x54bf03(IP), CX																			
+  types.go:693		0x8e8efd		0f1f00				NOPL 0(AX)																				
+  types.go:693		0x8e8f00		e85b70b3ff			CALL runtime.panicdottypeI(SB)																		
+  relater.go:4186	0x8e8f05		e89689baff			CALL runtime.panicBounds(SB)																		
+  types.go:693		0x8e8f0a		488d1d4faa6000			LEAQ 0x60aa4f(IP), BX																			
+  types.go:693		0x8e8f11		488d0de8be5400			LEAQ 0x54bee8(IP), CX																			
+  types.go:693		0x8e8f18		e84370b3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8f1d		488d1d3caa6000			LEAQ 0x60aa3c(IP), BX																			
+  types.go:693		0x8e8f24		488d0dd5be5400			LEAQ 0x54bed5(IP), CX																			
+  types.go:693		0x8e8f2b		e83070b3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8f30		488d1d29aa6000			LEAQ 0x60aa29(IP), BX																			
+  types.go:693		0x8e8f37		488d0dc2be5400			LEAQ 0x54bec2(IP), CX																			
+  types.go:693		0x8e8f3e		6690				NOPW																					
+  types.go:693		0x8e8f40		e81b70b3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8f45		488d1d14aa6000			LEAQ 0x60aa14(IP), BX																			
+  types.go:693		0x8e8f4c		488d0dadbe5400			LEAQ 0x54bead(IP), CX																			
+  types.go:693		0x8e8f53		e80870b3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8f58		488d1d01aa6000			LEAQ 0x60aa01(IP), BX																			
+  types.go:693		0x8e8f5f		488d0d9abe5400			LEAQ 0x54be9a(IP), CX																			
+  types.go:693		0x8e8f66		e8f56fb3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8f6b		488d1deea96000			LEAQ 0x60a9ee(IP), BX																			
+  types.go:693		0x8e8f72		488d0d87be5400			LEAQ 0x54be87(IP), CX																			
+  types.go:693		0x8e8f79		e8e26fb3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8f7e		488d1ddba96000			LEAQ 0x60a9db(IP), BX																			
+  types.go:693		0x8e8f85		488d0d74be5400			LEAQ 0x54be74(IP), CX																			
+  types.go:693		0x8e8f8c		e8cf6fb3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8f91		488d1dc8a96000			LEAQ 0x60a9c8(IP), BX																			
+  types.go:693		0x8e8f98		488d0d61be5400			LEAQ 0x54be61(IP), CX																			
+  types.go:693		0x8e8f9f		90				NOPL																					
+  types.go:693		0x8e8fa0		e8bb6fb3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8fa5		488d1db4a96000			LEAQ 0x60a9b4(IP), BX																			
+  types.go:693		0x8e8fac		488d0d4dbe5400			LEAQ 0x54be4d(IP), CX																			
+  types.go:693		0x8e8fb3		e8a86fb3ff			CALL runtime.panicdottypeI(SB)																		
+  types.go:693		0x8e8fb8		90				NOPL																					
+  relater.go:4130	0x8e8fb9		4889442408			MOVQ AX, 0x8(SP)																			
+  relater.go:4130	0x8e8fbe		48895c2410			MOVQ BX, 0x10(SP)																			
+  relater.go:4130	0x8e8fc3		48894c2418			MOVQ CX, 0x18(SP)																			
+  relater.go:4130	0x8e8fc8		40887c2420			MOVB DI, 0x20(SP)																			
+  relater.go:4130	0x8e8fcd		4889742428			MOVQ SI, 0x28(SP)																			
+  relater.go:4130	0x8e8fd2		4488442430			MOVB R8, 0x30(SP)																			
+  relater.go:4130	0x8e8fd7		44894c2434			MOVL R9, 0x34(SP)																			
+  relater.go:4130	0x8e8fdc		0f1f4000			NOPL 0(AX)																				
+  relater.go:4130	0x8e8fe0		e81b6abaff			CALL runtime.morestack_noctxt.abi0(SB)																	
+  relater.go:4130	0x8e8fe5		488b442408			MOVQ 0x8(SP), AX																			
+  relater.go:4130	0x8e8fea		488b5c2410			MOVQ 0x10(SP), BX																			
+  relater.go:4130	0x8e8fef		488b4c2418			MOVQ 0x18(SP), CX																			
+  relater.go:4130	0x8e8ff4		0fb67c2420			MOVZX 0x20(SP), DI																			
+  relater.go:4130	0x8e8ff9		488b742428			MOVQ 0x28(SP), SI																			
+  relater.go:4130	0x8e8ffe		440fb6442430			MOVZX 0x30(SP), R8																			
+  relater.go:4130	0x8e9004		448b4c2434			MOVL 0x34(SP), R9																			
+  relater.go:4130	0x8e9009		e9f2e6ffff			JMP github.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo(SB)										

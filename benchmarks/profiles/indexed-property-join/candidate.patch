@@ -1,0 +1,14 @@
+diff --git a/packages/tsc-go/internal/checker/relater.go b/packages/tsc-go/internal/checker/relater.go
+index 12d42f6..aab4350 100644
+--- a/packages/tsc-go/internal/checker/relater.go
++++ b/packages/tsc-go/internal/checker/relater.go
+@@ -4273,6 +4273,9 @@ func (r *Relater) propertiesRelatedTo(source *Type, target *Type, reportErrors b
+ 	// We only call this for union target types when we're attempting to do excess property checking - in those cases, we want to get _all possible props_
+ 	// from the target union, across all members
+ 	properties := r.c.getPropertiesOfType(target)
++	if len(properties) >= 256 && excludedProperties.Len() == 0 {
++		return r.indexedPropertiesRelatedTo(source, target, reportErrors, optionalsOnly, intersectionState, properties)
++	}
+ 	numericNamesOnly := isTupleType(source) && isTupleType(target)
+ 	for _, targetProp := range excludeProperties(properties, excludedProperties) {
+ 		name := targetProp.Name

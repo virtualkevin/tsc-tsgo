@@ -1,0 +1,56 @@
+[
+  {
+    "function": "propertiesRelatedTo",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/checker\\.\\(\\*Relater\\)\\.propertiesRelatedTo$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-indexed-property-join"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "9c53ff33994d294282b6d251b5ef0dd9f2ad5184fddfce94103e872485e9cb06",
+    "output": "propertiesRelatedTo.asm.txt",
+    "outputSha256": "5035c2c369d6971623ead973f4313e0ceb80777283b30cacc114c82afdc1860e",
+    "instructionRows": 1335,
+    "encodedInstructionBytes": 6414,
+    "entryStackReservationBytes": 368
+  },
+  {
+    "function": "indexedPropertiesRelatedTo",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/checker\\.\\(\\*Relater\\)\\.indexedPropertiesRelatedTo$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-indexed-property-join"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "9c53ff33994d294282b6d251b5ef0dd9f2ad5184fddfce94103e872485e9cb06",
+    "output": "indexedPropertiesRelatedTo.asm.txt",
+    "outputSha256": "02dca9a77307ac00a9e9a1353636763fdda70260c138042a0cc423515b0536c5",
+    "instructionRows": 225,
+    "encodedInstructionBytes": 1035,
+    "entryStackReservationBytes": 144
+  },
+  {
+    "function": "nextIndexedProperty",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/checker\\.\\(\\*Checker\\)\\.nextIndexedProperty$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-indexed-property-join"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "9c53ff33994d294282b6d251b5ef0dd9f2ad5184fddfce94103e872485e9cb06",
+    "output": "nextIndexedProperty.asm.txt",
+    "outputSha256": "d61a2ab9df2c1a90cb9e8d406004fcf71c8b7e49d8e67c1ec81783ff41ee60a9",
+    "instructionRows": 149,
+    "encodedInstructionBytes": 645,
+    "entryStackReservationBytes": 160
+  }
+]
