@@ -1,0 +1,13 @@
+package ast
+import("encoding/json";"reflect";"testing")
+func TestStorageLayoutAudit(t *testing.T) {
+ type Field struct{Name string; Offset uintptr; Size uintptr; Kind string}
+ type Layout struct{Name string;Size uintptr;Align int;Fields []Field}
+ var result []Layout
+ for _,v:=range []any{Node{},Identifier{},PropertyAccessExpression{},CallExpression{},Symbol{},NodeFactory{}} {
+  typ:=reflect.TypeOf(v);l:=Layout{Name:typ.Name(),Size:typ.Size(),Align:typ.Align()}
+  for i:=0;i<typ.NumField();i++ {f:=typ.Field(i);l.Fields=append(l.Fields,Field{f.Name,f.Offset,f.Type.Size(),f.Type.Kind().String()})}
+  result=append(result,l)
+ }
+ b,e:=json.Marshal(result);if e!=nil {t.Fatal(e)};t.Log("LAYOUT_JSON "+string(b))
+}
