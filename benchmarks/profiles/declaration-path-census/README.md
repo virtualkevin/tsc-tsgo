@@ -1,0 +1,13 @@
+# Declaration transform path census (diagnostic only)
+
+An isolated Go overlay records entry into explicit declaration-diagnostic transforms and emitter declaration transforms. The keys are exact *SourceFile identity, not path names. A sorted histogram groups counts `(Explicit, Emitter, Files)`, allowing detection of repeated and overlapping paths without exposing pointer values. Empty workloads produce an empty array.
+
+The observer deliberately retains source-file pointers until process exit and uses a mutex. This can change retention and scheduling. It does not measure allocation, phase duration, removable work or performance. No production code is changed. The disabled overlay only checks an empty output-path flag at each hook. Enabled output is written exclusively after CLI execution; existing reports cannot be overwritten.
+
+Three focused tests cover distinct source identity and repeated calls, concurrent updates/snapshotting, and exclusive JSON output. Validate normally and under the race detector before building/capture. The capture controller compares retained baseline, disabled overlay and enabled overlay on all four pinned workloads; it verifies clean diagnostics, physical inputs, immutable source/binary hashes and unchanged HEAD. Do not infer correctness beyond those checks or infer gain from event counts.
+
+The hooks occur immediately before actual TransformSourceFile calls, after explicit-path eligibility checks. Program's diagnostic-cache hits therefore do not count as transform invocations. No checker result, transform return value or diagnostic is altered.
+
+Completed capture at HEAD 0dc8b69: all twelve baseline/disabled/enabled controls passed with clean diagnostics and identical pinned physical inputs. Independent verify.py passed before HEAD changed. TypeORM has 3,280 exact source identities with one explicit and one emitter transform each; tRPC has 108. No source repeats within either individual path. VS Code and Sentry have no observed declaration transforms. These counts justify testing reuse at the NoEmit boundary but establish no speedup and do not help the two large workloads directly.
+
+Source review: the explicit transform passes empty output paths, whereas emitter passes actual output paths. In this source revision declarationFilePath affects final triple-slash reference path assembly; declarationMapPath is stored but otherwise unused. Reference assembly does not directly report diagnostics. Late alias processing and resolver behavior still require full regression validation before cache reuse. Program already owns a completed per-file diagnostic cache; normal/forced emission must continue constructing output.

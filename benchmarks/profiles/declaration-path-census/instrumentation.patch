@@ -1,0 +1,39 @@
+--- a/packages/tsc-go/internal/compiler/emitter.go
++++ b/packages/tsc-go/internal/compiler/emitter.go
+@@ -72,6 +72,7 @@
+ 	}
+ 	var diags []*ast.Diagnostic
+ 	for _, transformer := range e.getDeclarationTransformers(emitContext, declarationFilePath, declarationMapPath) {
++		observeDeclarationPath(1, sourceFile)
+ 		sourceFile = transformer.TransformSourceFile(sourceFile)
+ 		diags = append(diags, transformer.GetDiagnostics()...)
+ 	}
+@@ -526,6 +527,7 @@
+ 	}
+ 	options := host.Options()
+ 	transform := declarations.NewDeclarationTransformer(host, nil, options, "", "")
++	observeDeclarationPath(0, file)
+ 	transform.TransformSourceFile(file)
+ 	return transform.GetDiagnostics()
+ }
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,6 +2,8 @@
+ 
+ import (
+ 	"context"
++	"fmt"
++	"github.com/microsoft/typescript-go/internal/compiler"
+ 	"os"
+ 	"os/signal"
+ 	"syscall"
+@@ -28,5 +30,9 @@
+ 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+ 	defer stop()
+ 	result := execute.CommandLine(ctx, newSystem(), args, nil)
++	if err := compiler.WriteDeclarationPathCensus(); err != nil {
++		fmt.Fprintln(os.Stderr, err)
++		return 1
++	}
+ 	return int(result.Status)
+ }

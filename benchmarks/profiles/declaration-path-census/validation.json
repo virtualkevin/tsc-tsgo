@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/emitter.go": "bc03e085296c226d3ea752abc99dd0a0871ba7b079f330f60cb2c7ff3f942671",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/cmd/tsgo/main.go": "914aceeea3490dc69128d53d05759f549d60d4fc590e88697fa9bd5bdad2eb5e",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/declaration_path_census.go": "b24b4dd7651df0c08c93b89b1adb883d0746aec6c424b2eb7b597a4c9fde852e",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/declaration_path_census_test.go": "39c309ff5d7eca19698ee99f9d34bc2a43d6fc5035cd98dcd9750bcc5679f39f"
+  },
+  "controllerSha256": "b762791335f8ac0a14c40b70ca97b2773c48e864dab988de5570a359d76305aa",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/declaration-path-census/overlay.json",
+        "./internal/compiler",
+        "-run",
+        "^TestDeclarationPathCensus",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestDeclarationPathCensusIdentity",
+          "pass"
+        ],
+        [
+          "TestDeclarationPathCensusConcurrent",
+          "pass"
+        ],
+        [
+          "TestDeclarationPathCensusExclusiveOutput",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "e493002f70b4708b47b3cdd2faf68d9d481678c5648bf7d004a19e9226293133",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-race",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/declaration-path-census/overlay.json",
+        "./internal/compiler",
+        "-run",
+        "^TestDeclarationPathCensus",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestDeclarationPathCensusIdentity",
+          "pass"
+        ],
+        [
+          "TestDeclarationPathCensusConcurrent",
+          "pass"
+        ],
+        [
+          "TestDeclarationPathCensusExclusiveOutput",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "6d46f5e2151fe0fe2ea6463c9f8d592885c93cb3386103703ee1a61e532ba770",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    }
+  ]
+}
