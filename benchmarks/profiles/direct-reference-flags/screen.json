@@ -1,0 +1,81 @@
+{
+  "name": "direct-reference-flags",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-direct-reference-flags",
+      "sha256": "25f46474092282b85f14f85a3eb70e097978401c86d5d6dca0a5c00bbc888777",
+      "source": "3958f79a7f6d52e9d3febad3242da9012015c35702b74b8357d7c7d303096c93",
+      "sidecarSha256": "256447ca8c8e0cc6d5f2792e6429e314bf807407b087109145e1cf4686791281",
+      "revisionLabel": "Direct scalar reference flags"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "c998da18e7038f4593f944c822eec1f906353c99cc4aba15caabed7de91b9f43",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/direct_reference_flags_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/direct_reference_flags_test.go",
+        "sha256": "957a95d38881a6a240a2fdee159ef7e07b0eafa77ba517f94306007190232291",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/types.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/types.go",
+        "sha256": "9a39b928846926090a175d94773d5e3ab4b093b887061b0ef32cfa40548871f4",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/types.go",
+        "sha256": "373e76fcd73c8e7e6a5b3727e573e3d45707625d4a22fcc9eb82763fa93db847",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5155
+  },
+  "comparisonPolicySha256": "9f3a7243808690739f7b2d02a566e3677d833cef64101c4b38403a5e641ad8ef",
+  "methodology": "Fresh-process/default-runtime matched GNU-time RSS screen of direct scalar reference flags on pinned physical inputs; no timing during validation/build/Git work."
+}

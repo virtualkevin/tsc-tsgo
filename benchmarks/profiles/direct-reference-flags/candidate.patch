@@ -1,0 +1,89 @@
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -678,7 +678,7 @@
+ 	arrayLiteralLinks                           core.LinkStore[*ast.Node, ArrayLiteralLinks]
+ 	switchStatementLinks                        core.LinkStore[*ast.Node, SwitchStatementLinks]
+ 	jsxElementLinks                             core.LinkStore[*ast.Node, JsxElementLinks]
+-	symbolReferenceLinks                        core.LinkStore[*ast.Symbol, SymbolReferenceLinks]
++	symbolReferenceLinks                        map[*ast.Symbol]ast.SymbolFlags
+ 	valueSymbolLinks                            core.PointerLinkStore[ast.Symbol, ValueSymbolLinks]
+ 	mappedSymbolLinks                           core.LinkStore[*ast.Symbol, MappedSymbolLinks]
+ 	deferredSymbolLinks                         core.LinkStore[*ast.Symbol, DeferredSymbolLinks]
+@@ -1500,7 +1500,10 @@
+ }
+ 
+ func (c *Checker) symbolReferenced(symbol *ast.Symbol, meaning ast.SymbolFlags) {
+-	c.symbolReferenceLinks.Get(symbol).referenceKinds |= meaning
++	if c.symbolReferenceLinks == nil {
++		c.symbolReferenceLinks = make(map[*ast.Symbol]ast.SymbolFlags)
++	}
++	c.symbolReferenceLinks[symbol] |= meaning
+ }
+ 
+ func (c *Checker) getRequiresScopeChangeCache(node *ast.Node) core.Tristate {
+@@ -7051,7 +7054,7 @@
+ }
+ 
+ func (c *Checker) isReferenced(symbol *ast.Symbol) bool {
+-	return c.symbolReferenceLinks.Get(symbol).referenceKinds != 0
++	return c.symbolReferenceLinks[symbol] != 0
+ }
+ 
+ type UnusedKind int32
+@@ -7121,7 +7124,7 @@
+ 	var variableParents collections.Set[*ast.Node]
+ 	var importClauses map[*ast.Node][]*ast.Node
+ 	for _, local := range node.Locals() {
+-		referenceKinds := c.symbolReferenceLinks.Get(local).referenceKinds
++		referenceKinds := c.symbolReferenceLinks[local]
+ 		if local.Flags&ast.SymbolFlagsTypeParameter != 0 && (local.Flags&ast.SymbolFlagsVariable == 0 || referenceKinds&ast.SymbolFlagsVariable != 0) ||
+ 			local.Flags&ast.SymbolFlagsTypeParameter == 0 && (referenceKinds != 0 || local.ExportSymbol != nil ||
+ 				local.Flags&ast.SymbolFlagsModuleExports != 0) {
+@@ -7206,7 +7209,7 @@
+ 	if ast.IsBindingPattern(name) {
+ 		return core.Every(node.Name().Elements(), c.isUnreferencedVariableDeclaration)
+ 	}
+-	if c.symbolReferenceLinks.Get(c.getSymbolOfDeclaration(node)).referenceKinds&ast.SymbolFlagsVariable != 0 {
++	if c.symbolReferenceLinks[c.getSymbolOfDeclaration(node)]&ast.SymbolFlagsVariable != 0 {
+ 		return false
+ 	}
+ 	if ast.IsBindingElement(node) && ast.IsObjectBindingPattern(node.Parent) {
+@@ -7288,12 +7291,12 @@
+ }
+ 
+ func (c *Checker) isUnreferencedTypeParameter(typeParameter *ast.Node) bool {
+-	return c.symbolReferenceLinks.Get(c.getMergedSymbol(typeParameter.Symbol())).referenceKinds&ast.SymbolFlagsTypeParameter == 0 && !isIdentifierThatStartsWithUnderscore(typeParameter.Name())
++	return c.symbolReferenceLinks[c.getMergedSymbol(typeParameter.Symbol())]&ast.SymbolFlagsTypeParameter == 0 && !isIdentifierThatStartsWithUnderscore(typeParameter.Name())
+ }
+ 
+ func (c *Checker) checkUnusedRenamedBindingElements() {
+ 	for _, node := range c.renamedBindingElementsInTypes {
+-		if c.symbolReferenceLinks.Get(c.getSymbolOfDeclaration(node)).referenceKinds == 0 {
++		if c.symbolReferenceLinks[c.getSymbolOfDeclaration(node)] == 0 {
+ 			wrappingDeclaration := ast.WalkUpBindingElementsAndPatterns(node)
+ 			debug.Assert(ast.IsPartOfParameterDeclaration(wrappingDeclaration), "Only parameter declaration should be checked here")
+ 			diagnostic := NewDiagnosticForNode(node.Name(), diagnostics.X_0_is_an_unused_renaming_of_1_Did_you_intend_to_use_it_as_a_type_annotation, scanner.DeclarationNameToString(node.Name()), scanner.DeclarationNameToString(node.PropertyName()))
+@@ -27629,7 +27632,7 @@
+ 	if prop.CheckFlags&ast.CheckFlagsInstantiated != 0 {
+ 		target = c.valueSymbolLinks.Get(prop).target
+ 	}
+-	c.symbolReferenceLinks.Get(target).referenceKinds |= ast.SymbolFlagsAll
++	c.symbolReferenced(target, ast.SymbolFlagsAll)
+ }
+ 
+ func (c *Checker) expandSignatureParametersWithTupleMembers(signature *Signature, restType *TypeReference, restIndex int, restSymbol *ast.Symbol) []*ast.Symbol {
+--- a/packages/tsc-go/internal/checker/types.go
++++ b/packages/tsc-go/internal/checker/types.go
+@@ -157,12 +157,6 @@
+ 	TypeId      uint32
+ 	SignatureId uint32
+ )
+-
+-// Links for referenced symbols
+-
+-type SymbolReferenceLinks struct {
+-	referenceKinds ast.SymbolFlags // Flags for the meanings of the symbol that were referenced
+-}
+ 
+ // Links for value symbols
+ 

@@ -1,0 +1,215 @@
+{
+  "passed": true,
+  "head": "c83b57c63f5ca5326caa2fdbccf69fb85f16771a",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "c998da18e7038f4593f944c822eec1f906353c99cc4aba15caabed7de91b9f43",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/types.go": "373e76fcd73c8e7e6a5b3727e573e3d45707625d4a22fcc9eb82763fa93db847",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/direct_reference_flags_test.go": "957a95d38881a6a240a2fdee159ef7e07b0eafa77ba517f94306007190232291"
+  },
+  "pins": {
+    "TypeScript": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "typescript-go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b"
+  },
+  "controllerSha256": "a47d2095d2d6f76e6dfd05839c513476be03df20ecf57b5c8883f960b360a7aa",
+  "helperSha256": "aebdb6e5d2e21df0faddc0d1e66a1103cac58c5c38f91db1cf2d8f5579866431",
+  "runs": [
+    {
+      "name": "services",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-reference-flags/overlay.json",
+        "-json",
+        "./internal/api/...",
+        "./internal/ls/...",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-reference-flags/remaining-logs/services.jsonl",
+      "stderr": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-reference-flags/remaining-logs/services.stderr",
+      "stdout_sha256": "e99e289f5ce06f01edefdb9248972e114e88b4cb6e173e0179043f703fcd8f9d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true,
+      "summary": {
+        "tests": 219,
+        "topLevelTests": [
+          "TestDecodeSourceFile_Basic",
+          "TestBuildNodeIndexTableMatchesEncode",
+          "TestEncodeSourceFileWithUnicodeEscapes",
+          "TestEncodeSourceFile",
+          "TestDecodeSourceFile_PostfixDecrement",
+          "TestDecodeSourceFile_PrefixUnaryOperator",
+          "TestDecodeSourceFile_PostfixUnaryOperator",
+          "TestDecodeSourceFile_FunctionExpressionEmptyParams",
+          "TestDecodeSourceFile_ArrowFunctionEmptyParams",
+          "TestDecodeSourceFile_EmptyBlockAndParams",
+          "TestDecodeSourceFile_EmptyModuleBlock",
+          "TestDecodeSourceFile_KeywordExpressions",
+          "TestDecodeSourceFile_BinaryExpression",
+          "TestDecodeNodes_SubtreeRoundTrip",
+          "TestDecodeSourceFile_ClassDeclaration",
+          "TestDecodeSourceFile_Positions",
+          "TestDecodeSourceFile_ExportModifier",
+          "TestDecodeSourceFile_TemplateExpression",
+          "TestDecodeSourceFile_IfStatement",
+          "TestDecodeSourceFile_ImportDeclaration",
+          "TestDecodeSourceFile_FunctionDeclaration",
+          "TestDecodeSourceFile_VariableDeclaration",
+          "TestTimingCollectorReset",
+          "TestDecodeSourceFile_Statements",
+          "TestDecodeSourceFile_VariableDeclarationListFlags",
+          "TestNewDiagnosticResponseUsesUTF16Offsets",
+          "TestDurationToMillis",
+          "TestDocumentIdentifierUnmarshalJSON",
+          "TestServerTimingSnapshotDisabled",
+          "TestTimingCollector",
+          "TestGetFormattingEditsAfterKeystroke_EmptyFile",
+          "TestGetFormattingEditsAfterKeystroke_SimpleStatement",
+          "TestGetFormattingEditsForRange_FunctionBody",
+          "TestUpdateSnapshotResponseSkipsUnloadedAncestorProject",
+          "TestCompletionOnInferredProject",
+          "TestSessionTracksAndReleasesAPIRefs",
+          "TestCompletionSymbolTypeIsResolvable",
+          "TestConvertersInvalidUTF8",
+          "TestGetPackageRealpathFuncs_NonSymlinkedPackageWithSymlinkedDeps",
+          "TestDocumentURIToFileName",
+          "TestGetPackageRealpathFuncs_FollowsNodeModulesSymlinks",
+          "TestGetPackageRealpathFuncs_DuplicateCacheKeys",
+          "TestIndexClone",
+          "TestWordIndices",
+          "TestCompareOrganizeImportsNaturalStrings",
+          "TestUserPreferencesRoundtrip",
+          "TestUserPreferencesSerialize",
+          "TestProbablyUsesSemicolons",
+          "TestUserPreferencesParseATA",
+          "TestUserPreferencesParseServerFeaturePreferences",
+          "TestUserPreferencesParseJSDocCompletionPreferences",
+          "TestUserPreferencesReportStyleChecksAsWarnings",
+          "TestResolveOrganizeImportsSort",
+          "TestUserPreferencesParseUnstable",
+          "TestAliasResolverGetDiagnosticsDoesNotPanic",
+          "TestFileNameToDocumentURI",
+          "TestConvertersAgainstJSReference",
+          "TestHiddenDirectoriesInNodeModules",
+          "TestAutoImportEntrypointDirectorySearch",
+          "TestRegistryLifecycle"
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/api/encoder": "pass",
+          "github.com/microsoft/typescript-go/internal/ls": "pass",
+          "github.com/microsoft/typescript-go/internal/api": "pass",
+          "github.com/microsoft/typescript-go/internal/ls/change": "skip",
+          "github.com/microsoft/typescript-go/internal/ls/lsutil": "pass",
+          "github.com/microsoft/typescript-go/internal/ls/lsconv": "pass",
+          "github.com/microsoft/typescript-go/internal/ls/autoimport": "pass"
+        }
+      },
+      "archive": {
+        "services.jsonl.gz": "bbb60798673b5e2f6b30fd8667f7cbab966da4a728233ef8041bb3bd19b17d0f",
+        "services.stderr.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      }
+    },
+    {
+      "name": "conformance",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-reference-flags/overlay.json",
+        "-json",
+        "./internal/testrunner",
+        "-run",
+        "^TestSubmodule$",
+        "-parallel",
+        "4",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-reference-flags/remaining-logs/conformance.jsonl",
+      "stderr": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-reference-flags/remaining-logs/conformance.stderr",
+      "stdout_sha256": "236fa19d5bdf4f63344b45e5f68722d448123b63b47f7a7c27e83079156b251d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true,
+      "summary": {
+        "test_records": {
+          "pass": 113970,
+          "skip": 2126
+        },
+        "top_level_records": {
+          "pass": 1
+        },
+        "passing_top_level_tests": [
+          "TestSubmodule"
+        ],
+        "package_status": {
+          "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+        },
+        "cached_packages": [],
+        "source_configuration_cases": {
+          "total": 14915,
+          "fully_checked": 12789,
+          "partially_checked": 8,
+          "unsupported_skipped": 2118,
+          "failed": 0
+        },
+        "skip_categories": {
+          "unsupported module kind AMD": 321,
+          "unsupported target ES5": 1244,
+          "unsupported outFile": 87,
+          "unsupported module kind System": 222,
+          "alwaysStrict=false is unsupported": 52,
+          "esModuleInterop=false is unsupported": 24,
+          "unsupported baseUrl": 31,
+          "unsupported module resolution kind 1": 57,
+          "unsupported module resolution kind 2": 23,
+          "unsupported module kind UMD": 57
+        },
+        "partial_output_skips": [
+          {
+            "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+            "reason": "cls.d.ts is missing statements when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+            "reason": "Nondeterministic contents when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+            "reason": "Nondeterministic contents when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/grammarErrors.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+            "reason": "No files are emitted."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          }
+        ],
+        "failed_tests": [],
+        "integrity_errors": []
+      },
+      "archive": {
+        "conformance.jsonl.gz": "1b914910c57c3f400c55567bc9aa8ce6c4cd6b00dab73211b966842af946aa2e",
+        "conformance.stderr.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      }
+    }
+  ]
+}
