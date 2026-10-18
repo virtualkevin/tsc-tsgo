@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "scope": "Auditor count/source/manual-site checks, exact repeat and layout probe only. No compiler optimization, whole-compiler test suite or speedup established.",
+  "packages": 99,
+  "sourceFiles": 494,
+  "sites": 1205,
+  "manualSites": [
+    [
+      "internal/binder/nameresolver.go",
+      132,
+      "Resolve",
+      "table-read",
+      "parameter",
+      "moduleExports[name]"
+    ],
+    [
+      "internal/checker/pending_members.go",
+      327,
+      "getResolvedMember",
+      "table-read",
+      "parameter",
+      "t.members[name]"
+    ],
+    [
+      "internal/checker/checker.go",
+      21332,
+      "getUnionOrIntersectionProperty",
+      "table-read",
+      "parameter",
+      "cache[name]"
+    ],
+    [
+      "internal/checker/checker.go",
+      14720,
+      "getExportOfModule",
+      "table-read",
+      "parameter",
+      "c.getExportsOfSymbol(symbol)[nameText]"
+    ],
+    [
+      "internal/binder/binder.go",
+      194,
+      "declareSymbolEx",
+      "table-read",
+      "other-identifier",
+      "symbolTable[name]"
+    ]
+  ],
+  "inventorySha256": "645e6e89d14e5302890af7d16ea72e8da156271af51d157eb2a8087bb4d98e4e",
+  "repeatSha256": "645e6e89d14e5302890af7d16ea72e8da156271af51d157eb2a8087bb4d98e4e",
+  "auditorSha256": "477d65875077b4cb35f59d785359cb82a6edd92123ad6039b066fe679c34ccf6",
+  "layoutProbeSha256": "2175c72c107a88a94aae44cd3e5f3774b9cd866a24da7f06f8a6f39d200151cd",
+  "layoutResultSha256": "a625417c0936f2924558d7aef6bf1cebbb22e99dd8129cea4cc030c7f2f3b3fb",
+  "goExecutableSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+  "stdlibSources": {
+    "/tmp/tsc-toolchains/go/src/unique/handle.go": "08c7ca3c26f66f22128d0f061e47242fc3a96e6dd765ac73d1fb8800e022c859",
+    "/tmp/tsc-toolchains/go/src/unique/canonmap.go": "c2231dbb996483905d256f0c1d8cf64266fd89c63bc339e0530e536bedb5aedb",
+    "/tmp/tsc-toolchains/go/src/unique/clone.go": "ca3a74b2f8a1fb1dde53b6a539d4ca0868acf668e4c75bec8759074b1af728e8"
+  },
+  "temporaryLayoutHelperRemoved": true
+}
