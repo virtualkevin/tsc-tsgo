@@ -1,0 +1,269 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.(*Relater).sparsePropertiesRelatedTo(SB) github.com/microsoft/typescript-go/internal/checker/sparse_property_relation.go
+  sparse_property_relation.go:10	0x8f4be0		4c8d6424a8			LEAQ -0x58(SP), R12												
+  sparse_property_relation.go:10	0x8f4be5		4d3b6610			CMPQ R12, 0x10(R14)												
+  sparse_property_relation.go:10	0x8f4be9		0f8677040000			JBE 0x8f5066													
+  sparse_property_relation.go:10	0x8f4bef		55				PUSHQ BP													
+  sparse_property_relation.go:10	0x8f4bf0		4889e5				MOVQ SP, BP													
+  sparse_property_relation.go:10	0x8f4bf3		4881ecd0000000			SUBQ $0xd0, SP													
+  checker.go:23390			0x8f4bfa		48898424f8000000		MOVQ AX, 0xf8(SP)												
+  checker.go:23390			0x8f4c02		48899c2400010000		MOVQ BX, 0x100(SP)												
+  checker.go:23390			0x8f4c0a		48898c2408010000		MOVQ CX, 0x108(SP)												
+  checker.go:23390			0x8f4c12		4088bc2410010000		MOVB DI, 0x110(SP)												
+  checker.go:23390			0x8f4c1a		4488842420010000		MOVB R8, 0x120(SP)												
+  checker.go:23390			0x8f4c22		44898c2424010000		MOVL R9, 0x124(SP)												
+  sparse_property_relation.go:16	0x8f4c2a		488d542448			LEAQ 0x48(SP), DX												
+  sparse_property_relation.go:16	0x8f4c2f		440f113a			MOVUPS X15, 0(DX)												
+  sparse_property_relation.go:16	0x8f4c33		440f117a10			MOVUPS X15, 0x10(DX)												
+  checker.go:23390			0x8f4c38		8b5304				MOVL 0x4(BX), DX												
+  checker.go:23390			0x8f4c3b		0fbae202			BTL $0x2, DX													
+  checker.go:23390			0x8f4c3f		90				NOPL														
+  checker.go:23390			0x8f4c40		7204				JB 0x8f4c46													
+  checker.go:23390			0x8f4c42		31d2				XORL DX, DX													
+  checker.go:23390			0x8f4c44		eb5b				JMP 0x8f4ca1													
+  checker.go:23390			0x8f4c46		4889b424b8000000		MOVQ SI, 0xb8(SP)												
+  checker.go:23390			0x8f4c4e		4889d8				MOVQ BX, AX													
+  checker.go:23390			0x8f4c51		e8ea850000			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)					
+  checker.go:23390			0x8f4c56		8b4804				MOVL 0x4(AX), CX												
+  checker.go:23390			0x8f4c59		0fbae103			BTL $0x3, CX													
+  sparse_property_relation.go:17	0x8f4c5d		7338				JAE 0x8f4c97													
+  checker.go:23390			0x8f4c5f		488b842408010000		MOVQ 0x108(SP), AX												
+  checker.go:23390			0x8f4c67		8b5004				MOVL 0x4(AX), DX												
+  checker.go:23390			0x8f4c6a		0fbae202			BTL $0x2, DX													
+  checker.go:23390			0x8f4c6e		7204				JB 0x8f4c74													
+  checker.go:23390			0x8f4c70		31c9				XORL CX, CX													
+  checker.go:23390			0x8f4c72		eb17				JMP 0x8f4c8b													
+  checker.go:23390			0x8f4c74		e8c7850000			CALL github.com/microsoft/typescript-go/internal/checker.(*Type).Target(SB)					
+  checker.go:23390			0x8f4c79		8b4804				MOVL 0x4(AX), CX												
+  checker.go:23390			0x8f4c7c		0fbae103			BTL $0x3, CX													
+  checker.go:23390			0x8f4c80		0f92c1				SETB CL														
+  sparse_property_relation.go:33	0x8f4c83		488b842408010000		MOVQ 0x108(SP), AX												
+  sparse_property_relation.go:18	0x8f4c8b		488bb424b8000000		MOVQ 0xb8(SP), SI												
+  sparse_property_relation.go:17	0x8f4c93		89ca				MOVL CX, DX													
+  sparse_property_relation.go:17	0x8f4c95		eb0a				JMP 0x8f4ca1													
+  sparse_property_relation.go:18	0x8f4c97		488bb424b8000000		MOVQ 0xb8(SP), SI												
+  sparse_property_relation.go:18	0x8f4c9f		31d2				XORL DX, DX													
+  sparse_property_relation.go:17	0x8f4ca1		88542446			MOVB DL, 0x46(SP)												
+  sparse_property_relation.go:18	0x8f4ca5		488b8424e0000000		MOVQ 0xe0(SP), AX												
+  sparse_property_relation.go:18	0x8f4cad		488b9c24e8000000		MOVQ 0xe8(SP), BX												
+  sparse_property_relation.go:18	0x8f4cb5		488b8c24f0000000		MOVQ 0xf0(SP), CX												
+  sparse_property_relation.go:18	0x8f4cbd		4889f7				MOVQ SI, DI													
+  sparse_property_relation.go:18	0x8f4cc0		e83bfafdff			CALL github.com/microsoft/typescript-go/internal/checker.excludeProperties(SB)					
+  sparse_property_relation.go:18	0x8f4cc5		48898424b0000000		MOVQ AX, 0xb0(SP)												
+  sparse_property_relation.go:18	0x8f4ccd		48895c2478			MOVQ BX, 0x78(SP)												
+  sparse_property_relation.go:18	0x8f4cd2		0fb6942420010000		MOVZX 0x120(SP), DX												
+  sparse_property_relation.go:18	0x8f4cda		0fb6742446			MOVZX 0x46(SP), SI												
+  sparse_property_relation.go:18	0x8f4cdf		31c9				XORL CX, CX													
+  sparse_property_relation.go:18	0x8f4ce1		bfffffffff			MOVL $-0x1, DI													
+  sparse_property_relation.go:18	0x8f4ce6		41b801000000			MOVL $0x1, R8													
+  sparse_property_relation.go:18	0x8f4cec		41b901000000			MOVL $0x1, R9													
+  sparse_property_relation.go:18	0x8f4cf2		eb0c				JMP 0x8f4d00													
+  sparse_property_relation.go:18	0x8f4cf4		48ffc1				INCQ CX														
+  sparse_property_relation.go:18	0x8f4cf7		4589c2				MOVL R8, R10													
+  sparse_property_relation.go:18	0x8f4cfa		4589c8				MOVL R9, R8													
+  sparse_property_relation.go:18	0x8f4cfd		4589d1				MOVL R10, R9													
+  sparse_property_relation.go:18	0x8f4d00		4839cb				CMPQ BX, CX													
+  sparse_property_relation.go:18	0x8f4d03		0f8e47030000			JLE 0x8f5050													
+  sparse_property_relation.go:18	0x8f4d09		48894c2470			MOVQ CX, 0x70(SP)												
+  sparse_property_relation.go:18	0x8f4d0e		40887c2444			MOVB DI, 0x44(SP)												
+  sparse_property_relation.go:18	0x8f4d13		4c8b14c8			MOVQ 0(AX)(CX*8), R10												
+  sparse_property_relation.go:18	0x8f4d17		4c899424a0000000		MOVQ R10, 0xa0(SP)												
+  sparse_property_relation.go:19	0x8f4d1f		458b1a				MOVL 0(R10), R11												
+  sparse_property_relation.go:19	0x8f4d22		4d8b6210			MOVQ 0x10(R10), R12												
+  sparse_property_relation.go:19	0x8f4d26		4c89642468			MOVQ R12, 0x68(SP)												
+  sparse_property_relation.go:19	0x8f4d2b		4d8b6a08			MOVQ 0x8(R10), R13												
+  sparse_property_relation.go:19	0x8f4d2f		4c89ac24a8000000		MOVQ R13, 0xa8(SP)												
+  sparse_property_relation.go:20	0x8f4d37		410fbae316			BTL $0x16, R11													
+  sparse_property_relation.go:20	0x8f4d3c		0f1f4000			NOPL 0(AX)													
+  sparse_property_relation.go:20	0x8f4d40		0f829c000000			JB 0x8f4de2													
+  sparse_property_relation.go:17	0x8f4d46		4084f6				TESTL SI, SI													
+  sparse_property_relation.go:20	0x8f4d49		7508				JNE 0x8f4d53													
+  sparse_property_relation.go:20	0x8f4d4b		41bb01000000			MOVL $0x1, R11													
+  sparse_property_relation.go:20	0x8f4d51		eb5d				JMP 0x8f4db0													
+  sparse_property_relation.go:18	0x8f4d53		4488442445			MOVB R8, 0x45(SP)												
+  sparse_property_relation.go:18	0x8f4d58		44884c2443			MOVB R9, 0x43(SP)												
+  sparse_property_relation.go:20	0x8f4d5d		4c89e8				MOVQ R13, AX													
+  sparse_property_relation.go:20	0x8f4d60		4c89e3				MOVQ R12, BX													
+  sparse_property_relation.go:20	0x8f4d63		e818b70000			CALL github.com/microsoft/typescript-go/internal/checker.isNumericLiteralName(SB)				
+  sparse_property_relation.go:18	0x8f4d68		488b4c2470			MOVQ 0x70(SP), CX												
+  checker.go:23390			0x8f4d6d		0fb6942420010000		MOVZX 0x120(SP), DX												
+  sparse_property_relation.go:18	0x8f4d75		488b5c2478			MOVQ 0x78(SP), BX												
+  sparse_property_relation.go:17	0x8f4d7a		0fb6742446			MOVZX 0x46(SP), SI												
+  sparse_property_relation.go:17	0x8f4d7f		0fb67c2444			MOVZX 0x44(SP), DI												
+  sparse_property_relation.go:17	0x8f4d84		440fb6442445			MOVZX 0x45(SP), R8												
+  sparse_property_relation.go:17	0x8f4d8a		440fb64c2443			MOVZX 0x43(SP), R9												
+  sparse_property_relation.go:20	0x8f4d90		4c8b9424a0000000		MOVQ 0xa0(SP), R10												
+  sparse_property_relation.go:20	0x8f4d98		4c8b642468			MOVQ 0x68(SP), R12												
+  sparse_property_relation.go:20	0x8f4d9d		4c8bac24a8000000		MOVQ 0xa8(SP), R13												
+  sparse_property_relation.go:20	0x8f4da5		4189c3				MOVL AX, R11													
+  sparse_property_relation.go:18	0x8f4da8		488b8424b0000000		MOVQ 0xb0(SP), AX												
+  sparse_property_relation.go:20	0x8f4db0		4584db				TESTL R11, R11													
+  sparse_property_relation.go:20	0x8f4db3		740b				JE 0x8f4dc0													
+  sparse_property_relation.go:20	0x8f4db5		41bb01000000			MOVL $0x1, R11													
+  sparse_property_relation.go:20	0x8f4dbb		eb28				JMP 0x8f4de5													
+  sparse_property_relation.go:20	0x8f4dbd		0f1f00				NOPL 0(AX)													
+  sparse_property_relation.go:20	0x8f4dc0		4983fc06			CMPQ R12, $0x6													
+  sparse_property_relation.go:20	0x8f4dc4		7517				JNE 0x8f4ddd													
+  sparse_property_relation.go:20	0x8f4dc6		41817d006c656e67		CMPL 0(R13), $0x676e656c											
+  sparse_property_relation.go:20	0x8f4dce		750d				JNE 0x8f4ddd													
+  sparse_property_relation.go:20	0x8f4dd0		6641817d047468			CMPW 0x4(R13), $0x6874												
+  sparse_property_relation.go:20	0x8f4dd7		410f94c3			SETE R11													
+  sparse_property_relation.go:20	0x8f4ddb		eb08				JMP 0x8f4de5													
+  sparse_property_relation.go:20	0x8f4ddd		4531db				XORL R11, R11													
+  sparse_property_relation.go:20	0x8f4de0		eb03				JMP 0x8f4de5													
+  sparse_property_relation.go:20	0x8f4de2		4531db				XORL R11, R11													
+  sparse_property_relation.go:20	0x8f4de5		4584db				TESTL R11, R11													
+  sparse_property_relation.go:20	0x8f4de8		0f8448020000			JE 0x8f5036													
+  checker.go:23390			0x8f4dee		84d2				TESTL DL, DL													
+  sparse_property_relation.go:20	0x8f4df0		7414				JE 0x8f4e06													
+  sparse_property_relation.go:20	0x8f4df2		458b1a				MOVL 0(R10), R11												
+  sparse_property_relation.go:20	0x8f4df5		410fbae318			BTL $0x18, R11													
+  sparse_property_relation.go:20	0x8f4dfa		660f1f440000			NOPW 0(AX)(AX*1)												
+  sparse_property_relation.go:20	0x8f4e00		0f8330020000			JAE 0x8f5036													
+  sparse_property_relation.go:18	0x8f4e06		4584c9				TESTL R9, R9													
+  sparse_property_relation.go:21	0x8f4e09		0f841c010000			JE 0x8f4f2b													
+  sparse_property_relation.go:18	0x8f4e0f		4584c0				TESTL R8, R8													
+  sparse_property_relation.go:22	0x8f4e12		750b				JNE 0x8f4e1f													
+  sparse_property_relation.go:22	0x8f4e14		41b801000000			MOVL $0x1, R8													
+  sparse_property_relation.go:22	0x8f4e1a		e988000000			JMP 0x8f4ea7													
+  sparse_property_relation.go:23	0x8f4e1f		488b8c24f8000000		MOVQ 0xf8(SP), CX												
+  sparse_property_relation.go:23	0x8f4e27		488b01				MOVQ 0(CX), AX													
+  sparse_property_relation.go:23	0x8f4e2a		488b9c2400010000		MOVQ 0x100(SP), BX												
+  sparse_property_relation.go:23	0x8f4e32		e8e9faffff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).newSparsePropertyFilter(SB)			
+  sparse_property_relation.go:23	0x8f4e37		488d8c2480000000		LEAQ 0x80(SP), CX												
+  sparse_property_relation.go:23	0x8f4e3f		4889e2				MOVQ SP, DX													
+  sparse_property_relation.go:23	0x8f4e42		440f1032			MOVUPS 0(DX), X14												
+  sparse_property_relation.go:23	0x8f4e46		440f1131			MOVUPS X14, 0(CX)												
+  sparse_property_relation.go:23	0x8f4e4a		440f107210			MOVUPS 0x10(DX), X14												
+  sparse_property_relation.go:23	0x8f4e4f		440f117110			MOVUPS X14, 0x10(CX)												
+  sparse_property_relation.go:23	0x8f4e54		488d742448			LEAQ 0x48(SP), SI												
+  sparse_property_relation.go:23	0x8f4e59		440f1031			MOVUPS 0(CX), X14												
+  sparse_property_relation.go:23	0x8f4e5d		440f1136			MOVUPS X14, 0(SI)												
+  sparse_property_relation.go:23	0x8f4e61		440f107110			MOVUPS 0x10(CX), X14												
+  sparse_property_relation.go:23	0x8f4e66		440f117610			MOVUPS X14, 0x10(SI)												
+  sparse_property_relation.go:18	0x8f4e6b		488b4c2470			MOVQ 0x70(SP), CX												
+  checker.go:23390			0x8f4e70		0fb6942420010000		MOVZX 0x120(SP), DX												
+  sparse_property_relation.go:18	0x8f4e78		488b5c2478			MOVQ 0x78(SP), BX												
+  sparse_property_relation.go:17	0x8f4e7d		0fb6742446			MOVZX 0x46(SP), SI												
+  sparse_property_relation.go:18	0x8f4e82		0fb67c2444			MOVZX 0x44(SP), DI												
+  sparse_property_relation.go:32	0x8f4e87		4c8b9424a0000000		MOVQ 0xa0(SP), R10												
+  sparse_property_filter.go:10		0x8f4e8f		4c8b642468			MOVQ 0x68(SP), R12												
+  sparse_property_filter.go:15		0x8f4e94		4c8bac24a8000000		MOVQ 0xa8(SP), R13												
+  sparse_property_relation.go:26	0x8f4e9c		4189c0				MOVL AX, R8													
+  sparse_property_relation.go:18	0x8f4e9f		488b8424b0000000		MOVQ 0xb0(SP), AX												
+  sparse_property_relation.go:26	0x8f4ea7		4584c0				TESTL R8, R8													
+  sparse_property_relation.go:26	0x8f4eaa		747a				JE 0x8f4f26													
+  sparse_property_filter.go:10		0x8f4eac		4d85e4				TESTQ R12, R12													
+  sparse_property_filter.go:10		0x8f4eaf		7508				JNE 0x8f4eb9													
+  checker.go:18756			0x8f4eb1		4d89e7				MOVQ R12, R15													
+  checker.go:18756			0x8f4eb4		4531db				XORL R11, R11													
+  sparse_property_filter.go:26		0x8f4eb7		eb4f				JMP 0x8f4f08													
+  sparse_property_filter.go:14		0x8f4eb9		4569ccb179379e			IMULL $-0x61c8864f, R12, R9											
+  sparse_property_filter.go:15		0x8f4ec0		450fb65d00			MOVZX 0(R13), R11												
+  sparse_property_filter.go:15		0x8f4ec5		4569db6bcaeb85			IMULL $-0x7a143595, R11, R11											
+  sparse_property_filter.go:15		0x8f4ecc		4531cb				XORL R9, R11													
+  sparse_property_filter.go:16		0x8f4ecf		470fb64c2cff			MOVZX -0x1(R12)(R13*1), R9											
+  sparse_property_filter.go:16		0x8f4ed5		4569c935aeb2c2			IMULL $-0x3d4d51cb, R9, R9											
+  sparse_property_filter.go:17		0x8f4edc		4d89e7				MOVQ R12, R15													
+  sparse_property_filter.go:17		0x8f4edf		49d1ec				SHRQ $0x1, R12													
+  sparse_property_filter.go:16		0x8f4ee2		4531d9				XORL R11, R9													
+  sparse_property_filter.go:17		0x8f4ee5		4d39e7				CMPQ R15, R12													
+  sparse_property_filter.go:17		0x8f4ee8		0f866d010000			JBE 0x8f505b													
+  sparse_property_filter.go:17		0x8f4eee		470fb65c2500			MOVZX 0(R13)(R12*1), R11											
+  sparse_property_filter.go:17		0x8f4ef4		4569db2debd427			IMULL $0x27d4eb2d, R11, R11											
+  sparse_property_filter.go:17		0x8f4efb		4531cb				XORL R9, R11													
+  sparse_property_filter.go:18		0x8f4efe		4589d9				MOVL R11, R9													
+  sparse_property_filter.go:18		0x8f4f01		41c1eb10			SHRL $0x10, R11													
+  sparse_property_filter.go:18		0x8f4f05		4531cb				XORL R9, R11													
+  sparse_property_filter.go:27		0x8f4f08		4589d9				MOVL R11, R9													
+  sparse_property_filter.go:27		0x8f4f0b		41c0eb06			SHRL $0x6, R11													
+  sparse_property_filter.go:27		0x8f4f0f		450fb6db			MOVZX R11, R11													
+  sparse_property_filter.go:27		0x8f4f13		4e8b5cdc48			MOVQ 0x48(SP)(R11*8), R11											
+  sparse_property_filter.go:27		0x8f4f18		4d0fa3cb			BTQ R9, R11													
+  sparse_property_relation.go:26	0x8f4f1c		7213				JB 0x8f4f31													
+  sparse_property_relation.go:26	0x8f4f1e		4531c9				XORL R9, R9													
+  sparse_property_relation.go:27	0x8f4f21		e9cefdffff			JMP 0x8f4cf4													
+  checker.go:18756			0x8f4f26		4d89e7				MOVQ R12, R15													
+  sparse_property_relation.go:26	0x8f4f29		eb06				JMP 0x8f4f31													
+  checker.go:18756			0x8f4f2b		4d89e7				MOVQ R12, R15													
+  checker.go:18756			0x8f4f2e		4531c0				XORL R8, R8													
+  sparse_property_relation.go:30	0x8f4f31		4488442447			MOVB R8, 0x47(SP)												
+  sparse_property_relation.go:30	0x8f4f36		488b9424f8000000		MOVQ 0xf8(SP), DX												
+  sparse_property_relation.go:30	0x8f4f3e		488b02				MOVQ 0(DX), AX													
+  checker.go:18756			0x8f4f41		488b9c2400010000		MOVQ 0x100(SP), BX												
+  checker.go:18756			0x8f4f49		4c89e9				MOVQ R13, CX													
+  checker.go:18756			0x8f4f4c		4c89ff				MOVQ R15, DI													
+  checker.go:18756			0x8f4f4f		31f6				XORL SI, SI													
+  checker.go:18756			0x8f4f51		4189f0				MOVL SI, R8													
+  checker.go:18756			0x8f4f54		e88797f1ff			CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx(SB)			
+  checker.go:18756			0x8f4f59		0f1f8000000000			NOPL 0(AX)													
+  sparse_property_relation.go:32	0x8f4f60		4885c0				TESTQ AX, AX													
+  sparse_property_relation.go:32	0x8f4f63		0f849d000000			JE 0x8f5006													
+  sparse_property_relation.go:32	0x8f4f69		488bb424a0000000		MOVQ 0xa0(SP), SI												
+  sparse_property_relation.go:32	0x8f4f71		4839f0				CMPQ AX, SI													
+  sparse_property_relation.go:32	0x8f4f74		750f				JNE 0x8f4f85													
+  sparse_property_relation.go:32	0x8f4f76		0fb67c2444			MOVZX 0x44(SP), DI												
+  sparse_property_relation.go:32	0x8f4f7b		0f1f440000			NOPL 0(AX)(AX*1)												
+  sparse_property_relation.go:32	0x8f4f80		e986000000			JMP 0x8f500b													
+  sparse_property_relation.go:33	0x8f4f85		48c78424c800000000000000	MOVQ $0x0, 0xc8(SP)												
+  sparse_property_relation.go:33	0x8f4f91		488d1508170200			LEAQ github.com/microsoft/typescript-go/internal/checker.(*Checker).getNonMissingTypeOfSymbol-fm(SB), DX	
+  sparse_property_relation.go:33	0x8f4f98		48899424c0000000		MOVQ DX, 0xc0(SP)												
+  sparse_property_relation.go:33	0x8f4fa0		488b9424f8000000		MOVQ 0xf8(SP), DX												
+  sparse_property_relation.go:33	0x8f4fa8		4c8b22				MOVQ 0(DX), R12													
+  sparse_property_relation.go:33	0x8f4fab		4c89a424c8000000		MOVQ R12, 0xc8(SP)												
+  sparse_property_relation.go:33	0x8f4fb3		4c8b6208			MOVQ 0x8(DX), R12												
+  sparse_property_relation.go:33	0x8f4fb7		4c8b2a				MOVQ 0(DX), R13													
+  sparse_property_relation.go:33	0x8f4fba		4d39a5f80f0000			CMPQ 0xff8(R13), R12												
+  sparse_property_relation.go:33	0x8f4fc1		410f94c3			SETE R11													
+  sparse_property_relation.go:33	0x8f4fc5		488b9c2400010000		MOVQ 0x100(SP), BX												
+  sparse_property_relation.go:33	0x8f4fcd		488b8c2408010000		MOVQ 0x108(SP), CX												
+  sparse_property_relation.go:33	0x8f4fd5		4889c7				MOVQ AX, DI													
+  sparse_property_relation.go:33	0x8f4fd8		4c8d8424c0000000		LEAQ 0xc0(SP), R8												
+  sparse_property_relation.go:33	0x8f4fe0		440fb68c2410010000		MOVZX 0x110(SP), R9												
+  sparse_property_relation.go:33	0x8f4fe9		448b942424010000		MOVL 0x124(SP), R10												
+  sparse_property_relation.go:33	0x8f4ff1		4889d0				MOVQ DX, AX													
+  sparse_property_relation.go:33	0x8f4ff4		e8c737ffff			CALL github.com/microsoft/typescript-go/internal/checker.(*Relater).propertyRelatedTo(SB)			
+  sparse_property_relation.go:34	0x8f4ff9		84c0				TESTL AL, AL													
+  sparse_property_relation.go:34	0x8f4ffb		7448				JE 0x8f5045													
+  sparse_property_relation.go:37	0x8f4ffd		0fb67c2444			MOVZX 0x44(SP), DI												
+  sparse_property_relation.go:37	0x8f5002		21c7				ANDL AX, DI													
+  sparse_property_relation.go:37	0x8f5004		eb05				JMP 0x8f500b													
+  sparse_property_relation.go:37	0x8f5006		0fb67c2444			MOVZX 0x44(SP), DI												
+  sparse_property_relation.go:18	0x8f500b		488b8424b0000000		MOVQ 0xb0(SP), AX												
+  sparse_property_relation.go:18	0x8f5013		488b4c2470			MOVQ 0x70(SP), CX												
+  checker.go:23390			0x8f5018		0fb6942420010000		MOVZX 0x120(SP), DX												
+  sparse_property_relation.go:18	0x8f5020		488b5c2478			MOVQ 0x78(SP), BX												
+  sparse_property_relation.go:17	0x8f5025		0fb6742446			MOVZX 0x46(SP), SI												
+  sparse_property_relation.go:17	0x8f502a		41b801000000			MOVL $0x1, R8													
+  sparse_property_relation.go:17	0x8f5030		440fb64c2447			MOVZX 0x47(SP), R9												
+  sparse_property_relation.go:18	0x8f5036		4589ca				MOVL R9, R10													
+  sparse_property_relation.go:18	0x8f5039		4589c1				MOVL R8, R9													
+  sparse_property_relation.go:18	0x8f503c		4589d0				MOVL R10, R8													
+  sparse_property_relation.go:18	0x8f503f		90				NOPL														
+  sparse_property_relation.go:18	0x8f5040		e9affcffff			JMP 0x8f4cf4													
+  sparse_property_relation.go:35	0x8f5045		31c0				XORL AX, AX													
+  sparse_property_relation.go:35	0x8f5047		4881c4d0000000			ADDQ $0xd0, SP													
+  sparse_property_relation.go:35	0x8f504e		5d				POPQ BP														
+  sparse_property_relation.go:35	0x8f504f		c3				RET														
+  sparse_property_relation.go:41	0x8f5050		89f8				MOVL DI, AX													
+  sparse_property_relation.go:41	0x8f5052		4881c4d0000000			ADDQ $0xd0, SP													
+  sparse_property_relation.go:41	0x8f5059		5d				POPQ BP														
+  sparse_property_relation.go:41	0x8f505a		c3				RET														
+  sparse_property_filter.go:17		0x8f505b		0f1f440000			NOPL 0(AX)(AX*1)												
+  sparse_property_filter.go:17		0x8f5060		e83bc8b9ff			CALL runtime.panicBounds(SB)											
+  sparse_property_filter.go:17		0x8f5065		90				NOPL														
+  sparse_property_relation.go:10	0x8f5066		4889442420			MOVQ AX, 0x20(SP)												
+  sparse_property_relation.go:10	0x8f506b		48895c2428			MOVQ BX, 0x28(SP)												
+  sparse_property_relation.go:10	0x8f5070		48894c2430			MOVQ CX, 0x30(SP)												
+  sparse_property_relation.go:10	0x8f5075		40887c2438			MOVB DI, 0x38(SP)												
+  sparse_property_relation.go:10	0x8f507a		4889742440			MOVQ SI, 0x40(SP)												
+  sparse_property_relation.go:10	0x8f507f		4488442448			MOVB R8, 0x48(SP)												
+  sparse_property_relation.go:10	0x8f5084		44894c244c			MOVL R9, 0x4c(SP)												
+  sparse_property_relation.go:10	0x8f5089		e872a9b9ff			CALL runtime.morestack_noctxt.abi0(SB)										
+  sparse_property_relation.go:10	0x8f508e		488b442420			MOVQ 0x20(SP), AX												
+  sparse_property_relation.go:10	0x8f5093		488b5c2428			MOVQ 0x28(SP), BX												
+  sparse_property_relation.go:10	0x8f5098		488b4c2430			MOVQ 0x30(SP), CX												
+  sparse_property_relation.go:10	0x8f509d		0fb67c2438			MOVZX 0x38(SP), DI												
+  sparse_property_relation.go:10	0x8f50a2		488b742440			MOVQ 0x40(SP), SI												
+  sparse_property_relation.go:10	0x8f50a7		440fb6442448			MOVZX 0x48(SP), R8												
+  sparse_property_relation.go:10	0x8f50ad		448b4c244c			MOVL 0x4c(SP), R9												
+  sparse_property_relation.go:10	0x8f50b2		e929fbffff			JMP github.com/microsoft/typescript-go/internal/checker.(*Relater).sparsePropertiesRelatedTo(SB)		

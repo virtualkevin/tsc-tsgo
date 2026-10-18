@@ -1,0 +1,73 @@
+{
+  "variant": "sparse property lookup filter",
+  "controllerSha256": "2f58596ec65b9640edcbe28230f0faa6f6658dda8a1ca2e8fe6e29f787e831ea",
+  "sourceSha256": "e2b806c1578b85f998691163441813314bf3e84a295f17fe439115fba28dc0b2",
+  "head": "7c23cf7699af81149b21f3a0181a7a42f1cadbce",
+  "binaryAndComparatorHashes": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-sparse-property-helper": "c9af9668eb4ac9fc96aee8a9e889a549f71a21faecc62267460ea6b9fa455274",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-sparse-property-helper.provenance.json": "17f9f6dd7ada5e84d26463ffe3356ed3c16989446c1dd02d4058e0580a6ef300",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+    "/home/dev/tssss/tsc-tsgo/packages/tsgo/dist/tsgo": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a",
+    "/home/dev/tssss/tsc-tsgo/node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+  },
+  "clearedEnvironmentNames": [],
+  "explicitEnvironment": {
+    "TSC_GO_CANDIDATE": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-sparse-property-helper",
+    "TSC_GO_BASELINE": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+    "TSC_TS_BIN": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-sparse-property-helper"
+  },
+  "runs": [
+    {
+      "name": "parity",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "passed": true,
+      "logSha256": "a1f8ca0275af8d0617ed9cebd1aa7d0f4533ff7f4d9f7953c74d72813bf604b4"
+    },
+    {
+      "name": "integration",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "exitCode": 0,
+      "counts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "passed": true,
+      "logSha256": "2f48e7996ad36daa54b2b66c10e13d91525311f161f3a70c83f5ffb28aa9c132"
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "Normal CLI validation, not race-instrumented CLI coverage or workload timing.",
+    "Runs may overlap other non-performance validation; elapsed times are not benchmark data.",
+    "Source and binary identities checked; external dependency contents are not fully hashed."
+  ],
+  "sourceAndBinariesUnchanged": true
+}

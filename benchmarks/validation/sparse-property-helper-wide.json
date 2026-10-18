@@ -1,0 +1,1693 @@
+{
+  "passed": true,
+  "sourceSha256": "e2b806c1578b85f998691163441813314bf3e84a295f17fe439115fba28dc0b2",
+  "head": "7c23cf7699af81149b21f3a0181a7a42f1cadbce",
+  "hashes": {
+    "candidate": "c9af9668eb4ac9fc96aee8a9e889a549f71a21faecc62267460ea6b9fa455274",
+    "retained": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "oracle": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a"
+  },
+  "controllerSha256": "12d1afb1222b4b477ef8900444d020445020ede505bb472ca11f64028ff617dc",
+  "runs": [
+    {
+      "id": "small-source-255-false",
+      "fileSha256": "6f8610d81ec9ce6783c268ac5e1e58a7aab186380bc7c2305df1a718b58db369",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/small-source-255-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "wrong-late-property-255-false",
+      "fileSha256": "b5df2fc1e67e2f37748c2f90cf3ce7dcfe82b65546982245cb1e65d9ada3a40c",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/wrong-late-property-255-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "dbdb7bc5c86420db8f56d6757559af54a2fb8b47a4329e9f00e6675277d1c7db"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "dbdb7bc5c86420db8f56d6757559af54a2fb8b47a4329e9f00e6675277d1c7db"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "dbdb7bc5c86420db8f56d6757559af54a2fb8b47a4329e9f00e6675277d1c7db"
+        }
+      }
+    },
+    {
+      "id": "global-augmentation-255-false",
+      "fileSha256": "69130dbf20a16bf79d77e19caff1138cecbafe820f7633b94e3880b11eb7acb2",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/global-augmentation-255-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "e74b357299606fbbbe2b766d2e3b913dc83084d46b025b1b0981815679066ea1"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "e74b357299606fbbbe2b766d2e3b913dc83084d46b025b1b0981815679066ea1"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "e74b357299606fbbbe2b766d2e3b913dc83084d46b025b1b0981815679066ea1"
+        }
+      }
+    },
+    {
+      "id": "override-augmentation-255-false",
+      "fileSha256": "efa75f17841a4bca9c5e6b6839b9ba1269c74241bc6b4a144bb025c0ca65ccef",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/override-augmentation-255-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-255-false",
+      "fileSha256": "de8251338d29d620a1c6fe44e341c2b2c378b139706e7ec8d83bafe6fb58ac28",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-255-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-mismatch-255-false",
+      "fileSha256": "90deb15b6830ab08c0c817a5a79eb1999d5d3d3d86633b8dfa3830d19adc5815",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-mismatch-255-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "71f503366bfb148fcbc69fb717f3b6164f15f2821b6947cc69d6957c11c383ad"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "71f503366bfb148fcbc69fb717f3b6164f15f2821b6947cc69d6957c11c383ad"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "71f503366bfb148fcbc69fb717f3b6164f15f2821b6947cc69d6957c11c383ad"
+        }
+      }
+    },
+    {
+      "id": "callable-fallback-255-false",
+      "fileSha256": "07a3d330f8d0513a337ba9fe20a67200be259c1a1ad52844b0b932f030d3b9a0",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/callable-fallback-255-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "mapped-source-255-false",
+      "fileSha256": "25bed09dd09a30efba9bdb9841187d9d20508148bd6aa5836748a6e331a10ddf",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/mapped-source-255-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "small-source-255-true",
+      "fileSha256": "6f8610d81ec9ce6783c268ac5e1e58a7aab186380bc7c2305df1a718b58db369",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/small-source-255-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "wrong-late-property-255-true",
+      "fileSha256": "b5df2fc1e67e2f37748c2f90cf3ce7dcfe82b65546982245cb1e65d9ada3a40c",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/wrong-late-property-255-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "954a1792394c807cf503f3473145b6b7d2be85daae6e8b0fe6af8084aaf62242"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "954a1792394c807cf503f3473145b6b7d2be85daae6e8b0fe6af8084aaf62242"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "954a1792394c807cf503f3473145b6b7d2be85daae6e8b0fe6af8084aaf62242"
+        }
+      }
+    },
+    {
+      "id": "global-augmentation-255-true",
+      "fileSha256": "69130dbf20a16bf79d77e19caff1138cecbafe820f7633b94e3880b11eb7acb2",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/global-augmentation-255-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "0c245270c973a6e8ee3cdf61f425709148b141f7e498704e9a506057300cbe7f"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "0c245270c973a6e8ee3cdf61f425709148b141f7e498704e9a506057300cbe7f"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "0c245270c973a6e8ee3cdf61f425709148b141f7e498704e9a506057300cbe7f"
+        }
+      }
+    },
+    {
+      "id": "override-augmentation-255-true",
+      "fileSha256": "efa75f17841a4bca9c5e6b6839b9ba1269c74241bc6b4a144bb025c0ca65ccef",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/override-augmentation-255-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-255-true",
+      "fileSha256": "de8251338d29d620a1c6fe44e341c2b2c378b139706e7ec8d83bafe6fb58ac28",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-255-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-mismatch-255-true",
+      "fileSha256": "90deb15b6830ab08c0c817a5a79eb1999d5d3d3d86633b8dfa3830d19adc5815",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-mismatch-255-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "a6c1fe159b17ad45a849f8281fe7f667fdc499d8cd718c8fea8f30d9a95e74bf"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "a6c1fe159b17ad45a849f8281fe7f667fdc499d8cd718c8fea8f30d9a95e74bf"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "a6c1fe159b17ad45a849f8281fe7f667fdc499d8cd718c8fea8f30d9a95e74bf"
+        }
+      }
+    },
+    {
+      "id": "callable-fallback-255-true",
+      "fileSha256": "07a3d330f8d0513a337ba9fe20a67200be259c1a1ad52844b0b932f030d3b9a0",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/callable-fallback-255-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "mapped-source-255-true",
+      "fileSha256": "25bed09dd09a30efba9bdb9841187d9d20508148bd6aa5836748a6e331a10ddf",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/mapped-source-255-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "small-source-256-false",
+      "fileSha256": "c7bf5e1979767d41d8cacb6cbc3f6fbbbbff27fbcd2e87a2c528b5d98c253b6b",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/small-source-256-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "wrong-late-property-256-false",
+      "fileSha256": "ca5e03cce44545b0027dfd673fc48ea8a827ec2a3b0e875b6646d4e2463be5fe",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/wrong-late-property-256-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "e2fc044986e86bf0a2befc6b838940ce4130355792a4a9c557343e717e42de0c"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "e2fc044986e86bf0a2befc6b838940ce4130355792a4a9c557343e717e42de0c"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "e2fc044986e86bf0a2befc6b838940ce4130355792a4a9c557343e717e42de0c"
+        }
+      }
+    },
+    {
+      "id": "global-augmentation-256-false",
+      "fileSha256": "87605f9ef0892a15ad06359a9636454d65d9e9d8ea2b864d83336d5ce0f29da4",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/global-augmentation-256-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "9dd3960ef5185471f055f62ce7b58dab23de16ff594b3c59c4f0cc624bca2387"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "9dd3960ef5185471f055f62ce7b58dab23de16ff594b3c59c4f0cc624bca2387"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "9dd3960ef5185471f055f62ce7b58dab23de16ff594b3c59c4f0cc624bca2387"
+        }
+      }
+    },
+    {
+      "id": "override-augmentation-256-false",
+      "fileSha256": "8c7c6f41d95f141a505081609f7a2ce7e9d0e83592ef16bb5464d9f76fa8ef1c",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/override-augmentation-256-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-256-false",
+      "fileSha256": "c7947e3146c55948c57200f657fbf109694700f5dd0e677733c7f87483a5507e",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-256-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-mismatch-256-false",
+      "fileSha256": "efb5de071e82c0cff67be52a0e2d1bc494daa27a41f3718dd83fd189bb788e16",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-mismatch-256-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "2e58f933f003a1f55ae1276cfa522405e233c0ef775986a908eadf7e877ba60e"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "2e58f933f003a1f55ae1276cfa522405e233c0ef775986a908eadf7e877ba60e"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "2e58f933f003a1f55ae1276cfa522405e233c0ef775986a908eadf7e877ba60e"
+        }
+      }
+    },
+    {
+      "id": "callable-fallback-256-false",
+      "fileSha256": "39897e1abbe811bb24eef2382c0cf0b96bfab2f6a8750aac7b5266037d0aff1d",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/callable-fallback-256-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "mapped-source-256-false",
+      "fileSha256": "2c114e2347aa0b8fa79083e6173aa90d7ee87c8f23aabcd24207621b174e57b6",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/mapped-source-256-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "small-source-256-true",
+      "fileSha256": "c7bf5e1979767d41d8cacb6cbc3f6fbbbbff27fbcd2e87a2c528b5d98c253b6b",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/small-source-256-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "wrong-late-property-256-true",
+      "fileSha256": "ca5e03cce44545b0027dfd673fc48ea8a827ec2a3b0e875b6646d4e2463be5fe",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/wrong-late-property-256-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "8068a6e26024bfa6d2b802abce0b060e220e79cb3868c3d742cc6ead37c324d5"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "8068a6e26024bfa6d2b802abce0b060e220e79cb3868c3d742cc6ead37c324d5"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "8068a6e26024bfa6d2b802abce0b060e220e79cb3868c3d742cc6ead37c324d5"
+        }
+      }
+    },
+    {
+      "id": "global-augmentation-256-true",
+      "fileSha256": "87605f9ef0892a15ad06359a9636454d65d9e9d8ea2b864d83336d5ce0f29da4",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/global-augmentation-256-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "4eb516076156c2600f4d058fce14e7756fb6c748e4f0c2706b51efa8a5bea3bd"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "4eb516076156c2600f4d058fce14e7756fb6c748e4f0c2706b51efa8a5bea3bd"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "4eb516076156c2600f4d058fce14e7756fb6c748e4f0c2706b51efa8a5bea3bd"
+        }
+      }
+    },
+    {
+      "id": "override-augmentation-256-true",
+      "fileSha256": "8c7c6f41d95f141a505081609f7a2ce7e9d0e83592ef16bb5464d9f76fa8ef1c",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/override-augmentation-256-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-256-true",
+      "fileSha256": "c7947e3146c55948c57200f657fbf109694700f5dd0e677733c7f87483a5507e",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-256-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-mismatch-256-true",
+      "fileSha256": "efb5de071e82c0cff67be52a0e2d1bc494daa27a41f3718dd83fd189bb788e16",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-mismatch-256-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "fa51bc4f4e14f4f25cbdde5b3e2d95890d3ec004765eb47a8e930e9879fb54f1"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "fa51bc4f4e14f4f25cbdde5b3e2d95890d3ec004765eb47a8e930e9879fb54f1"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "fa51bc4f4e14f4f25cbdde5b3e2d95890d3ec004765eb47a8e930e9879fb54f1"
+        }
+      }
+    },
+    {
+      "id": "callable-fallback-256-true",
+      "fileSha256": "39897e1abbe811bb24eef2382c0cf0b96bfab2f6a8750aac7b5266037d0aff1d",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/callable-fallback-256-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "mapped-source-256-true",
+      "fileSha256": "2c114e2347aa0b8fa79083e6173aa90d7ee87c8f23aabcd24207621b174e57b6",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/mapped-source-256-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "small-source-511-false",
+      "fileSha256": "22750abec2cfd2812b8257971ba6e6e50dbe1473925126bead0eaf7a5f65ff78",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/small-source-511-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "wrong-late-property-511-false",
+      "fileSha256": "8d12723ff4fb9f468ef0672dba93d5aa5bd5b9a135bb17794a57acf938216b31",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/wrong-late-property-511-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "040c0e67183d99080a3e8449a49b8791a81693a04ac5b960d6e9b6c659eb9750"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "040c0e67183d99080a3e8449a49b8791a81693a04ac5b960d6e9b6c659eb9750"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "040c0e67183d99080a3e8449a49b8791a81693a04ac5b960d6e9b6c659eb9750"
+        }
+      }
+    },
+    {
+      "id": "global-augmentation-511-false",
+      "fileSha256": "9ffce12d31cd0ddc6fad9b5896bed6d737717e305d226cccc3554017b66915fd",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/global-augmentation-511-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "f4750d163597c65cfcf4d0fa342f7e57a2b016ffb84cb8010fa3123f19dd9e68"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "f4750d163597c65cfcf4d0fa342f7e57a2b016ffb84cb8010fa3123f19dd9e68"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "f4750d163597c65cfcf4d0fa342f7e57a2b016ffb84cb8010fa3123f19dd9e68"
+        }
+      }
+    },
+    {
+      "id": "override-augmentation-511-false",
+      "fileSha256": "511e2754a4ddf0da51637f2bdcc5f5e3ab19feac6f3224c2a924725ad687bdce",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/override-augmentation-511-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-511-false",
+      "fileSha256": "579e34be6179da2ce8e54332ce29d2ca9ed2e30182165c4a63a58b9a7bd78b9a",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-511-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-mismatch-511-false",
+      "fileSha256": "ccd8c3ba68950b8dcc1d1a03a03436353d7dff29178fab587ae68ccf5dbb2dda",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-mismatch-511-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "31a27fd1b8ec4e77ce41334e7480b1f4cbb2a4f329aa189d7639ae243b76a4b6"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "31a27fd1b8ec4e77ce41334e7480b1f4cbb2a4f329aa189d7639ae243b76a4b6"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "31a27fd1b8ec4e77ce41334e7480b1f4cbb2a4f329aa189d7639ae243b76a4b6"
+        }
+      }
+    },
+    {
+      "id": "callable-fallback-511-false",
+      "fileSha256": "912b14bf2b3c0cf675e65f5f747969d16e8463c6e880c715c76de132c32d6672",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/callable-fallback-511-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "mapped-source-511-false",
+      "fileSha256": "1dd4bb9a79a45eeaaced573748de6c2a6646ffd9100d0728369d07b381f531f4",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "false",
+        "/tmp/tsc-sparse-property-helper/wide/mapped-source-511-false.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "small-source-511-true",
+      "fileSha256": "22750abec2cfd2812b8257971ba6e6e50dbe1473925126bead0eaf7a5f65ff78",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/small-source-511-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "wrong-late-property-511-true",
+      "fileSha256": "8d12723ff4fb9f468ef0672dba93d5aa5bd5b9a135bb17794a57acf938216b31",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/wrong-late-property-511-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "92b89c4d7e4b3b63c4c309c9f02b6c743bacb7d7357fcdae1882746b7cd1a5f2"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "92b89c4d7e4b3b63c4c309c9f02b6c743bacb7d7357fcdae1882746b7cd1a5f2"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "92b89c4d7e4b3b63c4c309c9f02b6c743bacb7d7357fcdae1882746b7cd1a5f2"
+        }
+      }
+    },
+    {
+      "id": "global-augmentation-511-true",
+      "fileSha256": "9ffce12d31cd0ddc6fad9b5896bed6d737717e305d226cccc3554017b66915fd",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/global-augmentation-511-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "2a18b16ff613ac89cf71f09e69bbe3816d1fbc44ed4753991ae41798f20f28d1"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "2a18b16ff613ac89cf71f09e69bbe3816d1fbc44ed4753991ae41798f20f28d1"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "2a18b16ff613ac89cf71f09e69bbe3816d1fbc44ed4753991ae41798f20f28d1"
+        }
+      }
+    },
+    {
+      "id": "override-augmentation-511-true",
+      "fileSha256": "511e2754a4ddf0da51637f2bdcc5f5e3ab19feac6f3224c2a924725ad687bdce",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/override-augmentation-511-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-511-true",
+      "fileSha256": "579e34be6179da2ce8e54332ce29d2ca9ed2e30182165c4a63a58b9a7bd78b9a",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-511-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "recursive-mismatch-511-true",
+      "fileSha256": "ccd8c3ba68950b8dcc1d1a03a03436353d7dff29178fab587ae68ccf5dbb2dda",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/recursive-mismatch-511-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 1,
+          "stdoutSha256": "34f0f38e38bf42cad1afa18709ecba9f5412cd65453458d1f8616487ee4fab2f"
+        },
+        "retained": {
+          "status": 1,
+          "stdoutSha256": "34f0f38e38bf42cad1afa18709ecba9f5412cd65453458d1f8616487ee4fab2f"
+        },
+        "oracle": {
+          "status": 1,
+          "stdoutSha256": "34f0f38e38bf42cad1afa18709ecba9f5412cd65453458d1f8616487ee4fab2f"
+        }
+      }
+    },
+    {
+      "id": "callable-fallback-511-true",
+      "fileSha256": "912b14bf2b3c0cf675e65f5f747969d16e8463c6e880c715c76de132c32d6672",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/callable-fallback-511-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "id": "mapped-source-511-true",
+      "fileSha256": "1dd4bb9a79a45eeaaced573748de6c2a6646ffd9100d0728369d07b381f531f4",
+      "args": [
+        "--ignoreConfig",
+        "--noEmit",
+        "--pretty",
+        "false",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "esnext",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "--exactOptionalPropertyTypes",
+        "true",
+        "/tmp/tsc-sparse-property-helper/wide/mapped-source-511-true.ts"
+      ],
+      "results": {
+        "candidate": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "retained": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "oracle": {
+          "status": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ]
+}
