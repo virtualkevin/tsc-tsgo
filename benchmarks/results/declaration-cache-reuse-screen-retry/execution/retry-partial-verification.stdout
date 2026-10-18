@@ -1,0 +1,61 @@
+{
+  "status": "verified-partial",
+  "captureHead": "d9ff40b29d9db11d79a2030dfa43174e90771eb3",
+  "summarySha256": "b5ea8e1811c689cb0766d8a5f756793388db156e7d9dc5522bee8e1282160082",
+  "reportSha256": "89369153a2f691a6525cf9bd4840fbc5fdb0e429698fbe0701cd6abff5f52882",
+  "results": [
+    {
+      "name": "typeorm",
+      "runs": 9,
+      "files": 3572,
+      "baselineMedianMs": 2525.869674,
+      "candidateMedianMs": 2334.150868,
+      "baselineOverCandidate": 1.0821364242681848,
+      "pairedRatios": [
+        1.1530479965654379,
+        1.0976779812272563,
+        1.1085826227016955,
+        1.0760953423424433,
+        0.9471468062582197,
+        1.1258087140394537,
+        1.0937718664849012,
+        1.0483503356819006,
+        1.0754040843224557
+      ],
+      "pairedMedian": 1.0937718664849012,
+      "pairedMin": 0.9471468062582197,
+      "pairedMax": 1.1530479965654379,
+      "optimizedFasterPairs": 8,
+      "baselineMedianRssMiB": 881.48046875,
+      "candidateMedianRssMiB": 727.2890625,
+      "rssCandidateOverBaseline": 0.8250767751341626
+    },
+    {
+      "name": "trpc",
+      "runs": 9,
+      "files": 942,
+      "baselineMedianMs": 497.168504,
+      "candidateMedianMs": 483.45031,
+      "baselineOverCandidate": 1.0283756028618536,
+      "pairedRatios": [
+        0.909886235292833,
+        0.9470296532828387,
+        0.9503580428636308,
+        1.1239526271190312,
+        1.2193444446861579,
+        1.0537811631561473,
+        0.9755718943196247,
+        1.0870336820363322,
+        1.109953949517295
+      ],
+      "pairedMedian": 1.0537811631561473,
+      "pairedMin": 0.909886235292833,
+      "pairedMax": 1.2193444446861579,
+      "optimizedFasterPairs": 5,
+      "baselineMedianRssMiB": 240.375,
+      "candidateMedianRssMiB": 233.75,
+      "rssCandidateOverBaseline": 0.9724388975559022
+    }
+  ],
+  "decision": "Incomplete screen: completed small workload evidence only. No full-suite acceptance, aggregate, large-workload result or promotion claim."
+}
