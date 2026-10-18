@@ -1,0 +1,90 @@
+{
+  "status": "incomplete confirmation; completed small workloads independently verified",
+  "summarySha256": "398147a46e6b7e43c36efd4ad73b8a3a21e914377c22c0ea1cad8d659b65aac4",
+  "configSha256": "b2078725b55b7b6d2a5309c5f66cfe8097ad7346ab5cd46af913949323643c17",
+  "results": [
+    {
+      "name": "typeorm",
+      "runs": 19,
+      "files": 3572,
+      "baselineMedianMs": 2522.315139,
+      "candidateMedianMs": 2593.60825,
+      "baselineOverCandidate": 0.9725119971375783,
+      "pairedRatios": [
+        1.0765245417420561,
+        0.9544563890923675,
+        1.1082559785542685,
+        1.0065907916533432,
+        0.9434185693863139,
+        1.0749555388825531,
+        0.9764868860829469,
+        0.9257139459375698,
+        0.9524206302166104,
+        1.0161518275145454,
+        0.9316670547158539,
+        0.9589381467615224,
+        1.0414947934236398,
+        0.9767352932548796,
+        0.9323418102180066,
+        0.9582182614361332,
+        0.9815405575895187,
+        1.0043271869778205,
+        0.8740257256249762
+      ],
+      "pairedMedian": 0.9764868860829469,
+      "pairedMin": 0.8740257256249762,
+      "pairedMax": 1.1082559785542685,
+      "optimizedFasterPairs": 7,
+      "baselineMedianRssMiB": 880.9453125,
+      "candidateMedianRssMiB": 885.83984375,
+      "rssCandidateOverBaseline": 1.0055559989712755
+    },
+    {
+      "name": "trpc",
+      "runs": 19,
+      "files": 942,
+      "baselineMedianMs": 499.577639,
+      "candidateMedianMs": 514.582674,
+      "baselineOverCandidate": 0.9708403804516744,
+      "pairedRatios": [
+        0.9520108382631839,
+        0.9488469757391014,
+        0.9775487543776464,
+        0.9477940920823573,
+        0.8933065095099209,
+        1.0045146166173369,
+        0.9146333884915665,
+        0.9829902212070456,
+        1.059681670167899,
+        0.9028966169025624,
+        0.9295709375622926,
+        1.1320343102556414,
+        1.1362862134653628,
+        0.8493849270673038,
+        1.0054335370024527,
+        1.012084488392348,
+        1.0418113085601781,
+        0.9996245047241091,
+        0.9784708477016538
+      ],
+      "pairedMedian": 0.9784708477016538,
+      "pairedMin": 0.8493849270673038,
+      "pairedMax": 1.1362862134653628,
+      "optimizedFasterPairs": 7,
+      "baselineMedianRssMiB": 243.125,
+      "candidateMedianRssMiB": 242.25,
+      "rssCandidateOverBaseline": 0.996401028277635
+    }
+  ],
+  "failedFloors": [
+    "typeorm",
+    "trpc"
+  ],
+  "decision": "reject candidate; no reverse confirmation, extra samples or promotion",
+  "limitations": [
+    "Large-workload confirmation unfinished; no four-workload aggregate computed.",
+    "Completed19pair workload-floor failures suffice to reject under the predeclared all-workloads gate.",
+    "Earlier passing screen does not rescue this independent confirmation.",
+    "No comparison to the original native target."
+  ]
+}

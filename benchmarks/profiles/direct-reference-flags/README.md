@@ -29,3 +29,7 @@ Validation controllers/readback pin captureHEADc83b57c and intentionally refuse 
 ## Completed screen: qualifies for confirmation
 
 Capture0473c3d/session33859 completed exit0 without a signal; independent recorder45751 passed exact inputs, source/binary/controller checks and all gates. Ratios of medians/paired medians: TypeORM1.026488/1.032241; tRPC1.013730/1.036124; VSCode1.001262/.995469; Sentry1.010668/1.009808. Aggregates1.012996793/1.018274439, all workload floors and RSS pass. Four measured rows added to PERF.md. Raw reports and11readback-verified execution files reside in ../../results/direct-reference-flags-screen. Two separate confirmations remain required; no promotion or native-relative gain claim.
+
+## Confirmation outcome: rejected
+
+The independent forward confirmation failed completed TypeORM/tRPC floors before its large group was interrupted. Exact19pair ratios/paired: TypeORM0.972511997/0.976486886; tRPC0.970840380/0.978470848. Independent readback verified these completed groups. No large-workload aggregate, reverse confirmation, rescue samples or promotion; see ../direct-reference-confirmation/README.md and ../../results/direct-reference-confirm-forward/DECISION.md. The passing screen does not override a failed independent confirmation. Production remains unchanged.
