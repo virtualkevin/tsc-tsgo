@@ -1,0 +1,80 @@
+{
+  "scope": "Isolated Name prototype tests via overlay; no production integration, full compiler conformance, or speed claim.",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/name.go": "043b82edcc94f9c4ebe3d2c7c3fd6af1a7a9425a05441b318c0559e432f49211",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/name_test.go": "a804d84fabf1d178d1247366c8c32d6d2ac73a795030a6811e630320d468ea0d"
+  },
+  "controllerSha256": "674eb578081f8a9ad704c1f774e8656b071d6f0e4ac1346f83e96424981e0fef",
+  "passed": true,
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/canonical-name-handles/overlay.json",
+        "./internal/ast",
+        "-run",
+        "^TestCanonicalName",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestCanonicalNameExactBytes",
+          "pass"
+        ],
+        [
+          "TestCanonicalNameConcurrentLifetime",
+          "pass"
+        ],
+        [
+          "TestCanonicalNameTextBoundary",
+          "pass"
+        ]
+      ],
+      "passed": true,
+      "stdoutSha256": "1e22b74df94303075038f146b49c609e9062679e636e525b0c613fc74e6a2daa",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-race",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/canonical-name-handles/overlay.json",
+        "./internal/ast",
+        "-run",
+        "^TestCanonicalName",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestCanonicalNameExactBytes",
+          "pass"
+        ],
+        [
+          "TestCanonicalNameConcurrentLifetime",
+          "pass"
+        ],
+        [
+          "TestCanonicalNameTextBoundary",
+          "pass"
+        ]
+      ],
+      "passed": true,
+      "stdoutSha256": "d86968df1b8d38cfc62275e82322d5c408b489a7dd99035a300f41202b7645f2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

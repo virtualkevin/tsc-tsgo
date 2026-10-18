@@ -1,0 +1,27 @@
+# Canonical name handle prototype and migration boundary decisions
+
+This is an isolated foundation for a full name-flow candidate, following the completed construction census. It is not integrated into the production compiler and has no measured speedup. Production source remains `216d40c7`; the retained default compiler is unchanged. The census supports investigating carried canonical names, not converting at every hash lookup.
+
+`name.go` proposes an `ast.Name` wrapper over Go 1.26.9 `unique.Handle[string]`. Empty text has exactly the zero representation; decoding the zero wrapper never dereferences a zero unique handle. Nonempty names preserve exact Go byte-string equality. A live wrapper owns its canonical descriptor, while `unique` supplies weak canonical-table retention. Symbol identity, type identity, private origins and inferred semantic state remain separate. The wrapper is pointer-backed, not a pointer-free numeric ID. It adds canonical-table lookup, descriptor/string allocation and eventual cleanup costs.
+
+The three focused tests exercise exact-byte identity (including invalid UTF-8, NUL, internal markers, private spelling and distinct Unicode normalization forms), concurrent canonicalization with a live handle across GC, mutable-input isolation, and text/JSON/diagnostic formatting boundaries. JSON behavior is compared with ordinary strings; invalid UTF-8 is replaced by JSON's existing string behavior, not claimed to round-trip losslessly. No test claims immediate weak-entry reclamation, bounded cleanup latency or full compiler/API compatibility. `validate.py` injects only these two files through an ignored Go overlay and records normal/race raw output and hashes.
+
+## Decisions for the candidate
+
+`boundaries.json` records all 39 remaining typed map-read sites in 32 functions, source hashes, exact expressions, source excerpts and manual migration decisions. `trace_boundaries.py` checks those sites against the earlier typed inventory and source hashes. This is a review of local source boundaries, not a complete interprocedural call graph or dynamic conversion-frequency measurement. The inventory structurally matches string-to-Symbol maps, including unnamed maps such as `unresolvedSymbols`; its 111 reads are not all declarations of the named `ast.SymbolTable` type.
+
+The implementation should:
+
+1. Store Name in Identifier and Symbol, make SymbolTable a built-in map keyed by Name, and provide an identifier-aware Node.NameKey accessor. Keep Node.Text and external string APIs string-shaped. Non-identifier property literals must use the exact existing spelling and conversion rules.
+2. Carry keys through name resolution, property resolution, union/intersection caches, constituent recursion and pending member lookup. Migrate associated positions, duplicate-export and fake-scope cleanup indexes with their tables. An AST/symbol key must not decode to string and call MakeName again in each recursive layer.
+3. Convert synthesized declaration names, computed/numeric property names and string API requests at an explicit boundary, then reuse the handle. Constants need stable canonical values; no content hashing per constant table access. Parser interning already exists, so reuse stored handles there instead of claiming string canonicalization itself is new.
+4. Preserve exact private-name construction (`InternalSymbolNamePrefix`, class SymbolId and spelling), missing-name sentinel checks, symbol/type identity and diagnostic effects. `getPropertyNameFromIndex` returns `InternalSymbolNameMissing` on absence; it does not use the empty string. Empty property names remain valid.
+5. Retain byte-string ordering in pending-member sorting and other deterministic ordering. Pointer/handle ordering is not lexical ordering. Preserve nil/alias/clone/delete/range behavior using built-in maps, and preserve fake-scope restoration.
+6. Keep dotted unresolved-symbol paths string-keyed (they already are). Separate the module-reference-keyed ambient augmentation dictionary from the semantic-name SymbolTable type, including its initializer helper, rather than interning unrelated resolution strings.
+7. Update local AST generation/reproduction support along with generated Identifier changes; the pinned upstream fixture is an oracle, not a place to silently change generator inputs. Preserve public factory string arguments and clone text accounting; add a handle-taking internal path only when the caller already carries one.
+
+After integration, build/type-check all packages and run focused identity/missing/private/serialization tests, full conformance, root tests, CLI/API/emit, services, race and checkptr gates. Then freeze the candidate and use the existing matched performance screen/confirmation policy against the retained compiler. Only an accepted candidate proceeds to the original-native milestone. This foundation is not a promotion or a reason to relax those gates. No PERF row is appropriate yet, and the 10× goal remains unmet.
+
+## Reproduction
+
+From the repository root, run `python3 benchmarks/profiles/canonical-name-handles/trace_boundaries.py` to reproduce the reviewed boundary records at the pinned source, and `python3 benchmarks/profiles/canonical-name-handles/validate.py` for the isolated tests with the pinned toolchain. `validation.json` records actual outcomes. `manifest.json` covers the archived evidence other than itself and regenerated overlay.json.
