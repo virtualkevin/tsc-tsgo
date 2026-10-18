@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "5f9c46685ca53938890126fef075a054da8411d13df94d85f244836662ac27a0",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "fd7b1c12a3419d16b0c0a877b12fbd5fd62c711f02d8db3ee47bc84bc3c3786a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/instantiation_window.go": "9abac7cf1322e973fb9be749cdb1c496a712ee3f151ac1ac7e4297ba7d296d13",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/instantiation_window_test.go": "8bd99bb4d948e15e5a969e517c94f21d79979c4b01a85afced6469bdc835d884",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/compiler_instantiation_window.go": "0a4b977253dffed34117edb18ac5598b57d433826aa37cb0e04008b5d1b4c884",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/instantiation_window_weak_roots_test.go": "1fb0126a66c18abb8121015a23e96648b895a2a5098ad035619e83df09a759ca",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/window_families.go": "f1a19c3e0b36f7c9050f33bfc7bed9cf06075499f5bdbb33b98451d2800ba037",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/window_families_test.go": "06f8d80f344cd0c616bf7a37f09e550cca64f497220aa91bc6690570e05ac40e"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/instantiation-family-census/overlay-with-lifetime.json",
+        "./internal/checker",
+        "-run",
+        "^TestInstantiationWindow"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestInstantiationWindowResultsAndEpoch",
+        "TestInstantiationWindowNestedAndEviction",
+        "TestInstantiationWindowSelectionAndOutput",
+        "TestInstantiationWindowWeakRoots",
+        "TestInstantiationWindowFamilyClassification",
+        "TestInstantiationWindowFamilyRepeatAccounting"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/instantiation-family-census/overlay-with-lifetime.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestInstantiationWindow"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestInstantiationWindowResultsAndEpoch",
+        "TestInstantiationWindowNestedAndEviction",
+        "TestInstantiationWindowSelectionAndOutput",
+        "TestInstantiationWindowWeakRoots",
+        "TestInstantiationWindowFamilyClassification",
+        "TestInstantiationWindowFamilyRepeatAccounting"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/instantiation-family-census/overlay-with-lifetime.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestInstantiationWindow"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestInstantiationWindowResultsAndEpoch",
+        "TestInstantiationWindowNestedAndEviction",
+        "TestInstantiationWindowSelectionAndOutput",
+        "TestInstantiationWindowWeakRoots",
+        "TestInstantiationWindowFamilyClassification",
+        "TestInstantiationWindowFamilyRepeatAccounting"
+      ]
+    }
+  ]
+}

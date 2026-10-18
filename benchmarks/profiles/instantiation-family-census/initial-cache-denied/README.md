@@ -1,0 +1,1 @@
+Initial validation session92743 ended with assertion failure after six normal tests passed. Race compilation failed opening the configured Go cache with read-only file system. No race test executed and checkptr did not start. These logs are preserved as failed setup evidence, not successful validation. Retrying the unchanged overlay with authorized cache access.

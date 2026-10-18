@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "test",
+    "-count=5",
+    "-run",
+    "^$",
+    "-bench",
+    "^BenchmarkMapperPlanMerged$",
+    "-benchtime=200ms",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/mapper-execution-plan/overlay.json",
+    "./internal/checker"
+  ],
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_plan.go": "549e2a6eff65f1fada9ebda5f2f5f2f73ab73db5bb65b427489d626586779011",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_plan_test.go": "1f8f80af8cba9c5bb824348ddfad6421dc7e906cb2db94b14c518400be857667"
+  },
+  "scope": "Fixed-order synthetic 32-link merged-chain evaluation only. Excludes compilation and retained plan memory. No compiler workload speedup claim."
+}

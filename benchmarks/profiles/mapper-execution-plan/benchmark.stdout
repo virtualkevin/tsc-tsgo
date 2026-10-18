@@ -1,0 +1,16 @@
+goos: linux
+goarch: amd64
+pkg: github.com/microsoft/typescript-go/internal/checker
+cpu: Intel Xeon Processor (Cascadelake)
+BenchmarkMapperPlanMerged/recursive-8         	  962996	       259.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/recursive-8         	  702062	       289.0 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/recursive-8         	  834891	       275.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/recursive-8         	  877862	       245.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/recursive-8         	  969190	       251.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/plan-8              	 2122710	       137.1 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/plan-8              	 2650238	        87.45 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/plan-8              	 2461268	        86.59 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/plan-8              	 2457297	        87.01 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapperPlanMerged/plan-8              	 2298890	        92.33 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/microsoft/typescript-go/internal/checker	3.051s
