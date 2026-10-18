@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "sources": 70,
+  "patchSha256": "45e2c455fdbbfb39a7773e3ca06ad17a50fe8f80d83b17f71edd72a8fc5ab163",
+  "freezeSha256": "fcfaac2f26f97bf4baaf06a13bd3dbded72c81caa569baa9ed81c9a7b7cd2b5f",
+  "checks": [
+    "exact full patch reconstruction",
+    "integrated generator read-only check",
+    "idempotent integrated generator write",
+    "regenerate three changed generated files from baseline output copies"
+  ],
+  "scope": "Reconstruction and local generation support, not an upstream generator rerun or compiler performance evidence."
+}

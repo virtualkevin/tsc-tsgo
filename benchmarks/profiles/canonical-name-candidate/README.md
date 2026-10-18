@@ -1,6 +1,16 @@
 # Carried canonical-name candidate — integration checkpoint
 
-## Latest validated staging checkpoint
+## Current 70-file candidate
+
+`candidate-final.patch` and `final-freeze.json` define the completed staged integration: 67 Go files plus package commands and two generation-support files. The boundary follow-up and generator support described below are now integrated in this version. Exact patch reconstruction and local generation checks passed (`final-reconstruction.json`). The exact patch was applied temporarily for a normal production build after validation, then all 70 paths were restored and the baseline source hash verified.
+
+All six Go-side phases passed: focused normal/race/checkptr, root, services, and pinned conformance. Conformance comprises 12,789 fully checked, eight partially checked, and 2,118 unsupported cases, with zero failures. `final-tests.json` records scope and skips; `final-tests-readback.json` verifies the 12 compressed/raw logs. Normal CLI 80, API/emit integration 12, race CLI 80, and pointer-checking CLI 80 passed. `final-cli.json` records all four completed phases; `final-cli-readback.json` verifies six archived logs.
+
+The separate overlay executable is diagnostic evidence, not the production-provenance benchmark binary. `build-production.py` requires matching completed validation and an already-applied exact candidate. The normal production build passed; its binary SHA256 matches the validated overlay executable. It preserves and restores the retained default binary and sidecar. Source application passed automatic approval after full validation. Normal build provenance verifies the exact 70-file delta and identical build settings; `restoration.json` and `preflight-restored.json` verify the restored baseline. The candidate executable is retained separately for the pending screen. `COMPARISON_POLICY.md` freezes the screen and two confirmation gates. There are no performance results for this candidate, and the original-native 10× goal is unmet.
+
+The compile-05 failure was an unused local after a lookup became entirely key-based; its exact patch/logs are preserved. Removing that binding produced the successful final diagnostic build. Earlier checkpoint evidence below applies only to its named sources.
+
+## Earlier 66-file staging checkpoint
 
 The current staged source is **candidate-next-02.patch**, with 66 files hashed in refinement-freeze-02.json. Declaration keys, 43 cached constant names and 148 typed call-site refinements extend the initial checkpoint below. Normal, race and checkptr focused runs each passed 19 records/17 top-level tests across four packages. The broader run passed 21,181 records/253 top-level tests across 14 packages, with no failures or skips. Controller 54229 finished successfully at HEAD 24fc106; source remained frozen throughout. Compressed raw logs, readback verification and exact corrected-patch reconstruction are archived. These results do not cover full conformance or the complete CLI/API/emit/services suites.
 

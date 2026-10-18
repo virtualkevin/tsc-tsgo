@@ -1,0 +1,31 @@
+{
+  "scope": "Diagnostic overlay binary and exact staged source metadata; not standard production build-system provenance or a performance comparison.",
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/canonical-name-candidate/overlay.json",
+    "-o",
+    "/tmp/tsc-canonical-names/final/tsc-go",
+    "./cmd/tsgo"
+  ],
+  "exitCode": 0,
+  "freezeSha256": "fcfaac2f26f97bf4baaf06a13bd3dbded72c81caa569baa9ed81c9a7b7cd2b5f",
+  "controllerSha256": "1c5201a12b0d4a44c808d37d7844d128e67f4cd50907cfaa6f56881f12feb866",
+  "commonSha256": "1bbe4ba8709f889e694920d595a5fc9e2e9597e9c810fe3ddb4e309351576c04",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "passed": true,
+  "binarySha256": "6b09ab1fd4fa1619ed7da6a972d9f4157c4d24b7f1e2f50bb6918f5d9686c960",
+  "buildInfoSha256": "e4e719ab1f0663e084d208028adfc1b4250558c7ced016241e9aee704b671bbf",
+  "goEnv": {
+    "CGO_ENABLED": "1",
+    "GOAMD64": "v1",
+    "GOARCH": "amd64",
+    "GOEXPERIMENT": "",
+    "GOFLAGS": "",
+    "GOOS": "linux",
+    "GOVERSION": "go1.26.9"
+  }
+}
