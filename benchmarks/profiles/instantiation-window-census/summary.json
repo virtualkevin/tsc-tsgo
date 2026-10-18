@@ -1,0 +1,90 @@
+{
+  "captureHead": "eaf5d093c5a787a6e1d868d0aa3e026ff9e53e1a",
+  "binarySha256": "77e30f6b01a5908444dc12655ecf6775f188b88195b7d4a384ecb04ad5ce98e3",
+  "rows": [
+    {
+      "project": "typeorm",
+      "requests": 425723,
+      "selected": 3308,
+      "firstInWindow": 2606,
+      "completedRepeats": 702,
+      "sameResult": 702,
+      "changedResult": 0,
+      "sameStateAndResult": 466,
+      "nestedPending": 0,
+      "evictions": 208,
+      "repeatedDescendantInstantiations": 165,
+      "minimumZeroDescendantRepeats": 537,
+      "controlElapsedSeconds": {
+        "baseline": 2.852908164000837,
+        "disabled": 2.3422836030076724,
+        "enabled": 2.3886282299936283
+      }
+    },
+    {
+      "project": "trpc",
+      "requests": 222416,
+      "selected": 1715,
+      "firstInWindow": 1300,
+      "completedRepeats": 415,
+      "sameResult": 415,
+      "changedResult": 0,
+      "sameStateAndResult": 362,
+      "nestedPending": 0,
+      "evictions": 53,
+      "repeatedDescendantInstantiations": 112,
+      "minimumZeroDescendantRepeats": 303,
+      "controlElapsedSeconds": {
+        "baseline": 0.5223262629879173,
+        "disabled": 0.5189525810128544,
+        "enabled": 0.51705882200622
+      }
+    },
+    {
+      "project": "vscode",
+      "requests": 5915965,
+      "selected": 45452,
+      "firstInWindow": 37566,
+      "completedRepeats": 7886,
+      "sameResult": 7886,
+      "changedResult": 0,
+      "sameStateAndResult": 5647,
+      "nestedPending": 0,
+      "evictions": 22817,
+      "repeatedDescendantInstantiations": 2668,
+      "minimumZeroDescendantRepeats": 5218,
+      "controlElapsedSeconds": {
+        "baseline": 33.11847736497293,
+        "disabled": 33.69382768301875,
+        "enabled": 35.20843240901013
+      }
+    },
+    {
+      "project": "sentry",
+      "requests": 11722854,
+      "selected": 88972,
+      "firstInWindow": 50522,
+      "completedRepeats": 38449,
+      "sameResult": 38445,
+      "changedResult": 4,
+      "sameStateAndResult": 35660,
+      "nestedPending": 1,
+      "evictions": 34951,
+      "repeatedDescendantInstantiations": 12424,
+      "minimumZeroDescendantRepeats": 26025,
+      "controlElapsedSeconds": {
+        "baseline": 28.603259524999885,
+        "disabled": 26.26336496899603,
+        "enabled": 26.852130279003177
+      }
+    }
+  ],
+  "decision": "No wider cache justified. Identify request/type/mapper families and semantic invalidation before any implementation.",
+  "limitations": [
+    "Weak bounded hash selection is not proven random; no population extrapolation.",
+    "Eviction loses recurrence history.",
+    "Equal pointer and partial state are not context-complete cache identity.",
+    "Descendant counts overlap and exclude direct work; zero descendants does not imply cheap execution.",
+    "Single fixed-order control durations are not speedup measurements."
+  ]
+}

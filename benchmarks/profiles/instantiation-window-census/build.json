@@ -1,0 +1,25 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/instantiation-window-census/overlay-with-lifetime.json",
+    "-o",
+    "/tmp/tsc-instantiation-window-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "5f9c46685ca53938890126fef075a054da8411d13df94d85f244836662ac27a0",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "fd7b1c12a3419d16b0c0a877b12fbd5fd62c711f02d8db3ee47bc84bc3c3786a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/instantiation_window.go": "211efabeb0b7dd26d92df56903f2139485fa35fb4d829c6f9fbdde7b91596a99",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/instantiation_window_test.go": "8bd99bb4d948e15e5a969e517c94f21d79979c4b01a85afced6469bdc835d884",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/compiler_instantiation_window.go": "0a4b977253dffed34117edb18ac5598b57d433826aa37cb0e04008b5d1b4c884",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/instantiation_window_weak_roots_test.go": "1fb0126a66c18abb8121015a23e96648b895a2a5098ad035619e83df09a759ca"
+  },
+  "controllerSha256": "eb97de8606072ac241429ea295ac5c640711068aa3b54b929098295b75b0383e",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "77e30f6b01a5908444dc12655ecf6775f188b88195b7d4a384ecb04ad5ce98e3",
+  "buildInfoSha256": "2184c1e2ad136f345fc44c0543ea7665c96194ce1e2e4c237e189f14e41131fe"
+}

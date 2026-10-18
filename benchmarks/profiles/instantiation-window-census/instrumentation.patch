@@ -1,0 +1,352 @@
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -578,6 +578,7 @@
+ var nextCheckerID atomic.Uint32
+ 
+ type Checker struct {
++	instantiationWindow                         *instantiationWindow
+ 	instantiatedMemberLists                     map[instantiatedMemberListKey]*instantiatedMemberSource
+ 	id                                          uint32
+ 	program                                     Program
+@@ -906,6 +907,7 @@
+ 	program.BindSourceFiles()
+ 
+ 	c := &Checker{}
++	c.instantiationWindow = newInstantiationWindow()
+ 	c.id = nextCheckerID.Add(1)
+ 	c.tracer = tracer
+ 	c.program = program
+@@ -22030,7 +22032,14 @@
+ 	c.TotalInstantiationCount++
+ 	c.instantiationCount++
+ 	c.instantiationDepth++
++	var window windowToken
++	if c.instantiationWindow != nil {
++		window = c.instantiationWindow.begin(c, t, m, alias)
++	}
+ 	result := c.instantiateTypeWorker(t, m, alias)
++	if c.instantiationWindow != nil {
++		c.instantiationWindow.finish(c, window, result)
++	}
+ 	if index == -1 {
+ 		c.popActiveMapper()
+ 	} else {
+@@ -22070,6 +22079,9 @@
+ }
+ 
+ func (c *Checker) clearActiveMapperCaches() {
++	if c.instantiationWindow != nil {
++		c.instantiationWindow.epoch++
++	}
+ 	for _, cache := range c.activeTypeMappersCaches {
+ 		clear(cache)
+ 	}
+--- a/packages/tsc-go/internal/execute/tsc.go
++++ b/packages/tsc-go/internal/execute/tsc.go
+@@ -372,6 +372,10 @@
+ 		Tracing:            tr,
+ 	})
+ 
++	if err := program.WriteInstantiationWindowCensus(); err != nil {
++		panic(err)
++	}
++
+ 	stopTracing(sys, tr)
+ 
+ 	return tsc.CommandLineResult{
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/instantiation_window.go
+@@ -0,0 +1,178 @@
++package checker
++
++import (
++	"encoding/json"
++	"github.com/microsoft/typescript-go/internal/ast"
++	"os"
++	"unsafe"
++	"weak"
++)
++
++type windowKey struct {
++	input  weak.Pointer[Type]
++	mapper weak.Pointer[TypeMapper]
++}
++type windowState struct {
++	epoch       uint64
++	node        weak.Pointer[ast.Node]
++	flags       TypeFlags
++	objectFlags ObjectFlags
++}
++type windowEntry struct {
++	key     windowKey
++	state   windowState
++	result  weak.Pointer[Type]
++	serial  uint64
++	pending bool
++}
++type WindowCounts struct {
++	Requests, Aliased, Unsampled, Selected                                                              uint64
++	FirstInWindow, RepeatedCompleted, NestedPending, Evictions                                          uint64
++	SameObservedState, ChangedObservedState                                                             uint64
++	FinishedFirst, FinishedRepeated, SameResult, ChangedResult, SameStateAndResult, EvictedBeforeFinish uint64
++	FirstDescendantInstantiations, RepeatedDescendantInstantiations, CounterWraps                       uint64
++}
++type instantiationWindow struct {
++	slots         []windowEntry
++	mask          uint64
++	serial, epoch uint64
++	counts        WindowCounts
++}
++type windowToken struct {
++	index             int
++	serial            uint64
++	before            uint32
++	repeat, sameState bool
++	old               weak.Pointer[Type]
++}
++
++func newInstantiationWindow() *instantiationWindow {
++	if os.Getenv("TSC_GO_INSTANTIATION_WINDOW") == "" {
++		return nil
++	}
++	return &instantiationWindow{slots: make([]windowEntry, 4096), mask: 127}
++}
++func windowHash(t *Type, m *TypeMapper) uint64 {
++	// Scalar sampling only; never reconstruct pointers or use addresses as roots.
++	// The pinned runtime is non-moving, as with the production pointer table.
++	x := uint64(uintptr(unsafe.Pointer(m))) ^ uint64(t.id)*0x9e3779b97f4a7c15
++	x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9
++	x = (x ^ (x >> 27)) * 0x94d049bb133111eb
++	return x ^ (x >> 31)
++}
++func (s *instantiationWindow) begin(c *Checker, t *Type, m *TypeMapper, alias *TypeAlias) windowToken {
++	s.counts.Requests++
++	if alias != nil {
++		s.counts.Aliased++
++		return windowToken{}
++	}
++	hash := windowHash(t, m)
++	if hash&s.mask != 0 {
++		s.counts.Unsampled++
++		return windowToken{}
++	}
++	s.counts.Selected++
++	// Selection bits and directory-index bits are disjoint for mask127.
++	index := int((hash >> 7) % uint64(len(s.slots)))
++	e := &s.slots[index]
++	key := windowKey{weak.Make(t), weak.Make(m)}
++	state := windowState{s.epoch, weak.Make(c.currentNode), t.flags, t.objectFlags}
++	token := windowToken{index: index, before: c.TotalInstantiationCount}
++	if e.serial != 0 && e.key == key {
++		if e.pending {
++			s.counts.NestedPending++
++			return windowToken{}
++		}
++		s.counts.RepeatedCompleted++
++		token.repeat = true
++		token.old = e.result
++		token.sameState = e.state == state
++		if token.sameState {
++			s.counts.SameObservedState++
++		} else {
++			s.counts.ChangedObservedState++
++		}
++	} else {
++		s.counts.FirstInWindow++
++		if e.serial != 0 {
++			s.counts.Evictions++
++		}
++	}
++	s.serial++
++	token.serial = s.serial
++	*e = windowEntry{key: key, state: state, serial: token.serial, pending: true}
++	return token
++}
++func (s *instantiationWindow) finish(c *Checker, token windowToken, result *Type) {
++	if token.serial == 0 {
++		return
++	}
++	e := &s.slots[token.index]
++	if e.serial != token.serial {
++		s.counts.EvictedBeforeFinish++
++		return
++	}
++	e.pending = false
++	e.result = weak.Make(result)
++	var descendants uint64
++	if c.TotalInstantiationCount < token.before {
++		s.counts.CounterWraps++
++	} else {
++		descendants = uint64(c.TotalInstantiationCount - token.before)
++	}
++	if token.repeat {
++		s.counts.FinishedRepeated++
++		s.counts.RepeatedDescendantInstantiations += descendants
++		if e.result == token.old {
++			s.counts.SameResult++
++			if token.sameState {
++				s.counts.SameStateAndResult++
++			}
++		} else {
++			s.counts.ChangedResult++
++		}
++	} else {
++		s.counts.FinishedFirst++
++		s.counts.FirstDescendantInstantiations += descendants
++	}
++}
++
++type InstantiationWindowSnapshot struct {
++	CheckerID    uint32
++	Slots        int
++	SamplingMask uint64
++	Epoch        uint64
++	Pending      int
++	Counts       WindowCounts
++}
++
++func (c *Checker) InstantiationWindowSnapshot() (InstantiationWindowSnapshot, bool) {
++	s := c.instantiationWindow
++	if s == nil {
++		return InstantiationWindowSnapshot{}, false
++	}
++	pending := 0
++	for _, e := range s.slots {
++		if e.pending {
++			pending++
++		}
++	}
++	return InstantiationWindowSnapshot{c.id, len(s.slots), s.mask, s.epoch, pending, s.counts}, true
++}
++func WriteInstantiationWindowSnapshots(path string, owners []InstantiationWindowSnapshot) error {
++	f, err := os.OpenFile(path, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0o644)
++	if err != nil {
++		return err
++	}
++	report := struct {
++		SchemaVersion int
++		Scope         string
++		Owners        []InstantiationWindowSnapshot
++	}{1, "Alias-free actual instantiation misses, hash-selected1/128keys across execution,4096direct-mapped weak slots per checker. Eviction censors repetition. Selected state and pointer identity do not establish semantic equivalence; descendant counters overlap recursively and are not CPU or removable work.", owners}
++	err = json.NewEncoder(f).Encode(report)
++	closeErr := f.Close()
++	if err != nil {
++		return err
++	}
++	return closeErr
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/instantiation_window_test.go
+@@ -0,0 +1,61 @@
++package checker
++
++import (
++	"path/filepath"
++	"testing"
++)
++
++func TestInstantiationWindowResultsAndEpoch(t *testing.T) {
++	s := &instantiationWindow{slots: make([]windowEntry, 1)}
++	c := &Checker{}
++	input := &Type{id: 1}
++	m := &TypeMapper{}
++	result := &Type{id: 2}
++	a := s.begin(c, input, m, nil)
++	c.TotalInstantiationCount += 3
++	s.finish(c, a, result)
++	b := s.begin(c, input, m, nil)
++	s.finish(c, b, result)
++	s.epoch++
++	b = s.begin(c, input, m, nil)
++	s.finish(c, b, &Type{id: 3})
++	if s.counts.FirstInWindow != 1 || s.counts.RepeatedCompleted != 2 || s.counts.SameObservedState != 1 || s.counts.ChangedObservedState != 1 || s.counts.SameResult != 1 || s.counts.ChangedResult != 1 || s.counts.SameStateAndResult != 1 || s.counts.FirstDescendantInstantiations != 3 {
++		t.Fatalf("counts %+v", s.counts)
++	}
++}
++func TestInstantiationWindowNestedAndEviction(t *testing.T) {
++	s := &instantiationWindow{slots: make([]windowEntry, 1)}
++	c := &Checker{}
++	input := &Type{id: 1}
++	m := &TypeMapper{}
++	a := s.begin(c, input, m, nil)
++	nested := s.begin(c, input, m, nil)
++	s.finish(c, nested, input)
++	b := s.begin(c, &Type{id: 2}, m, nil)
++	s.finish(c, b, input)
++	s.finish(c, a, input)
++	if s.counts.Selected != 3 || s.counts.FirstInWindow != 2 || s.counts.NestedPending != 1 || s.counts.Evictions != 1 || s.counts.EvictedBeforeFinish != 1 || s.counts.FinishedFirst != 1 {
++		t.Fatalf("counts %+v", s.counts)
++	}
++}
++func TestInstantiationWindowSelectionAndOutput(t *testing.T) {
++	s := &instantiationWindow{slots: make([]windowEntry, 4096), mask: 127}
++	c := &Checker{}
++	m := &TypeMapper{}
++	for id := 1; id <= 8192; id++ {
++		input := &Type{id: TypeId(id)}
++		token := s.begin(c, input, m, nil)
++		s.finish(c, token, input)
++	}
++	s.begin(c, &Type{id: 9}, m, &TypeAlias{})
++	if s.counts.Aliased != 1 || s.counts.Selected == 0 || s.counts.Unsampled == 0 || s.counts.Requests != s.counts.Aliased+s.counts.Unsampled+s.counts.Selected {
++		t.Fatal("selection partition")
++	}
++	path := filepath.Join(t.TempDir(), "counts.json")
++	if err := WriteInstantiationWindowSnapshots(path, nil); err != nil {
++		t.Fatal(err)
++	}
++	if err := WriteInstantiationWindowSnapshots(path, nil); err == nil {
++		t.Fatal("overwrote output")
++	}
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/compiler/compiler_instantiation_window.go
+@@ -0,0 +1,48 @@
++package compiler
++
++import (
++	"fmt"
++	"os"
++
++	"github.com/microsoft/typescript-go/internal/checker"
++)
++
++// WriteInstantiationWindowCensus is diagnostic-only and runs after normal CLI checking.
++// It neither constructs checkers nor forces semantic queries or GC.
++func (p *Program) WriteInstantiationWindowCensus() error {
++	path := os.Getenv("TSC_GO_INSTANTIATION_WINDOW")
++	if path == "" {
++		return nil
++	}
++	if p.opts.Tracing != nil {
++		return fmt.Errorf("instantiation window census requires tracing disabled")
++	}
++	pool := p.compilerCheckerPool
++	if pool == nil {
++		return fmt.Errorf("instantiation window census requires built-in checker pool")
++	}
++	for _, mu := range pool.locks {
++		if mu != nil {
++			mu.Lock()
++		}
++	}
++	defer func() {
++		for i := len(pool.locks) - 1; i >= 0; i-- {
++			if pool.locks[i] != nil {
++				pool.locks[i].Unlock()
++			}
++		}
++	}()
++	owners := []checker.InstantiationWindowSnapshot{}
++	for _, c := range pool.checkers {
++		if c == nil {
++			continue
++		}
++		snapshot, ok := c.InstantiationWindowSnapshot()
++		if !ok {
++			return fmt.Errorf("instantiation window observer not enabled at construction")
++		}
++		owners = append(owners, snapshot)
++	}
++	return checker.WriteInstantiationWindowSnapshots(path, owners)
++}
