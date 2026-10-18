@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_plan.go": "549e2a6eff65f1fada9ebda5f2f5f2f73ab73db5bb65b427489d626586779011",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_plan_test.go": "1f8f80af8cba9c5bb824348ddfad6421dc7e906cb2db94b14c518400be857667",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_plan_extended_test.go": "4e1d6cfb291b5a6ec22ce236111dcad1f53eb5425b9794cab3db600181096c2e"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/mapper-plan-extended/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestMapperPlan"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestMapperPlanNestedHistoriesAndPanics",
+        "TestMapperPlanPureDifferential",
+        "TestMapperPlanStatefulHistory",
+        "TestMapperPlanFallbackBeforeEffects",
+        "TestMapperPlanTypedLifetime"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/mapper-plan-extended/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestMapperPlan"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestMapperPlanNestedHistoriesAndPanics",
+        "TestMapperPlanPureDifferential",
+        "TestMapperPlanStatefulHistory",
+        "TestMapperPlanFallbackBeforeEffects",
+        "TestMapperPlanTypedLifetime"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/mapper-plan-extended/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestMapperPlan"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestMapperPlanNestedHistoriesAndPanics",
+        "TestMapperPlanPureDifferential",
+        "TestMapperPlanStatefulHistory",
+        "TestMapperPlanFallbackBeforeEffects",
+        "TestMapperPlanTypedLifetime"
+      ]
+    }
+  ]
+}

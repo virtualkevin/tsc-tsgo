@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "test",
+    "-count=5",
+    "-run",
+    "^$",
+    "-bench",
+    "^BenchmarkMapperPlanCosts$",
+    "-benchtime=100ms",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/mapper-plan-extended/overlay.json",
+    "./internal/checker"
+  ],
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_plan.go": "549e2a6eff65f1fada9ebda5f2f5f2f73ab73db5bb65b427489d626586779011",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_plan_test.go": "1f8f80af8cba9c5bb824348ddfad6421dc7e906cb2db94b14c518400be857667",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_plan_extended_test.go": "4e1d6cfb291b5a6ec22ce236111dcad1f53eb5425b9794cab3db600181096c2e"
+  },
+  "scope": "Fixed-order synthetic 1/2/4/8/32-leaf merged-chain evaluation and compilation. Existing graph construction excluded. B/op are allocation traffic, not retained heap or workload RSS. No compiler speedup claim."
+}
