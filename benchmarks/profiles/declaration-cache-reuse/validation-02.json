@@ -1,0 +1,111 @@
+{
+  "passed": true,
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/emitter.go": "179da55092d282bc65ad1c3d9834562499ce9887ba87dcb49058cc7533e3ba4e",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/declaration_cache_reuse_test.go": "5758e37eede9cc2d61f1ff7cdddca32160a3612fff5db450d7c36d43e26fe528"
+  },
+  "controllerSha256": "7ce30e9e1a6083096eb2ea80aa5dcfc829f1c2a7a0841651c9b4438a395525d2",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/declaration-cache-reuse/overlay.json",
+        "./internal/compiler",
+        "-run",
+        "^TestDeclarationReuse",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestDeclarationReuseNoEmitOrder/annotated",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/inferred-return",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/class",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/alias-chain",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseForcedOutput",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNormalOutput",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "34b96b958d66272fb12fe96aa3133428e7b5d09e6b7b41258055c83b83644a85",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-race",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/declaration-cache-reuse/overlay.json",
+        "./internal/compiler",
+        "-run",
+        "^TestDeclarationReuse",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestDeclarationReuseNoEmitOrder/annotated",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/inferred-return",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/class",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/alias-chain",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseForcedOutput",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNormalOutput",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "f78729671b584e6b2f26da85cfb3a79f8605cb3f525d3e0922e35eebd62b4231",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    }
+  ]
+}

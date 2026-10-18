@@ -1,0 +1,93 @@
+package compiler_test
+
+import (
+	"context"
+	"fmt"
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/compiler"
+	"github.com/microsoft/typescript-go/internal/core"
+	"github.com/microsoft/typescript-go/internal/tsoptions"
+	"github.com/microsoft/typescript-go/internal/vfs/vfstest"
+	"reflect"
+	"strings"
+	"testing"
+)
+
+func declarationReuseProgram(source string, noEmit bool) *compiler.Program {
+	fs := vfstest.FromMap(map[string]string{"/src/index.ts": source}, true)
+	opts := &core.CompilerOptions{Target: core.ScriptTargetES2015, Declaration: core.TSTrue, IsolatedDeclarations: core.TSTrue, NoLib: core.TSTrue, OutDir: "/out"}
+	if noEmit {
+		opts.NoEmit = core.TSTrue
+	}
+	return compiler.NewProgram(compiler.ProgramOptions{Config: &tsoptions.ParsedCommandLine{ParsedConfig: &core.ParsedOptions{FileNames: []string{"/src/index.ts"}, CompilerOptions: opts}}, Host: compiler.NewCompilerHost("/src", fs, "/lib", nil, nil)})
+}
+func declarationReuseDiagnostics(ds []*ast.Diagnostic) []string {
+	result := make([]string, 0, len(ds))
+	for _, d := range ds {
+		file := ""
+		if d.File() != nil {
+			file = d.File().FileName()
+		}
+		result = append(result, fmt.Sprintf("%s:%v:%d:%v:%v:%v", file, d.Loc(), d.Code(), d.MessageKey(), d.MessageArgs(), declarationReuseDiagnostics(d.MessageChain())))
+	}
+	return result
+}
+func TestDeclarationReuseNoEmitOrder(t *testing.T) {
+	cases := []struct {
+		name, source string
+		wantError    bool
+	}{
+		{"annotated", "export function f(): number { return 1; }", false},
+		{"inferred-return", "export function f(value: number) { return value + 1; }", true},
+		{"class", "export class C { value: number = 1; method(): number { return this.value; } }", false},
+		{"alias-chain", "namespace A { export namespace Q { export const x: number = 1; } import B = Q; import C = B; export import D = C; }", false},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			ctx := context.Background()
+			cold := declarationReuseProgram(tc.source, true)
+			warm := declarationReuseProgram(tc.source, true)
+			writes := 0
+			options := compiler.EmitOptions{WriteFile: func(string, string, *compiler.WriteFileData) error { writes++; return nil }}
+			a := cold.Emit(ctx, options)
+			initial := warm.GetDeclarationDiagnostics(ctx, nil)
+			b := warm.Emit(ctx, options)
+			again := warm.Emit(ctx, options)
+			if writes != 0 || !a.EmitSkipped || !b.EmitSkipped || !again.EmitSkipped {
+				t.Fatalf("writes=%d skipped=%v/%v/%v", writes, a.EmitSkipped, b.EmitSkipped, again.EmitSkipped)
+			}
+			want := declarationReuseDiagnostics(a.Diagnostics)
+			if !reflect.DeepEqual(want, declarationReuseDiagnostics(b.Diagnostics)) || !reflect.DeepEqual(want, declarationReuseDiagnostics(again.Diagnostics)) || !reflect.DeepEqual(want, declarationReuseDiagnostics(initial)) {
+				t.Fatalf("diagnostics differ: cold=%v initial=%v warm=%v", want, declarationReuseDiagnostics(initial), declarationReuseDiagnostics(b.Diagnostics))
+			}
+			if (len(initial) > 0) != tc.wantError {
+				t.Fatalf("unexpected fixture diagnostics: %v", declarationReuseDiagnostics(initial))
+			}
+		})
+	}
+}
+func TestDeclarationReuseForcedOutput(t *testing.T) {
+	p := declarationReuseProgram("export function f(): number { return 1; }", true)
+	ctx := context.Background()
+	p.GetDeclarationDiagnostics(ctx, nil)
+	var output string
+	r := p.Emit(ctx, compiler.EmitOptions{EmitOnly: compiler.EmitOnlyForcedDts, WriteFile: func(name, text string, _ *compiler.WriteFileData) error {
+		if strings.HasSuffix(name, ".d.ts") {
+			output += text
+		}
+		return nil
+	}})
+	if r.EmitSkipped || !strings.Contains(output, "export declare function f(): number;") {
+		t.Fatalf("forced output skipped=%v output=%q", r.EmitSkipped, output)
+	}
+}
+func TestDeclarationReuseNormalOutput(t *testing.T) {
+	p := declarationReuseProgram("export const value: number = 1;", false)
+	ctx := context.Background()
+	p.GetDeclarationDiagnostics(ctx, nil)
+	files := map[string]string{}
+	r := p.Emit(ctx, compiler.EmitOptions{WriteFile: func(name, text string, _ *compiler.WriteFileData) error { files[name] = text; return nil }})
+	if r.EmitSkipped || len(files) != 2 || !strings.Contains(files["/out/index.d.ts"], "export declare const value: number;") {
+		t.Fatalf("normal output skipped=%v files=%v", r.EmitSkipped, files)
+	}
+}

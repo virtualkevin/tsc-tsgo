@@ -1,0 +1,60 @@
+{
+  "passed": false,
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/emitter.go": "179da55092d282bc65ad1c3d9834562499ce9887ba87dcb49058cc7533e3ba4e",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/declaration_cache_reuse_test.go": "bbc1c2297f2db1de076f349ed5b46dfafee801217c451e376952b79e3686257c"
+  },
+  "controllerSha256": "533fa489d71bd9e01c0608bd84db220cf5d0e98692b13e107b554c19ac10092a",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/declaration-cache-reuse/overlay.json",
+        "./internal/compiler",
+        "-run",
+        "^TestDeclarationReuse",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 1,
+      "tests": [
+        [
+          "TestDeclarationReuseNoEmitOrder/annotated",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/inferred-return",
+          "fail"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/class",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder/alias-chain",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNoEmitOrder",
+          "fail"
+        ],
+        [
+          "TestDeclarationReuseForcedOutput",
+          "pass"
+        ],
+        [
+          "TestDeclarationReuseNormalOutput",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "54c434279a27cdb8a2b85fdc28bb451abc94a385d5e8db960b808b9525bc8e3b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": false
+    }
+  ]
+}

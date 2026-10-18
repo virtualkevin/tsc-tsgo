@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/declaration-cache-reuse/validate.py", line 18, in <module>
+    report['runs'].append({'mode':mode,'command':command,'exitCode':code,'tests':[(v['Test'],v['Action']) for v in tests],'stdoutSha256':sha(stdout),'stderrSha256':sha(stderr),'passed':ok});print(mode,ok,flush=True);assert ok
+                                                                                                                                                                                                                               ^^
+AssertionError

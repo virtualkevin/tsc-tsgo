@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/declaration-cache-reuse/overlay.json",
+    "-o",
+    "/tmp/tsc-declaration-cache-reuse",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/emitter.go": "179da55092d282bc65ad1c3d9834562499ce9887ba87dcb49058cc7533e3ba4e",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/declaration_cache_reuse_test.go": "5758e37eede9cc2d61f1ff7cdddca32160a3612fff5db450d7c36d43e26fe528"
+  },
+  "controllerSha256": "cd400c3b476939f2b17dc2a95ee8267712af542c45a3bfc7f5a4a58968a0b110",
+  "scope": "Staged candidate overlay build only; not standard production provenance or performance evidence.",
+  "binarySha256": "2e61f98824c256a6731696de1985227d5ca054c7a7e776cd0d6944a24f9d72e2",
+  "buildInfoSha256": "d2a1754f3c87929be712da27bb974a56bbda249622b42c51962e22813d15531c"
+}
