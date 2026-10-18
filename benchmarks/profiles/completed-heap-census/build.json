@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/overlay.json",
+    "-o",
+    "/tmp/tsc-completed-heap-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "ee5ae304c8bcf7481f7252fef05d9f61fe6e53999a5101ebef7f48d4e4253109",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/completed_heap.go": "b9512398279d1d110050af87853687238b2121c7a4d84be97a71f15c2e20b313",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/completed_heap_test.go": "341e7aed8bd06df9b52c7268577a696c2c3fd3cef2aa739fdb2a50e7d60aa667"
+  },
+  "controllerSha256": "e13226fb08922da16d936b7df720e78cbc46b0bfd382e9d635ba0da9edbad019",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "ffdb71e54e1dc801228dcb3109838c239b3e9dbb679155270497a920a70d9ebf",
+  "buildInfoSha256": "d868601de0a2ec1847559453856de44eaa62b4276868f40d69f83526e8365917"
+}

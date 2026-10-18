@@ -1,0 +1,128 @@
+{
+  "status": "passed",
+  "goSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+  "candidateSha256": "ffdb71e54e1dc801228dcb3109838c239b3e9dbb679155270497a920a70d9ebf",
+  "captureReportSha256": "51e54b8053d15dc01902459f8374b3eee372287fbcd428f7340ae9e4eb9da97c",
+  "profiles": [
+    {
+      "project": "typeorm",
+      "phase": "before",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/tmp/tsc-completed-heap-census",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/typeorm/heap/before.pb.gz"
+      ],
+      "sourceSha256": "90b8a9916b5f352d74f259c6da1987d7b9c461d030d3549233fa5c72ae1c2542",
+      "rawSha256": "a59299de9d24993f52e7b980e5c011e686acb815ad76067da835d4925847a7d2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "project": "typeorm",
+      "phase": "after",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/tmp/tsc-completed-heap-census",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/typeorm/heap/after.pb.gz"
+      ],
+      "sourceSha256": "cd87af5a2ad650563617d05aca8263916d52d998d174a45f1af39590569bd0e5",
+      "rawSha256": "b7a1501923709d09ef63a6389d9b86d5adbd03082a2dd5aac43bf01b97665132",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "project": "trpc",
+      "phase": "before",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/tmp/tsc-completed-heap-census",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/trpc/heap/before.pb.gz"
+      ],
+      "sourceSha256": "76bb3e0891897d8eeb7cdfafcaa19d08eaa5b8f8a5666cfc2e843165614aec11",
+      "rawSha256": "301b842e89aea80938de64b535bc2873a351c69391a9d09afde4334060b93a3b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "project": "trpc",
+      "phase": "after",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/tmp/tsc-completed-heap-census",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/trpc/heap/after.pb.gz"
+      ],
+      "sourceSha256": "7686b506bb98bfed4fc0874f05ebad74139188d506f211ec5fef6a9bbaa99cbd",
+      "rawSha256": "8ccd9af32b531d1cd9f5b9a5debfab1b8ca043c5011ab3b269da971cafa4517c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "project": "vscode",
+      "phase": "before",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/tmp/tsc-completed-heap-census",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/vscode/heap/before.pb.gz"
+      ],
+      "sourceSha256": "518c36c35bf6b3f5467b85ec5b1d2841bb51d60dbcf08d26d6b0529bac5a2985",
+      "rawSha256": "4b6033ce1e937bd63b246f0cf0b40e2a60797448a7f90ef7bfce7e7c3a839ff2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "project": "vscode",
+      "phase": "after",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/tmp/tsc-completed-heap-census",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/vscode/heap/after.pb.gz"
+      ],
+      "sourceSha256": "b38d4524cf8988bcc13d1e90593110a73960d1e0eadd21974a7f562f173cc955",
+      "rawSha256": "897d629a2ff2951893555fc2a5a84ed00169dcae177b59df8e7886b6dbafd11e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "project": "sentry",
+      "phase": "before",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/tmp/tsc-completed-heap-census",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/sentry/heap/before.pb.gz"
+      ],
+      "sourceSha256": "863f649c71e3206ecacf78887f7dbcd0dcee3f14478e36795cb697b7252879e1",
+      "rawSha256": "6f7ceacb6638ce289f210e773b6ccd842a54a7e01e01d1b5c955c546c37d767d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "project": "sentry",
+      "phase": "after",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/tmp/tsc-completed-heap-census",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/sentry/heap/after.pb.gz"
+      ],
+      "sourceSha256": "27686ef8b5dbc22f52d033feced0cee8542ca54f631431a052d77b73f1fdbe46",
+      "rawSha256": "9aecae44f35020945cf1251a7c8ed7b69a7faded015147c3d299f35a67a1df49",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

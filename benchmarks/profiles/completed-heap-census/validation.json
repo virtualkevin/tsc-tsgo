@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "ee5ae304c8bcf7481f7252fef05d9f61fe6e53999a5101ebef7f48d4e4253109",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/completed_heap.go": "b9512398279d1d110050af87853687238b2121c7a4d84be97a71f15c2e20b313",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/completed_heap_test.go": "341e7aed8bd06df9b52c7268577a696c2c3fd3cef2aa739fdb2a50e7d60aa667"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/overlay.json",
+        "./internal/execute",
+        "-run",
+        "^TestCompletedHeap"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompletedHeapArtifacts",
+        "TestCompletedHeapDisabledAndTracing"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/overlay.json",
+        "-race",
+        "./internal/execute",
+        "-run",
+        "^TestCompletedHeap"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompletedHeapArtifacts",
+        "TestCompletedHeapDisabledAndTracing"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/completed-heap-census/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/execute",
+        "-run",
+        "^TestCompletedHeap"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompletedHeapArtifacts",
+        "TestCompletedHeapDisabledAndTracing"
+      ]
+    }
+  ]
+}
