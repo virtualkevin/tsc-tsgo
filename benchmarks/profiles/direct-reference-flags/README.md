@@ -25,3 +25,7 @@ Normal production build20146 passed: source3958f79a (5155files), binary25f464740
 Performance remains unmeasured. Frozen screen policy requires9small/5large pairs, both aggregate ratios>=1.01, both workload summaries>=.98 and median RSS<=1.05baseline, followed by two independent19/11confirmations. This does not establish10xoriginal-native performance. No production promotion.
 
 Validation controllers/readback pin captureHEADc83b57c and intentionally refuse rerunning unchanged after commit. Raw large event streams are workspace-only; exact compressed archives are committed. prepare.py regenerates ignored staged source. manifest.json hashes all committed profile files except itself.
+
+## Completed screen: qualifies for confirmation
+
+Capture0473c3d/session33859 completed exit0 without a signal; independent recorder45751 passed exact inputs, source/binary/controller checks and all gates. Ratios of medians/paired medians: TypeORM1.026488/1.032241; tRPC1.013730/1.036124; VSCode1.001262/.995469; Sentry1.010668/1.009808. Aggregates1.012996793/1.018274439, all workload floors and RSS pass. Four measured rows added to PERF.md. Raw reports and11readback-verified execution files reside in ../../results/direct-reference-flags-screen. Two separate confirmations remain required; no promotion or native-relative gain claim.
