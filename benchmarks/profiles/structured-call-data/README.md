@@ -25,6 +25,6 @@ Measured amd64 sizes: StructuredType112, ObjectType136, TypeReference168, UnionT
 
 ## Performance status
 
-No candidate workload timing has yet been run. The frozen policy uses nine alternating pairs for TypeORM/tRPC and five for VS Code/Sentry, one warmup each, matched GNU time RSS, fresh processes and identical inputs. Passing requires both aggregate ratios≥1.01, every workload summary≥0.98, and median RSS≤1.05×baseline; two independent confirmations are then required before promotion. No layout or accessor retuning after a failed screen.
+The completed screen is rejected; see `../../results/structured-call-data-screen/README.md` for all workload summaries and `recording/proposal.json` for the gates. The frozen policy uses nine alternating pairs for TypeORM/tRPC and five for VS Code/Sentry, one warmup each, matched GNU time RSS, fresh processes and identical inputs. Passing requires both aggregate ratios≥1.01, every workload summary≥0.98, and median RSS≤1.05×baseline; two independent confirmations are then required before promotion. No layout or accessor retuning after a failed screen.
 
 `restoration.json` verifies production source restored to216d40c7 and default binary8fe4bd80 before timing. The candidate is preserved separately, with its patch and added test file. Restored preflight passes matching build settings and the exact five-file candidate delta. No promotion or native-relative speedup claim; the10×goal remains unmet.
