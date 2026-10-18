@@ -1,0 +1,2095 @@
+{
+  "scope": "Single-run diagnostic control, observer-disabled and observer-enabled captures. Elapsed time includes observer serialization; not optimization performance evidence or causal overhead estimate. Misses include nil-valued entries; recursive calls count separately.",
+  "projects": [
+    {
+      "project": "typeorm",
+      "owners": 4,
+      "classes": [
+        {
+          "name": "non-object",
+          "Loops": 289,
+          "Visited": 2756,
+          "Lookups": 2575,
+          "Hits": 2329,
+          "Misses": 246,
+          "OptionalMisses": 246,
+          "IdenticalHits": 1850,
+          "LayoutLookups": 285,
+          "LayoutMisses": 138,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "unresolved-object",
+          "Loops": 9253,
+          "Visited": 89,
+          "Lookups": 89,
+          "Hits": 71,
+          "Misses": 18,
+          "OptionalMisses": 18,
+          "IdenticalHits": 21,
+          "LayoutLookups": 65,
+          "LayoutMisses": 0,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "pending-members",
+          "Loops": 4979,
+          "Visited": 42852,
+          "Lookups": 42852,
+          "Hits": 37359,
+          "Misses": 5493,
+          "OptionalMisses": 5493,
+          "IdenticalHits": 16083,
+          "LayoutLookups": 17156,
+          "LayoutMisses": 485,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "callable-or-module",
+          "Loops": 25645,
+          "Visited": 46980,
+          "Lookups": 46173,
+          "Hits": 45972,
+          "Misses": 201,
+          "OptionalMisses": 201,
+          "IdenticalHits": 29992,
+          "LayoutLookups": 2,
+          "LayoutMisses": 0,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "ordinary-materialized",
+          "Loops": 15720,
+          "Visited": 141047,
+          "Lookups": 141043,
+          "Hits": 42359,
+          "Misses": 98684,
+          "OptionalMisses": 98684,
+          "IdenticalHits": 8489,
+          "LayoutLookups": 20612,
+          "LayoutMisses": 13020,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        }
+      ],
+      "ordinarySizeCells": [
+        {
+          "sourceBucket": 0,
+          "targetBucket": 1,
+          "lookups": 15,
+          "misses": 15
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 2,
+          "lookups": 54,
+          "misses": 54
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 3,
+          "lookups": 90,
+          "misses": 90
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 4,
+          "lookups": 254,
+          "misses": 254
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 5,
+          "lookups": 753,
+          "misses": 753
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 6,
+          "lookups": 364,
+          "misses": 364
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 1,
+          "lookups": 1123,
+          "misses": 61
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 2,
+          "lookups": 3447,
+          "misses": 2113
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 3,
+          "lookups": 4842,
+          "misses": 3795
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 4,
+          "lookups": 14338,
+          "misses": 13015
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 5,
+          "lookups": 3043,
+          "misses": 2871
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 6,
+          "lookups": 21585,
+          "misses": 20947
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 7,
+          "lookups": 70,
+          "misses": 69
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 1,
+          "lookups": 68,
+          "misses": 25
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 2,
+          "lookups": 5172,
+          "misses": 281
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 3,
+          "lookups": 2074,
+          "misses": 1042
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 4,
+          "lookups": 10308,
+          "misses": 8159
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 5,
+          "lookups": 13848,
+          "misses": 12127
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 6,
+          "lookups": 21857,
+          "misses": 20354
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 1,
+          "lookups": 18,
+          "misses": 3
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 2,
+          "lookups": 140,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 3,
+          "lookups": 3225,
+          "misses": 223
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 4,
+          "lookups": 938,
+          "misses": 398
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 5,
+          "lookups": 10503,
+          "misses": 8233
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 6,
+          "lookups": 3405,
+          "misses": 2976
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 1,
+          "lookups": 56,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 2,
+          "lookups": 22,
+          "misses": 1
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 3,
+          "lookups": 531,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 4,
+          "lookups": 1344,
+          "misses": 70
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 5,
+          "lookups": 56,
+          "misses": 34
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 6,
+          "lookups": 192,
+          "misses": 126
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 1,
+          "lookups": 5,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 2,
+          "lookups": 2,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 3,
+          "lookups": 6,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 4,
+          "lookups": 79,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 5,
+          "lookups": 3014,
+          "misses": 28
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 6,
+          "lookups": 44,
+          "misses": 12
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 7,
+          "lookups": 71,
+          "misses": 46
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 1,
+          "lookups": 43,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 2,
+          "lookups": 31,
+          "misses": 9
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 3,
+          "lookups": 55,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 4,
+          "lookups": 132,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 5,
+          "lookups": 1441,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 6,
+          "lookups": 7890,
+          "misses": 131
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 7,
+          "lookups": 13,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 1,
+          "lookups": 4,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 2,
+          "lookups": 2,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 3,
+          "lookups": 18,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 4,
+          "lookups": 63,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 5,
+          "lookups": 187,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 6,
+          "lookups": 743,
+          "misses": 5
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 7,
+          "lookups": 2510,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 3,
+          "lookups": 6,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 6,
+          "lookups": 262,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 7,
+          "lookups": 395,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 8,
+          "lookups": 292,
+          "misses": 0
+        }
+      ],
+      "elapsedControlsMs": {
+        "baseline": 2647.000559,
+        "disabled": 2793.190204,
+        "enabled": 2662.0783410000004
+      }
+    },
+    {
+      "project": "trpc",
+      "owners": 4,
+      "classes": [
+        {
+          "name": "non-object",
+          "Loops": 240,
+          "Visited": 1375,
+          "Lookups": 656,
+          "Hits": 648,
+          "Misses": 8,
+          "OptionalMisses": 8,
+          "IdenticalHits": 179,
+          "LayoutLookups": 69,
+          "LayoutMisses": 0,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "unresolved-object",
+          "Loops": 2271,
+          "Visited": 47,
+          "Lookups": 47,
+          "Hits": 47,
+          "Misses": 0,
+          "OptionalMisses": 0,
+          "IdenticalHits": 44,
+          "LayoutLookups": 47,
+          "LayoutMisses": 0,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "pending-members",
+          "Loops": 2169,
+          "Visited": 11702,
+          "Lookups": 11702,
+          "Hits": 11654,
+          "Misses": 48,
+          "OptionalMisses": 48,
+          "IdenticalHits": 2049,
+          "LayoutLookups": 7706,
+          "LayoutMisses": 21,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "callable-or-module",
+          "Loops": 2588,
+          "Visited": 427,
+          "Lookups": 420,
+          "Hits": 412,
+          "Misses": 8,
+          "OptionalMisses": 8,
+          "IdenticalHits": 180,
+          "LayoutLookups": 112,
+          "LayoutMisses": 8,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "ordinary-materialized",
+          "Loops": 1484,
+          "Visited": 5019,
+          "Lookups": 5019,
+          "Hits": 2893,
+          "Misses": 2126,
+          "OptionalMisses": 2126,
+          "IdenticalHits": 465,
+          "LayoutLookups": 2551,
+          "LayoutMisses": 1381,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        }
+      ],
+      "ordinarySizeCells": [
+        {
+          "sourceBucket": 0,
+          "targetBucket": 1,
+          "lookups": 13,
+          "misses": 13
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 2,
+          "lookups": 2,
+          "misses": 2
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 4,
+          "lookups": 69,
+          "misses": 69
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 5,
+          "lookups": 16,
+          "misses": 16
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 7,
+          "lookups": 408,
+          "misses": 408
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 1,
+          "lookups": 182,
+          "misses": 1
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 2,
+          "lookups": 96,
+          "misses": 58
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 3,
+          "lookups": 229,
+          "misses": 180
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 4,
+          "lookups": 409,
+          "misses": 370
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 5,
+          "lookups": 116,
+          "misses": 111
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 7,
+          "lookups": 144,
+          "misses": 142
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 1,
+          "lookups": 31,
+          "misses": 4
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 2,
+          "lookups": 723,
+          "misses": 47
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 3,
+          "lookups": 267,
+          "misses": 130
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 4,
+          "lookups": 232,
+          "misses": 189
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 5,
+          "lookups": 80,
+          "misses": 69
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 7,
+          "lookups": 228,
+          "misses": 219
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 1,
+          "lookups": 10,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 2,
+          "lookups": 37,
+          "misses": 1
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 3,
+          "lookups": 557,
+          "misses": 13
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 4,
+          "lookups": 19,
+          "misses": 5
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 7,
+          "lookups": 68,
+          "misses": 66
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 1,
+          "lookups": 6,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 2,
+          "lookups": 14,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 3,
+          "lookups": 78,
+          "misses": 1
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 4,
+          "lookups": 400,
+          "misses": 6
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 4,
+          "lookups": 15,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 5,
+          "lookups": 132,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 1,
+          "lookups": 6,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 2,
+          "lookups": 6,
+          "misses": 6
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 6,
+          "lookups": 350,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 7,
+          "lookups": 76,
+          "misses": 0
+        }
+      ],
+      "elapsedControlsMs": {
+        "baseline": 507.05687299999954,
+        "disabled": 457.07707499999924,
+        "enabled": 513.028526
+      }
+    },
+    {
+      "project": "vscode",
+      "owners": 4,
+      "classes": [
+        {
+          "name": "non-object",
+          "Loops": 3868,
+          "Visited": 44187,
+          "Lookups": 31615,
+          "Hits": 31144,
+          "Misses": 471,
+          "OptionalMisses": 471,
+          "IdenticalHits": 20108,
+          "LayoutLookups": 1285,
+          "LayoutMisses": 0,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "unresolved-object",
+          "Loops": 104725,
+          "Visited": 980,
+          "Lookups": 980,
+          "Hits": 844,
+          "Misses": 136,
+          "OptionalMisses": 136,
+          "IdenticalHits": 63,
+          "LayoutLookups": 43,
+          "LayoutMisses": 23,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "pending-members",
+          "Loops": 103410,
+          "Visited": 786582,
+          "Lookups": 786582,
+          "Hits": 758053,
+          "Misses": 28529,
+          "OptionalMisses": 28529,
+          "IdenticalHits": 296349,
+          "LayoutLookups": 477511,
+          "LayoutMisses": 1939,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "callable-or-module",
+          "Loops": 310300,
+          "Visited": 44969,
+          "Lookups": 32827,
+          "Hits": 32737,
+          "Misses": 90,
+          "OptionalMisses": 90,
+          "IdenticalHits": 24133,
+          "LayoutLookups": 455,
+          "LayoutMisses": 0,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "ordinary-materialized",
+          "Loops": 646766,
+          "Visited": 3793660,
+          "Lookups": 3793658,
+          "Hits": 1936362,
+          "Misses": 1857296,
+          "OptionalMisses": 1857296,
+          "IdenticalHits": 526963,
+          "LayoutLookups": 417242,
+          "LayoutMisses": 64753,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        }
+      ],
+      "ordinarySizeCells": [
+        {
+          "sourceBucket": 0,
+          "targetBucket": 1,
+          "lookups": 540,
+          "misses": 540
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 2,
+          "lookups": 3123,
+          "misses": 3123
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 3,
+          "lookups": 9723,
+          "misses": 9492
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 4,
+          "lookups": 8780,
+          "misses": 8780
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 5,
+          "lookups": 8424,
+          "misses": 8424
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 6,
+          "lookups": 2987,
+          "misses": 2987
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 7,
+          "lookups": 8543,
+          "misses": 8543
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 8,
+          "lookups": 45650,
+          "misses": 45650
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 9,
+          "lookups": 3285,
+          "misses": 3285
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 1,
+          "lookups": 31008,
+          "misses": 415
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 2,
+          "lookups": 36578,
+          "misses": 21108
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 3,
+          "lookups": 64578,
+          "misses": 51921
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 4,
+          "lookups": 81510,
+          "misses": 73818
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 5,
+          "lookups": 71968,
+          "misses": 68631
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 6,
+          "lookups": 39878,
+          "misses": 38928
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 7,
+          "lookups": 114589,
+          "misses": 113147
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 8,
+          "lookups": 54802,
+          "misses": 54483
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 9,
+          "lookups": 43455,
+          "misses": 43334
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 10,
+          "lookups": 27100,
+          "misses": 27050
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 1,
+          "lookups": 23290,
+          "misses": 447
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 2,
+          "lookups": 427744,
+          "misses": 10112
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 3,
+          "lookups": 140541,
+          "misses": 72488
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 4,
+          "lookups": 151214,
+          "misses": 116408
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 5,
+          "lookups": 112165,
+          "misses": 99612
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 6,
+          "lookups": 59157,
+          "misses": 55659
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 7,
+          "lookups": 282449,
+          "misses": 273540
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 8,
+          "lookups": 60650,
+          "misses": 59977
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 9,
+          "lookups": 48266,
+          "misses": 48012
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 10,
+          "lookups": 35230,
+          "misses": 35075
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 1,
+          "lookups": 26807,
+          "misses": 357
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 2,
+          "lookups": 15936,
+          "misses": 1806
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 3,
+          "lookups": 359826,
+          "misses": 19409
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 4,
+          "lookups": 159155,
+          "misses": 86362
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 5,
+          "lookups": 84997,
+          "misses": 64728
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 6,
+          "lookups": 33056,
+          "misses": 29158
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 7,
+          "lookups": 155164,
+          "misses": 146343
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 8,
+          "lookups": 7729,
+          "misses": 7490
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 9,
+          "lookups": 8079,
+          "misses": 7969
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 10,
+          "lookups": 52032,
+          "misses": 51489
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 11,
+          "lookups": 2100,
+          "misses": 2086
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 1,
+          "lookups": 2612,
+          "misses": 63
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 2,
+          "lookups": 6436,
+          "misses": 304
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 3,
+          "lookups": 11445,
+          "misses": 660
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 4,
+          "lookups": 178352,
+          "misses": 8129
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 5,
+          "lookups": 30240,
+          "misses": 13680
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 6,
+          "lookups": 13518,
+          "misses": 10292
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 7,
+          "lookups": 11613,
+          "misses": 10522
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 8,
+          "lookups": 2268,
+          "misses": 2127
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 9,
+          "lookups": 270,
+          "misses": 262
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 10,
+          "lookups": 27100,
+          "misses": 26566
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 1,
+          "lookups": 978,
+          "misses": 11
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 2,
+          "lookups": 4378,
+          "misses": 151
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 3,
+          "lookups": 3135,
+          "misses": 585
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 4,
+          "lookups": 11203,
+          "misses": 417
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 5,
+          "lookups": 129963,
+          "misses": 2583
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 6,
+          "lookups": 2649,
+          "misses": 1059
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 7,
+          "lookups": 440,
+          "misses": 324
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 8,
+          "lookups": 1526,
+          "misses": 1323
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 10,
+          "lookups": 3252,
+          "misses": 3154
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 1,
+          "lookups": 501,
+          "misses": 2
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 2,
+          "lookups": 1777,
+          "misses": 49
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 3,
+          "lookups": 705,
+          "misses": 90
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 4,
+          "lookups": 2940,
+          "misses": 139
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 5,
+          "lookups": 10501,
+          "misses": 166
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 6,
+          "lookups": 140503,
+          "misses": 530
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 7,
+          "lookups": 296,
+          "misses": 124
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 8,
+          "lookups": 435,
+          "misses": 345
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 1,
+          "lookups": 128,
+          "misses": 1
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 2,
+          "lookups": 528,
+          "misses": 12
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 3,
+          "lookups": 248,
+          "misses": 25
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 4,
+          "lookups": 933,
+          "misses": 34
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 5,
+          "lookups": 1978,
+          "misses": 114
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 6,
+          "lookups": 8275,
+          "misses": 15
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 7,
+          "lookups": 159780,
+          "misses": 563
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 8,
+          "lookups": 278,
+          "misses": 136
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 1,
+          "lookups": 16,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 2,
+          "lookups": 122,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 3,
+          "lookups": 92,
+          "misses": 4
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 4,
+          "lookups": 161,
+          "misses": 4
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 5,
+          "lookups": 365,
+          "misses": 18
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 6,
+          "lookups": 1472,
+          "misses": 13
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 7,
+          "lookups": 8562,
+          "misses": 99
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 8,
+          "lookups": 74501,
+          "misses": 325
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 2,
+          "lookups": 30,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 3,
+          "lookups": 12,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 4,
+          "lookups": 10,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 5,
+          "lookups": 31,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 7,
+          "lookups": 1063,
+          "misses": 50
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 8,
+          "lookups": 1067,
+          "misses": 40
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 9,
+          "lookups": 23960,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 1,
+          "lookups": 2,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 2,
+          "lookups": 6,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 7,
+          "lookups": 76,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 10,
+          "lookups": 1553,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 11,
+          "targetBucket": 1,
+          "lookups": 3,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 11,
+          "targetBucket": 8,
+          "lookups": 980,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 11,
+          "targetBucket": 11,
+          "lookups": 6282,
+          "misses": 0
+        }
+      ],
+      "elapsedControlsMs": {
+        "baseline": 39363.184107,
+        "disabled": 38890.920163,
+        "enabled": 36349.233402
+      }
+    },
+    {
+      "project": "sentry",
+      "owners": 4,
+      "classes": [
+        {
+          "name": "non-object",
+          "Loops": 23128,
+          "Visited": 319229,
+          "Lookups": 265330,
+          "Hits": 196268,
+          "Misses": 69062,
+          "OptionalMisses": 69062,
+          "IdenticalHits": 93538,
+          "LayoutLookups": 85514,
+          "LayoutMisses": 47680,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "unresolved-object",
+          "Loops": 35013,
+          "Visited": 13315,
+          "Lookups": 13315,
+          "Hits": 3071,
+          "Misses": 10244,
+          "OptionalMisses": 10244,
+          "IdenticalHits": 1724,
+          "LayoutLookups": 11723,
+          "LayoutMisses": 10230,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "pending-members",
+          "Loops": 49632,
+          "Visited": 372186,
+          "Lookups": 372186,
+          "Hits": 345262,
+          "Misses": 26924,
+          "OptionalMisses": 26924,
+          "IdenticalHits": 185777,
+          "LayoutLookups": 296202,
+          "LayoutMisses": 8911,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "callable-or-module",
+          "Loops": 184315,
+          "Visited": 291185,
+          "Lookups": 291065,
+          "Hits": 29371,
+          "Misses": 261694,
+          "OptionalMisses": 261694,
+          "IdenticalHits": 28733,
+          "LayoutLookups": 19259,
+          "LayoutMisses": 18787,
+          "SmallWideLayoutLookups": 0,
+          "SmallWideLayoutMisses": 0
+        },
+        {
+          "name": "ordinary-materialized",
+          "Loops": 576957,
+          "Visited": 29969142,
+          "Lookups": 29969142,
+          "Hits": 2127137,
+          "Misses": 27842005,
+          "OptionalMisses": 27842005,
+          "IdenticalHits": 525058,
+          "LayoutLookups": 13262792,
+          "LayoutMisses": 12805723,
+          "SmallWideLayoutLookups": 12309787,
+          "SmallWideLayoutMisses": 12238154
+        }
+      ],
+      "ordinarySizeCells": [
+        {
+          "sourceBucket": 0,
+          "targetBucket": 1,
+          "lookups": 9286,
+          "misses": 9284
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 2,
+          "lookups": 5775,
+          "misses": 5774
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 3,
+          "lookups": 7131,
+          "misses": 7131
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 4,
+          "lookups": 5808,
+          "misses": 5773
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 5,
+          "lookups": 2031,
+          "misses": 2027
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 6,
+          "lookups": 2357,
+          "misses": 2357
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 7,
+          "lookups": 1031,
+          "misses": 1031
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 8,
+          "lookups": 641,
+          "misses": 641
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 9,
+          "lookups": 1712807,
+          "misses": 1712807
+        },
+        {
+          "sourceBucket": 0,
+          "targetBucket": 10,
+          "lookups": 44908,
+          "misses": 44908
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 1,
+          "lookups": 52738,
+          "misses": 32680
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 2,
+          "lookups": 61138,
+          "misses": 46596
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 3,
+          "lookups": 36649,
+          "misses": 29562
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 4,
+          "lookups": 269521,
+          "misses": 248795
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 5,
+          "lookups": 56517,
+          "misses": 53901
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 6,
+          "lookups": 57171,
+          "misses": 56228
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 7,
+          "lookups": 98316,
+          "misses": 97055
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 8,
+          "lookups": 31661,
+          "misses": 31552
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 9,
+          "lookups": 7785596,
+          "misses": 7760010
+        },
+        {
+          "sourceBucket": 1,
+          "targetBucket": 10,
+          "lookups": 1507126,
+          "misses": 1505351
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 1,
+          "lookups": 55165,
+          "misses": 41333
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 2,
+          "lookups": 162771,
+          "misses": 25150
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 3,
+          "lookups": 129142,
+          "misses": 60651
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 4,
+          "lookups": 272307,
+          "misses": 222494
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 5,
+          "lookups": 103693,
+          "misses": 91887
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 6,
+          "lookups": 143301,
+          "misses": 138384
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 7,
+          "lookups": 81063,
+          "misses": 78781
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 8,
+          "lookups": 71551,
+          "misses": 70953
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 9,
+          "lookups": 8946644,
+          "misses": 8884732
+        },
+        {
+          "sourceBucket": 2,
+          "targetBucket": 10,
+          "lookups": 974535,
+          "misses": 971837
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 1,
+          "lookups": 33048,
+          "misses": 21928
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 2,
+          "lookups": 13909,
+          "misses": 4742
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 3,
+          "lookups": 147840,
+          "misses": 13891
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 4,
+          "lookups": 91366,
+          "misses": 51646
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 5,
+          "lookups": 56474,
+          "misses": 43031
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 6,
+          "lookups": 129083,
+          "misses": 120148
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 7,
+          "lookups": 52740,
+          "misses": 49634
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 8,
+          "lookups": 5925,
+          "misses": 5828
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 9,
+          "lookups": 4017189,
+          "misses": 3959004
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 10,
+          "lookups": 165284,
+          "misses": 164332
+        },
+        {
+          "sourceBucket": 3,
+          "targetBucket": 11,
+          "lookups": 3216,
+          "misses": 3202
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 1,
+          "lookups": 8478,
+          "misses": 3807
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 2,
+          "lookups": 2221,
+          "misses": 759
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 3,
+          "lookups": 12629,
+          "misses": 1139
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 4,
+          "lookups": 108934,
+          "misses": 6392
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 5,
+          "lookups": 25493,
+          "misses": 13058
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 6,
+          "lookups": 21435,
+          "misses": 18042
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 7,
+          "lookups": 10407,
+          "misses": 9072
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 8,
+          "lookups": 593,
+          "misses": 564
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 9,
+          "lookups": 567251,
+          "misses": 554572
+        },
+        {
+          "sourceBucket": 4,
+          "targetBucket": 10,
+          "lookups": 21079,
+          "misses": 20846
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 1,
+          "lookups": 656,
+          "misses": 363
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 2,
+          "lookups": 628,
+          "misses": 148
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 3,
+          "lookups": 1065,
+          "misses": 50
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 4,
+          "lookups": 4263,
+          "misses": 629
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 5,
+          "lookups": 106367,
+          "misses": 1995
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 6,
+          "lookups": 6300,
+          "misses": 3567
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 7,
+          "lookups": 976,
+          "misses": 785
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 9,
+          "lookups": 7604,
+          "misses": 7281
+        },
+        {
+          "sourceBucket": 5,
+          "targetBucket": 10,
+          "lookups": 7194,
+          "misses": 7056
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 1,
+          "lookups": 1970,
+          "misses": 930
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 2,
+          "lookups": 981,
+          "misses": 207
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 3,
+          "lookups": 437,
+          "misses": 94
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 4,
+          "lookups": 976,
+          "misses": 180
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 5,
+          "lookups": 36414,
+          "misses": 12258
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 6,
+          "lookups": 143888,
+          "misses": 1547
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 7,
+          "lookups": 781,
+          "misses": 327
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 9,
+          "lookups": 10955,
+          "misses": 10059
+        },
+        {
+          "sourceBucket": 6,
+          "targetBucket": 10,
+          "lookups": 381944,
+          "misses": 381850
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 1,
+          "lookups": 485,
+          "misses": 275
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 2,
+          "lookups": 171,
+          "misses": 36
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 3,
+          "lookups": 413,
+          "misses": 54
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 4,
+          "lookups": 905,
+          "misses": 107
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 5,
+          "lookups": 23,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 6,
+          "lookups": 3694,
+          "misses": 39
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 7,
+          "lookups": 34959,
+          "misses": 399
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 9,
+          "lookups": 55481,
+          "misses": 45975
+        },
+        {
+          "sourceBucket": 7,
+          "targetBucket": 10,
+          "lookups": 19162,
+          "misses": 17820
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 1,
+          "lookups": 233,
+          "misses": 210
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 2,
+          "lookups": 297,
+          "misses": 222
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 3,
+          "lookups": 24,
+          "misses": 14
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 5,
+          "lookups": 113,
+          "misses": 29
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 6,
+          "lookups": 298,
+          "misses": 198
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 7,
+          "lookups": 85,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 8,
+          "lookups": 3105,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 8,
+          "targetBucket": 9,
+          "lookups": 65675,
+          "misses": 14540
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 1,
+          "lookups": 2643,
+          "misses": 2240
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 2,
+          "lookups": 1090,
+          "misses": 259
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 3,
+          "lookups": 617,
+          "misses": 64
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 4,
+          "lookups": 558,
+          "misses": 36
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 5,
+          "lookups": 235,
+          "misses": 4
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 6,
+          "lookups": 9215,
+          "misses": 1270
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 7,
+          "lookups": 520,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 8,
+          "lookups": 229,
+          "misses": 1
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 9,
+          "lookups": 748761,
+          "misses": 19830
+        },
+        {
+          "sourceBucket": 9,
+          "targetBucket": 10,
+          "lookups": 2729,
+          "misses": 1854
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 1,
+          "lookups": 6,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 2,
+          "lookups": 31,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 3,
+          "lookups": 40,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 4,
+          "lookups": 82,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 5,
+          "lookups": 174,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 6,
+          "lookups": 642,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 7,
+          "lookups": 164,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 8,
+          "lookups": 723,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 9,
+          "lookups": 423,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 10,
+          "targetBucket": 10,
+          "lookups": 116597,
+          "misses": 1901
+        },
+        {
+          "sourceBucket": 11,
+          "targetBucket": 4,
+          "lookups": 15,
+          "misses": 0
+        },
+        {
+          "sourceBucket": 11,
+          "targetBucket": 11,
+          "lookups": 2152,
+          "misses": 0
+        }
+      ],
+      "elapsedControlsMs": {
+        "baseline": 29551.508424,
+        "disabled": 29057.77696400002,
+        "enabled": 30470.820340000006
+      }
+    }
+  ]
+}
