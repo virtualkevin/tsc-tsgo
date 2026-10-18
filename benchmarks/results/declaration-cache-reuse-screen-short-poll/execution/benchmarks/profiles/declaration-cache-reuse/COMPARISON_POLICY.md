@@ -1,0 +1,9 @@
+# Frozen before timing
+
+Compare retained node-pointer Go baseline 8fe4bd80/source216d40c7 against the unchanged validated declaration-diagnostic cache reuse candidate. Use identical physical inputs/libraries, fresh processes, default runtime/checker settings, alternating order and matched GNU-time RSS wrappers. No builds, tests, profiles or Git work during timing.
+
+Screen with nine pairs on TypeORM/tRPC and five on VS Code/Sentry, one warmup each. Both aggregate geometric means (ratio of medians and median paired ratios) must reach 1.01. Both summaries for every workload must reach 0.98. Candidate median RSS must stay within 1.05 times baseline. Passing the screen requires two independent confirmations, each with 19 small-workload pairs and 11 large-workload pairs; reverse raw executable roles in the second and normalize each pair. Each confirmation must independently pass all gates. No pooling, opportunistic extra samples or threshold changes to rescue failure.
+
+Complete focused, root/services, full pinned conformance, normal/race/checkptr CLI parity and API/emit integration before promotion. Require normal production build-system provenance, identical build settings and restored baseline source/default artifacts before timing. Overlay binaries alone are not performance promotion evidence. Remeasure directly against original native after an accepted change; never multiply historical Go-to-Go ratios.
+
+Mechanism: reuse already completed per-file declaration diagnostics for NoEmit/non-forced emitter requests. Cache misses, custom hosts, normal output and forced declaration emit retain the original transform. Existing diagnostics still pass through the same diagnostic collection; no diagnostic skipping or general semantic cache expansion. Census supports a possible benefit only on TypeORM/tRPC. VS Code/Sentry remain mandatory regression checks. Key construction and declaration transformer code remain unchanged.

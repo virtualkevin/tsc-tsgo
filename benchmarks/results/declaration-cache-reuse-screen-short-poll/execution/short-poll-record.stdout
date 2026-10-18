@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "workload": "typeorm",
+      "ratioOfMedians": 1.1517789006871693,
+      "pairedMedian": 1.1341772686251612,
+      "pairRange": [
+        0.9856831734627722,
+        1.189495209631828
+      ],
+      "rss": [
+        883.79296875,
+        731.14453125
+      ]
+    },
+    {
+      "workload": "trpc",
+      "ratioOfMedians": 1.0974697831530038,
+      "pairedMedian": 1.0987860701371255,
+      "pairRange": [
+        0.9292891293978752,
+        1.1218985493139393
+      ],
+      "rss": [
+        241.125,
+        233.5
+      ]
+    },
+    {
+      "workload": "vscode",
+      "ratioOfMedians": 0.970169540402155,
+      "pairedMedian": 0.9779168063943409,
+      "pairRange": [
+        0.9211110779316767,
+        1.0393333635734268
+      ],
+      "rss": [
+        7752.2109375,
+        7841.9921875
+      ]
+    },
+    {
+      "workload": "sentry",
+      "ratioOfMedians": 0.970545868959837,
+      "pairedMedian": 0.985539037957326,
+      "pairRange": [
+        0.9030640034286808,
+        1.0213174081769703
+      ],
+      "rss": [
+        5360.6484375,
+        5326.84375
+      ]
+    }
+  ],
+  "aggregates": {
+    "ratioOfMediansGeometricMean": 1.0444949575211377,
+    "pairedMedianGeometricMean": 1.046869281429461
+  },
+  "gates": {
+    "bothAggregatesAtLeast101": true,
+    "allWorkloadSummariesAtLeast098": false,
+    "allWorkloadMedianRssAtMost105": true
+  },
+  "qualifies": false
+}

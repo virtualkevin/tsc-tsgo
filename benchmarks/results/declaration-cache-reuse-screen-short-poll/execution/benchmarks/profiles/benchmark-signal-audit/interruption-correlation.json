@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "source": "Read-only local logs_2.sqlite; only selected timing metadata retained, no transcript or environment",
+  "events": [
+    {
+      "unixSeconds": 1792348187,
+      "nanoseconds": 595283259,
+      "target": "codex_code_mode::timing",
+      "callId": "call_9209790fb6c6404db9fce3952afaa9dd",
+      "cellId": "4424",
+      "outcome": "interrupted",
+      "hostDurationNs": 11548555587,
+      "rawRecordSha256": "3b90f4218831a5f28e245fca7d581da07d06659c1f8ecf49058cf63710b8b167"
+    }
+  ],
+  "signalEvidence": "benchmarks/results/declaration-cache-reuse-screen-retry/execution/retry-signals.jsonl",
+  "conclusion": "Tool call marked interrupted contemporaneously with captured SIGTERM from codex. Trigger unknown; correlation does not identify user intent or a timeout.",
+  "nextRun": "Unchanged protocol and cancellation forwarding; use short write_stdin observations. No signal suppression, detached daemon, changed thresholds, reduced samples, or pooling."
+}

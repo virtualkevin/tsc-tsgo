@@ -1,6 +1,6 @@
 # Reuse completed declaration diagnostics during NoEmit
 
-Staged candidate based on the verified declaration-path census (f3cb4ea): TypeORM and tRPC execute both explicit declaration diagnostics and emitter declaration transforms for the same source identities. No comparable invocation exists in the pinned VS Code/Sentry workloads. This candidate is not a route to 10× by itself and has no measured performance result.
+Staged candidate based on the verified declaration-path census (f3cb4ea): TypeORM and tRPC execute both explicit declaration diagnostics and emitter declaration transforms for the same source identities. No comparable invocation exists in the pinned VS Code/Sentry workloads. This candidate was rejected by its completed four-workload performance screen; it is not promoted.
 
 The emitter consults Program's existing per-file completed diagnostic cache only after its usual nil-file, EmitOnlyJs and absent-output-path exclusions, and only under NoEmit with non-forced declaration emission. A hit adds the cached diagnostics through the existing collection, marks EmitSkipped, and returns before constructing the second declaration tree. A miss or a custom EmitHost continues the full transform. Normal output and EmitOnlyForcedDts always construct the output tree. No new cache, checker object sharing or diagnostic omission is introduced.
 
@@ -10,4 +10,6 @@ The staged Go overlay changes emitter.go and adds focused tests. Test fixtures c
 
 The first fixture intended to produce an isolated-declaration error used a legal direct literal return and failed its expected-error assertion; all evidence is retained in fixture-failure-01. The corrected parameter-dependent return produces the intended diagnostic. Candidate production logic did not change during this correction.
 
-Normal production build passed with identical settings and exact two-file source delta; binary 2e61f988 matches the validated overlay. Source hash 898bd15e covers 5,155 files. Retained source 216d40c7 (5,154 files), default binary 8fe4bd80 and sidecar 76e6c4f0 were restored and preflight verified before timing. The candidate is preserved separately as tsc-go-declaration-cache. No workload performance result yet.
+Normal production build passed with identical settings and exact two-file source delta; binary 2e61f988 matches the validated overlay. Source hash 898bd15e covers 5,155 files. Retained source 216d40c7 (5,154 files), default binary 8fe4bd80 and sidecar 76e6c4f0 were restored and preflight verified before timing. The candidate is preserved separately as tsc-go-declaration-cache. The completed screen is archived under benchmarks/results/declaration-cache-reuse-screen-short-poll.
+
+The screen at capture efdfb8b completed with all input/provenance checks passing. TypeORM median ratio 1.151779 and tRPC 1.097470 improved, while VS Code 0.970170 (paired 0.977917) and Sentry 0.970546 violated the frozen 0.98 floor. Both aggregate summaries exceeded 1.01 and RSS passed, but all gates are required. Candidate rejected; no confirmations, retuning or promotion. Earlier interrupted partial runs remain separately archived and are not pooled.
