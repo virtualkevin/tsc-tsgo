@@ -1,0 +1,13 @@
+# Resolved-member diagnostic census
+
+Checker-owned fixed-size counters distinguish materialized tables, frozen name layouts, pending own members and pending members with bases. Histograms record lookup size and key byte length; hit/miss counts use the returned nonnil symbol. The path and size are captured before lazy resolution. Size means map entries, frozen layout names, or pending own-source entries; inherited names are not included in the latter. Recursive base lookups count separately. Types without a checker owner are not observed. No distinct-name or unique-query claim is made.
+
+The registry holds counter records only, never queried names or semantic objects. Existing checker ownership protects updates; serialization happens after CLI checking finishes. This observer is diagnostic-only and is not retained in production. Default checker/runtime settings will be used, with baseline, observer-disabled and observer-enabled controls on all four workloads. Clean output and unchanged physical inputs are required. Single elapsed controls are not optimization evidence or an isolated causal overhead estimate.
+
+Source digest 6ec99f9289783f1dfa77d1d732f26a591ae0276327a62ad348ff70d10dc9eb34. Normal/race/checkptr each passed three focused tests; root validation passed 2,342 records/118 top-level tests across 10 packages. All twelve controls completed with clean output and unchanged physical inputs/artifacts/source. Evidence is archived and hash-verified; guarded restoration returns production source/default binary to retained 216d40c7/8fe4bd80.
+
+Materialized-table calls/hits/misses: TypeORM 1,042,451/363,222/679,229; tRPC 83,602/40,058/43,544; VS Code 21,541,999/10,944,251/10,597,748; Sentry 85,105,870/7,079,027/78,026,843. Sentry's materialized path is 91.68% negative, with 45,023,777 calls and 43,760,927 misses at table sizes 4–7. VS Code has 9,581,671 calls/6,659,070 misses in that same size bucket. Full per-path histograms are in summary.json, with raw owner counters archived.
+
+This narrows the next investigation to small materialized-table negative lookup behavior. It does not establish exact query repetition, queried name identities, key-length/table-length correlation, unique table counts, table mutation frequency, or a safe negative-cache lifetime. A string-map replacement still needs those ownership/coverage invariants, and small Go map lookup implementation must be inspected before assuming hashing is the dominant operation.
+
+Single elapsed controls fluctuate; they neither establish a causal overhead estimate nor an optimization speedup. No PERF rows. Production observer code has been removed and retained separately as instrumentation.patch plus the two Go observer/test files.
