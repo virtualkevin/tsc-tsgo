@@ -1,0 +1,92 @@
+{
+  "sources": {
+    "staged/densepointerlinks.go": "6c7d290a70db7b9e058f7d2acc3c0b85ba0be73baa283dd52d4659a6312dd4a5",
+    "staged/densepointerlinks_test.go": "13741597a3d7164d47248399d490238680597dfd8f1aa7e635bd9107ac318276",
+    "overlay.json": "c04d2919b400f33dddaa7ef55f3964737acf38c129af566084c5666e08e31f0a",
+    "validate.py": "0c8198dc76d63f1576c6a25c8699418183d637d5a6c30d66e88421a0b94e06fc"
+  },
+  "tests": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/dense-pointer-links/overlay.json",
+        "./internal/core",
+        "-run",
+        "^TestDensePointerLinks"
+      ],
+      "code": 0,
+      "passed": [
+        "TestDensePointerLinksDifferential",
+        "TestDensePointerLinksLifetime",
+        "TestDensePointerLinksConcurrentReads",
+        "TestDensePointerLinksNilAndCollision"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/dense-pointer-links/overlay.json",
+        "-race",
+        "./internal/core",
+        "-run",
+        "^TestDensePointerLinks"
+      ],
+      "code": 0,
+      "passed": [
+        "TestDensePointerLinksDifferential",
+        "TestDensePointerLinksLifetime",
+        "TestDensePointerLinksConcurrentReads",
+        "TestDensePointerLinksNilAndCollision"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/dense-pointer-links/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/core",
+        "-run",
+        "^TestDensePointerLinks"
+      ],
+      "code": 0,
+      "passed": [
+        "TestDensePointerLinksDifferential",
+        "TestDensePointerLinksLifetime",
+        "TestDensePointerLinksConcurrentReads",
+        "TestDensePointerLinksNilAndCollision"
+      ]
+    }
+  ],
+  "microbenchmark": {
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "test",
+      "-count=5",
+      "-overlay",
+      "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/dense-pointer-links/overlay.json",
+      "./internal/core",
+      "-run",
+      "^$",
+      "-bench",
+      "^BenchmarkDensePointerLinksLookup$",
+      "-benchtime=200ms",
+      "-benchmem"
+    ],
+    "code": 0
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "isolated lookup mechanism; not compiler performance",
+  "observations": [
+    {
+      "keys": 256,
+      "pointerMedianNs": 9.142,
+      "denseMedianNs": 12.29
+    },
+    {
+      "keys": 65536,
+      "pointerMedianNs": 81.93,
+      "denseMedianNs": 94.55
+    }
+  ],
+  "decision": "Decline compiler integration: no measured lookup advantage. Non-alternating microbenchmark is not a workload acceptance test."
+}

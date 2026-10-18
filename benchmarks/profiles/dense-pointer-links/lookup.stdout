@@ -1,0 +1,26 @@
+goos: linux
+goarch: amd64
+pkg: github.com/microsoft/typescript-go/internal/core
+cpu: Intel Xeon Processor (Cascadelake)
+BenchmarkDensePointerLinksLookup/256/pointer-8 	27103110	         9.034 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/pointer-8 	25754062	         9.142 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/pointer-8 	26181099	         8.929 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/pointer-8 	25104640	         9.568 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/pointer-8 	26069998	         9.579 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/dense-8   	12462084	        17.08 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/dense-8   	22379934	        11.47 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/dense-8   	23536594	        10.16 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/dense-8   	19121340	        12.29 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/256/dense-8   	17296138	        13.96 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/pointer-8         	 2269627	       107.6 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/pointer-8         	 2744011	        81.93 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/pointer-8         	 3113750	        77.63 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/pointer-8         	 2923196	        90.38 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/pointer-8         	 3383793	        71.11 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/dense-8           	 1934240	       126.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/dense-8           	 2685296	       115.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/dense-8           	 2480346	        94.55 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/dense-8           	 2884459	        81.20 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDensePointerLinksLookup/65536/dense-8           	 3029547	        93.11 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/microsoft/typescript-go/internal/core	4.988s
