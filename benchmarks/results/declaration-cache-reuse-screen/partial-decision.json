@@ -1,0 +1,61 @@
+{
+  "status": "verified-partial",
+  "captureHead": "e7e9442088fa070f97e6d99262b1244c79c5de8a",
+  "summarySha256": "ebb8f672c1fef853c38554e17675b5c1a459b2c551331eabde8af4eecd26f7b5",
+  "reportSha256": "be9adcbf5659ba7379e93a1992734c2490e933ba1611c45c4eb382408ee003a9",
+  "results": [
+    {
+      "name": "typeorm",
+      "runs": 9,
+      "files": 3572,
+      "baselineMedianMs": 2537.267757,
+      "candidateMedianMs": 2272.918929,
+      "baselineOverCandidate": 1.116303676575171,
+      "pairedRatios": [
+        1.253742679354491,
+        1.20822287879757,
+        1.4138098724595483,
+        1.0928451974555886,
+        1.0241710743363934,
+        1.1251943412932996,
+        1.1269215401261363,
+        1.1920922018156943,
+        1.206598542806691
+      ],
+      "pairedMedian": 1.1920922018156943,
+      "pairedMin": 1.0241710743363934,
+      "pairedMax": 1.4138098724595483,
+      "optimizedFasterPairs": 9,
+      "baselineMedianRssMiB": 883.08984375,
+      "candidateMedianRssMiB": 727.00390625,
+      "rssCandidateOverBaseline": 0.8232502178519138
+    },
+    {
+      "name": "trpc",
+      "runs": 9,
+      "files": 942,
+      "baselineMedianMs": 488.520538,
+      "candidateMedianMs": 465.226751,
+      "baselineOverCandidate": 1.0500697497509124,
+      "pairedRatios": [
+        1.0673864305234428,
+        1.0710379958352825,
+        1.0339108457957915,
+        1.0028055582044126,
+        0.9656292345371988,
+        1.0453774047831246,
+        1.027585292099061,
+        0.9452282893627515,
+        1.0550276766991822
+      ],
+      "pairedMedian": 1.0339108457957915,
+      "pairedMin": 0.9452282893627515,
+      "pairedMax": 1.0710379958352825,
+      "optimizedFasterPairs": 7,
+      "baselineMedianRssMiB": 242.625,
+      "candidateMedianRssMiB": 234.25,
+      "rssCandidateOverBaseline": 0.9654817104585265
+    }
+  ],
+  "decision": "Incomplete screen: completed small workload evidence only. No full-suite acceptance, aggregate, large-workload result or promotion claim."
+}
