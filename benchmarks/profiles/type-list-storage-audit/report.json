@@ -1,0 +1,194 @@
+{
+  "scope": "Selected explicitly typed direct slice allocation frames only; not all type-list allocations, exact counts, live-after-final-GC data, CPU/RSS, removable budget, or speedup forecast. Generic pointer shapes and child allocations are excluded. Inuse samples reflect the old profile collection point without forced final GC.",
+  "parserSha256": "1de6a0c0039167a41993ee69210b2573d8c15204ebe0b8b0ff3e3d7b6cdc5881",
+  "rawArchiveSha256": "2a6b7c33e8edfaddd48d0b1f34b1acf85ece69d9b87cdd25465d53031b1454be",
+  "projects": [
+    {
+      "total": {
+        "allocObjects": 23225216,
+        "allocBytes": 4817441419,
+        "inuseObjects": 9567728,
+        "inuseBytes": 2913908345
+      },
+      "selectedDirectSites": {
+        "allocObjects": 1919679,
+        "allocBytes": 181246882,
+        "inuseObjects": 462313,
+        "inuseBytes": 37628786
+      },
+      "selectedPercent": {
+        "allocObjects": 8.265494710576641,
+        "allocBytes": 3.762305884720505,
+        "inuseObjects": 4.832004003458293,
+        "inuseBytes": 1.2913510496844403
+      },
+      "sites": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type]",
+          "allocObjects": 924916,
+          "allocBytes": 14156196,
+          "inuseObjects": 193878,
+          "inuseBytes": 4194496
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/core.AppendIfUnique[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type]",
+          "allocObjects": 247808,
+          "allocBytes": 3670228,
+          "inuseObjects": 67584,
+          "inuseBytes": 1048708
+        },
+        {
+          "name": "slices.Clone[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]",
+          "allocObjects": 350196,
+          "allocBytes": 18365708,
+          "inuseObjects": 55706,
+          "inuseBytes": 1572928
+        },
+        {
+          "name": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]",
+          "allocObjects": 396759,
+          "allocBytes": 145054750,
+          "inuseObjects": 145145,
+          "inuseBytes": 30812654
+        }
+      ],
+      "project": "sentry",
+      "rawSha256": "10a63d50ab9c22f583b007ac1c2acdd34eb1d5b2ddc6defbacbc90bb923ae422"
+    },
+    {
+      "total": {
+        "allocObjects": 331970,
+        "allocBytes": 106773821,
+        "inuseObjects": 129986,
+        "inuseBytes": 88922710
+      },
+      "selectedDirectSites": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "selectedPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "sites": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type]",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/core.AppendIfUnique[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type]",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        }
+      ],
+      "project": "trpc",
+      "rawSha256": "471d301923e23fb46f802ac40703bac5a31f0d79e5d3741dd2b765d07b9e9001"
+    },
+    {
+      "total": {
+        "allocObjects": 3200134,
+        "allocBytes": 561957302,
+        "inuseObjects": 1615602,
+        "inuseBytes": 408517614
+      },
+      "selectedDirectSites": {
+        "allocObjects": 114688,
+        "allocBytes": 1572892,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "selectedPercent": {
+        "allocObjects": 3.5838499262843366,
+        "allocBytes": 0.2798952864216008,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "sites": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type]",
+          "allocObjects": 81920,
+          "allocBytes": 1048596,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "slices.Clone[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]",
+          "allocObjects": 32768,
+          "allocBytes": 524296,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        }
+      ],
+      "project": "typeorm",
+      "rawSha256": "b624d2d7dad57b51575a7624fb1d366b7a94912d301c8f5dae83f9e63fb022d6"
+    },
+    {
+      "total": {
+        "allocObjects": 17402575,
+        "allocBytes": 5084070463,
+        "inuseObjects": 10506137,
+        "inuseBytes": 4247088189
+      },
+      "selectedDirectSites": {
+        "allocObjects": 317502,
+        "allocBytes": 6817308,
+        "inuseObjects": 40960,
+        "inuseBytes": 1048616
+      },
+      "selectedPercent": {
+        "allocObjects": 1.8244541396890976,
+        "allocBytes": 0.13409153255474854,
+        "inuseObjects": 0.3898673699000879,
+        "inuseBytes": 0.024690233716265317
+      },
+      "sites": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type]",
+          "allocObjects": 120894,
+          "allocBytes": 3147172,
+          "inuseObjects": 32768,
+          "inuseBytes": 524296
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/core.AppendIfUnique[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type]",
+          "allocObjects": 32768,
+          "allocBytes": 1048608,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "slices.Clone[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]",
+          "allocObjects": 8192,
+          "allocBytes": 524320,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]",
+          "allocObjects": 155648,
+          "allocBytes": 2097208,
+          "inuseObjects": 8192,
+          "inuseBytes": 524320
+        }
+      ],
+      "project": "vscode",
+      "rawSha256": "f0400e7e1f143210cb7289825e4135d568ade9a18e8bb6b173e497ba2e906487"
+    }
+  ]
+}
