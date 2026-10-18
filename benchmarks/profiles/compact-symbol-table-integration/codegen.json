@@ -1,0 +1,127 @@
+{
+  "scope": "Static code generation only. Encoded bytes and stack reservations are not executed instruction counts, CPU costs, throughput or a speedup claim. Empty objdump output means no matching retained function, potentially due to inlining.",
+  "controllerSha256": "c6713ed7aabfcfd940cc6a4c36fff9132589d9513259cc525311bdf0919471ef",
+  "functions": [
+    {
+      "name": "github.com/microsoft/typescript-go/internal/checker.getResolvedMember",
+      "variants": {
+        "baseline": {
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "tool",
+            "objdump",
+            "-s",
+            "^github\\.com/microsoft/typescript\\-go/internal/checker\\.getResolvedMember$",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+          ],
+          "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+          "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "present": false,
+          "encodedInstructionBytes": 0,
+          "disassembledInstructions": 0,
+          "stackReservations": []
+        },
+        "candidate": {
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "tool",
+            "objdump",
+            "-s",
+            "^github\\.com/microsoft/typescript\\-go/internal/checker\\.getResolvedMember$",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-compact-symbol-table"
+          ],
+          "binarySha256": "be58977c37d393f9e6232e06415211ce6e4cb9c6c6d18787592ef6c4ea22192b",
+          "outputSha256": "42a3a31365a1b61b8043862e7f341ee0347d9d309f04e300b9d487c524546f7a",
+          "present": true,
+          "encodedInstructionBytes": 301,
+          "disassembledInstructions": 86,
+          "stackReservations": [
+            48
+          ]
+        }
+      }
+    },
+    {
+      "name": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getSymbol",
+      "variants": {
+        "baseline": {
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "tool",
+            "objdump",
+            "-s",
+            "^github\\.com/microsoft/typescript\\-go/internal/checker\\.\\(\\*Checker\\)\\.getSymbol$",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+          ],
+          "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+          "outputSha256": "ce2143f37671469a9ea4ca910df6a8b5a016530dd628b87980565feaf2d6920f",
+          "present": true,
+          "encodedInstructionBytes": 268,
+          "disassembledInstructions": 72,
+          "stackReservations": [
+            48
+          ]
+        },
+        "candidate": {
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "tool",
+            "objdump",
+            "-s",
+            "^github\\.com/microsoft/typescript\\-go/internal/checker\\.\\(\\*Checker\\)\\.getSymbol$",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-compact-symbol-table"
+          ],
+          "binarySha256": "be58977c37d393f9e6232e06415211ce6e4cb9c6c6d18787592ef6c4ea22192b",
+          "outputSha256": "7dcf8d0fe92aaa139cd002a6b4ffa93ddff98ea7e850ebeceda79ce73c3672f3",
+          "present": true,
+          "encodedInstructionBytes": 472,
+          "disassembledInstructions": 128,
+          "stackReservations": [
+            56
+          ]
+        }
+      }
+    },
+    {
+      "name": "github.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo",
+      "variants": {
+        "baseline": {
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "tool",
+            "objdump",
+            "-s",
+            "^github\\.com/microsoft/typescript\\-go/internal/checker\\.\\(\\*Relater\\)\\.propertiesRelatedTo$",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+          ],
+          "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+          "outputSha256": "de92e2397911cbe87a16876847103f23951f111c897568cffbdc704990da89a9",
+          "present": true,
+          "encodedInstructionBytes": 6318,
+          "disassembledInstructions": 1312,
+          "stackReservations": [
+            368
+          ]
+        },
+        "candidate": {
+          "command": [
+            "/tmp/tsc-toolchains/go/bin/go",
+            "tool",
+            "objdump",
+            "-s",
+            "^github\\.com/microsoft/typescript\\-go/internal/checker\\.\\(\\*Relater\\)\\.propertiesRelatedTo$",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-compact-symbol-table"
+          ],
+          "binarySha256": "be58977c37d393f9e6232e06415211ce6e4cb9c6c6d18787592ef6c4ea22192b",
+          "outputSha256": "28e01509157dba20170edc4476e9815fb14bd5a2d4207263c42f883ad2634922",
+          "present": true,
+          "encodedInstructionBytes": 6318,
+          "disassembledInstructions": 1312,
+          "stackReservations": [
+            368
+          ]
+        }
+      }
+    }
+  ]
+}

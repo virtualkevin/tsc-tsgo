@@ -1,0 +1,129 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.(*Checker).getSymbol(SB) github.com/microsoft/typescript-go/internal/checker/checker.go
+  checker.go:2165	0x7aa520		493b6610		CMPQ SP, 0x10(R14)										
+  checker.go:2165	0x7aa524		0f8694010000		JBE 0x7aa6be											
+  checker.go:2165	0x7aa52a		55			PUSHQ BP											
+  checker.go:2165	0x7aa52b		4889e5			MOVQ SP, BP											
+  checker.go:2165	0x7aa52e		4883ec38		SUBQ $0x38, SP											
+  checker.go:2165	0x7aa532		48894c2458		MOVQ CX, 0x58(SP)										
+  checker.go:2166	0x7aa537		f7c6ffffff3f		TESTL $0x3fffffff, SI										
+  checker.go:2166	0x7aa53d		744d			JE 0x7aa58c											
+  checker.go:2166	0x7aa53f		4889442448		MOVQ AX, 0x48(SP)										
+  checker.go:2166	0x7aa544		89742468		MOVL SI, 0x68(SP)										
+  compact_table.go:31	0x7aa548		4885db			TESTQ BX, BX											
+  compact_table.go:31	0x7aa54b		743b			JE 0x7aa588											
+  compact_table.go:34	0x7aa54d		488b13			MOVQ 0(BX), DX											
+  compact_table.go:34	0x7aa550		4885d2			TESTQ DX, DX											
+  compact_table.go:34	0x7aa553		7516			JNE 0x7aa56b											
+  checker.go:2166	0x7aa555		48895c2450		MOVQ BX, 0x50(SP)										
+  checker.go:2166	0x7aa55a		48897c2460		MOVQ DI, 0x60(SP)										
+  checker.go:2166	0x7aa55f		48894c2458		MOVQ CX, 0x58(SP)										
+  checker.go:2166	0x7aa564		31d2			XORL DX, DX											
+  compact_table.go:34	0x7aa566		e9b6000000		JMP 0x7aa621											
+  compact_table.go:35	0x7aa56b		488d056ea96200		LEAQ 0x62a96e(IP), AX										
+  compact_table.go:35	0x7aa572		4889d3			MOVQ DX, BX											
+  compact_table.go:35	0x7aa575		e8e699c6ff		CALL runtime.mapaccess2_faststr(SB)								
+  compact_table.go:35	0x7aa57a		488b10			MOVQ 0(AX), DX											
+  checker.go:14286	0x7aa57d		488b442448		MOVQ 0x48(SP), AX										
+  checker.go:2169	0x7aa582		8b742468		MOVL 0x68(SP), SI										
+  compact_table.go:181	0x7aa586		eb0c			JMP 0x7aa594											
+  compact_table.go:181	0x7aa588		31d2			XORL DX, DX											
+  compact_table.go:181	0x7aa58a		eb08			JMP 0x7aa594											
+  checker.go:2182	0x7aa58c		31c0			XORL AX, AX											
+  checker.go:2182	0x7aa58e		4883c438		ADDQ $0x38, SP											
+  checker.go:2182	0x7aa592		5d			POPQ BP												
+  checker.go:2182	0x7aa593		c3			RET												
+  checker.go:14285	0x7aa594		4885d2			TESTQ DX, DX											
+  checker.go:14285	0x7aa597		743c			JE 0x7aa5d5											
+  compact_table.go:181	0x7aa599		4889542428		MOVQ DX, 0x28(SP)										
+  checker.go:14286	0x7aa59e		488b9808030000		MOVQ 0x308(AX), BX										
+  checker.go:14286	0x7aa5a5		4889d1			MOVQ DX, CX											
+  checker.go:14286	0x7aa5a8		488d05f1096300		LEAQ 0x6309f1(IP), AX										
+  checker.go:14286	0x7aa5af		e82c8bc6ff		CALL runtime.mapaccess1_fast64(SB)								
+  checker.go:14286	0x7aa5b4		488b10			MOVQ 0(AX), DX											
+  checker.go:14287	0x7aa5b7		4885d2			TESTQ DX, DX											
+  checker.go:14287	0x7aa5ba		740b			JE 0x7aa5c7											
+  checker.go:16284	0x7aa5bc		488b442448		MOVQ 0x48(SP), AX										
+  checker.go:2169	0x7aa5c1		8b742468		MOVL 0x68(SP), SI										
+  checker.go:2167	0x7aa5c5		eb0e			JMP 0x7aa5d5											
+  checker.go:16284	0x7aa5c7		488b442448		MOVQ 0x48(SP), AX										
+  checker.go:2167	0x7aa5cc		488b542428		MOVQ 0x28(SP), DX										
+  checker.go:2169	0x7aa5d1		8b742468		MOVL 0x68(SP), SI										
+  checker.go:2168	0x7aa5d5		4885d2			TESTQ DX, DX											
+  checker.go:2168	0x7aa5d8		74b2			JE 0x7aa58c											
+  checker.go:2169	0x7aa5da		448b02			MOVL 0(DX), R8											
+  checker.go:2169	0x7aa5dd		0f1f00			NOPL 0(AX)											
+  checker.go:2169	0x7aa5e0		4485c6			TESTL R8, SI											
+  checker.go:2169	0x7aa5e3		752c			JNE 0x7aa611											
+  checker.go:2172	0x7aa5e5		410fbae015		BTL $0x15, R8											
+  checker.go:2172	0x7aa5ea		73a0			JAE 0x7aa58c											
+  checker.go:2167	0x7aa5ec		4889542430		MOVQ DX, 0x30(SP)										
+  checker.go:2173	0x7aa5f1		90			NOPL												
+  checker.go:16284	0x7aa5f2		4889d3			MOVQ DX, BX											
+  checker.go:16284	0x7aa5f5		31c9			XORL CX, CX											
+  checker.go:16284	0x7aa5f7		89cf			MOVL CX, DI											
+  checker.go:16284	0x7aa5f9		e8c2de0500		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getSymbolFlagsEx(SB)	
+  checker.go:2175	0x7aa5fe		8b542468		MOVL 0x68(SP), DX										
+  checker.go:2175	0x7aa602		85c2			TESTL AX, DX											
+  checker.go:2175	0x7aa604		7486			JE 0x7aa58c											
+  checker.go:2176	0x7aa606		488b442430		MOVQ 0x30(SP), AX										
+  checker.go:2176	0x7aa60b		4883c438		ADDQ $0x38, SP											
+  checker.go:2176	0x7aa60f		5d			POPQ BP												
+  checker.go:2176	0x7aa610		c3			RET												
+  checker.go:2170	0x7aa611		4889d0			MOVQ DX, AX											
+  checker.go:2170	0x7aa614		4883c438		ADDQ $0x38, SP											
+  checker.go:2170	0x7aa618		5d			POPQ BP												
+  checker.go:2170	0x7aa619		c3			RET												
+  compact_table.go:38	0x7aa61a		488d5101		LEAQ 0x1(CX), DX										
+  compact_table.go:39	0x7aa61e		4c89c9			MOVQ R9, CX											
+  compact_table.go:38	0x7aa621		4883fa08		CMPQ DX, $0x8											
+  compact_table.go:38	0x7aa625		0f8d8c000000		JGE 0x7aa6b7											
+  compact_table.go:39	0x7aa62b		440fb64308		MOVZX 0x8(BX), R8										
+  checker.go:2166	0x7aa630		4989c9			MOVQ CX, R9											
+  compact_table.go:39	0x7aa633		4889d1			MOVQ DX, CX											
+  compact_table.go:39	0x7aa636		41ba01000000		MOVL $0x1, R10											
+  compact_table.go:39	0x7aa63c		41d3e2			SHLL CL, R10											
+  compact_table.go:39	0x7aa63f		90			NOPL												
+  compact_table.go:39	0x7aa640		4584d0			TESTL R10, R8											
+  compact_table.go:39	0x7aa643		7450			JE 0x7aa695											
+  compact_table.go:39	0x7aa645		4c8d0449		LEAQ 0(CX)(CX*2), R8										
+  compact_table.go:39	0x7aa649		4e8b54c318		MOVQ 0x18(BX)(R8*8), R10									
+  compact_table.go:39	0x7aa64e		4e8b44c310		MOVQ 0x10(BX)(R8*8), R8										
+  compact_table.go:39	0x7aa653		4c39d7			CMPQ DI, R10											
+  compact_table.go:39	0x7aa656		7405			JE 0x7aa65d											
+  compact_table.go:39	0x7aa658		4531c0			XORL R8, R8											
+  compact_table.go:39	0x7aa65b		eb43			JMP 0x7aa6a0											
+  compact_table.go:38	0x7aa65d		48894c2420		MOVQ CX, 0x20(SP)										
+  compact_table.go:39	0x7aa662		4c89c0			MOVQ R8, AX											
+  compact_table.go:39	0x7aa665		4c89cb			MOVQ R9, BX											
+  compact_table.go:39	0x7aa668		4c89d1			MOVQ R10, CX											
+  compact_table.go:39	0x7aa66b		e8d09fc5ff		CALL runtime.memequal(SB)									
+  compact_table.go:38	0x7aa670		488b4c2420		MOVQ 0x20(SP), CX										
+  compact_table.go:38	0x7aa675		4889ca			MOVQ CX, DX											
+  compact_table.go:39	0x7aa678		488b5c2450		MOVQ 0x50(SP), BX										
+  checker.go:2169	0x7aa67d		8b742468		MOVL 0x68(SP), SI										
+  compact_table.go:39	0x7aa681		488b7c2460		MOVQ 0x60(SP), DI										
+  compact_table.go:39	0x7aa686		4c8b4c2458		MOVQ 0x58(SP), R9										
+  compact_table.go:39	0x7aa68b		4189c0			MOVL AX, R8											
+  checker.go:14286	0x7aa68e		488b442448		MOVQ 0x48(SP), AX										
+  compact_table.go:39	0x7aa693		eb0b			JMP 0x7aa6a0											
+  compact_table.go:39	0x7aa695		4531c0			XORL R8, R8											
+  compact_table.go:39	0x7aa698		0f1f840000000000	NOPL 0(AX)(AX*1)										
+  compact_table.go:39	0x7aa6a0		4584c0			TESTL R8, R8											
+  compact_table.go:39	0x7aa6a3		0f8471ffffff		JE 0x7aa61a											
+  compact_table.go:40	0x7aa6a9		4c8d0449		LEAQ 0(CX)(CX*2), R8										
+  compact_table.go:40	0x7aa6ad		4a8b54c320		MOVQ 0x20(BX)(R8*8), DX										
+  compact_table.go:181	0x7aa6b2		e9ddfeffff		JMP 0x7aa594											
+  compact_table.go:181	0x7aa6b7		31d2			XORL DX, DX											
+  compact_table.go:181	0x7aa6b9		e9d6feffff		JMP 0x7aa594											
+  checker.go:2165	0x7aa6be		4889442408		MOVQ AX, 0x8(SP)										
+  checker.go:2165	0x7aa6c3		48895c2410		MOVQ BX, 0x10(SP)										
+  checker.go:2165	0x7aa6c8		48894c2418		MOVQ CX, 0x18(SP)										
+  checker.go:2165	0x7aa6cd		48897c2420		MOVQ DI, 0x20(SP)										
+  checker.go:2165	0x7aa6d2		89742428		MOVL SI, 0x28(SP)										
+  checker.go:2165	0x7aa6d6		e82553ceff		CALL runtime.morestack_noctxt.abi0(SB)								
+  checker.go:2165	0x7aa6db		488b442408		MOVQ 0x8(SP), AX										
+  checker.go:2165	0x7aa6e0		488b5c2410		MOVQ 0x10(SP), BX										
+  checker.go:2165	0x7aa6e5		488b4c2418		MOVQ 0x18(SP), CX										
+  checker.go:2165	0x7aa6ea		488b7c2420		MOVQ 0x20(SP), DI										
+  checker.go:2165	0x7aa6ef		8b742428		MOVL 0x28(SP), SI										
+  checker.go:2165	0x7aa6f3		e928feffff		JMP github.com/microsoft/typescript-go/internal/checker.(*Checker).getSymbol(SB)		

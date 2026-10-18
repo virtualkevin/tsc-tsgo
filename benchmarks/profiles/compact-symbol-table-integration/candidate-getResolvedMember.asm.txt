@@ -1,0 +1,87 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.getResolvedMember(SB) github.com/microsoft/typescript-go/internal/checker/pending_members.go
+  pending_members.go:323	0x8d37a0		493b6610		CMPQ SP, 0x10(R14)										
+  pending_members.go:323	0x8d37a4		0f86fb000000		JBE 0x8d38a5											
+  pending_members.go:323	0x8d37aa		55			PUSHQ BP											
+  pending_members.go:323	0x8d37ab		4889e5			MOVQ SP, BP											
+  pending_members.go:323	0x8d37ae		4883ec30		SUBQ $0x30, SP											
+  pending_members.go:323	0x8d37b2		48895c2448		MOVQ BX, 0x48(SP)										
+  pending_members.go:324	0x8d37b7		488b5040		MOVQ 0x40(AX), DX										
+  pending_members.go:324	0x8d37bb		0f1f440000		NOPL 0(AX)(AX*1)										
+  pending_members.go:324	0x8d37c0		4885d2			TESTQ DX, DX											
+  pending_members.go:324	0x8d37c3		7542			JNE 0x8d3807											
+  pending_members.go:327	0x8d37c5		488b5048		MOVQ 0x48(AX), DX										
+  compact_table.go:31		0x8d37c9		4885d2			TESTQ DX, DX											
+  compact_table.go:31		0x8d37cc		7435			JE 0x8d3803											
+  compact_table.go:34		0x8d37ce		488b32			MOVQ 0(DX), SI											
+  compact_table.go:34		0x8d37d1		4885f6			TESTQ SI, SI											
+  compact_table.go:34		0x8d37d4		7513			JNE 0x8d37e9											
+  pending_members.go:327	0x8d37d6		4889542428		MOVQ DX, 0x28(SP)										
+  pending_members.go:324	0x8d37db		48894c2450		MOVQ CX, 0x50(SP)										
+  pending_members.go:324	0x8d37e0		48895c2448		MOVQ BX, 0x48(SP)										
+  pending_members.go:324	0x8d37e5		31c0			XORL AX, AX											
+  compact_table.go:34		0x8d37e7		eb3b			JMP 0x8d3824											
+  compact_table.go:35		0x8d37e9		488d05f0165000		LEAQ 0x5016f0(IP), AX										
+  compact_table.go:35		0x8d37f0		4889cf			MOVQ CX, DI											
+  compact_table.go:35		0x8d37f3		4889d9			MOVQ BX, CX											
+  compact_table.go:35		0x8d37f6		4889f3			MOVQ SI, BX											
+  compact_table.go:35		0x8d37f9		e86207b4ff		CALL runtime.mapaccess2_faststr(SB)								
+  compact_table.go:35		0x8d37fe		488b10			MOVQ 0(AX), DX											
+  compact_table.go:181		0x8d3801		eb12			JMP 0x8d3815											
+  compact_table.go:181		0x8d3803		31d2			XORL DX, DX											
+  compact_table.go:181		0x8d3805		eb0e			JMP 0x8d3815											
+  pending_members.go:325	0x8d3807		4889d0			MOVQ DX, AX											
+  pending_members.go:325	0x8d380a		e831dfffff		CALL github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).get(SB)	
+  pending_members.go:325	0x8d380f		4883c430		ADDQ $0x30, SP											
+  pending_members.go:325	0x8d3813		5d			POPQ BP												
+  pending_members.go:325	0x8d3814		c3			RET												
+  pending_members.go:327	0x8d3815		4889d0			MOVQ DX, AX											
+  pending_members.go:327	0x8d3818		4883c430		ADDQ $0x30, SP											
+  pending_members.go:327	0x8d381c		5d			POPQ BP												
+  pending_members.go:327	0x8d381d		c3			RET												
+  compact_table.go:38		0x8d381e		48ffc0			INCQ AX												
+  compact_table.go:39		0x8d3821		4889f9			MOVQ DI, CX											
+  compact_table.go:38		0x8d3824		4883f808		CMPQ AX, $0x8											
+  compact_table.go:38		0x8d3828		7d72			JGE 0x8d389c											
+  compact_table.go:39		0x8d382a		0fb67208		MOVZX 0x8(DX), SI										
+  pending_members.go:324	0x8d382e		4889cf			MOVQ CX, DI											
+  compact_table.go:39		0x8d3831		4889c1			MOVQ AX, CX											
+  compact_table.go:39		0x8d3834		41b801000000		MOVL $0x1, R8											
+  compact_table.go:39		0x8d383a		41d3e0			SHLL CL, R8											
+  compact_table.go:39		0x8d383d		0f1f00			NOPL 0(AX)											
+  compact_table.go:39		0x8d3840		4484c6			TESTL R8, SI											
+  compact_table.go:39		0x8d3843		7442			JE 0x8d3887											
+  compact_table.go:39		0x8d3845		488d3440		LEAQ 0(AX)(AX*2), SI										
+  compact_table.go:39		0x8d3849		4c8b44f218		MOVQ 0x18(DX)(SI*8), R8										
+  compact_table.go:39		0x8d384e		488b74f210		MOVQ 0x10(DX)(SI*8), SI										
+  compact_table.go:39		0x8d3853		4c39c7			CMPQ DI, R8											
+  compact_table.go:39		0x8d3856		7404			JE 0x8d385c											
+  compact_table.go:39		0x8d3858		31f6			XORL SI, SI											
+  compact_table.go:39		0x8d385a		eb2d			JMP 0x8d3889											
+  compact_table.go:38		0x8d385c		4889442420		MOVQ AX, 0x20(SP)										
+  compact_table.go:39		0x8d3861		4889f0			MOVQ SI, AX											
+  compact_table.go:39		0x8d3864		4c89c1			MOVQ R8, CX											
+  compact_table.go:39		0x8d3867		e8d40db3ff		CALL runtime.memequal(SB)									
+  compact_table.go:38		0x8d386c		488b4c2420		MOVQ 0x20(SP), CX										
+  compact_table.go:39		0x8d3871		488b542428		MOVQ 0x28(SP), DX										
+  compact_table.go:39		0x8d3876		488b5c2448		MOVQ 0x48(SP), BX										
+  compact_table.go:39		0x8d387b		488b7c2450		MOVQ 0x50(SP), DI										
+  compact_table.go:39		0x8d3880		89c6			MOVL AX, SI											
+  compact_table.go:38		0x8d3882		4889c8			MOVQ CX, AX											
+  compact_table.go:39		0x8d3885		eb02			JMP 0x8d3889											
+  compact_table.go:39		0x8d3887		31f6			XORL SI, SI											
+  compact_table.go:39		0x8d3889		4084f6			TESTL SI, SI											
+  compact_table.go:39		0x8d388c		7490			JE 0x8d381e											
+  compact_table.go:40		0x8d388e		488d0c40		LEAQ 0(AX)(AX*2), CX										
+  compact_table.go:40		0x8d3892		488b54ca20		MOVQ 0x20(DX)(CX*8), DX										
+  compact_table.go:181		0x8d3897		e979ffffff		JMP 0x8d3815											
+  compact_table.go:181		0x8d389c		31d2			XORL DX, DX											
+  compact_table.go:181		0x8d389e		6690			NOPW												
+  compact_table.go:181		0x8d38a0		e970ffffff		JMP 0x8d3815											
+  pending_members.go:323	0x8d38a5		4889442408		MOVQ AX, 0x8(SP)										
+  pending_members.go:323	0x8d38aa		48895c2410		MOVQ BX, 0x10(SP)										
+  pending_members.go:323	0x8d38af		48894c2418		MOVQ CX, 0x18(SP)										
+  pending_members.go:323	0x8d38b4		e847c1bbff		CALL runtime.morestack_noctxt.abi0(SB)								
+  pending_members.go:323	0x8d38b9		488b442408		MOVQ 0x8(SP), AX										
+  pending_members.go:323	0x8d38be		488b5c2410		MOVQ 0x10(SP), BX										
+  pending_members.go:323	0x8d38c3		488b4c2418		MOVQ 0x18(SP), CX										
+  pending_members.go:323	0x8d38c8		e9d3feffff		JMP github.com/microsoft/typescript-go/internal/checker.getResolvedMember(SB)			

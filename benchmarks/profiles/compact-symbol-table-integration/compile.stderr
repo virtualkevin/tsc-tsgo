@@ -1,0 +1,205 @@
+# github.com/microsoft/typescript-go/internal/ast
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [sync.Mutex.Lock]:
+internal/sync.runtime_SemacquireMutex(0x100?, 0xf0?, 0x41b514?)
+	runtime/sema.go:95 +0x25
+internal/sync.(*Mutex).lockSlow(0x1cd19aeea020)
+	internal/sync/mutex.go:149 +0x15d
+internal/sync.(*Mutex).Lock(...)
+	internal/sync/mutex.go:70
+sync.(*Mutex).Lock(...)
+	sync/mutex.go:46
+cmd/compile/internal/types2.(*Named).unpack(0x1cd19aeea000)
+	cmd/compile/internal/types2/named.go:229 +0x74
+cmd/compile/internal/types2.(*Named).TypeParams(...)
+	cmd/compile/internal/types2/named.go:390
+cmd/compile/internal/types2.(*subster).typ(0x1cd19aedd210, {0x10cd5c8, 0x1cd19aeea080})
+	cmd/compile/internal/types2/subst.go:245 +0x44b
+cmd/compile/internal/types2.(*subster).typ(0x1cd19aedd210, {0x10cd578, 0x1cd19a609ae0})
+	cmd/compile/internal/types2/subst.go:140 +0x17f
+cmd/compile/internal/types2.(*Checker).subst(0x0, {0x0?, 0x0?, 0x0?}, {0x10cd578, 0x1cd19a609ae0}, 0x1cd19aeee930, 0x0, 0x1cd19a94e220)
+	cmd/compile/internal/types2/subst.go:78 +0x1b2
+cmd/compile/internal/types2.(*Checker).newAliasInstance(0x0, {0x0?, 0xe87ee6bd?, 0x79e1?}, 0x1cd19aec1580, {0x1cd19a609d20, 0x1, 0x1}, 0x0, 0x1cd19a94e220)
+	cmd/compile/internal/types2/alias.go:154 +0x1cc
+cmd/compile/internal/types2.(*Checker).instance(0x0, {0x0, 0x0, 0x0}, {0x10ced20, 0x1cd19aec1580}, {0x1cd19a609d20, 0x1, 0x1}, 0x0, ...)
+	cmd/compile/internal/types2/instantiate.go:145 +0x71c
+cmd/compile/internal/types2.Instantiate(0x1cd19a94e220, {0x10cd5f0, 0x1cd19aec1580}, {0x1cd19a609d20, 0x1, 0x1}, 0x0)
+	cmd/compile/internal/types2/instantiate.go:69 +0x34c
+cmd/compile/internal/importer.(*reader).doTyp(0x1cd19aedd6a0)
+	cmd/compile/internal/importer/ureader.go:259 +0xcc
+cmd/compile/internal/importer.(*pkgReader).typIdx(...)
+	cmd/compile/internal/importer/ureader.go:232
+cmd/compile/internal/importer.(*reader).typ(0x1cd19aec3ab0)
+	cmd/compile/internal/importer/ureader.go:202 +0x196
+cmd/compile/internal/importer.(*reader).param(0x1cd19aec3ab0)
+	cmd/compile/internal/importer/ureader.go:366 +0x65
+cmd/compile/internal/importer.(*reader).params(0x1cd19aec3ab0)
+	cmd/compile/internal/importer/ureader.go:356 +0x74
+cmd/compile/internal/importer.(*reader).signature(0x1cd19aec3ab0, 0x1cd19aef0930, {0x1cd19a605a18, 0x1, 0x1}, {0x0, 0x0, 0x0})
+	cmd/compile/internal/importer/ureader.go:346 +0x85
+cmd/compile/internal/importer.(*reader).method(0x1cd19aec3ab0, 0x1)
+	cmd/compile/internal/importer/ureader.go:559 +0xd0
+cmd/compile/internal/importer.ReadPackage.(*pkgReader).objIdx.func1.1(0x495693?)
+	cmd/compile/internal/importer/ureader.go:455 +0xa6
+cmd/compile/internal/types2.(*Named).unpack(0x1cd19aeea000)
+	cmd/compile/internal/types2/named.go:270 +0x130
+cmd/compile/internal/types2.(*Named).TypeParams(...)
+	cmd/compile/internal/types2/named.go:390
+cmd/compile/internal/types2.(*subster).typ(0x1cd19aede0a0, {0x10cd5c8, 0x1cd19aeea080})
+	cmd/compile/internal/types2/subst.go:245 +0x44b
+cmd/compile/internal/types2.(*subster).typ(0x1cd19aede0a0, {0x10cd578, 0x1cd19a609ae0})
+	cmd/compile/internal/types2/subst.go:140 +0x17f
+cmd/compile/internal/types2.(*Checker).subst(0x1cd199a3f200, {0x1cd19a391020?, 0x0?, 0x0?}, {0x10cd578, 0x1cd19a609ae0}, 0x1cd19adfbec0, 0x0, 0x1cd19a94e220)
+	cmd/compile/internal/types2/subst.go:78 +0x1b2
+cmd/compile/internal/types2.(*Checker).newAliasInstance(0x1cd199a3f200, {0x1cd19a391020?, 0xe87ee6bd?, 0x79e1?}, 0x1cd19aec1580, {0x1cd19a609af0, 0x1, 0x1}, 0x0, 0x1cd19a94e220)
+	cmd/compile/internal/types2/alias.go:154 +0x1cc
+cmd/compile/internal/types2.(*Checker).instance(0x1cd199a3f200, {0x1cd19a391020, 0x2f, 0x1f}, {0x10ced20, 0x1cd19aec1580}, {0x1cd19a609af0, 0x1, 0x1}, 0x0, ...)
+	cmd/compile/internal/types2/instantiate.go:145 +0x71c
+cmd/compile/internal/types2.(*Checker).instantiatedType(0x1cd199a3f200, {0x10d4ad8, 0x1cd19a3e4d70}, {0x1cd19a609ab0, 0x1, 0x1})
+	cmd/compile/internal/types2/typexpr.go:441 +0x490
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4a90, 0x1cd19a3ddb60}, 0x1cd19ade0a80)
+	cmd/compile/internal/types2/typexpr.go:290 +0x885
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4a90, 0x1cd19a3ddb60}, 0x1cd199a3f200?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).typeDecl(0x1cd199a3f200, 0x1cd19ade0a80, 0x1cd19a3ddb00)
+	cmd/compile/internal/types2/decl.go:493 +0x645
+cmd/compile/internal/types2.(*Checker).objDecl(0x1cd199a3f200, {0x10d9bb0, 0x1cd19ade0a80})
+	cmd/compile/internal/types2/decl.go:158 +0x9d1
+cmd/compile/internal/types2.(*Checker).ident(...)
+	cmd/compile/internal/types2/typexpr.go:76
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4a00, 0x1cd19a3df630}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:260 +0xbdf
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4a00, 0x1cd19a3df630}, 0x1cd19aeded90?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).varType(0x1cd199a3f200, {0x10d4a00, 0x1cd19a3df630})
+	cmd/compile/internal/types2/typexpr.go:159 +0x25
+cmd/compile/internal/types2.(*Checker).structType(0x1cd199a3f200, 0x1cd19adfba40, 0x1cd19a3d80e0)
+	cmd/compile/internal/types2/struct.go:116 +0x22c
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4f10, 0x1cd19a3d80e0}, 0x1cd19ade0a20)
+	cmd/compile/internal/types2/typexpr.go:323 +0x2c9
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4f10, 0x1cd19a3d80e0}, 0xffa480?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).typeDecl(0x1cd199a3f200, 0x1cd19ade0a20, 0x1cd19a3dd260)
+	cmd/compile/internal/types2/decl.go:541 +0xa8e
+cmd/compile/internal/types2.(*Checker).objDecl(0x1cd199a3f200, {0x10d9bb0, 0x1cd19ade0a20})
+	cmd/compile/internal/types2/decl.go:158 +0x9d1
+cmd/compile/internal/types2.(*Checker).ident(...)
+	cmd/compile/internal/types2/typexpr.go:76
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4a00, 0x1cd199a41c70}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:260 +0xbdf
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4a00, 0x1cd199a41c70}, 0xfd4580?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).varType(0x1cd199a3f200, {0x10d4a00, 0x1cd199a41c70})
+	cmd/compile/internal/types2/typexpr.go:159 +0x25
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4b68, 0x1cd199a1d980}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:330 +0x205
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4b68, 0x1cd199a1d980}, 0x100e960?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).varType(0x1cd199a3f200, {0x10d4b68, 0x1cd199a1d980})
+	cmd/compile/internal/types2/typexpr.go:159 +0x25
+cmd/compile/internal/types2.(*Checker).structType(0x1cd199a3f200, 0x1cd19adfb9e0, 0x1cd199a30540)
+	cmd/compile/internal/types2/struct.go:116 +0x22c
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4f10, 0x1cd199a30540}, 0x1cd19aaf4fc0)
+	cmd/compile/internal/types2/typexpr.go:323 +0x2c9
+...37 frames elided...
+cmd/compile/internal/types2.(*Checker).objDecl(0x1cd199a3f200, {0x10d9bb0, 0x1cd19ade12c0})
+	cmd/compile/internal/types2/decl.go:158 +0x9d1
+cmd/compile/internal/types2.(*Checker).ident(...)
+	cmd/compile/internal/types2/typexpr.go:76
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4a00, 0x1cd19a0a8690}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:260 +0xbdf
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4a00, 0x1cd19a0a8690}, 0xfd4580?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).varType(0x1cd199a3f200, {0x10d4a00, 0x1cd19a0a8690})
+	cmd/compile/internal/types2/typexpr.go:159 +0x25
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4b68, 0x1cd19a09bb60}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:330 +0x205
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4b68, 0x1cd19a09bb60}, 0x1cd19a0a3340?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).varType(0x1cd199a3f200, {0x10d4b68, 0x1cd19a09bb60})
+	cmd/compile/internal/types2/typexpr.go:159 +0x25
+cmd/compile/internal/types2.(*Checker).collectParams(0x1cd199a3f200, 0x4, {0x1cd199f0c850, 0x1, 0x8?})
+	cmd/compile/internal/types2/signature.go:398 +0x2de
+cmd/compile/internal/types2.(*Checker).funcType(0x1cd199a3f200, 0x1cd19aec0540, 0x0, {0x0, 0x0, 0x0}, 0x1cd19a0a3340)
+	cmd/compile/internal/types2/signature.go:166 +0x1b7
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4fa0, 0x1cd19a0a3340}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:346 +0x71e
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4fa0, 0x1cd19a0a3340}, 0x1cd199a110b8?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).typ(...)
+	cmd/compile/internal/types2/typexpr.go:152
+cmd/compile/internal/types2.(*Checker).interfaceType(0x1cd199a3f200, 0x1cd19ac4c1e0, 0x1cd19a0a83c0, 0x1cd19a65be00)
+	cmd/compile/internal/types2/interface.go:143 +0x13b
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4f58, 0x1cd19a0a83c0}, 0x1cd19a65be00)
+	cmd/compile/internal/types2/typexpr.go:351 +0x1a6c
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4f58, 0x1cd19a0a83c0}, 0x49?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).typeDecl(0x1cd199a3f200, 0x1cd19a65be00, 0x1cd19a09baa0)
+	cmd/compile/internal/types2/decl.go:541 +0xa8e
+cmd/compile/internal/types2.(*Checker).objDecl(0x1cd199a3f200, {0x10d9bb0, 0x1cd19a65be00})
+	cmd/compile/internal/types2/decl.go:158 +0x9d1
+cmd/compile/internal/types2.(*Checker).ident(...)
+	cmd/compile/internal/types2/typexpr.go:76
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4a00, 0x1cd199f3c780}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:260 +0xbdf
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4a00, 0x1cd199f3c780}, 0x1cd199a11ab8?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).varType(0x1cd199a3f200, {0x10d4a00, 0x1cd199f3c780})
+	cmd/compile/internal/types2/typexpr.go:159 +0x25
+cmd/compile/internal/types2.(*Checker).structType(0x1cd199a3f200, 0x1cd19adfa300, 0x1cd199f27810)
+	cmd/compile/internal/types2/struct.go:116 +0x22c
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4f10, 0x1cd199f27810}, 0x1cd19a65bd40)
+	cmd/compile/internal/types2/typexpr.go:323 +0x2c9
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4f10, 0x1cd199f27810}, 0x1cd199a11ea8?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).typeDecl(0x1cd199a3f200, 0x1cd19a65bd40, 0x1cd199f3a2a0)
+	cmd/compile/internal/types2/decl.go:541 +0xa8e
+cmd/compile/internal/types2.(*Checker).objDecl(0x1cd199a3f200, {0x10d9bb0, 0x1cd19a65bd40})
+	cmd/compile/internal/types2/decl.go:158 +0x9d1
+cmd/compile/internal/types2.(*Checker).ident(...)
+	cmd/compile/internal/types2/typexpr.go:76
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4a00, 0x1cd199f1a7d0}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:260 +0xbdf
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4a00, 0x1cd199f1a7d0}, 0xfd4580?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).varType(0x1cd199a3f200, {0x10d4a00, 0x1cd199f1a7d0})
+	cmd/compile/internal/types2/typexpr.go:159 +0x25
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4b68, 0x1cd199f0e420}, 0x0)
+	cmd/compile/internal/types2/typexpr.go:330 +0x205
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4b68, 0x1cd199f0e420}, 0x1cd199f26150?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).varType(0x1cd199a3f200, {0x10d4b68, 0x1cd199f0e420})
+	cmd/compile/internal/types2/typexpr.go:159 +0x25
+cmd/compile/internal/types2.(*Checker).collectParams(0x1cd199a3f200, 0x4, {0x1cd199f0c038, 0x1, 0x8?})
+	cmd/compile/internal/types2/signature.go:398 +0x2de
+cmd/compile/internal/types2.(*Checker).funcType(0x1cd199a3f200, 0x1cd19adf7900, 0x0, {0x0, 0x0, 0x0}, 0x1cd199f26150)
+	cmd/compile/internal/types2/signature.go:166 +0x1b7
+cmd/compile/internal/types2.(*Checker).typInternal(0x1cd199a3f200, {0x10d4fa0, 0x1cd199f26150}, 0x1cd19a65bb00)
+	cmd/compile/internal/types2/typexpr.go:346 +0x71e
+cmd/compile/internal/types2.(*Checker).declaredType(0x1cd199a3f200, {0x10d4fa0, 0x1cd199f26150}, 0x1cd199a12c28?)
+	cmd/compile/internal/types2/typexpr.go:195 +0x2f
+cmd/compile/internal/types2.(*Checker).typeDecl(0x1cd199a3f200, 0x1cd19a65bb00, 0x1cd199f0e3c0)
+	cmd/compile/internal/types2/decl.go:541 +0xa8e
+cmd/compile/internal/types2.(*Checker).objDecl(0x1cd199a3f200, {0x10d9bb0, 0x1cd19a65bb00})
+	cmd/compile/internal/types2/decl.go:158 +0x9d1
+cmd/compile/internal/types2.(*Checker).packageObjects(0x1cd199a3f200)
+	cmd/compile/internal/types2/resolver.go:683 +0x356
+cmd/compile/internal/types2.(*Checker).checkFiles(0x1cd199a3f200, {0x1cd19a956000?, 0x1cd1999ce808?, 0x1cd199a3f200?})
+	cmd/compile/internal/types2/check.go:509 +0x385
+cmd/compile/internal/types2.(*Checker).Files(0x104cac0?, {0x1cd19a956000?, 0x0?, 0x0?})
+	cmd/compile/internal/types2/check.go:466 +0x75
+cmd/compile/internal/types2.(*Config).Check(0x1cd19a94c1c0, {0x7ffcac2c0cef?, 0x1cd199978117?}, {0x1cd19a956000, 0x15, 0x15}, 0x1cd19a9467e0)
+	cmd/compile/internal/types2/api.go:484 +0x19d
+cmd/compile/internal/noder.checkFiles({0x0, {0x0, 0x0}}, {0x1cd199aa62c0, 0x15, 0x5?})
+	cmd/compile/internal/noder/irgen.go:95 +0x64a
+cmd/compile/internal/noder.writePkgStub({0x0?, {0x0?, 0x0?}}, {0x1cd199aa62c0, 0x15, 0x15})
+	cmd/compile/internal/noder/unified.go:318 +0x6a
+cmd/compile/internal/noder.unified({0x0?, {0x0?, 0x0?}}, {0x1cd199aa62c0?, 0xf7bb60?, 0x199df20?})
+	cmd/compile/internal/noder/unified.go:194 +0xb6
+cmd/compile/internal/noder.LoadPackage({0x1cd1999883a8, 0x15, 0x15})
+	cmd/compile/internal/noder/noder.go:77 +0x509
+cmd/compile/internal/gc.Main(0x10c0aa8)
+	cmd/compile/internal/gc/main.go:216 +0xce5
+main.main()
+	cmd/compile/main.go:57 +0xf9

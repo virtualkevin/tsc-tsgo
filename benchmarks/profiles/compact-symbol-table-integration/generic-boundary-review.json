@@ -1,0 +1,149 @@
+{
+  "scope": "Review of all 16 generic/callback call-argument sites in the earlier non-test/current-platform type-checked table inventory. This is not a whole-program interface escape or serialization proof.",
+  "sites": [
+    {
+      "file": "internal/binder/nameresolver.go",
+      "line": 420,
+      "column": 19,
+      "operation": "call-argument",
+      "expression": "symbols",
+      "context": "r.Lookup(symbols, name, meaning)"
+    },
+    {
+      "file": "internal/checker/checker.go",
+      "line": 1771,
+      "column": 45,
+      "operation": "call-argument",
+      "expression": "symbols",
+      "context": "getPrimitiveTypeAliasSuggestions(symbols)"
+    },
+    {
+      "file": "internal/checker/checker.go",
+      "line": 14852,
+      "column": 32,
+      "operation": "call-argument",
+      "expression": "exports",
+      "context": "findInMap(exports, func(symbol *ast.Symbol) bool {\n\treturn c.getSymbolIfSameReference(symbol, localSymbol) != nil\n})"
+    },
+    {
+      "file": "internal/checker/services.go",
+      "line": 68,
+      "column": 17,
+      "operation": "call-argument",
+      "expression": "location.Locals()",
+      "context": "copySymbols(location.Locals(), meaning)"
+    },
+    {
+      "file": "internal/checker/services.go",
+      "line": 78,
+      "column": 37,
+      "operation": "call-argument",
+      "expression": "c.getSymbolOfDeclaration(location).Exports",
+      "context": "copyLocallyVisibleExportSymbols(c.getSymbolOfDeclaration(location).Exports, meaning&ast.SymbolFlagsModuleMember)"
+    },
+    {
+      "file": "internal/checker/services.go",
+      "line": 80,
+      "column": 17,
+      "operation": "call-argument",
+      "expression": "c.getSymbolOfDeclaration(location).Exports",
+      "context": "copySymbols(c.getSymbolOfDeclaration(location).Exports, meaning&ast.SymbolFlagsEnumMember)"
+    },
+    {
+      "file": "internal/checker/services.go",
+      "line": 95,
+      "column": 18,
+      "operation": "call-argument",
+      "expression": "c.getMembersOfSymbol(c.getSymbolOfDeclaration(location))",
+      "context": "copySymbols(c.getMembersOfSymbol(c.getSymbolOfDeclaration(location)), meaning&ast.SymbolFlagsType)"
+    },
+    {
+      "file": "internal/checker/services.go",
+      "line": 112,
+      "column": 15,
+      "operation": "call-argument",
+      "expression": "c.globals",
+      "context": "copySymbols(c.globals, meaning)"
+    },
+    {
+      "file": "internal/checker/services.go",
+      "line": 118,
+      "column": 24,
+      "operation": "call-argument",
+      "expression": "symbols",
+      "context": "symbolsToArray(symbols)"
+    },
+    {
+      "file": "internal/checker/services.go",
+      "line": 122,
+      "column": 24,
+      "operation": "call-argument",
+      "expression": "c.getExportsOfModule(symbol)",
+      "context": "symbolsToArray(c.getExportsOfModule(symbol))"
+    },
+    {
+      "file": "internal/checker/services.go",
+      "line": 843,
+      "column": 24,
+      "operation": "call-argument",
+      "expression": "c.getExportsOfModule(moduleSymbol)",
+      "context": "symbolsToArray(c.getExportsOfModule(moduleSymbol))"
+    },
+    {
+      "file": "internal/checker/symbolaccessibility.go",
+      "line": 753,
+      "column": 16,
+      "operation": "call-argument",
+      "expression": "location.Locals()",
+      "context": "callback(location.Locals(), symbolTableIDFromLocals(location.AsNode()), false, true, location)"
+    },
+    {
+      "file": "internal/checker/symbolaccessibility.go",
+      "line": 763,
+      "column": 16,
+      "operation": "call-argument",
+      "expression": "sym.Exports",
+      "context": "callback(sym.Exports, symbolTableIDFromExports(sym), false, true, location)"
+    },
+    {
+      "file": "internal/checker/symbolaccessibility.go",
+      "line": 785,
+      "column": 32,
+      "operation": "call-argument",
+      "expression": "table",
+      "context": "callback(table, symbolTableIDFromMembers(sym), false, false, location)"
+    },
+    {
+      "file": "internal/checker/symbolaccessibility.go",
+      "line": 796,
+      "column": 37,
+      "operation": "call-argument",
+      "expression": "nameTable",
+      "context": "callback(nameTable, symbolTableIDFromLocals(location.AsNode()), false, true, location)"
+    },
+    {
+      "file": "internal/checker/symbolaccessibility.go",
+      "line": 803,
+      "column": 18,
+      "operation": "call-argument",
+      "expression": "c.globals",
+      "context": "callback(c.globals, symbolTableIDFromGlobals(), false, true, nil)"
+    }
+  ],
+  "candidateSourceSha256": "67bdc271aedf37c03f0746414a8b67e0072dfe9c79f9aee15af8bd14b9cb4155",
+  "reviewedSourceHashes": {
+    "internal/binder/nameresolver.go": "04e407e93f69fcee736d9932c6cb5a103d1907dc3fdf9b914102c33ac004acd4",
+    "internal/checker/checker.go": "13e38cc0aac8399e46c5da4a9164251a840fe9177b23a921c21f6e07565fba7a",
+    "internal/checker/services.go": "52caa7cce6c5b01a4be06d64e66bc5e5739dcccae9ec58236d66d1b2df60f470",
+    "internal/checker/symbolaccessibility.go": "e54f228590742b9a3094682bb81b4897b94404d257960c47c83a101e64caf4b5",
+    "internal/checker/utilities.go": "286b5e8dc2eb65b24e717b1befd7aaf20646a139d3e67212dbf54d28efd8be7b"
+  },
+  "findings": [
+    "Name resolver Lookup is explicitly typed to ast.SymbolTable.",
+    "getPrimitiveTypeAliasSuggestions now uses Get for its presence test.",
+    "The sole generic findInMap caller is adapted to findInSymbolTable, preserving predicate/first-match behavior within unspecified iteration order.",
+    "Service closures accept ast.SymbolTable and iterate All; symbolsToArray consumes the migrated table.",
+    "Accessibility callback signature remains explicitly typed to ast.SymbolTable and retains owner-based table IDs.",
+    "None of these 16 sites passes the table directly to JSON serialization or reflection; other interface escapes were not established by this audit."
+  ]
+}
