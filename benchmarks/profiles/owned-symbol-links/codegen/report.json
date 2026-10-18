@@ -1,0 +1,181 @@
+{
+  "baseline": {
+    "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "functions": {
+      "getTypeOfInstantiatedSymbol": {
+        "command": [
+          "/tmp/tsc-toolchains/go/bin/go",
+          "tool",
+          "objdump",
+          "-s",
+          ".*checker\\.\\(\\*Checker\\)\\.getTypeOfInstantiatedSymbol$",
+          "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+        ],
+        "assemblySha256": "1482190cd225c2fee38bd3f9425dd9b205e03ee0634c943d7bcd5dbed0f7f0d2",
+        "instructions": 45,
+        "instructionBytes": 180,
+        "calls": [
+          "CALL github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get(SB)\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.morestack_noctxt.abi0(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+        ]
+      },
+      "newInstantiatedSymbolWithLinks": {
+        "command": [
+          "/tmp/tsc-toolchains/go/bin/go",
+          "tool",
+          "objdump",
+          "-s",
+          ".*checker\\.\\(\\*Checker\\)\\.newInstantiatedSymbolWithLinks$",
+          "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+        ],
+        "assemblySha256": "3f02f01a856699e966b68f93fb56818b3f1a8bf3bfb38d873bd511dbbfef6a7a",
+        "instructions": 133,
+        "instructionBytes": 559,
+        "calls": [
+          "CALL runtime.newobject(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier4(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).newSymbol(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).New(SB)\t",
+          "CALL runtime.gcWriteBarrier4(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.morestack_noctxt.abi0(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+        ]
+      },
+      "getTypeOfMappedSymbol": {
+        "command": [
+          "/tmp/tsc-toolchains/go/bin/go",
+          "tool",
+          "objdump",
+          "-s",
+          ".*checker\\.\\(\\*Checker\\)\\.getTypeOfMappedSymbol$",
+          "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+        ],
+        "assemblySha256": "847cb2ac060d00c0a9fd5b208f6c87c4ed9b7726a4b96bcb5d6ac373dbd1047f",
+        "instructions": 236,
+        "instructionBytes": 1147,
+        "calls": [
+          "CALL github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).pushTypeResolution(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTemplateTypeFromMappedType(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeParameterFromMappedType(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/core.(*LinkStore[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct { github.com/microsoft/typescript-go/internal/checker.keyType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.syntheticOrigin *github.com/microsoft/typescript-go/internal/ast.Symbol }]).Get(SB)\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.appendTypeMapping(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).maybeTypeOfKind(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).removeMissingOrUndefinedType(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getOptionalType(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier1(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).symbolToStringEx(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).typeToStringEx(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.convTstring(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.convTstring(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).error(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicdottypeI(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicBounds(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicBounds(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicdottypeI(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicdottypeI(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.morestack_noctxt.abi0(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+        ]
+      }
+    }
+  },
+  "candidate": {
+    "binarySha256": "846238805dd7dc4701e740b00a978fc3e3d5be3559b85f2c5d4d32cf57fc282e",
+    "functions": {
+      "getTypeOfInstantiatedSymbol": {
+        "command": [
+          "/tmp/tsc-toolchains/go/bin/go",
+          "tool",
+          "objdump",
+          "-s",
+          ".*checker\\.\\(\\*Checker\\)\\.getTypeOfInstantiatedSymbol$",
+          "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-owned-symbol-links"
+        ],
+        "assemblySha256": "83ef67f53f2b64ddb0d93acd4ae03c7409f68ba656b78031e05be953d38a48ff",
+        "instructions": 45,
+        "instructionBytes": 180,
+        "calls": [
+          "CALL github.com/microsoft/typescript-go/internal/ast.(*OwnedSymbolLinks[go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get(SB)\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.morestack_noctxt.abi0(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+        ]
+      },
+      "newInstantiatedSymbolWithLinks": {
+        "command": [
+          "/tmp/tsc-toolchains/go/bin/go",
+          "tool",
+          "objdump",
+          "-s",
+          ".*checker\\.\\(\\*Checker\\)\\.newInstantiatedSymbolWithLinks$",
+          "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-owned-symbol-links"
+        ],
+        "assemblySha256": "db1e1c14c68767514b1e6daae4d2d2f0317e96fc3850f9f2460d9285c62ec138",
+        "instructions": 133,
+        "instructionBytes": 560,
+        "calls": [
+          "CALL runtime.newobject(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier4(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).newSymbol(SB)\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/ast.(*OwnedSymbolLinks[go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).New(SB)\t\t",
+          "CALL runtime.gcWriteBarrier4(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.morestack_noctxt.abi0(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+        ]
+      },
+      "getTypeOfMappedSymbol": {
+        "command": [
+          "/tmp/tsc-toolchains/go/bin/go",
+          "tool",
+          "objdump",
+          "-s",
+          ".*checker\\.\\(\\*Checker\\)\\.getTypeOfMappedSymbol$",
+          "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-owned-symbol-links"
+        ],
+        "assemblySha256": "89dfb9680205ccfad9b5194ecd82a6ce2112953dce5b54d86d1868b6efd37bb8",
+        "instructions": 237,
+        "instructionBytes": 1147,
+        "calls": [
+          "CALL github.com/microsoft/typescript-go/internal/ast.(*OwnedSymbolLinks[go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).pushTypeResolution(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTemplateTypeFromMappedType(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeParameterFromMappedType(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/core.(*LinkStore[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct { github.com/microsoft/typescript-go/internal/checker.keyType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.syntheticOrigin *github.com/microsoft/typescript-go/internal/ast.Symbol }]).Get(SB)\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.appendTypeMapping(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).maybeTypeOfKind(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).removeMissingOrUndefinedType(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getOptionalType(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier1(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.gcWriteBarrier2(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).symbolToStringEx(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).typeToStringEx(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.convTstring(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.convTstring(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).error(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicdottypeI(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicBounds(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicBounds(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicdottypeI(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.panicdottypeI(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+          "CALL runtime.morestack_noctxt.abi0(SB)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+        ]
+      }
+    }
+  },
+  "scope": "Static generated code, not measured CPU cycles, cache behavior, runtime speedup or complete symbol-store cost. Representative callers only; out-of-line callees excluded from byte counts."
+}

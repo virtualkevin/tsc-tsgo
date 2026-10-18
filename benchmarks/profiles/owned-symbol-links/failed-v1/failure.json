@@ -1,0 +1,18 @@
+{
+  "source": "5890f39004b5c9b4152901deb223a6d142e1985951907bcefead01e4159f580a",
+  "unitExit": 1,
+  "buildExit": 143,
+  "conformanceExit": 1,
+  "reason": "Actual checker lifetime test lost an older symbol graph: direct metadata alone does not root previous Arena slabs. Build and conformance deliberately cancelled before source repair.",
+  "rawFiles": {
+    "units/normal.jsonl": "cf5cb1908b654d2654cf1d40aac0a7506b2faf324b5111ece701a6fd7cff0540",
+    "units/normal.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "units/validation.json": "a5dfe41d095ee9c1e35eb93d25d54235c866c8b544f3d13573c1483bea79154c",
+    "conformance/source-before.json": "b4ec8f461edcf4b68da04d96ab8aac1ba21d985a67f4a76841d23e08bf57e0d1",
+    "conformance/conformance.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "conformance/validation.json": "7731a1c11c4ffa7d91c1434f2f6c16a7aa071c50b01f8ab0bb87683004e134c3",
+    "conformance/conformance.jsonl": "bf67423beb6acea997aa20096d163c1bb55606e326145cd9c925c4aac72db579",
+    "build.stdout": "0dea45088f06bdd636a114dae6d2b0c56f590bff659fcaa01af17ad02a5bb1c4",
+    "build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

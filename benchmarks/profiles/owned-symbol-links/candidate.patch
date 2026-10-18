@@ -1,0 +1,43 @@
+diff --git a/packages/tsc-go/internal/ast/symbol.go b/packages/tsc-go/internal/ast/symbol.go
+index f4ffd56..c194bcf 100644
+--- a/packages/tsc-go/internal/ast/symbol.go
++++ b/packages/tsc-go/internal/ast/symbol.go
+@@ -8,6 +8,8 @@ import (
+ // Symbol
+ 
+ type Symbol struct {
++	// Private allocator metadata; immutable after symbol publication.
++	ownedLinks       any
+ 	Flags            SymbolFlags
+ 	CheckFlags       CheckFlags // Non-zero only in transient symbols created by Checker
+ 	Name             string
+diff --git a/packages/tsc-go/internal/checker/checker.go b/packages/tsc-go/internal/checker/checker.go
+index 0904719..7f018b2 100644
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -664,7 +664,6 @@ type Checker struct {
+ 	propertiesTypes                             map[PropertiesTypesKey]*Type
+ 	diagnostics                                 ast.DiagnosticsCollection
+ 	suggestionDiagnostics                       ast.DiagnosticsCollection
+-	symbolArena                                 core.Arena[ast.Symbol]
+ 	signatureArena                              core.Arena[Signature]
+ 	indexInfoArena                              core.Arena[IndexInfo]
+ 	mergedSymbols                               map[*ast.Symbol]*ast.Symbol
+@@ -679,7 +678,7 @@ type Checker struct {
+ 	switchStatementLinks                        core.LinkStore[*ast.Node, SwitchStatementLinks]
+ 	jsxElementLinks                             core.LinkStore[*ast.Node, JsxElementLinks]
+ 	symbolReferenceLinks                        core.LinkStore[*ast.Symbol, SymbolReferenceLinks]
+-	valueSymbolLinks                            core.PointerLinkStore[ast.Symbol, ValueSymbolLinks]
++	valueSymbolLinks                            ast.OwnedSymbolLinks[ValueSymbolLinks]
+ 	mappedSymbolLinks                           core.LinkStore[*ast.Symbol, MappedSymbolLinks]
+ 	deferredSymbolLinks                         core.LinkStore[*ast.Symbol, DeferredSymbolLinks]
+ 	aliasSymbolLinks                            core.LinkStore[*ast.Symbol, AliasSymbolLinks]
+@@ -13998,7 +13997,7 @@ func (c *Checker) hasParseDiagnostics(sourceFile *ast.SourceFile) bool {
+ 
+ func (c *Checker) newSymbol(flags ast.SymbolFlags, name string) *ast.Symbol {
+ 	c.SymbolCount++
+-	result := c.symbolArena.New()
++	result := c.valueSymbolLinks.NewSymbol()
+ 	result.Flags = flags | ast.SymbolFlagsTransient
+ 	result.Name = name
+ 	return result

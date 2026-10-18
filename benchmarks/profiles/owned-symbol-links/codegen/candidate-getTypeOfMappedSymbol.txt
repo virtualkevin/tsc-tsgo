@@ -1,0 +1,238 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol(SB) github.com/microsoft/typescript-go/internal/checker/checker.go
+  checker.go:20880	0x81c540		4c8d6424d0		LEAQ -0x30(SP), R12																																																	
+  checker.go:20880	0x81c545		4d3b6610		CMPQ R12, 0x10(R14)																																																	
+  checker.go:20880	0x81c549		0f864e040000		JBE 0x81c99d																																																		
+  checker.go:20880	0x81c54f		55			PUSHQ BP																																																		
+  checker.go:20880	0x81c550		4889e5			MOVQ SP, BP																																																		
+  checker.go:20880	0x81c553		4881eca8000000		SUBQ $0xa8, SP																																																		
+  checker.go:20882	0x81c55a		48898424b8000000	MOVQ AX, 0xb8(SP)																																																	
+  checker.go:20882	0x81c562		48899c24c0000000	MOVQ BX, 0xc0(SP)																																																	
+  checker.go:20881	0x81c56a		8400			TESTB AL, 0(AX)																																																		
+  checker.go:20881	0x81c56c		480528090000		ADDQ $0x928, AX																																																		
+  checker.go:20881	0x81c572		4889d9			MOVQ BX, CX																																																		
+  checker.go:20881	0x81c575		488d1d04ead200		LEAQ github.com/microsoft/typescript-go/internal/ast..dict.OwnedSymbolLinks[github.com/microsoft/typescript-go/internal/checker.ValueSymbolLinks](SB), BX																																
+  checker.go:20881	0x81c57c		0f1f4000		NOPL 0(AX)																																																		
+  checker.go:20881	0x81c580		e8fb940e00		CALL github.com/microsoft/typescript-go/internal/ast.(*OwnedSymbolLinks[go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get(SB)																																
+  checker.go:20882	0x81c585		48833800		CMPQ 0(AX), $0x0																																																	
+  checker.go:20882	0x81c589		0f8583030000		JNE 0x81c912																																																		
+  checker.go:20881	0x81c58f		4889842480000000	MOVQ AX, 0x80(SP)																																																	
+  checker.go:20883	0x81c597		488b5028		MOVQ 0x28(AX), DX																																																	
+  checker.go:20883	0x81c59b		4889542460		MOVQ DX, 0x60(SP)																																																	
+  checker.go:20884	0x81c5a0		488b8424b8000000	MOVQ 0xb8(SP), AX																																																	
+  checker.go:20884	0x81c5a8		488d1d718b5b00		LEAQ 0x5b8b71(IP), BX																																																	
+  checker.go:20884	0x81c5af		488b8c24c0000000	MOVQ 0xc0(SP), CX																																																	
+  checker.go:20884	0x81c5b7		31ff			XORL DI, DI																																																		
+  checker.go:20884	0x81c5b9		e8c214ffff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).pushTypeResolution(SB)																																								
+  checker.go:20884	0x81c5be		6690			NOPW																																																			
+  checker.go:20884	0x81c5c0		84c0			TESTL AL, AL																																																		
+  checker.go:20884	0x81c5c2		0f8456030000		JE 0x81c91e																																																		
+  types.go:697		0x81c5c8		488b5c2460		MOVQ 0x60(SP), BX																																																	
+  types.go:697		0x81c5cd		488b4328		MOVQ 0x28(BX), AX																																																	
+  types.go:697		0x81c5d1		488d1588b1d100		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.MappedType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX																																	
+  types.go:697		0x81c5d8		0f1f840000000000	NOPL 0(AX)(AX*1)																																																	
+  types.go:697		0x81c5e0		4839d0			CMPQ AX, DX																																																		
+  types.go:697		0x81c5e3		0f85a0030000		JNE 0x81c989																																																		
+  types.go:697		0x81c5e9		488b4b30		MOVQ 0x30(BX), CX																																																	
+  checker.go:20888	0x81c5ed		488b89a8000000		MOVQ 0xa8(CX), CX																																																	
+  core.go:412		0x81c5f4		4885c9			TESTQ CX, CX																																																		
+  checker.go:20888	0x81c5f7		4889da			MOVQ BX, DX																																																		
+  checker.go:20888	0x81c5fa		480f45d1		CMOVNE CX, DX																																																		
+  checker.go:20888	0x81c5fe		488b8424b8000000	MOVQ 0xb8(SP), AX																																																	
+  checker.go:20888	0x81c606		4889d3			MOVQ DX, BX																																																		
+  checker.go:20888	0x81c609		e812c70000		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTemplateTypeFromMappedType(SB)																																							
+  types.go:697		0x81c60e		488b5c2460		MOVQ 0x60(SP), BX																																																	
+  types.go:697		0x81c613		488b4b28		MOVQ 0x28(BX), CX																																																	
+  types.go:697		0x81c617		488d1542b1d100		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.MappedType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), DX																																	
+  types.go:697		0x81c61e		6690			NOPW																																																			
+  types.go:697		0x81c620		4839d1			CMPQ CX, DX																																																		
+  core.go:412		0x81c623		0f854a030000		JNE 0x81c973																																																		
+  checker.go:20888	0x81c629		4889442458		MOVQ AX, 0x58(SP)																																																	
+  checker.go:20889	0x81c62e		488b8424b8000000	MOVQ 0xb8(SP), AX																																																	
+  checker.go:20889	0x81c636		488d88b0090000		LEAQ 0x9b0(AX), CX																																																	
+  checker.go:20889	0x81c63d		48894c2478		MOVQ CX, 0x78(SP)																																																	
+  types.go:697		0x81c642		488b4b30		MOVQ 0x30(BX), CX																																																	
+  types.go:697		0x81c646		48894c2470		MOVQ CX, 0x70(SP)																																																	
+  checker.go:20889	0x81c64b		e810c40000		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeParameterFromMappedType(SB)																																							
+  checker.go:20889	0x81c650		4889442468		MOVQ AX, 0x68(SP)																																																	
+  checker.go:20889	0x81c655		488b442478		MOVQ 0x78(SP), AX																																																	
+  checker.go:20889	0x81c65a		488d1dbf42d200		LEAQ github.com/microsoft/typescript-go/internal/core..dict.LinkStore[*github.com/microsoft/typescript-go/internal/ast.Symbol,github.com/microsoft/typescript-go/internal/checker.MappedSymbolLinks](SB), BX																										
+  checker.go:20889	0x81c661		488b8c24c0000000	MOVQ 0xc0(SP), CX																																																	
+  checker.go:20889	0x81c669		e8329e0e00		CALL github.com/microsoft/typescript-go/internal/core.(*LinkStore[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct { github.com/microsoft/typescript-go/internal/checker.keyType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.syntheticOrigin *github.com/microsoft/typescript-go/internal/ast.Symbol }]).Get(SB)	
+  checker.go:20889	0x81c66e		488b4c2470		MOVQ 0x70(SP), CX																																																	
+  checker.go:20889	0x81c673		488b89b0000000		MOVQ 0xb0(CX), CX																																																	
+  checker.go:20889	0x81c67a		488b10			MOVQ 0(AX), DX																																																		
+  checker.go:20889	0x81c67d		4889c8			MOVQ CX, AX																																																		
+  checker.go:20889	0x81c680		488b5c2468		MOVQ 0x68(SP), BX																																																	
+  checker.go:20889	0x81c685		4889d1			MOVQ DX, CX																																																		
+  checker.go:20889	0x81c688		e8332b0800		CALL github.com/microsoft/typescript-go/internal/checker.appendTypeMapping(SB)																																										
+  checker.go:20890	0x81c68d		90			NOPL																																																			
+  checker.go:21997	0x81c68e		488b5c2458		MOVQ 0x58(SP), BX																																																	
+  checker.go:21997	0x81c693		4889c1			MOVQ AX, CX																																																		
+  checker.go:21997	0x81c696		31ff			XORL DI, DI																																																		
+  checker.go:21997	0x81c698		488b8424b8000000	MOVQ 0xb8(SP), AX																																																	
+  checker.go:21997	0x81c6a0		e8fb810000		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)																																							
+  checker.go:20895	0x81c6a5		488b8c24b8000000	MOVQ 0xb8(SP), CX																																																	
+  checker.go:20895	0x81c6ad		80b9a700000000		CMPB 0xa7(CX), $0x0																																																	
+  checker.go:20895	0x81c6b4		744c			JE 0x81c702																																																		
+  checker.go:20895	0x81c6b6		488b9c24c0000000	MOVQ 0xc0(SP), BX																																																	
+  checker.go:20895	0x81c6be		8b5310			MOVL 0x10(BX), DX																																																	
+  checker.go:20895	0x81c6c1		0fbae218		BTL $0x18, DX																																																		
+  checker.go:20895	0x81c6c5		7204			JB 0x81c6cb																																																		
+  checker.go:20895	0x81c6c7		31d2			XORL DX, DX																																																		
+  checker.go:20895	0x81c6c9		eb41			JMP 0x81c70c																																																		
+  checker.go:21997	0x81c6cb		4889442450		MOVQ AX, 0x50(SP)																																																	
+  checker.go:20895	0x81c6d0		4889c3			MOVQ AX, BX																																																		
+  checker.go:20895	0x81c6d3		4889c8			MOVQ CX, AX																																																		
+  checker.go:20895	0x81c6d6		b914000000		MOVL $0x14, CX																																																		
+  checker.go:20895	0x81c6db		0f1f440000		NOPL 0(AX)(AX*1)																																																	
+  checker.go:20895	0x81c6e0		e83bcc0200		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).maybeTypeOfKind(SB)																																									
+  checker.go:20895	0x81c6e5		83f001			XORL $0x1, AX																																																		
+  checker.go:18643	0x81c6e8		488b8c24b8000000	MOVQ 0xb8(SP), CX																																																	
+  checker.go:20897	0x81c6f0		488b9c24c0000000	MOVQ 0xc0(SP), BX																																																	
+  checker.go:20895	0x81c6f8		89c2			MOVL AX, DX																																																		
+  checker.go:20900	0x81c6fa		488b442450		MOVQ 0x50(SP), AX																																																	
+  checker.go:20900	0x81c6ff		90			NOPL																																																			
+  checker.go:20895	0x81c700		eb0a			JMP 0x81c70c																																																		
+  checker.go:20897	0x81c702		488b9c24c0000000	MOVQ 0xc0(SP), BX																																																	
+  checker.go:20897	0x81c70a		31d2			XORL DX, DX																																																		
+  checker.go:20895	0x81c70c		84d2			TESTL DL, DL																																																		
+  checker.go:20895	0x81c70e		7527			JNE 0x81c737																																																		
+  checker.go:20897	0x81c710		8b5314			MOVL 0x14(BX), DX																																																	
+  checker.go:20897	0x81c713		0fbae213		BTL $0x13, DX																																																		
+  checker.go:20897	0x81c717		733e			JAE 0x81c757																																																		
+  checker.go:20898	0x81c719		4889c3			MOVQ AX, BX																																																		
+  checker.go:20898	0x81c71c		4889c8			MOVQ CX, AX																																																		
+  checker.go:20898	0x81c71f		90			NOPL																																																			
+  checker.go:20898	0x81c720		e8fb370300		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).removeMissingOrUndefinedType(SB)																																							
+  checker.go:18643	0x81c725		488b8c24b8000000	MOVQ 0xb8(SP), CX																																																	
+  printer.go:255	0x81c72d		488b9c24c0000000	MOVQ 0xc0(SP), BX																																																	
+  checker.go:20898	0x81c735		eb20			JMP 0x81c757																																																		
+  checker.go:20896	0x81c737		4889c3			MOVQ AX, BX																																																		
+  checker.go:20896	0x81c73a		4889c8			MOVQ CX, AX																																																		
+  checker.go:20896	0x81c73d		b901000000		MOVL $0x1, CX																																																		
+  checker.go:20896	0x81c742		e8190dffff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).getOptionalType(SB)																																									
+  checker.go:18643	0x81c747		488b8c24b8000000	MOVQ 0xb8(SP), CX																																																	
+  printer.go:255	0x81c74f		488b9c24c0000000	MOVQ 0xc0(SP), BX																																																	
+  checker.go:18643	0x81c757		488b91980e0000		MOVQ 0xe98(CX), DX																																																	
+  checker.go:18643	0x81c75e		4c8d42ff		LEAQ -0x1(DX), R8																																																	
+  checker.go:18644	0x81c762		4c39c2			CMPQ DX, R8																																																		
+  checker.go:18644	0x81c765		0f8603020000		JBE 0x81c96e																																																		
+  checker.go:18643	0x81c76b		4c8b89900e0000		MOVQ 0xe90(CX), R9																																																	
+  checker.go:18644	0x81c772		488d1452		LEAQ 0(DX)(DX*2), DX																																																	
+  checker.go:18644	0x81c776		4d8d14d1		LEAQ 0(R9)(DX*8), R10																																																	
+  checker.go:18644	0x81c77a		4d8d52fc		LEAQ -0x4(R10), R10																																																	
+  checker.go:18645	0x81c77e		4d8d1cd1		LEAQ 0(R9)(DX*8), R11																																																	
+  checker.go:18645	0x81c782		4d8d5bf8		LEAQ -0x8(R11), R11																																																	
+  checker.go:18644	0x81c786		450fb622		MOVZX 0(R10), R12																																																	
+  checker.go:18645	0x81c78a		49c744d1e800000000	MOVQ $0x0, -0x18(R9)(DX*8)																																																
+  checker.go:18645	0x81c793		41c70300000000		MOVL $0x0, 0(R11)																																																	
+  checker.go:18645	0x81c79a		41c60200		MOVB $0x0, 0(R10)																																																	
+  checker.go:18645	0x81c79e		833d6bdd6d0100		CMPL runtime.writeBarrier(SB), $0x0																																															
+  checker.go:18645	0x81c7a5		740d			JE 0x81c7b4																																																		
+  checker.go:18645	0x81c7a7		4d8b54d1f0		MOVQ -0x10(R9)(DX*8), R10																																																
+  checker.go:18645	0x81c7ac		e82f4dc7ff		CALL runtime.gcWriteBarrier1(SB)																																															
+  checker.go:18645	0x81c7b1		4d8913			MOVQ R10, 0(R11)																																																	
+  checker.go:18645	0x81c7b4		49c744d1f000000000	MOVQ $0x0, -0x10(R9)(DX*8)																																																
+  checker.go:18646	0x81c7bd		488b91a00e0000		MOVQ 0xea0(CX), DX																																																	
+  checker.go:18646	0x81c7c4		4c39c2			CMPQ DX, R8																																																		
+  checker.go:18646	0x81c7c7		0f829c010000		JB 0x81c969																																																		
+  checker.go:18646	0x81c7cd		4c8981980e0000		MOVQ R8, 0xe98(CX)																																																	
+  checker.go:18644	0x81c7d4		4584e4			TESTL R12, R12																																																		
+  checker.go:20900	0x81c7d7		7432			JE 0x81c80b																																																		
+  checker.go:20901	0x81c7d9		488b8c2480000000	MOVQ 0x80(SP), CX																																																	
+  checker.go:20901	0x81c7e1		48833900		CMPQ 0(CX), $0x0																																																	
+  checker.go:20901	0x81c7e5		0f8524010000		JNE 0x81c90f																																																		
+  checker.go:20902	0x81c7eb		833d1edd6d0100		CMPL runtime.writeBarrier(SB), $0x0																																															
+  checker.go:20902	0x81c7f2		740f			JE 0x81c803																																																		
+  checker.go:20902	0x81c7f4		488b11			MOVQ 0(CX), DX																																																		
+  checker.go:20902	0x81c7f7		e8044dc7ff		CALL runtime.gcWriteBarrier2(SB)																																															
+  checker.go:20902	0x81c7fc		498903			MOVQ AX, 0(R11)																																																		
+  checker.go:20902	0x81c7ff		49895308		MOVQ DX, 0x8(R11)																																																	
+  checker.go:20902	0x81c803		488901			MOVQ AX, 0(CX)																																																		
+  checker.go:20902	0x81c806		e904010000		JMP 0x81c90f																																																		
+  checker.go:20905	0x81c80b		488b942480000000	MOVQ 0x80(SP), DX																																																	
+  checker.go:20905	0x81c813		48833a00		CMPQ 0(DX), $0x0																																																	
+  checker.go:20905	0x81c817		7522			JNE 0x81c83b																																																		
+  checker.go:20906	0x81c819		4c8b81c80b0000		MOVQ 0xbc8(CX), R8																																																	
+  checker.go:20906	0x81c820		833de9dc6d0100		CMPL runtime.writeBarrier(SB), $0x0																																															
+  checker.go:20906	0x81c827		740f			JE 0x81c838																																																		
+  checker.go:20906	0x81c829		4c8b0a			MOVQ 0(DX), R9																																																		
+  checker.go:20906	0x81c82c		e8cf4cc7ff		CALL runtime.gcWriteBarrier2(SB)																																															
+  checker.go:20906	0x81c831		4d8903			MOVQ R8, 0(R11)																																																		
+  checker.go:20906	0x81c834		4d894b08		MOVQ R9, 0x8(R11)																																																	
+  checker.go:20906	0x81c838		4c8902			MOVQ R8, 0(DX)																																																		
+  printer.go:255	0x81c83b		4889c8			MOVQ CX, AX																																																		
+  printer.go:255	0x81c83e		31c9			XORL CX, CX																																																		
+  printer.go:255	0x81c840		bfffffff3f		MOVL $0x3fffffff, DI																																																	
+  printer.go:255	0x81c845		be04000000		MOVL $0x4, SI																																																		
+  printer.go:255	0x81c84a		e8d1c00a00		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).symbolToStringEx(SB)																																								
+  printer.go:255	0x81c84f		4889442448		MOVQ AX, 0x48(SP)																																																	
+  printer.go:255	0x81c854		48895c2438		MOVQ BX, 0x38(SP)																																																	
+  printer.go:174	0x81c859		90			NOPL																																																			
+  printer.go:178	0x81c85a		488b8424b8000000	MOVQ 0xb8(SP), AX																																																	
+  printer.go:178	0x81c862		488b5c2460		MOVQ 0x60(SP), BX																																																	
+  printer.go:178	0x81c867		31c9			XORL CX, CX																																																		
+  printer.go:178	0x81c869		bf00401000		MOVL $0x104000, DI																																																	
+  printer.go:178	0x81c86e		31f6			XORL SI, SI																																																		
+  printer.go:178	0x81c870		e8cbba0a00		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).typeToStringEx(SB)																																									
+  printer.go:178	0x81c875		4889442440		MOVQ AX, 0x40(SP)																																																	
+  printer.go:178	0x81c87a		48895c2430		MOVQ BX, 0x30(SP)																																																	
+  checker.go:20908	0x81c87f		488d942488000000	LEAQ 0x88(SP), DX																																																	
+  checker.go:20908	0x81c887		440f113a		MOVUPS X15, 0(DX)																																																	
+  checker.go:20908	0x81c88b		440f117a10		MOVUPS X15, 0x10(DX)																																																	
+  checker.go:20908	0x81c890		488b442448		MOVQ 0x48(SP), AX																																																	
+  checker.go:20908	0x81c895		488b5c2438		MOVQ 0x38(SP), BX																																																	
+  checker.go:20908	0x81c89a		e841adc6ff		CALL runtime.convTstring(SB)																																																
+  checker.go:20908	0x81c89f		488d15ba3d5400		LEAQ 0x543dba(IP), DX																																																	
+  checker.go:20908	0x81c8a6		4889942488000000	MOVQ DX, 0x88(SP)																																																	
+  checker.go:20908	0x81c8ae		4889842490000000	MOVQ AX, 0x90(SP)																																																	
+  checker.go:20908	0x81c8b6		488b442440		MOVQ 0x40(SP), AX																																																	
+  checker.go:20908	0x81c8bb		488b5c2430		MOVQ 0x30(SP), BX																																																	
+  checker.go:20908	0x81c8c0		e81badc6ff		CALL runtime.convTstring(SB)																																																
+  checker.go:20908	0x81c8c5		488d15943d5400		LEAQ 0x543d94(IP), DX																																																	
+  checker.go:20908	0x81c8cc		4889942498000000	MOVQ DX, 0x98(SP)																																																	
+  checker.go:20908	0x81c8d4		48898424a0000000	MOVQ AX, 0xa0(SP)																																																	
+  checker.go:20908	0x81c8dc		488b0d25a76701		MOVQ github.com/microsoft/typescript-go/internal/diagnostics.Type_of_property_0_circularly_references_itself_in_mapped_type_1(SB), CX																																			
+  checker.go:20908	0x81c8e3		488b8424b8000000	MOVQ 0xb8(SP), AX																																																	
+  checker.go:20908	0x81c8eb		488b9888000000		MOVQ 0x88(AX), BX																																																	
+  checker.go:20908	0x81c8f2		488dbc2488000000	LEAQ 0x88(SP), DI																																																	
+  checker.go:20908	0x81c8fa		be02000000		MOVL $0x2, SI																																																		
+  checker.go:20908	0x81c8ff		4989f0			MOVQ SI, R8																																																		
+  checker.go:20908	0x81c902		e85947fdff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).error(SB)																																										
+  checker.go:20911	0x81c907		488b8c2480000000	MOVQ 0x80(SP), CX																																																	
+  checker.go:20911	0x81c90f		4889c8			MOVQ CX, AX																																																		
+  checker.go:20911	0x81c912		488b00			MOVQ 0(AX), AX																																																		
+  checker.go:20911	0x81c915		4881c4a8000000		ADDQ $0xa8, SP																																																		
+  checker.go:20911	0x81c91c		5d			POPQ BP																																																			
+  checker.go:20911	0x81c91d		c3			RET																																																			
+  types.go:697		0x81c91e		488b542460		MOVQ 0x60(SP), DX																																																	
+  types.go:697		0x81c923		488b4228		MOVQ 0x28(DX), AX																																																	
+  types.go:697		0x81c927		488d3532aed100		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.MappedType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), SI																																	
+  types.go:697		0x81c92e		4839f0			CMPQ AX, SI																																																		
+  types.go:697		0x81c931		7523			JNE 0x81c956																																																		
+  types.go:697		0x81c933		488b4a30		MOVQ 0x30(DX), CX																																																	
+  checker.go:20885	0x81c937		c681f800000001		MOVB $0x1, 0xf8(CX)																																																	
+  checker.go:20886	0x81c93e		488b8c24b8000000	MOVQ 0xb8(SP), CX																																																	
+  checker.go:20886	0x81c946		488b81c80b0000		MOVQ 0xbc8(CX), AX																																																	
+  checker.go:20886	0x81c94d		4881c4a8000000		ADDQ $0xa8, SP																																																		
+  checker.go:20886	0x81c954		5d			POPQ BP																																																			
+  checker.go:20886	0x81c955		c3			RET																																																			
+  types.go:697		0x81c956		488d1de33b6d00		LEAQ 0x6d3be3(IP), BX																																																	
+  types.go:697		0x81c95d		488d0d7c7b6100		LEAQ 0x617b7c(IP), CX																																																	
+  types.go:697		0x81c964		e8f735c0ff		CALL runtime.panicdottypeI(SB)																																																
+  checker.go:18646	0x81c969		e8324fc7ff		CALL runtime.panicBounds(SB)																																																
+  checker.go:18644	0x81c96e		e82d4fc7ff		CALL runtime.panicBounds(SB)																																																
+  types.go:697		0x81c973		4889c8			MOVQ CX, AX																																																		
+  types.go:697		0x81c976		488d1dc33b6d00		LEAQ 0x6d3bc3(IP), BX																																																	
+  types.go:697		0x81c97d		488d0d5c7b6100		LEAQ 0x617b5c(IP), CX																																																	
+  types.go:697		0x81c984		e8d735c0ff		CALL runtime.panicdottypeI(SB)																																																
+  types.go:697		0x81c989		488d1db03b6d00		LEAQ 0x6d3bb0(IP), BX																																																	
+  types.go:697		0x81c990		488d0d497b6100		LEAQ 0x617b49(IP), CX																																																	
+  types.go:697		0x81c997		e8c435c0ff		CALL runtime.panicdottypeI(SB)																																																
+  types.go:697		0x81c99c		90			NOPL																																																			
+  checker.go:20880	0x81c99d		4889442408		MOVQ AX, 0x8(SP)																																																	
+  checker.go:20880	0x81c9a2		48895c2410		MOVQ BX, 0x10(SP)																																																	
+  checker.go:20880	0x81c9a7		e85430c7ff		CALL runtime.morestack_noctxt.abi0(SB)																																															
+  checker.go:20880	0x81c9ac		488b442408		MOVQ 0x8(SP), AX																																																	
+  checker.go:20880	0x81c9b1		488b5c2410		MOVQ 0x10(SP), BX																																																	
+  checker.go:20880	0x81c9b6		e985fbffff		JMP github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol(SB)																																								
