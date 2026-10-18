@@ -1,0 +1,68 @@
+diff --git a/packages/tsc-go/cmd/tsgo/main.go b/packages/tsc-go/cmd/tsgo/main.go
+index 8d6816f..062a351 100644
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,10 +2,12 @@ package main
+ 
+ import (
+ 	"context"
++	"fmt"
+ 	"os"
+ 	"os/signal"
+ 	"syscall"
+ 
++	"github.com/microsoft/typescript-go/internal/checker"
+ 	"github.com/microsoft/typescript-go/internal/core"
+ 	"github.com/microsoft/typescript-go/internal/execute"
+ )
+@@ -28,5 +30,9 @@ func runMain() int {
+ 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+ 	defer stop()
+ 	result := execute.CommandLine(ctx, newSystem(), args, nil)
++	if err := checker.WriteMergedLookupCensus(); err != nil {
++		fmt.Fprintln(os.Stderr, err)
++		return 1
++	}
+ 	return int(result.Status)
+ }
+diff --git a/packages/tsc-go/internal/checker/checker.go b/packages/tsc-go/internal/checker/checker.go
+index 0904719..43c2e59 100644
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -668,6 +668,7 @@ type Checker struct {
+ 	signatureArena                              core.Arena[Signature]
+ 	indexInfoArena                              core.Arena[IndexInfo]
+ 	mergedSymbols                               map[*ast.Symbol]*ast.Symbol
++	mergedLookupCensus                          *mergedLookupCensus
+ 	factory                                     ast.NodeFactory
+ 	nodeLinks                                   core.LinkStore[*ast.Node, NodeLinks]
+ 	signatureLinks                              core.PointerLinkStore[ast.Node, SignatureLinks]
+@@ -973,6 +974,7 @@ func NewChecker(program Program, tracer *Tracer) (*Checker, *sync.Mutex) {
+ 	c.intersectionTypes = make(map[CacheHashKey]*Type)
+ 	c.propertiesTypes = make(map[PropertiesTypesKey]*Type)
+ 	c.mergedSymbols = make(map[*ast.Symbol]*ast.Symbol)
++	c.mergedLookupCensus = newMergedLookupCensus()
+ 	c.patternForType = make(map[*Type]*ast.Node)
+ 	c.contextFreeTypes = make(map[*ast.Node]*Type)
+ 	c.anyType = c.newIntrinsicType(TypeFlagsAny, "any")
+@@ -14284,6 +14286,9 @@ func (c *Checker) cloneSymbol(symbol *ast.Symbol) *ast.Symbol {
+ func (c *Checker) getMergedSymbol(symbol *ast.Symbol) *ast.Symbol {
+ 	if symbol != nil {
+ 		merged := c.mergedSymbols[symbol]
++		if s := c.mergedLookupCensus; s != nil {
++			s.lookup(len(c.mergedSymbols), merged != nil)
++		}
+ 		if merged != nil {
+ 			return merged
+ 		}
+@@ -14300,6 +14305,10 @@ func (c *Checker) getParentOfSymbol(symbol *ast.Symbol) *ast.Symbol {
+ 
+ func (c *Checker) recordMergedSymbol(target *ast.Symbol, source *ast.Symbol) {
+ 	c.mergedSymbols[source] = target
++	if s := c.mergedLookupCensus; s != nil {
++		s.Writes++
++		s.PeakKeys = max(s.PeakKeys, len(c.mergedSymbols))
++	}
+ }
+ 
+ func (c *Checker) getSymbolIfSameReference(s1 *ast.Symbol, s2 *ast.Symbol) *ast.Symbol {

@@ -1,0 +1,97 @@
+{
+  "scope": "Single-run diagnostic control, observer-disabled and observer-enabled captures. Elapsed time includes observer serialization; not optimization performance evidence or causal overhead estimate. Unchanged lookups include nil-valued entries.",
+  "projects": [
+    {
+      "project": "typeorm",
+      "owners": 4,
+      "counts": {
+        "Lookups": 2772580,
+        "Replacements": 60863,
+        "Unchanged": 2711717,
+        "Writes": 2836
+      },
+      "unchangedFraction": 0.978048243873937,
+      "peakKeysPerOwner": [
+        709,
+        709,
+        709,
+        709
+      ],
+      "emptyMapLookups": 464,
+      "elapsedControlsMs": {
+        "baseline": 2548.213021,
+        "disabled": 2735.7535270000003,
+        "enabled": 2515.2352569999994
+      }
+    },
+    {
+      "project": "trpc",
+      "owners": 4,
+      "counts": {
+        "Lookups": 655374,
+        "Replacements": 6159,
+        "Unchanged": 649215,
+        "Writes": 5328
+      },
+      "unchangedFraction": 0.9906023125726684,
+      "peakKeysPerOwner": [
+        1332,
+        1332,
+        1332,
+        1332
+      ],
+      "emptyMapLookups": 4244,
+      "elapsedControlsMs": {
+        "baseline": 509.57982000000084,
+        "disabled": 509.1583389999996,
+        "enabled": 485.92917399999897
+      }
+    },
+    {
+      "project": "vscode",
+      "owners": 4,
+      "counts": {
+        "Lookups": 51235490,
+        "Replacements": 415468,
+        "Unchanged": 50820022,
+        "Writes": 10060
+      },
+      "unchangedFraction": 0.9918910114844223,
+      "peakKeysPerOwner": [
+        2515,
+        2515,
+        2515,
+        2515
+      ],
+      "emptyMapLookups": 2877,
+      "elapsedControlsMs": {
+        "baseline": 36273.585115,
+        "disabled": 35949.027067,
+        "enabled": 37993.06860499999
+      }
+    },
+    {
+      "project": "sentry",
+      "owners": 4,
+      "counts": {
+        "Lookups": 25432841,
+        "Replacements": 251843,
+        "Unchanged": 25180998,
+        "Writes": 37268
+      },
+      "unchangedFraction": 0.9900977244343249,
+      "peakKeysPerOwner": [
+        9317,
+        9317,
+        9317,
+        9317
+      ],
+      "emptyMapLookups": 3414,
+      "elapsedControlsMs": {
+        "baseline": 31805.374756000005,
+        "disabled": 30658.353660000023,
+        "enabled": 31543.337405000028
+      }
+    }
+  ]
+}
