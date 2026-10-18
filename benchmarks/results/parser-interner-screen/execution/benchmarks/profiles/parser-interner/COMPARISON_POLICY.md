@@ -1,0 +1,9 @@
+# Frozen before candidate timing
+
+Compare preserved retained node-pointer Go baseline8fe4bd80 against the per-file parser interner candidate with default runtime/checker settings, identical physical libraries, fresh processes, alternating order and matched GNU-time RSS wrappers. Preserve all inputs, hashes, diagnostics and samples. Do not overlap builds/tests/profiles with timing.
+
+Screen with nine pairs on TypeORM/tRPC and five on VSCode/Sentry, one warmup each. Qualify for confirmation only when geometric means of both ratio-of-medians and median-paired summaries are at least1.01, each workload summary is at least0.98, and candidate median RSS is at most1.05times baseline. No promotion from screening alone.
+
+If qualified, run two independent confirmations,19pairs on small workloads and11on large, reversing raw executable roles in the second and normalizing results to unchanged/candidate. Each must independently pass the same gates. No pooled rescue or extra opportunistic samples. Otherwise restore the unchanged baseline. This finite practical policy does not establish statistical confidence or universal behavior. Complete compiler conformance/API/native validation before any promotion, and directly remeasure original native after an accepted change.
+
+The candidate replaces the parser/source-file map[string]string with a per-file canonical string table: randomized maphash, exact byte equality, linear probing, an empty-key bit and fixed75%load. Source-file clones share the same pointer; printer membership uses Has. No symbol-table representation, global interning, semantic caches, IDs, GC defaults, scheduling or declaration-transform changes. No probe, threshold, hash or layout retuning after a failed screen. Sampled allocation attribution and focused tests are not workload performance evidence.
