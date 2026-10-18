@@ -1,0 +1,11 @@
+# Frozen before candidate timing
+
+Compare the retained node-pointer Go baseline (8fe4bd80) with the direct member-materialization candidate using default runtime/checker settings, identical physical libraries and inputs, fresh processes, alternating execution order, and matched GNU-time RSS wrappers. Preserve hashes, diagnostics and every raw sample. No builds, tests, profiles or Git activity may overlap timing.
+
+Screen with nine pairs on TypeORM/tRPC and five on VS Code/Sentry, one warmup each. Both aggregate geometric means (ratio of medians and median paired ratios) must reach 1.01. Both summaries for every workload must reach 0.98. Candidate median RSS must stay within 1.05 times baseline. A passing screen requires two independent confirmations, each with 19 small-workload pairs and 11 large-workload pairs; reverse raw executable roles in the second and normalize the comparisons. Each confirmation must independently pass the same gates. No pooled rescue, opportunistic extra samples or promotion from the screen alone.
+
+Complete compiler conformance, root/services, normal CLI/API/emit and race/checkptr validation before promotion. Use normal production build-system provenance with identical build settings for timing; the diagnostic overlay executable alone is insufficient for this policy. Restore and verify baseline source and its matched default binary/sidecar before the quiet timing window. Directly remeasure the original native implementation after an accepted change; Go-to-Go ratios never establish the requested 10× native-relative result.
+
+The candidate avoids transient member maps by building into an existing immutable name layout. It preserves symbol creation and inheritance order, falls back without replaying construction, keeps recursive mutable resolution eager, and preserves property classification, ordering and nil/empty behavior. All fallback checks, slot allocation and access costs are included. Do not retune layout thresholds, bypass eligibility checks or add samples to rescue a failed screen.
+
+Saturated key construction and declaration transformation must stay byte-for-byte identical to the retained baseline; this candidate does not change key types or declaration logic.
