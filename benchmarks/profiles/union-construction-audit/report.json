@@ -1,0 +1,177 @@
+{
+  "scope": "Historical sampled CPU and allocation attribution, not new timing, wall-time savings, peak RSS or final-GC liveness. CPU percentages are pprof-rounded inclusive sample fractions. Recursive appearances counted once by pprof and allocation stack membership.",
+  "projects": [
+    {
+      "project": "typeorm",
+      "cpuProfileSha256": "e6e4b60726f4a2cabf8f309f5919a6bde86019f89e5cffc58492175890cbc00b",
+      "cpuInclusivePercentRounded": 0.97,
+      "heapRawSha256": "b624d2d7dad57b51575a7624fb1d366b7a94912d301c8f5dae83f9e63fb022d6",
+      "heapMetrics": [
+        "allocObjects",
+        "allocBytes",
+        "inuseObjects",
+        "inuseBytes"
+      ],
+      "heapTotal": [
+        3200134,
+        561957302,
+        1615602,
+        408517614
+      ],
+      "unionInclusiveHeap": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "unionDirectInsertHeap": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "unionInclusiveAllocBytesPercent": 0.0,
+      "unionDirectInsertAllocBytesPercent": 0.0,
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-top",
+        "-nodefraction=0",
+        "-nodecount=0",
+        "-focus=addTypesToUnion|addTypeToUnion",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/union-construction-audit/typeorm.pb.gz"
+      ]
+    },
+    {
+      "project": "trpc",
+      "cpuProfileSha256": "60b02db0e5922d815d70961e7d45b80e09c9c562634ca5c1c92f04f31361a943",
+      "cpuInclusivePercentRounded": 1.02,
+      "heapRawSha256": "471d301923e23fb46f802ac40703bac5a31f0d79e5d3741dd2b765d07b9e9001",
+      "heapMetrics": [
+        "allocObjects",
+        "allocBytes",
+        "inuseObjects",
+        "inuseBytes"
+      ],
+      "heapTotal": [
+        331970,
+        106773821,
+        129986,
+        88922710
+      ],
+      "unionInclusiveHeap": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "unionDirectInsertHeap": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "unionInclusiveAllocBytesPercent": 0.0,
+      "unionDirectInsertAllocBytesPercent": 0.0,
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-top",
+        "-nodefraction=0",
+        "-nodecount=0",
+        "-focus=addTypesToUnion|addTypeToUnion",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/union-construction-audit/trpc.pb.gz"
+      ]
+    },
+    {
+      "project": "vscode",
+      "cpuProfileSha256": "19bfa2f4204510b877d55173362910c12cf4c0c6ae343988bfb887f1e0b8dc71",
+      "cpuInclusivePercentRounded": 0.64,
+      "heapRawSha256": "f0400e7e1f143210cb7289825e4135d568ade9a18e8bb6b173e497ba2e906487",
+      "heapMetrics": [
+        "allocObjects",
+        "allocBytes",
+        "inuseObjects",
+        "inuseBytes"
+      ],
+      "heapTotal": [
+        17402575,
+        5084070463,
+        10506137,
+        4247088189
+      ],
+      "unionInclusiveHeap": [
+        8192,
+        524320,
+        8192,
+        524320
+      ],
+      "unionDirectInsertHeap": [
+        8192,
+        524320,
+        8192,
+        524320
+      ],
+      "unionInclusiveAllocBytesPercent": 0.010312996324811165,
+      "unionDirectInsertAllocBytesPercent": 0.010312996324811165,
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-top",
+        "-nodefraction=0",
+        "-nodecount=0",
+        "-focus=addTypesToUnion|addTypeToUnion",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/union-construction-audit/vscode.pb.gz"
+      ]
+    },
+    {
+      "project": "sentry",
+      "cpuProfileSha256": "41c1dd391cb188916792843d7f1c1206af99fecc0fe8fe838fa1c51069c5645e",
+      "cpuInclusivePercentRounded": 2.87,
+      "heapRawSha256": "10a63d50ab9c22f583b007ac1c2acdd34eb1d5b2ddc6defbacbc90bb923ae422",
+      "heapMetrics": [
+        "allocObjects",
+        "allocBytes",
+        "inuseObjects",
+        "inuseBytes"
+      ],
+      "heapTotal": [
+        23225216,
+        4817441419,
+        9567728,
+        2913908345
+      ],
+      "unionInclusiveHeap": [
+        216535,
+        141908954,
+        95993,
+        29239742
+      ],
+      "unionDirectInsertHeap": [
+        216535,
+        141908954,
+        95993,
+        29239742
+      ],
+      "unionInclusiveAllocBytesPercent": 2.9457328415102415,
+      "unionDirectInsertAllocBytesPercent": 2.9457328415102415,
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-top",
+        "-nodefraction=0",
+        "-nodecount=0",
+        "-focus=addTypesToUnion|addTypeToUnion",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/union-construction-audit/sentry.pb.gz"
+      ]
+    }
+  ],
+  "sourceHashes": {
+    "packages/tsc-go/internal/checker/checker.go": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+    "packages/tsc-go/internal/checker/utilities.go": "d5840b7b62ef15a1597bc9d145c847ee37ca87dd610a54227582837649ba15b8"
+  }
+}
