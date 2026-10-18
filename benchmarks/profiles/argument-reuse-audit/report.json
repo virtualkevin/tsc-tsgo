@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "test",
+    "-json",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/argument-reuse-audit/overlay.json",
+    "./internal/checker",
+    "-run",
+    "^TestArgumentReuseAudit",
+    "-count=1",
+    "-timeout",
+    "10m"
+  ],
+  "baseSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "baseHead": "f285fd78c8ac3a6522e54b6bb0dd80eb9bedf86e",
+  "testSourceSha256": "eea1c92abe31b6fd1f553aeb8e1414898372d370959eb6fa31df1dfaf1b0cc1e",
+  "stdoutSha256": "d0d99cb16915d306bb58d3b8d468712c3bf873b50a5476ea06438002e7cded97",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "tests": [
+    [
+      "TestArgumentReuseAuditContextInsensitiveLiteral",
+      "pass"
+    ],
+    [
+      "TestArgumentReuseAuditIdenticalRequestResetsBudget",
+      "pass"
+    ]
+  ],
+  "sourceHashes": {
+    "packages/tsc-go/internal/checker/checker.go": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+    "packages/tsc-go/internal/checker/lazy_properties_test.go": "ae1968982f58058ed26cda700c7da79c64a04caa0c5c30d6390cea20618e950d",
+    "packages/tsc-go/internal/checker/pending_members_test.go": "6cc5a281e26655046e63ed8f365ba0b6b572b15ba1c4aead0e8f5789ff0e59d4"
+  },
+  "scope": "Focused semantic boundary tests through an overlay only; no production source change, full new conformance claim or timing."
+}
