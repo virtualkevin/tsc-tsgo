@@ -1,0 +1,44 @@
+diff --git a/packages/tsc-go/internal/checker/mapper.go b/packages/tsc-go/internal/checker/mapper.go
+index a3a2bf4..59f193a 100644
+--- a/packages/tsc-go/internal/checker/mapper.go
++++ b/packages/tsc-go/internal/checker/mapper.go
+@@ -62,14 +62,37 @@ func prependTypeMapping(source *Type, target *Type, mapper *TypeMapper) *TypeMap
+ 	if mapper == nil {
+ 		return newSimpleTypeMapper(source, target)
+ 	}
+-	return newMergedTypeMapper(newSimpleTypeMapper(source, target), mapper)
++	return newPairedTypeMapping(source, target, mapper, true)
+ }
+ 
+ func appendTypeMapping(mapper *TypeMapper, source *Type, target *Type) *TypeMapper {
+ 	if mapper == nil {
+ 		return newSimpleTypeMapper(source, target)
+ 	}
+-	return newMergedTypeMapper(mapper, newSimpleTypeMapper(source, target))
++	return newPairedTypeMapping(source, target, mapper, false)
++}
++
++// The new simple mapper is owned by the new merged mapper. Allocate them
++// together while preserving their concrete types and traversal order, which
++// are also used by mapper comparison and declaration serialization.
++// An independently retained child can keep the whole pair alive.
++func newPairedTypeMapping(source, target *Type, mapper *TypeMapper, prepend bool) *TypeMapper {
++	pair := &struct {
++		merged MergedTypeMapper
++		simple SimpleTypeMapper
++	}{}
++	pair.simple.data = &pair.simple
++	pair.simple.source = source
++	pair.simple.target = target
++	pair.merged.data = &pair.merged
++	if prepend {
++		pair.merged.m1 = &pair.simple.TypeMapper
++		pair.merged.m2 = mapper
++	} else {
++		pair.merged.m1 = mapper
++		pair.merged.m2 = &pair.simple.TypeMapper
++	}
++	return &pair.merged.TypeMapper
+ }
+ 
+ // Maps forward-references to later types parameters to the empty object type.

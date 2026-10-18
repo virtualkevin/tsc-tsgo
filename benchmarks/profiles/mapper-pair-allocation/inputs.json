@@ -1,0 +1,74 @@
+[
+  {
+    "project": "sentry",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "pprof",
+      "-alloc_objects",
+      "-trim_path=github.com/microsoft/typescript-go",
+      "-source_path=/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "-list=(prependTypeMapping|appendTypeMapping)",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "/tmp/tsc-node-pointer-normal/sentry/398210-memprofile.pb.gz"
+    ],
+    "profileSha256": "3272e41a8e0590f1e83a9c4f514c27de07017526663a2f9355b713c5a2eb3ab2",
+    "output": "sentry-list.txt",
+    "outputSha256": "c768c0f92192af917e945f73376594fd8651c756cda83fbf35e37e29a92fd0d4",
+    "stderr": ""
+  },
+  {
+    "project": "sentry",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "pprof",
+      "-alloc_objects",
+      "-trim_path=github.com/microsoft/typescript-go",
+      "-source_path=/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "-peek=(prependTypeMapping|appendTypeMapping)",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "/tmp/tsc-node-pointer-normal/sentry/398210-memprofile.pb.gz"
+    ],
+    "profileSha256": "3272e41a8e0590f1e83a9c4f514c27de07017526663a2f9355b713c5a2eb3ab2",
+    "output": "sentry-peek.txt",
+    "outputSha256": "e8417b5d41c560770fa97a754950afc7febce2f2680048211079448ddcebb301",
+    "stderr": ""
+  },
+  {
+    "project": "vscode",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "pprof",
+      "-alloc_objects",
+      "-trim_path=github.com/microsoft/typescript-go",
+      "-source_path=/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "-list=(prependTypeMapping|appendTypeMapping)",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "/tmp/tsc-node-pointer-normal/vscode/398188-memprofile.pb.gz"
+    ],
+    "profileSha256": "646ce35577e17c1a6f3397202e4b720a27569170210e3872dab0159cba896c8b",
+    "output": "vscode-list.txt",
+    "outputSha256": "02a9cd419066e7e2f801dac83b32e24dcfa78419ab61329903018112e95a24b6",
+    "stderr": ""
+  },
+  {
+    "project": "vscode",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "pprof",
+      "-alloc_objects",
+      "-trim_path=github.com/microsoft/typescript-go",
+      "-source_path=/home/dev/tssss/tsc-tsgo/packages/tsc-go",
+      "-peek=(prependTypeMapping|appendTypeMapping)",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "/tmp/tsc-node-pointer-normal/vscode/398188-memprofile.pb.gz"
+    ],
+    "profileSha256": "646ce35577e17c1a6f3397202e4b720a27569170210e3872dab0159cba896c8b",
+    "output": "vscode-peek.txt",
+    "outputSha256": "4d2d369ab192121b6d64e9eebdddce2de0a4d87b2d2f7ce24fddcc533c2f3381",
+    "stderr": ""
+  }
+]

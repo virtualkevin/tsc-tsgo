@@ -1,0 +1,25 @@
+Total: 23225216
+ROUTINE ======================== github.com/microsoft/typescript-go/internal/checker.appendTypeMapping in internal/checker/mapper.go
+         0     589829 (flat, cum)  2.54% of Total
+         .          .     68:func appendTypeMapping(mapper *TypeMapper, source *Type, target *Type) *TypeMapper {
+         .          .     69:	if mapper == nil {
+         .          .     70:		return newSimpleTypeMapper(source, target)
+         .          .     71:	}
+         .     589829     72:	return newMergedTypeMapper(mapper, newSimpleTypeMapper(source, target))
+         .          .     73:}
+         .          .     74:
+         .          .     75:// Maps forward-references to later types parameters to the empty object type.
+         .          .     76:// This is used during inference when instantiating type parameter defaults.
+         .          .     77:func (c *Checker) newBackreferenceMapper(context *InferenceContext, index int) *TypeMapper {
+ROUTINE ======================== github.com/microsoft/typescript-go/internal/checker.prependTypeMapping in internal/checker/mapper.go
+         0     458756 (flat, cum)  1.98% of Total
+         .          .     61:func prependTypeMapping(source *Type, target *Type, mapper *TypeMapper) *TypeMapper {
+         .          .     62:	if mapper == nil {
+         .          .     63:		return newSimpleTypeMapper(source, target)
+         .          .     64:	}
+         .     458756     65:	return newMergedTypeMapper(newSimpleTypeMapper(source, target), mapper)
+         .          .     66:}
+         .          .     67:
+         .          .     68:func appendTypeMapping(mapper *TypeMapper, source *Type, target *Type) *TypeMapper {
+         .          .     69:	if mapper == nil {
+         .          .     70:		return newSimpleTypeMapper(source, target)

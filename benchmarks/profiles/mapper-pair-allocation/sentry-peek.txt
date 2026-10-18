@@ -1,0 +1,22 @@
+File: tsc-go-node-pointer
+Build ID: 15af3668b3053a71304a82aaa639569aa27b0a22
+Type: alloc_objects
+Time: 2026-10-17 21:41:46 UTC
+Showing nodes accounting for 23225216, 100% of 23225216 total
+----------------------------------------------------------+-------------
+      flat  flat%   sum%        cum   cum%   calls calls% + context 	 	 
+----------------------------------------------------------+-------------
+                                            475141 80.56% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol
+                                             49152  8.33% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveMappedTypeMembers.func1
+                                             49152  8.33% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveMappedTypeMembers.func2
+                                             16384  2.78% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexTypeForMappedType.func1
+         0     0%     0%     589829  2.54%                | github.com/microsoft/typescript-go/internal/checker.appendTypeMapping
+                                            311299 52.78% |   github.com/microsoft/typescript-go/internal/checker.newSimpleTypeMapper (inline)
+                                            278530 47.22% |   github.com/microsoft/typescript-go/internal/checker.newMergedTypeMapper (inline)
+----------------------------------------------------------+-------------
+                                            442372 96.43% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalTypeInstantiation.func1
+                                             16384  3.57% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateMappedType.func1
+         0     0%     0%     458756  1.98%                | github.com/microsoft/typescript-go/internal/checker.prependTypeMapping
+                                            262146 57.14% |   github.com/microsoft/typescript-go/internal/checker.newSimpleTypeMapper (inline)
+                                            196610 42.86% |   github.com/microsoft/typescript-go/internal/checker.newMergedTypeMapper (inline)
+----------------------------------------------------------+-------------

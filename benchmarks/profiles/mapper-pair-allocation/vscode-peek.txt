@@ -1,0 +1,17 @@
+File: tsc-go-node-pointer
+Build ID: 15af3668b3053a71304a82aaa639569aa27b0a22
+Type: alloc_objects
+Time: 2026-10-17 21:41:15 UTC
+Showing nodes accounting for 17402575, 100% of 17402575 total
+----------------------------------------------------------+-------------
+      flat  flat%   sum%        cum   cum%   calls calls% + context 	 	 
+----------------------------------------------------------+-------------
+                                             16384   100% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol
+         0     0%     0%      16384 0.094%                | github.com/microsoft/typescript-go/internal/checker.appendTypeMapping
+                                             16384   100% |   github.com/microsoft/typescript-go/internal/checker.newMergedTypeMapper (inline)
+----------------------------------------------------------+-------------
+                                             49152   100% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalTypeInstantiation.func1
+         0     0%     0%      49152  0.28%                | github.com/microsoft/typescript-go/internal/checker.prependTypeMapping
+                                             32768 66.67% |   github.com/microsoft/typescript-go/internal/checker.newMergedTypeMapper (inline)
+                                             16384 33.33% |   github.com/microsoft/typescript-go/internal/checker.newSimpleTypeMapper (inline)
+----------------------------------------------------------+-------------
