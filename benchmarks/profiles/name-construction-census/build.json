@@ -1,0 +1,24 @@
+{
+  "binarySha256": "d61bee76c06e1c845ae226bd546ad7fdf9b55022679a3c682eda683ce6335716",
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/ast_generated.go": "bf5d962779e45df28b16383b732b87ef40f96bb6033d7001dbd259011609313c",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/binder/binder.go": "08df098e0097582be71c46db173f7c9fce4645b9b048746bac4f7ab770a8265a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "0ecdc2f86af9c783e3193a722442f7eb4f808e0baf5728ba4ed09580811fbd04",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/cmd/tsgo/main.go": "f6bfde1db54ce4da02ddad6595d39e94904335034fc0c0990b68d1a91af02f3c",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/name_construction_census.go": "256e13242ea33e897d45679b22136a6db0dc8076371491e4372b23c98c5df6b7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/name_construction_census_test.go": "d347d4aae33f161364f77032c0a7caad412ed4c838656c87b16618aa660c72d3"
+  },
+  "buildInfoSha256": "d32f677bc1af595c8693ff0cdaad59c2e029398805e0c5bcc1297aa91c4568cb",
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/name-construction-census/overlay.json",
+    "-o",
+    "/tmp/tsc-name-construction-census",
+    "./cmd/tsgo"
+  ],
+  "exitCode": 0,
+  "scope": "Post-build diagnostic overlay metadata; no normal build-system provenance sidecar or performance comparison."
+}

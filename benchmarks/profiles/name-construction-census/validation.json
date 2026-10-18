@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/ast_generated.go": "bf5d962779e45df28b16383b732b87ef40f96bb6033d7001dbd259011609313c",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/binder/binder.go": "08df098e0097582be71c46db173f7c9fce4645b9b048746bac4f7ab770a8265a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "0ecdc2f86af9c783e3193a722442f7eb4f808e0baf5728ba4ed09580811fbd04",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/cmd/tsgo/main.go": "f6bfde1db54ce4da02ddad6595d39e94904335034fc0c0990b68d1a91af02f3c",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/name_construction_census.go": "256e13242ea33e897d45679b22136a6db0dc8076371491e4372b23c98c5df6b7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/name_construction_census_test.go": "d347d4aae33f161364f77032c0a7caad412ed4c838656c87b16618aa660c72d3"
+  },
+  "controllerSha256": "8e7daf654b5119fe77ddb1ffc979d7036135aecc0fdeb42a4f132a4043220738",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/name-construction-census/overlay.json",
+        "./internal/ast",
+        "-run",
+        "^TestNameConstructionCensus",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestNameConstructionCensusMembership",
+          "pass"
+        ],
+        [
+          "TestNameConstructionCensusLimits",
+          "pass"
+        ],
+        [
+          "TestNameConstructionCensusConcurrent",
+          "pass"
+        ],
+        [
+          "TestNameConstructionCensusOwnsKeyBytes",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "2809eeb8739e706206a3e60d9ff430e8fed3300dd359f2903fa96e33c9912466",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-race",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/name-construction-census/overlay.json",
+        "./internal/ast",
+        "-run",
+        "^TestNameConstructionCensus",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestNameConstructionCensusMembership",
+          "pass"
+        ],
+        [
+          "TestNameConstructionCensusLimits",
+          "pass"
+        ],
+        [
+          "TestNameConstructionCensusConcurrent",
+          "pass"
+        ],
+        [
+          "TestNameConstructionCensusOwnsKeyBytes",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "daed3dcc313a9867a09f66329924d8ed924520cfe4316b2d35575eeaed3efebf",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    }
+  ]
+}

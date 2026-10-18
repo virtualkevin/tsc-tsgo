@@ -1,0 +1,22 @@
+/tmp/tsc-name-construction-census: go1.26.9
+	path	github.com/microsoft/typescript-go/cmd/tsgo
+	mod	github.com/microsoft/typescript-go	(devel)	
+	dep	github.com/go-json-experiment/json	v0.0.0-20260623181947-01eb4420fa68	h1:KZaTBSyshWX3MP5jukJcNSuXDQTO+rNpt0J564dX/eg=
+	dep	github.com/klauspost/cpuid/v2	v2.2.10	h1:tBs3QSyvjDyFTq3uoc/9xFpCuOsJQFNPiAhYdw2skhE=
+	dep	github.com/mackerelio/go-osstat	v0.2.7	h1:TCavZi10wF49bT6iQZ9eT2keGZQpC69MTDfdJej5e94=
+	dep	github.com/zeebo/xxh3	v1.1.0	h1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=
+	dep	golang.org/x/sync	v0.21.0	h1:HLII4xRRTtCRkxYp4HNFF0Js/Og6q2i++KXbg0gHCwM=
+	dep	golang.org/x/sys	v0.46.0	h1:noSf2Fq6F8DBgS+LysIkx7rIExoNHJsxOAtPp4rthXw=
+	dep	golang.org/x/term	v0.44.0	h1:0rLvDRCtNj0gZkyIXhCyOb2OAzEhLVqc4B+hrsBhrmc=
+	dep	golang.org/x/text	v0.38.0	h1:sXmwo9DwP3OK9EZ7PqAdaooSGozfl/3a6/xJcbzPRhE=
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=1
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+	build	vcs=git
+	build	vcs.revision=cc36c1fad48d7b15f3d3df78dcefd4dcd4beb0d2
+	build	vcs.time=2026-10-18T10:46:40Z
+	build	vcs.modified=true

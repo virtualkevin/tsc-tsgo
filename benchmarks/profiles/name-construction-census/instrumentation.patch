@@ -1,0 +1,49 @@
+--- a/packages/tsc-go/internal/ast/ast_generated.go
++++ b/packages/tsc-go/internal/ast/ast_generated.go
+@@ -624,6 +624,7 @@
+ }
+ 
+ func (f *NodeFactory) NewIdentifier(text string) *Node {
++ ObserveNameConstruction(NameConstructionIdentifier, text)
+ 	data := f.identifierArena.New()
+ 	data.Text = text
+ 	f.textCount++
+--- a/packages/tsc-go/internal/binder/binder.go
++++ b/packages/tsc-go/internal/binder/binder.go
+@@ -132,6 +132,7 @@
+ }
+ 
+ func (b *Binder) newSymbol(flags ast.SymbolFlags, name string) *ast.Symbol {
++ ast.ObserveNameConstruction(ast.NameConstructionBinderSymbol, name)
+ 	b.symbolCount++
+ 	result := b.symbolArena.New()
+ 	result.Flags = flags
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -13997,6 +13997,7 @@
+ }
+ 
+ func (c *Checker) newSymbol(flags ast.SymbolFlags, name string) *ast.Symbol {
++ ast.ObserveNameConstruction(ast.NameConstructionCheckerSymbol, name)
+ 	c.SymbolCount++
+ 	result := c.symbolArena.New()
+ 	result.Flags = flags | ast.SymbolFlagsTransient
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,6 +2,8 @@
+ 
+ import (
+ 	"context"
++ "fmt"
++ "github.com/microsoft/typescript-go/internal/ast"
+ 	"os"
+ 	"os/signal"
+ 	"syscall"
+@@ -28,5 +30,6 @@
+ 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+ 	defer stop()
+ 	result := execute.CommandLine(ctx, newSystem(), args, nil)
+-	return int(result.Status)
++	if err := ast.WriteNameConstructionCensus(); err != nil {fmt.Fprintln(os.Stderr,err);return 1}
++ return int(result.Status)
+ }
