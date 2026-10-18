@@ -1,0 +1,842 @@
+{
+  "scope": "Offline allocation-stack attribution from verified completed-work profiles. Each sample goes to its innermost selected constructor and first outer checker caller after listed wrappers. No repeated-request count, semantic-equivalence proof, retained ownership, or removable-time claim. Arena allocation objects are slabs, not numbers of symbols. Selected classes are disjoint; non-selected allocations remain in the denominator.",
+  "inputSha256": {
+    "packages/tsc-go/internal/checker/checker.go": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+    "packages/tsc-go/internal/checker/types.go": "9a39b928846926090a175d94773d5e3ab4b093b887061b0ef32cfa40548871f4",
+    "packages/tsc-go/internal/checker/pending_members.go": "778607282e1f2d649cc0726c61f35972196a64dddc12e52edf9ef906296693bb",
+    "benchmarks/profiles/completed-heap-census/heap_parser.py": "1de6a0c0039167a41993ee69210b2573d8c15204ebe0b8b0ff3e3d7b6cdc5881",
+    "benchmarks/profiles/completed-heap-census/decoded.json": "9c212a2bc4dfce68e579277eb37bf23fb00d9ed5c5572f66512ed9f7ec5e8874"
+  },
+  "skipWrappers": {
+    "symbol": [
+      "createSymbolWithType",
+      "instantiateSymbol",
+      "newInstantiatedSymbol",
+      "newInstantiatedSymbolWithLinks",
+      "newSymbol",
+      "newSymbolEx"
+    ],
+    "object": [
+      "newAnonymousType",
+      "newObjectType"
+    ]
+  },
+  "projects": [
+    {
+      "project": "typeorm",
+      "rawSha256": "b7a1501923709d09ef63a6389d9b86d5adbd03082a2dd5aac43bf01b97665132",
+      "allSamples": {
+        "allocObjects": 10998940,
+        "allocBytes": 1052672720,
+        "inuseObjects": 1692792,
+        "inuseBytes": 477486236
+      },
+      "selectedSamples": {
+        "allocObjects": 171737,
+        "allocBytes": 63599029,
+        "inuseObjects": 152620,
+        "inuseBytes": 59928341
+      },
+      "origins": [
+        {
+          "family": "object",
+          "caller": "createTypeReferenceEx",
+          "allocObjects": 46820,
+          "allocBytes": 10488000,
+          "inuseObjects": 46820,
+          "inuseBytes": 10488000
+        },
+        {
+          "family": "symbol",
+          "caller": "getPropertiesOfObjectType",
+          "allocObjects": 327,
+          "allocBytes": 9146646,
+          "inuseObjects": 327,
+          "inuseBytes": 9146646
+        },
+        {
+          "family": "object",
+          "caller": "instantiateAnonymousType",
+          "allocObjects": 40282,
+          "allocBytes": 7865792,
+          "inuseObjects": 40282,
+          "inuseBytes": 7865792
+        },
+        {
+          "family": "symbol",
+          "caller": "instantiateSymbols",
+          "allocObjects": 248,
+          "allocBytes": 6994494,
+          "inuseObjects": 248,
+          "inuseBytes": 6994494
+        },
+        {
+          "family": "object",
+          "caller": "getTypeOfFuncClassEnumModuleWorker",
+          "allocObjects": 27310,
+          "allocBytes": 5243840,
+          "inuseObjects": 27310,
+          "inuseBytes": 5243840
+        },
+        {
+          "family": "symbol",
+          "caller": "checkObjectLiteral",
+          "allocObjects": 154,
+          "allocBytes": 4304304,
+          "inuseObjects": 154,
+          "inuseBytes": 4304304
+        },
+        {
+          "family": "object",
+          "caller": "getDeclaredTypeOfClassOrInterface",
+          "allocObjects": 8822,
+          "allocBytes": 3671472,
+          "inuseObjects": 8822,
+          "inuseBytes": 3671472
+        },
+        {
+          "family": "object",
+          "caller": "checkObjectLiteral.func1",
+          "allocObjects": 32772,
+          "allocBytes": 6292608,
+          "inuseObjects": 13655,
+          "inuseBytes": 2621920
+        },
+        {
+          "family": "symbol",
+          "caller": "getPropertyOfTypeEx",
+          "allocObjects": 76,
+          "allocBytes": 2152152,
+          "inuseObjects": 76,
+          "inuseBytes": 2152152
+        },
+        {
+          "family": "symbol",
+          "caller": "newParameter",
+          "allocObjects": 57,
+          "allocBytes": 1614114,
+          "inuseObjects": 57,
+          "inuseBytes": 1614114
+        },
+        {
+          "family": "object",
+          "caller": "getTypeFromTypeLiteralOrFunctionOrConstructorTypeNode",
+          "allocObjects": 8193,
+          "allocBytes": 1573152,
+          "inuseObjects": 8193,
+          "inuseBytes": 1573152
+        },
+        {
+          "family": "symbol",
+          "caller": "createUnionOrIntersectionProperty",
+          "allocObjects": 38,
+          "allocBytes": 1076076,
+          "inuseObjects": 38,
+          "inuseBytes": 1076076
+        },
+        {
+          "family": "symbol",
+          "caller": "cloneSymbol",
+          "allocObjects": 65,
+          "allocBytes": 1065045,
+          "inuseObjects": 65,
+          "inuseBytes": 1065045
+        },
+        {
+          "family": "object",
+          "caller": "getRegularTypeOfObjectLiteral",
+          "allocObjects": 5462,
+          "allocBytes": 1048768,
+          "inuseObjects": 5462,
+          "inuseBytes": 1048768
+        },
+        {
+          "family": "symbol",
+          "caller": "getSpreadSymbol",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "object",
+          "caller": "createTupleTargetType",
+          "allocObjects": 1092,
+          "allocBytes": 524528,
+          "inuseObjects": 1092,
+          "inuseBytes": 524528
+        }
+      ]
+    },
+    {
+      "project": "trpc",
+      "rawSha256": "8ccd9af32b531d1cd9f5b9a5debfab1b8ca043c5011ab3b269da971cafa4517c",
+      "allSamples": {
+        "allocObjects": 1329281,
+        "allocBytes": 257233838,
+        "inuseObjects": 573420,
+        "inuseBytes": 174063909
+      },
+      "selectedSamples": {
+        "allocObjects": 23677,
+        "allocBytes": 9561846,
+        "inuseObjects": 23677,
+        "inuseBytes": 9561846
+      },
+      "origins": [
+        {
+          "family": "symbol",
+          "caller": "getPropertiesOfObjectType",
+          "allocObjects": 57,
+          "allocBytes": 1614114,
+          "inuseObjects": 57,
+          "inuseBytes": 1614114
+        },
+        {
+          "family": "symbol",
+          "caller": "instantiateSymbols",
+          "allocObjects": 57,
+          "allocBytes": 1614114,
+          "inuseObjects": 57,
+          "inuseBytes": 1614114
+        },
+        {
+          "family": "object",
+          "caller": "instantiateAnonymousType",
+          "allocObjects": 7510,
+          "allocBytes": 1573184,
+          "inuseObjects": 7510,
+          "inuseBytes": 1573184
+        },
+        {
+          "family": "object",
+          "caller": "getTypeFromTypeLiteralOrFunctionOrConstructorTypeNode",
+          "allocObjects": 8193,
+          "allocBytes": 1573152,
+          "inuseObjects": 8193,
+          "inuseBytes": 1573152
+        },
+        {
+          "family": "symbol",
+          "caller": "getPropertyOfTypeEx",
+          "allocObjects": 38,
+          "allocBytes": 1076076,
+          "inuseObjects": 38,
+          "inuseBytes": 1076076
+        },
+        {
+          "family": "object",
+          "caller": "getTypeOfFuncClassEnumModuleWorker",
+          "allocObjects": 5462,
+          "allocBytes": 1048768,
+          "inuseObjects": 5462,
+          "inuseBytes": 1048768
+        },
+        {
+          "family": "symbol",
+          "caller": "cloneSymbol",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "object",
+          "caller": "createTypeReferenceEx",
+          "allocObjects": 2341,
+          "allocBytes": 524400,
+          "inuseObjects": 2341,
+          "inuseBytes": 524400
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "rawSha256": "897d629a2ff2951893555fc2a5a84ed00169dcae177b59df8e7886b6dbafd11e",
+      "allSamples": {
+        "allocObjects": 43365161,
+        "allocBytes": 9289767663,
+        "inuseObjects": 20226705,
+        "inuseBytes": 6856449199
+      },
+      "selectedSamples": {
+        "allocObjects": 2586040,
+        "allocBytes": 911322742,
+        "inuseObjects": 2299282,
+        "inuseBytes": 856262422
+      },
+      "origins": [
+        {
+          "family": "object",
+          "caller": "instantiateAnonymousType",
+          "allocObjects": 719617,
+          "allocBytes": 140535488,
+          "inuseObjects": 719617,
+          "inuseBytes": 140535488
+        },
+        {
+          "family": "object",
+          "caller": "createTypeReferenceEx",
+          "allocObjects": 596955,
+          "allocBytes": 133722000,
+          "inuseObjects": 596955,
+          "inuseBytes": 133722000
+        },
+        {
+          "family": "symbol",
+          "caller": "checkObjectLiteral",
+          "allocObjects": 4209,
+          "allocBytes": 117830324,
+          "inuseObjects": 4209,
+          "inuseBytes": 117830324
+        },
+        {
+          "family": "object",
+          "caller": "getTypeOfFuncClassEnumModuleWorker",
+          "allocObjects": 423310,
+          "allocBytes": 81279520,
+          "inuseObjects": 423310,
+          "inuseBytes": 81279520
+        },
+        {
+          "family": "symbol",
+          "caller": "getPropertiesOfObjectType",
+          "allocObjects": 2468,
+          "allocBytes": 69406902,
+          "inuseObjects": 2468,
+          "inuseBytes": 69406902
+        },
+        {
+          "family": "symbol",
+          "caller": "instantiateSymbols",
+          "allocObjects": 1947,
+          "allocBytes": 54879876,
+          "inuseObjects": 1947,
+          "inuseBytes": 54879876
+        },
+        {
+          "family": "symbol",
+          "caller": "getPropertyOfTypeEx",
+          "allocObjects": 1216,
+          "allocBytes": 34434432,
+          "inuseObjects": 1216,
+          "inuseBytes": 34434432
+        },
+        {
+          "family": "object",
+          "caller": "checkObjectLiteral.func1",
+          "allocObjects": 428770,
+          "allocBytes": 82328288,
+          "inuseObjects": 169322,
+          "inuseBytes": 32511808
+        },
+        {
+          "family": "symbol",
+          "caller": "createTupleTargetType",
+          "allocObjects": 1031,
+          "allocBytes": 29054052,
+          "inuseObjects": 1031,
+          "inuseBytes": 29054052
+        },
+        {
+          "family": "object",
+          "caller": "getDeclaredTypeOfClassOrInterface",
+          "allocObjects": 64274,
+          "allocBytes": 26749296,
+          "inuseObjects": 64274,
+          "inuseBytes": 26749296
+        },
+        {
+          "family": "object",
+          "caller": "getWidenedTypeOfObjectLiteral",
+          "allocObjects": 101047,
+          "allocBytes": 19402208,
+          "inuseObjects": 101047,
+          "inuseBytes": 19402208
+        },
+        {
+          "family": "object",
+          "caller": "createTupleTargetType",
+          "allocObjects": 37131,
+          "allocBytes": 17833952,
+          "inuseObjects": 37131,
+          "inuseBytes": 17833952
+        },
+        {
+          "family": "symbol",
+          "caller": "resolveMappedTypeMembers.func1",
+          "allocObjects": 573,
+          "allocBytes": 16141140,
+          "inuseObjects": 573,
+          "inuseBytes": 16141140
+        },
+        {
+          "family": "object",
+          "caller": "getTypeFromTypeLiteralOrFunctionOrConstructorTypeNode",
+          "allocObjects": 79199,
+          "allocBytes": 15207136,
+          "inuseObjects": 79199,
+          "inuseBytes": 15207136
+        },
+        {
+          "family": "symbol",
+          "caller": "getSpreadSymbol",
+          "allocObjects": 535,
+          "allocBytes": 15065064,
+          "inuseObjects": 535,
+          "inuseBytes": 15065064
+        },
+        {
+          "family": "symbol",
+          "caller": "createUnionOrIntersectionProperty",
+          "allocObjects": 514,
+          "allocBytes": 14527026,
+          "inuseObjects": 514,
+          "inuseBytes": 14527026
+        },
+        {
+          "family": "object",
+          "caller": "cloneTypeReference",
+          "allocObjects": 46820,
+          "allocBytes": 10488000,
+          "inuseObjects": 46820,
+          "inuseBytes": 10488000
+        },
+        {
+          "family": "object",
+          "caller": "getRegularTypeOfObjectLiteral",
+          "allocObjects": 32772,
+          "allocBytes": 6292608,
+          "inuseObjects": 32772,
+          "inuseBytes": 6292608
+        },
+        {
+          "family": "symbol",
+          "caller": "getWidenedProperty",
+          "allocObjects": 196,
+          "allocBytes": 5380380,
+          "inuseObjects": 196,
+          "inuseBytes": 5380380
+        },
+        {
+          "family": "symbol",
+          "caller": "newParameter",
+          "allocObjects": 195,
+          "allocBytes": 5380380,
+          "inuseObjects": 195,
+          "inuseBytes": 5380380
+        },
+        {
+          "family": "symbol",
+          "caller": "getPropertyOfObjectType",
+          "allocObjects": 115,
+          "allocBytes": 3228228,
+          "inuseObjects": 115,
+          "inuseBytes": 3228228
+        },
+        {
+          "family": "object",
+          "caller": "getSpreadType",
+          "allocObjects": 21848,
+          "allocBytes": 4195072,
+          "inuseObjects": 8193,
+          "inuseBytes": 1573152
+        },
+        {
+          "family": "symbol",
+          "caller": "lateBindMember",
+          "allocObjects": 38,
+          "allocBytes": 1076076,
+          "inuseObjects": 38,
+          "inuseBytes": 1076076
+        },
+        {
+          "family": "object",
+          "caller": "getTypeFromObjectBindingPattern",
+          "allocObjects": 5462,
+          "allocBytes": 1048768,
+          "inuseObjects": 5462,
+          "inuseBytes": 1048768
+        },
+        {
+          "family": "symbol",
+          "caller": "combineUnionOrIntersectionParameters",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "symbol",
+          "caller": "getSingleSignature",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "symbol",
+          "caller": "getSpreadType",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "symbol",
+          "caller": "isEmptyResolvedType",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "symbol",
+          "caller": "isWeakType",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "object",
+          "caller": "getTypeFromMappedTypeNode",
+          "allocObjects": 2048,
+          "allocBytes": 524416,
+          "inuseObjects": 2048,
+          "inuseBytes": 524416
+        },
+        {
+          "family": "object",
+          "caller": "getTypeWithoutSignatures",
+          "allocObjects": 13655,
+          "allocBytes": 2621920,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        }
+      ]
+    },
+    {
+      "project": "sentry",
+      "rawSha256": "9aecae44f35020945cf1251a7c8ed7b69a7faded015147c3d299f35a67a1df49",
+      "allSamples": {
+        "allocObjects": 45017776,
+        "allocBytes": 8051737525,
+        "inuseObjects": 13562635,
+        "inuseBytes": 4085343323
+      },
+      "selectedSamples": {
+        "allocObjects": 1682933,
+        "allocBytes": 684701664,
+        "inuseObjects": 1270547,
+        "inuseBytes": 605519680
+      },
+      "origins": [
+        {
+          "family": "symbol",
+          "caller": "getPropertiesOfObjectType",
+          "allocObjects": 3629,
+          "allocBytes": 101689184,
+          "inuseObjects": 3629,
+          "inuseBytes": 101689184
+        },
+        {
+          "family": "object",
+          "caller": "instantiateAnonymousType",
+          "allocObjects": 467678,
+          "allocBytes": 92816704,
+          "inuseObjects": 467678,
+          "inuseBytes": 92816704
+        },
+        {
+          "family": "object",
+          "caller": "createTypeReferenceEx",
+          "allocObjects": 330081,
+          "allocBytes": 73940400,
+          "inuseObjects": 330081,
+          "inuseBytes": 73940400
+        },
+        {
+          "family": "symbol",
+          "caller": "resolveMappedTypeMembers.func1",
+          "allocObjects": 2551,
+          "allocBytes": 71559054,
+          "inuseObjects": 2551,
+          "inuseBytes": 71559054
+        },
+        {
+          "family": "symbol",
+          "caller": "checkObjectLiteral",
+          "allocObjects": 1362,
+          "allocBytes": 38200698,
+          "inuseObjects": 1362,
+          "inuseBytes": 38200698
+        },
+        {
+          "family": "symbol",
+          "caller": "getPropertyOfTypeEx",
+          "allocObjects": 1220,
+          "allocBytes": 34434432,
+          "inuseObjects": 1220,
+          "inuseBytes": 34434432
+        },
+        {
+          "family": "symbol",
+          "caller": "instantiateSymbols",
+          "allocObjects": 1103,
+          "allocBytes": 31206204,
+          "inuseObjects": 1103,
+          "inuseBytes": 31206204
+        },
+        {
+          "family": "object",
+          "caller": "getTypeOfFuncClassEnumModuleWorker",
+          "allocObjects": 142013,
+          "allocBytes": 27267968,
+          "inuseObjects": 142013,
+          "inuseBytes": 27267968
+        },
+        {
+          "family": "symbol",
+          "caller": "createUnionOrIntersectionProperty",
+          "allocObjects": 881,
+          "allocBytes": 24749748,
+          "inuseObjects": 881,
+          "inuseBytes": 24749748
+        },
+        {
+          "family": "symbol",
+          "caller": "createJsxAttributesTypeFromAttributesProperty",
+          "allocObjects": 742,
+          "allocBytes": 20445446,
+          "inuseObjects": 742,
+          "inuseBytes": 20445446
+        },
+        {
+          "family": "object",
+          "caller": "checkObjectLiteral.func1",
+          "allocObjects": 204825,
+          "allocBytes": 39328800,
+          "inuseObjects": 101047,
+          "inuseBytes": 19402208
+        },
+        {
+          "family": "object",
+          "caller": "getTypeFromTypeLiteralOrFunctionOrConstructorTypeNode",
+          "allocObjects": 51889,
+          "allocBytes": 9963296,
+          "inuseObjects": 51889,
+          "inuseBytes": 9963296
+        },
+        {
+          "family": "object",
+          "caller": "getWidenedTypeOfObjectLiteral",
+          "allocObjects": 46427,
+          "allocBytes": 8914528,
+          "inuseObjects": 46427,
+          "inuseBytes": 8914528
+        },
+        {
+          "family": "object",
+          "caller": "getRegularTypeOfObjectLiteral",
+          "allocObjects": 40965,
+          "allocBytes": 7865760,
+          "inuseObjects": 40965,
+          "inuseBytes": 7865760
+        },
+        {
+          "family": "object",
+          "caller": "getDeclaredTypeOfClassOrInterface",
+          "allocObjects": 11341,
+          "allocBytes": 4720464,
+          "inuseObjects": 11341,
+          "inuseBytes": 4720464
+        },
+        {
+          "family": "object",
+          "caller": "createDeferredTypeReference",
+          "allocObjects": 18728,
+          "allocBytes": 4195200,
+          "inuseObjects": 18728,
+          "inuseBytes": 4195200
+        },
+        {
+          "family": "symbol",
+          "caller": "isEmptyResolvedType",
+          "allocObjects": 137,
+          "allocBytes": 3766266,
+          "inuseObjects": 137,
+          "inuseBytes": 3766266
+        },
+        {
+          "family": "object",
+          "caller": "cloneTypeReference",
+          "allocObjects": 16387,
+          "allocBytes": 3670800,
+          "inuseObjects": 16387,
+          "inuseBytes": 3670800
+        },
+        {
+          "family": "symbol",
+          "caller": "isWeakType",
+          "allocObjects": 115,
+          "allocBytes": 3228228,
+          "inuseObjects": 115,
+          "inuseBytes": 3228228
+        },
+        {
+          "family": "object",
+          "caller": "getOrCreateTypeFromSignature",
+          "allocObjects": 16386,
+          "allocBytes": 3146304,
+          "inuseObjects": 16386,
+          "inuseBytes": 3146304
+        },
+        {
+          "family": "symbol",
+          "caller": "getSpreadType",
+          "allocObjects": 95,
+          "allocBytes": 2690190,
+          "inuseObjects": 95,
+          "inuseBytes": 2690190
+        },
+        {
+          "family": "symbol",
+          "caller": "tryMergeUnionOfObjectTypeAndEmptyObject",
+          "allocObjects": 76,
+          "allocBytes": 2152152,
+          "inuseObjects": 76,
+          "inuseBytes": 2152152
+        },
+        {
+          "family": "object",
+          "caller": "createTupleTargetType",
+          "allocObjects": 4368,
+          "allocBytes": 2098112,
+          "inuseObjects": 4368,
+          "inuseBytes": 2098112
+        },
+        {
+          "family": "object",
+          "caller": "getSpreadType",
+          "allocObjects": 191174,
+          "allocBytes": 36706880,
+          "inuseObjects": 10924,
+          "inuseBytes": 2097536
+        },
+        {
+          "family": "symbol",
+          "caller": "cloneSymbol",
+          "allocObjects": 59,
+          "allocBytes": 1614114,
+          "inuseObjects": 59,
+          "inuseBytes": 1614114
+        },
+        {
+          "family": "symbol",
+          "caller": "createTupleTargetType",
+          "allocObjects": 57,
+          "allocBytes": 1614114,
+          "inuseObjects": 57,
+          "inuseBytes": 1614114
+        },
+        {
+          "family": "symbol",
+          "caller": "lateBindMember",
+          "allocObjects": 57,
+          "allocBytes": 1614114,
+          "inuseObjects": 57,
+          "inuseBytes": 1614114
+        },
+        {
+          "family": "symbol",
+          "caller": "createSignatureForJSXIntrinsic",
+          "allocObjects": 39,
+          "allocBytes": 1076076,
+          "inuseObjects": 39,
+          "inuseBytes": 1076076
+        },
+        {
+          "family": "symbol",
+          "caller": "getTypeFromObjectBindingPattern",
+          "allocObjects": 38,
+          "allocBytes": 1076076,
+          "inuseObjects": 38,
+          "inuseBytes": 1076076
+        },
+        {
+          "family": "symbol",
+          "caller": "getWidenedProperty",
+          "allocObjects": 38,
+          "allocBytes": 1076076,
+          "inuseObjects": 38,
+          "inuseBytes": 1076076
+        },
+        {
+          "family": "symbol",
+          "caller": "instantiateSignatureEx",
+          "allocObjects": 38,
+          "allocBytes": 1076076,
+          "inuseObjects": 38,
+          "inuseBytes": 1076076
+        },
+        {
+          "family": "symbol",
+          "caller": "getInstantiationExpressionType.func2.1",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "symbol",
+          "caller": "getPropertyOfObjectType",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "symbol",
+          "caller": "getSpreadSymbol",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "symbol",
+          "caller": "hasPropertiesOfType",
+          "allocObjects": 19,
+          "allocBytes": 538038,
+          "inuseObjects": 19,
+          "inuseBytes": 538038
+        },
+        {
+          "family": "object",
+          "caller": "createJsxAttributesTypeFromAttributesProperty",
+          "allocObjects": 51890,
+          "allocBytes": 9963296,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "family": "object",
+          "caller": "createJsxAttributesTypeFromAttributesProperty.func1",
+          "allocObjects": 73737,
+          "allocBytes": 14158368,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "family": "object",
+          "caller": "tryMergeUnionOfObjectTypeAndEmptyObject",
+          "allocObjects": 2731,
+          "allocBytes": 524384,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        }
+      ]
+    }
+  ]
+}
