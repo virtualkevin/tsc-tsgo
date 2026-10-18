@@ -1,0 +1,95 @@
+{
+  "sources": {
+    "staged/pageaddresslinks.go": "aa0dd3ba7829c67a2ae7fd7d1a3dffe8a2ad996db524e50279b9f39445856451",
+    "staged/pageaddresslinks_test.go": "1dac3a3e93485b0d134ebe284a0945c66c068a97f1b5a03187f8ffda238c2d40",
+    "overlay.json": "be84e44a7007f7e49fc91ccb7f0194cb1a3d6ee47d7d87c200eeaae6faa9b30e",
+    "validate.py": "827cc27576a36a804844a55805da5c32f9d9517fbacce4e34e6a606802aa6a63"
+  },
+  "tests": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-address-links/overlay.json",
+        "./internal/core",
+        "-run",
+        "^TestPageAddressLinks"
+      ],
+      "code": 0,
+      "passed": [
+        "TestPageAddressLinksDifferential",
+        "TestPageAddressLinksUnlinkedLifetime",
+        "TestPageAddressLinksLinkedLifetime",
+        "TestPageAddressLinksConcurrentReads",
+        "TestPageAddressLinksRegionBoundaries"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-address-links/overlay.json",
+        "-race",
+        "./internal/core",
+        "-run",
+        "^TestPageAddressLinks"
+      ],
+      "code": 0,
+      "passed": [
+        "TestPageAddressLinksDifferential",
+        "TestPageAddressLinksUnlinkedLifetime",
+        "TestPageAddressLinksLinkedLifetime",
+        "TestPageAddressLinksConcurrentReads",
+        "TestPageAddressLinksRegionBoundaries"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-address-links/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/core",
+        "-run",
+        "^TestPageAddressLinks"
+      ],
+      "code": 0,
+      "passed": [
+        "TestPageAddressLinksDifferential",
+        "TestPageAddressLinksUnlinkedLifetime",
+        "TestPageAddressLinksLinkedLifetime",
+        "TestPageAddressLinksConcurrentReads",
+        "TestPageAddressLinksRegionBoundaries"
+      ]
+    }
+  ],
+  "microbenchmark": {
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "test",
+      "-count=5",
+      "-overlay",
+      "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-address-links/overlay.json",
+      "./internal/core",
+      "-run",
+      "^$",
+      "-bench",
+      "^BenchmarkPageAddressLinksLookup$",
+      "-benchtime=200ms",
+      "-benchmem"
+    ],
+    "code": 0
+  }
+}
