@@ -1,0 +1,3539 @@
+--- a/packages/tsc-go/internal/api/encoder/encoder_generated.go
++++ b/packages/tsc-go/internal/api/encoder/encoder_generated.go
+@@ -661,7 +661,7 @@
+ func recordNodeStrings(node *ast.Node, strs *stringTable) uint32 {
+ 	switch node.Kind {
+ 	case ast.KindIdentifier:
+-		return strs.add(node.AsIdentifier().Text, node.Kind, node.Pos(), node.End())
++		return strs.add(node.AsIdentifier().Text.String(), node.Kind, node.Pos(), node.End())
+ 	case ast.KindPrivateIdentifier:
+ 		return strs.add(node.AsPrivateIdentifier().Text, node.Kind, node.Pos(), node.End())
+ 	case ast.KindJsxText:
+--- a/packages/tsc-go/internal/api/session.go
++++ b/packages/tsc-go/internal/api/session.go
+@@ -141,7 +141,7 @@
+ 	resp := &SymbolResponse{
+ 		Id:         id,
+ 		Project:    project,
+-		Name:       ast.EscapeSymbolName(symbol.Name),
++		Name:       ast.EscapeSymbolName(symbol.Name.String()),
+ 		Flags:      uint32(symbol.Flags),
+ 		CheckFlags: uint32(symbol.CheckFlags),
+ 	}
+--- a/packages/tsc-go/internal/ast/ast.go
++++ b/packages/tsc-go/internal/ast/ast.go
+@@ -272,7 +272,7 @@
+ func (n *Node) Text() string {
+ 	switch n.Kind {
+ 	case KindIdentifier:
+-		return n.AsIdentifier().Text
++		return n.AsIdentifier().Text.String()
+ 	case KindPrivateIdentifier:
+ 		return n.AsPrivateIdentifier().Text
+ 	case KindStringLiteral:
+--- a/packages/tsc-go/internal/ast/ast_generated.go
++++ b/packages/tsc-go/internal/ast/ast_generated.go
+@@ -620,18 +620,18 @@
+ type Identifier struct {
+ 	PrimaryExpressionBase
+ 	FlowNodeBase
+-	Text string
++	Text Name
+ }
+ 
+ func (f *NodeFactory) NewIdentifier(text string) *Node {
+ 	data := f.identifierArena.New()
+-	data.Text = text
++	data.Text = MakeName(text)
+ 	f.textCount++
+ 	return f.newNode(KindIdentifier, data)
+ }
+ 
+ func (node *Identifier) Clone(f NodeFactoryCoercible) *Node {
+-	return cloneNode(f.AsNodeFactory().NewIdentifier(node.Text), node.AsNode(), f.AsNodeFactory().hooks)
++	return cloneNode(f.AsNodeFactory().NewIdentifier(node.Text.String()), node.AsNode(), f.AsNodeFactory().hooks)
+ }
+ 
+ func IsIdentifier(node *Node) bool {
+--- a/packages/tsc-go/internal/ast/name.go
++++ b/packages/tsc-go/internal/ast/name.go
+@@ -0,0 +1,43 @@
++package ast
++
++import "unique"
++
++// Name is a canonical, exact-byte name. Its zero value represents the empty
++// string. It carries no symbol identity: distinct symbols may share one name.
++// A live Name owns a strong reference to its canonical string descriptor.
++// Compiler storage and recursive lookup paths carry Name without re-interning.
++type Name struct {
++	handle unique.Handle[string]
++}
++
++func MakeName(text string) Name {
++	if text == "" {
++		return Name{}
++	}
++	return Name{handle: unique.Make(text)}
++}
++
++func (name Name) String() string {
++	if name == (Name{}) {
++		return ""
++	}
++	return name.handle.Value()
++}
++
++// Text marshaling retains string-shaped external representations, including
++// map keys. Encoding formats retain their ordinary string encoding rules.
++func (name Name) MarshalText() ([]byte, error) {
++	return []byte(name.String()), nil
++}
++
++func (name *Name) UnmarshalText(text []byte) error {
++	*name = MakeName(string(text))
++	return nil
++}
++
++// NameKey returns an existing identifier handle or canonicalizes the original
++// text of another node kind. Text retains its existing string-facing API.
++func (n *Node) NameKey() Name {
++ if n.Kind == KindIdentifier { return n.AsIdentifier().Text }
++ return MakeName(n.Text())
++}
+--- a/packages/tsc-go/internal/ast/name_test.go
++++ b/packages/tsc-go/internal/ast/name_test.go
+@@ -0,0 +1,89 @@
++package ast
++
++import (
++	"encoding/json"
++	"fmt"
++	"runtime"
++	"strings"
++	"sync"
++	"testing"
++)
++
++func TestCanonicalNameExactBytes(t *testing.T) {
++	texts := []string{"", "a", "__call", "\xfecall", "#private", "a\x00b", "\xff", "é", "e\u0301", "01", "1"}
++	for i, text := range texts {
++		name := MakeName(text)
++		if name.String() != text || name != MakeName(strings.Clone(text)) {
++			t.Fatalf("round trip/canonical identity failed for %q", text)
++		}
++		for j, other := range texts {
++			if (name == MakeName(other)) != (i == j) {
++				t.Fatalf("byte identity changed: %q / %q", text, other)
++			}
++		}
++	}
++	if MakeName("") != (Name{}) || (Name{}).String() != "" {
++		t.Fatal("empty name has multiple representations")
++	}
++}
++
++func TestCanonicalNameConcurrentLifetime(t *testing.T) {
++	text := "live-name-" + strings.Repeat("x", 1024)
++	root := MakeName(text)
++	var wg sync.WaitGroup
++	for range 8 {
++		wg.Go(func() {
++			for range 1000 {
++				if got := MakeName(strings.Clone(text)); got != root || got.String() != text {
++					t.Error("live canonical identity changed")
++					return
++				}
++			}
++		})
++	}
++	for range 3 {
++		runtime.GC()
++	}
++	wg.Wait()
++	if root != MakeName(text) {
++		t.Fatal("live handle failed across GC")
++	}
++	runtime.KeepAlive(root)
++}
++
++func TestCanonicalNameTextBoundary(t *testing.T) {
++	for _, text := range []string{"", "plain", "\xfecall", "\x00\xff", "\"\\\n", "é"} {
++		name := MakeName(text)
++		bytes, err := name.MarshalText()
++		if err != nil || string(bytes) != text {
++			t.Fatal("raw text marshaling changed bytes")
++		}
++		var decoded Name
++		if err := decoded.UnmarshalText(bytes); err != nil || decoded != name {
++			t.Fatal("raw text decode changed canonical identity")
++		}
++		if len(bytes) != 0 {
++			bytes[0] ^= 0x7f
++			if decoded.String() != text {
++				t.Fatal("decoded name aliases mutable input")
++			}
++		}
++		want, _ := json.Marshal(text)
++		got, err := json.Marshal(name)
++		if err != nil || string(got) != string(want) {
++			t.Fatalf("JSON representation changed: %s / %s", got, want)
++		}
++		// JSON's existing string behavior replaces invalid UTF-8; compare to
++		// string decoding, not an impossible lossless invalid-UTF8 round trip.
++		var decodedString string
++		if err := json.Unmarshal(want, &decodedString); err != nil {
++			t.Fatal(err)
++		}
++		if err := json.Unmarshal(got, &decoded); err != nil || decoded.String() != decodedString {
++			t.Fatal("JSON decoding differs from string decoding")
++		}
++		if fmt.Sprintf("%s / %q", name, name) != fmt.Sprintf("%s / %q", text, text) {
++			t.Fatal("string/quoted diagnostic formatting changed")
++		}
++	}
++}
+--- a/packages/tsc-go/internal/ast/symbol.go
++++ b/packages/tsc-go/internal/ast/symbol.go
+@@ -10,7 +10,7 @@
+ type Symbol struct {
+ 	Flags            SymbolFlags
+ 	CheckFlags       CheckFlags // Non-zero only in transient symbols created by Checker
+-	Name             string
++	Name             Name
+ 	Declarations     []*Node
+ 	ValueDeclaration *Node
+ 	Members          SymbolTable
+@@ -21,7 +21,7 @@
+ }
+ 
+ func (s *Symbol) IsExternalModule() bool {
+-	return s.Flags&SymbolFlagsModule != 0 && len(s.Name) > 0 && s.Name[0] == '"'
++	return s.Flags&SymbolFlagsModule != 0 && len(s.Name.String()) > 0 && s.Name.String()[0] == '"'
+ }
+ 
+ func (s *Symbol) IsStatic() bool {
+@@ -42,7 +42,7 @@
+ 
+ // SymbolTable
+ 
+-type SymbolTable map[string]*Symbol
++type SymbolTable map[Name]*Symbol
+ 
+ const InternalSymbolNamePrefix = "\xFE" // Invalid UTF8 sequence, will never occur as IdentifierName
+ 
+@@ -73,10 +73,12 @@
+ 	if symbol.ValueDeclaration != nil && IsPrivateIdentifierClassElementDeclaration(symbol.ValueDeclaration) {
+ 		return symbol.ValueDeclaration.Name().Text()
+ 	}
+-	return symbol.Name
++	return symbol.Name.String(
++
++	// EscapeAllInternalSymbolNames replaces internal symbol name markers ("\xFE") with "__".
++	)
+ }
+ 
+-// EscapeAllInternalSymbolNames replaces internal symbol name markers ("\xFE") with "__".
+ func EscapeAllInternalSymbolNames(name string) string {
+ 	return strings.ReplaceAll(name, InternalSymbolNamePrefix, "__")
+ }
+--- a/packages/tsc-go/internal/binder/binder.go
++++ b/packages/tsc-go/internal/binder/binder.go
+@@ -135,7 +135,7 @@
+ 	b.symbolCount++
+ 	result := b.symbolArena.New()
+ 	result.Flags = flags
+-	result.Name = name
++	result.Name = ast.MakeName(name)
+ 	return result
+ }
+ 
+@@ -191,13 +191,13 @@
+ 		// Otherwise, we'll be merging into a compatible existing symbol (for example when
+ 		// you have multiple 'vars' with the same name in the same container).  In this case
+ 		// just add this node into the declarations list of the symbol.
+-		symbol = symbolTable[name]
++		symbol = symbolTable[ast.MakeName(name)]
+ 		if includes&ast.SymbolFlagsClassifiable != 0 {
+ 			b.classifiableNames.Add(name)
+ 		}
+ 		if symbol == nil {
+ 			symbol = b.newSymbol(ast.SymbolFlagsNone, name)
+-			symbolTable[name] = symbol
++			symbolTable[ast.MakeName(name)] = symbol
+ 			if isReplaceableByMethod {
+ 				symbol.Flags |= ast.SymbolFlagsReplaceableByMethod
+ 			}
+@@ -209,7 +209,7 @@
+ 				// Javascript constructor-declared symbols can be discarded in favor of
+ 				// prototype symbols like methods.
+ 				symbol = b.newSymbol(ast.SymbolFlagsNone, name)
+-				symbolTable[name] = symbol
++				symbolTable[ast.MakeName(name)] = symbol
+ 			} else if !(includes&ast.SymbolFlagsVariable != 0 && symbol.Flags&ast.SymbolFlagsAssignment != 0 ||
+ 				includes&ast.SymbolFlagsAssignment != 0 && symbol.Flags&ast.SymbolFlagsVariable != 0) {
+ 				// Assignment declarations are allowed to merge with variables, no matter what other flags they have.
+@@ -1005,10 +1005,10 @@
+ 
+ func (b *Binder) addLateBoundAssignmentDeclarationToSymbol(node *ast.Node, symbol *ast.Symbol) {
+ 	exports := ast.GetExports(symbol)
+-	assignmentSymbol := exports[ast.InternalSymbolNameAssignmentDeclaration]
++	assignmentSymbol := exports[ast.MakeName(ast.InternalSymbolNameAssignmentDeclaration)]
+ 	if assignmentSymbol == nil {
+ 		assignmentSymbol = b.newSymbol(ast.SymbolFlagsNone, ast.InternalSymbolNameAssignmentDeclaration)
+-		exports[ast.InternalSymbolNameAssignmentDeclaration] = assignmentSymbol
++		exports[ast.MakeName(ast.InternalSymbolNameAssignmentDeclaration)] = assignmentSymbol
+ 	}
+ 	assignmentSymbol.Declarations = append(assignmentSymbol.Declarations, node)
+ }
+@@ -1043,9 +1043,9 @@
+ // symbol as a namespace module.
+ func (b *Binder) bindCommonJSTypeExports(moduleSymbol *ast.Symbol) {
+ 	moduleExports := moduleSymbol.Exports
+-	if exportEquals := moduleExports[ast.InternalSymbolNameExportEquals]; exportEquals != nil {
++	if exportEquals := moduleExports[ast.MakeName(ast.InternalSymbolNameExportEquals)]; exportEquals != nil {
+ 		for _, symbol := range moduleExports {
+-			if symbol.Name != ast.InternalSymbolNameExportEquals && symbol.Flags&(ast.SymbolFlagsType|ast.SymbolFlagsNamespace) != 0 {
++			if symbol.Name.String() != ast.InternalSymbolNameExportEquals && symbol.Flags&(ast.SymbolFlagsType|ast.SymbolFlagsNamespace) != 0 {
+ 				ast.GetExports(exportEquals)[symbol.Name] = symbol
+ 				exportEquals.Flags |= ast.SymbolFlagsNamespaceModule
+ 			}
+@@ -1066,7 +1066,7 @@
+ 		} else {
+ 			// We declare expandos only when there are no non-expando declarations for that name.
+ 			exports := ast.GetExports(symbol)
+-			if existing := exports[b.getDeclarationName(node)]; existing == nil || existing.Flags&ast.SymbolFlagsAssignment != 0 {
++			if existing := exports[ast.MakeName(b.getDeclarationName(node))]; existing == nil || existing.Flags&ast.SymbolFlagsAssignment != 0 {
+ 				b.declareSymbol(exports, symbol, node, ast.SymbolFlagsProperty|ast.SymbolFlagsAssignment, ast.SymbolFlagsPropertyExcludes)
+ 			}
+ 		}
+@@ -1276,14 +1276,14 @@
+ 	if node.Expression().Kind == ast.KindThisKeyword {
+ 		if _, symbolTable := b.getThisClassAndSymbolTable(); symbolTable != nil {
+ 			if name := ast.GetElementOrPropertyAccessName(node); name != nil {
+-				return symbolTable[name.Text()]
++				return symbolTable[name.NameKey()]
+ 			}
+ 		}
+ 		return nil
+ 	}
+ 	if symbol := getInitializerSymbol(b.lookupEntity(node.Expression(), container)); symbol != nil && symbol.Exports != nil {
+ 		if name := ast.GetElementOrPropertyAccessName(node); name != nil {
+-			return symbol.Exports[name.Text()]
++			return symbol.Exports[name.NameKey()]
+ 		}
+ 	}
+ 	return nil
+@@ -1291,12 +1291,12 @@
+ 
+ func (b *Binder) lookupName(name string, container *ast.Node) *ast.Symbol {
+ 	if localsContainer := container.LocalsContainerData(); localsContainer != nil {
+-		if local := localsContainer.Locals[name]; local != nil {
++		if local := localsContainer.Locals[ast.MakeName(name)]; local != nil {
+ 			return core.OrElse(local.ExportSymbol, local)
+ 		}
+ 	}
+ 	if declaration := container.DeclarationData(); declaration != nil && declaration.Symbol != nil {
+-		return declaration.Symbol.Exports[name]
++		return declaration.Symbol.Exports[ast.MakeName(name)]
+ 	}
+ 	return nil
+ }
+@@ -1626,7 +1626,7 @@
+ 
+ func (b *Binder) declareCommonJSVariable(name string) {
+ 	locals := ast.GetLocals(b.file.AsNode())
+-	if locals[name] == nil {
++	if locals[ast.MakeName(name)] == nil {
+ 		symbol := b.newSymbol(ast.SymbolFlagsFunctionScopedVariable|ast.SymbolFlagsModuleExports, name)
+ 		symbol.Declarations = b.newSingleDeclaration(b.file.AsNode())
+ 		symbol.ValueDeclaration = symbol.Declarations[0]
+@@ -1636,9 +1636,9 @@
+ 			exportsProperty.ValueDeclaration = symbol.ValueDeclaration
+ 			exportsProperty.Parent = symbol
+ 			symbol.Members = make(ast.SymbolTable, 1)
+-			symbol.Members["exports"] = exportsProperty
+-		}
+-		locals[name] = symbol
++			symbol.Members[ast.MakeName("exports")] = exportsProperty
++		}
++		locals[ast.MakeName(name)] = symbol
+ 	}
+ }
+ 
+--- a/packages/tsc-go/internal/binder/nameresolver.go
++++ b/packages/tsc-go/internal/binder/nameresolver.go
+@@ -110,10 +110,10 @@
+ 			if ast.IsSourceFile(location) || (ast.IsModuleDeclaration(location) && location.Flags&ast.NodeFlagsAmbient != 0 && !ast.IsGlobalScopeAugmentation(location)) {
+ 				// It's an external module. First see if the module has an export default and if the local
+ 				// name of that export default matches.
+-				result = moduleExports[ast.InternalSymbolNameDefault]
++				result = moduleExports[ast.MakeName(ast.InternalSymbolNameDefault)]
+ 				if result != nil {
+ 					localSymbol := GetLocalSymbolForExportDefault(result)
+-					if localSymbol != nil && result.Flags&meaning != 0 && localSymbol.Name == name {
++					if localSymbol != nil && result.Flags&meaning != 0 && localSymbol.Name.String() == name {
+ 						break loop
+ 					}
+ 					result = nil
+@@ -129,7 +129,7 @@
+ 				//     2. We check === SymbolFlags.Alias in order to check that the symbol is *purely*
+ 				//        an alias. If we used &, we'd be throwing out symbols that have non alias aspects,
+ 				//        which is not the desired behavior.
+-				moduleExport := moduleExports[name]
++				moduleExport := moduleExports[ast.MakeName(name)]
+ 				if moduleExport != nil && moduleExport.Flags == ast.SymbolFlagsAlias && (ast.GetDeclarationOfKind(moduleExport, ast.KindExportSpecifier) != nil || ast.GetDeclarationOfKind(moduleExport, ast.KindNamespaceExport) != nil) {
+ 					break
+ 				}
+@@ -153,7 +153,7 @@
+ 				if nameNotFoundMessage != nil && r.CompilerOptions.GetIsolatedModules() && location.Flags&ast.NodeFlagsAmbient == 0 && ast.GetSourceFileOfNode(location) != ast.GetSourceFileOfNode(result.ValueDeclaration) {
+ 					isolatedModulesLikeFlagName := core.IfElse(r.CompilerOptions.VerbatimModuleSyntax == core.TSTrue, "verbatimModuleSyntax", "isolatedModules")
+ 					r.error(originalLocation, diagnostics.Cannot_access_0_from_another_file_without_qualification_when_1_is_enabled_Use_2_instead,
+-						name, isolatedModulesLikeFlagName, enumSymbol.Name+"."+name)
++						name, isolatedModulesLikeFlagName, enumSymbol.Name.String()+"."+name)
+ 				}
+ 				break loop
+ 			}
+@@ -421,7 +421,7 @@
+ 	}
+ 	// Default implementation does not support following aliases or merged symbols
+ 	if meaning != 0 {
+-		symbol := symbols[name]
++		symbol := symbols[ast.MakeName(name)]
+ 		if symbol != nil {
+ 			if symbol.Flags&meaning != 0 {
+ 				return symbol
+@@ -434,7 +434,7 @@
+ func (r *NameResolver) argumentsSymbol() *ast.Symbol {
+ 	if r.ArgumentsSymbol == nil {
+ 		// Default implementation synthesizes a transient symbol for `arguments`
+-		r.ArgumentsSymbol = &ast.Symbol{Name: "arguments", Flags: ast.SymbolFlagsProperty | ast.SymbolFlagsTransient}
++		r.ArgumentsSymbol = &ast.Symbol{Name: ast.MakeName("arguments"), Flags: ast.SymbolFlagsProperty | ast.SymbolFlagsTransient}
+ 	}
+ 	return r.ArgumentsSymbol
+ }
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -1303,7 +1303,7 @@
+ 	for _, file := range c.files {
+ 		if !ast.IsExternalOrCommonJSModule(file) {
+ 			// It is an error for a non-external-module (i.e. script) to declare its own `globalThis`.
+-			if fileGlobalThisSymbol := file.Locals["globalThis"]; fileGlobalThisSymbol != nil {
++			if fileGlobalThisSymbol := file.Locals[ast.MakeName("globalThis")]; fileGlobalThisSymbol != nil {
+ 				for _, d := range fileGlobalThisSymbol.Declarations {
+ 					c.addDiagnostic(NewDiagnosticForNode(d, diagnostics.Declaration_name_conflicts_with_built_in_global_identifier_0, "globalThis"))
+ 				}
+@@ -1311,7 +1311,7 @@
+ 			for _, symbol := range file.Locals {
+ 				// We defer merging of global ambient module declarations since they may require other global symbols
+ 				// and types to be resolved. See https://github.com/microsoft/typescript-go/issues/2953.
+-				if symbol.Flags&ast.SymbolFlagsModule != 0 && ast.IsAmbientModuleSymbolName(symbol.Name) {
++				if symbol.Flags&ast.SymbolFlagsModule != 0 && ast.IsAmbientModuleSymbolName(symbol.Name.String()) {
+ 					ambientModuleSymbols = append(ambientModuleSymbols, symbol)
+ 				} else {
+ 					c.mergeGlobalSymbol(symbol)
+@@ -1432,9 +1432,9 @@
+ 			}) {
+ 				merged := c.mergeSymbol(moduleAugmentation.Symbol, mainModule, true /*unidirectional*/)
+ 				// moduleName will be a StringLiteral since this is not `declare global`.
+-				ast.GetSymbolTable(&c.patternAmbientModuleAugmentations)[moduleName.Text()] = merged
++				ast.GetSymbolTable(&c.patternAmbientModuleAugmentations)[moduleName.NameKey()] = merged
+ 			} else {
+-				if mainModule.Exports[ast.InternalSymbolNameExportStar] != nil && len(moduleAugmentation.Symbol.Exports) != 0 {
++				if mainModule.Exports[ast.MakeName(ast.InternalSymbolNameExportStar)] != nil && len(moduleAugmentation.Symbol.Exports) != 0 {
+ 					// We may need to merge the module augmentation's exports into the target symbols of the resolved exports
+ 					resolvedExports := c.getResolvedMembersOrExportsOfSymbol(mainModule, MembersOrExportsResolutionKindResolvedExports)
+ 					for key, value := range moduleAugmentation.Symbol.Exports {
+@@ -1453,8 +1453,8 @@
+ }
+ 
+ func (c *Checker) addUndefinedToGlobalsOrErrorOnRedeclaration() {
+-	name := c.undefinedSymbol.Name
+-	targetSymbol := c.globals[name]
++	name := c.undefinedSymbol.Name.String()
++	targetSymbol := c.globals[ast.MakeName(name)]
+ 	if targetSymbol != nil {
+ 		for _, declaration := range targetSymbol.Declarations {
+ 			if !ast.IsTypeDeclaration(declaration) {
+@@ -1462,7 +1462,7 @@
+ 			}
+ 		}
+ 	} else {
+-		c.globals[name] = c.undefinedSymbol
++		c.globals[ast.MakeName(name)] = c.undefinedSymbol
+ 	}
+ }
+ 
+@@ -1743,7 +1743,7 @@
+ 	} {
+ 		sym := &ast.Symbol{}
+ 		sym.Flags = ast.SymbolFlagsTypeAlias | ast.SymbolFlagsTransient
+-		sym.Name = e.primitive
++		sym.Name = ast.MakeName(e.primitive)
+ 		result[e.builtin] = sym
+ 	}
+ 	return result
+@@ -1752,7 +1752,7 @@
+ func getPrimitiveTypeAliasSuggestions(symbols ast.SymbolTable) iter.Seq[*ast.Symbol] {
+ 	return func(yield func(*ast.Symbol) bool) {
+ 		for builtinName, suggestion := range primitiveTypeAliasSuggestions() {
+-			if _, ok := symbols[builtinName]; ok {
++			if _, ok := symbols[ast.MakeName(builtinName)]; ok {
+ 				if !yield(suggestion) {
+ 					return
+ 				}
+@@ -1807,7 +1807,7 @@
+ }
+ 
+ func (c *Checker) onSuccessfullyResolvedSymbol(errorLocation *ast.Node, result *ast.Symbol, meaning ast.SymbolFlags, lastLocation *ast.Node, associatedDeclarationForContainingInitializerOrBindingName *ast.Node, withinDeferredContext bool) {
+-	name := result.Name
++	name := result.Name.String()
+ 	isInExternalModule := lastLocation != nil && ast.IsSourceFile(lastLocation) && ast.IsExternalOrCommonJSModule(lastLocation.AsSourceFile())
+ 	// Only check for block-scoped variable if we have an error location and are looking for the
+ 	// name with variable meaning
+@@ -1842,7 +1842,7 @@
+ 		// A parameter initializer or binding pattern initializer within a parameter cannot refer to itself
+ 		if candidate == c.getSymbolOfDeclaration(associatedDeclarationForContainingInitializerOrBindingName) {
+ 			c.error(errorLocation, diagnostics.Parameter_0_cannot_reference_itself, scanner.DeclarationNameToString(associatedDeclarationForContainingInitializerOrBindingName.Name()))
+-		} else if candidate.ValueDeclaration != nil && candidate.ValueDeclaration.Pos() > associatedDeclarationForContainingInitializerOrBindingName.Pos() && root.Parent.Locals() != nil && c.getSymbol(root.Parent.Locals(), candidate.Name, meaning) == candidate {
++		} else if candidate.ValueDeclaration != nil && candidate.ValueDeclaration.Pos() > associatedDeclarationForContainingInitializerOrBindingName.Pos() && root.Parent.Locals() != nil && c.getSymbol(root.Parent.Locals(), candidate.Name.String(), meaning) == candidate {
+ 			c.error(errorLocation, diagnostics.Parameter_0_cannot_reference_identifier_1_declared_after_it, scanner.DeclarationNameToString(associatedDeclarationForContainingInitializerOrBindingName.Name()), scanner.DeclarationNameToString(errorLocation))
+ 		}
+ 	}
+@@ -2164,7 +2164,7 @@
+ 
+ func (c *Checker) getSymbol(symbols ast.SymbolTable, name string, meaning ast.SymbolFlags) *ast.Symbol {
+ 	if meaning&ast.SymbolFlagsAll != 0 {
+-		symbol := c.getMergedSymbol(symbols[name])
++		symbol := c.getMergedSymbol(symbols[ast.MakeName(name)])
+ 		if symbol != nil {
+ 			if symbol.Flags&meaning != 0 {
+ 				return symbol
+@@ -2998,7 +2998,7 @@
+ 		symbol := c.getResolvedSymbolOrNil(node)
+ 		if symbol != nil {
+ 			if core.Some(symbol.Declarations, func(d *ast.Node) bool { return ast.IsTypeDeclaration(d) && c.IsDeprecatedDeclaration(d) }) {
+-				c.addDeprecatedSuggestion(c.getDeprecatedSuggestionNode(node), symbol.Declarations, symbol.Name)
++				c.addDeprecatedSuggestion(c.getDeprecatedSuggestionNode(node), symbol.Declarations, symbol.Name.String())
+ 			}
+ 		}
+ 	}
+@@ -3147,16 +3147,16 @@
+ 				}
+ 				names = instanceNames
+ 			}
+-			state := names[symbol.Name]
++			state := names[symbol.Name.String()]
+ 			switch {
+ 			case state == 0:
+ 				// On first occurrence just record the kind
+-				names[symbol.Name] = kind
++				names[symbol.Name.String()] = kind
+ 			case state == 1 || state == 2 && kind != 2:
+ 				// Error on second property or combination of property and accessor
+-				c.reportDuplicateMemberErrors(node, symbol.Name, true, isStatic, diagnostics.Duplicate_identifier_0)
++				c.reportDuplicateMemberErrors(node, symbol.Name.String(), true, isStatic, diagnostics.Duplicate_identifier_0)
+ 				// Record that errors have been reported
+-				names[symbol.Name] = 3
++				names[symbol.Name.String()] = 3
+ 			}
+ 		}
+ 	}
+@@ -3171,8 +3171,8 @@
+ 			symbol := c.getSymbolOfDeclaration(member)
+ 			isStatic := ast.HasStaticModifier(member)
+ 			// In non-ambient contexts, check that static members are not named 'prototype'.
+-			if !nodeInAmbientContext && isStatic && symbol != nil && symbol.Name == "prototype" {
+-				c.error(member.Name(), diagnostics.Static_property_0_conflicts_with_built_in_property_Function_0_of_constructor_function_1, symbol.Name, c.symbolToString(c.getSymbolOfDeclaration(node)))
++			if !nodeInAmbientContext && isStatic && symbol != nil && symbol.Name.String() == "prototype" {
++				c.error(member.Name(), diagnostics.Static_property_0_conflicts_with_built_in_property_Function_0_of_constructor_function_1, symbol.Name.String(), c.symbolToString(c.getSymbolOfDeclaration(node)))
+ 			}
+ 			// Check that this object type declaration doesn't contain multiple declarations of the same property,
+ 			// or accessor and property declarations with the same name.
+@@ -3184,14 +3184,14 @@
+ 			// Check that each private identifier is used only for instance members or only for static members. It is an
+ 			// error for an instance and a static member to have the same private identifier.
+ 			if checkPrivateNames && member.Name() != nil && ast.IsPrivateIdentifier(member.Name()) {
+-				if flags := privateNames[symbol.Name]; flags != 3 {
++				if flags := privateNames[symbol.Name.String()]; flags != 3 {
+ 					flags |= core.IfElse(ast.IsStatic(member), 2, 1)
+ 					if privateNames == nil {
+ 						privateNames = make(map[string]int)
+ 					}
+-					privateNames[symbol.Name] = flags
++					privateNames[symbol.Name.String()] = flags
+ 					if flags == 3 {
+-						c.reportDuplicateMemberErrors(node, symbol.Name, false, false, diagnostics.Duplicate_identifier_0_Static_and_instance_elements_cannot_share_the_same_private_name)
++						c.reportDuplicateMemberErrors(node, symbol.Name.String(), false, false, diagnostics.Duplicate_identifier_0_Static_and_instance_elements_cannot_share_the_same_private_name)
+ 					}
+ 				}
+ 			}
+@@ -3204,12 +3204,12 @@
+ 		if ast.IsConstructorDeclaration(member) {
+ 			for _, param := range member.Parameters() {
+ 				if ast.IsParameterPropertyDeclaration(param, member) && !ast.IsBindingPattern(param.Name()) {
+-					if symbol := c.getSymbolOfDeclaration(param); symbol.Name == name {
++					if symbol := c.getSymbolOfDeclaration(param); symbol.Name.String() == name {
+ 						c.error(param.Name(), message, c.symbolToString(symbol))
+ 					}
+ 				}
+ 			}
+-		} else if symbol := c.getSymbolOfDeclaration(member); symbol != nil && symbol.Name == name && (!checkStatic || isStatic == ast.IsStatic(member)) {
++		} else if symbol := c.getSymbolOfDeclaration(member); symbol != nil && symbol.Name.String() == name && (!checkStatic || isStatic == ast.IsStatic(member)) {
+ 			c.error(member.Name(), message, c.symbolToString(symbol))
+ 		}
+ 	}
+@@ -3662,7 +3662,7 @@
+ 				diagnostic = diagnostics.Function_with_bodies_can_only_merge_with_classes_that_are_ambient
+ 			}
+ 			if diagnostic != nil {
+-				c.error(core.OrElse(ast.GetNameOfDeclaration(declaration), declaration), diagnostic, symbol.Name).SetRelatedInfo(relatedDiagnostics)
++				c.error(core.OrElse(ast.GetNameOfDeclaration(declaration), declaration), diagnostic, symbol.Name.String()).SetRelatedInfo(relatedDiagnostics)
+ 			}
+ 		}
+ 	}
+@@ -4247,7 +4247,7 @@
+ 			if blockLocals != nil {
+ 				for caughtName := range node.Locals() {
+ 					if blockLocal := blockLocals[caughtName]; blockLocal != nil && blockLocal.ValueDeclaration != nil && blockLocal.Flags&ast.SymbolFlagsBlockScopedVariable != 0 {
+-						c.grammarErrorOnNode(blockLocal.ValueDeclaration, diagnostics.Cannot_redeclare_identifier_0_in_catch_clause, caughtName)
++						c.grammarErrorOnNode(blockLocal.ValueDeclaration, diagnostics.Cannot_redeclare_identifier_0_in_catch_clause, caughtName.String())
+ 					}
+ 				}
+ 			}
+@@ -4440,7 +4440,7 @@
+ 			target := targetParameters[i]
+ 			// If the type parameter node does not have the same name as the resolved type
+ 			// parameter at this position, we report an error.
+-			if source.Name().Text() != target.symbol.Name {
++			if source.Name().Text() != target.symbol.Name.String() {
+ 				return false
+ 			}
+ 			// If the type parameter node does not have an identical constraintNode as the resolved
+@@ -4484,9 +4484,9 @@
+ 		if ast.IsStatic(member) {
+ 			continue
+ 		}
+-		if declaredProp := c.getSymbolOfDeclaration(member); declaredProp != nil && declaredProp.Name != ast.InternalSymbolNameComputed {
+-			prop := c.getPropertyOfType(typeWithThis, declaredProp.Name)
+-			baseProp := c.getPropertyOfType(baseWithThis, declaredProp.Name)
++		if declaredProp := c.getSymbolOfDeclaration(member); declaredProp != nil && declaredProp.Name.String() != ast.InternalSymbolNameComputed {
++			prop := c.getPropertyOfType(typeWithThis, declaredProp.Name.String())
++			baseProp := c.getPropertyOfType(baseWithThis, declaredProp.Name.String())
+ 			if prop != nil && baseProp != nil {
+ 				var diags []*ast.Diagnostic
+ 				if !c.checkTypeAssignableToEx(c.getTypeOfSymbol(prop), c.getTypeOfSymbol(baseProp), core.OrElse(member.Name(), member), nil /*headMessage*/, &diags) {
+@@ -4546,7 +4546,7 @@
+ 		if base.Flags&ast.SymbolFlagsPrototype != 0 {
+ 			continue
+ 		}
+-		baseSymbol := c.getPropertyOfObjectType(t, base.Name)
++		baseSymbol := c.getPropertyOfObjectType(t, base.Name.String())
+ 		if baseSymbol == nil {
+ 			continue
+ 		}
+@@ -4570,7 +4570,7 @@
+ 						if otherBaseType == baseType {
+ 							continue
+ 						}
+-						if baseSymbol := c.getPropertyOfObjectType(otherBaseType, base.Name); baseSymbol != nil && base != c.getTargetSymbol(baseSymbol) {
++						if baseSymbol := c.getPropertyOfObjectType(otherBaseType, base.Name.String()); baseSymbol != nil && base != c.getTargetSymbol(baseSymbol) {
+ 							// Derived property exists elsewhere.
+ 							continue basePropertyCheck
+ 						}
+@@ -4735,12 +4735,12 @@
+ 	}
+ 	memberIsStatic := ast.IsStatic(member)
+ 	thisType := core.IfElse(memberIsStatic, staticType, typeWithThis)
+-	prop := c.getPropertyOfType(thisType, symbol.Name)
++	prop := c.getPropertyOfType(thisType, symbol.Name.String())
+ 	if prop == nil {
+ 		return
+ 	}
+ 	baseType := core.IfElse(memberIsStatic, baseStaticType, baseWithThis)
+-	baseProp := c.getPropertyOfType(baseType, symbol.Name)
++	baseProp := c.getPropertyOfType(baseType, symbol.Name.String())
+ 	if baseProp == nil && memberHasOverrideModifier {
+ 		suggestion := c.getSuggestedSymbolForNonexistentClassMember(ast.SymbolName(symbol), baseType)
+ 		if suggestion != nil {
+@@ -4828,7 +4828,7 @@
+ 		// the index signature (i.e. property and index signature are declared in separate inherited interfaces).
+ 		errorNode := core.OrElse(localPropDeclaration, localIndexDeclaration)
+ 		if errorNode == nil && interfaceDeclaration != nil && !core.Some(c.getBaseTypes(t), func(base *Type) bool {
+-			return c.getPropertyOfObjectType(base, prop.Name) != nil && c.getIndexTypeOfType(base, info.keyType) != nil
++			return c.getPropertyOfObjectType(base, prop.Name.String()) != nil && c.getIndexTypeOfType(base, info.keyType) != nil
+ 		}) {
+ 			errorNode = interfaceDeclaration
+ 		}
+@@ -5024,16 +5024,16 @@
+ 	}
+ 	seen := make(map[string]InheritanceInfo)
+ 	for id, p := range c.resolveDeclaredMembers(t).declaredMembers {
+-		if c.isNamedMember(p, id) {
+-			seen[p.Name] = InheritanceInfo{prop: p, containingType: t}
++		if c.isNamedMember(p, id.String()) {
++			seen[p.Name.String()] = InheritanceInfo{prop: p, containingType: t}
+ 		}
+ 	}
+ 	identical := true
+ 	for _, base := range baseTypes {
+ 		properties := c.getPropertiesOfType(c.getTypeWithThisArgument(base, t.AsInterfaceType().thisType, false))
+ 		for _, prop := range properties {
+-			if existing, ok := seen[prop.Name]; !ok {
+-				seen[prop.Name] = InheritanceInfo{prop: prop, containingType: base}
++			if existing, ok := seen[prop.Name.String()]; !ok {
++				seen[prop.Name.String()] = InheritanceInfo{prop: prop, containingType: base}
+ 			} else {
+ 				isInheritedProperty := existing.containingType != t
+ 				if isInheritedProperty && !c.isPropertyIdenticalTo(existing.prop, prop) {
+@@ -5676,7 +5676,7 @@
+ 	moduleSymbol := c.getSymbolOfDeclaration(node)
+ 	links := c.moduleSymbolLinks.Get(moduleSymbol)
+ 	if !links.exportsChecked {
+-		exportEqualsSymbol := moduleSymbol.Exports[ast.InternalSymbolNameExportEquals]
++		exportEqualsSymbol := moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]
+ 		// An export assignment is in error if (a) the module exports value members or (b) if the module exports type or
+ 		// namespace members and the exported entity also exports type or namespace members.
+ 		if exportEqualsSymbol != nil && (c.hasExportedMembersOfKind(moduleSymbol, ast.SymbolFlagsValue) || c.hasShadowedNamespace(exportEqualsSymbol)) {
+@@ -5687,7 +5687,7 @@
+ 		}
+ 		// Checks for export * conflicts
+ 		for id, symbol := range c.getExportsOfModule(moduleSymbol) {
+-			if id == ast.InternalSymbolNameExportStar {
++			if id.String() == ast.InternalSymbolNameExportStar {
+ 				continue
+ 			}
+ 			// ECMA262: 15.2.1.1 It is a Syntax Error if the ExportedNames of ModuleItemList contains any duplicate entries.
+@@ -5708,7 +5708,7 @@
+ 			}) {
+ 				for _, declaration := range symbol.Declarations {
+ 					if isNotOverload(declaration) {
+-						c.error(declaration, diagnostics.Cannot_redeclare_exported_variable_0, id)
++						c.error(declaration, diagnostics.Cannot_redeclare_exported_variable_0, id.String())
+ 					}
+ 				}
+ 			}
+@@ -5719,7 +5719,7 @@
+ 
+ func (c *Checker) hasExportedMembersOfKind(moduleSymbol *ast.Symbol, kind ast.SymbolFlags) bool {
+ 	for _, symbol := range moduleSymbol.Exports {
+-		if symbol.Name != ast.InternalSymbolNameExportEquals && c.getSymbolFlags(symbol)&kind != 0 {
++		if symbol.Name.String() != ast.InternalSymbolNameExportEquals && c.getSymbolFlags(symbol)&kind != 0 {
+ 			return true
+ 		}
+ 	}
+@@ -6559,8 +6559,8 @@
+ 	if len(methodSignatures) == 1 && methodType.symbol != nil {
+ 		globalGeneratorType := resolver.getGlobalGeneratorType()
+ 		globalIteratorType := resolver.getGlobalIteratorType()
+-		isGeneratorMethod := globalGeneratorType.symbol != nil && globalGeneratorType.symbol.Members[methodName] == methodType.symbol
+-		isIteratorMethod := !isGeneratorMethod && globalIteratorType.symbol != nil && globalIteratorType.symbol.Members[methodName] == methodType.symbol
++		isGeneratorMethod := globalGeneratorType.symbol != nil && globalGeneratorType.symbol.Members[ast.MakeName(methodName)] == methodType.symbol
++		isIteratorMethod := !isGeneratorMethod && globalIteratorType.symbol != nil && globalIteratorType.symbol.Members[ast.MakeName(methodName)] == methodType.symbol
+ 		if isGeneratorMethod || isIteratorMethod {
+ 			typeParameters := core.IfElse(isGeneratorMethod, globalGeneratorType, globalIteratorType).AsInterfaceType().TypeParameters()
+ 			mapper := methodType.Mapper()
+@@ -6698,7 +6698,7 @@
+ 	if yieldType != nil {
+ 		return diagnostics.Type_0_can_only_be_iterated_through_when_using_the_downlevelIteration_flag_or_with_a_target_of_es2015_or_higher, false
+ 	}
+-	if inputType.symbol != nil && isES2015OrLaterIterable(inputType.symbol.Name) {
++	if inputType.symbol != nil && isES2015OrLaterIterable(inputType.symbol.Name.String()) {
+ 		return diagnostics.Type_0_can_only_be_iterated_through_when_using_the_downlevelIteration_flag_or_with_a_target_of_es2015_or_higher, true
+ 	}
+ 	if allowsStrings {
+@@ -6736,14 +6736,14 @@
+ 		if ast.IsExportSpecifier(node) {
+ 			diag := c.error(errorNode, diagnostics.Types_cannot_appear_in_export_declarations_in_JavaScript_files)
+ 			if sourceSymbol := ast.GetSourceFileOfNode(node).AsNode().Symbol(); sourceSymbol != nil {
+-				if alreadyExportedSymbol := sourceSymbol.Exports[node.PropertyNameOrName().Text()]; alreadyExportedSymbol == target {
++				if alreadyExportedSymbol := sourceSymbol.Exports[node.PropertyNameOrName().NameKey()]; alreadyExportedSymbol == target {
+ 					if exportingDeclaration := core.Find(alreadyExportedSymbol.Declarations, ast.IsJSTypeAliasDeclaration); exportingDeclaration != nil {
+-						diag.AddRelatedInfo(NewDiagnosticForNode(exportingDeclaration, diagnostics.X_0_is_automatically_exported_here, alreadyExportedSymbol.Name))
++						diag.AddRelatedInfo(NewDiagnosticForNode(exportingDeclaration, diagnostics.X_0_is_automatically_exported_here, alreadyExportedSymbol.Name.String()))
+ 					}
+ 				}
+ 			}
+ 		} else {
+-			identifierText := symbol.Name
++			identifierText := symbol.Name.String()
+ 			if ast.IsIdentifier(errorNode) {
+ 				identifierText = errorNode.Text()
+ 			}
+@@ -6838,7 +6838,7 @@
+ 	if ast.IsImportSpecifier(node) {
+ 		targetSymbol := c.resolveAliasWithDeprecationCheck(symbol, node)
+ 		if c.isDeprecatedSymbol(targetSymbol) && targetSymbol.Declarations != nil {
+-			c.addDeprecatedSuggestion(node, targetSymbol.Declarations, targetSymbol.Name)
++			c.addDeprecatedSuggestion(node, targetSymbol.Declarations, targetSymbol.Name.String())
+ 		}
+ 	}
+ }
+@@ -7666,7 +7666,7 @@
+ 	var newTypeParameters []*Type
+ 	result := make([]*Type, 0, len(typeParameters))
+ 	for _, tp := range typeParameters {
+-		name := tp.symbol.Name
++		name := tp.symbol.Name.String()
+ 		if hasTypeParameterByName(context.inferredTypeParameters, name) || hasTypeParameterByName(result, name) {
+ 			newName := getUniqueTypeParameterName(core.Concatenate(context.inferredTypeParameters, result), name)
+ 			symbol := c.newSymbol(ast.SymbolFlagsTypeParameter, newName)
+@@ -7690,7 +7690,7 @@
+ 
+ func hasTypeParameterByName(typeParameters []*Type, name string) bool {
+ 	return core.Some(typeParameters, func(tp *Type) bool {
+-		return tp.symbol.Name == name
++		return tp.symbol.Name.String() == name
+ 	})
+ }
+ 
+@@ -11310,7 +11310,7 @@
+ 				return c.anyType
+ 			}
+ 			if leftType.symbol == c.globalThisSymbol {
+-				globalSymbol := c.globalThisSymbol.Exports[right.Text()]
++				globalSymbol := c.globalThisSymbol.Exports[right.NameKey()]
+ 				if globalSymbol != nil && globalSymbol.Flags&ast.SymbolFlagsBlockScoped != 0 {
+ 					c.error(right, diagnostics.Property_0_does_not_exist_on_type_1, right.Text(), c.TypeToString(leftType))
+ 				} else if c.noImplicitAny {
+@@ -11429,7 +11429,7 @@
+ 	if classType != nil {
+ 		baseClassTypes := c.getBaseTypes(classType)
+ 		if len(baseClassTypes) > 0 {
+-			return c.getTypeOfPropertyOfType(baseClassTypes[0], property.Name)
++			return c.getTypeOfPropertyOfType(baseClassTypes[0], property.Name.String())
+ 		}
+ 	}
+ 	return nil
+@@ -11447,11 +11447,11 @@
+ 	for containingClass := getContainingClassExcludingClassDecorators(location); containingClass != nil; containingClass = ast.GetContainingClass(containingClass) {
+ 		symbol := containingClass.Symbol()
+ 		name := binder.GetSymbolNameForPrivateIdentifier(symbol, propName)
+-		prop := symbol.Members[name]
++		prop := symbol.Members[ast.MakeName(name)]
+ 		if prop != nil {
+ 			return prop
+ 		}
+-		prop = symbol.Exports[name]
++		prop = symbol.Exports[ast.MakeName(name)]
+ 		if prop != nil {
+ 			return prop
+ 		}
+@@ -11460,7 +11460,7 @@
+ }
+ 
+ func (c *Checker) getPrivateIdentifierPropertyOfType(leftType *Type, lexicallyScopedIdentifier *ast.Symbol) *ast.Symbol {
+-	return c.getPropertyOfType(leftType, lexicallyScopedIdentifier.Name)
++	return c.getPropertyOfType(leftType, lexicallyScopedIdentifier.Name.String())
+ }
+ 
+ func (c *Checker) checkPrivateIdentifierPropertyAccess(leftType *Type, right *ast.Node, lexicallyScopedIdentifier *ast.Symbol) bool {
+@@ -11566,7 +11566,7 @@
+ 	container := c.getApparentType(containingType).symbol
+ 	if container != nil {
+ 		featureMap := getFeatureMap()
+-		if typeFeatures, ok := featureMap[container.Name]; ok {
++		if typeFeatures, ok := featureMap[container.Name.String()]; ok {
+ 			for _, entry := range typeFeatures {
+ 				if slices.Contains(entry.props, missingProperty) {
+ 					return entry.lib
+@@ -11631,7 +11631,7 @@
+ 	if t.symbol == nil {
+ 		return false
+ 	}
+-	name := t.symbol.Name
++	name := t.symbol.Name.String()
+ 	return name == "EventTarget" || name == "Node" || name == "Element" || strings.HasPrefix(name, "HTML") && strings.HasSuffix(name, "Element")
+ }
+ 
+@@ -11707,7 +11707,7 @@
+ func (c *Checker) isPropertyDeclaredInAncestorClass(prop *ast.Symbol) bool {
+ 	if prop.Parent.Flags&ast.SymbolFlagsClass != 0 {
+ 		if baseTypes := c.getBaseTypes(c.getDeclaredTypeOfSymbol(prop.Parent)); len(baseTypes) != 0 {
+-			superProperty := c.getPropertyOfType(baseTypes[0], prop.Name)
++			superProperty := c.getPropertyOfType(baseTypes[0], prop.Name.String())
+ 			return superProperty != nil && superProperty.ValueDeclaration != nil
+ 		}
+ 	}
+@@ -11880,7 +11880,7 @@
+ 		return callback(prop)
+ 	}
+ 	for _, t := range c.valueSymbolLinks.Get(prop).containingType.Types() {
+-		p := c.getPropertyOfType(t, prop.Name)
++		p := c.getPropertyOfType(t, prop.Name.String())
+ 		if p != nil && c.forEachProperty(p, callback) {
+ 			return true
+ 		}
+@@ -13072,7 +13072,7 @@
+ 		return nil
+ 	}
+ 	return core.Filter(c.getPropertiesOfType(target), func(targetProp *ast.Symbol) bool {
+-		return c.isExactOptionalPropertyMismatch(c.getTypeOfPropertyOfType(source, targetProp.Name), c.getTypeOfSymbol(targetProp))
++		return c.isExactOptionalPropertyMismatch(c.getTypeOfPropertyOfType(source, targetProp.Name.String()), c.getTypeOfSymbol(targetProp))
+ 	})
+ }
+ 
+@@ -13190,7 +13190,7 @@
+ 			if nameType != nil {
+ 				prop = c.newSymbolEx(ast.SymbolFlagsProperty|member.Flags, getPropertyNameFromType(nameType), checkFlags|ast.CheckFlagsLate)
+ 			} else {
+-				prop = c.newSymbolEx(ast.SymbolFlagsProperty|member.Flags, member.Name, checkFlags)
++				prop = c.newSymbolEx(ast.SymbolFlagsProperty|member.Flags, member.Name.String(), checkFlags)
+ 			}
+ 			links := c.valueSymbolLinks.Get(prop)
+ 			if nameType != nil {
+@@ -13203,7 +13203,7 @@
+ 			} else if contextualTypeHasPattern && contextualType.objectFlags&ObjectFlagsObjectLiteralPatternWithComputedProperties == 0 {
+ 				// If object literal is contextually typed by the implied type of a binding pattern, and if the
+ 				// binding pattern specifies a default value for the property, make the property optional.
+-				impliedProp := c.getPropertyOfType(contextualType, member.Name)
++				impliedProp := c.getPropertyOfType(contextualType, member.Name.String())
+ 				if impliedProp != nil {
+ 					prop.Flags |= impliedProp.Flags & ast.SymbolFlagsOptional
+ 				} else if c.getIndexInfoOfType(contextualType, c.stringType) == nil {
+@@ -13307,7 +13307,7 @@
+ 	for _, right := range c.getPropertiesOfType(t) {
+ 		if right.Flags&ast.SymbolFlagsOptional == 0 && right.CheckFlags&ast.CheckFlagsPartial == 0 {
+ 			if left := props[right.Name]; left != nil {
+-				diagnostic := c.error(left.ValueDeclaration, diagnostics.X_0_is_specified_more_than_once_so_this_usage_will_be_overwritten, left.Name)
++				diagnostic := c.error(left.ValueDeclaration, diagnostics.X_0_is_specified_more_than_once_so_this_usage_will_be_overwritten, left.Name.String())
+ 				diagnostic.AddRelatedInfo(NewDiagnosticForNode(spread, diagnostics.This_spread_always_overwrites_this_property))
+ 			}
+ 		}
+@@ -13381,14 +13381,14 @@
+ 	}
+ 	for _, rightProp := range c.getPropertiesOfType(right) {
+ 		if getDeclarationModifierFlagsFromSymbol(rightProp)&(ast.ModifierFlagsPrivate|ast.ModifierFlagsProtected) != 0 {
+-			skippedPrivateMembers.Add(rightProp.Name)
++			skippedPrivateMembers.Add(rightProp.Name.String())
+ 		} else if c.isSpreadableProperty(rightProp) {
+ 			members[rightProp.Name] = c.getSpreadSymbol(rightProp, readonly)
+ 		}
+ 	}
+ 
+ 	for _, leftProp := range c.getPropertiesOfType(left) {
+-		if skippedPrivateMembers.Has(leftProp.Name) || !c.isSpreadableProperty(leftProp) {
++		if skippedPrivateMembers.Has(leftProp.Name.String()) || !c.isSpreadableProperty(leftProp) {
+ 			continue
+ 		}
+ 		if members[leftProp.Name] != nil {
+@@ -13397,7 +13397,7 @@
+ 			if rightProp.Flags&ast.SymbolFlagsOptional != 0 {
+ 				declarations := core.Concatenate(leftProp.Declarations, rightProp.Declarations)
+ 				flags := ast.SymbolFlagsProperty | (leftProp.Flags & ast.SymbolFlagsOptional)
+-				result := c.newSymbol(flags, leftProp.Name)
++				result := c.newSymbol(flags, leftProp.Name.String())
+ 				links := c.valueSymbolLinks.Get(result)
+ 				// Optimization: avoid calculating the union type if spreading into the exact same type.
+ 				// This is common, e.g. spreading one options bag into another where the bags have the
+@@ -13493,7 +13493,7 @@
+ 		} else if c.isSpreadableProperty(prop) {
+ 			isSetonlyAccessor := prop.Flags&ast.SymbolFlagsSetAccessor != 0 && prop.Flags&ast.SymbolFlagsGetAccessor == 0
+ 			flags := ast.SymbolFlagsProperty | ast.SymbolFlagsOptional
+-			result := c.newSymbolEx(flags, prop.Name, prop.CheckFlags&ast.CheckFlagsLate|core.IfElse(readonly, ast.CheckFlagsReadonly, 0))
++			result := c.newSymbolEx(flags, prop.Name.String(), prop.CheckFlags&ast.CheckFlagsLate|core.IfElse(readonly, ast.CheckFlagsReadonly, 0))
+ 			links := c.valueSymbolLinks.Get(result)
+ 			if isSetonlyAccessor {
+ 				links.resolvedType = c.undefinedType
+@@ -13523,7 +13523,7 @@
+ 		return prop
+ 	}
+ 	flags := ast.SymbolFlagsProperty | (prop.Flags & ast.SymbolFlagsOptional)
+-	result := c.newSymbolEx(flags, prop.Name, prop.CheckFlags&ast.CheckFlagsLate|core.IfElse(readonly, ast.CheckFlagsReadonly, 0))
++	result := c.newSymbolEx(flags, prop.Name.String(), prop.CheckFlags&ast.CheckFlagsLate|core.IfElse(readonly, ast.CheckFlagsReadonly, 0))
+ 	links := c.valueSymbolLinks.Get(result)
+ 	if isSetonlyAccessor {
+ 		links.resolvedType = c.undefinedType
+@@ -14000,7 +14000,7 @@
+ 	c.SymbolCount++
+ 	result := c.symbolArena.New()
+ 	result.Flags = flags | ast.SymbolFlagsTransient
+-	result.Name = name
++	result.Name = ast.MakeName(name)
+ 	return result
+ }
+ 
+@@ -14270,8 +14270,10 @@
+ }
+ 
+ func (c *Checker) cloneSymbol(symbol *ast.Symbol) *ast.Symbol {
+-	result := c.newSymbol(symbol.Flags, symbol.Name)
++	result := c.newSymbol(symbol.Flags, symbol.Name.String(
+ 	// Force reallocation if anything is ever appended to declarations
++	))
++
+ 	result.Declarations = symbol.Declarations[0:len(symbol.Declarations):len(symbol.Declarations)]
+ 	result.Parent = symbol.Parent
+ 	result.ValueDeclaration = symbol.ValueDeclaration
+@@ -14335,7 +14337,7 @@
+ }
+ 
+ func (c *Checker) getLateBoundSymbol(symbol *ast.Symbol) *ast.Symbol {
+-	if symbol.Flags&ast.SymbolFlagsClassMember == 0 || symbol.Name != ast.InternalSymbolNameComputed {
++	if symbol.Flags&ast.SymbolFlagsClassMember == 0 || symbol.Name.String() != ast.InternalSymbolNameComputed {
+ 		return symbol
+ 	}
+ 	links := c.lateBoundLinks.Get(symbol)
+@@ -14524,7 +14526,7 @@
+ 		diagnostic := c.error(node.Name(), diagnostics.Module_0_has_no_default_export, c.symbolToString(moduleSymbol))
+ 		var exportStar *ast.Symbol
+ 		if moduleSymbol.Exports != nil {
+-			exportStar = moduleSymbol.Exports[ast.InternalSymbolNameExportStar]
++			exportStar = moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportStar)]
+ 		}
+ 		if exportStar != nil {
+ 			defaultExport := core.Find(exportStar.Declarations, func(decl *ast.Declaration) bool {
+@@ -14532,7 +14534,7 @@
+ 					return false
+ 				}
+ 				resolvedExternalModuleName := c.resolveExternalModuleName(decl, decl.ModuleSpecifier(), false /*ignoreErrors*/)
+-				return resolvedExternalModuleName != nil && resolvedExternalModuleName.Exports[ast.InternalSymbolNameDefault] != nil
++				return resolvedExternalModuleName != nil && resolvedExternalModuleName.Exports[ast.MakeName(ast.InternalSymbolNameDefault)] != nil
+ 			})
+ 			if defaultExport != nil {
+ 				diagnostic.AddRelatedInfo(createDiagnosticForNode(defaultExport, diagnostics.X_export_Asterisk_does_not_re_export_a_default))
+@@ -14542,12 +14544,12 @@
+ }
+ 
+ func (c *Checker) resolveExportByName(moduleSymbol *ast.Symbol, name string, sourceNode *ast.Node, dontResolveAlias bool) *ast.Symbol {
+-	exportValue := moduleSymbol.Exports[ast.InternalSymbolNameExportEquals]
++	exportValue := moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]
+ 	var exportSymbol *ast.Symbol
+ 	if exportValue != nil {
+ 		exportSymbol = c.getPropertyOfTypeEx(c.getTypeOfSymbol(exportValue), name, true /*skipObjectFunctionPropertyAugment*/, false /*includeTypeOnlyMembers*/)
+ 	} else {
+-		exportSymbol = moduleSymbol.Exports[name]
++		exportSymbol = moduleSymbol.Exports[ast.MakeName(name)]
+ 	}
+ 	resolved := c.resolveSymbolEx(exportSymbol, dontResolveAlias)
+ 	c.markSymbolOfAliasDeclarationIfTypeOnly(sourceNode, nil)
+@@ -14624,7 +14626,7 @@
+ 			}
+ 			var symbolFromVariable *ast.Symbol
+ 			// First check if module was specified with "export=". If so, get the member from the resolved type
+-			if moduleSymbol != nil && moduleSymbol.Exports[ast.InternalSymbolNameExportEquals] != nil {
++			if moduleSymbol != nil && moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)] != nil {
+ 				symbolFromVariable = c.getPropertyOfTypeEx(c.getTypeOfSymbol(targetSymbol), nameText, true /*skipObjectFunctionPropertyAugment*/, false /*includeTypeOnlyMembers*/)
+ 			} else {
+ 				symbolFromVariable = c.getPropertyOfVariable(targetSymbol, nameText)
+@@ -14632,7 +14634,7 @@
+ 			// if symbolFromVariable is export - get its final target
+ 			symbolFromVariable = c.resolveSymbolEx(symbolFromVariable, dontResolveAlias)
+ 			exportContainer := targetSymbol
+-			if moduleSymbol != nil && moduleSymbol.Exports[ast.InternalSymbolNameExportEquals] != nil {
++			if moduleSymbol != nil && moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)] != nil {
+ 				// For `export =` modules, supplemental type/namespace exports live on the original module symbol.
+ 				exportContainer = moduleSymbol
+ 			}
+@@ -14702,7 +14704,7 @@
+ 	if valueSymbol.Flags&(ast.SymbolFlagsType|ast.SymbolFlagsNamespace) != 0 {
+ 		return valueSymbol
+ 	}
+-	result := c.newSymbol(valueSymbol.Flags|typeSymbol.Flags, valueSymbol.Name)
++	result := c.newSymbol(valueSymbol.Flags|typeSymbol.Flags, valueSymbol.Name.String())
+ 	debug.Assert(len(valueSymbol.Declarations) > 0 || len(typeSymbol.Declarations) > 0)
+ 	result.Declarations = slices.Compact(slices.Concat(valueSymbol.Declarations, typeSymbol.Declarations))
+ 	result.Parent = valueSymbol.Parent
+@@ -14717,7 +14719,7 @@
+ 
+ func (c *Checker) getExportOfModule(symbol *ast.Symbol, nameText string, specifier *ast.Node, dontResolveAlias bool) *ast.Symbol {
+ 	if symbol.Flags&ast.SymbolFlagsModule != 0 {
+-		exportSymbol := c.getExportsOfSymbol(symbol)[nameText]
++		exportSymbol := c.getExportsOfSymbol(symbol)[ast.MakeName(nameText)]
+ 		resolved := c.resolveSymbolEx(exportSymbol, dontResolveAlias)
+ 		exportStarDeclaration := c.moduleSymbolLinks.Get(symbol).typeOnlyExportStarMap[nameText]
+ 		c.markSymbolOfAliasDeclarationIfTypeOnly(specifier, exportStarDeclaration)
+@@ -14827,7 +14829,7 @@
+ 			diagnostic.AddRelatedInfo(createDiagnosticForNode(suggestion.ValueDeclaration, diagnostics.X_0_is_declared_here, suggestionName))
+ 		}
+ 	} else {
+-		if moduleSymbol.Exports[ast.InternalSymbolNameDefault] != nil {
++		if moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameDefault)] != nil {
+ 			c.error(name, diagnostics.Module_0_has_no_exported_member_1_Did_you_mean_to_use_import_1_from_0_instead, moduleName, declarationName)
+ 		} else {
+ 			c.reportNonExportedMember(name, declarationName, moduleSymbol, moduleName)
+@@ -14838,11 +14840,11 @@
+ func (c *Checker) reportNonExportedMember(name *ast.Node, declarationName string, moduleSymbol *ast.Symbol, moduleName string) {
+ 	var localSymbol *ast.Symbol
+ 	if locals := moduleSymbol.ValueDeclaration.Locals(); locals != nil {
+-		localSymbol = locals[name.Text()]
++		localSymbol = locals[name.NameKey()]
+ 	}
+ 	exports := moduleSymbol.Exports
+ 	if localSymbol != nil {
+-		if exportedEqualsSymbol := exports[ast.InternalSymbolNameExportEquals]; exportedEqualsSymbol != nil {
++		if exportedEqualsSymbol := exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]; exportedEqualsSymbol != nil {
+ 			if c.getSymbolIfSameReference(exportedEqualsSymbol, localSymbol) != nil {
+ 				c.reportInvalidImportEqualsExportMember(name, declarationName, moduleName)
+ 			} else {
+@@ -15285,7 +15287,7 @@
+ 	if len(c.patternAmbientModules) != 0 {
+ 		pattern := core.FindBestPatternMatch(c.patternAmbientModules, func(v *ast.PatternAmbientModule) core.Pattern { return v.Pattern }, moduleReference)
+ 		if pattern != nil {
+-			augmentation := c.patternAmbientModuleAugmentations[moduleReference]
++			augmentation := c.patternAmbientModuleAugmentations[ast.MakeName(moduleReference)]
+ 			if augmentation != nil {
+ 				return c.getMergedSymbol(augmentation)
+ 			}
+@@ -15466,7 +15468,7 @@
+ func (c *Checker) GetAmbientModules() []*ast.Symbol {
+ 	c.ambientModulesOnce.Do(func() {
+ 		for sym, global := range c.globals {
+-			if strings.HasPrefix(sym, "\"") && strings.HasSuffix(sym, "\"") {
++			if strings.HasPrefix(sym.String(), "\"") && strings.HasSuffix(sym.String(), "\"") {
+ 				c.ambientModules = append(c.ambientModules, global)
+ 			}
+ 		}
+@@ -15476,7 +15478,7 @@
+ 
+ func (c *Checker) resolveExternalModuleSymbol(moduleSymbol *ast.Symbol, dontResolveAlias bool) *ast.Symbol {
+ 	if moduleSymbol != nil {
+-		exportEquals := c.resolveSymbolEx(moduleSymbol.Exports[ast.InternalSymbolNameExportEquals], dontResolveAlias)
++		exportEquals := c.resolveSymbolEx(moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)], dontResolveAlias)
+ 		if exportEquals != nil {
+ 			return c.getMergedSymbol(exportEquals)
+ 		}
+@@ -15630,12 +15632,12 @@
+ 	newSymbol.Parent = originalSymbol
+ 	c.valueSymbolLinks.Get(newSymbol).nameType = c.getStringLiteralType("default")
+ 	c.aliasSymbolLinks.Get(newSymbol).aliasTarget = c.resolveSymbol(symbol)
+-	memberTable[ast.InternalSymbolNameDefault] = newSymbol
++	memberTable[ast.MakeName(ast.InternalSymbolNameDefault)] = newSymbol
+ 	return c.newAnonymousType(anonymousSymbol, memberTable, nil, nil, nil)
+ }
+ 
+ func (c *Checker) cloneTypeAsModuleType(symbol *ast.Symbol, moduleType *Type, referenceParent *ast.Node) *ast.Symbol {
+-	result := c.newSymbol(symbol.Flags, symbol.Name)
++	result := c.newSymbol(symbol.Flags, symbol.Name.String())
+ 	result.Declarations = slices.Clone(symbol.Declarations)
+ 	result.ValueDeclaration = symbol.ValueDeclaration
+ 	result.Members = maps.Clone(symbol.Members)
+@@ -15708,7 +15710,7 @@
+ 			symbol = c.getMergedSymbol(c.resolveName(resolveLocation, name.Text(), meaning, nil, true /*isUse*/, false /*excludeGlobals*/))
+ 			if symbol == nil {
+ 				alias := c.getMergedSymbol(c.resolveName(resolveLocation, name.Text(), ast.SymbolFlagsAlias, nil, true /*isUse*/, false /*excludeGlobals*/))
+-				if alias != nil && alias.Name == ast.InternalSymbolNameExportEquals {
++				if alias != nil && alias.Name.String() == ast.InternalSymbolNameExportEquals {
+ 					// resolve typedefs exported from commonjs, stored on the module symbol
+ 					symbol = alias.Parent
+ 				}
+@@ -15876,7 +15878,7 @@
+ 			}
+ 		}
+ 		if isStatic {
+-			if assignmentSymbol := symbol.Exports[ast.InternalSymbolNameAssignmentDeclaration]; assignmentSymbol != nil {
++			if assignmentSymbol := symbol.Exports[ast.MakeName(ast.InternalSymbolNameAssignmentDeclaration)]; assignmentSymbol != nil {
+ 				for _, member := range assignmentSymbol.Declarations {
+ 					if c.hasLateBindableName(member) {
+ 						if lateSymbols == nil {
+@@ -15941,13 +15943,13 @@
+ 			memberName := getPropertyNameFromType(t)
+ 			symbolFlags := decl.Symbol().Flags
+ 			// Get or add a late-bound symbol for the member. This allows us to merge late-bound accessor declarations.
+-			lateSymbol := lateSymbols[memberName]
++			lateSymbol := lateSymbols[ast.MakeName(memberName)]
+ 			if lateSymbol == nil {
+ 				lateSymbol = c.newSymbolEx(ast.SymbolFlagsNone, memberName, ast.CheckFlagsLate)
+-				lateSymbols[memberName] = lateSymbol
++				lateSymbols[ast.MakeName(memberName)] = lateSymbol
+ 			}
+ 			// Report an error if there's a symbol declaration with the same name and conflicting flags.
+-			earlySymbol := earlySymbols[memberName]
++			earlySymbol := earlySymbols[ast.MakeName(memberName)]
+ 			if lateSymbol.Flags&getExcludedSymbolFlags(symbolFlags) != 0 {
+ 				// If we have an existing early-bound member, combine its declarations so that we can
+ 				// report an error at each declaration.
+@@ -15983,16 +15985,16 @@
+ 
+ func (c *Checker) lateBindIndexSignature(parent *ast.Symbol, earlySymbols ast.SymbolTable, lateSymbols ast.SymbolTable, decl *ast.Node) {
+ 	// First, late bind the index symbol itself, if needed
+-	indexSymbol := lateSymbols[ast.InternalSymbolNameIndex]
++	indexSymbol := lateSymbols[ast.MakeName(ast.InternalSymbolNameIndex)]
+ 	if indexSymbol == nil {
+-		early := earlySymbols[ast.InternalSymbolNameIndex]
++		early := earlySymbols[ast.MakeName(ast.InternalSymbolNameIndex)]
+ 		if early == nil {
+ 			indexSymbol = c.newSymbolEx(ast.SymbolFlagsNone, ast.InternalSymbolNameIndex, ast.CheckFlagsLate)
+ 		} else {
+ 			indexSymbol = c.cloneSymbol(early)
+ 			indexSymbol.CheckFlags |= ast.CheckFlagsLate
+ 		}
+-		lateSymbols[ast.InternalSymbolNameIndex] = indexSymbol
++		lateSymbols[ast.MakeName(ast.InternalSymbolNameIndex)] = indexSymbol
+ 	}
+ 	// Then just add the computed name as a late bound declaration
+ 	// (note: unlike `addDeclarationToLateBoundSymbol` we do not set up a `.lateSymbol` on `decl`'s links,
+@@ -16073,7 +16075,7 @@
+ 			// because we might have visited it via an 'export type *', and visiting
+ 			// again with 'export *' will override the type-onlyness of its exports.
+ 			for name := range symbol.Exports {
+-				nonTypeOnlyNames.Add(name)
++				nonTypeOnlyNames.Add(name.String())
+ 			}
+ 		}
+ 		if symbol == nil || symbol.Exports == nil || slices.Contains(visitedSymbols, symbol) {
+@@ -16082,7 +16084,7 @@
+ 		visitedSymbols = append(visitedSymbols, symbol)
+ 		symbols := maps.Clone(symbol.Exports)
+ 		// All export * declarations are collected in an __export symbol by the binder
+-		exportStars := symbol.Exports[ast.InternalSymbolNameExportStar]
++		exportStars := symbol.Exports[ast.MakeName(ast.InternalSymbolNameExportStar)]
+ 		if exportStars != nil {
+ 			nestedSymbols := make(ast.SymbolTable)
+ 			lookupTable := make(ExportCollisionTable)
+@@ -16093,7 +16095,7 @@
+ 			}
+ 			for id, s := range lookupTable {
+ 				// It's not an error if the file with multiple `export *`s with duplicate names exports a member with that name itself
+-				if id == ast.InternalSymbolNameExportEquals || len(s.exportsWithDuplicate) == 0 || symbols[id] != nil {
++				if id == ast.InternalSymbolNameExportEquals || len(s.exportsWithDuplicate) == 0 || symbols[ast.MakeName(id)] != nil {
+ 					continue
+ 				}
+ 				for _, node := range s.exportsWithDuplicate {
+@@ -16107,14 +16109,14 @@
+ 				typeOnlyExportStarMap = make(map[string]*ast.Node)
+ 			}
+ 			for name := range symbols {
+-				typeOnlyExportStarMap[name] = exportStar
++				typeOnlyExportStarMap[name.String()] = exportStar
+ 			}
+ 		}
+ 		return symbols
+ 	}
+ 	var originalModule *ast.Symbol
+ 	if moduleSymbol != nil {
+-		if c.resolveSymbolEx(moduleSymbol.Exports[ast.InternalSymbolNameExportEquals], false /*dontResolveAlias*/) != nil {
++		if c.resolveSymbolEx(moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)], false /*dontResolveAlias*/) != nil {
+ 			originalModule = moduleSymbol
+ 		}
+ 	}
+@@ -16127,7 +16129,7 @@
+ 	// A CommonJS module defined by an 'export=' might also export typedefs, stored on the original module
+ 	if originalModule != nil && len(originalModule.Exports) > 1 {
+ 		for _, symbol := range originalModule.Exports {
+-			if symbol.Name == ast.InternalSymbolNameExportEquals || symbol.Name == ast.InternalSymbolNameExportStar {
++			if symbol.Name.String() == ast.InternalSymbolNameExportEquals || symbol.Name.String() == ast.InternalSymbolNameExportStar {
+ 				continue
+ 			}
+ 			flags := c.getSymbolFlags(symbol)
+@@ -16150,19 +16152,19 @@
+  */
+ func (c *Checker) extendExportSymbols(target ast.SymbolTable, source ast.SymbolTable, lookupTable ExportCollisionTable, exportNode *ast.Node) {
+ 	for id, sourceSymbol := range source {
+-		if id == ast.InternalSymbolNameDefault {
++		if id.String() == ast.InternalSymbolNameDefault {
+ 			continue
+ 		}
+ 		targetSymbol := target[id]
+ 		if targetSymbol == nil {
+ 			target[id] = sourceSymbol
+ 			if lookupTable != nil && exportNode != nil {
+-				lookupTable[id] = &ExportCollision{
++				lookupTable[id.String()] = &ExportCollision{
+ 					specifierText: scanner.GetTextOfNode(exportNode.ModuleSpecifier()),
+ 				}
+ 			}
+ 		} else if lookupTable != nil && exportNode != nil && c.resolveSymbol(targetSymbol) != c.resolveSymbol(sourceSymbol) {
+-			s := lookupTable[id]
++			s := lookupTable[id.String()]
+ 			s.exportsWithDuplicate = append(s.exportsWithDuplicate, exportNode)
+ 		}
+ 	}
+@@ -16240,7 +16242,7 @@
+ 			}
+ 			if len(target.Declarations) != 0 {
+ 				if c.isDeprecatedSymbol(target) {
+-					c.addDeprecatedSuggestion(location, target.Declarations, target.Name)
++					c.addDeprecatedSuggestion(location, target.Declarations, target.Name.String())
+ 					break
+ 				} else {
+ 					if symbol == targetSymbol {
+@@ -16514,7 +16516,7 @@
+ 		return c.reportCircularityError(symbol)
+ 	}
+ 	if symbol.Flags&ast.SymbolFlagsModuleExports != 0 {
+-		if symbol.Name == "exports" {
++		if symbol.Name.String() == "exports" {
+ 			return c.getTypeOfSymbol(c.resolveExternalModuleSymbol(symbol.ValueDeclaration.Symbol(), false /*dontResolveAlias*/))
+ 		}
+ 		return c.newAnonymousType(symbol, symbol.Members, nil, nil, nil)
+@@ -16650,7 +16652,7 @@
+ 		}
+ 		// Use contextual parameter type if one is available
+ 		var t *Type
+-		if declaration.Symbol().Name == ast.InternalSymbolNameThis {
++		if declaration.Symbol().Name.String() == ast.InternalSymbolNameThis {
+ 			t = c.getContextualThisParameterType(fn)
+ 		} else {
+ 			t = c.getContextuallyTypedParameterType(declaration)
+@@ -18167,7 +18169,7 @@
+ 			originalKeywordKind := scanner.IdentifierToKeywordKind(name)
+ 			if (ast.IsCallSignatureDeclaration(declaration.Parent) || ast.IsMethodSignatureDeclaration(declaration.Parent) || ast.IsFunctionTypeNode(declaration.Parent)) &&
+ 				slices.Contains(declaration.Parent.Parameters(), declaration) &&
+-				(ast.IsTypeNodeKind(originalKeywordKind) || c.resolveName(declaration, name.Text, ast.SymbolFlagsType, nil /*nameNotFoundMessage*/, true /*isUse*/, false /*excludeGlobals*/) != nil) {
++				(ast.IsTypeNodeKind(originalKeywordKind) || c.resolveName(declaration, name.Text.String(), ast.SymbolFlagsType, nil /*nameNotFoundMessage*/, true /*isUse*/, false /*excludeGlobals*/) != nil) {
+ 				newName := fmt.Sprintf("arg%v", slices.Index(declaration.Parent.Parameters(), declaration))
+ 				typeName := scanner.DeclarationNameToString(param.Name()) + core.IfElse(param.DotDotDotToken != nil, "[]", "")
+ 				c.errorOrSuggestion(c.noImplicitAny, declaration, diagnostics.Parameter_has_a_name_but_no_type_Did_you_mean_0_Colon_1, newName, typeName)
+@@ -18314,7 +18316,7 @@
+ 	original := c.getTypeOfSymbol(prop)
+ 	var propContext *WideningContext
+ 	if context != nil {
+-		propContext = context.getChildContext(prop.Name)
++		propContext = context.getChildContext(prop.Name.String())
+ 	}
+ 	widened := c.getWidenedTypeWithContext(original, propContext)
+ 	if widened == original {
+@@ -18341,7 +18343,7 @@
+ 		for _, t := range c.getSiblingsOfContext(context) {
+ 			if isObjectLiteralType(t) && t.objectFlags&ObjectFlagsContainsSpread == 0 {
+ 				for _, prop := range c.getPropertiesOfType(t) {
+-					names.Set(prop.Name, prop)
++					names.Set(prop.Name.String(), prop)
+ 				}
+ 			}
+ 		}
+@@ -18367,12 +18369,12 @@
+ }
+ 
+ func (c *Checker) getUndefinedProperty(prop *ast.Symbol) *ast.Symbol {
+-	if cached := c.undefinedProperties[prop.Name]; cached != nil {
++	if cached := c.undefinedProperties[prop.Name.String()]; cached != nil {
+ 		return cached
+ 	}
+ 	result := c.createSymbolWithType(prop, c.undefinedOrMissingType)
+ 	result.Flags |= ast.SymbolFlagsOptional
+-	c.undefinedProperties[prop.Name] = result
++	c.undefinedProperties[prop.Name.String()] = result
+ 	return result
+ }
+ 
+@@ -18733,9 +18735,9 @@
+ 		props := []*ast.Symbol{}
+ 		for _, current := range d.types {
+ 			for _, prop := range c.getPropertiesOfType(current) {
+-				if !checked.Has(prop.Name) {
+-					checked.Add(prop.Name)
+-					combinedProp := c.getPropertyOfUnionOrIntersectionType(t, prop.Name, t.flags&TypeFlagsIntersection != 0 /*skipObjectFunctionPropertyAugment*/)
++				if !checked.Has(prop.Name.String()) {
++					checked.Add(prop.Name.String())
++					combinedProp := c.getPropertyOfUnionOrIntersectionType(t, prop.Name.String(), t.flags&TypeFlagsIntersection != 0 /*skipObjectFunctionPropertyAugment*/)
+ 					if combinedProp != nil {
+ 						props = append(props, combinedProp)
+ 					}
+@@ -19491,8 +19493,8 @@
+ 		members := c.getMembersOfSymbol(t.symbol)
+ 		d.declaredMembersResolved = true
+ 		d.declaredMembers = members
+-		d.declaredCallSignatures = c.getSignaturesOfSymbol(d.declaredMembers[ast.InternalSymbolNameCall])
+-		d.declaredConstructSignatures = c.getSignaturesOfSymbol(d.declaredMembers[ast.InternalSymbolNameNew])
++		d.declaredCallSignatures = c.getSignaturesOfSymbol(d.declaredMembers[ast.MakeName(ast.InternalSymbolNameCall)])
++		d.declaredConstructSignatures = c.getSignaturesOfSymbol(d.declaredMembers[ast.MakeName(ast.InternalSymbolNameNew)])
+ 		d.declaredIndexInfos = c.getIndexInfosOfSymbol(t.symbol)
+ 	}
+ 	return d
+@@ -19626,7 +19628,7 @@
+ }
+ 
+ func (c *Checker) isSymbolWithNumericName(symbol *ast.Symbol) bool {
+-	if isNumericLiteralName(symbol.Name) {
++	if isNumericLiteralName(symbol.Name.String()) {
+ 		return true
+ 	}
+ 	if len(symbol.Declarations) != 0 {
+@@ -19676,7 +19678,7 @@
+ }
+ 
+ func (c *Checker) getIndexSymbol(symbol *ast.Symbol) *ast.Symbol {
+-	return c.getMembersOfSymbol(symbol)[ast.InternalSymbolNameIndex]
++	return c.getMembersOfSymbol(symbol)[ast.MakeName(ast.InternalSymbolNameIndex)]
+ }
+ 
+ func (c *Checker) getSignaturesOfSymbol(symbol *ast.Symbol) []*Signature {
+@@ -19733,10 +19735,10 @@
+ 		typeNode := param.Type()
+ 		// Include parameter symbol instead of property symbol in the signature
+ 		if paramSymbol != nil && paramSymbol.Flags&ast.SymbolFlagsProperty != 0 && !ast.IsBindingPattern(param.Name()) {
+-			resolvedSymbol := c.resolveName(param, paramSymbol.Name, ast.SymbolFlagsValue, nil /*nameNotFoundMessage*/, false /*isUse*/, false /*excludeGlobals*/)
++			resolvedSymbol := c.resolveName(param, paramSymbol.Name.String(), ast.SymbolFlagsValue, nil /*nameNotFoundMessage*/, false /*isUse*/, false /*excludeGlobals*/)
+ 			paramSymbol = resolvedSymbol
+ 		}
+-		if i == 0 && paramSymbol.Name == ast.InternalSymbolNameThis {
++		if i == 0 && paramSymbol.Name.String() == ast.InternalSymbolNameThis {
+ 			hasThisParameter = true
+ 			thisParameter = param.Symbol()
+ 		} else {
+@@ -20538,8 +20540,8 @@
+ 	if symbol.Flags&ast.SymbolFlagsTypeLiteral != 0 {
+ 		c.setStructuredTypeMembers(t, nil, nil, nil, nil)
+ 		members := c.getMembersOfSymbol(symbol)
+-		callSignatures := c.getSignaturesOfSymbol(members[ast.InternalSymbolNameCall])
+-		constructSignatures := c.getSignaturesOfSymbol(members[ast.InternalSymbolNameNew])
++		callSignatures := c.getSignaturesOfSymbol(members[ast.MakeName(ast.InternalSymbolNameCall)])
++		constructSignatures := c.getSignaturesOfSymbol(members[ast.MakeName(ast.InternalSymbolNameNew)])
+ 		indexInfos := c.getIndexInfosOfSymbol(symbol)
+ 		c.setStructuredTypeMembers(t, members, callSignatures, constructSignatures, indexInfos)
+ 		return
+@@ -20569,7 +20571,7 @@
+ 			baseConstructorIndexInfo = c.anyBaseTypeIndexInfo
+ 		}
+ 	}
+-	indexSymbol := members[ast.InternalSymbolNameIndex]
++	indexSymbol := members[ast.MakeName(ast.InternalSymbolNameIndex)]
+ 	if indexSymbol != nil {
+ 		indexInfos = c.getIndexInfosOfIndexSymbol(indexSymbol, slices.Collect(maps.Values(members)))
+ 	} else {
+@@ -20594,7 +20596,7 @@
+ 	// And likewise for construct signatures for classes
+ 	if symbol.Flags&ast.SymbolFlagsClass != 0 {
+ 		classType := c.getDeclaredTypeOfClassOrInterface(symbol)
+-		constructSignatures := c.getSignaturesOfSymbol(symbol.Members[ast.InternalSymbolNameConstructor])
++		constructSignatures := c.getSignaturesOfSymbol(symbol.Members[ast.MakeName(ast.InternalSymbolNameConstructor)])
+ 		if len(constructSignatures) == 0 {
+ 			constructSignatures = c.getDefaultConstructSignatures(classType)
+ 		}
+@@ -20619,7 +20621,7 @@
+ 	}
+ 	result := make(ast.SymbolTable, len(symbols))
+ 	for id, symbol := range symbols {
+-		if c.isNamedMember(symbol, id) {
++		if c.isNamedMember(symbol, id.String()) {
+ 			result[id] = c.instantiateSymbol(symbol, m)
+ 		}
+ 	}
+@@ -20673,7 +20675,7 @@
+ 	}
+ 	// Keep the flags from the symbol we're instantiating.  Mark that is instantiated, and
+ 	// also transient so that we can just store data on it directly.
+-	result := c.newSymbol(symbol.Flags, symbol.Name)
++	result := c.newSymbol(symbol.Flags, symbol.Name.String())
+ 	result.CheckFlags = ast.CheckFlagsInstantiated | symbol.CheckFlags&(ast.CheckFlagsReadonly|ast.CheckFlagsLate|ast.CheckFlagsOptionalParameter|ast.CheckFlagsRestParameter)
+ 	result.Declarations = symbol.Declarations
+ 	result.Parent = symbol.Parent
+@@ -20813,7 +20815,7 @@
+ 			// String enum members from separate enums with identical values
+ 			// are distinct types with the same property name. Make the resulting
+ 			// property symbol's name type be the union of those enum member types.
+-			if existingProp := members[propName]; existingProp != nil {
++			if existingProp := members[ast.MakeName(propName)]; existingProp != nil {
+ 				valueLinks := c.valueSymbolLinks.Get(existingProp)
+ 				valueLinks.nameType = c.getUnionType([]*Type{valueLinks.nameType, propNameType})
+ 				mappedLinks := c.mappedSymbolLinks.Get(existingProp)
+@@ -20843,7 +20845,7 @@
+ 						prop.Declarations = modifiersProp.Declarations
+ 					}
+ 				}
+-				members[propName] = prop
++				members[ast.MakeName(propName)] = prop
+ 			}
+ 		} else if c.isValidIndexKeyType(propNameType) || propNameType.flags&(TypeFlagsAny|TypeFlagsEnum) != 0 {
+ 			indexKeyType := propNameType
+@@ -20973,8 +20975,8 @@
+ 			return nil
+ 		}
+ 		if i == 0 {
+-			memberName = t.symbol.Name
+-		} else if memberName != t.symbol.Name {
++			memberName = t.symbol.Name.String()
++		} else if memberName != t.symbol.Name.String() {
+ 			return nil
+ 		}
+ 	}
+@@ -21329,17 +21331,17 @@
+ 	} else {
+ 		cache = ast.GetSymbolTable(&t.AsUnionOrIntersectionType().propertyCache)
+ 	}
+-	if prop := cache[name]; prop != nil {
++	if prop := cache[ast.MakeName(name)]; prop != nil {
+ 		return prop
+ 	}
+ 	prop := c.createUnionOrIntersectionProperty(t, name, skipObjectFunctionPropertyAugment)
+ 	if prop != nil {
+-		cache[name] = prop
++		cache[ast.MakeName(name)] = prop
+ 		// Propagate an entry from the non-augmented cache to the augmented cache unless the property is partial.
+ 		if skipObjectFunctionPropertyAugment && prop.CheckFlags&ast.CheckFlagsPartial == 0 {
+ 			augmentedCache := ast.GetSymbolTable(&t.AsUnionOrIntersectionType().propertyCache)
+-			if augmentedCache[name] == nil {
+-				augmentedCache[name] = prop
++			if augmentedCache[ast.MakeName(name)] == nil {
++				augmentedCache[ast.MakeName(name)] = prop
+ 			}
+ 		}
+ 	}
+@@ -21598,7 +21600,7 @@
+ }
+ 
+ func (c *Checker) createSymbolWithType(source *ast.Symbol, t *Type) *ast.Symbol {
+-	symbol := c.newSymbolEx(source.Flags, source.Name, source.CheckFlags&ast.CheckFlagsReadonly)
++	symbol := c.newSymbolEx(source.Flags, source.Name.String(), source.CheckFlags&ast.CheckFlagsReadonly)
+ 	symbol.Declarations = source.Declarations
+ 	symbol.Parent = source.Parent
+ 	symbol.ValueDeclaration = source.ValueDeclaration
+@@ -21954,14 +21956,14 @@
+ 	var containedCount int
+ 	if container != nil && container.Flags&(ast.SymbolFlagsClass|ast.SymbolFlagsInterface) != 0 {
+ 		for id, symbol := range members {
+-			if c.isNamedMember(symbol, id) && c.isDeclarationContainedBy(symbol, container) {
++			if c.isNamedMember(symbol, id.String()) && c.isDeclarationContainedBy(symbol, container) {
+ 				result = append(result, symbol)
+ 			}
+ 		}
+ 		containedCount = len(result)
+ 	}
+ 	for id, symbol := range members {
+-		if c.isNamedMember(symbol, id) && (container == nil || container.Flags&(ast.SymbolFlagsClass|ast.SymbolFlagsInterface) == 0 || !c.isDeclarationContainedBy(symbol, container)) {
++		if c.isNamedMember(symbol, id.String()) && (container == nil || container.Flags&(ast.SymbolFlagsClass|ast.SymbolFlagsInterface) == 0 || !c.isDeclarationContainedBy(symbol, container)) {
+ 			result = append(result, symbol)
+ 		}
+ 	}
+@@ -22886,7 +22888,7 @@
+ 				var b strings.Builder
+ 				b.WriteString(ast.InternalSymbolNamePrefix)
+ 				b.WriteByte('@')
+-				b.WriteString(symbol.Name)
++				b.WriteString(symbol.Name.String())
+ 				b.WriteByte('@')
+ 				b.WriteString(strconv.FormatUint(uint64(ast.GetSymbolId(symbol)), 10))
+ 				uniqueType = c.newUniqueESSymbolType(symbol, b.String())
+@@ -23038,9 +23040,9 @@
+ 
+ func getSymbolPath(symbol *ast.Symbol) string {
+ 	if symbol.Parent != nil {
+-		return getSymbolPath(symbol.Parent) + "." + symbol.Name
+-	}
+-	return symbol.Name
++		return getSymbolPath(symbol.Parent) + "." + symbol.Name.String()
++	}
++	return symbol.Name.String()
+ }
+ 
+ func (c *Checker) getTypeReferenceType(node *ast.Node, symbol *ast.Symbol) *Type {
+@@ -23541,7 +23543,7 @@
+ func (c *Checker) getTypeAliasInstantiation(symbol *ast.Symbol, typeArguments []*Type, alias *TypeAlias) *Type {
+ 	t := c.getDeclaredTypeOfSymbol(symbol)
+ 	if t == c.intrinsicMarkerType {
+-		if typeKind, ok := intrinsicTypeKinds[symbol.Name]; ok && len(typeArguments) == 1 {
++		if typeKind, ok := intrinsicTypeKinds[symbol.Name.String()]; ok && len(typeArguments) == 1 {
+ 			switch typeKind {
+ 			case IntrinsicTypeKindNoInfer:
+ 				return c.getNoInferType(typeArguments[0])
+@@ -23754,7 +23756,7 @@
+ 				links.instantiations = make(map[CacheHashKey]*Type)
+ 				links.instantiations[getTypeListKey(typeParameters)] = t
+ 			}
+-			if t == c.intrinsicMarkerType && symbol.Name == "BuiltinIteratorReturn" {
++			if t == c.intrinsicMarkerType && symbol.Name.String() == "BuiltinIteratorReturn" {
+ 				t = c.getBuiltinIteratorReturnType()
+ 			}
+ 		} else {
+@@ -23960,7 +23962,7 @@
+ 			rootSymbol := c.resolveEntityName(root, ast.SymbolFlagsValue, true /*ignoreErrors*/, false, nil)
+ 			if rootSymbol != nil && rootSymbol.Flags&ast.SymbolFlagsEnum != 0 {
+ 				name := expr.AsElementAccessExpression().ArgumentExpression.Text()
+-				member := rootSymbol.Exports[name]
++				member := rootSymbol.Exports[ast.MakeName(name)]
+ 				if member != nil {
+ 					if location != nil {
+ 						return c.evaluateEnumMember(expr, member, location)
+@@ -24219,7 +24221,7 @@
+ 		if annotation == nil || ast.SkipTypeParentheses(annotation).Kind != ast.KindLiteralType {
+ 			continue
+ 		}
+-		name := member.Symbol().Name
++		name := member.Symbol().Name.String()
+ 		target := c.getPropertyOfType(extendsType, name)
+ 		if target == nil || target.Flags&ast.SymbolFlagsOptional != 0 || target.CheckFlags&ast.CheckFlagsPartial != 0 ||
+ 			len(target.Declarations) != 1 || target.Declarations[0] != member {
+@@ -25927,7 +25929,7 @@
+ 					}
+ 					count++
+ 					if keyProperty != nil && target.flags&(TypeFlagsObject|TypeFlagsIntersection|TypeFlagsInstantiableNonPrimitive) != 0 {
+-						t := c.getTypeOfPropertyOfType(target, keyProperty.Name)
++						t := c.getTypeOfPropertyOfType(target, keyProperty.Name.String())
+ 						if t != nil && isUnitType(t) && c.getRegularTypeOfLiteralType(t) != keyPropertyType {
+ 							continue
+ 						}
+@@ -26655,7 +26657,7 @@
+ 	if includeNonPublic || getDeclarationModifierFlagsFromSymbol(prop)&ast.ModifierFlagsNonPublicAccessibilityModifier == 0 {
+ 		t := c.valueSymbolLinks.Get(c.getLateBoundSymbol(prop)).nameType
+ 		if t == nil {
+-			if prop.Name == ast.InternalSymbolNameDefault {
++			if prop.Name.String() == ast.InternalSymbolNameDefault {
+ 				t = c.getStringLiteralType("default")
+ 			} else {
+ 				name := ast.GetNameOfDeclaration(prop.ValueDeclaration)
+@@ -27045,7 +27047,7 @@
+ 					return c.getUnionType(append(types, c.undefinedType))
+ 				}
+ 			}
+-			if objectType.symbol == c.globalThisSymbol && hasPropName && c.globalThisSymbol.Exports[propName] != nil && c.globalThisSymbol.Exports[propName].Flags&ast.SymbolFlagsBlockScoped != 0 {
++			if objectType.symbol == c.globalThisSymbol && hasPropName && c.globalThisSymbol.Exports[ast.MakeName(propName)] != nil && c.globalThisSymbol.Exports[ast.MakeName(propName)].Flags&ast.SymbolFlagsBlockScoped != 0 {
+ 				c.error(accessExpression, diagnostics.Property_0_does_not_exist_on_type_1, propName, c.TypeToString(objectType))
+ 			} else if c.noImplicitAny && accessFlags&AccessFlagsSuppressNoImplicitAnyError == 0 {
+ 				if hasPropName && c.typeHasStaticProperty(propName, objectType) {
+@@ -27126,7 +27128,7 @@
+ func (c *Checker) getSuggestionForNonexistentProperty(name string, containingType *Type) string {
+ 	symbol := c.getSpellingSuggestionForName(name, slices.Values(c.getPropertiesOfType(containingType)), ast.SymbolFlagsValue)
+ 	if symbol != nil {
+-		return symbol.Name
++		return symbol.Name.String()
+ 	}
+ 	return ""
+ }
+@@ -28585,7 +28587,7 @@
+ 			// Keep this in sync with serializeUnionOrIntersectionType
+ 			// Verify if they refer to same entity and is identifier
+ 			// return undefined if they dont match because we would emit object
+-			if !ast.IsIdentifier(commonEntityName) || !ast.IsIdentifier(individualEntityName) || commonEntityName.AsIdentifier().Text != individualEntityName.AsIdentifier().Text {
++			if !ast.IsIdentifier(commonEntityName) || !ast.IsIdentifier(individualEntityName) || commonEntityName.AsIdentifier().Text.String() != individualEntityName.AsIdentifier().Text.String() {
+ 				return nil
+ 			}
+ 		}
+@@ -29069,7 +29071,7 @@
+ }
+ 
+ func applyStringMapping(symbol *ast.Symbol, str string) string {
+-	switch intrinsicTypeKinds[symbol.Name] {
++	switch intrinsicTypeKinds[symbol.Name.String()] {
+ 	case IntrinsicTypeKindUppercase:
+ 		return stringutil.ToUpperJS(str)
+ 	case IntrinsicTypeKindLowercase:
+@@ -29085,7 +29087,7 @@
+ }
+ 
+ func (c *Checker) applyTemplateStringMapping(symbol *ast.Symbol, texts []string, types []*Type) ([]string, []*Type) {
+-	switch intrinsicTypeKinds[symbol.Name] {
++	switch intrinsicTypeKinds[symbol.Name.String()] {
+ 	case IntrinsicTypeKindUppercase, IntrinsicTypeKindLowercase:
+ 		return core.Map(texts, func(t string) string { return applyStringMapping(symbol, t) }),
+ 			core.Map(types, func(t *Type) *Type { return c.getStringMappingType(symbol, t) })
+@@ -29441,7 +29443,7 @@
+ func (c *Checker) getContextualTypeForStaticPropertyDeclaration(declaration *ast.Node, contextFlags ContextFlags) *Type {
+ 	if ast.IsExpression(declaration.Parent) {
+ 		if parentType := c.getContextualType(declaration.Parent, contextFlags); parentType != nil {
+-			return c.getTypeOfPropertyOfContextualType(parentType, c.getSymbolOfDeclaration(declaration).Name)
++			return c.getTypeOfPropertyOfContextualType(parentType, c.getSymbolOfDeclaration(declaration).Name.String())
+ 		}
+ 	}
+ 	return nil
+@@ -29758,7 +29760,7 @@
+ 			// in the type. It will just be "__computed", which does not appear in any
+ 			// SymbolTable.
+ 			symbol := c.getSymbolOfDeclaration(element)
+-			return c.getTypeOfPropertyOfContextualTypeEx(t, symbol.Name, c.valueSymbolLinks.Get(symbol).nameType)
++			return c.getTypeOfPropertyOfContextualTypeEx(t, symbol.Name.String(), c.valueSymbolLinks.Get(symbol).nameType)
+ 		}
+ 		if ast.HasDynamicName(element) {
+ 			name := ast.GetNameOfDeclaration(element)
+@@ -30270,9 +30272,9 @@
+ 		return overrideType
+ 	}
+ 	members := make(ast.SymbolTable)
+-	members["name"] = c.newProperty("name", nameType)
+-	members["private"] = c.newProperty("private", core.IfElse(isPrivate, c.trueType, c.falseType))
+-	members["static"] = c.newProperty("static", core.IfElse(isStatic, c.trueType, c.falseType))
++	members[ast.MakeName("name")] = c.newProperty("name", nameType)
++	members[ast.MakeName("private")] = c.newProperty("private", core.IfElse(isPrivate, c.trueType, c.falseType))
++	members[ast.MakeName("static")] = c.newProperty("static", core.IfElse(isStatic, c.trueType, c.falseType))
+ 	overrideType := c.newAnonymousType(nil, members, nil, nil, nil)
+ 	c.cachedTypes[key] = overrideType
+ 	return overrideType
+@@ -30551,9 +30553,9 @@
+ 
+ func (d *ObjectLiteralDiscriminator) name(index int) string {
+ 	if index < len(d.props) {
+-		return d.props[index].Symbol().Name
+-	}
+-	return d.members[index-len(d.props)].Name
++		return d.props[index].Symbol().Name.String()
++	}
++	return d.members[index-len(d.props)].Name.String()
+ }
+ 
+ func (d *ObjectLiteralDiscriminator) matches(index int, t *Type) bool {
+@@ -30594,15 +30596,15 @@
+ 				return false
+ 			}
+ 			if ast.IsPropertyAssignment(p) {
+-				return c.isPossiblyDiscriminantValue(p.Initializer()) && c.isDiscriminantProperty(contextualType, symbol.Name)
++				return c.isPossiblyDiscriminantValue(p.Initializer()) && c.isDiscriminantProperty(contextualType, symbol.Name.String())
+ 			}
+ 			if ast.IsShorthandPropertyAssignment(p) {
+-				return c.isDiscriminantProperty(contextualType, symbol.Name)
++				return c.isDiscriminantProperty(contextualType, symbol.Name.String())
+ 			}
+ 			return false
+ 		})
+ 		discriminantMembers := core.Filter(c.getPropertiesOfType(contextualType), func(s *ast.Symbol) bool {
+-			return s.Flags&ast.SymbolFlagsOptional != 0 && node.Symbol().Members[s.Name] == nil && c.isDiscriminantProperty(contextualType, s.Name)
++			return s.Flags&ast.SymbolFlagsOptional != 0 && node.Symbol().Members[s.Name] == nil && c.isDiscriminantProperty(contextualType, s.Name.String())
+ 		})
+ 		discriminator := &ObjectLiteralDiscriminator{c: c, props: discriminantProperties, members: discriminantMembers}
+ 		discriminated = c.discriminateTypeByDiscriminableItems(contextualType, discriminator)
+@@ -30615,7 +30617,7 @@
+ 	keyPropertyName := c.getKeyPropertyName(unionType)
+ 	if keyPropertyName != "" {
+ 		propNode := core.Find(node.Properties(), func(p *ast.Node) bool {
+-			return p.Symbol() != nil && ast.IsPropertyAssignment(p) && p.Symbol().Name == keyPropertyName && c.isPossiblyDiscriminantValue(p.Initializer())
++			return p.Symbol() != nil && ast.IsPropertyAssignment(p) && p.Symbol().Name.String() == keyPropertyName && c.isPossiblyDiscriminantValue(p.Initializer())
+ 		})
+ 		if propNode != nil {
+ 			propType := c.getContextFreeTypeOfExpression(propNode.Initializer())
+@@ -31960,7 +31962,7 @@
+ 		}
+ 		switch node.Kind {
+ 		case ast.KindIdentifier:
+-			return node.Text() == c.argumentsSymbol.Name && c.IsArgumentsSymbol(c.getResolvedSymbol(node))
++			return node.Text() == c.argumentsSymbol.Name.String() && c.IsArgumentsSymbol(c.getResolvedSymbol(node))
+ 		case ast.KindPropertyDeclaration, ast.KindMethodDeclaration, ast.KindGetAccessor, ast.KindSetAccessor:
+ 			if ast.IsComputedPropertyName(node.Name()) {
+ 				return visit(node.Name())
+--- a/packages/tsc-go/internal/checker/emitresolver.go
++++ b/packages/tsc-go/internal/checker/emitresolver.go
+@@ -1305,7 +1305,7 @@
+ 		return false
+ 	}
+ 	for _, base := range r.checker.getBaseTypes(parentType) {
+-		baseProp := r.checker.getPropertyOfType(base, s.Name)
++		baseProp := r.checker.getPropertyOfType(base, s.Name.String())
+ 		if baseProp == nil {
+ 			continue
+ 		}
+--- a/packages/tsc-go/internal/checker/flow.go
++++ b/packages/tsc-go/internal/checker/flow.go
+@@ -2435,10 +2435,10 @@
+ 
+ func (c *Checker) getFlowTypeInConstructor(symbol *ast.Symbol, constructor *ast.Node) *Type {
+ 	var accessName *ast.Node
+-	if strings.HasPrefix(symbol.Name, ast.InternalSymbolNamePrefix+"#") {
+-		accessName = c.factory.NewPrivateIdentifier(symbol.Name[strings.Index(symbol.Name, "@")+1:])
++	if strings.HasPrefix(symbol.Name.String(), ast.InternalSymbolNamePrefix+"#") {
++		accessName = c.factory.NewPrivateIdentifier(symbol.Name.String()[strings.Index(symbol.Name.String(), "@")+1:])
+ 	} else {
+-		accessName = c.factory.NewIdentifier(symbol.Name)
++		accessName = c.factory.NewIdentifier(symbol.Name.String())
+ 	}
+ 	reference := c.factory.NewPropertyAccessExpression(c.factory.NewKeywordExpression(ast.KindThisKeyword), nil, accessName, ast.NodeFlagsNone)
+ 	reference.Expression().Parent = reference
+@@ -2457,10 +2457,10 @@
+ 
+ func (c *Checker) getFlowTypeInStaticBlocks(symbol *ast.Symbol, staticBlocks []*ast.Node) *Type {
+ 	var accessName *ast.Node
+-	if strings.HasPrefix(symbol.Name, ast.InternalSymbolNamePrefix+"#") {
+-		accessName = c.factory.NewPrivateIdentifier(symbol.Name[strings.Index(symbol.Name, "@")+1:])
++	if strings.HasPrefix(symbol.Name.String(), ast.InternalSymbolNamePrefix+"#") {
++		accessName = c.factory.NewPrivateIdentifier(symbol.Name.String()[strings.Index(symbol.Name.String(), "@")+1:])
+ 	} else {
+-		accessName = c.factory.NewIdentifier(symbol.Name)
++		accessName = c.factory.NewIdentifier(symbol.Name.String())
+ 	}
+ 	for _, staticBlock := range staticBlocks {
+ 		reference := c.factory.NewPropertyAccessExpression(c.factory.NewKeywordExpression(ast.KindThisKeyword), nil, accessName, ast.NodeFlagsNone)
+--- a/packages/tsc-go/internal/checker/inference.go
++++ b/packages/tsc-go/internal/checker/inference.go
+@@ -811,7 +811,7 @@
+ func (c *Checker) inferFromProperties(n *InferenceState, source *Type, target *Type) {
+ 	properties := c.getPropertiesOfObjectType(target)
+ 	for _, targetProp := range properties {
+-		sourceProp := c.getPropertyOfType(source, targetProp.Name)
++		sourceProp := c.getPropertyOfType(source, targetProp.Name.String())
+ 		if sourceProp != nil && !core.Some(sourceProp.Declarations, c.isSkipDirectInferenceNode) {
+ 			c.inferFromTypes(n, c.removeMissingType(c.getTypeOfSymbol(sourceProp), sourceProp.Flags&ast.SymbolFlagsOptional != 0), c.removeMissingType(c.getTypeOfSymbol(targetProp), targetProp.Flags&ast.SymbolFlagsOptional != 0))
+ 		}
+@@ -1102,7 +1102,7 @@
+ 			}
+ 		}
+ 		checkFlags := ast.CheckFlagsReverseMapped | core.IfElse(readonlyMask && c.isReadonlySymbol(prop), ast.CheckFlagsReadonly, 0)
+-		inferredProp := c.newSymbolEx(ast.SymbolFlagsProperty|prop.Flags&optionalMask, prop.Name, checkFlags)
++		inferredProp := c.newSymbolEx(ast.SymbolFlagsProperty|prop.Flags&optionalMask, prop.Name.String(), checkFlags)
+ 		inferredProp.Declarations = prop.Declarations
+ 		c.valueSymbolLinks.Get(inferredProp).nameType = c.valueSymbolLinks.Get(prop).nameType
+ 		links := c.ReverseMappedSymbolLinks.Get(inferredProp)
+@@ -1222,7 +1222,7 @@
+ 			literalProp.Declarations = t.symbol.Declarations
+ 			literalProp.ValueDeclaration = t.symbol.ValueDeclaration
+ 		}
+-		members[name] = literalProp
++		members[ast.MakeName(name)] = literalProp
+ 	}
+ 	var indexInfos []*IndexInfo
+ 	if t.flags&TypeFlagsString != 0 {
+--- a/packages/tsc-go/internal/checker/jsx.go
++++ b/packages/tsc-go/internal/checker/jsx.go
+@@ -273,17 +273,17 @@
+ 			return false
+ 		}
+ 		initializer := p.Initializer()
+-		return (initializer == nil || c.isPossiblyDiscriminantValue(initializer)) && c.isDiscriminantProperty(contextualType, symbol.Name)
++		return (initializer == nil || c.isPossiblyDiscriminantValue(initializer)) && c.isDiscriminantProperty(contextualType, symbol.Name.String())
+ 	})
+ 	discriminantMembers := core.Filter(c.getPropertiesOfType(contextualType), func(s *ast.Symbol) bool {
+ 		if s.Flags&ast.SymbolFlagsOptional == 0 || node.Symbol() == nil {
+ 			return false
+ 		}
+ 		element := node.Parent.Parent
+-		if s.Name == jsxChildrenPropertyName && ast.IsJsxElement(element) && len(ast.GetSemanticJsxChildren(element.Children().Nodes)) != 0 {
++		if s.Name.String() == jsxChildrenPropertyName && ast.IsJsxElement(element) && len(ast.GetSemanticJsxChildren(element.Children().Nodes)) != 0 {
+ 			return false
+ 		}
+-		return node.Symbol().Members[s.Name] == nil && c.isDiscriminantProperty(contextualType, s.Name)
++		return node.Symbol().Members[s.Name] == nil && c.isDiscriminantProperty(contextualType, s.Name.String())
+ 	})
+ 	discriminator := &ObjectLiteralDiscriminator{c: c, props: discriminantProperties, members: discriminantMembers}
+ 	discriminated := c.discriminateTypeByDiscriminableItems(contextualType, discriminator)
+@@ -521,7 +521,7 @@
+ 		links.jsxFragmentType = c.errorType
+ 		return links.jsxFragmentType
+ 	}
+-	if jsxFactorySymbol.Name == ReactNames.Fragment {
++	if jsxFactorySymbol.Name.String() == ReactNames.Fragment {
+ 		links.jsxFragmentType = c.getTypeOfSymbol(jsxFactorySymbol)
+ 		return links.jsxFragmentType
+ 	}
+@@ -739,7 +739,7 @@
+ 			if ast.IsJsxAttribute(attributeDecl) {
+ 				exprType := c.checkJsxAttribute(attributeDecl, checkMode)
+ 				objectFlags |= exprType.objectFlags & ObjectFlagsPropagatingFlags
+-				attributeSymbol := c.newSymbol(ast.SymbolFlagsProperty|member.Flags, member.Name)
++				attributeSymbol := c.newSymbol(ast.SymbolFlagsProperty|member.Flags, member.Name.String())
+ 				attributeSymbol.Declarations = member.Declarations
+ 				attributeSymbol.Parent = member.Parent
+ 				if member.ValueDeclaration != nil {
+@@ -756,7 +756,7 @@
+ 					explicitlySpecifyChildrenAttribute = true
+ 				}
+ 				if contextualType != nil {
+-					prop := c.getPropertyOfType(contextualType, member.Name)
++					prop := c.getPropertyOfType(contextualType, member.Name.String())
+ 					if prop != nil && prop.Declarations != nil && c.isDeprecatedSymbol(prop) && ast.IsIdentifier(attributeDecl.Name()) {
+ 						c.addDeprecatedSuggestion(attributeDecl.Name(), prop.Declarations, attributeDecl.Name().Text())
+ 					}
+@@ -851,7 +851,7 @@
+ 			childrenPropSymbol.ValueDeclaration.Parent = attributeParent
+ 			childrenPropSymbol.ValueDeclaration.AsPropertySignatureDeclaration().Symbol = childrenPropSymbol
+ 			childPropMap := make(ast.SymbolTable)
+-			childPropMap[jsxChildrenPropertyName] = childrenPropSymbol
++			childPropMap[ast.MakeName(jsxChildrenPropertyName)] = childrenPropSymbol
+ 			spread = c.getSpreadType(spread, c.newAnonymousType(attributesSymbol, childPropMap, nil, nil, nil), attributesSymbol, objectFlags|c.getPropagatingFlagsOfTypes(childTypes, TypeFlagsNone), false /*readonly*/)
+ 		}
+ 	}
+@@ -1104,7 +1104,7 @@
+ 				return ""
+ 			}
+ 			if len(propertiesOfJsxElementAttribPropInterface) == 1 {
+-				return propertiesOfJsxElementAttribPropInterface[0].Name
++				return propertiesOfJsxElementAttribPropInterface[0].Name.String()
+ 			}
+ 			if len(propertiesOfJsxElementAttribPropInterface) > 1 && len(jsxElementAttribPropInterfaceSym.Declarations) != 0 {
+ 				// More than one property on ElementAttributesProperty is an error
+--- a/packages/tsc-go/internal/checker/lazy_properties.go
++++ b/packages/tsc-go/internal/checker/lazy_properties.go
+@@ -27,12 +27,12 @@
+ 			continue
+ 		}
+ 		for _, prop := range c.getPropertiesOfType(current) {
+-			props, seen := byName[prop.Name]
++			props, seen := byName[prop.Name.String()]
+ 			if !seen {
+-				names = append(names, prop.Name)
++				names = append(names, prop.Name.String())
+ 			}
+ 			if !slices.Contains(props, prop) {
+-				byName[prop.Name] = append(props, prop)
++				byName[prop.Name.String()] = append(props, prop)
+ 			}
+ 		}
+ 	}
+@@ -117,7 +117,7 @@
+ 	checked := make(map[string]bool)
+ 	for _, current := range t.Types() {
+ 		for _, prop := range c.getPropertiesOfType(current) {
+-			name := prop.Name
++			name := prop.Name.String()
+ 			if prop.Flags&ast.SymbolFlagsOptional != 0 {
+ 				if isUnion {
+ 					checked[name] = true
+--- a/packages/tsc-go/internal/checker/nodebuilder_hover.go
++++ b/packages/tsc-go/internal/checker/nodebuilder_hover.go
+@@ -60,7 +60,7 @@
+ 			b.ctx.expansionTruncated = true
+ 			members = append(members, b.f.NewEnumMember(b.f.NewStringLiteral(fmt.Sprintf(" ... %d more ... ", len(memberProps)-i-1), 0), nil))
+ 			last := memberProps[len(memberProps)-1]
+-			members = append(members, b.f.NewEnumMember(b.f.NewIdentifier(last.Name), b.enumMemberInitializer(last)))
++			members = append(members, b.f.NewEnumMember(b.f.NewIdentifier(last.Name.String()), b.enumMemberInitializer(last)))
+ 			break
+ 		}
+ 		memberDecl := core.Find(p.Declarations, ast.IsEnumMember)
+@@ -70,11 +70,11 @@
+ 		} else {
+ 			initializer = b.enumMemberInitializer(p)
+ 		}
+-		b.ctx.approximateLength += 4 + len(p.Name)
++		b.ctx.approximateLength += 4 + len(p.Name.String())
+ 		if initializer != nil {
+ 			b.ctx.approximateLength += 5 // " = " + value estimate
+ 		}
+-		members = append(members, b.f.NewEnumMember(b.f.NewIdentifier(p.Name), initializer))
++		members = append(members, b.f.NewEnumMember(b.f.NewIdentifier(p.Name.String()), initializer))
+ 	}
+ 
+ 	constModifier := ast.ModifierFlagsNone
+@@ -151,7 +151,7 @@
+ 
+ 	// Static members
+ 	staticProps := core.Filter(b.ch.getPropertiesOfType(staticType), func(p *ast.Symbol) bool {
+-		return p.Flags&ast.SymbolFlagsPrototype == 0 && p.Name != "prototype" && !b.isNamespaceMember(p)
++		return p.Flags&ast.SymbolFlagsPrototype == 0 && p.Name.String() != "prototype" && !b.isNamespaceMember(p)
+ 	})
+ 	var staticMembers []*ast.Node
+ 	staticMembers = b.serializePropertiesWithTruncation(staticProps, staticMembers)
+@@ -417,7 +417,7 @@
+ 		if !b.isNamespaceMember(sym) {
+ 			continue
+ 		}
+-		if !scanner.IsIdentifierText(sym.Name, core.LanguageVariantStandard) {
++		if !scanner.IsIdentifierText(sym.Name.String(), core.LanguageVariantStandard) {
+ 			continue
+ 		}
+ 		members = append(members, sym)
+@@ -456,24 +456,24 @@
+ 				if target.Flags&(ast.SymbolFlagsBlockScopedVariable|ast.SymbolFlagsFunctionScopedVariable|ast.SymbolFlagsProperty) != 0 {
+ 					if emittedLocals.AddIfAbsent(target) {
+ 						localType := b.ch.getWidenedType(b.ch.getTypeOfSymbol(target))
+-						b.ctx.approximateLength += len(target.Name) + 5
++						b.ctx.approximateLength += len(target.Name.String()) + 5
+ 						localStmt := b.f.NewVariableStatement(nil,
+ 							b.f.NewVariableDeclarationList(b.f.NewNodeList([]*ast.Node{
+-								b.f.NewVariableDeclaration(b.f.NewIdentifier(target.Name), nil, b.serializeTypeForDeclaration(nil, localType, target, true), nil),
++								b.f.NewVariableDeclaration(b.f.NewIdentifier(target.Name.String()), nil, b.serializeTypeForDeclaration(nil, localType, target, true), nil),
+ 							}), ast.NodeFlagsLet))
+ 						bodyStmts = append(bodyStmts, hoverStatement{node: localStmt, isLocal: true})
+ 					}
+ 				}
+-				targetName := target.Name
+-				b.ctx.approximateLength += 16 + len(m.Name)
++				targetName := target.Name.String()
++				b.ctx.approximateLength += 16 + len(m.Name.String())
+ 				var propertyName *ast.Node
+-				if m.Name != targetName {
++				if m.Name.String() != targetName {
+ 					propertyName = b.f.NewIdentifier(targetName)
+ 				}
+ 				stmt := b.f.NewExportDeclaration(
+ 					nil, false,
+ 					b.f.NewNamedExports(b.f.NewNodeList([]*ast.Node{
+-						b.f.NewExportSpecifier(false, propertyName, b.f.NewIdentifier(m.Name)),
++						b.f.NewExportSpecifier(false, propertyName, b.f.NewIdentifier(m.Name.String())),
+ 					})),
+ 					nil, nil,
+ 				)
+@@ -491,7 +491,7 @@
+ 			for _, sig := range sigs {
+ 				b.ctx.approximateLength++
+ 				decl := b.signatureToSignatureDeclarationHelper(sig, ast.KindFunctionDeclaration, &SignatureToSignatureDeclarationOptions{
+-					name: b.f.NewIdentifier(m.Name),
++					name: b.f.NewIdentifier(m.Name.String()),
+ 				})
+ 				bodyStmts = append(bodyStmts, hoverStatement{node: decl})
+ 			}
+@@ -499,13 +499,13 @@
+ 			merged := b.ch.getMergedSymbol(resolved)
+ 			hasModuleExports := merged.Flags&(ast.SymbolFlagsValueModule|ast.SymbolFlagsNamespaceModule) != 0 && merged.Exports != nil && len(merged.Exports) != 0
+ 			if !hasModuleExports {
+-				bodyStmts = append(bodyStmts, hoverStatement{node: b.f.NewModuleDeclaration(nil, ast.KindNamespaceKeyword, b.f.NewIdentifier(m.Name), b.f.NewModuleBlock(b.f.NewNodeList(nil)))})
++				bodyStmts = append(bodyStmts, hoverStatement{node: b.f.NewModuleDeclaration(nil, ast.KindNamespaceKeyword, b.f.NewIdentifier(m.Name.String()), b.f.NewModuleBlock(b.f.NewNodeList(nil)))})
+ 			}
+ 			continue
+ 		}
+ 
+ 		// Handle remaining member kinds (type alias, enum, class, interface, namespace, variable)
+-		if node := b.serializeNamespaceMember(resolved, m.Name); node != nil {
++		if node := b.serializeNamespaceMember(resolved, m.Name.String()); node != nil {
+ 			bodyStmts = append(bodyStmts, hoverStatement{node: node})
+ 		}
+ 	}
+@@ -567,15 +567,15 @@
+ 	// Build a lookup from property name to symbol for parent-identity comparison.
+ 	propsByName := make(map[string]*ast.Symbol, len(properties))
+ 	for _, p := range properties {
+-		propsByName[p.Name] = p
++		propsByName[p.Name.String()] = p
+ 	}
+ 	// Collect names of properties inherited unchanged from base types.
+ 	var inherited collections.Set[string]
+ 	for _, base := range baseTypes {
+ 		baseWithThis := b.ch.getTypeWithThisArgument(base, b.ch.getTargetType(t).AsInterfaceType().thisType, false)
+ 		for _, prop := range b.ch.getPropertiesOfType(baseWithThis) {
+-			if existing, ok := propsByName[prop.Name]; ok && prop.Parent == existing.Parent {
+-				inherited.Add(prop.Name)
++			if existing, ok := propsByName[prop.Name.String()]; ok && prop.Parent == existing.Parent {
++				inherited.Add(prop.Name.String())
+ 			}
+ 		}
+ 	}
+@@ -583,13 +583,13 @@
+ 		return properties
+ 	}
+ 	return core.Filter(properties, func(p *ast.Symbol) bool {
+-		return !inherited.Has(p.Name)
++		return !inherited.Has(p.Name.String())
+ 	})
+ }
+ 
+ func (b *NodeBuilderImpl) isNamespaceMember(p *ast.Symbol) bool {
+ 	return p.Flags&(ast.SymbolFlagsType|ast.SymbolFlagsNamespace|ast.SymbolFlagsAlias) != 0 ||
+-		!(p.Flags&ast.SymbolFlagsPrototype != 0 || p.Name == "prototype" || (p.ValueDeclaration != nil && ast.HasStaticModifier(p.ValueDeclaration) && ast.IsClassLike(p.ValueDeclaration.Parent)))
++		!(p.Flags&ast.SymbolFlagsPrototype != 0 || p.Name.String() == "prototype" || (p.ValueDeclaration != nil && ast.HasStaticModifier(p.ValueDeclaration) && ast.IsClassLike(p.ValueDeclaration.Parent)))
+ }
+ 
+ func isHashPrivate(s *ast.Symbol) bool {
+--- a/packages/tsc-go/internal/checker/nodebuilderimpl.go
++++ b/packages/tsc-go/internal/checker/nodebuilderimpl.go
+@@ -628,7 +628,7 @@
+ 
+ // TODO: Audit usages of symbolToEntityNameNode - they should probably all be symbolToName
+ func (b *NodeBuilderImpl) symbolToEntityNameNode(symbol *ast.Symbol) *ast.EntityName {
+-	identifier := b.newIdentifier(symbol.Name, symbol)
++	identifier := b.newIdentifier(symbol.Name.String(), symbol)
+ 	if symbol.Parent != nil {
+ 		return b.f.NewQualifiedName(b.symbolToEntityNameNode(symbol.Parent), identifier)
+ 	}
+@@ -700,7 +700,7 @@
+ 				// If ultimately we can only name the symbol with a reference that dives into a `node_modules` folder, we should error
+ 				// since declaration files with these kinds of references are liable to fail when published :(
+ 				b.ctx.encounteredError = true
+-				b.ctx.tracker.ReportLikelyUnsafeImportRequiredError(oldSpecifier, symbol.Name)
++				b.ctx.tracker.ReportLikelyUnsafeImportRequiredError(oldSpecifier, symbol.Name.String())
+ 			}
+ 		}
+ 
+@@ -772,13 +772,13 @@
+ 			if exports != nil {
+ 				// avoid exhaustive iteration in the common case
+ 				res, ok := exports[symbol.Name]
+-				if symbol.Name != ast.InternalSymbolNameExportEquals && !isLateBoundName(symbol.Name) && ok && res != nil && b.ch.getSymbolIfSameReference(res, symbol) != nil {
+-					symbolName = symbol.Name
++				if symbol.Name.String() != ast.InternalSymbolNameExportEquals && !isLateBoundName(symbol.Name.String()) && ok && res != nil && b.ch.getSymbolIfSameReference(res, symbol) != nil {
++					symbolName = symbol.Name.String()
+ 				} else {
+ 					results := make(map[*ast.Symbol]string, 1)
+ 					for name, ex := range exports {
+-						if b.ch.getSymbolIfSameReference(ex, symbol) != nil && !isLateBoundName(name) && name != ast.InternalSymbolNameExportEquals {
+-							results[ex] = name
++						if b.ch.getSymbolIfSameReference(ex, symbol) != nil && !isLateBoundName(name.String()) && name.String() != ast.InternalSymbolNameExportEquals {
++							results[ex] = name.String()
+ 							// break // must collect all results and sort them - exports are randomly iterated
+ 						}
+ 					}
+@@ -969,7 +969,7 @@
+ 	if ok {
+ 		symbol = result
+ 	}
+-	if symbol.Name == ast.InternalSymbolNameDefault && (b.ctx.flags&nodebuilder.FlagsUseAliasDefinedOutsideCurrentScope == 0) &&
++	if symbol.Name.String() == ast.InternalSymbolNameDefault && (b.ctx.flags&nodebuilder.FlagsUseAliasDefinedOutsideCurrentScope == 0) &&
+ 		// If it's not the first part of an entity name, it must print as `default`
+ 		((b.ctx.flags&nodebuilder.FlagsInInitialEntityName == 0) ||
+ 			// if the symbol is synthesized, it will only be referenced externally it must print as `default`
+@@ -1015,11 +1015,13 @@
+ 	if len(name) > 0 {
+ 		return name
+ 	}
+-	return ast.EscapeInternalSymbolName(symbol.Name)
+-}
+-
+-// The full set of type parameters for a generic class or interface type consists of its outer type parameters plus
+-// its locally declared type parameters.
++	return ast.EscapeInternalSymbolName(symbol.Name.String(
++
++	// The full set of type parameters for a generic class or interface type consists of its outer type parameters plus
++	// its locally declared type parameters.
++	))
++}
++
+ func (b *NodeBuilderImpl) getTypeParametersOfClassOrInterface(symbol *ast.Symbol) []*Type {
+ 	result := make([]*Type, 0)
+ 	result = append(result, b.ch.getOuterTypeParametersOfClassOrInterface(symbol)...)
+@@ -1105,7 +1107,7 @@
+ 				parentChain := b.getSymbolChain(parent, getQualifiedLeftMeaning(meaning), false, yieldModuleSymbol)
+ 				if len(parentChain) > 0 {
+ 					if parent.Exports != nil {
+-						exported, ok := parent.Exports[ast.InternalSymbolNameExportEquals]
++						exported, ok := parent.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]
+ 						if ok && b.ch.getSymbolIfSameReference(exported, symbol) != nil {
+ 							// parentChain root _is_ symbol - symbol is a module export=, so it kinda looks like it's own parent
+ 							// No need to lookup an alias for the symbol in itself
+@@ -1252,13 +1254,13 @@
+ 	}
+ 
+ 	if file == nil {
+-		if ast.IsAmbientModuleSymbolName(symbol.Name) {
+-			return stringutil.StripQuotes(symbol.Name)
++		if ast.IsAmbientModuleSymbolName(symbol.Name.String()) {
++			return stringutil.StripQuotes(symbol.Name.String())
+ 		}
+ 	}
+ 	if b.ctx.enclosingFile == nil {
+-		if ast.IsAmbientModuleSymbolName(symbol.Name) {
+-			return stringutil.StripQuotes(symbol.Name)
++		if ast.IsAmbientModuleSymbolName(symbol.Name.String()) {
++			return stringutil.StripQuotes(symbol.Name.String())
+ 		}
+ 		return ast.GetSourceFileOfModule(symbol).FileName()
+ 	}
+@@ -1678,13 +1680,13 @@
+ 		parameterTypeNode,
+ 		/*initializer*/ nil,
+ 	)
+-	b.ctx.approximateLength += len(parameterSymbol.Name) + 3
++	b.ctx.approximateLength += len(parameterSymbol.Name.String()) + 3
+ 	return parameterNode
+ }
+ 
+ func (b *NodeBuilderImpl) parameterToParameterDeclarationName(parameterSymbol *ast.Symbol, parameterDeclaration *ast.Node) *ast.Node {
+ 	if parameterDeclaration == nil || parameterDeclaration.Name() == nil {
+-		return b.newIdentifier(parameterSymbol.Name, parameterSymbol)
++		return b.newIdentifier(parameterSymbol.Name.String(), parameterSymbol)
+ 	}
+ 
+ 	name := parameterDeclaration.Name()
+@@ -2412,7 +2414,7 @@
+ 		return fromNameType
+ 	}
+ 
+-	name := symbol.Name
++	name := symbol.Name.String()
+ 	const privateNamePrefix = ast.InternalSymbolNamePrefix + "#"
+ 	if strings.HasPrefix(name, privateNamePrefix) {
+ 		// symbol IDs are unstable - replace #nnn# with #private#
+@@ -2466,7 +2468,7 @@
+ 	}
+ 	saveEnclosingDeclaration := b.ctx.enclosingDeclaration
+ 	b.ctx.enclosingDeclaration = nil
+-	if isLateBoundName(propertySymbol.Name) {
++	if isLateBoundName(propertySymbol.Name.String()) {
+ 		if len(propertySymbol.Declarations) > 0 {
+ 			decl := propertySymbol.Declarations[0]
+ 			if b.ch.hasLateBindableName(decl) {
+@@ -2635,7 +2637,7 @@
+ 				continue
+ 			}
+ 			if getDeclarationModifierFlagsFromSymbol(propertySymbol)&(ast.ModifierFlagsPrivate|ast.ModifierFlagsProtected) != 0 {
+-				b.ctx.tracker.ReportPrivateInBaseOfClassExpression(propertySymbol.Name)
++				b.ctx.tracker.ReportPrivateInBaseOfClassExpression(propertySymbol.Name.String())
+ 			}
+ 			if IsPrivateIdentifierSymbol(propertySymbol) {
+ 				b.ctx.tracker.ReportPrivateInBaseOfClassExpression(ast.SymbolName(propertySymbol))
+@@ -3334,7 +3336,7 @@
+ 		if !b.shouldExpandType(t, true /*isAlias*/) {
+ 			sym := t.alias.Symbol()
+ 			typeArgumentNodes := b.mapToTypeNodes(t.alias.TypeArguments(), false /*isBareList*/)
+-			if isReservedMemberName(sym.Name) && sym.Flags&ast.SymbolFlagsClass == 0 {
++			if isReservedMemberName(sym.Name.String()) && sym.Flags&ast.SymbolFlagsClass == 0 {
+ 				return b.f.NewTypeReferenceNode(b.f.NewIdentifier(""), typeArgumentNodes)
+ 			}
+ 			if typeArgumentNodes != nil && len(typeArgumentNodes.Nodes) == 1 && sym == b.ch.globalArrayType.symbol {
+@@ -3391,8 +3393,8 @@
+ 		}
+ 		if b.ctx.flags&nodebuilder.FlagsGenerateNamesForShadowedTypeParams != 0 && t.flags&TypeFlagsTypeParameter != 0 {
+ 			name := b.typeParameterToName(t)
+-			b.ctx.approximateLength += len(name.Text)
+-			return b.f.NewTypeReferenceNode(b.newIdentifier(name.Text, t.symbol), nil /*typeArguments*/)
++			b.ctx.approximateLength += len(name.Text.String())
++			return b.f.NewTypeReferenceNode(b.newIdentifier(name.Text.String(), t.symbol), nil /*typeArguments*/)
+ 		}
+ 		// Ignore constraint/default when creating a usage (as opposed to declaration) of a type parameter.
+ 		if t.symbol != nil {
+--- a/packages/tsc-go/internal/checker/nodebuilderscopes.go
++++ b/packages/tsc-go/internal/checker/nodebuilderscopes.go
+@@ -126,14 +126,14 @@
+ 			addAll(func(name string, symbol *ast.Symbol) {
+ 				// Add cleanup information only if we don't own the fake scope
+ 				if existingFakeScope != nil {
+-					oldSymbol, ok := locals[name]
++					oldSymbol, ok := locals[ast.MakeName(name)]
+ 					if !ok || oldSymbol == nil {
+ 						newLocals = append(newLocals, name)
+ 					} else {
+ 						oldLocals = append(oldLocals, localsRecord{name, oldSymbol})
+ 					}
+ 				}
+-				locals[name] = symbol
++				locals[ast.MakeName(name)] = symbol
+ 			})
+ 
+ 			if existingFakeScope == nil {
+@@ -150,10 +150,10 @@
+ 				// We did not create the current scope, so we have to clean it up
+ 				undo := func() {
+ 					for _, s := range newLocals {
+-						delete(locals, s)
++						delete(locals, ast.MakeName(s))
+ 					}
+ 					for _, s := range oldLocals {
+-						locals[s.name] = s.oldSymbol
++						locals[ast.MakeName(s.name)] = s.oldSymbol
+ 					}
+ 				}
+ 				return undo
+@@ -175,7 +175,7 @@
+ 					if originalParameters != nil && originalParam != param {
+ 						// Can't reference the expanded parameter name, just the original, unless we've expanded the param list for some reason
+ 						if originalParam != nil {
+-							add(originalParam.Name, originalParam)
++							add(originalParam.Name.String(), originalParam)
+ 						}
+ 					} else if !core.Some(param.Declarations, func(d *ast.Node) bool {
+ 						var bindElement func(e *ast.BindingElement)
+@@ -202,7 +202,7 @@
+ 							}
+ 							symbol := b.ch.getSymbolOfDeclaration(e.AsNode())
+ 							if symbol != nil { // omitted expressions are now parsed as nameless binding patterns and also have no symbol
+-								add(symbol.Name, symbol)
++								add(symbol.Name.String(), symbol)
+ 							}
+ 						}
+ 						bindElement = bindElementWorker
+@@ -214,7 +214,7 @@
+ 						}
+ 						return false
+ 					}) {
+-						add(param.Name, param)
++						add(param.Name.String(), param)
+ 					}
+ 				}
+ 			})
+@@ -229,7 +229,7 @@
+ 					if typeParam == nil {
+ 						continue
+ 					}
+-					typeParamName := b.typeParameterToName(typeParam).Text
++					typeParamName := b.typeParameterToName(typeParam).Text.String()
+ 					add(typeParamName, typeParam.symbol)
+ 				}
+ 			})
+--- a/packages/tsc-go/internal/checker/nodecopy.go
++++ b/packages/tsc-go/internal/checker/nodecopy.go
+@@ -544,7 +544,7 @@
+ 		// if node.Kind == ast.KindJSDocFunctionType {} // !!! no longer exists
+ 		// End JSDoc handling
+ 
+-		if ast.IsTypeReferenceNode(node) && ast.IsIdentifier(node.AsTypeReferenceNode().TypeName) && node.AsTypeReferenceNode().TypeName.AsIdentifier().Text == "" {
++		if ast.IsTypeReferenceNode(node) && ast.IsIdentifier(node.AsTypeReferenceNode().TypeName) && node.AsTypeReferenceNode().TypeName.AsIdentifier().Text.String() == "" {
+ 			replacement := factory.NewKeywordTypeNode(ast.KindAnyKeyword)
+ 			b.e.SetOriginal(replacement, node)
+ 			return replacement
+--- a/packages/tsc-go/internal/checker/pending_members.go
++++ b/packages/tsc-go/internal/checker/pending_members.go
+@@ -75,14 +75,14 @@
+ 	if !ok || p.state(i) == pendingMemberSkipped {
+ 		return nil
+ 	}
+-	if known := p.instantiated[name]; known != nil {
++	if known := p.instantiated[ast.MakeName(name)]; known != nil {
+ 		return known
+ 	}
+ 	symbol := p.memberAt(i)
+ 	if p.instantiated == nil {
+ 		p.instantiated = make(ast.SymbolTable)
+ 	}
+-	p.instantiated[name] = symbol
++	p.instantiated[ast.MakeName(name)] = symbol
+ 	return symbol
+ }
+ 
+@@ -111,7 +111,7 @@
+ 			}
+ 		} else {
+ 			for _, symbol := range base.properties {
+-				if symbol.Name == name {
++				if symbol.Name.String() == name {
+ 					inherited = symbol
+ 					break
+ 				}
+@@ -132,7 +132,7 @@
+ 			continue
+ 		}
+ 		var symbol *ast.Symbol
+-		if p.source.positions[source.Name] == i {
++		if p.source.positions[source.Name.String()] == i {
+ 			symbol = p.memberAt(i)
+ 		} else if state == pendingMemberKept {
+ 			symbol = source
+@@ -192,8 +192,8 @@
+ 	if !hasMemberNames(names, properties) {
+ 		names = &memberNames{names: make([]string, len(properties)), positions: make(map[string]int, len(properties))}
+ 		for i, symbol := range properties {
+-			names.names[i] = symbol.Name
+-			names.positions[symbol.Name] = i
++			names.names[i] = symbol.Name.String()
++			names.positions[symbol.Name.String()] = i
+ 		}
+ 		p.source.lastMemberNames = names
+ 	}
+@@ -217,7 +217,7 @@
+ 		return false
+ 	}
+ 	for i, symbol := range properties {
+-		if names.names[i] != symbol.Name {
++		if names.names[i] != symbol.Name.String() {
+ 			return false
+ 		}
+ 	}
+@@ -250,15 +250,15 @@
+ 	if entries == nil {
+ 		names := make([]string, 0, len(table))
+ 		for name, symbol := range table {
+-			if name != symbol.Name {
++			if name.String() != symbol.Name.String() {
+ 				return nil
+ 			}
+-			names = append(names, name)
++			names = append(names, name.String())
+ 		}
+ 		slices.Sort(names)
+ 		entries = &instantiatedMemberSource{entries: make([]*ast.Symbol, len(names)), positions: make(map[string]int, len(names))}
+ 		for i, name := range names {
+-			entries.entries[i] = table[name]
++			entries.entries[i] = table[ast.MakeName(name)]
+ 			entries.positions[name] = i
+ 		}
+ 		source.instantiatedMemberSource = entries
+@@ -266,8 +266,10 @@
+ 	p := &pendingInstantiatedMembers{checker: c, source: entries, mapper: mapper, states: make([]uint32, (len(entries.entries)+15)/16)}
+ 	for i, symbol := range entries.entries {
+ 		state := pendingMemberSkipped
+-		if c.isNamedMember(symbol, symbol.Name) {
+-			// An alias can be replaced by an inherited value. Keep such tables eager.
++		if c.isNamedMember(symbol, symbol.Name.String(
++		// An alias can be replaced by an inherited value. Keep such tables eager.
++		)) {
++
+ 			if symbol.Flags&ast.SymbolFlagsValue == 0 {
+ 				return nil
+ 			}
+@@ -299,7 +301,7 @@
+ 	if source == nil {
+ 		source = &instantiatedMemberSource{entries: list, positions: make(map[string]int, len(list))}
+ 		for i, symbol := range list {
+-			source.positions[symbol.Name] = i
++			source.positions[symbol.Name.String()] = i
+ 		}
+ 		if c.instantiatedMemberLists == nil {
+ 			c.instantiatedMemberLists = make(map[instantiatedMemberListKey]*instantiatedMemberSource)
+@@ -324,7 +326,7 @@
+ 	if p := t.pendingMembers; p != nil {
+ 		return p.get(name)
+ 	}
+-	return t.members[name]
++	return t.members[ast.MakeName(name)]
+ }
+ 
+ func hasResolvedProperties(t *StructuredType) bool {
+--- a/packages/tsc-go/internal/checker/pseudotypenodebuilder.go
++++ b/packages/tsc-go/internal/checker/pseudotypenodebuilder.go
+@@ -434,7 +434,7 @@
+ 			var targetProp *ast.Symbol
+ 			elemSymbol := e.Name.Parent.Symbol()
+ 			if elemSymbol != nil {
+-				targetProp = b.ch.getPropertyOfType(undefinedStripped, elemSymbol.Name)
++				targetProp = b.ch.getPropertyOfType(undefinedStripped, elemSymbol.Name.String())
+ 			}
+ 			if targetProp == nil {
+ 				// Name lookup failed or returned no result; search target properties
+--- a/packages/tsc-go/internal/checker/relater.go
++++ b/packages/tsc-go/internal/checker/relater.go
+@@ -288,7 +288,7 @@
+ 	if s&TypeFlagsESSymbolLike != 0 && t&TypeFlagsESSymbol != 0 {
+ 		return true
+ 	}
+-	if s&TypeFlagsEnum != 0 && t&TypeFlagsEnum != 0 && source.symbol.Name == target.symbol.Name && c.isEnumTypeRelatedTo(source.symbol, target.symbol, errorReporter) {
++	if s&TypeFlagsEnum != 0 && t&TypeFlagsEnum != 0 && source.symbol.Name.String() == target.symbol.Name.String() && c.isEnumTypeRelatedTo(source.symbol, target.symbol, errorReporter) {
+ 		return true
+ 	}
+ 	if s&TypeFlagsEnumLiteral != 0 && t&TypeFlagsEnumLiteral != 0 {
+@@ -337,7 +337,7 @@
+ 	if sourceSymbol == targetSymbol {
+ 		return true
+ 	}
+-	if sourceSymbol.Name != targetSymbol.Name || sourceSymbol.Flags&ast.SymbolFlagsRegularEnum == 0 || targetSymbol.Flags&ast.SymbolFlagsRegularEnum == 0 {
++	if sourceSymbol.Name.String() != targetSymbol.Name.String() || sourceSymbol.Flags&ast.SymbolFlagsRegularEnum == 0 || targetSymbol.Flags&ast.SymbolFlagsRegularEnum == 0 {
+ 		return false
+ 	}
+ 	key := EnumRelationKey{sourceId: ast.GetSymbolId(sourceSymbol), targetId: ast.GetSymbolId(targetSymbol)}
+@@ -347,7 +347,7 @@
+ 	targetEnumType := c.getTypeOfSymbol(targetSymbol)
+ 	for _, sourceProperty := range c.getPropertiesOfType(c.getTypeOfSymbol(sourceSymbol)) {
+ 		if sourceProperty.Flags&ast.SymbolFlagsEnumMember != 0 {
+-			targetProperty := c.getPropertyOfType(targetEnumType, sourceProperty.Name)
++			targetProperty := c.getPropertyOfType(targetEnumType, sourceProperty.Name.String())
+ 			if targetProperty == nil || targetProperty.Flags&ast.SymbolFlagsEnumMember == 0 {
+ 				if errorReporter != nil {
+ 					errorReporter(diagnostics.Property_0_is_missing_in_type_1, c.symbolToString(sourceProperty), c.TypeToStringEx(c.getDeclaredTypeOfSymbol(targetSymbol), nil /*enclosingDeclaration*/, TypeFormatFlagsUseFullyQualifiedType, nil))
+@@ -746,7 +746,7 @@
+ 
+ func (c *Checker) hasCommonProperties(source *Type, target *Type, isComparingJsxAttributes bool) bool {
+ 	for _, prop := range c.getPropertiesOfType(source) {
+-		if c.isKnownProperty(target, prop.Name, isComparingJsxAttributes) {
++		if c.isKnownProperty(target, prop.Name.String(), isComparingJsxAttributes) {
+ 			return true
+ 		}
+ 	}
+@@ -1050,7 +1050,7 @@
+ 	if !requireOptionalProperties && (targetProp.Flags&ast.SymbolFlagsOptional != 0 || targetProp.CheckFlags&ast.CheckFlagsPartial != 0) {
+ 		return false
+ 	}
+-	sourceProp := c.getPropertyOfType(source, targetProp.Name)
++	sourceProp := c.getPropertyOfType(source, targetProp.Name.String())
+ 	if sourceProp == nil {
+ 		return true
+ 	}
+@@ -1072,7 +1072,7 @@
+ 	var reduced []*ast.Symbol
+ 	var excluded bool
+ 	for i, prop := range properties {
+-		if !excludedProperties.Has(prop.Name) {
++		if !excludedProperties.Has(prop.Name.String()) {
+ 			if excluded {
+ 				reduced = append(reduced, prop)
+ 			}
+@@ -1098,7 +1098,7 @@
+ }
+ 
+ func (d *TypeDiscriminator) name(index int) string {
+-	return d.props[index].Name
++	return d.props[index].Name.String()
+ }
+ 
+ func (d *TypeDiscriminator) matches(index int, t *Type) bool {
+@@ -1130,7 +1130,7 @@
+ func (c *Checker) findDiscriminantProperties(sourceProperties []*ast.Symbol, target *Type) []*ast.Symbol {
+ 	var result []*ast.Symbol
+ 	for _, sourceProperty := range sourceProperties {
+-		if c.isDiscriminantProperty(target, sourceProperty.Name) {
++		if c.isDiscriminantProperty(target, sourceProperty.Name.String()) {
+ 			result = append(result, sourceProperty)
+ 		}
+ 	}
+@@ -1214,7 +1214,7 @@
+ 		if t.flags&(TypeFlagsObject|TypeFlagsInstantiableNonPrimitive) != 0 {
+ 			for _, p := range c.getPropertiesOfType(t) {
+ 				if isUnitType(c.getTypeOfSymbol(p)) {
+-					return p.Name
++					return p.Name.String()
+ 				}
+ 			}
+ 		}
+@@ -1982,7 +1982,7 @@
+ func (c *Checker) getParameterNameAtPosition(signature *Signature, pos int) string {
+ 	paramCount := len(signature.parameters) - core.IfElse(signatureHasRestParameter(signature), 1, 0)
+ 	if pos < paramCount {
+-		return signature.parameters[pos].Name
++		return signature.parameters[pos].Name.String()
+ 	}
+ 	restParameter := signature.parameters[paramCount]
+ 	restType := c.getTypeOfSymbol(restParameter)
+@@ -1990,7 +1990,7 @@
+ 		index := pos - paramCount
+ 		return c.getTupleElementLabel(restType.TargetTupleType().elementInfos[index], restParameter, index)
+ 	}
+-	return restParameter.Name
++	return restParameter.Name.String()
+ }
+ 
+ func (c *Checker) getTupleElementLabel(elementInfo TupleElementInfo, restSymbol *ast.Symbol, index int) string {
+@@ -2002,7 +2002,7 @@
+ 	}
+ 	var rootName string
+ 	if restSymbol != nil {
+-		rootName = restSymbol.Name
++		rootName = restSymbol.Name.String()
+ 	} else {
+ 		rootName = "arg"
+ 	}
+@@ -2146,7 +2146,7 @@
+ 	}
+ 	kind := core.IfElse(predicateNode.AssertsModifier != nil, TypePredicateKindAssertsIdentifier, TypePredicateKindIdentifier)
+ 	name := predicateNode.ParameterName.Text()
+-	index := core.FindIndex(signature.parameters, func(p *ast.Symbol) bool { return p.Name == name })
++	index := core.FindIndex(signature.parameters, func(p *ast.Symbol) bool { return p.Name.String() == name })
+ 	return c.newTypePredicate(kind, name, int32(index), t)
+ }
+ 
+@@ -2784,7 +2784,7 @@
+ 	}
+ 	for _, prop := range r.c.getPropertiesOfType(source) {
+ 		if shouldCheckAsExcessProperty(prop, source.symbol) && !isIgnoredJsxProperty(source, prop) {
+-			if !r.c.isKnownProperty(reducedTarget, prop.Name, isComparingJsxAttributes) {
++			if !r.c.isKnownProperty(reducedTarget, prop.Name.String(), isComparingJsxAttributes) {
+ 				if reportErrors {
+ 					// Report error in terms of object types in the target as those are the only ones
+ 					// we check in isKnownProperty.
+@@ -2835,7 +2835,7 @@
+ 				}
+ 				return true
+ 			}
+-			if checkTypes != nil && r.isRelatedTo(r.c.getTypeOfSymbol(prop), r.c.getTypeOfPropertyInTypes(checkTypes, prop.Name), RecursionFlagsBoth, reportErrors) == TernaryFalse {
++			if checkTypes != nil && r.isRelatedTo(r.c.getTypeOfSymbol(prop), r.c.getTypeOfPropertyInTypes(checkTypes, prop.Name.String()), RecursionFlagsBoth, reportErrors) == TernaryFalse {
+ 				if reportErrors {
+ 					r.reportError(diagnostics.Types_of_property_0_are_incompatible, r.c.symbolToString(prop))
+ 				}
+@@ -2877,7 +2877,7 @@
+ }
+ 
+ func isIgnoredJsxProperty(source *Type, sourceProp *ast.Symbol) bool {
+-	return source.objectFlags&ObjectFlagsJsxAttributes != 0 && isHyphenatedJsxName(sourceProp.Name)
++	return source.objectFlags&ObjectFlagsJsxAttributes != 0 && isHyphenatedJsxName(sourceProp.Name.String())
+ }
+ 
+ func (c *Checker) isTypeSubsetOf(source *Type, target *Type) bool {
+@@ -4055,9 +4055,12 @@
+ 	for i, sourceProperty := range sourcePropertiesFiltered {
+ 		sourcePropertyType := r.c.getNonMissingTypeOfSymbol(sourceProperty)
+ 		sourceDiscriminantTypes[i] = sourcePropertyType.Distributed()
+-		excludedProperties.Add(sourceProperty.Name)
+-	}
+-	// Build the cartesian product
++		excludedProperties.Add(sourceProperty.Name.String(
++
++		// Build the cartesian product
++		))
++	}
++
+ 	discriminantCombinations := make([][]*Type, numCombinations)
+ 	for i := range numCombinations {
+ 		combination := make([]*Type, len(sourceDiscriminantTypes))
+@@ -4079,7 +4082,7 @@
+ 		for _, t := range target.Types() {
+ 			for i := range sourcePropertiesFiltered {
+ 				sourceProperty := sourcePropertiesFiltered[i]
+-				targetProperty := r.c.getPropertyOfType(t, sourceProperty.Name)
++				targetProperty := r.c.getPropertyOfType(t, sourceProperty.Name.String())
+ 				if targetProperty == nil {
+ 					continue outer
+ 				}
+@@ -4262,7 +4265,7 @@
+ 	}
+ 	if isObjectLiteralType(target) {
+ 		for _, sourceProp := range excludeProperties(r.c.getPropertiesOfType(source), excludedProperties) {
+-			if r.c.getPropertyOfObjectType(target, sourceProp.Name) == nil {
++			if r.c.getPropertyOfObjectType(target, sourceProp.Name.String()) == nil {
+ 				if reportErrors {
+ 					r.reportError(diagnostics.Property_0_does_not_exist_on_type_1, r.c.symbolToString(sourceProp), r.c.TypeToString(target))
+ 				}
+@@ -4275,7 +4278,7 @@
+ 	properties := r.c.getPropertiesOfType(target)
+ 	numericNamesOnly := isTupleType(source) && isTupleType(target)
+ 	for _, targetProp := range excludeProperties(properties, excludedProperties) {
+-		name := targetProp.Name
++		name := targetProp.Name.String()
+ 		if targetProp.Flags&ast.SymbolFlagsPrototype == 0 && (!numericNamesOnly || isNumericLiteralName(name) || name == "length") && (!optionalsOnly || targetProp.Flags&ast.SymbolFlagsOptional != 0) {
+ 			sourceProp := r.c.getPropertyOfType(source, name)
+ 			if sourceProp != nil && sourceProp != targetProp {
+@@ -4448,7 +4451,7 @@
+ 	}
+ 	result := TernaryTrue
+ 	for _, sourceProp := range sourceProperties {
+-		targetProp := r.c.getPropertyOfObjectType(target, sourceProp.Name)
++		targetProp := r.c.getPropertyOfObjectType(target, sourceProp.Name.String())
+ 		if targetProp == nil {
+ 			return TernaryFalse
+ 		}
+--- a/packages/tsc-go/internal/checker/services.go
++++ b/packages/tsc-go/internal/checker/services.go
+@@ -31,12 +31,14 @@
+ 	// and it doesn't already exists in the symbol table.
+ 	copySymbol := func(symbol *ast.Symbol, meaning ast.SymbolFlags) {
+ 		if symbol.CombinedLocalAndExportSymbolFlags()&meaning != 0 {
+-			id := symbol.Name
++			id := symbol.Name.String(
+ 			// We will copy all symbol regardless of its reserved name because
+ 			// symbolsToArray will check whether the key is a reserved name and
+ 			// it will not copy symbol with reserved name to the array
+-			if _, ok := symbols[id]; !ok {
+-				symbols[id] = symbol
++			)
++
++			if _, ok := symbols[ast.MakeName(id)]; !ok {
++				symbols[ast.MakeName(id)] = symbol
+ 			}
+ 		}
+ 	}
+@@ -55,7 +57,7 @@
+ 				// Similar condition as in `resolveNameHelper`
+ 				if ast.GetDeclarationOfKind(symbol, ast.KindExportSpecifier) == nil &&
+ 					ast.GetDeclarationOfKind(symbol, ast.KindNamespaceExport) == nil &&
+-					symbol.Name != ast.InternalSymbolNameDefault {
++					symbol.Name.String() != ast.InternalSymbolNameDefault {
+ 					copySymbol(symbol, meaning)
+ 				}
+ 			}
+@@ -114,7 +116,7 @@
+ 
+ 	populateSymbols()
+ 
+-	delete(symbols, ast.InternalSymbolNameThis) // Not a symbol, a keyword
++	delete(symbols, ast.MakeName(ast.InternalSymbolNameThis)) // Not a symbol, a keyword
+ 	return symbolsToArray(symbols)
+ }
+ 
+@@ -124,8 +126,8 @@
+ 
+ func (c *Checker) ForEachExportAndPropertyOfModule(moduleSymbol *ast.Symbol, cb func(*ast.Symbol, string)) {
+ 	for key, exportedSymbol := range c.getExportsOfModule(moduleSymbol) {
+-		if !isReservedMemberName(key) {
+-			cb(exportedSymbol, key)
++		if !isReservedMemberName(key.String()) {
++			cb(exportedSymbol, key.String())
+ 		}
+ 	}
+ 
+@@ -145,8 +147,8 @@
+ 		return
+ 	}
+ 	for name, symbol := range c.resolveStructuredTypeMembers(reducedType).Members() {
+-		if c.isNamedMember(symbol, name) {
+-			cb(symbol, name)
++		if c.isNamedMember(symbol, name.String()) {
++			cb(symbol, name.String())
+ 		}
+ 	}
+ }
+@@ -207,7 +209,7 @@
+ 		augmentedProps := c.getAugmentedPropertiesOfType(memberType)
+ 		for _, p := range augmentedProps {
+ 			if _, ok := props[p.Name]; !ok {
+-				prop := c.createUnionOrIntersectionProperty(unionType, p.Name, false /*skipObjectFunctionPropertyAugment*/)
++				prop := c.createUnionOrIntersectionProperty(unionType, p.Name.String(), false /*skipObjectFunctionPropertyAugment*/)
+ 				// May be undefined if the property is private
+ 				if prop != nil {
+ 					props[p.Name] = prop
+@@ -302,7 +304,7 @@
+ 
+ func (c *Checker) TryGetMemberInModuleExports(memberName string, moduleSymbol *ast.Symbol) *ast.Symbol {
+ 	symbolTable := c.getExportsOfModule(moduleSymbol)
+-	return symbolTable[memberName]
++	return symbolTable[ast.MakeName(memberName)]
+ }
+ 
+ func (c *Checker) shouldTreatPropertiesOfExternalModuleAsExports(resolvedExternalModuleType *Type) bool {
+@@ -413,7 +415,7 @@
+ 		return core.MapNonNil(
+ 			c.valueSymbolLinks.Get(symbol).containingType.Types(),
+ 			func(t *Type) *ast.Symbol {
+-				return c.getPropertyOfType(t, symbol.Name)
++				return c.getPropertyOfType(t, symbol.Name.String())
+ 			},
+ 		)
+ 	}
+@@ -519,7 +521,7 @@
+ 	if jsxElementsPresent && jsxModeNeedsExplicitImport {
+ 		jsxNamespace := c.getJsxNamespace(sourceFile.AsNode())
+ 		jsxFragmentFactory := c.GetJsxFragmentFactory(sourceFile.AsNode())
+-		identifierText := identifier.Text
++		identifierText := identifier.Text.String()
+ 		if identifierText == jsxNamespace {
+ 			return true
+ 		}
+@@ -543,13 +545,13 @@
+ 	definition *ast.Identifier,
+ 	symbol *ast.Symbol,
+ ) bool {
+-	identifierText := definition.Text
++	identifierText := definition.Text.String()
+ 	for _, token := range getPossibleSymbolReferenceNodes(sourceFile, identifierText, sourceFile.AsNode()) {
+ 		if !ast.IsIdentifier(token) {
+ 			continue
+ 		}
+ 		id := token.AsIdentifier()
+-		if id == definition || id.Text != identifierText {
++		if id == definition || id.Text.String() != identifierText {
+ 			continue
+ 		}
+ 		refSymbol := c.GetSymbolAtLocation(token)
+@@ -577,14 +579,14 @@
+ 	sourceFile *ast.SourceFile,
+ 	symbol *ast.Symbol,
+ ) []*ast.Node {
+-	identifierText := symbol.Name
++	identifierText := symbol.Name.String()
+ 	var result []*ast.Node
+ 	for _, token := range getPossibleSymbolReferenceNodes(sourceFile, identifierText, sourceFile.AsNode()) {
+ 		if !ast.IsIdentifier(token) {
+ 			continue
+ 		}
+ 		id := token.AsIdentifier()
+-		if id.Text != identifierText {
++		if id.Text.String() != identifierText {
+ 			continue
+ 		}
+ 		refSymbol := c.GetSymbolAtLocation(token)
+@@ -996,14 +998,14 @@
+ }
+ 
+ func (c *Checker) GetFirstTypeArgumentFromKnownType(t *Type) *Type {
+-	if t.objectFlags&ObjectFlagsReference != 0 && t.symbol != nil && isKnownGenericTypeName(t.symbol.Name) {
+-		symbol := c.getGlobalSymbol(t.symbol.Name, ast.SymbolFlagsType, nil)
++	if t.objectFlags&ObjectFlagsReference != 0 && t.symbol != nil && isKnownGenericTypeName(t.symbol.Name.String()) {
++		symbol := c.getGlobalSymbol(t.symbol.Name.String(), ast.SymbolFlagsType, nil)
+ 		if symbol != nil && symbol == t.Target().symbol {
+ 			return core.FirstOrNil(c.getTypeArguments(t))
+ 		}
+ 	}
+-	if t.alias != nil && isKnownGenericTypeName(t.alias.symbol.Name) {
+-		symbol := c.getGlobalSymbol(t.alias.symbol.Name, ast.SymbolFlagsType, nil)
++	if t.alias != nil && isKnownGenericTypeName(t.alias.symbol.Name.String()) {
++		symbol := c.getGlobalSymbol(t.alias.symbol.Name.String(), ast.SymbolFlagsType, nil)
+ 		if symbol != nil && symbol == t.alias.symbol {
+ 			return core.FirstOrNil(t.alias.typeArguments)
+ 		}
+--- a/packages/tsc-go/internal/checker/symbolaccessibility.go
++++ b/packages/tsc-go/internal/checker/symbolaccessibility.go
+@@ -263,7 +263,7 @@
+ 	if fileSymbol == nil || fileSymbol.Exports == nil {
+ 		return nil
+ 	}
+-	exported, ok := fileSymbol.Exports[ast.InternalSymbolNameExportEquals]
++	exported, ok := fileSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]
+ 	if !ok || exported == nil {
+ 		return nil
+ 	}
+@@ -347,7 +347,7 @@
+ 	// Check if container is a thing with an `export=` which points directly at `symbol`, and if so, return
+ 	// the container itself as the alias for the symbol
+ 	if container.Exports != nil {
+-		exportEquals, ok := container.Exports[ast.InternalSymbolNameExportEquals]
++		exportEquals, ok := container.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]
+ 		if ok && exportEquals != nil && c.getSymbolIfSameReference(exportEquals, symbol) != nil {
+ 			return container
+ 		}
+@@ -561,8 +561,8 @@
+ 	// This avoids iterating thousands of non-alias symbols in large tables like globals.
+ 	for _, symbolFromSymbolTable := range c.getSymbolTableAliases(symbols, tableId) {
+ 		// for every non-default, non-export= alias symbol in scope, check if it refers to or can chain to the target symbol
+-		if symbolFromSymbolTable.Name != ast.InternalSymbolNameExportEquals &&
+-			symbolFromSymbolTable.Name != ast.InternalSymbolNameDefault &&
++		if symbolFromSymbolTable.Name.String() != ast.InternalSymbolNameExportEquals &&
++			symbolFromSymbolTable.Name.String() != ast.InternalSymbolNameDefault &&
+ 			!(isUMDExportSymbol(symbolFromSymbolTable) && ctx.enclosingDeclaration != nil && ast.IsExternalModule(ast.GetSourceFileOfNode(ctx.enclosingDeclaration))) &&
+ 			// If `!useOnlyExternalAliasing`, we can use any type of alias to get the name
+ 			(!ctx.useOnlyExternalAliasing || core.Some(symbolFromSymbolTable.Declarations, ast.IsExternalModuleImportEqualsDeclaration)) &&
+@@ -819,7 +819,7 @@
+ 	if len(nameText) == 0 || classSymbol == nil {
+ 		return nil
+ 	}
+-	table := ast.SymbolTable{nameText: classSymbol}
++	table := ast.SymbolTable{ast.MakeName(nameText): classSymbol}
+ 	if c.classExpressionNameTables == nil {
+ 		c.classExpressionNameTables = make(map[ast.NodeId]ast.SymbolTable)
+ 	}
+--- a/packages/tsc-go/internal/checker/utilities.go
++++ b/packages/tsc-go/internal/checker/utilities.go
+@@ -232,7 +232,7 @@
+ }
+ 
+ func hasExportAssignmentSymbol(moduleSymbol *ast.Symbol) bool {
+-	return moduleSymbol.Exports[ast.InternalSymbolNameExportEquals] != nil
++	return moduleSymbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)] != nil
+ }
+ 
+ func isTypeAlias(node *ast.Node) bool {
+@@ -363,7 +363,7 @@
+ 	} else if len(s2.Declarations) != 0 {
+ 		return 1
+ 	}
+-	if r := strings.Compare(s1.Name, s2.Name); r != 0 {
++	if r := strings.Compare(s1.Name.String(), s2.Name.String()); r != 0 {
+ 		return r
+ 	}
+ 	if order != nil {
+@@ -602,7 +602,7 @@
+ 	if s2 == nil {
+ 		return -1
+ 	}
+-	return strings.Compare(s1.Name, s2.Name)
++	return strings.Compare(s1.Name.String(), s2.Name.String())
+ }
+ 
+ func getTypeNameSymbol(t *Type) *ast.Symbol {
+@@ -985,14 +985,14 @@
+ }
+ 
+ func IsKnownSymbol(symbol *ast.Symbol) bool {
+-	return isLateBoundName(symbol.Name)
++	return isLateBoundName(symbol.Name.String())
+ }
+ 
+ func IsPrivateIdentifierSymbol(symbol *ast.Symbol) bool {
+ 	if symbol == nil {
+ 		return false
+ 	}
+-	return strings.HasPrefix(symbol.Name, ast.InternalSymbolNamePrefix+"#")
++	return strings.HasPrefix(symbol.Name.String(), ast.InternalSymbolNamePrefix+"#")
+ }
+ 
+ func isLateBoundName(name string) bool {
+@@ -1163,7 +1163,7 @@
+ }
+ 
+ func getIndexSymbolFromSymbolTable(symbolTable ast.SymbolTable) *ast.Symbol {
+-	return symbolTable[ast.InternalSymbolNameIndex]
++	return symbolTable[ast.MakeName(ast.InternalSymbolNameIndex)]
+ }
+ 
+ // Indicates whether the result of an `Expression` will be unused.
+@@ -1647,7 +1647,7 @@
+ func symbolsToArray(symbols ast.SymbolTable) []*ast.Symbol {
+ 	var result []*ast.Symbol
+ 	for id, symbol := range symbols {
+-		if !isReservedMemberName(id) {
++		if !isReservedMemberName(id.String()) {
+ 			result = append(result, symbol)
+ 		}
+ 	}
+@@ -1663,7 +1663,7 @@
+ 
+ // True if the symbol is for an external module, as opposed to a namespace.
+ func IsExternalModuleSymbol(moduleSymbol *ast.Symbol) bool {
+-	firstRune, _ := utf8.DecodeRuneInString(moduleSymbol.Name)
++	firstRune, _ := utf8.DecodeRuneInString(moduleSymbol.Name.String())
+ 	return moduleSymbol.Flags&ast.SymbolFlagsModule != 0 && firstRune == '"'
+ }
+ 
+--- a/packages/tsc-go/internal/ls/autoimport/export.go
++++ b/packages/tsc-go/internal/ls/autoimport/export.go
+@@ -123,7 +123,7 @@
+ 	if export := tryGetModuleExport(ast.InternalSymbolNameExportEquals, target, moduleSymbol, ch, moduleID, moduleFileName, file); export != nil {
+ 		return export
+ 	}
+-	return tryGetModuleExport(symbol.Name, target, moduleSymbol, ch, moduleID, moduleFileName, file)
++	return tryGetModuleExport(symbol.Name.String(), target, moduleSymbol, ch, moduleID, moduleFileName, file)
+ }
+ 
+ func tryGetModuleExport(exportName string, target *ast.Symbol, moduleSymbol *ast.Symbol, ch *checker.Checker, moduleID ModuleID, moduleFileName string, file *ast.SourceFile) *Export {
+@@ -137,6 +137,6 @@
+ func extractFirstExport(symbol *ast.Symbol, ch *checker.Checker, moduleID ModuleID, moduleFileName string, file *ast.SourceFile) *Export {
+ 	var exports []*Export
+ 	extractor := newSymbolExtractor("", ch, nil, nil)
+-	extractor.extractFromSymbol(symbol.Name, symbol, moduleID, moduleFileName, file, &exports)
++	extractor.extractFromSymbol(symbol.Name.String(), symbol, moduleID, moduleFileName, file, &exports)
+ 	return core.FirstOrNil(exports)
+ }
+--- a/packages/tsc-go/internal/ls/autoimport/extract.go
++++ b/packages/tsc-go/internal/ls/autoimport/extract.go
+@@ -137,7 +137,7 @@
+ 	moduleID := e.getModuleID(file)
+ 	exports := make([]*Export, 0, len(file.Symbol.Exports)+augmentationExportCount)
+ 	for name, symbol := range file.Symbol.Exports {
+-		e.extractFromSymbol(name, symbol, moduleID, file.FileName(), file, &exports)
++		e.extractFromSymbol(name.String(), symbol, moduleID, file.FileName(), file, &exports)
+ 	}
+ 	for _, decl := range moduleAugmentations {
+ 		name := decl.Name().AsStringLiteral().Text
+@@ -160,7 +160,7 @@
+ 
+ func (e *exportExtractor) extractFromModuleDeclaration(decl *ast.ModuleDeclaration, file *ast.SourceFile, moduleID ModuleID, moduleFileName string, exports *[]*Export) {
+ 	for name, symbol := range decl.Symbol.Exports {
+-		e.extractFromSymbol(name, symbol, moduleID, moduleFileName, file, exports)
++		e.extractFromSymbol(name.String(), symbol, moduleID, moduleFileName, file, exports)
+ 	}
+ }
+ 
+@@ -175,7 +175,7 @@
+ 		// allExports includes named exports from the file that will be processed separately;
+ 		// we want to add only the ones that come from the star
+ 		for name, namedExport := range symbol.Parent.Exports {
+-			if name != ast.InternalSymbolNameExportStar {
++			if name.String() != ast.InternalSymbolNameExportStar {
+ 				idx := slices.Index(allExports, namedExport)
+ 				if idx >= 0 || shouldIgnoreSymbol(namedExport) {
+ 					allExports = slices.Delete(allExports, idx, idx+1)
+@@ -191,7 +191,7 @@
+ 				if parent != nil && parent.IsExternalModule() {
+ 					if targetModuleID, ok := e.getModuleIDForSymbol(parent); ok {
+ 						export.Target = ExportID{
+-							ExportName: reexportedSymbol.Name,
++							ExportName: reexportedSymbol.Name.String(),
+ 							ModuleID:   targetModuleID,
+ 						}
+ 					}
+@@ -216,7 +216,7 @@
+ 		if syntax == ExportSyntaxEquals && target.Flags&ast.SymbolFlagsNamespace != 0 {
+ 			*exports = slices.Grow(*exports, len(target.Exports))
+ 			for innerName, namedExport := range target.Exports {
+-				if innerName != ast.InternalSymbolNameExportStar {
++				if innerName.String() != ast.InternalSymbolNameExportStar {
+ 					export, _ := e.createExport(namedExport, moduleID, moduleFileName, syntax, file, checkerLease)
+ 					if export != nil {
+ 						export.through = name
+@@ -234,7 +234,7 @@
+ 			*exports = slices.Grow(*exports, len(expression.AsObjectLiteralExpression().Properties.Nodes))
+ 			for _, prop := range expression.AsObjectLiteralExpression().Properties.Nodes {
+ 				if ast.IsShorthandPropertyAssignment(prop) || ast.IsPropertyAssignment(prop) && prop.AsPropertyAssignment().Name().Kind == ast.KindIdentifier {
+-					export, _ := e.createExport(expression.Symbol().Members[prop.Name().Text()], moduleID, moduleFileName, syntax, file, checkerLease)
++					export, _ := e.createExport(expression.Symbol().Members[prop.Name().NameKey()], moduleID, moduleFileName, syntax, file, checkerLease)
+ 					if export != nil {
+ 						export.through = name
+ 						*exports = append(*exports, export)
+@@ -253,7 +253,7 @@
+ 
+ 	export := &Export{
+ 		ExportID: ExportID{
+-			ExportName: symbol.Name,
++			ExportName: symbol.Name.String(),
+ 			ModuleID:   moduleID,
+ 		},
+ 		ModuleFileName: moduleFileName,
+@@ -265,7 +265,7 @@
+ 
+ 	if syntax == ExportSyntaxUMD {
+ 		export.ExportName = ast.InternalSymbolNameExportEquals
+-		export.localName = symbol.Name
++		export.localName = symbol.Name.String()
+ 	}
+ 
+ 	var targetSymbol *ast.Symbol
+@@ -306,7 +306,7 @@
+ 				}
+ 			}
+ 			export.Target = ExportID{
+-				ExportName: targetSymbol.Name,
++				ExportName: targetSymbol.Name.String(),
+ 				ModuleID:   targetModuleID,
+ 			}
+ 		}
+@@ -315,7 +315,7 @@
+ 		export.ScriptElementKindModifiers = lsutil.GetSymbolModifiers(checkerLease.TryChecker(), symbol)
+ 	}
+ 
+-	if symbol.Name == ast.InternalSymbolNameDefault || symbol.Name == ast.InternalSymbolNameExportEquals {
++	if symbol.Name.String() == ast.InternalSymbolNameDefault || symbol.Name.String() == ast.InternalSymbolNameExportEquals {
+ 		namedSymbol := symbol
+ 		if s := binder.GetLocalSymbolForExportDefault(symbol); s != nil {
+ 			namedSymbol = s
+@@ -371,7 +371,7 @@
+ 		}
+ 	// !!! check if module.exports = foo is marked as an alias
+ 	case ExportSyntaxEquals:
+-		if symbol.Name != ast.InternalSymbolNameExportEquals {
++		if symbol.Name.String() != ast.InternalSymbolNameExportEquals {
+ 			break
+ 		}
+ 		fallthrough
+--- a/packages/tsc-go/internal/ls/autoimport/import_adder.go
++++ b/packages/tsc-go/internal/ls/autoimport/import_adder.go
+@@ -462,7 +462,7 @@
+ // If a type checker and multiple files are available, consider using `forEachNameOfDefaultExport`
+ // instead, which searches for names of re-exported defaults/namespaces in target files.
+ func getNameForExportedSymbol(symbol *ast.Symbol, preferCapitalized bool) string {
+-	if symbol.Name == ast.InternalSymbolNameExportEquals || symbol.Name == ast.InternalSymbolNameDefault {
++	if symbol.Name.String() == ast.InternalSymbolNameExportEquals || symbol.Name.String() == ast.InternalSymbolNameDefault {
+ 		// Names for default exports:
+ 		// - export default foo => foo
+ 		// - export { foo as default } => foo
+@@ -474,7 +474,7 @@
+ 		debug.Assert(symbol.Parent != nil, "Expected exported symbol to have module symbol as parent")
+ 		return lsutil.ModuleSymbolToValidIdentifier(symbol.Parent, preferCapitalized)
+ 	}
+-	return symbol.Name
++	return symbol.Name.String()
+ }
+ 
+ func replaceFirstIdentifierOfEntityName(factory *ast.NodeFactory, name *ast.EntityName, newIdentifier *ast.IdentifierNode) *ast.EntityName {
+--- a/packages/tsc-go/internal/ls/autoimport/util.go
++++ b/packages/tsc-go/internal/ls/autoimport/util.go
+@@ -136,7 +136,7 @@
+ 			return name.Text()
+ 		}
+ 		if symbol.Parent != nil && !checker.IsExternalModuleSymbol(symbol.Parent) {
+-			return symbol.Parent.Name
++			return symbol.Parent.Name.String()
+ 		}
+ 	}
+ 	return ""
+--- a/packages/tsc-go/internal/ls/codeactions_fixclassincorrectlyimplementsinterface.go
++++ b/packages/tsc-go/internal/ls/codeactions_fixclassincorrectlyimplementsinterface.go
+@@ -187,12 +187,12 @@
+ 			if classMembers != nil && classMembers[symbol.Name] != nil {
+ 				continue
+ 			}
+-			if inheritedMembers[symbol.Name] != nil || seenMembers[symbol.Name] != nil {
++			if inheritedMembers[symbol.Name] != nil || seenMembers[symbol.Name.String()] != nil {
+ 				continue
+ 			}
+ 			flags := checker.GetDeclarationModifierFlagsFromSymbol(symbol)
+ 			if flags&ast.ModifierFlagsPrivate == 0 {
+-				seenMembers[symbol.Name] = symbol
++				seenMembers[symbol.Name.String()] = symbol
+ 				missingMembers = append(missingMembers, symbol)
+ 			}
+ 		}
+--- a/packages/tsc-go/internal/ls/codeactions_fixmissingtypeannotation.go
++++ b/packages/tsc-go/internal/ls/codeactions_fixmissingtypeannotation.go
+@@ -260,7 +260,7 @@
+ 
+ 	var newProperties []*ast.Node
+ 	for _, symbol := range elements {
+-		if !scanner.IsIdentifierText(symbol.Name, core.LanguageVariantStandard) {
++		if !scanner.IsIdentifierText(symbol.Name.String(), core.LanguageVariantStandard) {
+ 			continue
+ 		}
+ 		// skip symbols that already have a variable declaration
+@@ -274,7 +274,7 @@
+ 			continue
+ 		}
+ 
+-		varDecl := factory.NewVariableDeclaration(factory.NewIdentifier(symbol.Name), nil, typeNode, nil)
++		varDecl := factory.NewVariableDeclaration(factory.NewIdentifier(symbol.Name.String()), nil, typeNode, nil)
+ 		exportToken := factory.NewToken(ast.KindExportKeyword)
+ 		varDeclList := factory.NewVariableDeclarationList(factory.NewNodeList([]*ast.Node{varDecl}), ast.NodeFlagsNone)
+ 		varStmt := factory.NewVariableStatement(factory.NewModifierList([]*ast.Node{exportToken}), varDeclList)
+@@ -1132,7 +1132,7 @@
+ 		varDecl := ast.FindAncestorKind(node, ast.KindVariableDeclaration)
+ 		partName := ""
+ 		if varDecl != nil && ast.IsIdentifier(varDecl.Name()) {
+-			partName = varDecl.Name().AsIdentifier().Text
++			partName = varDecl.Name().AsIdentifier().Text.String()
+ 		}
+ 		return f.typeFromArraySpreadElements(node.AsArrayLiteralExpression(), partName)
+ 	}
+@@ -1140,7 +1140,7 @@
+ 		varDecl := ast.FindAncestorKind(node, ast.KindVariableDeclaration)
+ 		partName := ""
+ 		if varDecl != nil && ast.IsIdentifier(varDecl.Name()) {
+-			partName = varDecl.Name().AsIdentifier().Text
++			partName = varDecl.Name().AsIdentifier().Text.String()
+ 		}
+ 		return f.typeFromObjectSpreadAssignment(node.AsObjectLiteralExpression(), partName)
+ 	}
+@@ -1383,9 +1383,11 @@
+ 
+ 	// Find the module specifier for this symbol
+ 	moduleSymbol := sym.Parent
+-	symbolName := sym.Name
++	symbolName := sym.Name.String(
+ 
+ 	// Walk the source file's import declarations to find the one importing from the same module
++	)
++
+ 	for _, stmt := range f.sourceFile.Statements.Nodes {
+ 		if !ast.IsImportDeclaration(stmt) {
+ 			continue
+--- a/packages/tsc-go/internal/ls/codeactions_importfixes.go
++++ b/packages/tsc-go/internal/ls/codeactions_importfixes.go
+@@ -258,7 +258,7 @@
+ 		}
+ 		result = append(result, &fixInfo{
+ 			fix:                 fix,
+-			symbolName:          umdSymbol.Name,
++			symbolName:          umdSymbol.Name.String(),
+ 			errorIdentifierText: errorIdentifierText,
+ 		})
+ 	}
+--- a/packages/tsc-go/internal/ls/codeactions_missingmemberfixer.go
++++ b/packages/tsc-go/internal/ls/codeactions_missingmemberfixer.go
+@@ -325,7 +325,7 @@
+ 	maxNonRestArgs := len(maxArgsSignature.Parameters()) - core.IfElse(maxArgsSignature.HasRestParameter(), 1, 0)
+ 	parameterNames := make([]string, 0, len(maxArgsSignature.Parameters()))
+ 	for _, symbol := range maxArgsSignature.Parameters() {
+-		parameterNames = append(parameterNames, symbol.Name)
++		parameterNames = append(parameterNames, symbol.Name.String())
+ 	}
+ 	parameters := createDummyParameters(f.changeTracker.NodeFactory, maxNonRestArgs, parameterNames, nil /*types*/, minArgumentCount, ast.IsInJSFile(enclosingDeclaration))
+ 
+@@ -481,7 +481,7 @@
+ 		return declaration.Name().Clone(factory)
+ 	}
+ 	if symbol != nil {
+-		return factory.NewIdentifier(symbol.Name)
++		return factory.NewIdentifier(symbol.Name.String())
+ 	}
+ 	return nil
+ }
+--- a/packages/tsc-go/internal/ls/completions.go
++++ b/packages/tsc-go/internal/ls/completions.go
+@@ -768,7 +768,7 @@
+ 				moduleSymbol := firstAccessibleSymbol.Parent
+ 				if moduleSymbol == nil ||
+ 					!checker.IsExternalModuleSymbol(moduleSymbol) ||
+-					typeChecker.TryGetMemberInModuleExportsAndProperties(firstAccessibleSymbol.Name, moduleSymbol) != firstAccessibleSymbol {
++					typeChecker.TryGetMemberInModuleExportsAndProperties(firstAccessibleSymbol.Name.String(), moduleSymbol) != firstAccessibleSymbol {
+ 					symbolToOriginInfoMap[len(symbols)-1] = &symbolOriginInfo{kind: getNullableSymbolOriginInfoKind(symbolOriginInfoKindSymbolMember, insertQuestionDot)}
+ 				} else {
+ 					// !!! auto-import symbol
+@@ -868,7 +868,7 @@
+ 							panic("getExporsOfModule() should all be defined")
+ 						}
+ 						isValidValueAccess := func(s *ast.Symbol) bool {
+-							return typeChecker.IsValidPropertyAccess(valueAccessNode, s.Name)
++							return typeChecker.IsValidPropertyAccess(valueAccessNode, s.Name.String())
+ 						}
+ 						isValidTypeAccess := func(s *ast.Symbol) bool {
+ 							return symbolCanBeReferencedAtTypeLocation(s, typeChecker, collections.Set[ast.SymbolId]{})
+@@ -978,12 +978,12 @@
+ 
+ 		existingMemberNames := collections.Set[string]{}
+ 		for _, member := range existingMembers {
+-			existingMemberNames.Add(member.Name)
++			existingMemberNames.Add(member.Name.String())
+ 		}
+ 
+ 		symbols = append(
+ 			symbols,
+-			core.Filter(members, func(member *ast.Symbol) bool { return !existingMemberNames.Has(member.Name) })...,
++			core.Filter(members, func(member *ast.Symbol) bool { return !existingMemberNames.Has(member.Name.String()) })...,
+ 		)
+ 
+ 		completionKind = CompletionKindObjectPropertyDeclaration
+@@ -1098,7 +1098,7 @@
+ 				objectLikeContainer.Kind == ast.KindObjectLiteralExpression
+ 			for _, member := range filteredMembers {
+ 				symbolId := ast.GetSymbolId(member)
+-				if spreadMemberNames.Has(member.Name) {
++				if spreadMemberNames.Has(member.Name.String()) {
+ 					symbolToSortTextMap[symbolId] = SortTextMemberDeclaredBySpreadAssignment
+ 				}
+ 				if member.Flags&ast.SymbolFlagsOptional != 0 {
+@@ -3720,7 +3720,7 @@
+ 		// Try to get the reparsed node first - we may be in JSDoc.
+ 		reparsed := ast.GetReparsedNodeForNode(node)
+ 		if symbol := reparsed.Symbol(); symbol != nil {
+-			return typeChecker.GetTypeOfPropertyOfContextualType(t, symbol.Name)
++			return typeChecker.GetTypeOfPropertyOfContextualType(t, symbol.Name.String())
+ 		}
+ 
+ 		// In some cases, we won't have a corresponding symbol
+@@ -3947,7 +3947,7 @@
+ 	}
+ 
+ 	filteredSymbols := core.Filter(contextualMemberSymbols, func(m *ast.Symbol) bool {
+-		return !existingMemberNames.Has(m.Name)
++		return !existingMemberNames.Has(m.Name.String())
+ 	})
+ 
+ 	return filteredSymbols, membersDeclaredBySpreadAssignment
+@@ -3970,7 +3970,7 @@
+ 		properties = t.AsStructuredType().Properties()
+ 	}
+ 	for _, property := range properties {
+-		members.Add(property.Name)
++		members.Add(property.Name.String())
+ 	}
+ }
+ 
+@@ -4237,7 +4237,7 @@
+ 		}
+ 	}
+ 
+-	return core.Filter(symbols, func(a *ast.Symbol) bool { return !existingNames.Has(a.Name) }),
++	return core.Filter(symbols, func(a *ast.Symbol) bool { return !existingNames.Has(a.Name.String()) }),
+ 		&membersDeclaredBySpreadAssignment
+ }
+ 
+--- a/packages/tsc-go/internal/ls/definition.go
++++ b/packages/tsc-go/internal/ls/definition.go
+@@ -276,7 +276,7 @@
+ 	node = getDeclarationNameForKeyword(node)
+ 	if symbol := c.GetSymbolAtLocation(node); symbol != nil {
+ 		if symbol.Flags&ast.SymbolFlagsClass != 0 && symbol.Flags&(ast.SymbolFlagsFunction|ast.SymbolFlagsVariable) == 0 && node.Kind == ast.KindConstructorKeyword {
+-			if constructor := symbol.Members[ast.InternalSymbolNameConstructor]; constructor != nil {
++			if constructor := symbol.Members[ast.MakeName(ast.InternalSymbolNameConstructor)]; constructor != nil {
+ 				symbol = constructor
+ 			}
+ 		}
+--- a/packages/tsc-go/internal/ls/findallreferences.go
++++ b/packages/tsc-go/internal/ls/findallreferences.go
+@@ -389,10 +389,10 @@
+ 				return nil
+ 			}
+ 			// Assertions for GH#21814. We should be handling SourceFile symbols in `getReferencedSymbolsForModule` instead of getting here.
+-			panic(fmt.Sprintf("Unexpected symbol at %s: %s", node.Kind.String(), symbol.Name))
++			panic(fmt.Sprintf("Unexpected symbol at %s: %s", node.Kind.String(), symbol.Name.String()))
+ 		}
+ 		if decl.Parent.Kind == ast.KindTypeLiteral && decl.Parent.Parent.Kind == ast.KindUnionType {
+-			return checker.GetPropertyOfType(checker.GetTypeFromTypeNode(decl.Parent.Parent), symbol.Name)
++			return checker.GetPropertyOfType(checker.GetTypeFromTypeNode(decl.Parent.Parent), symbol.Name.String())
+ 		}
+ 		return nil
+ 	})
+@@ -1224,7 +1224,7 @@
+ 		return nil
+ 	}
+ 
+-	if symbol.Name == ast.InternalSymbolNameExportEquals {
++	if symbol.Name.String() == ast.InternalSymbolNameExportEquals {
+ 		if symbol.Parent == nil {
+ 			return nil
+ 		}
+@@ -1300,7 +1300,7 @@
+ 	} else {
+ 		return nil
+ 	}
+-	exportEquals := symbol.Exports[ast.InternalSymbolNameExportEquals]
++	exportEquals := symbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]
+ 	// If exportEquals != nil, we're about to add references to `import("mod")` anyway, so don't double-count them.
+ 	moduleReferences := l.getReferencedSymbolsForModule(ctx, program, symbol, exportEquals != nil, sourceFiles, sourceFilesSet)
+ 	if exportEquals == nil || exportEquals.Flags&ast.SymbolFlagsAlias == 0 || !sourceFilesSet.Has(moduleSourceFileName) {
+@@ -1693,7 +1693,7 @@
+ 	}
+ 
+ 	// Handle export equals declarations
+-	exported := symbol.Exports[ast.InternalSymbolNameExportEquals]
++	exported := symbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]
+ 	if exported != nil && len(exported.Declarations) > 0 {
+ 		for _, decl := range exported.Declarations {
+ 			sourceFile := ast.GetSourceFileOfNode(decl)
+@@ -1764,7 +1764,7 @@
+ 	if exportSpecifier != nil {
+ 		// When renaming at an export specifier, rename the export and not the thing being exported.
+ 		state.getReferencesAtExportSpecifier(exportSpecifier.Name(), symbol, exportSpecifier.AsExportSpecifier(), state.createSearch(node, originalSymbol, ImpExpKindUnknown /*comingFrom*/, "", nil), true /*addReferencesHere*/, true /*alwaysGetReferences*/)
+-	} else if node != nil && node.Kind == ast.KindDefaultKeyword && symbol.Name == ast.InternalSymbolNameDefault && symbol.Parent != nil {
++	} else if node != nil && node.Kind == ast.KindDefaultKeyword && symbol.Name.String() == ast.InternalSymbolNameDefault && symbol.Parent != nil {
+ 		state.addReference(node, symbol, entryKindNode)
+ 		state.searchForImportsOfExport(node, symbol, &ExportInfo{exportingModuleSymbol: symbol.Parent, exportKind: ExportKindDefault})
+ 	} else {
+@@ -1931,7 +1931,7 @@
+ 	if classSymbol.Members == nil {
+ 		return nil
+ 	}
+-	return classSymbol.Members[ast.InternalSymbolNameConstructor]
++	return classSymbol.Members[ast.MakeName(ast.InternalSymbolNameConstructor)]
+ }
+ 
+ func hasOwnConstructor(classDeclaration *ast.ClassLikeDeclaration) bool {
+@@ -2500,7 +2500,7 @@
+ 			}
+ 			// Add symbol of properties/methods of the same name in base classes and implemented interfaces definitions
+ 			if rootSymbol.Parent != nil && rootSymbol.Parent.Flags&(ast.SymbolFlagsClass|ast.SymbolFlagsInterface) != 0 && allowBaseTypes(rootSymbol) {
+-				result := getPropertySymbolsFromBaseTypes(rootSymbol.Parent, rootSymbol.Name, state.checker, func(base *ast.Symbol) *ast.Symbol {
++				result := getPropertySymbolsFromBaseTypes(rootSymbol.Parent, rootSymbol.Name.String(), state.checker, func(base *ast.Symbol) *ast.Symbol {
+ 					return cbSymbol(sym, rootSymbol, base)
+ 				})
+ 				if result != nil {
+@@ -2567,7 +2567,7 @@
+ 	}
+ 
+ 	if symbol.ValueDeclaration != nil && ast.IsParameterPropertyDeclaration(symbol.ValueDeclaration, symbol.ValueDeclaration.Parent) {
+-		paramProp1, paramProp2 := state.checker.GetSymbolsOfParameterPropertyDeclaration(symbol.ValueDeclaration, symbol.Name)
++		paramProp1, paramProp2 := state.checker.GetSymbolsOfParameterPropertyDeclaration(symbol.ValueDeclaration, symbol.Name.String())
+ 		debug.Assert(
+ 			paramProp1.Flags&ast.SymbolFlagsFunctionScopedVariable != 0 && paramProp2.Flags&ast.SymbolFlagsClassMember != 0,
+ 			"GetSymbolsOfParameterPropertyDeclaration must return (parameter, member) pair",
+--- a/packages/tsc-go/internal/ls/hover.go
++++ b/packages/tsc-go/internal/ls/hover.go
+@@ -549,7 +549,7 @@
+ 						}
+ 					}
+ 				}
+-				if symbol.Name == ast.InternalSymbolNameExportEquals && symbol.Parent != nil && symbol.Parent.Flags&ast.SymbolFlagsModule != 0 {
++				if symbol.Name.String() == ast.InternalSymbolNameExportEquals && symbol.Parent != nil && symbol.Parent.Flags&ast.SymbolFlagsModule != 0 {
+ 					dpw.Write("exports")
+ 				} else {
+ 					writeSymbolClassified(symbol, container, ast.SymbolFlagsNone, symbolFormatFlags)
+@@ -899,14 +899,14 @@
+ 				// This correctly handles intersection constructor types from mixins
+ 				// (e.g., typeof MixinClass & T) by preserving the full intersection.
+ 				staticBaseType := c.GetApparentType(c.GetBaseConstructorTypeOfClass(classType))
+-				if prop := c.GetPropertyOfType(staticBaseType, symbol.Name); prop != nil && prop.ValueDeclaration != nil {
++				if prop := c.GetPropertyOfType(staticBaseType, symbol.Name.String()); prop != nil && prop.ValueDeclaration != nil {
+ 					if jsDoc := getJSDocOrTag(c, prop.ValueDeclaration); jsDoc != nil {
+ 						return jsDoc
+ 					}
+ 				}
+ 			} else {
+ 				for _, baseType := range c.GetBaseTypes(classType) {
+-					if prop := c.GetPropertyOfType(baseType, symbol.Name); prop != nil && prop.ValueDeclaration != nil {
++					if prop := c.GetPropertyOfType(baseType, symbol.Name.String()); prop != nil && prop.ValueDeclaration != nil {
+ 						if jsDoc := getJSDocOrTag(c, prop.ValueDeclaration); jsDoc != nil {
+ 							return jsDoc
+ 						}
+--- a/packages/tsc-go/internal/ls/importTracker.go
++++ b/packages/tsc-go/internal/ls/importTracker.go
+@@ -356,7 +356,7 @@
+ 
+ 	isNameMatch := func(name string) bool {
+ 		// Use name of "default" even in `export =` case because we may have allowSyntheticDefaultImports
+-		return name == exportSymbol.Name || exportKind != ExportKindNamed && name == ast.InternalSymbolNameDefault
++		return name == exportSymbol.Name.String() || exportKind != ExportKindNamed && name == ast.InternalSymbolNameDefault
+ 	}
+ 
+ 	// `import x = require("./x")` or `import * as x from "./x"`.
+@@ -384,7 +384,7 @@
+ 				singleReferences = append(singleReferences, propertyName)
+ 				// If renaming `{ foo as bar }`, don't touch `bar`, just `foo`.
+ 				// But do rename `foo` in ` { default as foo }` if that's the original export name.
+-				if !isForRename || name.Text() == exportSymbol.Name {
++				if !isForRename || name.Text() == exportSymbol.Name.String() {
+ 					// Search locally for `bar`.
+ 					addSearch(name, checker.GetSymbolAtLocation(name))
+ 				}
+@@ -582,7 +582,7 @@
+ 			return nil
+ 		}
+ 		// Similarly, skip past the symbol for 'export ='
+-		if importedSymbol.Name == "export=" {
++		if importedSymbol.Name.String() == "export=" {
+ 			importedSymbol = getExportEqualsLocalSymbol(importedSymbol, checker)
+ 			if importedSymbol == nil {
+ 				return nil
+@@ -592,7 +592,7 @@
+ 		// If `importedName` is undefined, do continue searching as the export is anonymous.
+ 		// (All imports returned from this function will be ignored anyway if we are in rename and this is a not a named export.)
+ 		importedName := symbolNameNoDefault(importedSymbol)
+-		if importedName == "" || importedName == ast.InternalSymbolNameDefault || importedName == symbol.Name {
++		if importedName == "" || importedName == ast.InternalSymbolNameDefault || importedName == symbol.Name.String() {
+ 			return &ImportExportSymbol{
+ 				kind:   ImpExpKindImport,
+ 				symbol: importedSymbol,
+@@ -699,8 +699,8 @@
+ }
+ 
+ func symbolNameNoDefault(symbol *ast.Symbol) string {
+-	if symbol.Name != ast.InternalSymbolNameDefault {
+-		return symbol.Name
++	if symbol.Name.String() != ast.InternalSymbolNameDefault {
++		return symbol.Name.String()
+ 	}
+ 	for _, decl := range symbol.Declarations {
+ 		name := ast.GetNameOfDeclaration(decl)
+--- a/packages/tsc-go/internal/ls/inlay_hints.go
++++ b/packages/tsc-go/internal/ls/inlay_hints.go
+@@ -866,7 +866,7 @@
+ 	if pos == paramCount {
+ 		return &parameterInfo{
+ 			parameter:       restId,
+-			name:            restParameter.Name,
++			name:            restParameter.Name.String(),
+ 			isRestParameter: true,
+ 		}
+ 	}
+--- a/packages/tsc-go/internal/ls/lsutil/utilities.go
++++ b/packages/tsc-go/internal/ls/lsutil/utilities.go
+@@ -114,7 +114,7 @@
+ }
+ 
+ func ModuleSymbolToValidIdentifier(moduleSymbol *ast.Symbol, forceCapitalize bool) string {
+-	return ModuleSpecifierToValidIdentifier(stringutil.StripQuotes(moduleSymbol.Name), forceCapitalize)
++	return ModuleSpecifierToValidIdentifier(stringutil.StripQuotes(moduleSymbol.Name.String()), forceCapitalize)
+ }
+ 
+ func ModuleSpecifierToValidIdentifier(moduleSpecifier string, forceCapitalize bool) string {
+--- a/packages/tsc-go/internal/ls/signaturehelp.go
++++ b/packages/tsc-go/internal/ls/signaturehelp.go
+@@ -299,7 +299,7 @@
+ 	// "\xFEtype". There is no meaningful name to show, so render the signature with
+ 	// no prefix (as we already do when there is no call target symbol) rather than
+ 	// leaking the internal name.
+-	if callTargetSymbol != nil && !strings.HasPrefix(callTargetSymbol.Name, ast.InternalSymbolNamePrefix) {
++	if callTargetSymbol != nil && !strings.HasPrefix(callTargetSymbol.Name.String(), ast.InternalSymbolNamePrefix) {
+ 		if useFullPrefix {
+ 			callTargetDisplayParts.WriteString(c.SymbolToStringEx(callTargetSymbol, sourceFile.AsNode(), ast.SymbolFlagsNone, checker.SymbolFormatFlagsUseAliasDefinedOutsideCurrentScope))
+ 		} else {
+@@ -1282,7 +1282,7 @@
+ }
+ 
+ func chooseBetterSymbol(s *ast.Symbol) *ast.Symbol {
+-	if s.Name == ast.InternalSymbolNameType {
++	if s.Name.String() == ast.InternalSymbolNameType {
+ 		for _, d := range s.Declarations {
+ 			if ast.IsFunctionTypeNode(d) && ast.CanHaveSymbol(d.Parent) {
+ 				return d.Parent.Symbol()
+--- a/packages/tsc-go/internal/ls/string_completions.go
++++ b/packages/tsc-go/internal/ls/string_completions.go
+@@ -393,7 +393,7 @@
+ 			return n.PropertyNameOrName().Text()
+ 		})...)
+ 		uniques := core.Filter(exports, func(e *ast.Symbol) bool {
+-			return e.Name != ast.InternalSymbolNameDefault && !existing.Has(e.Name)
++			return e.Name.String() != ast.InternalSymbolNameDefault && !existing.Has(e.Name.String())
+ 		})
+ 		return &stringLiteralCompletions{
+ 			fromProperties: &completionsFromProperties{
+@@ -515,7 +515,7 @@
+ 				fromProperties: &completionsFromProperties{
+ 					symbols: core.Filter(
+ 						result.symbols,
+-						func(s *ast.Symbol) bool { return !slices.Contains(alreadyUsedTypes, s.Name) },
++						func(s *ast.Symbol) bool { return !slices.Contains(alreadyUsedTypes, s.Name.String()) },
+ 					),
+ 					hasIndexSignature: result.hasIndexSignature,
+ 				},
+@@ -882,7 +882,7 @@
+ 	ambientModules := typeChecker.GetAmbientModules()
+ 	var nonRelativeModuleNames []string
+ 	for _, sym := range ambientModules {
+-		moduleName := stringutil.StripQuotes(sym.Name)
++		moduleName := stringutil.StripQuotes(sym.Name.String())
+ 		if strings.HasPrefix(moduleName, fragment) && !strings.Contains(moduleName, "*") {
+ 			nonRelativeModuleNames = append(nonRelativeModuleNames, moduleName)
+ 		}
+@@ -1024,7 +1024,7 @@
+ 	if checker != nil {
+ 		ambientModules := checker.GetAmbientModules()
+ 		for _, module := range ambientModules {
+-			name := stringutil.StripQuotes(module.Name)
++			name := stringutil.StripQuotes(module.Name.String())
+ 			if !strings.HasPrefix(name, "*.") || strings.Contains(name, "/") {
+ 				continue
+ 			}
+@@ -2058,7 +2058,7 @@
+ 	case completion.fromProperties != nil:
+ 		properties := completion.fromProperties
+ 		for _, symbol := range properties.symbols {
+-			if symbol.Name == name {
++			if symbol.Name.String() == name {
+ 				return l.createCompletionDetailsForSymbol(item, symbol, checker, location, position, docFormat)
+ 			}
+ 		}
+--- a/packages/tsc-go/internal/modulespecifiers/specifiers.go
++++ b/packages/tsc-go/internal/modulespecifiers/specifiers.go
+@@ -131,7 +131,7 @@
+ 			continue
+ 		}
+ 
+-		sym, ok := possibleContainer.Symbol().Exports[ast.InternalSymbolNameExportEquals]
++		sym, ok := possibleContainer.Symbol().Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]
+ 		if !ok || sym == nil {
+ 			continue
+ 		}
+--- a/packages/tsc-go/internal/parser/reparser.go
++++ b/packages/tsc-go/internal/parser/reparser.go
+@@ -39,7 +39,7 @@
+ }
+ 
+ func (p *Parser) checkNonIdentifierName(name *ast.Node) *ast.Node {
+-	if ast.IsIdentifier(name) && !scanner.IsValidIdentifier(name.AsIdentifier().Text) {
++	if ast.IsIdentifier(name) && !scanner.IsValidIdentifier(name.AsIdentifier().Text.String()) {
+ 		errLoc := name.Loc
+ 		if errLoc.Len() == 0 { // missing name, emit error on the character before the missing name node
+ 			errLoc = core.NewTextRange(name.Loc.Pos()-1, name.Loc.Pos())
+@@ -193,10 +193,10 @@
+ 				}
+ 			}
+ 			name := jsparam.Name()
+-			if ast.IsIdentifier(name) && !scanner.IsValidIdentifier(name.AsIdentifier().Text) {
++			if ast.IsIdentifier(name) && !scanner.IsValidIdentifier(name.AsIdentifier().Text.String()) {
+ 				// drop invalid chars for _, if empty, write _0, etc., so we have a valid param name to emit later
+ 				result := strings.Builder{}
+-				for i, ch := range name.AsIdentifier().Text {
++				for i, ch := range name.AsIdentifier().Text.String() {
+ 					if i == 0 {
+ 						if !scanner.IsIdentifierStart(ch) {
+ 							result.WriteRune('_')
+@@ -254,8 +254,8 @@
+ 			if name.Kind == ast.KindQualifiedName {
+ 				name = name.AsQualifiedName().Right
+ 			}
+-			if ast.IsIdentifier(name) && !scanner.IsValidIdentifier(name.AsIdentifier().Text) {
+-				name = p.addTransformedReparse(p.factory.NewStringLiteral(name.AsIdentifier().Text, ast.TokenFlagsNone), name)
++			if ast.IsIdentifier(name) && !scanner.IsValidIdentifier(name.AsIdentifier().Text.String()) {
++				name = p.addTransformedReparse(p.factory.NewStringLiteral(name.AsIdentifier().Text.String(), ast.TokenFlagsNone), name)
+ 			} else {
+ 				name = p.addDeepCloneReparse(name)
+ 			}
+--- a/packages/tsc-go/internal/printer/namegenerator.go
++++ b/packages/tsc-go/internal/printer/namegenerator.go
+@@ -366,7 +366,7 @@
+ 		locals := node.Locals()
+ 		if locals != nil {
+ 			// We conservatively include alias symbols to cover cases where they're emitted as locals
+-			if local, ok := locals[name]; ok && local.Flags&(ast.SymbolFlagsValue|ast.SymbolFlagsExportValue|ast.SymbolFlagsAlias) != 0 {
++			if local, ok := locals[ast.MakeName(name)]; ok && local.Flags&(ast.SymbolFlagsValue|ast.SymbolFlagsExportValue|ast.SymbolFlagsAlias) != 0 {
+ 				return false
+ 			}
+ 		}
+--- a/packages/tsc-go/internal/printer/printer.go
++++ b/packages/tsc-go/internal/printer/printer.go
+@@ -1155,7 +1155,7 @@
+ 		}
+ 		if p.uniqueHelperNames != nil {
+ 			// Substitute `__helper` with `__helper_1` if there is a conflict in an ES module.
+-			helperName := p.getUniqueHelperName(node.Text)
++			helperName := p.getUniqueHelperName(node.Text.String())
+ 			p.emitContext.AssignCommentAndSourceMapRanges(helperName, node.AsNode())
+ 			node = helperName.AsIdentifier()
+ 		}
+@@ -1170,7 +1170,7 @@
+ 	if p.uniqueHelperNames != nil &&
+ 		p.emitContext.EmitFlags(node.AsNode())&EFHelperName != 0 {
+ 		// Substitute `__helper` with `__helper_1` if there is a conflict in an ES module.
+-		helperName := p.getUniqueHelperName(node.Text)
++		helperName := p.getUniqueHelperName(node.Text.String())
+ 		p.emitContext.AssignCommentAndSourceMapRanges(helperName, node.AsNode())
+ 		node = helperName.AsIdentifier()
+ 	}
+--- a/packages/tsc-go/internal/pseudochecker/lookup.go
++++ b/packages/tsc-go/internal/pseudochecker/lookup.go
+@@ -269,7 +269,7 @@
+ 	case ast.KindIdentifier:
+ 		// !!! TODO: in strada, this uses symbol information to ensure `node` refers to the global `undefined` symbol instead
+ 		// we should probably import `resolveName` and use it here to check for the same; but we have to setup some barebones pseudoglobals for that to work!
+-		if node.AsIdentifier().Text == "undefined" {
++		if node.AsIdentifier().Text.String() == "undefined" {
+ 			return PseudoTypeUndefined
+ 		}
+ 	case ast.KindNullKeyword:
+--- a/packages/tsc-go/internal/scanner/utilities.go
++++ b/packages/tsc-go/internal/scanner/utilities.go
+@@ -15,7 +15,7 @@
+ }
+ 
+ func IdentifierToKeywordKind(node *ast.Identifier) ast.Kind {
+-	return textToKeyword[node.Text]
++	return textToKeyword[node.Text.String()]
+ }
+ 
+ func GetSourceTextOfNodeFromSourceFile(sourceFile *ast.SourceFile, node *ast.Node, includeTrivia bool) string {
+--- a/packages/tsc-go/internal/tracing/tracing.go
++++ b/packages/tsc-go/internal/tracing/tracing.go
+@@ -605,12 +605,14 @@
+ 
+ 	// Symbol name - escape the internal symbol name prefix for valid JSON
+ 	if sym := aliasSymbol; sym != nil {
+-		desc.SymbolName = ast.EscapeAllInternalSymbolNames(sym.Name)
++		desc.SymbolName = ast.EscapeAllInternalSymbolNames(sym.Name.String())
+ 	} else if symbol != nil {
+-		desc.SymbolName = ast.EscapeAllInternalSymbolNames(symbol.Name)
+-	}
+-
+-	// Tuple flag
++		desc.SymbolName = ast.EscapeAllInternalSymbolNames(symbol.Name.String(
++
++		// Tuple flag
++		))
++	}
++
+ 	if typ.IsTuple() {
+ 		desc.IsTuple = true
+ 	}
+--- a/packages/tsc-go/internal/transformers/declarations/transform.go
++++ b/packages/tsc-go/internal/transformers/declarations/transform.go
+@@ -354,7 +354,7 @@
+ 	combinedStatements.Loc = statements.Loc // setTextRange
+ 	if ast.IsExternalOrCommonJSModule(node) {
+ 		if ast.IsInJSFile(node.AsNode()) {
+-			if exportEquals := node.Symbol.Exports[ast.InternalSymbolNameExportEquals]; exportEquals != nil && len(exportEquals.Declarations) > 1 {
++			if exportEquals := node.Symbol.Exports[ast.MakeName(ast.InternalSymbolNameExportEquals)]; exportEquals != nil && len(exportEquals.Declarations) > 1 {
+ 				for _, node := range exportEquals.Declarations {
+ 					tx.state.addDiagnostic(createDiagnosticForNode(node, diagnostics.Multiple_module_exports_assignments_cannot_be_serialized_for_declaration_emit))
+ 				}
+@@ -2773,7 +2773,7 @@
+ 	declarationData.Symbol = host
+ 	containerData := synthesizedNamespace.LocalsContainerData()
+ 	containerData.Locals = make(ast.SymbolTable, 0)
+-	containerData.Locals[localName.Text()] = symbol
++	containerData.Locals[localName.NameKey()] = symbol
+ 
+ 	oldEnclosing := tx.enclosingDeclaration
+ 	tx.enclosingDeclaration = synthesizedNamespace
+--- a/packages/tsc-go/internal/transformers/tstransforms/typeserializer.go
++++ b/packages/tsc-go/internal/transformers/tstransforms/typeserializer.go
+@@ -267,7 +267,7 @@
+ 		}
+ 
+ 		serializedConstituent := s.serializeTypeNode(typeNode)
+-		if ast.IsIdentifier(serializedConstituent) && serializedConstituent.AsIdentifier().Text == "Object" {
++		if ast.IsIdentifier(serializedConstituent) && serializedConstituent.AsIdentifier().Text.String() == "Object" {
+ 			// One of the individual is global object, return immediately
+ 			return serializedConstituent
+ 		}
