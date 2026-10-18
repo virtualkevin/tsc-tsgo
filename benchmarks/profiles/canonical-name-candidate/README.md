@@ -1,5 +1,17 @@
 # Carried canonical-name candidate — integration checkpoint
 
+## Latest validated staging checkpoint
+
+The current staged source is **candidate-next-02.patch**, with 66 files hashed in refinement-freeze-02.json. Declaration keys, 43 cached constant names and 148 typed call-site refinements extend the initial checkpoint below. Normal, race and checkptr focused runs each passed 19 records/17 top-level tests across four packages. The broader run passed 21,181 records/253 top-level tests across 14 packages, with no failures or skips. Controller 54229 finished successfully at HEAD 24fc106; source remained frozen throughout. Compressed raw logs, readback verification and exact corrected-patch reconstruction are archived. These results do not cover full conformance or the complete CLI/API/emit/services suites.
+
+The first refinement introduced a real bug: the automated pass rewrote Node.NameKey's non-identifier fallback into self-recursion. Literal-name tests caught the stack overflow. refinement-failure-01 preserves the exact failed source and logs. The correction changed only that Go file; the refinement generator now excludes the primitive. No performance measurement was taken on either version.
+
+The generation-support helper reproduces three generated files exactly from copies of the baseline layouts, is idempotent, and rejects unknown layouts without writes. It is a local post-generation adapter, not a rerun of the upstream generators; final package integration and provenance comments remain pending.
+
+**boundary-proposal.patch is a separate, unapplied seven-file follow-up**, not part of those successful tests. It carries keys through additional local/synthetic/export indexes, restores string-keyed module-reference lookup and cleans comments displaced by the first migration tool. Its source copies are ignored; the patch, generator and source hashes are archived for review. Applying it requires a new source freeze and validation. The production compiler remains unchanged, and 10× original-native speedup is unproven.
+
+## Initial checkpoint history
+
 This is an incomplete staged compiler candidate on main, based on production source `216d40c7` at HEAD `b7fe783`. Production files and the retained executable are unchanged. No performance measurement or promotion is claimed.
 
 The candidate stores `ast.Name` in Identifier and Symbol and uses built-in `map[Name]*Symbol` tables. It carries names through property/union/intersection lookup, pending-member layouts and positions, symbol constructors, and name-resolution scope traversal. String-facing wrappers preserve existing entry points. Parser interning now reuses Name values; an internal factory accepts an existing Name, including clone paths. SourceFile identifier membership remains available to the printer. API encoder and text-facing uses explicitly decode strings. Pending-member ordering still compares original string bytes.

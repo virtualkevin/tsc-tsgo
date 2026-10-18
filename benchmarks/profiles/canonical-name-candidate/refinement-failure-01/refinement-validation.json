@@ -1,0 +1,62 @@
+{
+  "scope": "Staged declaration/constant/syntax refinement validation; not full conformance, CLI/API/emit/services suite or performance evidence.",
+  "passed": false,
+  "freezeSha256": "6d0f3db8610a48c732745a0d368c3acc6a2623ee437eda143aa49b00559e612a",
+  "controllerSha256": "aba82875efe6a0d4f0f7ec57a5612642aa52f5da4993e5b80a8d4e591c00fef6",
+  "runs": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/canonical-name-candidate/overlay.json",
+        "-json",
+        "./internal/ast",
+        "./internal/parser",
+        "./internal/binder",
+        "./internal/checker",
+        "-run",
+        "^Test(CanonicalName|PendingMember)",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "exitCode": 1,
+      "passed": false,
+      "tests": 13,
+      "topLevelTests": [
+        "TestCanonicalNameExactBytes",
+        "TestCanonicalNameConcurrentLifetime",
+        "TestCanonicalNameTextBoundary",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization"
+      ],
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/ast": "pass",
+        "github.com/microsoft/typescript-go/internal/parser": "fail",
+        "github.com/microsoft/typescript-go/internal/binder": "fail",
+        "github.com/microsoft/typescript-go/internal/checker": "fail"
+      },
+      "stdoutSha256": "a2f0bc2f78f8bffb6a2e51d3427fcb3361557f43a68a0a62bbdaca7f59c5e6bc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": {
+        "normal.jsonl.gz": {
+          "sha256": "da7be6e57987ef789d016e903aecdcc68ec26041ac1e829d84b29b2c3ca3ca6a",
+          "rawSha256": "a2f0bc2f78f8bffb6a2e51d3427fcb3361557f43a68a0a62bbdaca7f59c5e6bc"
+        },
+        "normal.stderr.gz": {
+          "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+          "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "error": "AssertionError('normal')"
+}

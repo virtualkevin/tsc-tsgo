@@ -1,0 +1,16 @@
+{
+  "scope": "Local post-generation storage adaptation and constant-pool reproducibility; not a rerun of the upstream generators or compiler correctness/performance evidence.",
+  "passed": true,
+  "generatorSha256": "54d2897e4bca71411c05bec53497ccde0fa6f704d6bd9f467f1a43aec61ae9c6",
+  "schemaSha256": "8ca7744eab2481be065a508dfd5be0d6658e47924e388f854d4cb6e9ccebc326",
+  "baselineInputs": {
+    "internal/ast/ast_generated.go": "622af8e7017a8927b4909aadd91ea700cc69c875fd160966bd76766e45a566b3",
+    "internal/api/encoder/encoder_generated.go": "a631e9b51781e2201b0b30fd7abe83acd581fe1ce778bef26df6c212f14aa7d7"
+  },
+  "generatedOutputs": {
+    "internal/ast/ast_generated.go": "34ee4350939acfb69dda843cd5abd73b9a57833505de17b752db0fae270143f4",
+    "internal/api/encoder/encoder_generated.go": "3da11cf5bded1e5d9abf7f92e18717b498142d29aba89d2d866050fef2eb70ae",
+    "internal/ast/canonical_names_generated.go": "bf3720f1cf91c0d686ba686cf7e2a75daeffe0366ceb458635a2ba0fc2b4cee8"
+  },
+  "unknownLayoutRejectedWithoutWrites": true
+}

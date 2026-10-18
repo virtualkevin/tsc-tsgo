@@ -1,0 +1,45 @@
+package ast
+
+import "unique"
+
+// Name is a canonical, exact-byte name. Its zero value represents the empty
+// string. It carries no symbol identity: distinct symbols may share one name.
+// A live Name owns a strong reference to its canonical string descriptor.
+// Compiler storage and recursive lookup paths carry Name without re-interning.
+type Name struct {
+	handle unique.Handle[string]
+}
+
+func MakeName(text string) Name {
+	if text == "" {
+		return Name{}
+	}
+	return Name{handle: unique.Make(text)}
+}
+
+func (name Name) String() string {
+	if name == (Name{}) {
+		return ""
+	}
+	return name.handle.Value()
+}
+
+// Text marshaling retains string-shaped external representations, including
+// map keys. Encoding formats retain their ordinary string encoding rules.
+func (name Name) MarshalText() ([]byte, error) {
+	return []byte(name.String()), nil
+}
+
+func (name *Name) UnmarshalText(text []byte) error {
+	*name = MakeName(string(text))
+	return nil
+}
+
+// NameKey returns an existing identifier handle or canonicalizes the original
+// text of another node kind. Text retains its existing string-facing API.
+func (n *Node) NameKey() Name {
+	if n.Kind == KindIdentifier {
+		return n.AsIdentifier().Text
+	}
+	return n.NameKey()
+}
