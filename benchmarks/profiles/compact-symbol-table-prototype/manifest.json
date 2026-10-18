@@ -1,0 +1,52 @@
+{
+  "repositoryCommit": "c40c808d62d8e8dd8e1c26f6702e57a618978d35",
+  "goVersion": "go version go1.26.9 linux/amd64",
+  "sha256": {
+    "README.md": "ea23a5d4051b196e7241e1b25c7f63023001abc4aefb84b59766f483c7b3e0e8",
+    "checkptr.jsonl": "ceb6c53c3efefc92377f90e1d37bccbe28ec7232e2b201437a2628975eb7f9f3",
+    "normal.jsonl": "14bcad9e28a2e845c5c80e4c1280c74cfd39318caaae92dbee780672d8c0847e",
+    "race.jsonl": "9af07e7f8ccb918c1bdfd4172a05e3225375b2687503e80dcf95f8f9b26b0485",
+    "table.go": "1481f2543b7a869210e4034fe1a021ac76bff409b3cb98e8ece0c56b8f393c2e",
+    "table_test.go": "216b1fb8040474923779946a299bdc13e392f52c0497fba6bd81e8186d5374c7"
+  },
+  "validation": {
+    "normal": {
+      "topLevelTests": [
+        "TestNilAndEmpty",
+        "TestAliasingPromotionCloneAndKeys",
+        "TestIterationMutation",
+        "TestIteratorLazyAndReentrant",
+        "TestIterationSlotReuseAndLargeMutation",
+        "TestDifferentialOperations",
+        "TestLayoutEvidence"
+      ],
+      "passed": true
+    },
+    "race": {
+      "topLevelTests": [
+        "TestNilAndEmpty",
+        "TestAliasingPromotionCloneAndKeys",
+        "TestIterationMutation",
+        "TestIteratorLazyAndReentrant",
+        "TestIterationSlotReuseAndLargeMutation",
+        "TestDifferentialOperations",
+        "TestLayoutEvidence"
+      ],
+      "passed": true
+    },
+    "checkptr": {
+      "topLevelTests": [
+        "TestNilAndEmpty",
+        "TestAliasingPromotionCloneAndKeys",
+        "TestIterationMutation",
+        "TestIteratorLazyAndReentrant",
+        "TestIterationSlotReuseAndLargeMutation",
+        "TestDifferentialOperations",
+        "TestLayoutEvidence"
+      ],
+      "passed": true
+    }
+  },
+  "integratedIntoCompiler": false,
+  "performanceMeasured": false
+}
