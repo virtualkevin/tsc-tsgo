@@ -1,0 +1,92 @@
+{
+  "scope": "Offline selection from nearest-project-map-caller attribution, not all materialization CPU, allocation lifetime, removable work, or performance forecast. Selected callers are disjoint in the input attribution; no inclusive percentages are added.",
+  "inputs": {
+    "benchmarks/profiles/normal-map-attribution/report.json": "7580f194f946b8906f516e7e3187f0d7d948fa99223f2750503a2fc8db818f1a",
+    "packages/tsc-go/internal/checker/pending_members.go": "778607282e1f2d649cc0726c61f35972196a64dddc12e52edf9ef906296693bb",
+    "packages/tsc-go/internal/checker/checker.go": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+    "benchmarks/profiles/pending-member-index/README.md": "7541473cfd6b01840105d8cbd589d90291f43bba43fbecf745bd5484c8c4d16c"
+  },
+  "projects": [
+    {
+      "project": "trpc",
+      "totalCpuNs": 1970000000,
+      "selectedMapPathCpuNs": 30000000,
+      "selectedMapPathPercent": 1.5228426395939085,
+      "callers": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).ownTable",
+          "cpuNs": 20000000
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*Checker).addInheritedMembers",
+          "cpuNs": 10000000
+        }
+      ]
+    },
+    {
+      "project": "typeorm",
+      "totalCpuNs": 11370000000,
+      "selectedMapPathCpuNs": 20000000,
+      "selectedMapPathPercent": 0.1759014951627089,
+      "callers": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*Checker).addInheritedMembers",
+          "cpuNs": 10000000
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getNamedMembers",
+          "cpuNs": 10000000
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "totalCpuNs": 157780000000,
+      "selectedMapPathCpuNs": 1120000000,
+      "selectedMapPathPercent": 0.709849157054126,
+      "callers": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*Checker).addInheritedMembers",
+          "cpuNs": 400000000
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getNamedMembers",
+          "cpuNs": 340000000
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).ownTable",
+          "cpuNs": 280000000
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).keepTableOnDemand",
+          "cpuNs": 100000000
+        }
+      ]
+    },
+    {
+      "project": "sentry",
+      "totalCpuNs": 121550000000,
+      "selectedMapPathCpuNs": 1390000000,
+      "selectedMapPathPercent": 1.1435623200329084,
+      "callers": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*Checker).addInheritedMembers",
+          "cpuNs": 600000000
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).ownTable",
+          "cpuNs": 420000000
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getNamedMembers",
+          "cpuNs": 290000000
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).keepTableOnDemand",
+          "cpuNs": 80000000
+        }
+      ]
+    }
+  ],
+  "decision": "Do not implement a no-base-only map bypass as a presumed broad architectural win. First establish cost and eligibility of complete materialization, including inherited properties, recursive publication and table-demand frequency."
+}
