@@ -1,0 +1,7 @@
+# Filter allocation evidence
+
+Retained normal-flag profiles attribute1,145,505estimated Sentry allocations directly to core.Filter's append line, versus17,129cumulative allocations on its prefix-clone line. VSCode estimates228,473append-line allocations and65,536prefix-clone allocations. These are sampled cumulative allocation estimates, not exact counts, live-heap measurements, or removable CPU budgets; the profiles did not force a final GC and may omit recent allocations. Line and call-graph inclusive totals can differ under inline attribution and must not be summed.
+
+Sentry callers include filterType, contextual object/JSX discrimination, and inferFromMatchingTypes. Current Filter clones an accepted prefix after the first rejection, then appends retained tail elements, potentially growing repeatedly. This supports testing one-pass upper-bound capacity planning while preserving callback count/order, accepted-prefix snapshot timing, unchanged-slice reuse and empty-result semantics. More spare capacity can retain memory, especially if early retained elements precede many later rejections; workload RSS must be measured.
+
+Exact pprof commands, profile/output hashes and source revision/hash are preserved. Profiles come from node-pointer-normal; input hashes were checked against its existing manifest. No new compiler profile or performance measurement was run for this audit. No PERF row is warranted.

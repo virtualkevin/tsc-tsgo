@@ -1,0 +1,16 @@
+Total: 17402575
+ROUTINE ======================== github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8] in internal/core/core.go
+    228473     333759 (flat, cum)  1.92% of Total
+         .          .     36:func Filter[T any](slice []T, f func(T) bool) []T {
+         .          .     37:	for i, value := range slice {
+         .      11263     38:		if !f(value) {
+         .      65536     39:			result := slices.Clone(slice[:i])
+         .          .     40:			for i++; i < len(slice); i++ {
+         .          .     41:				value = slice[i]
+         .      28487     42:				if f(value) {
+    228473     228473     43:					result = append(result, value)
+         .          .     44:				}
+         .          .     45:			}
+         .          .     46:			return result
+         .          .     47:		}
+         .          .     48:	}

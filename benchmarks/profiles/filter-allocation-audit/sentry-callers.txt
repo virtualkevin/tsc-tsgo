@@ -1,0 +1,32 @@
+File: tsc-go-node-pointer
+Build ID: 15af3668b3053a71304a82aaa639569aa27b0a22
+Type: alloc_objects
+Time: 2026-10-17 21:41:46 UTC
+Showing nodes accounting for 23225216, 100% of 23225216 total
+----------------------------------------------------------+-------------
+      flat  flat%   sum%        cum   cum%   calls calls% + context 	 	 
+----------------------------------------------------------+-------------
+                                            914124 52.22% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).filterType
+                                            312362 17.84% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers
+                                            267795 15.30% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByJSXAttributes
+                                            239686 13.69% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromMatchingTypes
+                                              8420  0.48% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).removeStringLiteralsMatchedByTemplateLiterals
+                                              8192  0.47% |   github.com/microsoft/typescript-go/internal/ast.GetSemanticJsxChildren
+                                                40 0.0023% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getObjectTypeInstantiation
+   1145505  4.93%  4.93%    1750619  7.54%                | github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8]
+                                            310849 17.76% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers.func1
+                                            251168 14.35% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByJSXAttributes.func1
+                                             23381  1.34% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getAssignmentReducedTypeWorker.func1
+                                             17129  0.98% |   slices.Clone[go.shape.[]go.shape.*uint8,go.shape.*uint8] (inline)
+                                              8848  0.51% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getAdjustedTypeWithFacts.(*Checker).getTypeWithFacts.func2
+                                              7846  0.45% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).removeMissingOrUndefinedType.(*Checker).getTypeWithFacts.func2
+                                              3641  0.21% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).elaborateJsxComponents.func1
+                                              2455  0.14% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).isValidSpreadType.(*Checker).removeDefinitelyFalsyTypes.func1
+                                               928 0.053% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers.func2
+                                               184 0.011% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getNonUndefinedType.(*Checker).getTypeWithFacts.func2
+                                                51 0.0029% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getBindingElementTypeFromParentType.(*Checker).getTypeWithFacts.func3
+                                                40 0.0023% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getObjectTypeInstantiation.func2
+                                                38 0.0022% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).narrowTypeByDiscriminant.func1
+                                                32 0.0018% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getFlowTypeOfReferenceEx.(*Checker).getTypeWithFacts.func1
+                                                28 0.0016% |   github.com/microsoft/typescript-go/internal/checker.(*Relater).membersRelatedToIndexInfo.(*Checker).getTypeWithFacts.func1
+----------------------------------------------------------+-------------

@@ -1,0 +1,18 @@
+File: tsc-go-node-pointer
+Build ID: 15af3668b3053a71304a82aaa639569aa27b0a22
+Type: alloc_objects
+Time: 2026-10-17 21:41:15 UTC
+Showing nodes accounting for 17402575, 100% of 17402575 total
+----------------------------------------------------------+-------------
+      flat  flat%   sum%        cum   cum%   calls calls% + context 	 	 
+----------------------------------------------------------+-------------
+                                            248448 74.44% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).filterType
+                                             65536 19.64% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromMatchingTypes
+                                             19775  5.92% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers
+    228473  1.31%  1.31%     333759  1.92%                | github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8]
+                                             65536 19.64% |   slices.Clone[go.shape.[]go.shape.*uint8,go.shape.*uint8] (inline)
+                                             19775  5.92% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers.func1
+                                             19463  5.83% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).removeMissingOrUndefinedType.(*Checker).getTypeWithFacts.func2
+                                               493  0.15% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getAdjustedTypeWithFacts.(*Checker).getTypeWithFacts.func2
+                                                19 0.0057% |   github.com/microsoft/typescript-go/internal/checker.(*Checker).getAssignmentReducedTypeWorker.func1
+----------------------------------------------------------+-------------
