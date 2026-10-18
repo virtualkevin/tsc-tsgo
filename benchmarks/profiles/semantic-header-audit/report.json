@@ -1,0 +1,39 @@
+{
+  "scope": "Source-only feasibility/scale audit. Historical diagnostic constructions include non-structured and transient types. 24-byte arithmetic is hypothetical nominal header storage, not an allocator/retained-byte upper bound or performance prediction. Heap values come from a separate diagnostic run; do not interpret ratios as measured savings.",
+  "sourceSha256": {
+    "packages/tsc-go/internal/checker/types.go": "9a39b928846926090a175d94773d5e3ab4b093b887061b0ef32cfa40548871f4",
+    "packages/tsc-go/internal/checker/checker.go": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+    "packages/tsc-go/internal/checker/pending_members.go": "778607282e1f2d649cc0726c61f35972196a64dddc12e52edf9ef906296693bb",
+    "benchmarks/profiles/type-liveness-census/summary.json": "77a22687b89f8306e6c12070563a7b1689c99e7d2472caa3dbb2ed312b34c144",
+    "benchmarks/profiles/completed-heap-census/analysis.json": "3e3386dd11529389202b2d654485245cfccd666dbe398e94b68934ba497428ed"
+  },
+  "headerPayloadAlreadyOneAllocation": true,
+  "requiresSliceCapacityAndAliasingAudit": true,
+  "rows": [
+    {
+      "project": "typeorm",
+      "historicalDiagnosticTypeConstructions": 257912,
+      "hypothetical24BytesPerEveryConstructedTypeMiB": 5.90313720703125,
+      "separateCompletedHeapSampleInuseMiB": 455.36635971069336
+    },
+    {
+      "project": "trpc",
+      "historicalDiagnosticTypeConstructions": 79462,
+      "hypothetical24BytesPerEveryConstructedTypeMiB": 1.8187408447265625,
+      "separateCompletedHeapSampleInuseMiB": 166.0002794265747
+    },
+    {
+      "project": "vscode",
+      "historicalDiagnosticTypeConstructions": 4277160,
+      "hypothetical24BytesPerEveryConstructedTypeMiB": 97.89642333984375,
+      "separateCompletedHeapSampleInuseMiB": 6538.819502830505
+    },
+    {
+      "project": "sentry",
+      "historicalDiagnosticTypeConstructions": 2725687,
+      "hypothetical24BytesPerEveryConstructedTypeMiB": 62.386024475097656,
+      "separateCompletedHeapSampleInuseMiB": 3896.087000846863
+    }
+  ],
+  "decision": "No implementation: coallocation premise already satisfied; compact slice representation lacks a demonstrated broad benefit and would require capacity/alias/overflow/reachability validation."
+}
