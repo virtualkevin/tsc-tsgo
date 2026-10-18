@@ -1,0 +1,113 @@
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -578,6 +578,7 @@
+ var nextCheckerID atomic.Uint32
+ 
+ type Checker struct {
++ argumentRequestCounts *argumentRequestCounts
+ 	instantiatedMemberLists                     map[instantiatedMemberListKey]*instantiatedMemberSource
+ 	id                                          uint32
+ 	program                                     Program
+@@ -906,6 +907,7 @@
+ 	program.BindSourceFiles()
+ 
+ 	c := &Checker{}
++ c.argumentRequestCounts = newArgumentRequestCounts()
+ 	c.id = nextCheckerID.Add(1)
+ 	c.tracer = tracer
+ 	c.program = program
+@@ -8807,6 +8809,7 @@
+ }
+ 
+ type CallState struct {
++ argumentRequests *argumentRequestFrame
+ 	node                           *ast.Node
+ 	typeArguments                  []*ast.Node
+ 	args                           []*ast.Node
+@@ -8826,6 +8829,7 @@
+ 	isInstanceof := node.Kind == ast.KindBinaryExpression
+ 	reportErrors := !c.isInferencePartiallyBlocked && candidatesOutArray == nil
+ 	var s CallState
++ s.argumentRequests = c.argumentRequestCounts.frame()
+ 	s.node = node
+ 	if !isDecorator && !isInstanceof && !isSuperCall(node) && !ast.IsJsxOpeningFragment(node) {
+ 		s.typeArguments = node.TypeArguments()
+@@ -9010,7 +9014,7 @@
+ 		if len(s.typeArguments) != 0 || !c.hasCorrectArity(s.node, s.args, candidate, s.signatureHelpTrailingComma) {
+ 			return nil
+ 		}
+-		if !c.isSignatureApplicable(s.node, s.args, candidate, relation, CheckModeNormal, false /*reportErrors*/, nil /*diagnosticOutput*/) {
++		if !c.isSignatureApplicable(s.node, s.args, candidate, relation, CheckModeNormal, false /*reportErrors*/, nil /*diagnosticOutput*/, s.argumentRequests) {
+ 			s.candidatesForArgumentError = []*Signature{candidate}
+ 			return nil
+ 		}
+@@ -9051,7 +9055,7 @@
+ 		} else {
+ 			checkCandidate = candidate
+ 		}
+-		if !c.isSignatureApplicable(s.node, s.args, checkCandidate, relation, s.argCheckMode, false /*reportErrors*/, nil /*diagnosticOutput*/) {
++		if !c.isSignatureApplicable(s.node, s.args, checkCandidate, relation, s.argCheckMode, false /*reportErrors*/, nil /*diagnosticOutput*/, s.argumentRequests) {
+ 			// Give preference to error candidates that have no rest parameters (as they are more specific)
+ 			s.candidatesForArgumentError = append(s.candidatesForArgumentError, checkCandidate)
+ 			continue
+@@ -9071,7 +9075,7 @@
+ 					continue
+ 				}
+ 			}
+-			if !c.isSignatureApplicable(s.node, s.args, checkCandidate, relation, s.argCheckMode, false /*reportErrors*/, nil /*diagnosticOutput*/) {
++			if !c.isSignatureApplicable(s.node, s.args, checkCandidate, relation, s.argCheckMode, false /*reportErrors*/, nil /*diagnosticOutput*/, s.argumentRequests) {
+ 				// Give preference to error candidates that have no rest parameters (as they are more specific)
+ 				s.candidatesForArgumentError = append(s.candidatesForArgumentError, checkCandidate)
+ 				continue
+@@ -9232,7 +9236,7 @@
+ 	return typeArgumentTypes
+ }
+ 
+-func (c *Checker) isSignatureApplicable(node *ast.Node, args []*ast.Node, signature *Signature, relation *Relation, checkMode CheckMode, reportErrors bool, diagnosticOutput *[]*ast.Diagnostic) bool {
++func (c *Checker) isSignatureApplicable(node *ast.Node, args []*ast.Node, signature *Signature, relation *Relation, checkMode CheckMode, reportErrors bool, diagnosticOutput *[]*ast.Diagnostic, observation *argumentRequestFrame) bool {
+ 	if ast.IsJsxCallLike(node) {
+ 		return c.checkApplicableSignatureForJsxCallLikeElement(node, signature, relation, checkMode, reportErrors, diagnosticOutput)
+ 	}
+@@ -9267,7 +9271,14 @@
+ 		arg := args[i]
+ 		if !ast.IsOmittedExpression(arg) {
+ 			paramType := c.getTypeAtPosition(signature, i)
++            var observedKey argumentRequestKey
++            var observedBudget uint32
++            if observation != nil {
++                observedKey = argumentRequestKey{arg, paramType, checkMode, relation, len(c.flowLoopStack), c.resolutionStart, len(c.activeTypeMappersCaches)}
++                observedBudget = c.instantiationCount
++            }
+ 			argType := c.checkExpressionWithContextualType(arg, paramType, nil /*inferenceContext*/, checkMode)
++            observation.record(observedKey, argType, observedBudget, c.instantiationCount)
+ 			// If one or more arguments are still excluded (as indicated by CheckMode.SkipContextSensitive),
+ 			// we obtain the regular type of any object literal arguments because we may not have inferred complete
+ 			// parameter types yet and therefore excess property checks may yield false positives (see #17041).
+@@ -9630,7 +9641,7 @@
+ 	case len(s.candidatesForArgumentError) != 0:
+ 		last := s.candidatesForArgumentError[len(s.candidatesForArgumentError)-1]
+ 		var diags []*ast.Diagnostic
+-		c.isSignatureApplicable(s.node, s.args, last, c.assignableRelation, CheckModeNormal, true /*reportErrors*/, &diags)
++		c.isSignatureApplicable(s.node, s.args, last, c.assignableRelation, CheckModeNormal, true /*reportErrors*/, &diags, nil)
+ 		for _, diagnostic := range diags {
+ 			if len(s.candidatesForArgumentError) > 1 {
+ 				diagnostic = ast.NewDiagnosticChain(diagnostic, diagnostics.The_last_overload_gave_the_following_error)
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,6 +2,8 @@
+ 
+ import (
+ 	"context"
++"fmt"
++"github.com/microsoft/typescript-go/internal/checker"
+ 	"os"
+ 	"os/signal"
+ 	"syscall"
+@@ -28,5 +30,6 @@
+ 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+ 	defer stop()
+ 	result := execute.CommandLine(ctx, newSystem(), args, nil)
+-	return int(result.Status)
++	if err := checker.WriteArgumentRequestCensus(); err != nil {fmt.Fprintln(os.Stderr,err);return 1}
++ return int(result.Status)
+ }

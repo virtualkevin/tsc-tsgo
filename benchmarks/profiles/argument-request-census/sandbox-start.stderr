@@ -1,0 +1,27 @@
+file:///home/dev/tssss/tsc-tsgo/scripts/build-provenance.mjs:14
+    throw new Error(`Cannot capture Git build provenance: ${result.error?.code ?? result.status}`);
+          ^
+
+Error: Cannot capture Git build provenance: EPERM
+    at git (file:///home/dev/tssss/tsc-tsgo/scripts/build-provenance.mjs:14:11)
+    at captureGoSources (file:///home/dev/tssss/tsc-tsgo/scripts/build-provenance.mjs:23:26)
+    at file:///home/dev/tssss/tsc-tsgo/[eval1]:1:92
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async node:internal/modules/esm/loader:246:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:243:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.15.0
+Traceback (most recent call last):
+  File "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/argument-request-census/capture.py", line 7, in <module>
+    before=source(); assert before['sha256']=='216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd'
+           ^^^^^^^^
+  File "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/argument-request-census/capture.py", line 6, in source
+    def source():return json.loads(subprocess.check_output(['node','--input-type=module','-e',js],cwd=root,text=True))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['node', '--input-type=module', '-e', 'import {captureGoSources} from "./scripts/build-provenance.mjs";console.log(JSON.stringify(captureGoSources(process.cwd()+"/packages/tsc-go")))']' returned non-zero exit status 1.
