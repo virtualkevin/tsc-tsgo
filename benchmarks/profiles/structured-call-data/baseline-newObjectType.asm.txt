@@ -1,0 +1,91 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.(*Checker).newObjectType(SB) github.com/microsoft/typescript-go/internal/checker/checker.go
+  checker.go:25004	0x8388a0		493b6610		CMPQ SP, 0x10(R14)																			
+  checker.go:25004	0x8388a4		0f866b010000		JBE 0x838a15																				
+  checker.go:25004	0x8388aa		55			PUSHQ BP																				
+  checker.go:25004	0x8388ab		4889e5			MOVQ SP, BP																				
+  checker.go:25004	0x8388ae		4883ec20		SUBQ $0x20, SP																				
+  checker.go:25007	0x8388b2		4889442430		MOVQ AX, 0x30(SP)																			
+  checker.go:25007	0x8388b7		895c2438		MOVL BX, 0x38(SP)																			
+  checker.go:25007	0x8388bb		48894c2440		MOVQ CX, 0x40(SP)																			
+  checker.go:25007	0x8388c0		f7c303000000		TESTL $0x3, BX																				
+  checker.go:25007	0x8388c6		0f85d7000000		JNE 0x8389a3																				
+  checker.go:25009	0x8388cc		0fbae303		BTL $0x3, BX																				
+  checker.go:25009	0x8388d0		0f82b8000000		JB 0x83898e																				
+  checker.go:25011	0x8388d6		0fbae302		BTL $0x2, BX																				
+  checker.go:25011	0x8388da		660f1f440000		NOPW 0(AX)(AX*1)																			
+  checker.go:25011	0x8388e0		0f8293000000		JB 0x838979																				
+  checker.go:25013	0x8388e6		0fbae305		BTL $0x5, BX																				
+  checker.go:25013	0x8388ea		7278			JB 0x838964																				
+  checker.go:25015	0x8388ec		0fbae30a		BTL $0xa, BX																				
+  checker.go:25015	0x8388f0		725d			JB 0x83894f																				
+  checker.go:25017	0x8388f2		0fbae308		BTL $0x8, BX																				
+  checker.go:25017	0x8388f6		7242			JB 0x83893a																				
+  checker.go:25019	0x8388f8		0fbae318		BTL $0x18, BX																				
+  checker.go:25019	0x8388fc		7227			JB 0x838925																				
+  checker.go:25021	0x8388fe		0fbae304		BTL $0x4, BX																				
+  checker.go:25021	0x838902		0f83f9000000		JAE 0x838a01																				
+  checker.go:25022	0x838908		488d05b1296300		LEAQ 0x6329b1(IP), AX																			
+  checker.go:25022	0x83890f		e82cb6beff		CALL runtime.newobject(SB)																		
+  checker.go:25022	0x838914		488d0da5e3cf00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.ObjectType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), CX			
+  checker.go:25022	0x83891b		0f1f440000		NOPL 0(AX)(AX*1)																			
+  checker.go:25022	0x838920		e991000000		JMP 0x8389b6																				
+  checker.go:25020	0x838925		488d05745b5e00		LEAQ 0x5e5b74(IP), AX																			
+  checker.go:25020	0x83892c		e80fb6beff		CALL runtime.newobject(SB)																		
+  checker.go:25020	0x838931		488d0d38e3cf00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.InstantiationExpressionType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), CX	
+  checker.go:25020	0x838938		eb7c			JMP 0x8389b6																				
+  checker.go:25018	0x83893a		488d05dff76000		LEAQ 0x60f7df(IP), AX																			
+  checker.go:25018	0x838941		e8fab5beff		CALL runtime.newobject(SB)																		
+  checker.go:25018	0x838946		488d0dd3e2cf00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.EvolvingArrayType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), CX		
+  checker.go:25018	0x83894d		eb67			JMP 0x8389b6																				
+  checker.go:25016	0x83894f		488d05aa286300		LEAQ 0x6328aa(IP), AX																			
+  checker.go:25016	0x838956		e8e5b5beff		CALL runtime.newobject(SB)																		
+  checker.go:25016	0x83895b		488d0d6ee2cf00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.ReverseMappedType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), CX		
+  checker.go:25016	0x838962		eb52			JMP 0x8389b6																				
+  checker.go:25014	0x838964		488d0595b96700		LEAQ 0x67b995(IP), AX																			
+  checker.go:25014	0x83896b		e8d0b5beff		CALL runtime.newobject(SB)																		
+  checker.go:25014	0x838970		488d0d09e2cf00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.MappedType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), CX			
+  checker.go:25014	0x838977		eb3d			JMP 0x8389b6																				
+  checker.go:25012	0x838979		488d0560fb6000		LEAQ 0x60fb60(IP), AX																			
+  checker.go:25012	0x838980		e8bbb5beff		CALL runtime.newobject(SB)																		
+  checker.go:25012	0x838985		488d0da4e1cf00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TypeReference,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), CX			
+  checker.go:25012	0x83898c		eb28			JMP 0x8389b6																				
+  checker.go:25010	0x83898e		488d054bd16500		LEAQ 0x65d14b(IP), AX																			
+  checker.go:25010	0x838995		e8a6b5beff		CALL runtime.newobject(SB)																		
+  checker.go:25010	0x83899a		488d0dcfddcf00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.TupleType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), CX			
+  checker.go:25010	0x8389a1		eb13			JMP 0x8389b6																				
+  checker.go:25008	0x8389a3		488d0576656900		LEAQ 0x696576(IP), AX																			
+  checker.go:25008	0x8389aa		e891b5beff		CALL runtime.newobject(SB)																		
+  checker.go:25008	0x8389af		488d0d2ae1cf00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/checker.InterfaceType,github.com/microsoft/typescript-go/internal/checker.TypeData(SB), CX			
+  checker.go:25026	0x8389b6		bb00001000		MOVL $0x100000, BX																			
+  checker.go:25026	0x8389bb		4889cf			MOVQ CX, DI																				
+  checker.go:25026	0x8389be		4889c6			MOVQ AX, SI																				
+  checker.go:25026	0x8389c1		488b442430		MOVQ 0x30(SP), AX																			
+  checker.go:25026	0x8389c6		8b4c2438		MOVL 0x38(SP), CX																			
+  checker.go:25026	0x8389ca		e8b1f9ffff		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).newType(SB)												
+  checker.go:25027	0x8389cf		8400			TESTB AL, 0(AX)																				
+  checker.go:25027	0x8389d1		833d38fb6b0100		CMPL runtime.writeBarrier(SB), $0x0																	
+  checker.go:25027	0x8389d8		7508			JNE 0x8389e2																				
+  checker.go:25027	0x8389da		488b542440		MOVQ 0x40(SP), DX																			
+  checker.go:25027	0x8389df		90			NOPL																					
+  checker.go:25027	0x8389e0		eb15			JMP 0x8389f7																				
+  checker.go:25027	0x8389e2		488b4810		MOVQ 0x10(AX), CX																			
+  checker.go:25027	0x8389e6		e8158bc5ff		CALL runtime.gcWriteBarrier2(SB)																	
+  checker.go:25027	0x8389eb		488b542440		MOVQ 0x40(SP), DX																			
+  checker.go:25027	0x8389f0		498913			MOVQ DX, 0(R11)																				
+  checker.go:25027	0x8389f3		49894b08		MOVQ CX, 0x8(R11)																			
+  checker.go:25027	0x8389f7		48895010		MOVQ DX, 0x10(AX)																			
+  checker.go:25028	0x8389fb		4883c420		ADDQ $0x20, SP																				
+  checker.go:25028	0x8389ff		5d			POPQ BP																					
+  checker.go:25028	0x838a00		c3			RET																					
+  checker.go:25024	0x838a01		488d05787a5200		LEAQ 0x527a78(IP), AX																			
+  checker.go:25024	0x838a08		488d1d81bcce00		LEAQ 0xcebc81(IP), BX																			
+  checker.go:25024	0x838a0f		e88c10c5ff		CALL runtime.gopanic(SB)																		
+  checker.go:25024	0x838a14		90			NOPL																					
+  checker.go:25004	0x838a15		4889442408		MOVQ AX, 0x8(SP)																			
+  checker.go:25004	0x838a1a		895c2410		MOVL BX, 0x10(SP)																			
+  checker.go:25004	0x838a1e		48894c2418		MOVQ CX, 0x18(SP)																			
+  checker.go:25004	0x838a23		e8d86fc5ff		CALL runtime.morestack_noctxt.abi0(SB)																	
+  checker.go:25004	0x838a28		488b442408		MOVQ 0x8(SP), AX																			
+  checker.go:25004	0x838a2d		8b5c2410		MOVL 0x10(SP), BX																			
+  checker.go:25004	0x838a31		488b4c2418		MOVQ 0x18(SP), CX																			
+  checker.go:25004	0x838a36		e965feffff		JMP github.com/microsoft/typescript-go/internal/checker.(*Checker).newObjectType(SB)											

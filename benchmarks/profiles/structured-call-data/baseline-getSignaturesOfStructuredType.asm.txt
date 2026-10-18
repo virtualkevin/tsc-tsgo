@@ -1,0 +1,57 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.(*Checker).getSignaturesOfStructuredType(SB) github.com/microsoft/typescript-go/internal/checker/checker.go
+  checker.go:18831	0x80eaa0		493b6610		CMPQ SP, 0x10(R14)											
+  checker.go:18831	0x80eaa4		0f868f000000		JBE 0x80eb39												
+  checker.go:18831	0x80eaaa		55			PUSHQ BP												
+  checker.go:18831	0x80eaab		4889e5			MOVQ SP, BP												
+  checker.go:18831	0x80eaae		4883ec10		SUBQ $0x10, SP												
+  checker.go:18832	0x80eab2		8b13			MOVL 0(BX), DX												
+  checker.go:18832	0x80eab4		f7c200001018		TESTL $0x18100000, DX											
+  checker.go:18832	0x80eaba		7465			JE 0x80eb21												
+  checker.go:18832	0x80eabc		894c2430		MOVL CX, 0x30(SP)											
+  checker.go:18835	0x80eac0		e85b070000		CALL github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers(SB)	
+  checker.go:18836	0x80eac5		8b4c2430		MOVL 0x30(SP), CX											
+  checker.go:18836	0x80eac9		85c9			TESTL CX, CX												
+  checker.go:18836	0x80eacb		751a			JNE 0x80eae7												
+  checker.go:18837	0x80eacd		488b4878		MOVQ 0x78(AX), CX											
+  checker.go:18837	0x80ead1		488b9880000000		MOVQ 0x80(AX), BX											
+  checker.go:18837	0x80ead8		4839cb			CMPQ BX, CX												
+  checker.go:18837	0x80eadb		7756			JA 0x80eb33												
+  checker.go:18837	0x80eadd		488b4068		MOVQ 0x68(AX), AX											
+  checker.go:18837	0x80eae1		4883c410		ADDQ $0x10, SP												
+  checker.go:18837	0x80eae5		5d			POPQ BP													
+  checker.go:18837	0x80eae6		c3			RET													
+  checker.go:18839	0x80eae7		488b5870		MOVQ 0x70(AX), BX											
+  checker.go:18839	0x80eaeb		488b9080000000		MOVQ 0x80(AX), DX											
+  checker.go:18839	0x80eaf2		4839da			CMPQ DX, BX												
+  checker.go:18839	0x80eaf5		7737			JA 0x80eb2e												
+  checker.go:18839	0x80eaf7		488b7068		MOVQ 0x68(AX), SI											
+  checker.go:18839	0x80eafb		488b4878		MOVQ 0x78(AX), CX											
+  checker.go:18839	0x80eaff		4829d1			SUBQ DX, CX												
+  checker.go:18839	0x80eb02		4829d3			SUBQ DX, BX												
+  checker.go:18839	0x80eb05		4889cf			MOVQ CX, DI												
+  checker.go:18839	0x80eb08		48f7df			NEGQ DI													
+  checker.go:18839	0x80eb0b		48c1e203		SHLQ $0x3, DX												
+  checker.go:18839	0x80eb0f		48c1ff3f		SARQ $0x3f, DI												
+  checker.go:18839	0x80eb13		4821fa			ANDQ DI, DX												
+  checker.go:18839	0x80eb16		488d0416		LEAQ 0(SI)(DX*1), AX											
+  checker.go:18839	0x80eb1a		4883c410		ADDQ $0x10, SP												
+  checker.go:18839	0x80eb1e		5d			POPQ BP													
+  checker.go:18839	0x80eb1f		90			NOPL													
+  checker.go:18839	0x80eb20		c3			RET													
+  checker.go:18833	0x80eb21		31c0			XORL AX, AX												
+  checker.go:18833	0x80eb23		31db			XORL BX, BX												
+  checker.go:18833	0x80eb25		4889d9			MOVQ BX, CX												
+  checker.go:18833	0x80eb28		4883c410		ADDQ $0x10, SP												
+  checker.go:18833	0x80eb2c		5d			POPQ BP													
+  checker.go:18833	0x80eb2d		c3			RET													
+  checker.go:18839	0x80eb2e		e86d2dc8ff		CALL runtime.panicBounds(SB)										
+  checker.go:18837	0x80eb33		e8682dc8ff		CALL runtime.panicBounds(SB)										
+  checker.go:18837	0x80eb38		90			NOPL													
+  checker.go:18831	0x80eb39		4889442408		MOVQ AX, 0x8(SP)											
+  checker.go:18831	0x80eb3e		48895c2410		MOVQ BX, 0x10(SP)											
+  checker.go:18831	0x80eb43		894c2418		MOVL CX, 0x18(SP)											
+  checker.go:18831	0x80eb47		e8b40ec8ff		CALL runtime.morestack_noctxt.abi0(SB)									
+  checker.go:18831	0x80eb4c		488b442408		MOVQ 0x8(SP), AX											
+  checker.go:18831	0x80eb51		488b5c2410		MOVQ 0x10(SP), BX											
+  checker.go:18831	0x80eb56		8b4c2418		MOVL 0x18(SP), CX											
+  checker.go:18831	0x80eb5a		e941ffffff		JMP github.com/microsoft/typescript-go/internal/checker.(*Checker).getSignaturesOfStructuredType(SB)	

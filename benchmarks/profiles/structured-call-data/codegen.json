@@ -1,0 +1,45 @@
+{
+  "scope": "Static encoded function bodies, not runtime, allocations, or speedup evidence. Inlined functions may have no standalone body.",
+  "binaries": {
+    "baseline": {
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "functions": {
+        "newObjectType": {
+          "encodedBytes": 411,
+          "hasStandaloneBody": true,
+          "sha256": "7126836bf3a1e479bed467963de55cbbfceacd720ea6c3235edf5c7a1a7b3ccc"
+        },
+        "getSignaturesOfStructuredType": {
+          "encodedBytes": 191,
+          "hasStandaloneBody": true,
+          "sha256": "efbb03c7ca228f12ed0f797e9fc5b7d987a4b4bcaa2d0e8f6d0019c345243b4b"
+        },
+        "setStructuredTypeMembers": {
+          "encodedBytes": 712,
+          "hasStandaloneBody": true,
+          "sha256": "585901f4a6aa8a02f4618d483a409e9ff8b08efe09592d036f226aff1ad8ad1c"
+        }
+      }
+    },
+    "candidate": {
+      "sha256": "d93225f34a386e3b990005f49d309fbeef9ae3c1fcf909214c700491baf3c2cf",
+      "functions": {
+        "newObjectType": {
+          "encodedBytes": 411,
+          "hasStandaloneBody": true,
+          "sha256": "313873d62772261a2de78a940eb1f4b7476df640272f5f89ee22acc08a560165"
+        },
+        "getSignaturesOfStructuredType": {
+          "encodedBytes": 280,
+          "hasStandaloneBody": true,
+          "sha256": "84a341557391f349e09a41e2c63dcd1dfe5a7d46cebebd692fcbeb1c39b015c1"
+        },
+        "setStructuredTypeMembers": {
+          "encodedBytes": 799,
+          "hasStandaloneBody": true,
+          "sha256": "c5e656a84dbd9d46507a453f2765e9cede910d1db4f4d1b8d15aadd648d03328"
+        }
+      }
+    }
+  }
+}

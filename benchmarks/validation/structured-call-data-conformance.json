@@ -1,0 +1,110 @@
+{
+  "variant": "conformance",
+  "sourceSha256": "dfadc4329383b5acb32127c9bdf14295a5cd94e113894d4c9cbb34d32a12d3d9",
+  "head": "cda302642cd75e050214790e503c1e1446bc3795",
+  "controllerSha256": "469f4efaee9eed129d7311a1b78a0def1005836321f3becbc2b64252859dde6f",
+  "summaryHelperSha256": "aebdb6e5d2e21df0faddc0d1e66a1103cac58c5c38f91db1cf2d8f5579866431",
+  "expectedFocusedTests": [],
+  "pins": {
+    "TypeScript": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "typescript-go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b"
+  },
+  "runs": [
+    {
+      "name": "conformance",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/testrunner",
+        "-run",
+        "^TestSubmodule$",
+        "-parallel",
+        "4",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/tsc-structured-call-data/conformance/conformance.jsonl",
+      "stderr": "/tmp/tsc-structured-call-data/conformance/conformance.stderr",
+      "stdout_sha256": "94230f61c23f2111e65caea63f492a4e692ea802473fc35a5fd65a1ed603331a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": {
+        "test_records": {
+          "pass": 113970,
+          "skip": 2126
+        },
+        "top_level_records": {
+          "pass": 1
+        },
+        "passing_top_level_tests": [
+          "TestSubmodule"
+        ],
+        "package_status": {
+          "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+        },
+        "cached_packages": [],
+        "source_configuration_cases": {
+          "total": 14915,
+          "fully_checked": 12789,
+          "partially_checked": 8,
+          "unsupported_skipped": 2118,
+          "failed": 0
+        },
+        "skip_categories": {
+          "unsupported target ES5": 1244,
+          "unsupported module kind AMD": 321,
+          "unsupported module kind System": 222,
+          "alwaysStrict=false is unsupported": 52,
+          "unsupported outFile": 87,
+          "esModuleInterop=false is unsupported": 24,
+          "unsupported baseUrl": 31,
+          "unsupported module resolution kind 1": 57,
+          "unsupported module resolution kind 2": 23,
+          "unsupported module kind UMD": 57
+        },
+        "partial_output_skips": [
+          {
+            "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+            "reason": "cls.d.ts is missing statements when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+            "reason": "Nondeterministic contents when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+            "reason": "Nondeterministic contents when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/grammarErrors.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+            "reason": "No files are emitted."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          }
+        ],
+        "failed_tests": [],
+        "integrity_errors": []
+      },
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Complete pinned conformance only; focused/root suites tracked separately; no workload timing claim.",
+  "sourceAndPinsUnchanged": true
+}

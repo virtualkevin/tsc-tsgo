@@ -1,0 +1,12 @@
+{
+  "sourceSha256": "dfadc4329383b5acb32127c9bdf14295a5cd94e113894d4c9cbb34d32a12d3d9",
+  "inventorySha256": "a4855826b61fb9c3f69a6b5148f9cad416d3ffa66b6ac8617da4093df3ed7f46",
+  "packages": 234,
+  "files": 4954,
+  "valueExpressions": 29,
+  "review": "All 29 are composite literals: 25 addressed fresh constructions and four unsafe.Sizeof test operands. Two test literals initialize declaredMembers, leaving embedded StructuredType zero. No populated by-value copy expression found. The inventory examines typed values containing StructuredType through struct/array/tuple fields, excluding pointer edges. This is not proof about reflection or external callers; private mutable fields are accessed through pointer-based checker APIs. Dependency syntax included by loader may appear in file count.",
+  "limits": [
+    "Only current build configuration and packages loaded with Tests:true; not all platforms/build tags.",
+    "Implicit pointer receivers and aliasing of pointers are not by-value copies; mutable typed ownership remains checker-local."
+  ]
+}

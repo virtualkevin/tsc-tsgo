@@ -1,0 +1,317 @@
+diff --git a/packages/tsc-go/internal/checker/checker.go b/packages/tsc-go/internal/checker/checker.go
+index 0904719..3e7266a 100644
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -4506,7 +4506,7 @@ func (c *Checker) getTypeWithoutSignatures(t *Type) *Type {
+ 	switch {
+ 	case t.flags&TypeFlagsObject != 0:
+ 		resolved := c.resolveStructuredTypeMembers(t)
+-		if len(resolved.signatures) != 0 {
++		if len(resolved.signatureList()) != 0 {
+ 			result := c.newObjectType(ObjectFlagsAnonymous, t.symbol)
+ 			result.objectFlags |= ObjectFlagsMembersResolved
+ 			result.AsObjectType().members = resolved.Members()
+@@ -10671,7 +10671,7 @@ func (c *Checker) getInstantiationExpressionType(exprType *Type, node *ast.Node)
+ 				hasApplicableSignature = hasApplicableSignature || len(callSignatures) != 0 || len(constructSignatures) != 0
+ 				if !core.Same(callSignatures, resolved.CallSignatures()) || !core.Same(constructSignatures, resolved.ConstructSignatures()) {
+ 					result := c.newObjectType(ObjectFlagsAnonymous|ObjectFlagsInstantiationExpressionType, c.newSymbol(ast.SymbolFlagsNone, ast.InternalSymbolNameInstantiationExpression))
+-					c.setStructuredTypeMembers(result, resolved.Members(), callSignatures, constructSignatures, resolved.indexInfos)
++					c.setStructuredTypeMembers(result, resolved.Members(), callSignatures, constructSignatures, resolved.indexInfoList())
+ 					result.AsInstantiationExpressionType().node = node
+ 					return result
+ 				}
+@@ -15645,7 +15645,7 @@ func (c *Checker) cloneTypeAsModuleType(symbol *ast.Symbol, moduleType *Type, re
+ 	links.target = symbol
+ 	links.originatingImport = referenceParent
+ 	resolvedModuleType := c.resolveStructuredTypeMembers(moduleType)
+-	c.valueSymbolLinks.Get(result).resolvedType = c.newAnonymousType(result, resolvedModuleType.Members(), nil, nil, resolvedModuleType.indexInfos)
++	c.valueSymbolLinks.Get(result).resolvedType = c.newAnonymousType(result, resolvedModuleType.Members(), nil, nil, resolvedModuleType.indexInfoList())
+ 	return result
+ }
+ 
+@@ -18834,9 +18834,9 @@ func (c *Checker) getSignaturesOfStructuredType(t *Type, kind SignatureKind) []*
+ 	}
+ 	resolved := c.resolveStructuredTypeMembers(t)
+ 	if kind == SignatureKindCall {
+-		return resolved.signatures[:resolved.callSignatureCount]
++		return resolved.signatureList()[:resolved.signatureCount()]
+ 	}
+-	return resolved.signatures[resolved.callSignatureCount:]
++	return resolved.signatureList()[resolved.signatureCount():]
+ }
+ 
+ func (c *Checker) getIndexInfosOfType(t *Type) []*IndexInfo {
+@@ -18845,7 +18845,7 @@ func (c *Checker) getIndexInfosOfType(t *Type) []*IndexInfo {
+ 
+ func (c *Checker) getIndexInfosOfStructuredType(t *Type) []*IndexInfo {
+ 	if t.flags&TypeFlagsStructuredType != 0 {
+-		return c.resolveStructuredTypeMembers(t).indexInfos
++		return c.resolveStructuredTypeMembers(t).indexInfoList()
+ 	}
+ 	return nil
+ }
+@@ -19229,7 +19229,7 @@ func (c *Checker) getSingleCallOrConstructSignature(t *Type) *Signature {
+ func (c *Checker) getSingleSignature(t *Type, kind SignatureKind, allowMembers bool) *Signature {
+ 	if t.flags&TypeFlagsObject != 0 {
+ 		resolved := c.resolveStructuredTypeMembers(t)
+-		if allowMembers || !hasResolvedProperties(resolved) && len(resolved.indexInfos) == 0 {
++		if allowMembers || !hasResolvedProperties(resolved) && len(resolved.indexInfoList()) == 0 {
+ 			if kind == SignatureKindCall && len(resolved.CallSignatures()) == 1 && len(resolved.ConstructSignatures()) == 0 {
+ 				return resolved.CallSignatures()[0]
+ 			}
+@@ -20582,14 +20582,14 @@ func (c *Checker) resolveAnonymousTypeMembers(t *Type) {
+ 			indexInfos = append(indexInfos, c.enumNumberIndexInfo)
+ 		}
+ 	}
+-	d.indexInfos = indexInfos
++	d.setIndexInfoList(indexInfos)
+ 	// We resolve the members before computing the signatures because a signature may use
+ 	// typeof with a qualified name expression that circularly references the type we are
+ 	// in the process of resolving (see issue #6072). The temporarily empty signature list
+ 	// will never be observed because a qualified name can't reference signatures.
+ 	if symbol.Flags&(ast.SymbolFlagsFunction|ast.SymbolFlagsMethod) != 0 {
+-		d.signatures = c.getSignaturesOfSymbol(symbol)
+-		d.callSignatureCount = len(d.signatures)
++		signatures := c.getSignaturesOfSymbol(symbol)
++		d.setSignatureList(signatures, len(signatures))
+ 	}
+ 	// And likewise for construct signatures for classes
+ 	if symbol.Flags&ast.SymbolFlagsClass != 0 {
+@@ -20598,7 +20598,7 @@ func (c *Checker) resolveAnonymousTypeMembers(t *Type) {
+ 		if len(constructSignatures) == 0 {
+ 			constructSignatures = c.getDefaultConstructSignatures(classType)
+ 		}
+-		d.signatures = append(d.signatures, constructSignatures...)
++		d.setSignatureList(append(d.signatureList(), constructSignatures...), d.signatureCount())
+ 	}
+ }
+ 
+@@ -25089,22 +25089,22 @@ func (c *Checker) setStructuredTypeMembers(t *Type, members ast.SymbolTable, cal
+ 	data.pendingMembers = nil
+ 	data.members = members
+ 	data.properties = c.getNamedMembers(members, t.symbol)
++	var signatures []*Signature
+ 	if len(callSignatures) != 0 {
+ 		if len(constructSignatures) != 0 {
+-			data.signatures = core.Concatenate(callSignatures, constructSignatures)
++			signatures = core.Concatenate(callSignatures, constructSignatures)
+ 		} else {
+-			data.signatures = slices.Clip(callSignatures)
++			signatures = slices.Clip(callSignatures)
+ 		}
+-		data.callSignatureCount = len(callSignatures)
+ 	} else {
+ 		if len(constructSignatures) != 0 {
+-			data.signatures = slices.Clip(constructSignatures)
++			signatures = slices.Clip(constructSignatures)
+ 		} else {
+-			data.signatures = nil
++			signatures = nil
+ 		}
+-		data.callSignatureCount = 0
+ 	}
+-	data.indexInfos = slices.Clip(indexInfos)
++	data.setSignatureList(signatures, len(callSignatures))
++	data.setIndexInfoList(slices.Clip(indexInfos))
+ }
+ 
+ func (c *Checker) newTypeParameter(symbol *ast.Symbol) *Type {
+@@ -26405,7 +26405,7 @@ func (c *Checker) IsEmptyAnonymousObjectType(t *Type) bool {
+ }
+ 
+ func (c *Checker) isEmptyResolvedType(t *StructuredType) bool {
+-	return t.AsType() != c.anyFunctionType && !hasResolvedProperties(t) && len(t.signatures) == 0 && len(t.indexInfos) == 0
++	return t.AsType() != c.anyFunctionType && !hasResolvedProperties(t) && len(t.signatureList()) == 0 && len(t.indexInfoList()) == 0
+ }
+ 
+ func (c *Checker) isEmptyObjectType(t *Type) bool {
+@@ -27725,7 +27725,7 @@ func (c *Checker) containsUndefinedType(t *Type) bool {
+ }
+ 
+ func (c *Checker) typeHasCallOrConstructSignatures(t *Type) bool {
+-	return t.flags&TypeFlagsStructuredType != 0 && len(c.resolveStructuredTypeMembers(t).signatures) != 0
++	return t.flags&TypeFlagsStructuredType != 0 && len(c.resolveStructuredTypeMembers(t).signatureList()) != 0
+ }
+ 
+ func (c *Checker) getNormalizedType(t *Type, writing bool) *Type {
+@@ -28032,7 +28032,7 @@ func (c *Checker) getRegularTypeOfObjectLiteral(t *Type) *Type {
+ 	}
+ 	resolved := c.resolveStructuredTypeMembers(t)
+ 	members := c.transformTypeOfMembers(t, c.getRegularTypeOfObjectLiteral)
+-	regular := c.newAnonymousType(t.symbol, members, resolved.CallSignatures(), resolved.ConstructSignatures(), resolved.indexInfos)
++	regular := c.newAnonymousType(t.symbol, members, resolved.CallSignatures(), resolved.ConstructSignatures(), resolved.indexInfoList())
+ 	regular.flags = resolved.flags
+ 	regular.objectFlags |= resolved.objectFlags & ^ObjectFlagsFreshLiteral
+ 	c.cachedTypes[key] = regular
+@@ -30973,7 +30973,7 @@ func (c *Checker) isFunctionObjectType(t *Type) bool {
+ 	// We do a quick check for a "bind" property before performing the more expensive subtype
+ 	// check. This gives us a quicker out in the common case where an object type is not a function.
+ 	resolved := c.resolveStructuredTypeMembers(t)
+-	return len(resolved.signatures) != 0 || getResolvedMember(resolved, "bind") != nil && c.isTypeSubtypeOf(t, c.globalFunctionType)
++	return len(resolved.signatureList()) != 0 || getResolvedMember(resolved, "bind") != nil && c.isTypeSubtypeOf(t, c.globalFunctionType)
+ }
+ 
+ func (c *Checker) getTypeWithFacts(t *Type, include TypeFacts) *Type {
+diff --git a/packages/tsc-go/internal/checker/nodebuilderimpl.go b/packages/tsc-go/internal/checker/nodebuilderimpl.go
+index 0f5b92a..89ef15c 100644
+--- a/packages/tsc-go/internal/checker/nodebuilderimpl.go
++++ b/packages/tsc-go/internal/checker/nodebuilderimpl.go
+@@ -553,19 +553,19 @@ func (b *NodeBuilderImpl) getResolvedTypeWithoutAbstractConstructSignatures(t *S
+ 	if len(t.ConstructSignatures()) == 0 {
+ 		return t.AsType()
+ 	}
+-	if t.objectTypeWithoutAbstractConstructSignatures != nil {
+-		return t.objectTypeWithoutAbstractConstructSignatures
++	if t.withoutAbstractConstructSignatures() != nil {
++		return t.withoutAbstractConstructSignatures()
+ 	}
+ 	constructSignatures := core.Filter(t.ConstructSignatures(), func(signature *Signature) bool {
+ 		return signature.flags&SignatureFlagsAbstract == 0
+ 	})
+ 	if len(constructSignatures) == len(t.ConstructSignatures()) {
+-		t.objectTypeWithoutAbstractConstructSignatures = t.AsType()
++		t.setWithoutAbstractConstructSignatures(t.AsType())
+ 		return t.AsType()
+ 	}
+-	typeCopy := b.ch.newAnonymousType(t.symbol, t.Members(), t.CallSignatures(), core.IfElse(len(constructSignatures) > 0, constructSignatures, []*Signature{}), t.indexInfos)
+-	t.objectTypeWithoutAbstractConstructSignatures = typeCopy
+-	typeCopy.AsStructuredType().objectTypeWithoutAbstractConstructSignatures = typeCopy
++	typeCopy := b.ch.newAnonymousType(t.symbol, t.Members(), t.CallSignatures(), core.IfElse(len(constructSignatures) > 0, constructSignatures, []*Signature{}), t.indexInfoList())
++	t.setWithoutAbstractConstructSignatures(typeCopy)
++	typeCopy.AsStructuredType().setWithoutAbstractConstructSignatures(typeCopy)
+ 	return typeCopy
+ }
+ 
+@@ -2615,7 +2615,7 @@ func (b *NodeBuilderImpl) createTypeNodesFromResolvedType(resolvedType *Structur
+ 		}
+ 		typeElements = append(typeElements, b.signatureToSignatureDeclarationHelper(signature, ast.KindConstructSignature, nil))
+ 	}
+-	for _, info := range resolvedType.indexInfos {
++	for _, info := range resolvedType.indexInfoList() {
+ 		typeElements = slices.Concat(typeElements, b.indexInfoToObjectComputedNamesOrSignatureDeclaration(info, core.IfElse(resolvedType.objectFlags&ObjectFlagsReverseMapped != 0, b.createElidedInformationPlaceholder(), nil)))
+ 	}
+ 
+@@ -2668,7 +2668,7 @@ func (b *NodeBuilderImpl) createTypeNodeFromObjectType(t *Type) *ast.TypeNode {
+ 	resolved := b.ch.resolveStructuredTypeMembers(t)
+ 	callSigs := resolved.CallSignatures()
+ 	ctorSigs := resolved.ConstructSignatures()
+-	if len(resolved.Properties()) == 0 && len(resolved.indexInfos) == 0 {
++	if len(resolved.Properties()) == 0 && len(resolved.indexInfoList()) == 0 {
+ 		if len(callSigs) == 0 && len(ctorSigs) == 0 {
+ 			b.ctx.approximateLength += 2
+ 			result := b.f.NewTypeLiteralNode(b.f.NewNodeList([]*ast.Node{}))
+@@ -2697,7 +2697,7 @@ func (b *NodeBuilderImpl) createTypeNodeFromObjectType(t *Type) *ast.TypeNode {
+ 			return b.ch.getOrCreateTypeFromSignature(s)
+ 		})
+ 		// count the number of type elements excluding abstract constructors
+-		typeElementCount := len(callSigs) + (len(ctorSigs) - len(abstractSignatures)) + len(resolved.indexInfos) + core.IfElse(b.ctx.flags&nodebuilder.FlagsWriteClassExpressionAsTypeLiteral != 0, core.CountWhere(resolved.Properties(), func(p *ast.Symbol) bool {
++		typeElementCount := len(callSigs) + (len(ctorSigs) - len(abstractSignatures)) + len(resolved.indexInfoList()) + core.IfElse(b.ctx.flags&nodebuilder.FlagsWriteClassExpressionAsTypeLiteral != 0, core.CountWhere(resolved.Properties(), func(p *ast.Symbol) bool {
+ 			return p.Flags&ast.SymbolFlagsPrototype == 0
+ 		}), len(resolved.Properties()))
+ 		// don't include an empty object literal if there were no other static-side
+diff --git a/packages/tsc-go/internal/checker/relater.go b/packages/tsc-go/internal/checker/relater.go
+index 12d42f6..781c35a 100644
+--- a/packages/tsc-go/internal/checker/relater.go
++++ b/packages/tsc-go/internal/checker/relater.go
+@@ -733,7 +733,7 @@ func (c *Checker) elaborateArrowFunction(node *ast.Node, source *Type, target *T
+ func (c *Checker) isWeakType(t *Type) bool {
+ 	if t.flags&TypeFlagsObject != 0 {
+ 		resolved := c.resolveStructuredTypeMembers(t)
+-		return len(resolved.signatures) == 0 && len(resolved.indexInfos) == 0 && hasResolvedProperties(resolved) && resolvedPropertiesAreOptional(resolved)
++		return len(resolved.signatureList()) == 0 && len(resolved.indexInfoList()) == 0 && hasResolvedProperties(resolved) && resolvedPropertiesAreOptional(resolved)
+ 	}
+ 	if t.flags&TypeFlagsSubstitution != 0 {
+ 		return c.isWeakType(t.AsSubstitutionType().baseType)
+diff --git a/packages/tsc-go/internal/checker/types.go b/packages/tsc-go/internal/checker/types.go
+index 4a34e48..16cd3a8 100644
+--- a/packages/tsc-go/internal/checker/types.go
++++ b/packages/tsc-go/internal/checker/types.go
+@@ -916,24 +916,79 @@ func (t *ConstrainedType) AsConstrainedType() *ConstrainedType { return t }
+ 
+ type StructuredType struct {
+ 	ConstrainedType
+-	pendingMembers     *pendingInstantiatedMembers
+-	members            ast.SymbolTable
+-	properties         []*ast.Symbol
+-	signatures         []*Signature // Signatures (call + construct)
+-	callSignatureCount int          // Count of call signatures
+-	indexInfos         []*IndexInfo
+-
++	pendingMembers *pendingInstantiatedMembers
++	members        ast.SymbolTable
++	properties     []*ast.Symbol
++	callData       *structuredCallData
++}
++
++// structuredCallData is owned by one structured type. Most property-only types
++// need none of these fields. A nil record represents their original zero values.
++type structuredCallData struct {
++	signatures                                   []*Signature
++	callSignatureCount                           int
++	indexInfos                                   []*IndexInfo
+ 	objectTypeWithoutAbstractConstructSignatures *Type
+ }
+ 
++func (t *StructuredType) signatureList() []*Signature {
++	if t.callData == nil {
++		return nil
++	}
++	return t.callData.signatures
++}
++func (t *StructuredType) signatureCount() int {
++	if t.callData == nil {
++		return 0
++	}
++	return t.callData.callSignatureCount
++}
++func (t *StructuredType) indexInfoList() []*IndexInfo {
++	if t.callData == nil {
++		return nil
++	}
++	return t.callData.indexInfos
++}
++func (t *StructuredType) withoutAbstractConstructSignatures() *Type {
++	if t.callData == nil {
++		return nil
++	}
++	return t.callData.objectTypeWithoutAbstractConstructSignatures
++}
++func (t *StructuredType) setWithoutAbstractConstructSignatures(value *Type) {
++	if t.callData == nil {
++		t.callData = &structuredCallData{}
++	}
++	t.callData.objectTypeWithoutAbstractConstructSignatures = value
++}
++func (t *StructuredType) setSignatureList(signatures []*Signature, callCount int) {
++	if t.callData == nil {
++		if signatures == nil && callCount == 0 {
++			return
++		}
++		t.callData = &structuredCallData{}
++	}
++	t.callData.signatures = signatures
++	t.callData.callSignatureCount = callCount
++}
++func (t *StructuredType) setIndexInfoList(infos []*IndexInfo) {
++	if t.callData == nil {
++		if infos == nil {
++			return
++		}
++		t.callData = &structuredCallData{}
++	}
++	t.callData.indexInfos = infos
++}
++
+ func (t *StructuredType) AsStructuredType() *StructuredType { return t }
+ 
+ func (t *StructuredType) CallSignatures() []*Signature {
+-	return slices.Clip(t.signatures[:t.callSignatureCount])
++	return slices.Clip(t.signatureList()[:t.signatureCount()])
+ }
+ 
+ func (t *StructuredType) ConstructSignatures() []*Signature {
+-	return slices.Clip(t.signatures[t.callSignatureCount:])
++	return slices.Clip(t.signatureList()[t.signatureCount():])
+ }
+ 
+ func (t *StructuredType) Properties() []*ast.Symbol {
