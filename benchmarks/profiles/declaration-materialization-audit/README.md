@@ -1,0 +1,18 @@
+# Declaration materialization: evidence and phase boundary
+
+Offline audit after rejection of direct member materialization, at production baseline 216d40c7 / binary 8fe4bd80. No compiler change or timing claim. `analyze.py` verifies the existing raw heap hashes from `ast-arena-audit`, classifies stack membership once per sample, and reproduces `report.json`. The factory category is a subset of declaration-stack allocations, not an additional budget. Three classifier checks distinguish declaration callees, unrelated factory work and non-factory declaration work.
+
+The retained heap data has 524 declaration-stack records for TypeORM and 39 for tRPC, but **all have zero values in all four sampled allocation metrics**. VS Code/Sentry have no such records. These records do not demonstrate zero actual allocation. Historical profiles were collected without forced final GC and can omit recent allocations; they cannot quantify the allocation budget for avoiding declaration output materialization. Do not publish these zeros as a performance result. The archive and parser hashes are recorded in report.json; source hashes are recorded in sources.json.
+
+Source findings:
+
+- `Program.getDeclarationDiagnosticsForFile` caches diagnostic arrays per source file. Repeating an identical request already avoids the transform after publication; a new whole-file diagnostic cache would duplicate existing behavior.
+- `compiler.getDeclarationDiagnostics` checks emit eligibility, constructs the ordinary declaration transformer, calls TransformSourceFile and discards its returned tree. Its target file limits getSourceFilesToEmit to a singleton; this is not an all-files quadratic scan.
+- `GetDiagnosticsOfAnyProgram` requests declaration diagnostics under NoEmit when declaration output is configured and preceding diagnostics are clear. Skipping that path would change required diagnostics.
+- `emitter.emitDeclarationFile` also runs the declaration transformer before the NoEmit/emit-blocked return. The historical TypeORM heap stacks include this emitter path. These two call paths alone do not prove that one CLI invocation performs both; the next observer must distinguish them and count source-file identities per invocation.
+- The transform traverses CommonJS export assignments, collects expando members, serializes declarations, then processes late-painted aliases. The latter loop can discover further aliases and diagnostics, so throwing away synthesized nodes at their creation sites is not automatically safe.
+- Final source-file wrapping and reference directives are output assembly, but factory allocation beneath the transform also supports later semantic traversal. A no-op factory is not a valid diagnostic-only implementation.
+
+Next evidence: a diagnostic-only observer at the two compiler transform entry points, recording invocation counts and source-file overlap separately for explicit declaration diagnostics and emitter transforms. Collect whole-phase allocation deltas only at quiescent outer boundaries, avoiding concurrent per-file ReadMemStats differences and double-counted nested intervals. Use baseline/disabled/enabled controls on all four pinned workloads and exact diagnostics/input comparisons. If both paths repeat the same work, audit checker ownership and resolver side effects before sharing results. If they do not, measure construction categories before implementing a diagnostic-only consumer. Keep the prior rejected CommonJS prepass guard closed.
+
+Reproduce: `python3 -B benchmarks/profiles/declaration-materialization-audit/analyze.py` from repository root. This is a bounded investigation of the supplied analysis's cross-phase hypothesis, not a claimed route to 10× by itself.

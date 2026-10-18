@@ -1,0 +1,269 @@
+{
+  "scope": "Offline historical sampled allocations. Declaration stack membership includes semantic callees; factory subset includes callees and is not proven removable. Not operation counts, peak residency, CPU shares or speedup. Inuse is historical collection without forced final GC.",
+  "inputArchiveSha256": "2a6b7c33e8edfaddd48d0b1f34b1acf85ece69d9b87cdd25465d53031b1454be",
+  "parserSha256": "1de6a0c0039167a41993ee69210b2573d8c15204ebe0b8b0ff3e3d7b6cdc5881",
+  "projects": [
+    {
+      "project": "sentry",
+      "rawSha256": "10a63d50ab9c22f583b007ac1c2acdd34eb1d5b2ddc6defbacbc90bb923ae422",
+      "declarationStackSampleRecords": 0,
+      "positiveDeclarationStackSampleRecords": 0,
+      "total": {
+        "allocObjects": 23225216,
+        "allocBytes": 4817441419,
+        "inuseObjects": 9567728,
+        "inuseBytes": 2913908345
+      },
+      "declarationInclusive": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "factoryUnderDeclaration": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "declarationPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "factoryPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "factoryOwners": []
+    },
+    {
+      "project": "trpc",
+      "rawSha256": "471d301923e23fb46f802ac40703bac5a31f0d79e5d3741dd2b765d07b9e9001",
+      "declarationStackSampleRecords": 39,
+      "positiveDeclarationStackSampleRecords": 0,
+      "total": {
+        "allocObjects": 331970,
+        "allocBytes": 106773821,
+        "inuseObjects": 129986,
+        "inuseBytes": 88922710
+      },
+      "declarationInclusive": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "factoryUnderDeclaration": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "declarationPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "factoryPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "factoryOwners": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).UpdateNamedImports",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewNodeList",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        }
+      ]
+    },
+    {
+      "project": "typeorm",
+      "rawSha256": "b624d2d7dad57b51575a7624fb1d366b7a94912d301c8f5dae83f9e63fb022d6",
+      "declarationStackSampleRecords": 524,
+      "positiveDeclarationStackSampleRecords": 0,
+      "total": {
+        "allocObjects": 3200134,
+        "allocBytes": 561957302,
+        "inuseObjects": 1615602,
+        "inuseBytes": 408517614
+      },
+      "declarationInclusive": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "factoryUnderDeclaration": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "declarationPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "factoryPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "factoryOwners": [
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewModifierList",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).UpdateSourceFile",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewSourceFile",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewClassDeclaration",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).UpdatePropertyDeclaration",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewFunctionTypeNode",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewToken",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewUnionTypeNode",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewMethodDeclaration",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewPropertyDeclaration",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).UpdateMethodDeclaration",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewNodeList",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewMethodSignatureDeclaration",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        },
+        {
+          "name": "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).UpdateTypeReferenceNode",
+          "allocObjects": 0,
+          "allocBytes": 0,
+          "inuseObjects": 0,
+          "inuseBytes": 0
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "rawSha256": "f0400e7e1f143210cb7289825e4135d568ade9a18e8bb6b173e497ba2e906487",
+      "declarationStackSampleRecords": 0,
+      "positiveDeclarationStackSampleRecords": 0,
+      "total": {
+        "allocObjects": 17402575,
+        "allocBytes": 5084070463,
+        "inuseObjects": 10506137,
+        "inuseBytes": 4247088189
+      },
+      "declarationInclusive": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "factoryUnderDeclaration": {
+        "allocObjects": 0,
+        "allocBytes": 0,
+        "inuseObjects": 0,
+        "inuseBytes": 0
+      },
+      "declarationPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "factoryPercent": {
+        "allocObjects": 0.0,
+        "allocBytes": 0.0,
+        "inuseObjects": 0.0,
+        "inuseBytes": 0.0
+      },
+      "factoryOwners": []
+    }
+  ]
+}
