@@ -1,0 +1,3 @@
+# Interrupted confirmation
+
+The first forward confirmation at capture 67240cf received SIGTERM at 2026-10-18T17:37:34.774Z and exited 143. The source of that signal is not identified in the captured output. The controller reported zero leftover marked processes. TypeORM/tRPC collection completed; the large stage failed before a complete report was produced. This is an incomplete confirmation, not a measured full-suite performance failure or success. Do not pool its samples with a replacement run or use it to promote the candidate. Exact available reports, execution files and logs are preserved here. No replacement has started.
