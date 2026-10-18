@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "b3e7e21bd135facd03168cb00111be0380350a74ea19c587aaff30366bb4bb3b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/cmd/tsgo/main.go": "0f4a15524c2cf2ff02a8074aa1ae45b7b7b00ca22f912c4d13d1fd47babd0849",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/materialization_census.go": "89edceb750c51e68442529d64b58e22d218eb1f2783b86d22d17d51809aff655",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/materialization_census_test.go": "1a8f7f09a5a1134a7d0405c34dd04f650ae0320613ae31f69dcd703a3eb3d893"
+  },
+  "controllerSha256": "38cf34a7e181957039354b7540b23f143c5429d8a6743fa8b61557c80cd70a0e",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/member-materialization-census/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestMaterializationCensus",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestMaterializationCensusConcurrent",
+          "pass"
+        ],
+        [
+          "TestMaterializationCensusExclusiveOutput",
+          "pass"
+        ],
+        [
+          "TestMaterializationCensusLifecycle",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "179a6b2001b4fa887bf54d50933d9a5d2c8b0ee250ba277a591cf8b125fb8caa",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-race",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/member-materialization-census/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestMaterializationCensus",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestMaterializationCensusConcurrent",
+          "pass"
+        ],
+        [
+          "TestMaterializationCensusExclusiveOutput",
+          "pass"
+        ],
+        [
+          "TestMaterializationCensusLifecycle",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "62f57e1c369329dd558e591cae4476a68f6778d9fad9be1bf57946e37801f667",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    }
+  ]
+}

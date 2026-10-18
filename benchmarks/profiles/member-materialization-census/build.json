@@ -1,0 +1,23 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/member-materialization-census/overlay.json",
+    "-o",
+    "/tmp/tsc-member-materialization-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "b3e7e21bd135facd03168cb00111be0380350a74ea19c587aaff30366bb4bb3b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/cmd/tsgo/main.go": "0f4a15524c2cf2ff02a8074aa1ae45b7b7b00ca22f912c4d13d1fd47babd0849",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/materialization_census.go": "89edceb750c51e68442529d64b58e22d218eb1f2783b86d22d17d51809aff655",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/materialization_census_test.go": "1a8f7f09a5a1134a7d0405c34dd04f650ae0320613ae31f69dcd703a3eb3d893"
+  },
+  "controllerSha256": "f11d4ea3b213529f631bbebff2a68b09938547b94f28f22f96065e1a7897c74a",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "969d59d0de788a3a72d4dc0387479d0799173ee2cf0346b68148fe01af73704c",
+  "buildInfoSha256": "2f798100914daa5023a8d2f442a788d4c45c9174695cfbce1ead3efaa91d05ab"
+}

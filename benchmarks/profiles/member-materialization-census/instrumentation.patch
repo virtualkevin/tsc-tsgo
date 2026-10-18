@@ -1,0 +1,84 @@
+--- a/packages/tsc-go/internal/checker/pending_members.go
++++ b/packages/tsc-go/internal/checker/pending_members.go
+@@ -150,6 +150,14 @@
+ 	if p.memberNames != nil {
+ 		return
+ 	}
++	kind := 0
++	if p.hasBases {
++		kind = 1
++	}
++	if p.resolving {
++		kind = 2
++	}
++	observeMaterialization(kind, len(p.source.entries), len(p.bases))
+ 	t.pendingMembers = nil
+ 	members := p.ownTable()
+ 	p.instantiated = nil
+@@ -181,21 +189,26 @@
+ func (p *pendingInstantiatedMembers) keepTableOnDemand(t *StructuredType, members ast.SymbolTable) {
+ 	properties := t.properties
+ 	if len(properties) != len(members) {
++		observeMaterialization(3, len(members), len(properties))
+ 		return
+ 	}
+ 	for _, symbol := range properties {
+ 		if members[symbol.Name] != symbol {
++			observeMaterialization(4, len(members), len(properties))
+ 			return
+ 		}
+ 	}
+ 	names := p.source.lastMemberNames
+ 	if !hasMemberNames(names, properties) {
++		observeMaterialization(5, len(properties), len(p.bases))
+ 		names = &memberNames{names: make([]string, len(properties)), positions: make(map[string]int, len(properties))}
+ 		for i, symbol := range properties {
+ 			names.names[i] = symbol.Name
+ 			names.positions[symbol.Name] = i
+ 		}
+ 		p.source.lastMemberNames = names
++	} else {
++		observeMaterialization(6, len(properties), len(p.bases))
+ 	}
+ 	p.memberNames = names
+ 	p.materializedProperties = properties
+@@ -225,12 +238,18 @@
+ }
+ 
+ func (p *pendingInstantiatedMembers) materializeTable(t *StructuredType) {
++	immediate := p.memberNames == nil
+ 	if p.memberNames == nil {
+ 		p.materialize(t)
+ 		if t.pendingMembers != p {
+ 			return
+ 		}
+ 	}
++	kind := 8
++	if immediate {
++		kind = 7
++	}
++	observeMaterialization(kind, len(p.materializedProperties), 0)
+ 	members := make(ast.SymbolTable, len(p.materializedProperties))
+ 	for _, symbol := range p.materializedProperties {
+ 		members[symbol.Name] = symbol
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,6 +2,8 @@
+ 
+ import (
+ 	"context"
++	"fmt"
++	"github.com/microsoft/typescript-go/internal/checker"
+ 	"os"
+ 	"os/signal"
+ 	"syscall"
+@@ -28,5 +30,9 @@
+ 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+ 	defer stop()
+ 	result := execute.CommandLine(ctx, newSystem(), args, nil)
++	if err := checker.WriteMaterializationCensus(); err != nil {
++		fmt.Fprintln(os.Stderr, err)
++		return 1
++	}
+ 	return int(result.Status)
+ }
