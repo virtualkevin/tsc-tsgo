@@ -1,0 +1,417 @@
+{
+  "scope": "Deterministic bounded weak-reference construction sample after forced GC with program/checkers kept alive; cleared samples demonstrate reclamation, available samples do not prove necessity. Not unbiased population estimates, retained bytes, timing, or speedup evidence.",
+  "projects": [
+    {
+      "project": "typeorm",
+      "owners": 4,
+      "totals": {
+        "Created": 257912,
+        "Eligible": 4032,
+        "Sampled": 4032,
+        "Overflow": 0,
+        "Available": 3773,
+        "Cleared": 259,
+        "IdentityMismatches": 0
+      },
+      "observedClearedSampleFraction": 0.0642361111111111,
+      "kinds": [
+        {
+          "creationFlags": 1,
+          "Sampled": 4,
+          "Available": 4,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 1024,
+          "Sampled": 494,
+          "Available": 494,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 2048,
+          "Sampled": 24,
+          "Available": 24,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 16384,
+          "Sampled": 3,
+          "Available": 3,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 33792,
+          "Sampled": 8,
+          "Available": 8,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 34816,
+          "Sampled": 1,
+          "Available": 1,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 524288,
+          "Sampled": 296,
+          "Available": 296,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 1048576,
+          "Sampled": 2467,
+          "Available": 2235,
+          "Cleared": 232
+        },
+        {
+          "creationFlags": 2097152,
+          "Sampled": 28,
+          "Available": 27,
+          "Cleared": 1
+        },
+        {
+          "creationFlags": 16777216,
+          "Sampled": 4,
+          "Available": 4,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 33554432,
+          "Sampled": 35,
+          "Available": 35,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 67108864,
+          "Sampled": 59,
+          "Available": 59,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 134217728,
+          "Sampled": 506,
+          "Available": 480,
+          "Cleared": 26
+        },
+        {
+          "creationFlags": 268435456,
+          "Sampled": 103,
+          "Available": 103,
+          "Cleared": 0
+        }
+      ]
+    },
+    {
+      "project": "trpc",
+      "owners": 4,
+      "totals": {
+        "Created": 79462,
+        "Eligible": 1243,
+        "Sampled": 1243,
+        "Overflow": 0,
+        "Available": 1229,
+        "Cleared": 14,
+        "IdentityMismatches": 0
+      },
+      "observedClearedSampleFraction": 0.011263073209975865,
+      "kinds": [
+        {
+          "creationFlags": 1,
+          "Sampled": 4,
+          "Available": 4,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 1024,
+          "Sampled": 64,
+          "Available": 64,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 2048,
+          "Sampled": 10,
+          "Available": 10,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 16384,
+          "Sampled": 3,
+          "Available": 3,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 33792,
+          "Sampled": 1,
+          "Available": 1,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 524288,
+          "Sampled": 156,
+          "Available": 156,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 1048576,
+          "Sampled": 549,
+          "Available": 535,
+          "Cleared": 14
+        },
+        {
+          "creationFlags": 2097152,
+          "Sampled": 11,
+          "Available": 11,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 16777216,
+          "Sampled": 9,
+          "Available": 9,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 33554432,
+          "Sampled": 74,
+          "Available": 74,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 67108864,
+          "Sampled": 114,
+          "Available": 114,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 134217728,
+          "Sampled": 168,
+          "Available": 168,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 268435456,
+          "Sampled": 80,
+          "Available": 80,
+          "Cleared": 0
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "owners": 4,
+      "totals": {
+        "Created": 4277160,
+        "Eligible": 66832,
+        "Sampled": 66832,
+        "Overflow": 0,
+        "Available": 61756,
+        "Cleared": 5076,
+        "IdentityMismatches": 0
+      },
+      "observedClearedSampleFraction": 0.07595163993296625,
+      "kinds": [
+        {
+          "creationFlags": 1,
+          "Sampled": 5,
+          "Available": 5,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 1024,
+          "Sampled": 10701,
+          "Available": 10701,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 2048,
+          "Sampled": 254,
+          "Available": 254,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 16384,
+          "Sampled": 1,
+          "Available": 1,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 33792,
+          "Sampled": 352,
+          "Available": 352,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 34816,
+          "Sampled": 431,
+          "Available": 431,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 524288,
+          "Sampled": 6836,
+          "Available": 6836,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 1048576,
+          "Sampled": 40426,
+          "Available": 35664,
+          "Cleared": 4762
+        },
+        {
+          "creationFlags": 2097152,
+          "Sampled": 168,
+          "Available": 167,
+          "Cleared": 1
+        },
+        {
+          "creationFlags": 4194304,
+          "Sampled": 34,
+          "Available": 34,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 16777216,
+          "Sampled": 27,
+          "Available": 27,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 33554432,
+          "Sampled": 290,
+          "Available": 290,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 67108864,
+          "Sampled": 454,
+          "Available": 454,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 134217728,
+          "Sampled": 6408,
+          "Available": 6095,
+          "Cleared": 313
+        },
+        {
+          "creationFlags": 268435456,
+          "Sampled": 445,
+          "Available": 445,
+          "Cleared": 0
+        }
+      ]
+    },
+    {
+      "project": "sentry",
+      "owners": 4,
+      "totals": {
+        "Created": 2725687,
+        "Eligible": 42590,
+        "Sampled": 42590,
+        "Overflow": 0,
+        "Available": 35327,
+        "Cleared": 7263,
+        "IdentityMismatches": 0
+      },
+      "observedClearedSampleFraction": 0.17053298896454566,
+      "kinds": [
+        {
+          "creationFlags": 1,
+          "Sampled": 4,
+          "Available": 4,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 1024,
+          "Sampled": 6028,
+          "Available": 6028,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 2048,
+          "Sampled": 271,
+          "Available": 271,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 4096,
+          "Sampled": 3,
+          "Available": 3,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 16384,
+          "Sampled": 3,
+          "Available": 3,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 33792,
+          "Sampled": 308,
+          "Available": 308,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 34816,
+          "Sampled": 85,
+          "Available": 85,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 524288,
+          "Sampled": 1557,
+          "Available": 1557,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 1048576,
+          "Sampled": 24812,
+          "Available": 19062,
+          "Cleared": 5750
+        },
+        {
+          "creationFlags": 2097152,
+          "Sampled": 240,
+          "Available": 230,
+          "Cleared": 10
+        },
+        {
+          "creationFlags": 4194304,
+          "Sampled": 168,
+          "Available": 168,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 16777216,
+          "Sampled": 40,
+          "Available": 40,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 33554432,
+          "Sampled": 197,
+          "Available": 197,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 67108864,
+          "Sampled": 395,
+          "Available": 395,
+          "Cleared": 0
+        },
+        {
+          "creationFlags": 134217728,
+          "Sampled": 6628,
+          "Available": 5125,
+          "Cleared": 1503
+        },
+        {
+          "creationFlags": 268435456,
+          "Sampled": 1851,
+          "Available": 1851,
+          "Cleared": 0
+        }
+      ]
+    }
+  ]
+}
