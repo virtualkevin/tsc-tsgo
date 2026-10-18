@@ -1,0 +1,224 @@
+{
+  "passed": true,
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/direct_materialization.go": "3afa2912be1ccd1e2c452e6b4f91895b35f6623d55348b07d0ff67a8e65e99ce",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/direct_materialization_test.go": "ec6590ea6241ea9fddaa243b4e71c5085fff6d739b37e31c74d6f368457c608b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "b83ac64527763f3f0a7aaffdfc2457c0d35aacd085b772582f743149f9f9ed25"
+  },
+  "controllerSha256": "16b5e74eff5608a0c97f45ad2ec9c53d15df88e36e92d0a4a9941aff8e101477",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-member-materialization/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^Test(DirectMaterialization|Pending)",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestDirectMaterializationDuplicateIdentity",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationFallback/z2",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationFallback/a3",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationFallback/a1",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationFallback",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationInheritedReplacement",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationRecursiveAndEmpty",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesDuplicateAllocationOrder",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/internal",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/resolving",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+          "pass"
+        ],
+        [
+          "TestPendingMembersSnapshotKeepAndClone",
+          "pass"
+        ],
+        [
+          "TestPendingMembersFrozenMapPositions",
+          "pass"
+        ],
+        [
+          "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+          "pass"
+        ],
+        [
+          "TestPendingOptionalQueriesDoNotInstantiateMembers",
+          "pass"
+        ],
+        [
+          "TestPendingMembersAPISparseLookupThenEnumeration",
+          "pass"
+        ],
+        [
+          "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+          "pass"
+        ],
+        [
+          "TestPendingMembersAPIRecursiveBaseAndPrivateStatic",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "51ba2f336ca20a55b8df9609e35e5ba0fcf3cac20820b167ac10f6a9c51e373c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-race",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-member-materialization/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^Test(DirectMaterialization|Pending)",
+        "-count=1",
+        "-timeout",
+        "10m",
+        "-json"
+      ],
+      "exitCode": 0,
+      "tests": [
+        [
+          "TestDirectMaterializationDuplicateIdentity",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationFallback/z2",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationFallback/a3",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationFallback/a1",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationFallback",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationInheritedReplacement",
+          "pass"
+        ],
+        [
+          "TestDirectMaterializationRecursiveAndEmpty",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesDuplicateAllocationOrder",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/internal",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/resolving",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+          "pass"
+        ],
+        [
+          "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+          "pass"
+        ],
+        [
+          "TestPendingMembersSnapshotKeepAndClone",
+          "pass"
+        ],
+        [
+          "TestPendingMembersFrozenMapPositions",
+          "pass"
+        ],
+        [
+          "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+          "pass"
+        ],
+        [
+          "TestPendingOptionalQueriesDoNotInstantiateMembers",
+          "pass"
+        ],
+        [
+          "TestPendingMembersAPISparseLookupThenEnumeration",
+          "pass"
+        ],
+        [
+          "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+          "pass"
+        ],
+        [
+          "TestPendingMembersAPIRecursiveBaseAndPrivateStatic",
+          "pass"
+        ]
+      ],
+      "stdoutSha256": "13add2c77b3c4dc0e68fd7482f61d375063d1c3f07185459358d42cd3a5d270b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    }
+  ]
+}

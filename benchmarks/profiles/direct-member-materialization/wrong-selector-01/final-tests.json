@@ -1,0 +1,73 @@
+{
+  "scope": "Frozen overlay focused/root/services and complete pinned conformance validation. CLI/API/emit parity and performance tracked separately.",
+  "passed": false,
+  "freezeSha256": "06390b093b583b56f0cd8ac646ae4e0d0130308c52850acd7f17316671492ef6",
+  "commonSha256": "f435e9820c1d13b85215e5103a939fefdf27d2c4702dfe9bdadf71cdf2c4b18b",
+  "controllerSha256": "f99e0a4ecc82fd3979ad9f47aa80fbfd3911a1062a10dca3a7b1ac7a657729fd",
+  "summaryHelperSha256": "aebdb6e5d2e21df0faddc0d1e66a1103cac58c5c38f91db1cf2d8f5579866431",
+  "pins": {
+    "TypeScript": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "typescript-go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b"
+  },
+  "runs": [
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-member-materialization/overlay.json",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/ast",
+        "./internal/parser",
+        "./internal/binder",
+        "./internal/checker",
+        "-run",
+        "^Test(CanonicalName|PendingMember)",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/tsc-direct-materialization-validation/tests/checkptr.jsonl",
+      "stderr": "/tmp/tsc-direct-materialization-validation/tests/checkptr.stderr",
+      "stdout_sha256": "c4d65754084db78290144dab055dce3dc72b2a39fceaf29ae7afa6f323fdc53b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": false,
+      "summary": {
+        "tests": 13,
+        "topLevelTests": [
+          "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+          "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+          "TestPendingMemberNamesDuplicateAllocationOrder",
+          "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+          "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+          "TestPendingMembersSnapshotKeepAndClone",
+          "TestPendingMembersFrozenMapPositions",
+          "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+          "TestPendingMembersAPISparseLookupThenEnumeration",
+          "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+          "TestPendingMembersAPIRecursiveBaseAndPrivateStatic"
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/ast": "pass",
+          "github.com/microsoft/typescript-go/internal/binder": "pass",
+          "github.com/microsoft/typescript-go/internal/parser": "pass",
+          "github.com/microsoft/typescript-go/internal/checker": "pass"
+        }
+      },
+      "archive": {
+        "checkptr.jsonl.gz": {
+          "sha256": "3178668e413173b5a678b0d3f8c979950fb8a6fc5bdbceeac59f3cab1acacafc",
+          "rawSha256": "c4d65754084db78290144dab055dce3dc72b2a39fceaf29ae7afa6f323fdc53b"
+        },
+        "checkptr.stderr.gz": {
+          "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+          "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "error": "AssertionError('checkptr')"
+}

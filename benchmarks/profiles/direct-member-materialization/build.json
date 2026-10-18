@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-member-materialization/overlay.json",
+    "-o",
+    "/tmp/tsc-direct-member-materialization",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/direct_materialization.go": "3afa2912be1ccd1e2c452e6b4f91895b35f6623d55348b07d0ff67a8e65e99ce",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/direct_materialization_test.go": "ec6590ea6241ea9fddaa243b4e71c5085fff6d739b37e31c74d6f368457c608b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "b83ac64527763f3f0a7aaffdfc2457c0d35aacd085b772582f743149f9f9ed25"
+  },
+  "controllerSha256": "5f38efd42d3e7620ab26563d98a1fab64d6b6ab5d20bfd84895d91fd69d058c6",
+  "scope": "Staged candidate overlay build only; not standard production provenance or performance evidence.",
+  "binarySha256": "0c7693aa8e108cc2e562ae4bff3eef6eb4ef143ddd9d04667111250a74df4aeb",
+  "buildInfoSha256": "5480bce76c5d83ddf9b1bd4b90e1420013971bdd238928b4b532545c642d7ed8"
+}

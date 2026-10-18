@@ -1,0 +1,258 @@
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/direct_materialization.go
+@@ -0,0 +1,122 @@
++package checker
++
++import "github.com/microsoft/typescript-go/internal/ast"
++
++// Reuse the immutable name-to-position layout. If actual members don't fit,
++// transfer already constructed symbols to a normal table without replaying work.
++type pendingMemberBuilder struct {
++	names      *memberNames
++	properties []*ast.Symbol
++	table      ast.SymbolTable
++	filled     int
++}
++
++func newPendingMemberBuilder(names *memberNames) pendingMemberBuilder {
++	var properties []*ast.Symbol
++	if len(names.names) != 0 {
++		properties = make([]*ast.Symbol, len(names.names))
++	}
++	return pendingMemberBuilder{names: names, properties: properties}
++}
++func (b *pendingMemberBuilder) asTable() ast.SymbolTable {
++	if b.table == nil {
++		b.table = make(ast.SymbolTable, b.filled)
++		for i, symbol := range b.properties {
++			if symbol != nil {
++				b.table[b.names.names[i]] = symbol
++			}
++		}
++		b.properties = nil
++	}
++	return b.table
++}
++func (b *pendingMemberBuilder) put(name string, symbol *ast.Symbol, inherited bool) {
++	if b.table == nil {
++		if i, ok := b.names.positions[name]; ok {
++			old := b.properties[i]
++			if !inherited || old == nil || old.Flags&ast.SymbolFlagsValue == 0 {
++				if old == nil {
++					b.filled++
++				}
++				b.properties[i] = symbol
++			}
++			return
++		}
++		b.asTable()
++	}
++	if old, ok := b.table[name]; !inherited || !ok || old.Flags&ast.SymbolFlagsValue == 0 {
++		b.table[name] = symbol
++	}
++}
++
++// Only accept the exact complete named-value set in the existing sorted order.
++// Distinct names avoid compareSymbols' ID-assignment tie breaker. Aliases and
++// any changed declared/inherited partition use the original classification path.
++func (b *pendingMemberBuilder) orderedProperties(c *Checker, container *ast.Symbol) bool {
++	if b.table != nil || b.filled != len(b.properties) {
++		return false
++	}
++	for i, symbol := range b.properties {
++		if symbol.Name != b.names.names[i] || isReservedMemberName(symbol.Name) || symbol.Flags&ast.SymbolFlagsValue == 0 {
++			return false
++		}
++	}
++	partition := container != nil && container.Flags&(ast.SymbolFlagsClass|ast.SymbolFlagsInterface) != 0
++	var previous *ast.Symbol
++	var previousContained bool
++	for _, symbol := range b.properties {
++		contained := partition && c.isDeclarationContainedBy(symbol, container)
++		if previous != nil {
++			if contained && !previousContained {
++				return false
++			}
++			if contained == previousContained && c.compareSymbols(previous, symbol) > 0 {
++				return false
++			}
++		}
++		previous, previousContained = symbol, contained
++	}
++	return true
++}
++func (p *pendingInstantiatedMembers) materializeWithLayout(t *StructuredType, names *memberNames) {
++	t.pendingMembers = nil
++	b := newPendingMemberBuilder(names)
++	for i, source := range p.source.entries {
++		state := p.state(i)
++		if state == pendingMemberSkipped {
++			continue
++		}
++		var symbol *ast.Symbol
++		if p.source.positions[source.Name] == i {
++			symbol = p.memberAt(i)
++		} else if state == pendingMemberKept {
++			symbol = source
++		} else {
++			// Earlier duplicates still allocate in the original source order.
++			symbol = p.checker.newInstantiatedSymbol(source, p.mapper)
++		}
++		b.put(source.Name, symbol, false)
++	}
++	p.instantiated = nil
++	for _, base := range p.bases {
++		properties := base.properties
++		if base.typ != nil {
++			properties = base.typ.Properties()
++		}
++		for _, symbol := range properties {
++			if !isStaticPrivateIdentifierProperty(symbol) {
++				b.put(symbol.Name, symbol, true)
++			}
++		}
++	}
++	if b.orderedProperties(p.checker, t.symbol) {
++		t.properties = b.properties
++		p.source.lastMemberNames = names
++		p.keepPropertiesOnDemand(t, names, b.properties)
++		return
++	}
++	members := b.asTable()
++	t.members = members
++	t.properties = p.checker.getNamedMembers(members, t.symbol)
++	p.keepTableOnDemand(t, members)
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/direct_materialization_test.go
+@@ -0,0 +1,106 @@
++package checker
++
++import (
++	"github.com/microsoft/typescript-go/internal/ast"
++	"slices"
++	"testing"
++)
++
++func directTestNames(names ...string) *memberNames {
++	n := &memberNames{names: names, positions: make(map[string]int, len(names))}
++	for i, s := range names {
++		n.positions[s] = i
++	}
++	return n
++}
++func TestDirectMaterializationDuplicateIdentity(t *testing.T) {
++	c := pendingTestChecker()
++	first := c.newSymbol(ast.SymbolFlagsProperty, "same")
++	last := c.newSymbol(ast.SymbolFlagsProperty, "same")
++	base := c.newSymbol(ast.SymbolFlagsProperty, "base")
++	override := c.newSymbol(ast.SymbolFlagsProperty, "same")
++	p := c.pendingInstantiatedList([]*ast.Symbol{first, last}, nil)
++	p.source.lastMemberNames = directTestNames("base", "same")
++	p.hasBases = true
++	p.bases = []inheritedPendingMembers{{properties: []*ast.Symbol{base, override}}}
++	selected := p.ownMember("same")
++	before := c.SymbolCount
++	typ := c.newObjectType(ObjectFlagsAnonymous, nil)
++	c.setPendingStructuredTypeMembers(typ, p, nil, nil, nil)
++	properties := typ.AsStructuredType().Properties()
++	if len(properties) != 2 || properties[0] != base || properties[1] != selected || c.SymbolCount != before+1 {
++		t.Fatal("identity, inheritance or duplicate allocation order changed")
++	}
++	if p.checker != nil || p.source != nil || p.mapper != nil || p.bases != nil || p.instantiated != nil {
++		t.Fatal("construction graph retained")
++	}
++	table := typ.AsStructuredType().Members()
++	if table["same"] != selected || table["base"] != base || c.SymbolCount != before+1 {
++		t.Fatal("API table reconstruction changed symbols")
++	}
++}
++func TestDirectMaterializationFallback(t *testing.T) {
++	for _, layout := range [][]string{{"z", "a"}, {"a", "z", "missing"}, {"a"}} {
++		t.Run(layout[0]+string(rune('0'+len(layout))), func(t *testing.T) {
++			c := pendingTestChecker()
++			a := c.newSymbol(ast.SymbolFlagsProperty, "a")
++			z := c.newSymbol(ast.SymbolFlagsProperty, "z")
++			p := c.pendingInstantiatedList([]*ast.Symbol{z, a}, nil)
++			p.source.lastMemberNames = directTestNames(layout...)
++			before := c.SymbolCount
++			typ := c.newObjectType(ObjectFlagsAnonymous, nil)
++			c.setPendingStructuredTypeMembers(typ, p, nil, nil, nil)
++			props := typ.AsStructuredType().Properties()
++			if len(props) != 2 || props[0].Name != "a" || props[1].Name != "z" || c.SymbolCount != before+2 {
++				t.Fatal("fallback replayed construction or changed order")
++			}
++			if !slices.Equal(p.memberNames.names, []string{"a", "z"}) {
++				t.Fatal("wrong replacement layout")
++			}
++		})
++	}
++}
++func TestDirectMaterializationInheritedReplacement(t *testing.T) {
++	c := pendingTestChecker()
++	nonvalue := c.newSymbol(ast.SymbolFlagsInterface, "x")
++	value := c.newSymbol(ast.SymbolFlagsProperty, "x")
++	p := c.pendingInstantiatedList([]*ast.Symbol{nonvalue}, nil)
++	p.source.lastMemberNames = directTestNames("x")
++	p.hasBases = true
++	p.bases = []inheritedPendingMembers{{properties: []*ast.Symbol{value}}}
++	typ := c.newObjectType(ObjectFlagsAnonymous, nil)
++	c.setPendingStructuredTypeMembers(typ, p, nil, nil, nil)
++	props := typ.AsStructuredType().Properties()
++	if len(props) != 1 || props[0] != value {
++		t.Fatal("inherited value must replace nonvalue")
++	}
++}
++func TestDirectMaterializationRecursiveAndEmpty(t *testing.T) {
++	c := pendingTestChecker()
++	own := c.newSymbol(ast.SymbolFlagsProperty, "own")
++	base := c.newSymbol(ast.SymbolFlagsProperty, "base")
++	p := c.pendingInstantiatedList([]*ast.Symbol{own}, nil)
++	p.source.lastMemberNames = directTestNames("base", "own")
++	p.hasBases, p.resolving = true, true
++	p.bases = []inheritedPendingMembers{{properties: []*ast.Symbol{base}}}
++	typ := c.newObjectType(ObjectFlagsAnonymous, nil)
++	c.setPendingStructuredTypeMembers(typ, p, nil, nil, nil)
++	props := typ.AsStructuredType().Properties()
++	if len(props) != 1 || props[0].Name != "own" || typ.AsStructuredType().pendingMembers != nil {
++		t.Fatal("recursive path must expose own properties and mutable table")
++	}
++	if len(typ.AsStructuredType().Members()) != 2 {
++		t.Fatal("recursive table lost base")
++	}
++	source := &InterfaceType{declaredMembers: ast.SymbolTable{"type": c.newSymbol(ast.SymbolFlagsInterface, "type")}}
++	empty := c.pendingInstantiatedTable(source, nil)
++	source.instantiatedMemberSource.lastMemberNames = directTestNames()
++	other := c.newObjectType(ObjectFlagsAnonymous, nil)
++	c.setPendingStructuredTypeMembers(other, empty, nil, nil, nil)
++	if other.AsStructuredType().Properties() != nil {
++		t.Fatal("empty properties must remain nil")
++	}
++	if len(other.AsStructuredType().Members()) != 0 {
++		t.Fatal("empty table changed")
++	}
++}
+--- a/packages/tsc-go/internal/checker/pending_members.go
++++ b/packages/tsc-go/internal/checker/pending_members.go
+@@ -150,6 +150,10 @@
+ 	if p.memberNames != nil {
+ 		return
+ 	}
++	if !p.resolving && p.source.lastMemberNames != nil {
++		p.materializeWithLayout(t, p.source.lastMemberNames)
++		return
++	}
+ 	t.pendingMembers = nil
+ 	members := p.ownTable()
+ 	p.instantiated = nil
+@@ -197,6 +201,10 @@
+ 		}
+ 		p.source.lastMemberNames = names
+ 	}
++	p.keepPropertiesOnDemand(t, names, properties)
++}
++
++func (p *pendingInstantiatedMembers) keepPropertiesOnDemand(t *StructuredType, names *memberNames, properties []*ast.Symbol) {
+ 	p.memberNames = names
+ 	p.materializedProperties = properties
+ 	// After complete materialization, lookups only need the shared name layout
