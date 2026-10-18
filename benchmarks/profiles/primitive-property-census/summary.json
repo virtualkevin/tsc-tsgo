@@ -1,0 +1,80 @@
+{
+  "scope": "Verified diagnostic coverage, not cost or a safe-optimization proof.",
+  "captureHead": "8499f0d7cc94bd1ffc8592e6bbb43a352d216cfd",
+  "reportSha256": "1f73bdbba8a3bd23d7b1d7b0212ffac585eebba5cf8db1f44c0d2992a252d7e8",
+  "projects": [
+    {
+      "project": "typeorm",
+      "owners": 4,
+      "constructorRequests": 176525,
+      "syntacticCandidates": 520,
+      "candidateFraction": 0.0029457583911627248,
+      "categories": {
+        "non-plain-property": 167952,
+        "checker-metadata": 0,
+        "declaration-identity": 0,
+        "non-property-signature-or-parent": 3362,
+        "javascript": 0,
+        "missing-annotation-or-initializer": 0,
+        "non-closed-keyword": 4691,
+        "syntactic-candidate": 520
+      },
+      "limitation": "Ordered classification at clone construction, not all instantiation requests, cost, safe-reuse proof, or saved allocations. Frozen pending decisions may precede construction."
+    },
+    {
+      "project": "trpc",
+      "owners": 4,
+      "constructorRequests": 37474,
+      "syntacticCandidates": 604,
+      "candidateFraction": 0.01611784170358115,
+      "categories": {
+        "non-plain-property": 30149,
+        "checker-metadata": 0,
+        "declaration-identity": 0,
+        "non-property-signature-or-parent": 327,
+        "javascript": 0,
+        "missing-annotation-or-initializer": 0,
+        "non-closed-keyword": 6394,
+        "syntactic-candidate": 604
+      },
+      "limitation": "Ordered classification at clone construction, not all instantiation requests, cost, safe-reuse proof, or saved allocations. Frozen pending decisions may precede construction."
+    },
+    {
+      "project": "vscode",
+      "owners": 4,
+      "constructorRequests": 1859702,
+      "syntacticCandidates": 4167,
+      "candidateFraction": 0.002240681571563616,
+      "categories": {
+        "non-plain-property": 1710125,
+        "checker-metadata": 0,
+        "declaration-identity": 0,
+        "non-property-signature-or-parent": 95644,
+        "javascript": 0,
+        "missing-annotation-or-initializer": 0,
+        "non-closed-keyword": 49766,
+        "syntactic-candidate": 4167
+      },
+      "limitation": "Ordered classification at clone construction, not all instantiation requests, cost, safe-reuse proof, or saved allocations. Frozen pending decisions may precede construction."
+    },
+    {
+      "project": "sentry",
+      "owners": 4,
+      "constructorRequests": 1688083,
+      "syntacticCandidates": 30818,
+      "candidateFraction": 0.01825621133558006,
+      "categories": {
+        "non-plain-property": 825072,
+        "checker-metadata": 0,
+        "declaration-identity": 0,
+        "non-property-signature-or-parent": 45821,
+        "javascript": 0,
+        "missing-annotation-or-initializer": 0,
+        "non-closed-keyword": 786372,
+        "syntactic-candidate": 30818
+      },
+      "limitation": "Ordered classification at clone construction, not all instantiation requests, cost, safe-reuse proof, or saved allocations. Frozen pending decisions may precede construction."
+    }
+  ],
+  "decision": "Do not implement the strict primitive-property shortcut: observed coverage is small and no cost-weighted benefit offsets a new hot-path predicate. No timing experiment or promotion."
+}

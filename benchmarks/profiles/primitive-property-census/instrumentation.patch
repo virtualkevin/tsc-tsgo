@@ -1,0 +1,243 @@
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -578,6 +578,7 @@
+ var nextCheckerID atomic.Uint32
+ 
+ type Checker struct {
++	primitivePropertyCensus                     *[8]uint64
+ 	instantiatedMemberLists                     map[instantiatedMemberListKey]*instantiatedMemberSource
+ 	id                                          uint32
+ 	program                                     Program
+@@ -906,6 +907,7 @@
+ 	program.BindSourceFiles()
+ 
+ 	c := &Checker{}
++	c.primitivePropertyCensus = newPrimitivePropertyCensus()
+ 	c.id = nextCheckerID.Add(1)
+ 	c.tracer = tracer
+ 	c.program = program
+@@ -20664,6 +20666,9 @@
+ }
+ 
+ func (c *Checker) newInstantiatedSymbolWithLinks(symbol *ast.Symbol, m *TypeMapper, links *ValueSymbolLinks) *ast.Symbol {
++	if c.primitivePropertyCensus != nil {
++		c.primitivePropertyCensus[primitivePropertyCategory(symbol)]++
++	}
+ 	if symbol.CheckFlags&ast.CheckFlagsInstantiated != 0 {
+ 		// If symbol being instantiated is itself a instantiation, fetch the original target and combine the
+ 		// type mappers. This ensures that original type identities are properly preserved and that aliases
+--- a/packages/tsc-go/internal/execute/tsc.go
++++ b/packages/tsc-go/internal/execute/tsc.go
+@@ -372,6 +372,10 @@
+ 		Tracing:            tr,
+ 	})
+ 
++	if err := program.WritePrimitivePropertyCensus(); err != nil {
++		panic(err)
++	}
++
+ 	stopTracing(sys, tr)
+ 
+ 	return tsc.CommandLineResult{
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/primitive_property_census.go
+@@ -0,0 +1,73 @@
++package checker
++
++import (
++	"encoding/json"
++	"github.com/microsoft/typescript-go/internal/ast"
++	"os"
++)
++
++// Diagnostic classification only: this does not change instantiation decisions.
++// Categories are ordered exclusions followed by a syntactic candidate subset.
++func primitivePropertyCategory(symbol *ast.Symbol) int {
++	if symbol == nil || symbol.Flags&ast.SymbolFlagsProperty == 0 || symbol.Flags&^(ast.SymbolFlagsProperty|ast.SymbolFlagsOptional) != 0 {
++		return 0
++	}
++	if symbol.CheckFlags != 0 {
++		return 1
++	}
++	if len(symbol.Declarations) != 1 || symbol.ValueDeclaration == nil || symbol.Declarations[0] != symbol.ValueDeclaration {
++		return 2
++	}
++	d := symbol.ValueDeclaration
++	if d.Kind != ast.KindPropertySignature || d.Parent == nil || (d.Parent.Kind != ast.KindInterfaceDeclaration && d.Parent.Kind != ast.KindTypeLiteral) {
++		return 3
++	}
++	if ast.IsInJSFile(d) {
++		return 4
++	}
++	t := d.Type()
++	if t == nil || d.Initializer() != nil {
++		return 5
++	}
++	switch t.Kind {
++	case ast.KindAnyKeyword, ast.KindUnknownKeyword, ast.KindStringKeyword, ast.KindNumberKeyword, ast.KindBigIntKeyword, ast.KindBooleanKeyword, ast.KindSymbolKeyword, ast.KindObjectKeyword, ast.KindVoidKeyword, ast.KindUndefinedKeyword, ast.KindNeverKeyword:
++		return 7
++	}
++	return 6
++}
++func newPrimitivePropertyCensus() *[8]uint64 {
++	if os.Getenv("TSC_GO_PRIMITIVE_PROPERTY_CENSUS") == "" {
++		return nil
++	}
++	return new([8]uint64)
++}
++
++type PrimitivePropertySnapshot struct {
++	CheckerID uint32
++	Counts    [8]uint64
++}
++
++func (c *Checker) PrimitivePropertySnapshot() (PrimitivePropertySnapshot, bool) {
++	if c.primitivePropertyCensus == nil {
++		return PrimitivePropertySnapshot{}, false
++	}
++	return PrimitivePropertySnapshot{c.id, *c.primitivePropertyCensus}, true
++}
++func WritePrimitivePropertySnapshots(path string, owners []PrimitivePropertySnapshot) error {
++	f, err := os.OpenFile(path, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0o644)
++	if err != nil {
++		return err
++	}
++	report := struct {
++		SchemaVersion int
++		Categories    [8]string
++		Scope         string
++		Owners        []PrimitivePropertySnapshot
++	}{1, [8]string{"non-plain-property", "checker-metadata", "declaration-identity", "non-property-signature-or-parent", "javascript", "missing-annotation-or-initializer", "non-closed-keyword", "syntactic-candidate"}, "Ordered scalar classification at actual newInstantiatedSymbolWithLinks entries. Candidate subset is not a proven safe optimization or saved cost; frozen pending-member clone decisions may precede this entry.", owners}
++	err = json.NewEncoder(f).Encode(report)
++	closeErr := f.Close()
++	if err != nil {
++		return err
++	}
++	return closeErr
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/checker/primitive_property_census_test.go
+@@ -0,0 +1,72 @@
++package checker
++
++import (
++	"github.com/microsoft/typescript-go/internal/ast"
++	"os"
++	"path/filepath"
++	"testing"
++)
++
++func primitivePropertyFixture(kind ast.Kind) *ast.Symbol {
++	f := ast.NodeFactory{}
++	d := f.NewPropertySignatureDeclaration(nil, f.NewIdentifier("p"), nil, f.NewToken(kind), nil)
++	d.Parent = &ast.Node{Kind: ast.KindTypeLiteral}
++	return &ast.Symbol{Flags: ast.SymbolFlagsProperty, ValueDeclaration: d, Declarations: []*ast.Node{d}}
++}
++func TestPrimitivePropertyKeywords(t *testing.T) {
++	for _, k := range []ast.Kind{ast.KindAnyKeyword, ast.KindUnknownKeyword, ast.KindStringKeyword, ast.KindNumberKeyword, ast.KindBigIntKeyword, ast.KindBooleanKeyword, ast.KindSymbolKeyword, ast.KindObjectKeyword, ast.KindVoidKeyword, ast.KindUndefinedKeyword, ast.KindNeverKeyword} {
++		s := primitivePropertyFixture(k)
++		if got := primitivePropertyCategory(s); got != 7 {
++			t.Fatalf("%v: %d", k, got)
++		}
++		s.Flags |= ast.SymbolFlagsOptional
++		if primitivePropertyCategory(s) != 7 {
++			t.Fatal("optional property excluded")
++		}
++	}
++}
++func TestPrimitivePropertyExclusions(t *testing.T) {
++	cases := []struct {
++		name string
++		edit func(*ast.Symbol)
++		want int
++	}{
++		{"accessor", func(s *ast.Symbol) { s.Flags |= ast.SymbolFlagsSetAccessor }, 0},
++		{"transient", func(s *ast.Symbol) { s.Flags |= ast.SymbolFlagsTransient }, 0},
++		{"synthetic", func(s *ast.Symbol) { s.CheckFlags = ast.CheckFlagsSyntheticProperty }, 1},
++		{"merged", func(s *ast.Symbol) { s.Declarations = append(s.Declarations, s.ValueDeclaration) }, 2},
++		{"missing-value", func(s *ast.Symbol) { s.ValueDeclaration = nil }, 2},
++		{"class-parent", func(s *ast.Symbol) { s.ValueDeclaration.Parent = &ast.Node{Kind: ast.KindClassDeclaration} }, 3},
++		{"missing-parent", func(s *ast.Symbol) { s.ValueDeclaration.Parent = nil }, 3},
++		{"javascript", func(s *ast.Symbol) { s.ValueDeclaration.Flags |= ast.NodeFlagsJavaScriptFile }, 4},
++		{"no-type", func(s *ast.Symbol) { s.ValueDeclaration.AsPropertySignatureDeclaration().Type = nil }, 5},
++		{"initializer", func(s *ast.Symbol) {
++			s.ValueDeclaration.AsPropertySignatureDeclaration().Initializer = &ast.Node{Kind: ast.KindNumericLiteral}
++		}, 5},
++		{"this", func(s *ast.Symbol) { s.ValueDeclaration.Type().Kind = ast.KindThisKeyword }, 6},
++	}
++	for _, x := range cases {
++		s := primitivePropertyFixture(ast.KindStringKeyword)
++		x.edit(s)
++		if got := primitivePropertyCategory(s); got != x.want {
++			t.Fatalf("%s: %d, want %d", x.name, got, x.want)
++		}
++	}
++	if primitivePropertyCategory(nil) != 0 {
++		t.Fatal("nil accepted")
++	}
++}
++func TestPrimitivePropertyExclusiveOutput(t *testing.T) {
++	p := filepath.Join(t.TempDir(), "census.json")
++	if err := WritePrimitivePropertySnapshots(p, nil); err != nil {
++		t.Fatal(err)
++	}
++	before, _ := os.ReadFile(p)
++	if err := WritePrimitivePropertySnapshots(p, nil); err == nil {
++		t.Fatal("overwrote evidence")
++	}
++	after, _ := os.ReadFile(p)
++	if string(before) != string(after) {
++		t.Fatal("changed evidence")
++	}
++}
+--- /dev/null
++++ b/packages/tsc-go/internal/compiler/primitive_property_census.go
+@@ -0,0 +1,48 @@
++package compiler
++
++import (
++	"fmt"
++	"os"
++
++	"github.com/microsoft/typescript-go/internal/checker"
++)
++
++// WritePrimitivePropertyCensus is diagnostic-only and runs after normal CLI checking.
++// It neither constructs checkers nor forces semantic queries or GC.
++func (p *Program) WritePrimitivePropertyCensus() error {
++	path := os.Getenv("TSC_GO_PRIMITIVE_PROPERTY_CENSUS")
++	if path == "" {
++		return nil
++	}
++	if p.opts.Tracing != nil {
++		return fmt.Errorf("primitive property census requires tracing disabled")
++	}
++	pool := p.compilerCheckerPool
++	if pool == nil {
++		return fmt.Errorf("primitive property census requires built-in checker pool")
++	}
++	for _, mu := range pool.locks {
++		if mu != nil {
++			mu.Lock()
++		}
++	}
++	defer func() {
++		for i := len(pool.locks) - 1; i >= 0; i-- {
++			if pool.locks[i] != nil {
++				pool.locks[i].Unlock()
++			}
++		}
++	}()
++	owners := []checker.PrimitivePropertySnapshot{}
++	for _, c := range pool.checkers {
++		if c == nil {
++			continue
++		}
++		snapshot, ok := c.PrimitivePropertySnapshot()
++		if !ok {
++			return fmt.Errorf("primitive property observer not enabled at construction")
++		}
++		owners = append(owners, snapshot)
++	}
++	return checker.WritePrimitivePropertySnapshots(path, owners)
++}

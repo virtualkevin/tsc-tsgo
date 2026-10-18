@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "4b637d502fce2579985c73a5049879d7c1b9c854199bd46f324a8630162af57f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "8be2f5fb989a63cd1e73d9bf3addb9473d449e23316e2e3e43e524f4c6ca9c66",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/primitive_property_census.go": "87aba96d3788d9f7b9d2f59e2c49347397d2f8a35c04d59acc35face27fb763d",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/primitive_property_census_test.go": "ee5f5146c77be95f6a3fcbf87ce8581cc8e31b76381338bf0ec2df18718f09e6",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/primitive_property_census.go": "12aca30e6a276fc59909139aafceaabdcd30be5758b27edf35b52a796017fdfe"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/primitive-property-census/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestPrimitiveProperty"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPrimitivePropertyKeywords",
+        "TestPrimitivePropertyExclusions",
+        "TestPrimitivePropertyExclusiveOutput"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/primitive-property-census/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestPrimitiveProperty"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPrimitivePropertyKeywords",
+        "TestPrimitivePropertyExclusions",
+        "TestPrimitivePropertyExclusiveOutput"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/primitive-property-census/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestPrimitiveProperty"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPrimitivePropertyKeywords",
+        "TestPrimitivePropertyExclusions",
+        "TestPrimitivePropertyExclusiveOutput"
+      ]
+    }
+  ]
+}
