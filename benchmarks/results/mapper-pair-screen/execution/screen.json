@@ -1,0 +1,68 @@
+{
+  "name": "mapper-pair",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-mapper-pair",
+      "sha256": "97bf25516c1cbf1ea65ec018af169c291554a64c15bcb5e0e02b235839c5f904",
+      "source": "ce65b49837dd198dbe4e0066cb2e3b0b8f8fb39bf4103d5e8aec87c15ba236b2",
+      "sidecarSha256": "04a16f097068556886ff912c6a5593f166d534c713031e2bb3ebc8f6b253e0d1",
+      "revisionLabel": "Coallocated mapper pairs"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/mapper.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/mapper.go",
+        "sha256": "24af7e108e845501b3ea1bafa4497b72df997cd7790cc333285227e57a322221",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/mapper.go",
+        "sha256": "bc464047ae6229b3d813e68cf9411b3ffba16c15bc3f221139f73478141b7b89",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/mapper_pair_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/mapper_pair_test.go",
+        "sha256": "9ec0a8a0be1af5d0035c56b41f50c7b8eb3484b72c002967c1b4417622b260e1",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5155
+  },
+  "comparisonPolicySha256": "ab12d1088871209a18737926b3fe74419b5255cac1161fe342bdc4c22f0e12a7",
+  "methodology": "Frozen coallocated mapper pairs candidate against retained node-pointer Go; nine small-workload/five large-workload alternating pairs, one warmup, default settings, matched RSS, identical physical inputs. Full correctness and two independent confirmations required before retention."
+}
