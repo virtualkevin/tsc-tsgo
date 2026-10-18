@@ -1,0 +1,5 @@
+# Indexed property join screen: rejected
+
+Screen completed and rejected (capture `85c9c44`): ratio-of-medians/paired median TypeORM 1.004776/1.020808, tRPC 1.012434/1.010519, VSCode 0.957650/0.984237, Sentry 1.000822/1.002912. Aggregate ratios 0.993688/1.004530 both miss 1.01; VSCode ratio misses 0.98. All median RSS gates pass. Integrity/diagnostics pass does not mean performance acceptance. No confirmations, extra samples, threshold/placement tuning, or pooling with previous rejected experiments. All raw reports, recording output and frozen execution scripts are preserved under benchmarks/results/indexed-property-join-screen/. Console output was streamed through tool session 42990, not separately captured as stdout/stderr files. Production remains retained source216d40c7/default8fe4bd80. No native-relative improvement claimed;10×goal unmet.
+
+All 28 paired samples and physical-input/diagnostic/resource evidence are in small.json and large.json. The terminal runner status means execution and integrity passed. The acceptance decision is in recording/proposal.json and is false. No timing process remains live.
