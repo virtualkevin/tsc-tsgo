@@ -1,0 +1,114 @@
+diff --git a/packages/tsc-go/internal/ast/ast.go b/packages/tsc-go/internal/ast/ast.go
+index 6dcd606..1b33dcc 100644
+--- a/packages/tsc-go/internal/ast/ast.go
++++ b/packages/tsc-go/internal/ast/ast.go
+@@ -2487,7 +2487,7 @@ type SourceFile struct {
+ 	IsDeclarationFile           bool
+ 	ContainsNonASCII            bool
+ 	UsesUriStyleNodeCoreModules core.Tristate
+-	Identifiers                 map[string]string
++	identifierNames             func() map[string]string
+ 	IdentifierCount             int
+ 	imports                     []*LiteralLikeNode // []LiteralLikeNode
+ 	ModuleAugmentations         []*ModuleName      // []ModuleName
+@@ -2636,6 +2636,21 @@ func (node *SourceFile) resolveJSDoc(n *Node) []*Node {
+ 	return jsdocs
+ }
+ 
++// IdentifierNames returns the original parser's collision-name set. The loader
++// is shared by source-file clones and runs at most once, including concurrent readers.
++// The returned map must be treated as read-only.
++func (node *SourceFile) IdentifierNames() map[string]string {
++	if node.identifierNames == nil {
++		return nil
++	}
++	return node.identifierNames()
++}
++
++// SetIdentifierNames installs a loader before the source file is published.
++func (node *SourceFile) SetIdentifierNames(load func() map[string]string) {
++	node.identifierNames = sync.OnceValue(load)
++}
++
+ func (node *SourceFile) BindDiagnostics() []*Diagnostic {
+ 	return node.bindDiagnostics
+ }
+@@ -2663,7 +2678,7 @@ func (node *SourceFile) copyFrom(other *SourceFile) {
+ 	node.IsDeclarationFile = other.IsDeclarationFile
+ 	node.ContainsNonASCII = other.ContainsNonASCII
+ 	node.UsesUriStyleNodeCoreModules = other.UsesUriStyleNodeCoreModules
+-	node.Identifiers = other.Identifiers
++	node.identifierNames = other.identifierNames
+ 	node.imports = other.imports
+ 	node.ModuleAugmentations = other.ModuleAugmentations
+ 	node.AmbientModuleNames = other.AmbientModuleNames
+diff --git a/packages/tsc-go/internal/parser/parser.go b/packages/tsc-go/internal/parser/parser.go
+index a8cd3a6..ec76f2e 100644
+--- a/packages/tsc-go/internal/parser/parser.go
++++ b/packages/tsc-go/internal/parser/parser.go
+@@ -85,6 +85,7 @@ type Parser struct {
+ 	hasParseError               bool
+ 
+ 	identifiers                map[string]string
++	collectIdentifiers         bool
+ 	identifierCount            int
+ 	notParenthesizedArrow      collections.Set[int]
+ 	nodeSliceArena             core.Arena[*ast.Node]
+@@ -135,9 +136,14 @@ func putParser(p *Parser) {
+ }
+ 
+ func ParseSourceFile(opts ast.SourceFileParseOptions, sourceText string, scriptKind core.ScriptKind) *ast.SourceFile {
++	return parseSourceFileWithIdentifierNames(opts, sourceText, scriptKind, false)
++}
++
++func parseSourceFileWithIdentifierNames(opts ast.SourceFileParseOptions, sourceText string, scriptKind core.ScriptKind, collect bool) *ast.SourceFile {
+ 	p := getParser()
+ 	defer putParser(p)
+ 	p.initializeState(opts, sourceText, scriptKind)
++	p.collectIdentifiers = collect
+ 	p.nextToken()
+ 	if p.scriptKind == core.ScriptKindJSON {
+ 		return p.parseJSONText()
+@@ -473,7 +479,18 @@ func (p *Parser) finishSourceFile(result *ast.SourceFile, isDeclarationFile bool
+ 	result.LanguageVariant = p.languageVariant
+ 	result.ScriptKind = p.scriptKind
+ 	result.Flags |= p.sourceFlags
+-	result.Identifiers = p.identifiers
++	if p.collectIdentifiers {
++		names := p.identifiers
++		result.SetIdentifierNames(func() map[string]string { return names })
++	} else {
++		// Capture immutable inputs, never the pooled parser or the parsed AST. A
++		// replay preserves names from speculation, error recovery, JSDoc and reparse
++		// paths that a walk of the final AST would miss.
++		opts, text, kind := p.opts, p.sourceText, p.scriptKind
++		result.SetIdentifierNames(func() map[string]string {
++			return parseSourceFileWithIdentifierNames(opts, text, kind, true).IdentifierNames()
++		})
++	}
+ 	result.NodeCount = p.factory.NodeCount()
+ 	result.TextCount = p.factory.TextCount()
+ 	result.IdentifierCount = p.identifierCount
+@@ -5904,6 +5921,9 @@ func (p *Parser) createIdentifierWithDiagnostic(isIdentifier bool, diagnosticMes
+ }
+ 
+ func (p *Parser) internIdentifier(text string) string {
++	if !p.collectIdentifiers {
++		return text
++	}
+ 	if identifier, ok := p.identifiers[text]; ok {
+ 		return identifier
+ 	}
+diff --git a/packages/tsc-go/internal/printer/utilities.go b/packages/tsc-go/internal/printer/utilities.go
+index d401abd..c79a4c2 100644
+--- a/packages/tsc-go/internal/printer/utilities.go
++++ b/packages/tsc-go/internal/printer/utilities.go
+@@ -652,7 +652,7 @@ func IsFileLevelUniqueName(sourceFile *ast.SourceFile, name string, hasGlobalNam
+ 	if hasGlobalName != nil && hasGlobalName(name) {
+ 		return false
+ 	}
+-	_, ok := sourceFile.Identifiers[name]
++	_, ok := sourceFile.IdentifierNames()[name]
+ 	return !ok
+ }
+ 

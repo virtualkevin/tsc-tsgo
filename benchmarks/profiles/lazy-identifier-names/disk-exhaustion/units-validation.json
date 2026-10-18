@@ -1,0 +1,94 @@
+{
+  "sourceSha256": "babf18329923e53e653076216420ff75d339bd093f24d65fc088fcc54b67b247",
+  "head": "1a3c45974a760fdf310d2cefa05ab33acf940fd2",
+  "controllerSha256": "722e383391b743216fcc61bf8047d702d8dd6a3da5bf40867144e16740b7e5ed",
+  "runs": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/ast",
+        "./internal/parser",
+        "-run",
+        "^TestLazyIdentifierNames",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "exitCode": 0,
+      "tests": 12,
+      "topLevelTests": [
+        "TestLazyIdentifierNamesSharedClone",
+        "TestLazyIdentifierNamesReplay"
+      ],
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/ast": "pass",
+        "github.com/microsoft/typescript-go/internal/parser": "pass"
+      },
+      "stdoutSha256": "8c5cb4ad03223683391d1d374f40cd24ca4fe96c62e36f209458026386a2e7c2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-race",
+        "./internal/ast",
+        "./internal/parser",
+        "-run",
+        "^TestLazyIdentifierNames",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "exitCode": 0,
+      "tests": 12,
+      "topLevelTests": [
+        "TestLazyIdentifierNamesSharedClone",
+        "TestLazyIdentifierNamesReplay"
+      ],
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/ast": "pass",
+        "github.com/microsoft/typescript-go/internal/parser": "pass"
+      },
+      "stdoutSha256": "e3b78b0b56d8670c69e002a9a495fc957f74dcb6ac3734ccd80f9a193c0b36eb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/ast",
+        "./internal/parser",
+        "-run",
+        "^TestLazyIdentifierNames",
+        "-count=1",
+        "-timeout",
+        "20m"
+      ],
+      "exitCode": 1,
+      "tests": 1,
+      "topLevelTests": [
+        "TestLazyIdentifierNamesSharedClone"
+      ],
+      "packages": {
+        "github.com/microsoft/typescript-go/internal/ast": "pass",
+        "github.com/microsoft/typescript-go/internal/parser": "fail"
+      },
+      "stdoutSha256": "11e731cf7d54fba00da72637e51ecad0cb08ac904dcb05167e7a7beb79a46565",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": false
+    }
+  ],
+  "passed": false,
+  "error": "AssertionError()"
+}
