@@ -1,0 +1,134 @@
+{
+  "passed": false,
+  "head": "a5c94266b51d5c1b3f9bfa700c1247b37e813c59",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_substitution_test.go": "b179fb3b54c34159380805c34c378cc1d8b5d7906007fbad89aca03c5528d7ea",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper_substitution.go": "f0c5a599c70fcbad56c9828e77b72ad0daa15c87adcc51902c6af21f6e19a528",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/mapper.go": "70323782f329fbca3674d0a906f6fc1f6999107df61a5b1e87fcc2460d9302bc"
+  },
+  "pins": {
+    "TypeScript": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "typescript-go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b"
+  },
+  "controllerSha256": "dca1748a2efc47451ba59e8e48cce107a184380aa366f8167deac8c78b186055",
+  "helperSha256": "aebdb6e5d2e21df0faddc0d1e66a1103cac58c5c38f91db1cf2d8f5579866431",
+  "runs": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/overlay.json",
+        "-json",
+        "./internal/checker",
+        "-run",
+        "^TestMergedSubstitution",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/logs/normal.jsonl",
+      "stderr": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/logs/normal.stderr",
+      "stdout_sha256": "da317376ca12cefba1161efbbd2ea22ceeae86ad92145382c4794d3fa21e5e73",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true,
+      "summary": {
+        "tests": 4,
+        "topLevelTests": [
+          "TestMergedSubstitutionExhaustive",
+          "TestMergedSubstitutionEligibilityAndEffects",
+          "TestMergedSubstitutionConcurrentReads",
+          "TestMergedSubstitutionOriginalRoots"
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/checker": "pass"
+        }
+      },
+      "archive": {
+        "normal.jsonl.gz": "8118bf78be4f2405fb41ba104b545cb864f4e8e56f99e333c2d60700872fed66",
+        "normal.stderr.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      }
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/overlay.json",
+        "-json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestMergedSubstitution",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/logs/race.jsonl",
+      "stderr": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/logs/race.stderr",
+      "stdout_sha256": "ddc6ef0bf38d16a1d8132180870494659066526912bbe4a459dc5f049255a7b0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true,
+      "summary": {
+        "tests": 4,
+        "topLevelTests": [
+          "TestMergedSubstitutionExhaustive",
+          "TestMergedSubstitutionEligibilityAndEffects",
+          "TestMergedSubstitutionConcurrentReads",
+          "TestMergedSubstitutionOriginalRoots"
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/checker": "pass"
+        }
+      },
+      "archive": {
+        "race.jsonl.gz": "f60f5bd9d6cab06b37ed484f1ddfc277999ecc12662f2dd53f6bd78b8d8e19e3",
+        "race.stderr.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      }
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/overlay.json",
+        "-json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestMergedSubstitution",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/logs/checkptr.jsonl",
+      "stderr": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/merged-substitution-candidate/logs/checkptr.stderr",
+      "stdout_sha256": "1c7935bad8982e2c5918ea6a8aab62a413dda78e28072812680433a05e0fad9e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true,
+      "summary": {
+        "tests": 4,
+        "topLevelTests": [
+          "TestMergedSubstitutionExhaustive",
+          "TestMergedSubstitutionEligibilityAndEffects",
+          "TestMergedSubstitutionConcurrentReads",
+          "TestMergedSubstitutionOriginalRoots"
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/checker": "pass"
+        }
+      },
+      "archive": {
+        "checkptr.jsonl.gz": "5cc403e16eed8a3bcdcb33da11c8003ce3be862c3a933c259e5569adb9a784c8",
+        "checkptr.stderr.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      }
+    }
+  ],
+  "error": "KeyboardInterrupt('15')"
+}

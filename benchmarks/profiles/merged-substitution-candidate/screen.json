@@ -1,0 +1,77 @@
+{
+  "name": "merged-substitution-candidate",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-merged-substitution",
+      "sha256": "d234c3c6e9e08a2863c7886ce0a98acb44340186ea97801df57ce5599cb976f5",
+      "source": "04c8543327a74557b352d80769d25b642136c1074c733254ccc0316306682d16",
+      "sidecarSha256": "7cafd9d842f3c61f475cb6ba45ae9d8f54197882455fac0fb30dd597c49f3507",
+      "revisionLabel": "Geometric immutable merged substitutions"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/mapper.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/mapper.go",
+        "sha256": "24af7e108e845501b3ea1bafa4497b72df997cd7790cc333285227e57a322221",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/mapper.go",
+        "sha256": "70323782f329fbca3674d0a906f6fc1f6999107df61a5b1e87fcc2460d9302bc",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/mapper_substitution.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/mapper_substitution.go",
+        "sha256": "f0c5a599c70fcbad56c9828e77b72ad0daa15c87adcc51902c6af21f6e19a528",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/mapper_substitution_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/mapper_substitution_test.go",
+        "sha256": "b179fb3b54c34159380805c34c378cc1d8b5d7906007fbad89aca03c5528d7ea",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5156
+  },
+  "comparisonPolicySha256": "14b64f5e878244195fc68af3d847f7675c5f8ab02ca11a577d164c44b0c6b3c3",
+  "methodology": "Fresh-process/default-runtime matched GNU-time RSS screen of geometric immutable merged substitutions on pinned physical inputs; no timing during validation/build/Git work."
+}
