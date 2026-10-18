@@ -1,0 +1,40 @@
+[
+  {
+    "label": "baseline",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*Relater\\)\\.propertiesRelatedTo$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+    ],
+    "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "output": "baseline.asm.txt",
+    "outputSha256": "de92e2397911cbe87a16876847103f23951f111c897568cffbdc704990da89a9",
+    "instructionRows": 1312,
+    "encodedInstructionBytes": 6318,
+    "entryStackReservationBytes": 368,
+    "scope": "Static disassembly, not executed instructions, CPU time, allocation count, total stack use or causal regression evidence."
+  },
+  {
+    "label": "candidate",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "checker\\.\\(\\*Relater\\)\\.propertiesRelatedTo$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-sparse-property-filter"
+    ],
+    "binarySha256": "4ce3c7ed40e90affece56d0805b1af31209290e3ac8d788df0b55eeef02c4238",
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "output": "candidate.asm.txt",
+    "outputSha256": "85b8801f62b6cfa04fefa040dfaa7d2959adb8d42f19ea6d1fbfd31b0477c989",
+    "instructionRows": 1399,
+    "encodedInstructionBytes": 6734,
+    "entryStackReservationBytes": 440,
+    "scope": "Static disassembly, not executed instructions, CPU time, allocation count, total stack use or causal regression evidence."
+  }
+]
