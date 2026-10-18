@@ -1,0 +1,32 @@
+[
+  {
+    "label": "baseline",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "getWithoutKeySmallFastStr",
+      "packages/tsc-go/dist/tsc-go-node-pointer"
+    ],
+    "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "output": "baseline-small-string.asm.txt",
+    "outputSha256": "156ba19455c5269cf1f2ee68d10ce7ff3f4323f857868ab2d67a8a7ff629d48f",
+    "stderr": ""
+  },
+  {
+    "label": "candidate",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "getWithoutKeySmallFastStr",
+      "packages/tsc-go/dist/tsc-go-runtime-small-string"
+    ],
+    "binarySha256": "0bc29154a85ea1213e348d3572641bdaa94f19a4d354ebb26f461151da3d3465",
+    "output": "candidate-small-string.asm.txt",
+    "outputSha256": "7cbc9fa8d88b6172a59dc62d360c6d07c6894fff575aed03dd9d11a31114526e",
+    "stderr": ""
+  }
+]

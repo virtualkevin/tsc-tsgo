@@ -1,0 +1,25 @@
+--- a/src/internal/runtime/maps/runtime_faststr.go
++++ b/src/internal/runtime/maps/runtime_faststr.go
+@@ -55,16 +55,14 @@
+ dohash:
+ 	// This path will cost 1 hash and 1+ε comparisons.
+ 	hash := typ.Hasher(abi.NoEscape(unsafe.Pointer(&key)), m.seed)
+-	h2 := uint8(h2(hash))
+-	ctrls = *g.ctrls()
+-	slotKey = g.key(typ, 0)
+-
+-	for range abi.MapGroupSlots {
+-		if uint8(ctrls) == h2 && key == *(*string)(slotKey) {
++	match := g.ctrls().matchH2(h2(hash))
++	for match != 0 {
++		i := match.first()
++		slotKey := g.key(typ, i)
++		if key == *(*string)(slotKey) {
+ 			return unsafe.Pointer(uintptr(slotKey) + 2*goarch.PtrSize)
+ 		}
+-		slotKey = unsafe.Pointer(uintptr(slotKey) + slotSize)
+-		ctrls >>= 8
++		match = match.removeFirst()
+ 	}
+ 	return nil
+ }

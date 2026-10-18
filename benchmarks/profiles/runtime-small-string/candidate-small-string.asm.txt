@@ -1,0 +1,161 @@
+TEXT internal/runtime/maps.(*Map).getWithoutKeySmallFastStr(SB) internal/runtime/maps/runtime_faststr.go
+  runtime_faststr.go:15	0x40fc60		493b6610		CMPQ SP, 0x10(R14)						
+  runtime_faststr.go:15	0x40fc64		0f86f5010000		JBE 0x40fe5f							
+  runtime_faststr.go:15	0x40fc6a		55			PUSHQ BP							
+  runtime_faststr.go:15	0x40fc6b		4889e5			MOVQ SP, BP							
+  runtime_faststr.go:15	0x40fc6e		4883ec38		SUBQ $0x38, SP							
+  runtime_faststr.go:15	0x40fc72		48894c2458		MOVQ CX, 0x58(SP)						
+  runtime_faststr.go:15	0x40fc77		48897c2460		MOVQ DI, 0x60(SP)						
+  runtime_faststr.go:17	0x40fc7c		488b7010		MOVQ 0x10(AX), SI						
+  runtime_faststr.go:16	0x40fc80		4889742428		MOVQ SI, 0x28(SP)						
+  runtime_faststr.go:20	0x40fc85		8406			TESTB AL, 0(SI)							
+  runtime_faststr.go:22	0x40fc87		8403			TESTB AL, 0(BX)							
+  runtime_faststr.go:21	0x40fc89		90			NOPL								
+  runtime_faststr.go:28	0x40fc8a		48837c246040		CMPQ 0x60(SP), $0x40						
+  runtime_faststr.go:28	0x40fc90		7e17			JLE 0x40fca9							
+  runtime_faststr.go:20	0x40fc92		488b3e			MOVQ 0(SI), DI							
+  runtime_faststr.go:22	0x40fc95		4c8b4358		MOVQ 0x58(BX), R8						
+  group.go:292		0x40fc99		4c8d4e08		LEAQ 0x8(SI), R9						
+  group.go:292		0x40fc9d		31c9			XORL CX, CX							
+  group.go:292		0x40fc9f		ba08000000		MOVL $0x8, DX							
+  runtime_faststr.go:28	0x40fca4		e9dd000000		JMP 0x40fd86							
+  runtime_faststr.go:28	0x40fca9		48895c2450		MOVQ BX, 0x50(SP)						
+  runtime_faststr.go:57	0x40fcae		488b5348		MOVQ 0x48(BX), DX						
+  runtime_faststr.go:57	0x40fcb2		488b0a			MOVQ 0(DX), CX							
+  runtime_faststr.go:57	0x40fcb5		488b5808		MOVQ 0x8(AX), BX						
+  runtime_faststr.go:57	0x40fcb9		488d442458		LEAQ 0x58(SP), AX						
+  runtime_faststr.go:57	0x40fcbe		6690			NOPW								
+  runtime_faststr.go:57	0x40fcc0		ffd1			CALL CX								
+  group.go:285		0x40fcc2		488b4c2428		MOVQ 0x28(SP), CX						
+  runtime_faststr.go:58	0x40fcc7		488b09			MOVQ 0(CX), CX							
+  map.go:191		0x40fcca		83e07f			ANDL $0x7f, AX							
+  group.go:153		0x40fccd		66480f6ec0		MOVQ AX, X0							
+  group.go:153		0x40fcd2		660f60c0		PUNPCKLBW X0, X0						
+  group.go:153		0x40fcd6		f20f70c000		PSHUFLW $0x0, X0, X0						
+  group.go:153		0x40fcdb		66480f6ec9		MOVQ CX, X1							
+  group.go:153		0x40fce0		660f74c1		PCMPEQB X1, X0							
+  group.go:153		0x40fce4		660fd7c8		PMOVMSKB X0, CX							
+  group.go:153		0x40fce8		0fb6c9			MOVZX CL, CX							
+  runtime_faststr.go:59	0x40fceb		488b742450		MOVQ 0x50(SP), SI						
+  runtime_faststr.go:59	0x40fcf0		eb08			JMP 0x40fcfa							
+  group.go:63		0x40fcf2		488d51ff		LEAQ -0x1(CX), DX						
+  runtime_faststr.go:65	0x40fcf6		90			NOPL								
+  group.go:63		0x40fcf7		4821d1			ANDQ DX, CX							
+  runtime_faststr.go:59	0x40fcfa		4885c9			TESTQ CX, CX							
+  runtime_faststr.go:59	0x40fcfd		746e			JE 0x40fd6d							
+  runtime_faststr.go:62	0x40fcff		488b542460		MOVQ 0x60(SP), DX						
+  group.go:290		0x40fd04		488b7e58		MOVQ 0x58(SI), DI						
+  group.go:292		0x40fd08		4c8b442428		MOVQ 0x28(SP), R8						
+  runtime_faststr.go:60	0x40fd0d		90			NOPL								
+  runtime_faststr.go:61	0x40fd0e		90			NOPL								
+  group.go:49		0x40fd0f		4c0fbcc9		BSFQ CX, R9							
+  group.go:290		0x40fd13		4c0fafcf		IMULQ DI, R9							
+  runtime_faststr.go:62	0x40fd17		4b8b7c0110		MOVQ 0x10(R9)(R8*1), DI						
+  runtime_faststr.go:62	0x40fd1c		4b8b5c0108		MOVQ 0x8(R9)(R8*1), BX						
+  runtime_faststr.go:62	0x40fd21		4839d7			CMPQ DI, DX							
+  runtime_faststr.go:62	0x40fd24		75cc			JNE 0x40fcf2							
+  runtime_faststr.go:59	0x40fd26		48894c2418		MOVQ CX, 0x18(SP)						
+  group.go:290		0x40fd2b		4c894c2420		MOVQ R9, 0x20(SP)						
+  group.go:292		0x40fd30		4c89442430		MOVQ R8, 0x30(SP)						
+  runtime_faststr.go:62	0x40fd35		488b442458		MOVQ 0x58(SP), AX						
+  runtime_faststr.go:62	0x40fd3a		4889d1			MOVQ DX, CX							
+  runtime_faststr.go:62	0x40fd3d		0f1f00			NOPL 0(AX)							
+  runtime_faststr.go:62	0x40fd40		e8fb48ffff		CALL runtime.memequal(SB)					
+  runtime_faststr.go:62	0x40fd45		84c0			TESTL AL, AL							
+  runtime_faststr.go:62	0x40fd47		750c			JNE 0x40fd55							
+  group.go:63		0x40fd49		488b4c2418		MOVQ 0x18(SP), CX						
+  group.go:290		0x40fd4e		488b742450		MOVQ 0x50(SP), SI						
+  runtime_faststr.go:62	0x40fd53		eb9d			JMP 0x40fcf2							
+  runtime_faststr.go:63	0x40fd55		488b4c2420		MOVQ 0x20(SP), CX						
+  runtime_faststr.go:63	0x40fd5a		488b542430		MOVQ 0x30(SP), DX						
+  runtime_faststr.go:63	0x40fd5f		488d040a		LEAQ 0(DX)(CX*1), AX						
+  runtime_faststr.go:63	0x40fd63		488d4018		LEAQ 0x18(AX), AX						
+  runtime_faststr.go:63	0x40fd67		4883c438		ADDQ $0x38, SP							
+  runtime_faststr.go:63	0x40fd6b		5d			POPQ BP								
+  runtime_faststr.go:63	0x40fd6c		c3			RET								
+  runtime_faststr.go:67	0x40fd6d		31c0			XORL AX, AX							
+  runtime_faststr.go:67	0x40fd6f		4883c438		ADDQ $0x38, SP							
+  runtime_faststr.go:67	0x40fd73		5d			POPQ BP								
+  runtime_faststr.go:67	0x40fd74		c3			RET								
+  runtime_faststr.go:40	0x40fd75		4d01c1			ADDQ R8, R9							
+  runtime_faststr.go:31	0x40fd78		4c8d5201		LEAQ 0x1(DX), R10						
+  runtime_faststr.go:41	0x40fd7c		48c1ef08		SHRQ $0x8, DI							
+  runtime_faststr.go:31	0x40fd80		4889ca			MOVQ CX, DX							
+  runtime_faststr.go:31	0x40fd83		4c89d1			MOVQ R10, CX							
+  runtime_faststr.go:31	0x40fd86		4883f908		CMPQ CX, $0x8							
+  runtime_faststr.go:31	0x40fd8a		7d74			JGE 0x40fe00							
+  runtime_faststr.go:32	0x40fd8c		0fbae707		BTL $0x7, DI							
+  runtime_faststr.go:32	0x40fd90		7242			JB 0x40fdd4							
+  runtime_faststr.go:32	0x40fd92		4c8b542460		MOVQ 0x60(SP), R10						
+  runtime_faststr.go:32	0x40fd97		4d395108		CMPQ 0x8(R9), R10						
+  runtime_faststr.go:74	0x40fd9b		7405			JE 0x40fda2							
+  runtime_faststr.go:74	0x40fd9d		4531d2			XORL R10, R10							
+  runtime_faststr.go:32	0x40fda0		eb35			JMP 0x40fdd7							
+  runtime_faststr.go:32	0x40fda2		4c8b5c2458		MOVQ 0x58(SP), R11						
+  runtime_faststr.go:32	0x40fda7		4d8b21			MOVQ 0(R9), R12							
+  runtime_faststr.go:79	0x40fdaa		4d8b2c24		MOVQ 0(R12), R13						
+  runtime_faststr.go:79	0x40fdae		4d392b			CMPQ 0(R11), R13						
+  runtime_faststr.go:79	0x40fdb1		7405			JE 0x40fdb8							
+  runtime_faststr.go:79	0x40fdb3		4531d2			XORL R10, R10							
+  runtime_faststr.go:32	0x40fdb6		eb1f			JMP 0x40fdd7							
+  runtime_faststr.go:85	0x40fdb8		4f8b6414f8		MOVQ -0x8(R12)(R10*1), R12					
+  runtime_faststr.go:85	0x40fdbd		4f8b5413f8		MOVQ -0x8(R11)(R10*1), R10					
+  runtime_faststr.go:85	0x40fdc2		4d39d4			CMPQ R12, R10							
+  runtime_faststr.go:85	0x40fdc5		7405			JE 0x40fdcc							
+  runtime_faststr.go:85	0x40fdc7		4531d2			XORL R10, R10							
+  runtime_faststr.go:32	0x40fdca		eb0b			JMP 0x40fdd7							
+  runtime_faststr.go:32	0x40fdcc		41ba01000000		MOVL $0x1, R10							
+  runtime_faststr.go:32	0x40fdd2		eb03			JMP 0x40fdd7							
+  runtime_faststr.go:32	0x40fdd4		4531d2			XORL R10, R10							
+  runtime_faststr.go:32	0x40fdd7		4584d2			TESTL R10, R10							
+  runtime_faststr.go:32	0x40fdda		7413			JE 0x40fdef							
+  runtime_faststr.go:32	0x40fddc		0f1f4000		NOPL 0(AX)							
+  runtime_faststr.go:33	0x40fde0		4883fa08		CMPQ DX, $0x8							
+  runtime_faststr.go:33	0x40fde4		0f8cbffeffff		JL 0x40fca9							
+  runtime_faststr.go:31	0x40fdea		4889ca			MOVQ CX, DX							
+  runtime_faststr.go:38	0x40fded		eb86			JMP 0x40fd75							
+  runtime_faststr.go:31	0x40fdef		4989d2			MOVQ DX, R10							
+  runtime_faststr.go:31	0x40fdf2		4889ca			MOVQ CX, DX							
+  runtime_faststr.go:40	0x40fdf5		4c89d1			MOVQ R10, CX							
+  runtime_faststr.go:32	0x40fdf8		e978ffffff		JMP 0x40fd75							
+  runtime_faststr.go:32	0x40fdfd		0f1f00			NOPL 0(AX)							
+  runtime_faststr.go:43	0x40fe00		4883fa08		CMPQ DX, $0x8							
+  runtime_faststr.go:43	0x40fe04		7451			JE 0x40fe57							
+  runtime_faststr.go:49	0x40fe06		488b4c2460		MOVQ 0x60(SP), CX						
+  group.go:290		0x40fe0b		4c0fafc2		IMULQ DX, R8							
+  runtime_faststr.go:49	0x40fe0f		498b543010		MOVQ 0x10(R8)(SI*1), DX						
+  runtime_faststr.go:48	0x40fe14		90			NOPL								
+  runtime_faststr.go:49	0x40fe15		498b5c3008		MOVQ 0x8(R8)(SI*1), BX						
+  runtime_faststr.go:49	0x40fe1a		4839ca			CMPQ DX, CX							
+  runtime_faststr.go:49	0x40fe1d		7518			JNE 0x40fe37							
+  runtime_faststr.go:17	0x40fe1f		4889742430		MOVQ SI, 0x30(SP)						
+  group.go:290		0x40fe24		4c89442420		MOVQ R8, 0x20(SP)						
+  runtime_faststr.go:49	0x40fe29		488b442458		MOVQ 0x58(SP), AX						
+  runtime_faststr.go:49	0x40fe2e		e80d48ffff		CALL runtime.memequal(SB)					
+  runtime_faststr.go:49	0x40fe33		84c0			TESTL AL, AL							
+  runtime_faststr.go:49	0x40fe35		7508			JNE 0x40fe3f							
+  runtime_faststr.go:52	0x40fe37		31c0			XORL AX, AX							
+  runtime_faststr.go:52	0x40fe39		4883c438		ADDQ $0x38, SP							
+  runtime_faststr.go:52	0x40fe3d		5d			POPQ BP								
+  runtime_faststr.go:52	0x40fe3e		c3			RET								
+  runtime_faststr.go:50	0x40fe3f		488b4c2430		MOVQ 0x30(SP), CX						
+  runtime_faststr.go:50	0x40fe44		488b542420		MOVQ 0x20(SP), DX						
+  runtime_faststr.go:50	0x40fe49		488d040a		LEAQ 0(DX)(CX*1), AX						
+  runtime_faststr.go:50	0x40fe4d		488d4018		LEAQ 0x18(AX), AX						
+  runtime_faststr.go:50	0x40fe51		4883c438		ADDQ $0x38, SP							
+  runtime_faststr.go:50	0x40fe55		5d			POPQ BP								
+  runtime_faststr.go:50	0x40fe56		c3			RET								
+  runtime_faststr.go:45	0x40fe57		31c0			XORL AX, AX							
+  runtime_faststr.go:45	0x40fe59		4883c438		ADDQ $0x38, SP							
+  runtime_faststr.go:45	0x40fe5d		5d			POPQ BP								
+  runtime_faststr.go:45	0x40fe5e		c3			RET								
+  runtime_faststr.go:15	0x40fe5f		4889442408		MOVQ AX, 0x8(SP)						
+  runtime_faststr.go:15	0x40fe64		48895c2410		MOVQ BX, 0x10(SP)						
+  runtime_faststr.go:15	0x40fe69		48894c2418		MOVQ CX, 0x18(SP)						
+  runtime_faststr.go:15	0x40fe6e		48897c2420		MOVQ DI, 0x20(SP)						
+  runtime_faststr.go:15	0x40fe73		e888fb0700		CALL runtime.morestack_noctxt.abi0(SB)				
+  runtime_faststr.go:15	0x40fe78		488b442408		MOVQ 0x8(SP), AX						
+  runtime_faststr.go:15	0x40fe7d		488b5c2410		MOVQ 0x10(SP), BX						
+  runtime_faststr.go:15	0x40fe82		488b4c2418		MOVQ 0x18(SP), CX						
+  runtime_faststr.go:15	0x40fe87		488b7c2420		MOVQ 0x20(SP), DI						
+  runtime_faststr.go:15	0x40fe8c		e9cffdffff		JMP internal/runtime/maps.(*Map).getWithoutKeySmallFastStr(SB)	

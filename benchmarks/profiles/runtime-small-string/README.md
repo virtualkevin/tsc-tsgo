@@ -1,0 +1,15 @@
+# Small string-map runtime experiment
+
+The pinned Go 1.26.9 runtime hashes short string keys in small maps and then walks all eight control bytes individually. The larger-map path already uses ctrlGroup.matchH2 and bitset iteration, with an AMD64 SIMD intrinsic. This candidate applies that existing matching operation to the small-map hashed path. Full key equality remains authoritative, including portable false-positive matches. The >64-byte quick-equality path is unchanged, except that its existing hash fallback reaches the new matching loop.
+
+The resolved-member census found many negative lookups in small materialized member tables. Table cardinality is not proof of runtime small-map representation: a grown then shrunk map may still use the larger representation. No CPU or speedup estimate is inferred from the lookup counts.
+
+An explicit Go build overlay substitutes one standard-library source file. The installed toolchain is untouched. inputs.json preserves runtime/group/go-binary hashes and runtime.patch preserves the exact change. Compiler source is unchanged. This experiment intentionally differs in build settings (GOFLAGS overlay); existing compiler-only comparison scripts must not pretend build settings are identical. Overlay content and mapping must be hashed alongside normal binary provenance. No PGO or runtime setting changes are intended.
+
+Baseline and overlay focused suites pass 102 records each; internal runtime map tests pass 130 records. Runtime Map-selected tests complete 10,027 records with three skips requiring the explicit concurrent-misuse flag. Overlay race/checkptr focused suites pass. The compiler builds successfully (binary 0bc29154a85ea1213e348d3572641bdaa94f19a4d354ebb26f461151da3d3465). Full compiler validation passed: root 2,339 records/115 top-level tests across 10 packages; pinned conformance 14,915 configurations (12,789 fully checked, 8 partial, 2,118 unsupported skips, zero failures); native diagnostic cases 80/80 and actual-Go API/emit/project tests 12/12. Workload performance remains unmeasured. The potential gain is broader than one checker lookup but remains an experiment. No PERF row or promotion.
+
+Member-table source audit found tables published before inherited/mapped members are finalized and maps reachable through aliases. A cached negative filter or frozen property-slice replacement would require stronger mutation invariants; this runtime experiment preserves live map contents instead.
+
+Binary inspection confirms the candidate small-map hashed path uses PCMPEQB/PMOVMSKB and bit-scan iteration, replacing the baseline scalar control-byte loop. The long-key quick path retains its scalar loop. Exact objdump commands, binary/output hashes and assembly are preserved in codegen.json and the two assembly text files. This verifies mechanism, not speedup.
+
+All 27 raw evidence files are archived and hash-verified. Guarded restoration and preflight passed: compiler source remains 216d40c7, installed runtime source is unchanged, and default binary is restored to 8fe4bd80. The candidate binary remains separately preserved. The copied Go runtime source is covered by GO-LICENSE.

@@ -1,0 +1,115 @@
+{
+  "variant": "conformance",
+  "sourceSha256": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "head": "0c4c887f67ff370e405dbd7820a6ae70a82d3443",
+  "controllerSha256": "a5f2e7ae7f0fc8ac4585464a73ea879a58f8a6ec6de2c95b3a325d5adfcd61bb",
+  "summaryHelperSha256": "aebdb6e5d2e21df0faddc0d1e66a1103cac58c5c38f91db1cf2d8f5579866431",
+  "expectedFocusedTests": [],
+  "pins": {
+    "TypeScript": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "typescript-go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b"
+  },
+  "runs": [
+    {
+      "name": "conformance",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/testrunner",
+        "-run",
+        "^TestSubmodule$",
+        "-parallel",
+        "4",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/tsc-runtime-small-string/conformance/conformance.jsonl",
+      "stderr": "/tmp/tsc-runtime-small-string/conformance/conformance.stderr",
+      "stdout_sha256": "c4f60175014e6d8b78a06dcddbad008fbfdc8f2fec55d6bcb23d65cda471e4c5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": {
+        "test_records": {
+          "pass": 113970,
+          "skip": 2126
+        },
+        "top_level_records": {
+          "pass": 1
+        },
+        "passing_top_level_tests": [
+          "TestSubmodule"
+        ],
+        "package_status": {
+          "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+        },
+        "cached_packages": [],
+        "source_configuration_cases": {
+          "total": 14915,
+          "fully_checked": 12789,
+          "partially_checked": 8,
+          "unsupported_skipped": 2118,
+          "failed": 0
+        },
+        "skip_categories": {
+          "unsupported target ES5": 1244,
+          "unsupported module kind AMD": 321,
+          "unsupported module kind System": 222,
+          "alwaysStrict=false is unsupported": 52,
+          "unsupported outFile": 87,
+          "esModuleInterop=false is unsupported": 24,
+          "unsupported baseUrl": 31,
+          "unsupported module resolution kind 1": 57,
+          "unsupported module resolution kind 2": 23,
+          "unsupported module kind UMD": 57
+        },
+        "partial_output_skips": [
+          {
+            "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+            "reason": "cls.d.ts is missing statements when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/grammarErrors.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+            "reason": "Nondeterministic contents when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+            "reason": "Nondeterministic contents when run concurrently."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+            "reason": "No files are emitted."
+          },
+          {
+            "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          },
+          {
+            "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+            "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+          }
+        ],
+        "failed_tests": [],
+        "integrity_errors": []
+      },
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "overlayFiles": {
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/runtime-small-string/overlay.json": "2c1a3c59330a3d039fd796df4a90a2e9dcc55ded53ac8b0c95b955dc9057c943",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/runtime-small-string/runtime_faststr.go.txt": "dc306bd73904c2cefd43eff281f6b8487f758124f77e98d8260593906f304f7d",
+    "/tmp/tsc-toolchains/go/src/internal/runtime/maps/runtime_faststr.go": "9a4abcef59b9a68f01a20da7d68b783c0b3c276a0b876810e45cdc5b4965e1ab"
+  },
+  "scope": "Complete pinned conformance only; focused/root suites tracked separately; no workload timing claim.",
+  "sourceAndPinsUnchanged": true
+}
