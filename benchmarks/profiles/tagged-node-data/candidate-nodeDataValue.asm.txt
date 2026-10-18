@@ -1,0 +1,1009 @@
+TEXT github.com/microsoft/typescript-go/internal/ast.(*Node).nodeDataValue(SB) github.com/microsoft/typescript-go/internal/ast/node_payload_generated.go
+  node_payload_generated.go:797		0x627a20		493b6610		CMPQ SP, 0x10(R14)																		
+  node_payload_generated.go:797		0x627a24		0f863c0d0000		JBE 0x628766																			
+  node_payload_generated.go:797		0x627a2a		55			PUSHQ BP																			
+  node_payload_generated.go:797		0x627a2b		4889e5			MOVQ SP, BP																			
+  node_payload_generated.go:797		0x627a2e		4883ec10		SUBQ $0x10, SP																			
+  node_payload_generated.go:798		0x627a32		0fb74802		MOVZX 0x2(AX), CX																		
+  node_payload_generated.go:798		0x627a36		660f1f840000000000	NOPW 0(AX)(AX*1)																		
+  node_payload_generated.go:798		0x627a3f		90			NOPL																				
+  node_payload_generated.go:798		0x627a40		4881f9c2000000		CMPQ CX, $0xc2																			
+  node_payload_generated.go:798		0x627a47		0f87020d0000		JA 0x62874f																			
+  node_payload_generated.go:798		0x627a4d		488d15cc72fe00		LEAQ 0xfe72cc(IP), DX																		
+  node_payload_generated.go:798		0x627a54		ff24ca			JMP 0(DX)(CX*8)																			
+  node_payload_generated.go:800		0x627a57		31c0			XORL AX, AX																			
+  node_payload_generated.go:800		0x627a59		31db			XORL BX, BX																			
+  node_payload_generated.go:800		0x627a5b		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:800		0x627a5f		5d			POPQ BP																				
+  node_payload_generated.go:800		0x627a60		c3			RET																				
+  node_payload_generated.go:802		0x627a61		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:802		0x627a65		488d0584b9fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ArrayLiteralExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:802		0x627a6c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:802		0x627a70		5d			POPQ BP																				
+  node_payload_generated.go:802		0x627a71		c3			RET																				
+  node_payload_generated.go:804		0x627a72		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:804		0x627a76		488d052bbafc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ArrayTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:804		0x627a7d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:804		0x627a81		5d			POPQ BP																				
+  node_payload_generated.go:804		0x627a82		c3			RET																				
+  node_payload_generated.go:806		0x627a83		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:806		0x627a87		488d05d2bafc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ArrowFunction,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:806		0x627a8e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:806		0x627a92		5d			POPQ BP																				
+  node_payload_generated.go:806		0x627a93		c3			RET																				
+  node_payload_generated.go:808		0x627a94		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:808		0x627a98		488d0579bbfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.AsExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:808		0x627a9f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:808		0x627aa3		5d			POPQ BP																				
+  node_payload_generated.go:808		0x627aa4		c3			RET																				
+  node_payload_generated.go:810		0x627aa5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:810		0x627aa9		488d0520bcfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.AwaitExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:810		0x627ab0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:810		0x627ab4		5d			POPQ BP																				
+  node_payload_generated.go:810		0x627ab5		c3			RET																				
+  node_payload_generated.go:812		0x627ab6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:812		0x627aba		488d05c7bcfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.BigIntLiteral,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:812		0x627ac1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:812		0x627ac5		5d			POPQ BP																				
+  node_payload_generated.go:812		0x627ac6		c3			RET																				
+  node_payload_generated.go:814		0x627ac7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:814		0x627acb		488d056ebdfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.BinaryExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:814		0x627ad2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:814		0x627ad6		5d			POPQ BP																				
+  node_payload_generated.go:814		0x627ad7		c3			RET																				
+  node_payload_generated.go:816		0x627ad8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:816		0x627adc		488d0515befc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.BindingElement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:816		0x627ae3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:816		0x627ae7		5d			POPQ BP																				
+  node_payload_generated.go:816		0x627ae8		c3			RET																				
+  node_payload_generated.go:818		0x627ae9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:818		0x627aed		488d05bcbefc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.BindingPattern,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:818		0x627af4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:818		0x627af8		5d			POPQ BP																				
+  node_payload_generated.go:818		0x627af9		c3			RET																				
+  node_payload_generated.go:820		0x627afa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:820		0x627afe		488d0563bffc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.Block,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX				
+  node_payload_generated.go:820		0x627b05		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:820		0x627b09		5d			POPQ BP																				
+  node_payload_generated.go:820		0x627b0a		c3			RET																				
+  node_payload_generated.go:822		0x627b0b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:822		0x627b0f		488d050ac0fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.BreakStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:822		0x627b16		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:822		0x627b1a		5d			POPQ BP																				
+  node_payload_generated.go:822		0x627b1b		c3			RET																				
+  node_payload_generated.go:824		0x627b1c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:824		0x627b20		488d05b1c0fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.CallExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:824		0x627b27		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:824		0x627b2b		5d			POPQ BP																				
+  node_payload_generated.go:824		0x627b2c		c3			RET																				
+  node_payload_generated.go:826		0x627b2d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:826		0x627b31		488d0558c1fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.CallSignatureDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:826		0x627b38		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:826		0x627b3c		5d			POPQ BP																				
+  node_payload_generated.go:826		0x627b3d		c3			RET																				
+  node_payload_generated.go:828		0x627b3e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:828		0x627b42		488d05ffc1fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.CaseBlock,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:828		0x627b49		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:828		0x627b4d		5d			POPQ BP																				
+  node_payload_generated.go:828		0x627b4e		c3			RET																				
+  node_payload_generated.go:830		0x627b4f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:830		0x627b53		488d05a6c2fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.CaseOrDefaultClause,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:830		0x627b5a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:830		0x627b5e		5d			POPQ BP																				
+  node_payload_generated.go:830		0x627b5f		90			NOPL																				
+  node_payload_generated.go:830		0x627b60		c3			RET																				
+  node_payload_generated.go:832		0x627b61		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:832		0x627b65		488d054cc3fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.CatchClause,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:832		0x627b6c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:832		0x627b70		5d			POPQ BP																				
+  node_payload_generated.go:832		0x627b71		c3			RET																				
+  node_payload_generated.go:834		0x627b72		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:834		0x627b76		488d05f3c3fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ClassDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:834		0x627b7d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:834		0x627b81		5d			POPQ BP																				
+  node_payload_generated.go:834		0x627b82		c3			RET																				
+  node_payload_generated.go:836		0x627b83		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:836		0x627b87		488d059ac4fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ClassExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:836		0x627b8e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:836		0x627b92		5d			POPQ BP																				
+  node_payload_generated.go:836		0x627b93		c3			RET																				
+  node_payload_generated.go:838		0x627b94		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:838		0x627b98		488d0541c5fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ClassStaticBlockDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:838		0x627b9f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:838		0x627ba3		5d			POPQ BP																				
+  node_payload_generated.go:838		0x627ba4		c3			RET																				
+  node_payload_generated.go:840		0x627ba5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:840		0x627ba9		488d05e8c5fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ComputedPropertyName,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:840		0x627bb0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:840		0x627bb4		5d			POPQ BP																				
+  node_payload_generated.go:840		0x627bb5		c3			RET																				
+  node_payload_generated.go:842		0x627bb6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:842		0x627bba		488d058fc6fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ConditionalExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:842		0x627bc1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:842		0x627bc5		5d			POPQ BP																				
+  node_payload_generated.go:842		0x627bc6		c3			RET																				
+  node_payload_generated.go:844		0x627bc7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:844		0x627bcb		488d0536c7fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ConditionalTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:844		0x627bd2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:844		0x627bd6		5d			POPQ BP																				
+  node_payload_generated.go:844		0x627bd7		c3			RET																				
+  node_payload_generated.go:846		0x627bd8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:846		0x627bdc		488d05ddc7fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ConstructSignatureDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:846		0x627be3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:846		0x627be7		5d			POPQ BP																				
+  node_payload_generated.go:846		0x627be8		c3			RET																				
+  node_payload_generated.go:848		0x627be9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:848		0x627bed		488d0584c8fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ConstructorDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:848		0x627bf4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:848		0x627bf8		5d			POPQ BP																				
+  node_payload_generated.go:848		0x627bf9		c3			RET																				
+  node_payload_generated.go:850		0x627bfa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:850		0x627bfe		488d052bc9fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ConstructorTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:850		0x627c05		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:850		0x627c09		5d			POPQ BP																				
+  node_payload_generated.go:850		0x627c0a		c3			RET																				
+  node_payload_generated.go:852		0x627c0b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:852		0x627c0f		488d05d2c9fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ContinueStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:852		0x627c16		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:852		0x627c1a		5d			POPQ BP																				
+  node_payload_generated.go:852		0x627c1b		c3			RET																				
+  node_payload_generated.go:854		0x627c1c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:854		0x627c20		488d0579cafc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.DebuggerStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:854		0x627c27		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:854		0x627c2b		5d			POPQ BP																				
+  node_payload_generated.go:854		0x627c2c		c3			RET																				
+  node_payload_generated.go:856		0x627c2d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:856		0x627c31		488d0520cbfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.Decorator,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:856		0x627c38		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:856		0x627c3c		5d			POPQ BP																				
+  node_payload_generated.go:856		0x627c3d		c3			RET																				
+  node_payload_generated.go:858		0x627c3e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:858		0x627c42		488d05c7cbfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.DeleteExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:858		0x627c49		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:858		0x627c4d		5d			POPQ BP																				
+  node_payload_generated.go:858		0x627c4e		c3			RET																				
+  node_payload_generated.go:860		0x627c4f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:860		0x627c53		488d056eccfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.DoStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:860		0x627c5a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:860		0x627c5e		5d			POPQ BP																				
+  node_payload_generated.go:860		0x627c5f		90			NOPL																				
+  node_payload_generated.go:860		0x627c60		c3			RET																				
+  node_payload_generated.go:862		0x627c61		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:862		0x627c65		488d0514cdfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ElementAccessExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:862		0x627c6c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:862		0x627c70		5d			POPQ BP																				
+  node_payload_generated.go:862		0x627c71		c3			RET																				
+  node_payload_generated.go:864		0x627c72		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:864		0x627c76		488d05bbcdfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.EmptyStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:864		0x627c7d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:864		0x627c81		5d			POPQ BP																				
+  node_payload_generated.go:864		0x627c82		c3			RET																				
+  node_payload_generated.go:866		0x627c83		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:866		0x627c87		488d0562cefc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.EnumDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:866		0x627c8e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:866		0x627c92		5d			POPQ BP																				
+  node_payload_generated.go:866		0x627c93		c3			RET																				
+  node_payload_generated.go:868		0x627c94		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:868		0x627c98		488d0509cffc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.EnumMember,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:868		0x627c9f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:868		0x627ca3		5d			POPQ BP																				
+  node_payload_generated.go:868		0x627ca4		c3			RET																				
+  node_payload_generated.go:870		0x627ca5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:870		0x627ca9		488d05b0cffc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ExportAssignment,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:870		0x627cb0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:870		0x627cb4		5d			POPQ BP																				
+  node_payload_generated.go:870		0x627cb5		c3			RET																				
+  node_payload_generated.go:872		0x627cb6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:872		0x627cba		488d0557d0fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ExportDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:872		0x627cc1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:872		0x627cc5		5d			POPQ BP																				
+  node_payload_generated.go:872		0x627cc6		c3			RET																				
+  node_payload_generated.go:874		0x627cc7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:874		0x627ccb		488d05fed0fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ExportSpecifier,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:874		0x627cd2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:874		0x627cd6		5d			POPQ BP																				
+  node_payload_generated.go:874		0x627cd7		c3			RET																				
+  node_payload_generated.go:876		0x627cd8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:876		0x627cdc		488d05a5d1fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ExpressionStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:876		0x627ce3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:876		0x627ce7		5d			POPQ BP																				
+  node_payload_generated.go:876		0x627ce8		c3			RET																				
+  node_payload_generated.go:878		0x627ce9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:878		0x627ced		488d054cd2fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ExpressionWithTypeArguments,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:878		0x627cf4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:878		0x627cf8		5d			POPQ BP																				
+  node_payload_generated.go:878		0x627cf9		c3			RET																				
+  node_payload_generated.go:880		0x627cfa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:880		0x627cfe		488d05f3d2fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ExternalModuleReference,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:880		0x627d05		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:880		0x627d09		5d			POPQ BP																				
+  node_payload_generated.go:880		0x627d0a		c3			RET																				
+  node_payload_generated.go:882		0x627d0b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:882		0x627d0f		488d059ad3fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.FlowReduceLabelData,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:882		0x627d16		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:882		0x627d1a		5d			POPQ BP																				
+  node_payload_generated.go:882		0x627d1b		c3			RET																				
+  node_payload_generated.go:884		0x627d1c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:884		0x627d20		488d0541d4fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.FlowSwitchClauseData,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:884		0x627d27		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:884		0x627d2b		5d			POPQ BP																				
+  node_payload_generated.go:884		0x627d2c		c3			RET																				
+  node_payload_generated.go:886		0x627d2d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:886		0x627d31		488d05e8d4fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ForInOrOfStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:886		0x627d38		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:886		0x627d3c		5d			POPQ BP																				
+  node_payload_generated.go:886		0x627d3d		c3			RET																				
+  node_payload_generated.go:888		0x627d3e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:888		0x627d42		488d058fd5fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ForStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:888		0x627d49		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:888		0x627d4d		5d			POPQ BP																				
+  node_payload_generated.go:888		0x627d4e		c3			RET																				
+  node_payload_generated.go:890		0x627d4f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:890		0x627d53		488d0536d6fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.FunctionDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:890		0x627d5a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:890		0x627d5e		5d			POPQ BP																				
+  node_payload_generated.go:890		0x627d5f		90			NOPL																				
+  node_payload_generated.go:890		0x627d60		c3			RET																				
+  node_payload_generated.go:892		0x627d61		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:892		0x627d65		488d05dcd6fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.FunctionExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:892		0x627d6c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:892		0x627d70		5d			POPQ BP																				
+  node_payload_generated.go:892		0x627d71		c3			RET																				
+  node_payload_generated.go:894		0x627d72		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:894		0x627d76		488d0583d7fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.FunctionTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:894		0x627d7d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:894		0x627d81		5d			POPQ BP																				
+  node_payload_generated.go:894		0x627d82		c3			RET																				
+  node_payload_generated.go:896		0x627d83		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:896		0x627d87		488d052ad8fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.GetAccessorDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:896		0x627d8e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:896		0x627d92		5d			POPQ BP																				
+  node_payload_generated.go:896		0x627d93		c3			RET																				
+  node_payload_generated.go:898		0x627d94		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:898		0x627d98		488d05d1d8fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.HeritageClause,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:898		0x627d9f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:898		0x627da3		5d			POPQ BP																				
+  node_payload_generated.go:898		0x627da4		c3			RET																				
+  node_payload_generated.go:900		0x627da5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:900		0x627da9		488d0578d9fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.Identifier,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:900		0x627db0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:900		0x627db4		5d			POPQ BP																				
+  node_payload_generated.go:900		0x627db5		c3			RET																				
+  node_payload_generated.go:902		0x627db6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:902		0x627dba		488d051fdafc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.IfStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:902		0x627dc1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:902		0x627dc5		5d			POPQ BP																				
+  node_payload_generated.go:902		0x627dc6		c3			RET																				
+  node_payload_generated.go:904		0x627dc7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:904		0x627dcb		488d05c6dafc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ImportAttribute,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:904		0x627dd2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:904		0x627dd6		5d			POPQ BP																				
+  node_payload_generated.go:904		0x627dd7		c3			RET																				
+  node_payload_generated.go:906		0x627dd8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:906		0x627ddc		488d056ddbfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ImportAttributes,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:906		0x627de3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:906		0x627de7		5d			POPQ BP																				
+  node_payload_generated.go:906		0x627de8		c3			RET																				
+  node_payload_generated.go:908		0x627de9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:908		0x627ded		488d0514dcfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ImportClause,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:908		0x627df4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:908		0x627df8		5d			POPQ BP																				
+  node_payload_generated.go:908		0x627df9		c3			RET																				
+  node_payload_generated.go:910		0x627dfa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:910		0x627dfe		488d05bbdcfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ImportDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:910		0x627e05		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:910		0x627e09		5d			POPQ BP																				
+  node_payload_generated.go:910		0x627e0a		c3			RET																				
+  node_payload_generated.go:912		0x627e0b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:912		0x627e0f		488d0562ddfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ImportEqualsDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:912		0x627e16		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:912		0x627e1a		5d			POPQ BP																				
+  node_payload_generated.go:912		0x627e1b		c3			RET																				
+  node_payload_generated.go:914		0x627e1c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:914		0x627e20		488d0509defc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ImportSpecifier,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:914		0x627e27		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:914		0x627e2b		5d			POPQ BP																				
+  node_payload_generated.go:914		0x627e2c		c3			RET																				
+  node_payload_generated.go:916		0x627e2d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:916		0x627e31		488d05b0defc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ImportTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:916		0x627e38		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:916		0x627e3c		5d			POPQ BP																				
+  node_payload_generated.go:916		0x627e3d		c3			RET																				
+  node_payload_generated.go:918		0x627e3e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:918		0x627e42		488d0557dffc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.IndexSignatureDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:918		0x627e49		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:918		0x627e4d		5d			POPQ BP																				
+  node_payload_generated.go:918		0x627e4e		c3			RET																				
+  node_payload_generated.go:920		0x627e4f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:920		0x627e53		488d05fedffc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.IndexedAccessTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:920		0x627e5a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:920		0x627e5e		5d			POPQ BP																				
+  node_payload_generated.go:920		0x627e5f		90			NOPL																				
+  node_payload_generated.go:920		0x627e60		c3			RET																				
+  node_payload_generated.go:922		0x627e61		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:922		0x627e65		488d05a4e0fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.InferTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:922		0x627e6c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:922		0x627e70		5d			POPQ BP																				
+  node_payload_generated.go:922		0x627e71		c3			RET																				
+  node_payload_generated.go:924		0x627e72		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:924		0x627e76		488d054be1fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.InterfaceDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:924		0x627e7d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:924		0x627e81		5d			POPQ BP																				
+  node_payload_generated.go:924		0x627e82		c3			RET																				
+  node_payload_generated.go:926		0x627e83		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:926		0x627e87		488d05f2e1fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.IntersectionTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:926		0x627e8e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:926		0x627e92		5d			POPQ BP																				
+  node_payload_generated.go:926		0x627e93		c3			RET																				
+  node_payload_generated.go:928		0x627e94		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:928		0x627e98		488d0599e2fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDoc,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX				
+  node_payload_generated.go:928		0x627e9f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:928		0x627ea3		5d			POPQ BP																				
+  node_payload_generated.go:928		0x627ea4		c3			RET																				
+  node_payload_generated.go:930		0x627ea5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:930		0x627ea9		488d0540e3fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocAllType,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:930		0x627eb0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:930		0x627eb4		5d			POPQ BP																				
+  node_payload_generated.go:930		0x627eb5		c3			RET																				
+  node_payload_generated.go:932		0x627eb6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:932		0x627eba		488d05e7e3fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocAugmentsTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:932		0x627ec1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:932		0x627ec5		5d			POPQ BP																				
+  node_payload_generated.go:932		0x627ec6		c3			RET																				
+  node_payload_generated.go:934		0x627ec7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:934		0x627ecb		488d058ee4fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocCallbackTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:934		0x627ed2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:934		0x627ed6		5d			POPQ BP																				
+  node_payload_generated.go:934		0x627ed7		c3			RET																				
+  node_payload_generated.go:936		0x627ed8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:936		0x627edc		488d0535e5fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocDeprecatedTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:936		0x627ee3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:936		0x627ee7		5d			POPQ BP																				
+  node_payload_generated.go:936		0x627ee8		c3			RET																				
+  node_payload_generated.go:938		0x627ee9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:938		0x627eed		488d05dce5fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocImplementsTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:938		0x627ef4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:938		0x627ef8		5d			POPQ BP																				
+  node_payload_generated.go:938		0x627ef9		c3			RET																				
+  node_payload_generated.go:940		0x627efa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:940		0x627efe		488d0583e6fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocImportTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:940		0x627f05		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:940		0x627f09		5d			POPQ BP																				
+  node_payload_generated.go:940		0x627f0a		c3			RET																				
+  node_payload_generated.go:942		0x627f0b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:942		0x627f0f		488d052ae7fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocLink,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:942		0x627f16		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:942		0x627f1a		5d			POPQ BP																				
+  node_payload_generated.go:942		0x627f1b		c3			RET																				
+  node_payload_generated.go:944		0x627f1c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:944		0x627f20		488d05d1e7fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocLinkCode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:944		0x627f27		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:944		0x627f2b		5d			POPQ BP																				
+  node_payload_generated.go:944		0x627f2c		c3			RET																				
+  node_payload_generated.go:946		0x627f2d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:946		0x627f31		488d0578e8fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocLinkPlain,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:946		0x627f38		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:946		0x627f3c		5d			POPQ BP																				
+  node_payload_generated.go:946		0x627f3d		c3			RET																				
+  node_payload_generated.go:948		0x627f3e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:948		0x627f42		488d051fe9fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocNameReference,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:948		0x627f49		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:948		0x627f4d		5d			POPQ BP																				
+  node_payload_generated.go:948		0x627f4e		c3			RET																				
+  node_payload_generated.go:950		0x627f4f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:950		0x627f53		488d05c6e9fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocNonNullableType,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:950		0x627f5a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:950		0x627f5e		5d			POPQ BP																				
+  node_payload_generated.go:950		0x627f5f		90			NOPL																				
+  node_payload_generated.go:950		0x627f60		c3			RET																				
+  node_payload_generated.go:952		0x627f61		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:952		0x627f65		488d056ceafc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocNullableType,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:952		0x627f6c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:952		0x627f70		5d			POPQ BP																				
+  node_payload_generated.go:952		0x627f71		c3			RET																				
+  node_payload_generated.go:954		0x627f72		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:954		0x627f76		488d0513ebfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocOptionalType,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:954		0x627f7d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:954		0x627f81		5d			POPQ BP																				
+  node_payload_generated.go:954		0x627f82		c3			RET																				
+  node_payload_generated.go:956		0x627f83		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:956		0x627f87		488d05baebfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocOverloadTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:956		0x627f8e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:956		0x627f92		5d			POPQ BP																				
+  node_payload_generated.go:956		0x627f93		c3			RET																				
+  node_payload_generated.go:958		0x627f94		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:958		0x627f98		488d0561ecfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocOverrideTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:958		0x627f9f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:958		0x627fa3		5d			POPQ BP																				
+  node_payload_generated.go:958		0x627fa4		c3			RET																				
+  node_payload_generated.go:960		0x627fa5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:960		0x627fa9		488d0508edfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocParameterOrPropertyTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:960		0x627fb0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:960		0x627fb4		5d			POPQ BP																				
+  node_payload_generated.go:960		0x627fb5		c3			RET																				
+  node_payload_generated.go:962		0x627fb6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:962		0x627fba		488d05afedfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocPrivateTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:962		0x627fc1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:962		0x627fc5		5d			POPQ BP																				
+  node_payload_generated.go:962		0x627fc6		c3			RET																				
+  node_payload_generated.go:964		0x627fc7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:964		0x627fcb		488d0556eefc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocProtectedTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:964		0x627fd2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:964		0x627fd6		5d			POPQ BP																				
+  node_payload_generated.go:964		0x627fd7		c3			RET																				
+  node_payload_generated.go:966		0x627fd8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:966		0x627fdc		488d05fdeefc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocPublicTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:966		0x627fe3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:966		0x627fe7		5d			POPQ BP																				
+  node_payload_generated.go:966		0x627fe8		c3			RET																				
+  node_payload_generated.go:968		0x627fe9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:968		0x627fed		488d05a4effc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocReadonlyTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:968		0x627ff4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:968		0x627ff8		5d			POPQ BP																				
+  node_payload_generated.go:968		0x627ff9		c3			RET																				
+  node_payload_generated.go:970		0x627ffa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:970		0x627ffe		488d054bf0fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocReturnTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:970		0x628005		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:970		0x628009		5d			POPQ BP																				
+  node_payload_generated.go:970		0x62800a		c3			RET																				
+  node_payload_generated.go:972		0x62800b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:972		0x62800f		488d05f2f0fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocSatisfiesTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:972		0x628016		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:972		0x62801a		5d			POPQ BP																				
+  node_payload_generated.go:972		0x62801b		c3			RET																				
+  node_payload_generated.go:974		0x62801c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:974		0x628020		488d0599f1fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocSeeTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:974		0x628027		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:974		0x62802b		5d			POPQ BP																				
+  node_payload_generated.go:974		0x62802c		c3			RET																				
+  node_payload_generated.go:976		0x62802d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:976		0x628031		488d0540f2fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocSignature,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:976		0x628038		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:976		0x62803c		5d			POPQ BP																				
+  node_payload_generated.go:976		0x62803d		c3			RET																				
+  node_payload_generated.go:978		0x62803e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:978		0x628042		488d05e7f2fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocTemplateTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:978		0x628049		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:978		0x62804d		5d			POPQ BP																				
+  node_payload_generated.go:978		0x62804e		c3			RET																				
+  node_payload_generated.go:980		0x62804f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:980		0x628053		488d058ef3fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocText,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:980		0x62805a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:980		0x62805e		5d			POPQ BP																				
+  node_payload_generated.go:980		0x62805f		90			NOPL																				
+  node_payload_generated.go:980		0x628060		c3			RET																				
+  node_payload_generated.go:982		0x628061		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:982		0x628065		488d0534f4fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocThisTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:982		0x62806c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:982		0x628070		5d			POPQ BP																				
+  node_payload_generated.go:982		0x628071		c3			RET																				
+  node_payload_generated.go:984		0x628072		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:984		0x628076		488d05dbf4fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocThrowsTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:984		0x62807d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:984		0x628081		5d			POPQ BP																				
+  node_payload_generated.go:984		0x628082		c3			RET																				
+  node_payload_generated.go:986		0x628083		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:986		0x628087		488d0582f5fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocTypeExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:986		0x62808e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:986		0x628092		5d			POPQ BP																				
+  node_payload_generated.go:986		0x628093		c3			RET																				
+  node_payload_generated.go:988		0x628094		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:988		0x628098		488d0529f6fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocTypeLiteral,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:988		0x62809f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:988		0x6280a3		5d			POPQ BP																				
+  node_payload_generated.go:988		0x6280a4		c3			RET																				
+  node_payload_generated.go:990		0x6280a5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:990		0x6280a9		488d05d0f6fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocTypeTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:990		0x6280b0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:990		0x6280b4		5d			POPQ BP																				
+  node_payload_generated.go:990		0x6280b5		c3			RET																				
+  node_payload_generated.go:992		0x6280b6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:992		0x6280ba		488d0577f7fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocTypedefTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:992		0x6280c1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:992		0x6280c5		5d			POPQ BP																				
+  node_payload_generated.go:992		0x6280c6		c3			RET																				
+  node_payload_generated.go:994		0x6280c7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:994		0x6280cb		488d051ef8fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocUnknownTag,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:994		0x6280d2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:994		0x6280d6		5d			POPQ BP																				
+  node_payload_generated.go:994		0x6280d7		c3			RET																				
+  node_payload_generated.go:996		0x6280d8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:996		0x6280dc		488d05c5f8fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JSDocVariadicType,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:996		0x6280e3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:996		0x6280e7		5d			POPQ BP																				
+  node_payload_generated.go:996		0x6280e8		c3			RET																				
+  node_payload_generated.go:998		0x6280e9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:998		0x6280ed		488d056cf9fc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxAttribute,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:998		0x6280f4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:998		0x6280f8		5d			POPQ BP																				
+  node_payload_generated.go:998		0x6280f9		c3			RET																				
+  node_payload_generated.go:1000	0x6280fa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1000	0x6280fe		488d0513fafc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxAttributes,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1000	0x628105		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1000	0x628109		5d			POPQ BP																				
+  node_payload_generated.go:1000	0x62810a		c3			RET																				
+  node_payload_generated.go:1002	0x62810b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1002	0x62810f		488d05bafafc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxClosingElement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1002	0x628116		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1002	0x62811a		5d			POPQ BP																				
+  node_payload_generated.go:1002	0x62811b		c3			RET																				
+  node_payload_generated.go:1004	0x62811c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1004	0x628120		488d0561fbfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxClosingFragment,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1004	0x628127		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1004	0x62812b		5d			POPQ BP																				
+  node_payload_generated.go:1004	0x62812c		c3			RET																				
+  node_payload_generated.go:1006	0x62812d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1006	0x628131		488d0508fcfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxElement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1006	0x628138		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1006	0x62813c		5d			POPQ BP																				
+  node_payload_generated.go:1006	0x62813d		c3			RET																				
+  node_payload_generated.go:1008	0x62813e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1008	0x628142		488d05affcfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1008	0x628149		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1008	0x62814d		5d			POPQ BP																				
+  node_payload_generated.go:1008	0x62814e		c3			RET																				
+  node_payload_generated.go:1010	0x62814f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1010	0x628153		488d0556fdfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxFragment,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1010	0x62815a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1010	0x62815e		5d			POPQ BP																				
+  node_payload_generated.go:1010	0x62815f		90			NOPL																				
+  node_payload_generated.go:1010	0x628160		c3			RET																				
+  node_payload_generated.go:1012	0x628161		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1012	0x628165		488d05fcfdfc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxNamespacedName,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1012	0x62816c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1012	0x628170		5d			POPQ BP																				
+  node_payload_generated.go:1012	0x628171		c3			RET																				
+  node_payload_generated.go:1014	0x628172		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1014	0x628176		488d05a3fefc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxOpeningElement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1014	0x62817d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1014	0x628181		5d			POPQ BP																				
+  node_payload_generated.go:1014	0x628182		c3			RET																				
+  node_payload_generated.go:1016	0x628183		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1016	0x628187		488d054afffc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxOpeningFragment,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1016	0x62818e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1016	0x628192		5d			POPQ BP																				
+  node_payload_generated.go:1016	0x628193		c3			RET																				
+  node_payload_generated.go:1018	0x628194		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1018	0x628198		488d05f1fffc00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxSelfClosingElement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1018	0x62819f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1018	0x6281a3		5d			POPQ BP																				
+  node_payload_generated.go:1018	0x6281a4		c3			RET																				
+  node_payload_generated.go:1020	0x6281a5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1020	0x6281a9		488d059800fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxSpreadAttribute,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1020	0x6281b0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1020	0x6281b4		5d			POPQ BP																				
+  node_payload_generated.go:1020	0x6281b5		c3			RET																				
+  node_payload_generated.go:1022	0x6281b6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1022	0x6281ba		488d053f01fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.JsxText,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX				
+  node_payload_generated.go:1022	0x6281c1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1022	0x6281c5		5d			POPQ BP																				
+  node_payload_generated.go:1022	0x6281c6		c3			RET																				
+  node_payload_generated.go:1024	0x6281c7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1024	0x6281cb		488d05e601fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.KeywordExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1024	0x6281d2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1024	0x6281d6		5d			POPQ BP																				
+  node_payload_generated.go:1024	0x6281d7		c3			RET																				
+  node_payload_generated.go:1026	0x6281d8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1026	0x6281dc		488d058d02fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.KeywordTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1026	0x6281e3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1026	0x6281e7		5d			POPQ BP																				
+  node_payload_generated.go:1026	0x6281e8		c3			RET																				
+  node_payload_generated.go:1028	0x6281e9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1028	0x6281ed		488d053403fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.LabeledStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1028	0x6281f4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1028	0x6281f8		5d			POPQ BP																				
+  node_payload_generated.go:1028	0x6281f9		c3			RET																				
+  node_payload_generated.go:1030	0x6281fa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1030	0x6281fe		488d05db03fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.LiteralTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1030	0x628205		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1030	0x628209		5d			POPQ BP																				
+  node_payload_generated.go:1030	0x62820a		c3			RET																				
+  node_payload_generated.go:1032	0x62820b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1032	0x62820f		488d058204fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.MappedTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1032	0x628216		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1032	0x62821a		5d			POPQ BP																				
+  node_payload_generated.go:1032	0x62821b		c3			RET																				
+  node_payload_generated.go:1034	0x62821c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1034	0x628220		488d052905fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.MetaProperty,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1034	0x628227		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1034	0x62822b		5d			POPQ BP																				
+  node_payload_generated.go:1034	0x62822c		c3			RET																				
+  node_payload_generated.go:1036	0x62822d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1036	0x628231		488d05d005fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.MethodDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1036	0x628238		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1036	0x62823c		5d			POPQ BP																				
+  node_payload_generated.go:1036	0x62823d		c3			RET																				
+  node_payload_generated.go:1038	0x62823e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1038	0x628242		488d057706fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.MethodSignatureDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:1038	0x628249		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1038	0x62824d		5d			POPQ BP																				
+  node_payload_generated.go:1038	0x62824e		c3			RET																				
+  node_payload_generated.go:1040	0x62824f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1040	0x628253		488d051e07fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.MissingDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1040	0x62825a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1040	0x62825e		5d			POPQ BP																				
+  node_payload_generated.go:1040	0x62825f		90			NOPL																				
+  node_payload_generated.go:1040	0x628260		c3			RET																				
+  node_payload_generated.go:1042	0x628261		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1042	0x628265		488d05c407fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ModuleBlock,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1042	0x62826c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1042	0x628270		5d			POPQ BP																				
+  node_payload_generated.go:1042	0x628271		c3			RET																				
+  node_payload_generated.go:1044	0x628272		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1044	0x628276		488d056b08fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ModuleDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1044	0x62827d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1044	0x628281		5d			POPQ BP																				
+  node_payload_generated.go:1044	0x628282		c3			RET																				
+  node_payload_generated.go:1046	0x628283		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1046	0x628287		488d051209fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NamedExports,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1046	0x62828e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1046	0x628292		5d			POPQ BP																				
+  node_payload_generated.go:1046	0x628293		c3			RET																				
+  node_payload_generated.go:1048	0x628294		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1048	0x628298		488d05b909fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NamedImports,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1048	0x62829f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1048	0x6282a3		5d			POPQ BP																				
+  node_payload_generated.go:1048	0x6282a4		c3			RET																				
+  node_payload_generated.go:1050	0x6282a5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1050	0x6282a9		488d05600afd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NamedTupleMember,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1050	0x6282b0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1050	0x6282b4		5d			POPQ BP																				
+  node_payload_generated.go:1050	0x6282b5		c3			RET																				
+  node_payload_generated.go:1052	0x6282b6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1052	0x6282ba		488d05070bfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NamespaceExport,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1052	0x6282c1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1052	0x6282c5		5d			POPQ BP																				
+  node_payload_generated.go:1052	0x6282c6		c3			RET																				
+  node_payload_generated.go:1054	0x6282c7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1054	0x6282cb		488d05ae0bfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NamespaceExportDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:1054	0x6282d2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1054	0x6282d6		5d			POPQ BP																				
+  node_payload_generated.go:1054	0x6282d7		c3			RET																				
+  node_payload_generated.go:1056	0x6282d8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1056	0x6282dc		488d05550cfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NamespaceImport,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1056	0x6282e3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1056	0x6282e7		5d			POPQ BP																				
+  node_payload_generated.go:1056	0x6282e8		c3			RET																				
+  node_payload_generated.go:1058	0x6282e9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1058	0x6282ed		488d05fc0cfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NewExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1058	0x6282f4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1058	0x6282f8		5d			POPQ BP																				
+  node_payload_generated.go:1058	0x6282f9		c3			RET																				
+  node_payload_generated.go:1060	0x6282fa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1060	0x6282fe		488d05a30dfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NoSubstitutionTemplateLiteral,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:1060	0x628305		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1060	0x628309		5d			POPQ BP																				
+  node_payload_generated.go:1060	0x62830a		c3			RET																				
+  node_payload_generated.go:1062	0x62830b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1062	0x62830f		488d054a0efd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NonNullExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1062	0x628316		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1062	0x62831a		5d			POPQ BP																				
+  node_payload_generated.go:1062	0x62831b		c3			RET																				
+  node_payload_generated.go:1064	0x62831c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1064	0x628320		488d05f10efd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NotEmittedStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1064	0x628327		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1064	0x62832b		5d			POPQ BP																				
+  node_payload_generated.go:1064	0x62832c		c3			RET																				
+  node_payload_generated.go:1066	0x62832d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1066	0x628331		488d05980ffd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NotEmittedTypeElement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1066	0x628338		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1066	0x62833c		5d			POPQ BP																				
+  node_payload_generated.go:1066	0x62833d		c3			RET																				
+  node_payload_generated.go:1068	0x62833e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1068	0x628342		488d053f10fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.NumericLiteral,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1068	0x628349		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1068	0x62834d		5d			POPQ BP																				
+  node_payload_generated.go:1068	0x62834e		c3			RET																				
+  node_payload_generated.go:1070	0x62834f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1070	0x628353		488d05e610fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ObjectLiteralExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1070	0x62835a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1070	0x62835e		5d			POPQ BP																				
+  node_payload_generated.go:1070	0x62835f		90			NOPL																				
+  node_payload_generated.go:1070	0x628360		c3			RET																				
+  node_payload_generated.go:1072	0x628361		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1072	0x628365		488d058c11fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.OmittedExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1072	0x62836c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1072	0x628370		5d			POPQ BP																				
+  node_payload_generated.go:1072	0x628371		c3			RET																				
+  node_payload_generated.go:1074	0x628372		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1074	0x628376		488d053312fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.OptionalTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1074	0x62837d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1074	0x628381		5d			POPQ BP																				
+  node_payload_generated.go:1074	0x628382		c3			RET																				
+  node_payload_generated.go:1076	0x628383		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1076	0x628387		488d05da12fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ParameterDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1076	0x62838e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1076	0x628392		5d			POPQ BP																				
+  node_payload_generated.go:1076	0x628393		c3			RET																				
+  node_payload_generated.go:1078	0x628394		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1078	0x628398		488d058113fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ParenthesizedExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1078	0x62839f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1078	0x6283a3		5d			POPQ BP																				
+  node_payload_generated.go:1078	0x6283a4		c3			RET																				
+  node_payload_generated.go:1080	0x6283a5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1080	0x6283a9		488d052814fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ParenthesizedTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1080	0x6283b0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1080	0x6283b4		5d			POPQ BP																				
+  node_payload_generated.go:1080	0x6283b5		c3			RET																				
+  node_payload_generated.go:1082	0x6283b6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1082	0x6283ba		488d05cf14fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.PartiallyEmittedExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:1082	0x6283c1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1082	0x6283c5		5d			POPQ BP																				
+  node_payload_generated.go:1082	0x6283c6		c3			RET																				
+  node_payload_generated.go:1084	0x6283c7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1084	0x6283cb		488d057615fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.PostfixUnaryExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1084	0x6283d2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1084	0x6283d6		5d			POPQ BP																				
+  node_payload_generated.go:1084	0x6283d7		c3			RET																				
+  node_payload_generated.go:1086	0x6283d8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1086	0x6283dc		488d051d16fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.PrefixUnaryExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1086	0x6283e3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1086	0x6283e7		5d			POPQ BP																				
+  node_payload_generated.go:1086	0x6283e8		c3			RET																				
+  node_payload_generated.go:1088	0x6283e9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1088	0x6283ed		488d05c416fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.PrivateIdentifier,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1088	0x6283f4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1088	0x6283f8		5d			POPQ BP																				
+  node_payload_generated.go:1088	0x6283f9		c3			RET																				
+  node_payload_generated.go:1090	0x6283fa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1090	0x6283fe		488d056b17fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.PropertyAccessExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1090	0x628405		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1090	0x628409		5d			POPQ BP																				
+  node_payload_generated.go:1090	0x62840a		c3			RET																				
+  node_payload_generated.go:1092	0x62840b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1092	0x62840f		488d051218fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.PropertyAssignment,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1092	0x628416		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1092	0x62841a		5d			POPQ BP																				
+  node_payload_generated.go:1092	0x62841b		c3			RET																				
+  node_payload_generated.go:1094	0x62841c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1094	0x628420		488d05b918fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.PropertyDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1094	0x628427		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1094	0x62842b		5d			POPQ BP																				
+  node_payload_generated.go:1094	0x62842c		c3			RET																				
+  node_payload_generated.go:1096	0x62842d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1096	0x628431		488d056019fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.PropertySignatureDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:1096	0x628438		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1096	0x62843c		5d			POPQ BP																				
+  node_payload_generated.go:1096	0x62843d		c3			RET																				
+  node_payload_generated.go:1098	0x62843e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1098	0x628442		488d05071afd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.QualifiedName,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1098	0x628449		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1098	0x62844d		5d			POPQ BP																				
+  node_payload_generated.go:1098	0x62844e		c3			RET																				
+  node_payload_generated.go:1100	0x62844f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1100	0x628453		488d05ae1afd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.RegularExpressionLiteral,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1100	0x62845a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1100	0x62845e		5d			POPQ BP																				
+  node_payload_generated.go:1100	0x62845f		90			NOPL																				
+  node_payload_generated.go:1100	0x628460		c3			RET																				
+  node_payload_generated.go:1102	0x628461		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1102	0x628465		488d05541bfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.RestTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1102	0x62846c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1102	0x628470		5d			POPQ BP																				
+  node_payload_generated.go:1102	0x628471		c3			RET																				
+  node_payload_generated.go:1104	0x628472		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1104	0x628476		488d05fb1bfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ReturnStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1104	0x62847d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1104	0x628481		5d			POPQ BP																				
+  node_payload_generated.go:1104	0x628482		c3			RET																				
+  node_payload_generated.go:1106	0x628483		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1106	0x628487		488d05a21cfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SatisfiesExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1106	0x62848e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1106	0x628492		5d			POPQ BP																				
+  node_payload_generated.go:1106	0x628493		c3			RET																				
+  node_payload_generated.go:1108	0x628494		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1108	0x628498		488d05491dfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SemicolonClassElement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1108	0x62849f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1108	0x6284a3		5d			POPQ BP																				
+  node_payload_generated.go:1108	0x6284a4		c3			RET																				
+  node_payload_generated.go:1110	0x6284a5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1110	0x6284a9		488d05f01dfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SetAccessorDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1110	0x6284b0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1110	0x6284b4		5d			POPQ BP																				
+  node_payload_generated.go:1110	0x6284b5		c3			RET																				
+  node_payload_generated.go:1112	0x6284b6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1112	0x6284ba		488d05971efd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ShorthandPropertyAssignment,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:1112	0x6284c1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1112	0x6284c5		5d			POPQ BP																				
+  node_payload_generated.go:1112	0x6284c6		c3			RET																				
+  node_payload_generated.go:1114	0x6284c7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1114	0x6284cb		488d053e1ffd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SourceFile,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1114	0x6284d2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1114	0x6284d6		5d			POPQ BP																				
+  node_payload_generated.go:1114	0x6284d7		c3			RET																				
+  node_payload_generated.go:1116	0x6284d8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1116	0x6284dc		488d05e51ffd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SpreadAssignment,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1116	0x6284e3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1116	0x6284e7		5d			POPQ BP																				
+  node_payload_generated.go:1116	0x6284e8		c3			RET																				
+  node_payload_generated.go:1118	0x6284e9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1118	0x6284ed		488d058c20fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SpreadElement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1118	0x6284f4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1118	0x6284f8		5d			POPQ BP																				
+  node_payload_generated.go:1118	0x6284f9		c3			RET																				
+  node_payload_generated.go:1120	0x6284fa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1120	0x6284fe		488d053321fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.StringLiteral,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1120	0x628505		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1120	0x628509		5d			POPQ BP																				
+  node_payload_generated.go:1120	0x62850a		c3			RET																				
+  node_payload_generated.go:1122	0x62850b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1122	0x62850f		488d05da21fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SwitchStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1122	0x628516		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1122	0x62851a		5d			POPQ BP																				
+  node_payload_generated.go:1122	0x62851b		c3			RET																				
+  node_payload_generated.go:1124	0x62851c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1124	0x628520		488d058122fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SyntaxList,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1124	0x628527		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1124	0x62852b		5d			POPQ BP																				
+  node_payload_generated.go:1124	0x62852c		c3			RET																				
+  node_payload_generated.go:1126	0x62852d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1126	0x628531		488d052823fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SyntheticExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1126	0x628538		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1126	0x62853c		5d			POPQ BP																				
+  node_payload_generated.go:1126	0x62853d		c3			RET																				
+  node_payload_generated.go:1128	0x62853e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1128	0x628542		488d05cf23fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.SyntheticReferenceExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX	
+  node_payload_generated.go:1128	0x628549		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1128	0x62854d		5d			POPQ BP																				
+  node_payload_generated.go:1128	0x62854e		c3			RET																				
+  node_payload_generated.go:1130	0x62854f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1130	0x628553		488d057624fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TaggedTemplateExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1130	0x62855a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1130	0x62855e		5d			POPQ BP																				
+  node_payload_generated.go:1130	0x62855f		90			NOPL																				
+  node_payload_generated.go:1130	0x628560		c3			RET																				
+  node_payload_generated.go:1132	0x628561		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1132	0x628565		488d051c25fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TemplateExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1132	0x62856c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1132	0x628570		5d			POPQ BP																				
+  node_payload_generated.go:1132	0x628571		c3			RET																				
+  node_payload_generated.go:1134	0x628572		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1134	0x628576		488d05c325fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TemplateHead,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1134	0x62857d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1134	0x628581		5d			POPQ BP																				
+  node_payload_generated.go:1134	0x628582		c3			RET																				
+  node_payload_generated.go:1136	0x628583		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1136	0x628587		488d056a26fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TemplateLiteralTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1136	0x62858e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1136	0x628592		5d			POPQ BP																				
+  node_payload_generated.go:1136	0x628593		c3			RET																				
+  node_payload_generated.go:1138	0x628594		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1138	0x628598		488d051127fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TemplateLiteralTypeSpan,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1138	0x62859f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1138	0x6285a3		5d			POPQ BP																				
+  node_payload_generated.go:1138	0x6285a4		c3			RET																				
+  node_payload_generated.go:1140	0x6285a5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1140	0x6285a9		488d05b827fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TemplateMiddle,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1140	0x6285b0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1140	0x6285b4		5d			POPQ BP																				
+  node_payload_generated.go:1140	0x6285b5		c3			RET																				
+  node_payload_generated.go:1142	0x6285b6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1142	0x6285ba		488d055f28fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TemplateSpan,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1142	0x6285c1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1142	0x6285c5		5d			POPQ BP																				
+  node_payload_generated.go:1142	0x6285c6		c3			RET																				
+  node_payload_generated.go:1144	0x6285c7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1144	0x6285cb		488d050629fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TemplateTail,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1144	0x6285d2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1144	0x6285d6		5d			POPQ BP																				
+  node_payload_generated.go:1144	0x6285d7		c3			RET																				
+  node_payload_generated.go:1146	0x6285d8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1146	0x6285dc		488d05ad29fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ThisTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1146	0x6285e3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1146	0x6285e7		5d			POPQ BP																				
+  node_payload_generated.go:1146	0x6285e8		c3			RET																				
+  node_payload_generated.go:1148	0x6285e9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1148	0x6285ed		488d05542afd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.ThrowStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1148	0x6285f4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1148	0x6285f8		5d			POPQ BP																				
+  node_payload_generated.go:1148	0x6285f9		c3			RET																				
+  node_payload_generated.go:1150	0x6285fa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1150	0x6285fe		488d05fb2afd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.Token,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX				
+  node_payload_generated.go:1150	0x628605		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1150	0x628609		5d			POPQ BP																				
+  node_payload_generated.go:1150	0x62860a		c3			RET																				
+  node_payload_generated.go:1152	0x62860b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1152	0x62860f		488d05a22bfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TryStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1152	0x628616		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1152	0x62861a		5d			POPQ BP																				
+  node_payload_generated.go:1152	0x62861b		c3			RET																				
+  node_payload_generated.go:1154	0x62861c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1154	0x628620		488d05492cfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TupleTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1154	0x628627		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1154	0x62862b		5d			POPQ BP																				
+  node_payload_generated.go:1154	0x62862c		c3			RET																				
+  node_payload_generated.go:1156	0x62862d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1156	0x628631		488d05f02cfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypeAliasDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1156	0x628638		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1156	0x62863c		5d			POPQ BP																				
+  node_payload_generated.go:1156	0x62863d		c3			RET																				
+  node_payload_generated.go:1158	0x62863e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1158	0x628642		488d05972dfd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypeAssertion,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1158	0x628649		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1158	0x62864d		5d			POPQ BP																				
+  node_payload_generated.go:1158	0x62864e		c3			RET																				
+  node_payload_generated.go:1160	0x62864f		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1160	0x628653		488d053e2efd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypeLiteralNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1160	0x62865a		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1160	0x62865e		5d			POPQ BP																				
+  node_payload_generated.go:1160	0x62865f		90			NOPL																				
+  node_payload_generated.go:1160	0x628660		c3			RET																				
+  node_payload_generated.go:1162	0x628661		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1162	0x628665		488d05e42efd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypeOfExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1162	0x62866c		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1162	0x628670		5d			POPQ BP																				
+  node_payload_generated.go:1162	0x628671		c3			RET																				
+  node_payload_generated.go:1164	0x628672		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1164	0x628676		488d058b2ffd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypeOperatorNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1164	0x62867d		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1164	0x628681		5d			POPQ BP																				
+  node_payload_generated.go:1164	0x628682		c3			RET																				
+  node_payload_generated.go:1166	0x628683		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1166	0x628687		488d053230fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypeParameterDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1166	0x62868e		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1166	0x628692		5d			POPQ BP																				
+  node_payload_generated.go:1166	0x628693		c3			RET																				
+  node_payload_generated.go:1168	0x628694		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1168	0x628698		488d05d930fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypePredicateNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1168	0x62869f		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1168	0x6286a3		5d			POPQ BP																				
+  node_payload_generated.go:1168	0x6286a4		c3			RET																				
+  node_payload_generated.go:1170	0x6286a5		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1170	0x6286a9		488d058031fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypeQueryNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1170	0x6286b0		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1170	0x6286b4		5d			POPQ BP																				
+  node_payload_generated.go:1170	0x6286b5		c3			RET																				
+  node_payload_generated.go:1172	0x6286b6		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1172	0x6286ba		488d052732fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.TypeReferenceNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1172	0x6286c1		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1172	0x6286c5		5d			POPQ BP																				
+  node_payload_generated.go:1172	0x6286c6		c3			RET																				
+  node_payload_generated.go:1174	0x6286c7		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1174	0x6286cb		488d05ce32fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.UnionTypeNode,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1174	0x6286d2		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1174	0x6286d6		5d			POPQ BP																				
+  node_payload_generated.go:1174	0x6286d7		c3			RET																				
+  node_payload_generated.go:1176	0x6286d8		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1176	0x6286dc		488d057533fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.VariableDeclaration,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1176	0x6286e3		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1176	0x6286e7		5d			POPQ BP																				
+  node_payload_generated.go:1176	0x6286e8		c3			RET																				
+  node_payload_generated.go:1178	0x6286e9		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1178	0x6286ed		488d051c34fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.VariableDeclarationList,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1178	0x6286f4		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1178	0x6286f8		5d			POPQ BP																				
+  node_payload_generated.go:1178	0x6286f9		c3			RET																				
+  node_payload_generated.go:1180	0x6286fa		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1180	0x6286fe		488d05c334fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.VariableStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX		
+  node_payload_generated.go:1180	0x628705		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1180	0x628709		5d			POPQ BP																				
+  node_payload_generated.go:1180	0x62870a		c3			RET																				
+  node_payload_generated.go:1182	0x62870b		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1182	0x62870f		488d056a35fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.VoidExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1182	0x628716		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1182	0x62871a		5d			POPQ BP																				
+  node_payload_generated.go:1182	0x62871b		c3			RET																				
+  node_payload_generated.go:1184	0x62871c		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1184	0x628720		488d051136fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.WhileStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1184	0x628727		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1184	0x62872b		5d			POPQ BP																				
+  node_payload_generated.go:1184	0x62872c		c3			RET																				
+  node_payload_generated.go:1186	0x62872d		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1186	0x628731		488d05b836fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.WithStatement,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1186	0x628738		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1186	0x62873c		5d			POPQ BP																				
+  node_payload_generated.go:1186	0x62873d		c3			RET																				
+  node_payload_generated.go:1188	0x62873e		488b5820		MOVQ 0x20(AX), BX																		
+  node_payload_generated.go:1188	0x628742		488d055f37fd00		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.YieldExpression,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), AX			
+  node_payload_generated.go:1188	0x628749		4883c410		ADDQ $0x10, SP																			
+  node_payload_generated.go:1188	0x62874d		5d			POPQ BP																				
+  node_payload_generated.go:1188	0x62874e		c3			RET																				
+  node_payload_generated.go:1190	0x62874f		488d058a577400		LEAQ 0x74578a(IP), AX																		
+  node_payload_generated.go:1190	0x628756		488d1d03e7fa00		LEAQ 0xfae703(IP), BX																		
+  node_payload_generated.go:1190	0x62875d		0f1f00			NOPL 0(AX)																			
+  node_payload_generated.go:1190	0x628760		e83b13e6ff		CALL runtime.gopanic(SB)																	
+  node_payload_generated.go:1190	0x628765		90			NOPL																				
+  node_payload_generated.go:797		0x628766		4889442408		MOVQ AX, 0x8(SP)																		
+  node_payload_generated.go:797		0x62876b		e89072e6ff		CALL runtime.morestack_noctxt.abi0(SB)																
+  node_payload_generated.go:797		0x628770		488b442408		MOVQ 0x8(SP), AX																		
+  node_payload_generated.go:797		0x628775		e9a6f2ffff		JMP github.com/microsoft/typescript-go/internal/ast.(*Node).nodeDataValue(SB)											

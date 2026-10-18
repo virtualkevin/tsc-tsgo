@@ -1,0 +1,1614 @@
+diff --git a/packages/tsc-go/internal/ast/ast.go b/packages/tsc-go/internal/ast/ast.go
+index 6dcd606..e4e2a5b 100644
+--- a/packages/tsc-go/internal/ast/ast.go
++++ b/packages/tsc-go/internal/ast/ast.go
+@@ -6,6 +6,7 @@ import (
+ 	"strings"
+ 	"sync"
+ 	"sync/atomic"
++	"unsafe"
+ 
+ 	"github.com/microsoft/typescript-go/internal/collections"
+ 	"github.com/microsoft/typescript-go/internal/core"
+@@ -75,7 +76,7 @@ func newNode(kind Kind, data nodeData, hooks NodeFactoryHooks) *Node {
+ 	n := data.AsNode()
+ 	n.Loc = core.UndefinedTextRange()
+ 	n.Kind = kind
+-	n.data = data
++	n.setNodeData(data)
+ 	if hooks.OnCreate != nil {
+ 		hooks.OnCreate(n)
+ 	}
+@@ -177,12 +178,13 @@ func (list *ModifierList) Clone(f *NodeFactory) *ModifierList {
+ // interface valued properties either store a true nil or a reference to a non-nil struct.
+ 
+ type Node struct {
+-	Kind   Kind
+-	Flags  NodeFlags
+-	Loc    core.TextRange
+-	id     atomic.Uint64
+-	Parent *Node
+-	data   nodeData
++	Kind        Kind
++	dataTag     nodePayloadTag
++	Flags       NodeFlags
++	Loc         core.TextRange
++	id          atomic.Uint64
++	Parent      *Node
++	dataPointer unsafe.Pointer
+ }
+ 
+ // Node accessors. Some accessors are implemented as methods on NodeData, others are implemented though
+@@ -204,24 +206,26 @@ func (n *Node) IterChildren() iter.Seq[*Node] {
+ 		})
+ 	}
+ }
+-func (n *Node) Clone(f NodeFactoryCoercible) *Node        { return n.data.Clone(f) }
+-func (n *Node) VisitEachChild(v *NodeVisitor) *Node       { return n.data.VisitEachChild(v) }
+-func (n *Node) Name() *DeclarationName                    { return n.data.Name() }
+-func (n *Node) Modifiers() *ModifierList                  { return n.data.Modifiers() }
+-func (n *Node) FlowNodeData() *FlowNodeBase               { return n.data.FlowNodeData() }
+-func (n *Node) DeclarationData() *DeclarationBase         { return n.data.DeclarationData() }
+-func (n *Node) ExportableData() *ExportableBase           { return n.data.ExportableData() }
+-func (n *Node) LocalsContainerData() *LocalsContainerBase { return n.data.LocalsContainerData() }
+-func (n *Node) FunctionLikeData() *FunctionLikeBase       { return n.data.FunctionLikeData() }
+-func (n *Node) ParameterList() *ParameterList             { return n.data.FunctionLikeData().Parameters }
+-func (n *Node) Parameters() []*ParameterDeclarationNode   { return n.ParameterList().Nodes }
+-func (n *Node) ClassLikeData() *ClassLikeBase             { return n.data.ClassLikeData() }
+-func (n *Node) BodyData() *BodyBase                       { return n.data.BodyData() }
+-func (n *Node) SubtreeFacts() SubtreeFacts                { return n.data.SubtreeFacts() }
+-func (n *Node) propagateSubtreeFacts() SubtreeFacts       { return n.data.propagateSubtreeFacts() }
+-func (n *Node) LiteralLikeData() *LiteralLikeNodeBase     { return n.data.LiteralLikeData() }
++func (n *Node) Clone(f NodeFactoryCoercible) *Node  { return n.nodeDataValue().Clone(f) }
++func (n *Node) VisitEachChild(v *NodeVisitor) *Node { return n.nodeDataValue().VisitEachChild(v) }
++func (n *Node) Name() *DeclarationName              { return n.nodeDataValue().Name() }
++func (n *Node) Modifiers() *ModifierList            { return n.nodeDataValue().Modifiers() }
++func (n *Node) FlowNodeData() *FlowNodeBase         { return n.nodeDataValue().FlowNodeData() }
++func (n *Node) DeclarationData() *DeclarationBase   { return n.nodeDataValue().DeclarationData() }
++func (n *Node) ExportableData() *ExportableBase     { return n.nodeDataValue().ExportableData() }
++func (n *Node) LocalsContainerData() *LocalsContainerBase {
++	return n.nodeDataValue().LocalsContainerData()
++}
++func (n *Node) FunctionLikeData() *FunctionLikeBase     { return n.nodeDataValue().FunctionLikeData() }
++func (n *Node) ParameterList() *ParameterList           { return n.nodeDataValue().FunctionLikeData().Parameters }
++func (n *Node) Parameters() []*ParameterDeclarationNode { return n.ParameterList().Nodes }
++func (n *Node) ClassLikeData() *ClassLikeBase           { return n.nodeDataValue().ClassLikeData() }
++func (n *Node) BodyData() *BodyBase                     { return n.nodeDataValue().BodyData() }
++func (n *Node) SubtreeFacts() SubtreeFacts              { return n.nodeDataValue().SubtreeFacts() }
++func (n *Node) propagateSubtreeFacts() SubtreeFacts     { return n.nodeDataValue().propagateSubtreeFacts() }
++func (n *Node) LiteralLikeData() *LiteralLikeNodeBase   { return n.nodeDataValue().LiteralLikeData() }
+ func (n *Node) TemplateLiteralLikeData() *TemplateLiteralLikeNodeBase {
+-	return n.data.TemplateLiteralLikeData()
++	return n.nodeDataValue().TemplateLiteralLikeData()
+ }
+ func (n *Node) KindString() string { return n.Kind.String() }
+ func (n *Node) KindValue() int16   { return int16(n.Kind) }
+@@ -234,8 +238,10 @@ func (n *Node) Decorators() []*Node {
+ 
+ type MutableNode Node
+ 
+-func (n *Node) AsMutable() *MutableNode                     { return (*MutableNode)(n) }
+-func (n *MutableNode) SetModifiers(modifiers *ModifierList) { n.data.setModifiers(modifiers) }
++func (n *Node) AsMutable() *MutableNode { return (*MutableNode)(n) }
++func (n *MutableNode) SetModifiers(modifiers *ModifierList) {
++	(*Node)(n).nodeDataValue().setModifiers(modifiers)
++}
+ 
+ func (n *Node) Symbol() *Symbol {
+ 	data := n.DeclarationData()
+@@ -304,7 +310,7 @@ func (n *Node) Text() string {
+ 	case KindJSDocLinkPlain:
+ 		return strings.Join(n.AsJSDocLinkPlain().text, "")
+ 	}
+-	panic(fmt.Sprintf("Unhandled case in Node.Text: %T", n.data))
++	panic(fmt.Sprintf("Unhandled case in Node.Text: %T", n.nodeDataValue()))
+ }
+ 
+ func (n *Node) Expression() *Node {
+@@ -1169,11 +1175,11 @@ func (n *Node) Contains(descendant *Node) bool {
+ // Node casts
+ 
+ func (n *Node) AsFlowSwitchClauseData() *FlowSwitchClauseData {
+-	return n.data.(*FlowSwitchClauseData)
++	return n.payloadFlowSwitchClauseData()
+ }
+ 
+ func (n *Node) AsFlowReduceLabelData() *FlowReduceLabelData {
+-	return n.data.(*FlowReduceLabelData)
++	return n.payloadFlowReduceLabelData()
+ }
+ 
+ // NodeData
+@@ -1225,7 +1231,7 @@ func (node *NodeDefault) BodyData() *BodyBase
+ func (node *NodeDefault) LiteralLikeData() *LiteralLikeNodeBase                 { return nil }
+ func (node *NodeDefault) TemplateLiteralLikeData() *TemplateLiteralLikeNodeBase { return nil }
+ func (node *NodeDefault) SubtreeFacts() SubtreeFacts {
+-	return node.data.subtreeFactsWorker(node.data)
++	return node.nodeDataValue().subtreeFactsWorker(node.nodeDataValue())
+ }
+ 
+ func (node *NodeDefault) subtreeFactsWorker(self nodeData) SubtreeFacts {
+@@ -1241,7 +1247,7 @@ func (node *NodeDefault) computeSubtreeFacts() SubtreeFacts {
+ }
+ 
+ func (node *NodeDefault) propagateSubtreeFacts() SubtreeFacts {
+-	return node.data.SubtreeFacts() & ^SubtreeExclusionsNode
++	return node.nodeDataValue().SubtreeFacts() & ^SubtreeExclusionsNode
+ }
+ 
+ // NodeBase
+diff --git a/packages/tsc-go/internal/ast/ast_generated.go b/packages/tsc-go/internal/ast/ast_generated.go
+index d856048..70c50ed 100644
+--- a/packages/tsc-go/internal/ast/ast_generated.go
++++ b/packages/tsc-go/internal/ast/ast_generated.go
+@@ -8680,339 +8680,339 @@ func IsJSDocPropertyTag(node *Node) bool {
+ func (n *Node) ForEachChild(v Visitor) bool {
+ 	switch n.Kind {
+ 	case KindQualifiedName:
+-		return n.data.(*QualifiedName).ForEachChild(v)
++		return n.payloadQualifiedName().ForEachChild(v)
+ 	case KindComputedPropertyName:
+-		return n.data.(*ComputedPropertyName).ForEachChild(v)
++		return n.payloadComputedPropertyName().ForEachChild(v)
+ 	case KindDecorator:
+-		return n.data.(*Decorator).ForEachChild(v)
++		return n.payloadDecorator().ForEachChild(v)
+ 	case KindIfStatement:
+-		return n.data.(*IfStatement).ForEachChild(v)
++		return n.payloadIfStatement().ForEachChild(v)
+ 	case KindDoStatement:
+-		return n.data.(*DoStatement).ForEachChild(v)
++		return n.payloadDoStatement().ForEachChild(v)
+ 	case KindWhileStatement:
+-		return n.data.(*WhileStatement).ForEachChild(v)
++		return n.payloadWhileStatement().ForEachChild(v)
+ 	case KindForStatement:
+-		return n.data.(*ForStatement).ForEachChild(v)
++		return n.payloadForStatement().ForEachChild(v)
+ 	case KindForInStatement, KindForOfStatement:
+-		return n.data.(*ForInOrOfStatement).ForEachChild(v)
++		return n.payloadForInOrOfStatement().ForEachChild(v)
+ 	case KindBreakStatement:
+-		return n.data.(*BreakStatement).ForEachChild(v)
++		return n.payloadBreakStatement().ForEachChild(v)
+ 	case KindContinueStatement:
+-		return n.data.(*ContinueStatement).ForEachChild(v)
++		return n.payloadContinueStatement().ForEachChild(v)
+ 	case KindReturnStatement:
+-		return n.data.(*ReturnStatement).ForEachChild(v)
++		return n.payloadReturnStatement().ForEachChild(v)
+ 	case KindWithStatement:
+-		return n.data.(*WithStatement).ForEachChild(v)
++		return n.payloadWithStatement().ForEachChild(v)
+ 	case KindSwitchStatement:
+-		return n.data.(*SwitchStatement).ForEachChild(v)
++		return n.payloadSwitchStatement().ForEachChild(v)
+ 	case KindCaseBlock:
+-		return n.data.(*CaseBlock).ForEachChild(v)
++		return n.payloadCaseBlock().ForEachChild(v)
+ 	case KindCaseClause, KindDefaultClause:
+-		return n.data.(*CaseOrDefaultClause).ForEachChild(v)
++		return n.payloadCaseOrDefaultClause().ForEachChild(v)
+ 	case KindThrowStatement:
+-		return n.data.(*ThrowStatement).ForEachChild(v)
++		return n.payloadThrowStatement().ForEachChild(v)
+ 	case KindTryStatement:
+-		return n.data.(*TryStatement).ForEachChild(v)
++		return n.payloadTryStatement().ForEachChild(v)
+ 	case KindCatchClause:
+-		return n.data.(*CatchClause).ForEachChild(v)
++		return n.payloadCatchClause().ForEachChild(v)
+ 	case KindLabeledStatement:
+-		return n.data.(*LabeledStatement).ForEachChild(v)
++		return n.payloadLabeledStatement().ForEachChild(v)
+ 	case KindExpressionStatement:
+-		return n.data.(*ExpressionStatement).ForEachChild(v)
++		return n.payloadExpressionStatement().ForEachChild(v)
+ 	case KindBlock:
+-		return n.data.(*Block).ForEachChild(v)
++		return n.payloadBlock().ForEachChild(v)
+ 	case KindVariableStatement:
+-		return n.data.(*VariableStatement).ForEachChild(v)
++		return n.payloadVariableStatement().ForEachChild(v)
+ 	case KindVariableDeclaration:
+-		return n.data.(*VariableDeclaration).ForEachChild(v)
++		return n.payloadVariableDeclaration().ForEachChild(v)
+ 	case KindVariableDeclarationList:
+-		return n.data.(*VariableDeclarationList).ForEachChild(v)
++		return n.payloadVariableDeclarationList().ForEachChild(v)
+ 	case KindObjectBindingPattern, KindArrayBindingPattern:
+-		return n.data.(*BindingPattern).ForEachChild(v)
++		return n.payloadBindingPattern().ForEachChild(v)
+ 	case KindParameter:
+-		return n.data.(*ParameterDeclaration).ForEachChild(v)
++		return n.payloadParameterDeclaration().ForEachChild(v)
+ 	case KindBindingElement:
+-		return n.data.(*BindingElement).ForEachChild(v)
++		return n.payloadBindingElement().ForEachChild(v)
+ 	case KindMissingDeclaration:
+-		return n.data.(*MissingDeclaration).ForEachChild(v)
++		return n.payloadMissingDeclaration().ForEachChild(v)
+ 	case KindFunctionDeclaration:
+-		return n.data.(*FunctionDeclaration).ForEachChild(v)
++		return n.payloadFunctionDeclaration().ForEachChild(v)
+ 	case KindClassDeclaration:
+-		return n.data.(*ClassDeclaration).ForEachChild(v)
++		return n.payloadClassDeclaration().ForEachChild(v)
+ 	case KindClassExpression:
+-		return n.data.(*ClassExpression).ForEachChild(v)
++		return n.payloadClassExpression().ForEachChild(v)
+ 	case KindHeritageClause:
+-		return n.data.(*HeritageClause).ForEachChild(v)
++		return n.payloadHeritageClause().ForEachChild(v)
+ 	case KindInterfaceDeclaration:
+-		return n.data.(*InterfaceDeclaration).ForEachChild(v)
++		return n.payloadInterfaceDeclaration().ForEachChild(v)
+ 	case KindTypeAliasDeclaration, KindJSTypeAliasDeclaration:
+-		return n.data.(*TypeAliasDeclaration).ForEachChild(v)
++		return n.payloadTypeAliasDeclaration().ForEachChild(v)
+ 	case KindEnumMember:
+-		return n.data.(*EnumMember).ForEachChild(v)
++		return n.payloadEnumMember().ForEachChild(v)
+ 	case KindEnumDeclaration:
+-		return n.data.(*EnumDeclaration).ForEachChild(v)
++		return n.payloadEnumDeclaration().ForEachChild(v)
+ 	case KindModuleBlock:
+-		return n.data.(*ModuleBlock).ForEachChild(v)
++		return n.payloadModuleBlock().ForEachChild(v)
+ 	case KindImportDeclaration, KindJSImportDeclaration:
+-		return n.data.(*ImportDeclaration).ForEachChild(v)
++		return n.payloadImportDeclaration().ForEachChild(v)
+ 	case KindExternalModuleReference:
+-		return n.data.(*ExternalModuleReference).ForEachChild(v)
++		return n.payloadExternalModuleReference().ForEachChild(v)
+ 	case KindNamespaceImport:
+-		return n.data.(*NamespaceImport).ForEachChild(v)
++		return n.payloadNamespaceImport().ForEachChild(v)
+ 	case KindNamedImports:
+-		return n.data.(*NamedImports).ForEachChild(v)
++		return n.payloadNamedImports().ForEachChild(v)
+ 	case KindExportAssignment:
+-		return n.data.(*ExportAssignment).ForEachChild(v)
++		return n.payloadExportAssignment().ForEachChild(v)
+ 	case KindNamespaceExportDeclaration:
+-		return n.data.(*NamespaceExportDeclaration).ForEachChild(v)
++		return n.payloadNamespaceExportDeclaration().ForEachChild(v)
+ 	case KindNamespaceExport:
+-		return n.data.(*NamespaceExport).ForEachChild(v)
++		return n.payloadNamespaceExport().ForEachChild(v)
+ 	case KindNamedExports:
+-		return n.data.(*NamedExports).ForEachChild(v)
++		return n.payloadNamedExports().ForEachChild(v)
+ 	case KindExportSpecifier:
+-		return n.data.(*ExportSpecifier).ForEachChild(v)
++		return n.payloadExportSpecifier().ForEachChild(v)
+ 	case KindCallSignature:
+-		return n.data.(*CallSignatureDeclaration).ForEachChild(v)
++		return n.payloadCallSignatureDeclaration().ForEachChild(v)
+ 	case KindConstructSignature:
+-		return n.data.(*ConstructSignatureDeclaration).ForEachChild(v)
++		return n.payloadConstructSignatureDeclaration().ForEachChild(v)
+ 	case KindConstructor:
+-		return n.data.(*ConstructorDeclaration).ForEachChild(v)
++		return n.payloadConstructorDeclaration().ForEachChild(v)
+ 	case KindGetAccessor:
+-		return n.data.(*GetAccessorDeclaration).ForEachChild(v)
++		return n.payloadGetAccessorDeclaration().ForEachChild(v)
+ 	case KindSetAccessor:
+-		return n.data.(*SetAccessorDeclaration).ForEachChild(v)
++		return n.payloadSetAccessorDeclaration().ForEachChild(v)
+ 	case KindIndexSignature:
+-		return n.data.(*IndexSignatureDeclaration).ForEachChild(v)
++		return n.payloadIndexSignatureDeclaration().ForEachChild(v)
+ 	case KindMethodSignature:
+-		return n.data.(*MethodSignatureDeclaration).ForEachChild(v)
++		return n.payloadMethodSignatureDeclaration().ForEachChild(v)
+ 	case KindMethodDeclaration:
+-		return n.data.(*MethodDeclaration).ForEachChild(v)
++		return n.payloadMethodDeclaration().ForEachChild(v)
+ 	case KindPropertySignature:
+-		return n.data.(*PropertySignatureDeclaration).ForEachChild(v)
++		return n.payloadPropertySignatureDeclaration().ForEachChild(v)
+ 	case KindPropertyDeclaration:
+-		return n.data.(*PropertyDeclaration).ForEachChild(v)
++		return n.payloadPropertyDeclaration().ForEachChild(v)
+ 	case KindClassStaticBlockDeclaration:
+-		return n.data.(*ClassStaticBlockDeclaration).ForEachChild(v)
++		return n.payloadClassStaticBlockDeclaration().ForEachChild(v)
+ 	case KindBinaryExpression:
+-		return n.data.(*BinaryExpression).ForEachChild(v)
++		return n.payloadBinaryExpression().ForEachChild(v)
+ 	case KindPrefixUnaryExpression:
+-		return n.data.(*PrefixUnaryExpression).ForEachChild(v)
++		return n.payloadPrefixUnaryExpression().ForEachChild(v)
+ 	case KindPostfixUnaryExpression:
+-		return n.data.(*PostfixUnaryExpression).ForEachChild(v)
++		return n.payloadPostfixUnaryExpression().ForEachChild(v)
+ 	case KindYieldExpression:
+-		return n.data.(*YieldExpression).ForEachChild(v)
++		return n.payloadYieldExpression().ForEachChild(v)
+ 	case KindArrowFunction:
+-		return n.data.(*ArrowFunction).ForEachChild(v)
++		return n.payloadArrowFunction().ForEachChild(v)
+ 	case KindFunctionExpression:
+-		return n.data.(*FunctionExpression).ForEachChild(v)
++		return n.payloadFunctionExpression().ForEachChild(v)
+ 	case KindAsExpression:
+-		return n.data.(*AsExpression).ForEachChild(v)
++		return n.payloadAsExpression().ForEachChild(v)
+ 	case KindSatisfiesExpression:
+-		return n.data.(*SatisfiesExpression).ForEachChild(v)
++		return n.payloadSatisfiesExpression().ForEachChild(v)
+ 	case KindConditionalExpression:
+-		return n.data.(*ConditionalExpression).ForEachChild(v)
++		return n.payloadConditionalExpression().ForEachChild(v)
+ 	case KindPropertyAccessExpression:
+-		return n.data.(*PropertyAccessExpression).ForEachChild(v)
++		return n.payloadPropertyAccessExpression().ForEachChild(v)
+ 	case KindElementAccessExpression:
+-		return n.data.(*ElementAccessExpression).ForEachChild(v)
++		return n.payloadElementAccessExpression().ForEachChild(v)
+ 	case KindCallExpression:
+-		return n.data.(*CallExpression).ForEachChild(v)
++		return n.payloadCallExpression().ForEachChild(v)
+ 	case KindNewExpression:
+-		return n.data.(*NewExpression).ForEachChild(v)
++		return n.payloadNewExpression().ForEachChild(v)
+ 	case KindMetaProperty:
+-		return n.data.(*MetaProperty).ForEachChild(v)
++		return n.payloadMetaProperty().ForEachChild(v)
+ 	case KindNonNullExpression:
+-		return n.data.(*NonNullExpression).ForEachChild(v)
++		return n.payloadNonNullExpression().ForEachChild(v)
+ 	case KindSpreadElement:
+-		return n.data.(*SpreadElement).ForEachChild(v)
++		return n.payloadSpreadElement().ForEachChild(v)
+ 	case KindTemplateExpression:
+-		return n.data.(*TemplateExpression).ForEachChild(v)
++		return n.payloadTemplateExpression().ForEachChild(v)
+ 	case KindTemplateSpan:
+-		return n.data.(*TemplateSpan).ForEachChild(v)
++		return n.payloadTemplateSpan().ForEachChild(v)
+ 	case KindTaggedTemplateExpression:
+-		return n.data.(*TaggedTemplateExpression).ForEachChild(v)
++		return n.payloadTaggedTemplateExpression().ForEachChild(v)
+ 	case KindParenthesizedExpression:
+-		return n.data.(*ParenthesizedExpression).ForEachChild(v)
++		return n.payloadParenthesizedExpression().ForEachChild(v)
+ 	case KindArrayLiteralExpression:
+-		return n.data.(*ArrayLiteralExpression).ForEachChild(v)
++		return n.payloadArrayLiteralExpression().ForEachChild(v)
+ 	case KindObjectLiteralExpression:
+-		return n.data.(*ObjectLiteralExpression).ForEachChild(v)
++		return n.payloadObjectLiteralExpression().ForEachChild(v)
+ 	case KindSpreadAssignment:
+-		return n.data.(*SpreadAssignment).ForEachChild(v)
++		return n.payloadSpreadAssignment().ForEachChild(v)
+ 	case KindPropertyAssignment:
+-		return n.data.(*PropertyAssignment).ForEachChild(v)
++		return n.payloadPropertyAssignment().ForEachChild(v)
+ 	case KindShorthandPropertyAssignment:
+-		return n.data.(*ShorthandPropertyAssignment).ForEachChild(v)
++		return n.payloadShorthandPropertyAssignment().ForEachChild(v)
+ 	case KindDeleteExpression:
+-		return n.data.(*DeleteExpression).ForEachChild(v)
++		return n.payloadDeleteExpression().ForEachChild(v)
+ 	case KindTypeOfExpression:
+-		return n.data.(*TypeOfExpression).ForEachChild(v)
++		return n.payloadTypeOfExpression().ForEachChild(v)
+ 	case KindVoidExpression:
+-		return n.data.(*VoidExpression).ForEachChild(v)
++		return n.payloadVoidExpression().ForEachChild(v)
+ 	case KindAwaitExpression:
+-		return n.data.(*AwaitExpression).ForEachChild(v)
++		return n.payloadAwaitExpression().ForEachChild(v)
+ 	case KindTypeAssertionExpression:
+-		return n.data.(*TypeAssertion).ForEachChild(v)
++		return n.payloadTypeAssertion().ForEachChild(v)
+ 	case KindUnionType:
+-		return n.data.(*UnionTypeNode).ForEachChild(v)
++		return n.payloadUnionTypeNode().ForEachChild(v)
+ 	case KindIntersectionType:
+-		return n.data.(*IntersectionTypeNode).ForEachChild(v)
++		return n.payloadIntersectionTypeNode().ForEachChild(v)
+ 	case KindConditionalType:
+-		return n.data.(*ConditionalTypeNode).ForEachChild(v)
++		return n.payloadConditionalTypeNode().ForEachChild(v)
+ 	case KindTypeOperator:
+-		return n.data.(*TypeOperatorNode).ForEachChild(v)
++		return n.payloadTypeOperatorNode().ForEachChild(v)
+ 	case KindInferType:
+-		return n.data.(*InferTypeNode).ForEachChild(v)
++		return n.payloadInferTypeNode().ForEachChild(v)
+ 	case KindArrayType:
+-		return n.data.(*ArrayTypeNode).ForEachChild(v)
++		return n.payloadArrayTypeNode().ForEachChild(v)
+ 	case KindIndexedAccessType:
+-		return n.data.(*IndexedAccessTypeNode).ForEachChild(v)
++		return n.payloadIndexedAccessTypeNode().ForEachChild(v)
+ 	case KindTypeReference:
+-		return n.data.(*TypeReferenceNode).ForEachChild(v)
++		return n.payloadTypeReferenceNode().ForEachChild(v)
+ 	case KindExpressionWithTypeArguments:
+-		return n.data.(*ExpressionWithTypeArguments).ForEachChild(v)
++		return n.payloadExpressionWithTypeArguments().ForEachChild(v)
+ 	case KindLiteralType:
+-		return n.data.(*LiteralTypeNode).ForEachChild(v)
++		return n.payloadLiteralTypeNode().ForEachChild(v)
+ 	case KindTypePredicate:
+-		return n.data.(*TypePredicateNode).ForEachChild(v)
++		return n.payloadTypePredicateNode().ForEachChild(v)
+ 	case KindImportAttribute:
+-		return n.data.(*ImportAttribute).ForEachChild(v)
++		return n.payloadImportAttribute().ForEachChild(v)
+ 	case KindImportAttributes:
+-		return n.data.(*ImportAttributes).ForEachChild(v)
++		return n.payloadImportAttributes().ForEachChild(v)
+ 	case KindTypeQuery:
+-		return n.data.(*TypeQueryNode).ForEachChild(v)
++		return n.payloadTypeQueryNode().ForEachChild(v)
+ 	case KindMappedType:
+-		return n.data.(*MappedTypeNode).ForEachChild(v)
++		return n.payloadMappedTypeNode().ForEachChild(v)
+ 	case KindTypeLiteral:
+-		return n.data.(*TypeLiteralNode).ForEachChild(v)
++		return n.payloadTypeLiteralNode().ForEachChild(v)
+ 	case KindTupleType:
+-		return n.data.(*TupleTypeNode).ForEachChild(v)
++		return n.payloadTupleTypeNode().ForEachChild(v)
+ 	case KindNamedTupleMember:
+-		return n.data.(*NamedTupleMember).ForEachChild(v)
++		return n.payloadNamedTupleMember().ForEachChild(v)
+ 	case KindOptionalType:
+-		return n.data.(*OptionalTypeNode).ForEachChild(v)
++		return n.payloadOptionalTypeNode().ForEachChild(v)
+ 	case KindRestType:
+-		return n.data.(*RestTypeNode).ForEachChild(v)
++		return n.payloadRestTypeNode().ForEachChild(v)
+ 	case KindParenthesizedType:
+-		return n.data.(*ParenthesizedTypeNode).ForEachChild(v)
++		return n.payloadParenthesizedTypeNode().ForEachChild(v)
+ 	case KindFunctionType:
+-		return n.data.(*FunctionTypeNode).ForEachChild(v)
++		return n.payloadFunctionTypeNode().ForEachChild(v)
+ 	case KindConstructorType:
+-		return n.data.(*ConstructorTypeNode).ForEachChild(v)
++		return n.payloadConstructorTypeNode().ForEachChild(v)
+ 	case KindTemplateLiteralType:
+-		return n.data.(*TemplateLiteralTypeNode).ForEachChild(v)
++		return n.payloadTemplateLiteralTypeNode().ForEachChild(v)
+ 	case KindTemplateLiteralTypeSpan:
+-		return n.data.(*TemplateLiteralTypeSpan).ForEachChild(v)
++		return n.payloadTemplateLiteralTypeSpan().ForEachChild(v)
+ 	case KindSyntheticExpression:
+-		return n.data.(*SyntheticExpression).ForEachChild(v)
++		return n.payloadSyntheticExpression().ForEachChild(v)
+ 	case KindPartiallyEmittedExpression:
+-		return n.data.(*PartiallyEmittedExpression).ForEachChild(v)
++		return n.payloadPartiallyEmittedExpression().ForEachChild(v)
+ 	case KindJsxElement:
+-		return n.data.(*JsxElement).ForEachChild(v)
++		return n.payloadJsxElement().ForEachChild(v)
+ 	case KindJsxAttributes:
+-		return n.data.(*JsxAttributes).ForEachChild(v)
++		return n.payloadJsxAttributes().ForEachChild(v)
+ 	case KindJsxNamespacedName:
+-		return n.data.(*JsxNamespacedName).ForEachChild(v)
++		return n.payloadJsxNamespacedName().ForEachChild(v)
+ 	case KindJsxOpeningElement:
+-		return n.data.(*JsxOpeningElement).ForEachChild(v)
++		return n.payloadJsxOpeningElement().ForEachChild(v)
+ 	case KindJsxSelfClosingElement:
+-		return n.data.(*JsxSelfClosingElement).ForEachChild(v)
++		return n.payloadJsxSelfClosingElement().ForEachChild(v)
+ 	case KindJsxFragment:
+-		return n.data.(*JsxFragment).ForEachChild(v)
++		return n.payloadJsxFragment().ForEachChild(v)
+ 	case KindJsxAttribute:
+-		return n.data.(*JsxAttribute).ForEachChild(v)
++		return n.payloadJsxAttribute().ForEachChild(v)
+ 	case KindJsxSpreadAttribute:
+-		return n.data.(*JsxSpreadAttribute).ForEachChild(v)
++		return n.payloadJsxSpreadAttribute().ForEachChild(v)
+ 	case KindJsxClosingElement:
+-		return n.data.(*JsxClosingElement).ForEachChild(v)
++		return n.payloadJsxClosingElement().ForEachChild(v)
+ 	case KindJsxExpression:
+-		return n.data.(*JsxExpression).ForEachChild(v)
++		return n.payloadJsxExpression().ForEachChild(v)
+ 	case KindSyntaxList:
+-		return n.data.(*SyntaxList).ForEachChild(v)
++		return n.payloadSyntaxList().ForEachChild(v)
+ 	case KindJSDoc:
+-		return n.data.(*JSDoc).ForEachChild(v)
++		return n.payloadJSDoc().ForEachChild(v)
+ 	case KindJSDocTypeExpression:
+-		return n.data.(*JSDocTypeExpression).ForEachChild(v)
++		return n.payloadJSDocTypeExpression().ForEachChild(v)
+ 	case KindJSDocNonNullableType:
+-		return n.data.(*JSDocNonNullableType).ForEachChild(v)
++		return n.payloadJSDocNonNullableType().ForEachChild(v)
+ 	case KindJSDocNullableType:
+-		return n.data.(*JSDocNullableType).ForEachChild(v)
++		return n.payloadJSDocNullableType().ForEachChild(v)
+ 	case KindJSDocVariadicType:
+-		return n.data.(*JSDocVariadicType).ForEachChild(v)
++		return n.payloadJSDocVariadicType().ForEachChild(v)
+ 	case KindJSDocOptionalType:
+-		return n.data.(*JSDocOptionalType).ForEachChild(v)
++		return n.payloadJSDocOptionalType().ForEachChild(v)
+ 	case KindJSDocTypeTag:
+-		return n.data.(*JSDocTypeTag).ForEachChild(v)
++		return n.payloadJSDocTypeTag().ForEachChild(v)
+ 	case KindJSDocUnknownTag:
+-		return n.data.(*JSDocUnknownTag).ForEachChild(v)
++		return n.payloadJSDocUnknownTag().ForEachChild(v)
+ 	case KindJSDocTemplateTag:
+-		return n.data.(*JSDocTemplateTag).ForEachChild(v)
++		return n.payloadJSDocTemplateTag().ForEachChild(v)
+ 	case KindJSDocReturnTag:
+-		return n.data.(*JSDocReturnTag).ForEachChild(v)
++		return n.payloadJSDocReturnTag().ForEachChild(v)
+ 	case KindJSDocPublicTag:
+-		return n.data.(*JSDocPublicTag).ForEachChild(v)
++		return n.payloadJSDocPublicTag().ForEachChild(v)
+ 	case KindJSDocPrivateTag:
+-		return n.data.(*JSDocPrivateTag).ForEachChild(v)
++		return n.payloadJSDocPrivateTag().ForEachChild(v)
+ 	case KindJSDocProtectedTag:
+-		return n.data.(*JSDocProtectedTag).ForEachChild(v)
++		return n.payloadJSDocProtectedTag().ForEachChild(v)
+ 	case KindJSDocReadonlyTag:
+-		return n.data.(*JSDocReadonlyTag).ForEachChild(v)
++		return n.payloadJSDocReadonlyTag().ForEachChild(v)
+ 	case KindJSDocOverrideTag:
+-		return n.data.(*JSDocOverrideTag).ForEachChild(v)
++		return n.payloadJSDocOverrideTag().ForEachChild(v)
+ 	case KindJSDocDeprecatedTag:
+-		return n.data.(*JSDocDeprecatedTag).ForEachChild(v)
++		return n.payloadJSDocDeprecatedTag().ForEachChild(v)
+ 	case KindJSDocSeeTag:
+-		return n.data.(*JSDocSeeTag).ForEachChild(v)
++		return n.payloadJSDocSeeTag().ForEachChild(v)
+ 	case KindJSDocImplementsTag:
+-		return n.data.(*JSDocImplementsTag).ForEachChild(v)
++		return n.payloadJSDocImplementsTag().ForEachChild(v)
+ 	case KindJSDocAugmentsTag:
+-		return n.data.(*JSDocAugmentsTag).ForEachChild(v)
++		return n.payloadJSDocAugmentsTag().ForEachChild(v)
+ 	case KindJSDocSatisfiesTag:
+-		return n.data.(*JSDocSatisfiesTag).ForEachChild(v)
++		return n.payloadJSDocSatisfiesTag().ForEachChild(v)
+ 	case KindJSDocThrowsTag:
+-		return n.data.(*JSDocThrowsTag).ForEachChild(v)
++		return n.payloadJSDocThrowsTag().ForEachChild(v)
+ 	case KindJSDocThisTag:
+-		return n.data.(*JSDocThisTag).ForEachChild(v)
++		return n.payloadJSDocThisTag().ForEachChild(v)
+ 	case KindJSDocImportTag:
+-		return n.data.(*JSDocImportTag).ForEachChild(v)
++		return n.payloadJSDocImportTag().ForEachChild(v)
+ 	case KindJSDocCallbackTag:
+-		return n.data.(*JSDocCallbackTag).ForEachChild(v)
++		return n.payloadJSDocCallbackTag().ForEachChild(v)
+ 	case KindJSDocOverloadTag:
+-		return n.data.(*JSDocOverloadTag).ForEachChild(v)
++		return n.payloadJSDocOverloadTag().ForEachChild(v)
+ 	case KindJSDocTypedefTag:
+-		return n.data.(*JSDocTypedefTag).ForEachChild(v)
++		return n.payloadJSDocTypedefTag().ForEachChild(v)
+ 	case KindJSDocSignature:
+-		return n.data.(*JSDocSignature).ForEachChild(v)
++		return n.payloadJSDocSignature().ForEachChild(v)
+ 	case KindJSDocNameReference:
+-		return n.data.(*JSDocNameReference).ForEachChild(v)
++		return n.payloadJSDocNameReference().ForEachChild(v)
+ 	case KindSourceFile:
+-		return n.data.(*SourceFile).ForEachChild(v)
++		return n.payloadSourceFile().ForEachChild(v)
+ 	case KindModuleDeclaration:
+-		return n.data.(*ModuleDeclaration).ForEachChild(v)
++		return n.payloadModuleDeclaration().ForEachChild(v)
+ 	case KindImportEqualsDeclaration:
+-		return n.data.(*ImportEqualsDeclaration).ForEachChild(v)
++		return n.payloadImportEqualsDeclaration().ForEachChild(v)
+ 	case KindExportDeclaration:
+-		return n.data.(*ExportDeclaration).ForEachChild(v)
++		return n.payloadExportDeclaration().ForEachChild(v)
+ 	case KindImportType:
+-		return n.data.(*ImportTypeNode).ForEachChild(v)
++		return n.payloadImportTypeNode().ForEachChild(v)
+ 	case KindImportClause:
+-		return n.data.(*ImportClause).ForEachChild(v)
++		return n.payloadImportClause().ForEachChild(v)
+ 	case KindImportSpecifier:
+-		return n.data.(*ImportSpecifier).ForEachChild(v)
++		return n.payloadImportSpecifier().ForEachChild(v)
+ 	case KindJSDocLink:
+-		return n.data.(*JSDocLink).ForEachChild(v)
++		return n.payloadJSDocLink().ForEachChild(v)
+ 	case KindJSDocLinkPlain:
+-		return n.data.(*JSDocLinkPlain).ForEachChild(v)
++		return n.payloadJSDocLinkPlain().ForEachChild(v)
+ 	case KindJSDocLinkCode:
+-		return n.data.(*JSDocLinkCode).ForEachChild(v)
++		return n.payloadJSDocLinkCode().ForEachChild(v)
+ 	case KindTypeParameter:
+-		return n.data.(*TypeParameterDeclaration).ForEachChild(v)
++		return n.payloadTypeParameterDeclaration().ForEachChild(v)
+ 	case KindSyntheticReferenceExpression:
+-		return n.data.(*SyntheticReferenceExpression).ForEachChild(v)
++		return n.payloadSyntheticReferenceExpression().ForEachChild(v)
+ 	case KindJSDocTypeLiteral:
+-		return n.data.(*JSDocTypeLiteral).ForEachChild(v)
++		return n.payloadJSDocTypeLiteral().ForEachChild(v)
+ 	case KindJSDocParameterTag, KindJSDocPropertyTag:
+-		return n.data.(*JSDocParameterOrPropertyTag).ForEachChild(v)
++		return n.payloadJSDocParameterOrPropertyTag().ForEachChild(v)
+ 	default:
+ 		return false
+ 	}
+@@ -9023,771 +9023,771 @@ func (n *Node) ForEachChild(v Visitor) bool {
+ // ──────────────────────────────────────────────────────────────────────
+ 
+ func (n *Node) AsToken() *Token {
+-	return n.data.(*Token)
++	return n.payloadToken()
+ }
+ 
+ func (n *Node) AsIdentifier() *Identifier {
+-	return n.data.(*Identifier)
++	return n.payloadIdentifier()
+ }
+ 
+ func (n *Node) AsPrivateIdentifier() *PrivateIdentifier {
+-	return n.data.(*PrivateIdentifier)
++	return n.payloadPrivateIdentifier()
+ }
+ 
+ func (n *Node) AsQualifiedName() *QualifiedName {
+-	return n.data.(*QualifiedName)
++	return n.payloadQualifiedName()
+ }
+ 
+ func (n *Node) AsComputedPropertyName() *ComputedPropertyName {
+-	return n.data.(*ComputedPropertyName)
++	return n.payloadComputedPropertyName()
+ }
+ 
+ func (n *Node) AsDecorator() *Decorator {
+-	return n.data.(*Decorator)
++	return n.payloadDecorator()
+ }
+ 
+ func (n *Node) AsEmptyStatement() *EmptyStatement {
+-	return n.data.(*EmptyStatement)
++	return n.payloadEmptyStatement()
+ }
+ 
+ func (n *Node) AsIfStatement() *IfStatement {
+-	return n.data.(*IfStatement)
++	return n.payloadIfStatement()
+ }
+ 
+ func (n *Node) AsDoStatement() *DoStatement {
+-	return n.data.(*DoStatement)
++	return n.payloadDoStatement()
+ }
+ 
+ func (n *Node) AsWhileStatement() *WhileStatement {
+-	return n.data.(*WhileStatement)
++	return n.payloadWhileStatement()
+ }
+ 
+ func (n *Node) AsForStatement() *ForStatement {
+-	return n.data.(*ForStatement)
++	return n.payloadForStatement()
+ }
+ 
+ func (n *Node) AsForInOrOfStatement() *ForInOrOfStatement {
+-	return n.data.(*ForInOrOfStatement)
++	return n.payloadForInOrOfStatement()
+ }
+ 
+ func (n *Node) AsBreakStatement() *BreakStatement {
+-	return n.data.(*BreakStatement)
++	return n.payloadBreakStatement()
+ }
+ 
+ func (n *Node) AsContinueStatement() *ContinueStatement {
+-	return n.data.(*ContinueStatement)
++	return n.payloadContinueStatement()
+ }
+ 
+ func (n *Node) AsReturnStatement() *ReturnStatement {
+-	return n.data.(*ReturnStatement)
++	return n.payloadReturnStatement()
+ }
+ 
+ func (n *Node) AsWithStatement() *WithStatement {
+-	return n.data.(*WithStatement)
++	return n.payloadWithStatement()
+ }
+ 
+ func (n *Node) AsSwitchStatement() *SwitchStatement {
+-	return n.data.(*SwitchStatement)
++	return n.payloadSwitchStatement()
+ }
+ 
+ func (n *Node) AsCaseBlock() *CaseBlock {
+-	return n.data.(*CaseBlock)
++	return n.payloadCaseBlock()
+ }
+ 
+ func (n *Node) AsCaseOrDefaultClause() *CaseOrDefaultClause {
+-	return n.data.(*CaseOrDefaultClause)
++	return n.payloadCaseOrDefaultClause()
+ }
+ 
+ func (n *Node) AsThrowStatement() *ThrowStatement {
+-	return n.data.(*ThrowStatement)
++	return n.payloadThrowStatement()
+ }
+ 
+ func (n *Node) AsTryStatement() *TryStatement {
+-	return n.data.(*TryStatement)
++	return n.payloadTryStatement()
+ }
+ 
+ func (n *Node) AsCatchClause() *CatchClause {
+-	return n.data.(*CatchClause)
++	return n.payloadCatchClause()
+ }
+ 
+ func (n *Node) AsDebuggerStatement() *DebuggerStatement {
+-	return n.data.(*DebuggerStatement)
++	return n.payloadDebuggerStatement()
+ }
+ 
+ func (n *Node) AsLabeledStatement() *LabeledStatement {
+-	return n.data.(*LabeledStatement)
++	return n.payloadLabeledStatement()
+ }
+ 
+ func (n *Node) AsExpressionStatement() *ExpressionStatement {
+-	return n.data.(*ExpressionStatement)
++	return n.payloadExpressionStatement()
+ }
+ 
+ func (n *Node) AsBlock() *Block {
+-	return n.data.(*Block)
++	return n.payloadBlock()
+ }
+ 
+ func (n *Node) AsVariableStatement() *VariableStatement {
+-	return n.data.(*VariableStatement)
++	return n.payloadVariableStatement()
+ }
+ 
+ func (n *Node) AsVariableDeclaration() *VariableDeclaration {
+-	return n.data.(*VariableDeclaration)
++	return n.payloadVariableDeclaration()
+ }
+ 
+ func (n *Node) AsVariableDeclarationList() *VariableDeclarationList {
+-	return n.data.(*VariableDeclarationList)
++	return n.payloadVariableDeclarationList()
+ }
+ 
+ func (n *Node) AsBindingPattern() *BindingPattern {
+-	return n.data.(*BindingPattern)
++	return n.payloadBindingPattern()
+ }
+ 
+ func (n *Node) AsParameterDeclaration() *ParameterDeclaration {
+-	return n.data.(*ParameterDeclaration)
++	return n.payloadParameterDeclaration()
+ }
+ 
+ func (n *Node) AsBindingElement() *BindingElement {
+-	return n.data.(*BindingElement)
++	return n.payloadBindingElement()
+ }
+ 
+ func (n *Node) AsMissingDeclaration() *MissingDeclaration {
+-	return n.data.(*MissingDeclaration)
++	return n.payloadMissingDeclaration()
+ }
+ 
+ func (n *Node) AsFunctionDeclaration() *FunctionDeclaration {
+-	return n.data.(*FunctionDeclaration)
++	return n.payloadFunctionDeclaration()
+ }
+ 
+ func (n *Node) AsClassDeclaration() *ClassDeclaration {
+-	return n.data.(*ClassDeclaration)
++	return n.payloadClassDeclaration()
+ }
+ 
+ func (n *Node) AsClassExpression() *ClassExpression {
+-	return n.data.(*ClassExpression)
++	return n.payloadClassExpression()
+ }
+ 
+ func (n *Node) AsHeritageClause() *HeritageClause {
+-	return n.data.(*HeritageClause)
++	return n.payloadHeritageClause()
+ }
+ 
+ func (n *Node) AsInterfaceDeclaration() *InterfaceDeclaration {
+-	return n.data.(*InterfaceDeclaration)
++	return n.payloadInterfaceDeclaration()
+ }
+ 
+ func (n *Node) AsTypeAliasDeclaration() *TypeAliasDeclaration {
+-	return n.data.(*TypeAliasDeclaration)
++	return n.payloadTypeAliasDeclaration()
+ }
+ 
+ func (n *Node) AsEnumMember() *EnumMember {
+-	return n.data.(*EnumMember)
++	return n.payloadEnumMember()
+ }
+ 
+ func (n *Node) AsEnumDeclaration() *EnumDeclaration {
+-	return n.data.(*EnumDeclaration)
++	return n.payloadEnumDeclaration()
+ }
+ 
+ func (n *Node) AsModuleBlock() *ModuleBlock {
+-	return n.data.(*ModuleBlock)
++	return n.payloadModuleBlock()
+ }
+ 
+ func (n *Node) AsNotEmittedStatement() *NotEmittedStatement {
+-	return n.data.(*NotEmittedStatement)
++	return n.payloadNotEmittedStatement()
+ }
+ 
+ func (n *Node) AsNotEmittedTypeElement() *NotEmittedTypeElement {
+-	return n.data.(*NotEmittedTypeElement)
++	return n.payloadNotEmittedTypeElement()
+ }
+ 
+ func (n *Node) AsImportDeclaration() *ImportDeclaration {
+-	return n.data.(*ImportDeclaration)
++	return n.payloadImportDeclaration()
+ }
+ 
+ func (n *Node) AsExternalModuleReference() *ExternalModuleReference {
+-	return n.data.(*ExternalModuleReference)
++	return n.payloadExternalModuleReference()
+ }
+ 
+ func (n *Node) AsNamespaceImport() *NamespaceImport {
+-	return n.data.(*NamespaceImport)
++	return n.payloadNamespaceImport()
+ }
+ 
+ func (n *Node) AsNamedImports() *NamedImports {
+-	return n.data.(*NamedImports)
++	return n.payloadNamedImports()
+ }
+ 
+ func (n *Node) AsExportAssignment() *ExportAssignment {
+-	return n.data.(*ExportAssignment)
++	return n.payloadExportAssignment()
+ }
+ 
+ func (n *Node) AsNamespaceExportDeclaration() *NamespaceExportDeclaration {
+-	return n.data.(*NamespaceExportDeclaration)
++	return n.payloadNamespaceExportDeclaration()
+ }
+ 
+ func (n *Node) AsNamespaceExport() *NamespaceExport {
+-	return n.data.(*NamespaceExport)
++	return n.payloadNamespaceExport()
+ }
+ 
+ func (n *Node) AsNamedExports() *NamedExports {
+-	return n.data.(*NamedExports)
++	return n.payloadNamedExports()
+ }
+ 
+ func (n *Node) AsExportSpecifier() *ExportSpecifier {
+-	return n.data.(*ExportSpecifier)
++	return n.payloadExportSpecifier()
+ }
+ 
+ func (n *Node) AsCallSignatureDeclaration() *CallSignatureDeclaration {
+-	return n.data.(*CallSignatureDeclaration)
++	return n.payloadCallSignatureDeclaration()
+ }
+ 
+ func (n *Node) AsConstructSignatureDeclaration() *ConstructSignatureDeclaration {
+-	return n.data.(*ConstructSignatureDeclaration)
++	return n.payloadConstructSignatureDeclaration()
+ }
+ 
+ func (n *Node) AsConstructorDeclaration() *ConstructorDeclaration {
+-	return n.data.(*ConstructorDeclaration)
++	return n.payloadConstructorDeclaration()
+ }
+ 
+ func (n *Node) AsGetAccessorDeclaration() *GetAccessorDeclaration {
+-	return n.data.(*GetAccessorDeclaration)
++	return n.payloadGetAccessorDeclaration()
+ }
+ 
+ func (n *Node) AsSetAccessorDeclaration() *SetAccessorDeclaration {
+-	return n.data.(*SetAccessorDeclaration)
++	return n.payloadSetAccessorDeclaration()
+ }
+ 
+ func (n *Node) AsIndexSignatureDeclaration() *IndexSignatureDeclaration {
+-	return n.data.(*IndexSignatureDeclaration)
++	return n.payloadIndexSignatureDeclaration()
+ }
+ 
+ func (n *Node) AsMethodSignatureDeclaration() *MethodSignatureDeclaration {
+-	return n.data.(*MethodSignatureDeclaration)
++	return n.payloadMethodSignatureDeclaration()
+ }
+ 
+ func (n *Node) AsMethodDeclaration() *MethodDeclaration {
+-	return n.data.(*MethodDeclaration)
++	return n.payloadMethodDeclaration()
+ }
+ 
+ func (n *Node) AsPropertySignatureDeclaration() *PropertySignatureDeclaration {
+-	return n.data.(*PropertySignatureDeclaration)
++	return n.payloadPropertySignatureDeclaration()
+ }
+ 
+ func (n *Node) AsPropertyDeclaration() *PropertyDeclaration {
+-	return n.data.(*PropertyDeclaration)
++	return n.payloadPropertyDeclaration()
+ }
+ 
+ func (n *Node) AsSemicolonClassElement() *SemicolonClassElement {
+-	return n.data.(*SemicolonClassElement)
++	return n.payloadSemicolonClassElement()
+ }
+ 
+ func (n *Node) AsClassStaticBlockDeclaration() *ClassStaticBlockDeclaration {
+-	return n.data.(*ClassStaticBlockDeclaration)
++	return n.payloadClassStaticBlockDeclaration()
+ }
+ 
+ func (n *Node) AsOmittedExpression() *OmittedExpression {
+-	return n.data.(*OmittedExpression)
++	return n.payloadOmittedExpression()
+ }
+ 
+ func (n *Node) AsKeywordExpression() *KeywordExpression {
+-	return n.data.(*KeywordExpression)
++	return n.payloadKeywordExpression()
+ }
+ 
+ func (n *Node) AsStringLiteral() *StringLiteral {
+-	return n.data.(*StringLiteral)
++	return n.payloadStringLiteral()
+ }
+ 
+ func (n *Node) AsNumericLiteral() *NumericLiteral {
+-	return n.data.(*NumericLiteral)
++	return n.payloadNumericLiteral()
+ }
+ 
+ func (n *Node) AsBigIntLiteral() *BigIntLiteral {
+-	return n.data.(*BigIntLiteral)
++	return n.payloadBigIntLiteral()
+ }
+ 
+ func (n *Node) AsRegularExpressionLiteral() *RegularExpressionLiteral {
+-	return n.data.(*RegularExpressionLiteral)
++	return n.payloadRegularExpressionLiteral()
+ }
+ 
+ func (n *Node) AsNoSubstitutionTemplateLiteral() *NoSubstitutionTemplateLiteral {
+-	return n.data.(*NoSubstitutionTemplateLiteral)
++	return n.payloadNoSubstitutionTemplateLiteral()
+ }
+ 
+ func (n *Node) AsBinaryExpression() *BinaryExpression {
+-	return n.data.(*BinaryExpression)
++	return n.payloadBinaryExpression()
+ }
+ 
+ func (n *Node) AsPrefixUnaryExpression() *PrefixUnaryExpression {
+-	return n.data.(*PrefixUnaryExpression)
++	return n.payloadPrefixUnaryExpression()
+ }
+ 
+ func (n *Node) AsPostfixUnaryExpression() *PostfixUnaryExpression {
+-	return n.data.(*PostfixUnaryExpression)
++	return n.payloadPostfixUnaryExpression()
+ }
+ 
+ func (n *Node) AsYieldExpression() *YieldExpression {
+-	return n.data.(*YieldExpression)
++	return n.payloadYieldExpression()
+ }
+ 
+ func (n *Node) AsArrowFunction() *ArrowFunction {
+-	return n.data.(*ArrowFunction)
++	return n.payloadArrowFunction()
+ }
+ 
+ func (n *Node) AsFunctionExpression() *FunctionExpression {
+-	return n.data.(*FunctionExpression)
++	return n.payloadFunctionExpression()
+ }
+ 
+ func (n *Node) AsAsExpression() *AsExpression {
+-	return n.data.(*AsExpression)
++	return n.payloadAsExpression()
+ }
+ 
+ func (n *Node) AsSatisfiesExpression() *SatisfiesExpression {
+-	return n.data.(*SatisfiesExpression)
++	return n.payloadSatisfiesExpression()
+ }
+ 
+ func (n *Node) AsConditionalExpression() *ConditionalExpression {
+-	return n.data.(*ConditionalExpression)
++	return n.payloadConditionalExpression()
+ }
+ 
+ func (n *Node) AsPropertyAccessExpression() *PropertyAccessExpression {
+-	return n.data.(*PropertyAccessExpression)
++	return n.payloadPropertyAccessExpression()
+ }
+ 
+ func (n *Node) AsElementAccessExpression() *ElementAccessExpression {
+-	return n.data.(*ElementAccessExpression)
++	return n.payloadElementAccessExpression()
+ }
+ 
+ func (n *Node) AsCallExpression() *CallExpression {
+-	return n.data.(*CallExpression)
++	return n.payloadCallExpression()
+ }
+ 
+ func (n *Node) AsNewExpression() *NewExpression {
+-	return n.data.(*NewExpression)
++	return n.payloadNewExpression()
+ }
+ 
+ func (n *Node) AsMetaProperty() *MetaProperty {
+-	return n.data.(*MetaProperty)
++	return n.payloadMetaProperty()
+ }
+ 
+ func (n *Node) AsNonNullExpression() *NonNullExpression {
+-	return n.data.(*NonNullExpression)
++	return n.payloadNonNullExpression()
+ }
+ 
+ func (n *Node) AsSpreadElement() *SpreadElement {
+-	return n.data.(*SpreadElement)
++	return n.payloadSpreadElement()
+ }
+ 
+ func (n *Node) AsTemplateExpression() *TemplateExpression {
+-	return n.data.(*TemplateExpression)
++	return n.payloadTemplateExpression()
+ }
+ 
+ func (n *Node) AsTemplateSpan() *TemplateSpan {
+-	return n.data.(*TemplateSpan)
++	return n.payloadTemplateSpan()
+ }
+ 
+ func (n *Node) AsTaggedTemplateExpression() *TaggedTemplateExpression {
+-	return n.data.(*TaggedTemplateExpression)
++	return n.payloadTaggedTemplateExpression()
+ }
+ 
+ func (n *Node) AsParenthesizedExpression() *ParenthesizedExpression {
+-	return n.data.(*ParenthesizedExpression)
++	return n.payloadParenthesizedExpression()
+ }
+ 
+ func (n *Node) AsArrayLiteralExpression() *ArrayLiteralExpression {
+-	return n.data.(*ArrayLiteralExpression)
++	return n.payloadArrayLiteralExpression()
+ }
+ 
+ func (n *Node) AsObjectLiteralExpression() *ObjectLiteralExpression {
+-	return n.data.(*ObjectLiteralExpression)
++	return n.payloadObjectLiteralExpression()
+ }
+ 
+ func (n *Node) AsSpreadAssignment() *SpreadAssignment {
+-	return n.data.(*SpreadAssignment)
++	return n.payloadSpreadAssignment()
+ }
+ 
+ func (n *Node) AsPropertyAssignment() *PropertyAssignment {
+-	return n.data.(*PropertyAssignment)
++	return n.payloadPropertyAssignment()
+ }
+ 
+ func (n *Node) AsShorthandPropertyAssignment() *ShorthandPropertyAssignment {
+-	return n.data.(*ShorthandPropertyAssignment)
++	return n.payloadShorthandPropertyAssignment()
+ }
+ 
+ func (n *Node) AsDeleteExpression() *DeleteExpression {
+-	return n.data.(*DeleteExpression)
++	return n.payloadDeleteExpression()
+ }
+ 
+ func (n *Node) AsTypeOfExpression() *TypeOfExpression {
+-	return n.data.(*TypeOfExpression)
++	return n.payloadTypeOfExpression()
+ }
+ 
+ func (n *Node) AsVoidExpression() *VoidExpression {
+-	return n.data.(*VoidExpression)
++	return n.payloadVoidExpression()
+ }
+ 
+ func (n *Node) AsAwaitExpression() *AwaitExpression {
+-	return n.data.(*AwaitExpression)
++	return n.payloadAwaitExpression()
+ }
+ 
+ func (n *Node) AsTypeAssertion() *TypeAssertion {
+-	return n.data.(*TypeAssertion)
++	return n.payloadTypeAssertion()
+ }
+ 
+ func (n *Node) AsKeywordTypeNode() *KeywordTypeNode {
+-	return n.data.(*KeywordTypeNode)
++	return n.payloadKeywordTypeNode()
+ }
+ 
+ func (n *Node) AsUnionTypeNode() *UnionTypeNode {
+-	return n.data.(*UnionTypeNode)
++	return n.payloadUnionTypeNode()
+ }
+ 
+ func (n *Node) AsIntersectionTypeNode() *IntersectionTypeNode {
+-	return n.data.(*IntersectionTypeNode)
++	return n.payloadIntersectionTypeNode()
+ }
+ 
+ func (n *Node) AsConditionalTypeNode() *ConditionalTypeNode {
+-	return n.data.(*ConditionalTypeNode)
++	return n.payloadConditionalTypeNode()
+ }
+ 
+ func (n *Node) AsTypeOperatorNode() *TypeOperatorNode {
+-	return n.data.(*TypeOperatorNode)
++	return n.payloadTypeOperatorNode()
+ }
+ 
+ func (n *Node) AsInferTypeNode() *InferTypeNode {
+-	return n.data.(*InferTypeNode)
++	return n.payloadInferTypeNode()
+ }
+ 
+ func (n *Node) AsArrayTypeNode() *ArrayTypeNode {
+-	return n.data.(*ArrayTypeNode)
++	return n.payloadArrayTypeNode()
+ }
+ 
+ func (n *Node) AsIndexedAccessTypeNode() *IndexedAccessTypeNode {
+-	return n.data.(*IndexedAccessTypeNode)
++	return n.payloadIndexedAccessTypeNode()
+ }
+ 
+ func (n *Node) AsTypeReferenceNode() *TypeReferenceNode {
+-	return n.data.(*TypeReferenceNode)
++	return n.payloadTypeReferenceNode()
+ }
+ 
+ func (n *Node) AsExpressionWithTypeArguments() *ExpressionWithTypeArguments {
+-	return n.data.(*ExpressionWithTypeArguments)
++	return n.payloadExpressionWithTypeArguments()
+ }
+ 
+ func (n *Node) AsLiteralTypeNode() *LiteralTypeNode {
+-	return n.data.(*LiteralTypeNode)
++	return n.payloadLiteralTypeNode()
+ }
+ 
+ func (n *Node) AsThisTypeNode() *ThisTypeNode {
+-	return n.data.(*ThisTypeNode)
++	return n.payloadThisTypeNode()
+ }
+ 
+ func (n *Node) AsTypePredicateNode() *TypePredicateNode {
+-	return n.data.(*TypePredicateNode)
++	return n.payloadTypePredicateNode()
+ }
+ 
+ func (n *Node) AsImportAttribute() *ImportAttribute {
+-	return n.data.(*ImportAttribute)
++	return n.payloadImportAttribute()
+ }
+ 
+ func (n *Node) AsImportAttributes() *ImportAttributes {
+-	return n.data.(*ImportAttributes)
++	return n.payloadImportAttributes()
+ }
+ 
+ func (n *Node) AsTypeQueryNode() *TypeQueryNode {
+-	return n.data.(*TypeQueryNode)
++	return n.payloadTypeQueryNode()
+ }
+ 
+ func (n *Node) AsMappedTypeNode() *MappedTypeNode {
+-	return n.data.(*MappedTypeNode)
++	return n.payloadMappedTypeNode()
+ }
+ 
+ func (n *Node) AsTypeLiteralNode() *TypeLiteralNode {
+-	return n.data.(*TypeLiteralNode)
++	return n.payloadTypeLiteralNode()
+ }
+ 
+ func (n *Node) AsTupleTypeNode() *TupleTypeNode {
+-	return n.data.(*TupleTypeNode)
++	return n.payloadTupleTypeNode()
+ }
+ 
+ func (n *Node) AsNamedTupleMember() *NamedTupleMember {
+-	return n.data.(*NamedTupleMember)
++	return n.payloadNamedTupleMember()
+ }
+ 
+ func (n *Node) AsOptionalTypeNode() *OptionalTypeNode {
+-	return n.data.(*OptionalTypeNode)
++	return n.payloadOptionalTypeNode()
+ }
+ 
+ func (n *Node) AsRestTypeNode() *RestTypeNode {
+-	return n.data.(*RestTypeNode)
++	return n.payloadRestTypeNode()
+ }
+ 
+ func (n *Node) AsParenthesizedTypeNode() *ParenthesizedTypeNode {
+-	return n.data.(*ParenthesizedTypeNode)
++	return n.payloadParenthesizedTypeNode()
+ }
+ 
+ func (n *Node) AsFunctionTypeNode() *FunctionTypeNode {
+-	return n.data.(*FunctionTypeNode)
++	return n.payloadFunctionTypeNode()
+ }
+ 
+ func (n *Node) AsConstructorTypeNode() *ConstructorTypeNode {
+-	return n.data.(*ConstructorTypeNode)
++	return n.payloadConstructorTypeNode()
+ }
+ 
+ func (n *Node) AsTemplateHead() *TemplateHead {
+-	return n.data.(*TemplateHead)
++	return n.payloadTemplateHead()
+ }
+ 
+ func (n *Node) AsTemplateMiddle() *TemplateMiddle {
+-	return n.data.(*TemplateMiddle)
++	return n.payloadTemplateMiddle()
+ }
+ 
+ func (n *Node) AsTemplateTail() *TemplateTail {
+-	return n.data.(*TemplateTail)
++	return n.payloadTemplateTail()
+ }
+ 
+ func (n *Node) AsTemplateLiteralTypeNode() *TemplateLiteralTypeNode {
+-	return n.data.(*TemplateLiteralTypeNode)
++	return n.payloadTemplateLiteralTypeNode()
+ }
+ 
+ func (n *Node) AsTemplateLiteralTypeSpan() *TemplateLiteralTypeSpan {
+-	return n.data.(*TemplateLiteralTypeSpan)
++	return n.payloadTemplateLiteralTypeSpan()
+ }
+ 
+ func (n *Node) AsSyntheticExpression() *SyntheticExpression {
+-	return n.data.(*SyntheticExpression)
++	return n.payloadSyntheticExpression()
+ }
+ 
+ func (n *Node) AsPartiallyEmittedExpression() *PartiallyEmittedExpression {
+-	return n.data.(*PartiallyEmittedExpression)
++	return n.payloadPartiallyEmittedExpression()
+ }
+ 
+ func (n *Node) AsJsxElement() *JsxElement {
+-	return n.data.(*JsxElement)
++	return n.payloadJsxElement()
+ }
+ 
+ func (n *Node) AsJsxAttributes() *JsxAttributes {
+-	return n.data.(*JsxAttributes)
++	return n.payloadJsxAttributes()
+ }
+ 
+ func (n *Node) AsJsxNamespacedName() *JsxNamespacedName {
+-	return n.data.(*JsxNamespacedName)
++	return n.payloadJsxNamespacedName()
+ }
+ 
+ func (n *Node) AsJsxOpeningElement() *JsxOpeningElement {
+-	return n.data.(*JsxOpeningElement)
++	return n.payloadJsxOpeningElement()
+ }
+ 
+ func (n *Node) AsJsxSelfClosingElement() *JsxSelfClosingElement {
+-	return n.data.(*JsxSelfClosingElement)
++	return n.payloadJsxSelfClosingElement()
+ }
+ 
+ func (n *Node) AsJsxFragment() *JsxFragment {
+-	return n.data.(*JsxFragment)
++	return n.payloadJsxFragment()
+ }
+ 
+ func (n *Node) AsJsxOpeningFragment() *JsxOpeningFragment {
+-	return n.data.(*JsxOpeningFragment)
++	return n.payloadJsxOpeningFragment()
+ }
+ 
+ func (n *Node) AsJsxClosingFragment() *JsxClosingFragment {
+-	return n.data.(*JsxClosingFragment)
++	return n.payloadJsxClosingFragment()
+ }
+ 
+ func (n *Node) AsJsxAttribute() *JsxAttribute {
+-	return n.data.(*JsxAttribute)
++	return n.payloadJsxAttribute()
+ }
+ 
+ func (n *Node) AsJsxSpreadAttribute() *JsxSpreadAttribute {
+-	return n.data.(*JsxSpreadAttribute)
++	return n.payloadJsxSpreadAttribute()
+ }
+ 
+ func (n *Node) AsJsxClosingElement() *JsxClosingElement {
+-	return n.data.(*JsxClosingElement)
++	return n.payloadJsxClosingElement()
+ }
+ 
+ func (n *Node) AsJsxExpression() *JsxExpression {
+-	return n.data.(*JsxExpression)
++	return n.payloadJsxExpression()
+ }
+ 
+ func (n *Node) AsJsxText() *JsxText {
+-	return n.data.(*JsxText)
++	return n.payloadJsxText()
+ }
+ 
+ func (n *Node) AsSyntaxList() *SyntaxList {
+-	return n.data.(*SyntaxList)
++	return n.payloadSyntaxList()
+ }
+ 
+ func (n *Node) AsJSDoc() *JSDoc {
+-	return n.data.(*JSDoc)
++	return n.payloadJSDoc()
+ }
+ 
+ func (n *Node) AsJSDocTypeExpression() *JSDocTypeExpression {
+-	return n.data.(*JSDocTypeExpression)
++	return n.payloadJSDocTypeExpression()
+ }
+ 
+ func (n *Node) AsJSDocNonNullableType() *JSDocNonNullableType {
+-	return n.data.(*JSDocNonNullableType)
++	return n.payloadJSDocNonNullableType()
+ }
+ 
+ func (n *Node) AsJSDocNullableType() *JSDocNullableType {
+-	return n.data.(*JSDocNullableType)
++	return n.payloadJSDocNullableType()
+ }
+ 
+ func (n *Node) AsJSDocAllType() *JSDocAllType {
+-	return n.data.(*JSDocAllType)
++	return n.payloadJSDocAllType()
+ }
+ 
+ func (n *Node) AsJSDocVariadicType() *JSDocVariadicType {
+-	return n.data.(*JSDocVariadicType)
++	return n.payloadJSDocVariadicType()
+ }
+ 
+ func (n *Node) AsJSDocOptionalType() *JSDocOptionalType {
+-	return n.data.(*JSDocOptionalType)
++	return n.payloadJSDocOptionalType()
+ }
+ 
+ func (n *Node) AsJSDocTypeTag() *JSDocTypeTag {
+-	return n.data.(*JSDocTypeTag)
++	return n.payloadJSDocTypeTag()
+ }
+ 
+ func (n *Node) AsJSDocUnknownTag() *JSDocUnknownTag {
+-	return n.data.(*JSDocUnknownTag)
++	return n.payloadJSDocUnknownTag()
+ }
+ 
+ func (n *Node) AsJSDocTemplateTag() *JSDocTemplateTag {
+-	return n.data.(*JSDocTemplateTag)
++	return n.payloadJSDocTemplateTag()
+ }
+ 
+ func (n *Node) AsJSDocReturnTag() *JSDocReturnTag {
+-	return n.data.(*JSDocReturnTag)
++	return n.payloadJSDocReturnTag()
+ }
+ 
+ func (n *Node) AsJSDocPublicTag() *JSDocPublicTag {
+-	return n.data.(*JSDocPublicTag)
++	return n.payloadJSDocPublicTag()
+ }
+ 
+ func (n *Node) AsJSDocPrivateTag() *JSDocPrivateTag {
+-	return n.data.(*JSDocPrivateTag)
++	return n.payloadJSDocPrivateTag()
+ }
+ 
+ func (n *Node) AsJSDocProtectedTag() *JSDocProtectedTag {
+-	return n.data.(*JSDocProtectedTag)
++	return n.payloadJSDocProtectedTag()
+ }
+ 
+ func (n *Node) AsJSDocReadonlyTag() *JSDocReadonlyTag {
+-	return n.data.(*JSDocReadonlyTag)
++	return n.payloadJSDocReadonlyTag()
+ }
+ 
+ func (n *Node) AsJSDocOverrideTag() *JSDocOverrideTag {
+-	return n.data.(*JSDocOverrideTag)
++	return n.payloadJSDocOverrideTag()
+ }
+ 
+ func (n *Node) AsJSDocDeprecatedTag() *JSDocDeprecatedTag {
+-	return n.data.(*JSDocDeprecatedTag)
++	return n.payloadJSDocDeprecatedTag()
+ }
+ 
+ func (n *Node) AsJSDocSeeTag() *JSDocSeeTag {
+-	return n.data.(*JSDocSeeTag)
++	return n.payloadJSDocSeeTag()
+ }
+ 
+ func (n *Node) AsJSDocImplementsTag() *JSDocImplementsTag {
+-	return n.data.(*JSDocImplementsTag)
++	return n.payloadJSDocImplementsTag()
+ }
+ 
+ func (n *Node) AsJSDocAugmentsTag() *JSDocAugmentsTag {
+-	return n.data.(*JSDocAugmentsTag)
++	return n.payloadJSDocAugmentsTag()
+ }
+ 
+ func (n *Node) AsJSDocSatisfiesTag() *JSDocSatisfiesTag {
+-	return n.data.(*JSDocSatisfiesTag)
++	return n.payloadJSDocSatisfiesTag()
+ }
+ 
+ func (n *Node) AsJSDocThrowsTag() *JSDocThrowsTag {
+-	return n.data.(*JSDocThrowsTag)
++	return n.payloadJSDocThrowsTag()
+ }
+ 
+ func (n *Node) AsJSDocThisTag() *JSDocThisTag {
+-	return n.data.(*JSDocThisTag)
++	return n.payloadJSDocThisTag()
+ }
+ 
+ func (n *Node) AsJSDocImportTag() *JSDocImportTag {
+-	return n.data.(*JSDocImportTag)
++	return n.payloadJSDocImportTag()
+ }
+ 
+ func (n *Node) AsJSDocCallbackTag() *JSDocCallbackTag {
+-	return n.data.(*JSDocCallbackTag)
++	return n.payloadJSDocCallbackTag()
+ }
+ 
+ func (n *Node) AsJSDocOverloadTag() *JSDocOverloadTag {
+-	return n.data.(*JSDocOverloadTag)
++	return n.payloadJSDocOverloadTag()
+ }
+ 
+ func (n *Node) AsJSDocTypedefTag() *JSDocTypedefTag {
+-	return n.data.(*JSDocTypedefTag)
++	return n.payloadJSDocTypedefTag()
+ }
+ 
+ func (n *Node) AsJSDocSignature() *JSDocSignature {
+-	return n.data.(*JSDocSignature)
++	return n.payloadJSDocSignature()
+ }
+ 
+ func (n *Node) AsJSDocNameReference() *JSDocNameReference {
+-	return n.data.(*JSDocNameReference)
++	return n.payloadJSDocNameReference()
+ }
+ 
+ func (n *Node) AsSourceFile() *SourceFile {
+-	return n.data.(*SourceFile)
++	return n.payloadSourceFile()
+ }
+ 
+ func (n *Node) AsModuleDeclaration() *ModuleDeclaration {
+-	return n.data.(*ModuleDeclaration)
++	return n.payloadModuleDeclaration()
+ }
+ 
+ func (n *Node) AsImportEqualsDeclaration() *ImportEqualsDeclaration {
+-	return n.data.(*ImportEqualsDeclaration)
++	return n.payloadImportEqualsDeclaration()
+ }
+ 
+ func (n *Node) AsExportDeclaration() *ExportDeclaration {
+-	return n.data.(*ExportDeclaration)
++	return n.payloadExportDeclaration()
+ }
+ 
+ func (n *Node) AsImportTypeNode() *ImportTypeNode {
+-	return n.data.(*ImportTypeNode)
++	return n.payloadImportTypeNode()
+ }
+ 
+ func (n *Node) AsImportClause() *ImportClause {
+-	return n.data.(*ImportClause)
++	return n.payloadImportClause()
+ }
+ 
+ func (n *Node) AsImportSpecifier() *ImportSpecifier {
+-	return n.data.(*ImportSpecifier)
++	return n.payloadImportSpecifier()
+ }
+ 
+ func (n *Node) AsJSDocText() *JSDocText {
+-	return n.data.(*JSDocText)
++	return n.payloadJSDocText()
+ }
+ 
+ func (n *Node) AsJSDocLink() *JSDocLink {
+-	return n.data.(*JSDocLink)
++	return n.payloadJSDocLink()
+ }
+ 
+ func (n *Node) AsJSDocLinkPlain() *JSDocLinkPlain {
+-	return n.data.(*JSDocLinkPlain)
++	return n.payloadJSDocLinkPlain()
+ }
+ 
+ func (n *Node) AsJSDocLinkCode() *JSDocLinkCode {
+-	return n.data.(*JSDocLinkCode)
++	return n.payloadJSDocLinkCode()
+ }
+ 
+ func (n *Node) AsTypeParameterDeclaration() *TypeParameterDeclaration {
+-	return n.data.(*TypeParameterDeclaration)
++	return n.payloadTypeParameterDeclaration()
+ }
+ 
+ func (n *Node) AsSyntheticReferenceExpression() *SyntheticReferenceExpression {
+-	return n.data.(*SyntheticReferenceExpression)
++	return n.payloadSyntheticReferenceExpression()
+ }
+ 
+ func (n *Node) AsJSDocTypeLiteral() *JSDocTypeLiteral {
+-	return n.data.(*JSDocTypeLiteral)
++	return n.payloadJSDocTypeLiteral()
+ }
+ 
+ func (n *Node) AsJSDocParameterOrPropertyTag() *JSDocParameterOrPropertyTag {
+-	return n.data.(*JSDocParameterOrPropertyTag)
++	return n.payloadJSDocParameterOrPropertyTag()
+ }
+ 
+ // ──────────────────────────────────────────────────────────────────────

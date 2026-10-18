@@ -1,0 +1,46 @@
+TEXT github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewIdentifier(SB) github.com/microsoft/typescript-go/internal/ast/ast_generated.go
+  ast_generated.go:626	0x5ed400		493b6610		CMPQ SP, 0x10(R14)																												
+  ast_generated.go:626	0x5ed404		0f8695000000		JBE 0x5ed49f																													
+  ast_generated.go:626	0x5ed40a		55			PUSHQ BP																													
+  ast_generated.go:626	0x5ed40b		4889e5			MOVQ SP, BP																													
+  ast_generated.go:626	0x5ed40e		4883ec30		SUBQ $0x30, SP																													
+  ast_generated.go:630	0x5ed412		4889442440		MOVQ AX, 0x40(SP)																												
+  ast_generated.go:630	0x5ed417		48894c2450		MOVQ CX, 0x50(SP)																												
+  ast_generated.go:630	0x5ed41c		48895c2448		MOVQ BX, 0x48(SP)																												
+  ast_generated.go:627	0x5ed421		8400			TESTB AL, 0(AX)																													
+  ast_generated.go:627	0x5ed423		480538010000		ADDQ $0x138, AX																													
+  ast_generated.go:627	0x5ed429		488d1d300ff500		LEAQ github.com/microsoft/typescript-go/internal/core..dict.Arena[github.com/microsoft/typescript-go/internal/ast.Identifier](SB), BX														
+  ast_generated.go:627	0x5ed430		e84b290400		CALL github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }]).New(SB)	
+  ast_generated.go:628	0x5ed435		488b4c2450		MOVQ 0x50(SP), CX																												
+  ast_generated.go:628	0x5ed43a		48894840		MOVQ CX, 0x40(AX)																												
+  ast_generated.go:628	0x5ed43e		833dcbb0900100		CMPL runtime.writeBarrier(SB), $0x0																										
+  ast_generated.go:628	0x5ed445		7507			JNE 0x5ed44e																													
+  ast_generated.go:628	0x5ed447		4c8b4c2448		MOVQ 0x48(SP), R9																												
+  ast_generated.go:628	0x5ed44c		eb15			JMP 0x5ed463																													
+  ast_generated.go:628	0x5ed44e		488b5038		MOVQ 0x38(AX), DX																												
+  ast_generated.go:628	0x5ed452		e8a940eaff		CALL runtime.gcWriteBarrier2(SB)																										
+  ast_generated.go:628	0x5ed457		4c8b4c2448		MOVQ 0x48(SP), R9																												
+  ast_generated.go:628	0x5ed45c		4d890b			MOVQ R9, 0(R11)																													
+  ast_generated.go:628	0x5ed45f		49895308		MOVQ DX, 0x8(R11)																												
+  ast_generated.go:628	0x5ed463		4c894838		MOVQ R9, 0x38(AX)																												
+  ast_generated.go:629	0x5ed467		488b542440		MOVQ 0x40(SP), DX																												
+  ast_generated.go:629	0x5ed46c		48ff82a0040000		INCQ 0x4a0(DX)																													
+  ast.go:86		0x5ed473		48ff8298040000		INCQ 0x498(DX)																													
+  ast.go:87		0x5ed47a		488b7208		MOVQ 0x8(DX), SI																												
+  ast.go:87		0x5ed47e		4c8b4210		MOVQ 0x10(DX), R8																												
+  ast.go:87		0x5ed482		488b3a			MOVQ 0(DX), DI																													
+  ast.go:87		0x5ed485		488d1d9c55f500		LEAQ go:itab.*github.com/microsoft/typescript-go/internal/ast.Identifier,github.com/microsoft/typescript-go/internal/ast.nodeData(SB), BX													
+  ast.go:87		0x5ed48c		4889c1			MOVQ AX, CX																													
+  ast.go:87		0x5ed48f		b84f000000		MOVL $0x4f, AX																													
+  ast.go:87		0x5ed494		e88709ffff		CALL github.com/microsoft/typescript-go/internal/ast.newNode(SB)																						
+  ast_generated.go:630	0x5ed499		4883c430		ADDQ $0x30, SP																													
+  ast_generated.go:630	0x5ed49d		5d			POPQ BP																														
+  ast_generated.go:630	0x5ed49e		c3			RET																														
+  ast_generated.go:626	0x5ed49f		4889442408		MOVQ AX, 0x8(SP)																												
+  ast_generated.go:626	0x5ed4a4		48895c2410		MOVQ BX, 0x10(SP)																												
+  ast_generated.go:626	0x5ed4a9		48894c2418		MOVQ CX, 0x18(SP)																												
+  ast_generated.go:626	0x5ed4ae		e84d25eaff		CALL runtime.morestack_noctxt.abi0(SB)																										
+  ast_generated.go:626	0x5ed4b3		488b442408		MOVQ 0x8(SP), AX																												
+  ast_generated.go:626	0x5ed4b8		488b5c2410		MOVQ 0x10(SP), BX																												
+  ast_generated.go:626	0x5ed4bd		488b4c2418		MOVQ 0x18(SP), CX																												
+  ast_generated.go:626	0x5ed4c2		e939ffffff		JMP github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewIdentifier(SB)																				

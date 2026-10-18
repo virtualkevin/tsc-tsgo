@@ -1,0 +1,116 @@
+[
+  {
+    "role": "baseline",
+    "function": "newNode",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/ast\\.newNode$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "output": "baseline-newNode.asm.txt",
+    "outputSha256": "ff1090a6c3d578c1b9fbb91cad0eb2f60a1cc77c641a21a5bd1357f99ec3bf0a",
+    "instructionRows": 56,
+    "encodedInstructionBytes": 232,
+    "entryStackReservationBytes": 24
+  },
+  {
+    "role": "baseline",
+    "function": "NewIdentifier",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/ast\\.\\(\\*NodeFactory\\)\\.NewIdentifier$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+    "output": "baseline-NewIdentifier.asm.txt",
+    "outputSha256": "2a611e4339371bf003d0c9b5c4506a244877e3f4cb48bcc9f4765343462a7483",
+    "instructionRows": 45,
+    "encodedInstructionBytes": 199,
+    "entryStackReservationBytes": 48
+  },
+  {
+    "role": "candidate",
+    "function": "newNode",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/ast\\.newNode$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-tagged-node-data"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "90e71a6f384e911b88e1fed1e05b21d94f9da0c542149ba51a0dc112705ecd99",
+    "output": "candidate-newNode.asm.txt",
+    "outputSha256": "f6fe7b8356b38d79497691a180fff17bf3c6685e03fbaa947cd42448dad8b1d3",
+    "instructionRows": 47,
+    "encodedInstructionBytes": 200,
+    "entryStackReservationBytes": 40
+  },
+  {
+    "role": "candidate",
+    "function": "NewIdentifier",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/ast\\.\\(\\*NodeFactory\\)\\.NewIdentifier$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-tagged-node-data"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "90e71a6f384e911b88e1fed1e05b21d94f9da0c542149ba51a0dc112705ecd99",
+    "output": "candidate-NewIdentifier.asm.txt",
+    "outputSha256": "de94eb3852215354fdbf679c578db9b4e585effbc28ed399ec4055bf6831c747",
+    "instructionRows": 45,
+    "encodedInstructionBytes": 199,
+    "entryStackReservationBytes": 48
+  },
+  {
+    "role": "candidate",
+    "function": "nodeDataValue",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/ast\\.\\(\\*Node\\)\\.nodeDataValue$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-tagged-node-data"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "90e71a6f384e911b88e1fed1e05b21d94f9da0c542149ba51a0dc112705ecd99",
+    "output": "candidate-nodeDataValue.asm.txt",
+    "outputSha256": "32e66e37a67e813d712e8faa143c0f74f73e21966c6a70b40d597c4a05466d20",
+    "instructionRows": 1008,
+    "encodedInstructionBytes": 3418,
+    "entryStackReservationBytes": 16
+  },
+  {
+    "role": "candidate",
+    "function": "setNodeData",
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "tool",
+      "objdump",
+      "-s",
+      "github.com/microsoft/typescript-go/internal/ast\\.\\(\\*Node\\)\\.setNodeData$",
+      "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-tagged-node-data"
+    ],
+    "toolSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "binarySha256": "90e71a6f384e911b88e1fed1e05b21d94f9da0c542149ba51a0dc112705ecd99",
+    "output": "candidate-setNodeData.asm.txt",
+    "outputSha256": "953483c7a946678bf52deb92ea9efe960d9da734fcd377f729795a1bcbe5ecd3",
+    "instructionRows": 3247,
+    "encodedInstructionBytes": 14910,
+    "entryStackReservationBytes": 16
+  }
+]

@@ -1,0 +1,48 @@
+TEXT github.com/microsoft/typescript-go/internal/ast.newNode(SB) github.com/microsoft/typescript-go/internal/ast/ast.go
+  ast.go:75		0x5dde20		493b6610		CMPQ SP, 0x10(R14)								
+  ast.go:75		0x5dde24		7677			JBE 0x5dde9d									
+  ast.go:75		0x5dde26		55			PUSHQ BP									
+  ast.go:75		0x5dde27		4889e5			MOVQ SP, BP									
+  ast.go:75		0x5dde2a		4883ec28		SUBQ $0x28, SP									
+  ast.go:75		0x5dde2e		48897c2450		MOVQ DI, 0x50(SP)								
+  ast.go:75		0x5dde33		4889742458		MOVQ SI, 0x58(SP)								
+  ast.go:75		0x5dde38		4c89442460		MOVQ R8, 0x60(SP)								
+  ast.go:80		0x5dde3d		6689442438		MOVW AX, 0x38(SP)								
+  ast.go:80		0x5dde42		48897c2420		MOVQ DI, 0x20(SP)								
+  ast.go:80		0x5dde47		48895c2440		MOVQ BX, 0x40(SP)								
+  ast.go:80		0x5dde4c		48894c2448		MOVQ CX, 0x48(SP)								
+  ast.go:76		0x5dde51		488b5318		MOVQ 0x18(BX), DX								
+  ast.go:76		0x5dde55		4889c8			MOVQ CX, AX									
+  ast.go:76		0x5dde58		ffd2			CALL DX										
+  ast.go:76		0x5dde5a		4889442418		MOVQ AX, 0x18(SP)								
+  ast.go:77		0x5dde5f		48c74008ffffffff	MOVQ $-0x1, 0x8(AX)								
+  ast.go:78		0x5dde67		0fb74c2438		MOVZX 0x38(SP), CX								
+  ast.go:78		0x5dde6c		668908			MOVW CX, 0(AX)									
+  ast.go:79		0x5dde6f		488b5c2440		MOVQ 0x40(SP), BX								
+  ast.go:79		0x5dde74		488b4c2448		MOVQ 0x48(SP), CX								
+  ast.go:79		0x5dde79		e862610400		CALL github.com/microsoft/typescript-go/internal/ast.(*Node).setNodeData(SB)	
+  ast.go:80		0x5dde7e		488b542420		MOVQ 0x20(SP), DX								
+  ast.go:80		0x5dde83		4885d2			TESTQ DX, DX									
+  ast.go:80		0x5dde86		740a			JE 0x5dde92									
+  ast.go:81		0x5dde88		488b0a			MOVQ 0(DX), CX									
+  ast.go:81		0x5dde8b		488b442418		MOVQ 0x18(SP), AX								
+  ast.go:81		0x5dde90		ffd1			CALL CX										
+  ast.go:83		0x5dde92		488b442418		MOVQ 0x18(SP), AX								
+  ast.go:83		0x5dde97		4883c428		ADDQ $0x28, SP									
+  ast.go:83		0x5dde9b		5d			POPQ BP										
+  ast.go:83		0x5dde9c		c3			RET										
+  ast.go:75		0x5dde9d		6689442408		MOVW AX, 0x8(SP)								
+  ast.go:75		0x5ddea2		48895c2410		MOVQ BX, 0x10(SP)								
+  ast.go:75		0x5ddea7		48894c2418		MOVQ CX, 0x18(SP)								
+  ast.go:75		0x5ddeac		48897c2420		MOVQ DI, 0x20(SP)								
+  ast.go:75		0x5ddeb1		4889742428		MOVQ SI, 0x28(SP)								
+  ast.go:75		0x5ddeb6		4c89442430		MOVQ R8, 0x30(SP)								
+  ast.go:75		0x5ddebb		0f1f440000		NOPL 0(AX)(AX*1)								
+  ast.go:75		0x5ddec0		e83b1bebff		CALL runtime.morestack_noctxt.abi0(SB)						
+  ast.go:75		0x5ddec5		0fb7442408		MOVZX 0x8(SP), AX								
+  ast.go:75		0x5ddeca		488b5c2410		MOVQ 0x10(SP), BX								
+  ast.go:75		0x5ddecf		488b4c2418		MOVQ 0x18(SP), CX								
+  ast.go:75		0x5dded4		488b7c2420		MOVQ 0x20(SP), DI								
+  ast.go:75		0x5dded9		488b742428		MOVQ 0x28(SP), SI								
+  ast.go:75		0x5ddede		4c8b442430		MOVQ 0x30(SP), R8								
+  ast.go:75		0x5ddee3		e938ffffff		JMP github.com/microsoft/typescript-go/internal/ast.newNode(SB)			

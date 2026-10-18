@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "sourceSha256": "a8e41c7303c3807e869becbbbbef0365fa5faa5c71c0310cb6dda8b98a197519",
+  "head": "649f1b7bc9373d0d91274a4a5e74982c10d62714",
+  "controllerSha256": "1a9c6f7f6c90bd8d070a0a5cdcffe2dcbe199bcdd2067b07710c7b5a9d09e42f",
+  "runs": [
+    {
+      "mode": "race",
+      "buildCommand": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "build",
+        "-race",
+        "-trimpath",
+        "-o",
+        "/tmp/tsc-tagged-node-data/instrumented/tsc-go-race",
+        "./cmd/tsgo"
+      ],
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "buildLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binarySha256": "7d1abaa6cd0ef8c75e2422c3a7ac251a7e966e43987b51e5656f407413df0953",
+      "logSha256": "caab940862c52a8169aee28de47df6725a81d87b3c29601c1847d378d566bc60",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "passed": true
+    },
+    {
+      "mode": "checkptr",
+      "buildCommand": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "build",
+        "-gcflags=all=-d=checkptr=2",
+        "-trimpath",
+        "-o",
+        "/tmp/tsc-tagged-node-data/instrumented/tsc-go-checkptr",
+        "./cmd/tsgo"
+      ],
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "buildLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binarySha256": "829e10af289ce963f710b875b0bde77585c74bc9126984b61ac3df440f8e2c5f",
+      "logSha256": "de71e14c719db06250ff55cef39731cb8c19215e4923f0bcbce981e009438ce9",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "passed": true
+    }
+  ]
+}
