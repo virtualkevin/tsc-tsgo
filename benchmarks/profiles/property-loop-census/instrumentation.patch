@@ -1,0 +1,69 @@
+diff --git a/packages/tsc-go/cmd/tsgo/main.go b/packages/tsc-go/cmd/tsgo/main.go
+index 8d6816f..d232ffc 100644
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,6 +2,8 @@ package main
+ 
+ import (
+ 	"context"
++	"fmt"
++	"github.com/microsoft/typescript-go/internal/checker"
+ 	"os"
+ 	"os/signal"
+ 	"syscall"
+@@ -28,5 +30,9 @@ func runMain() int {
+ 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+ 	defer stop()
+ 	result := execute.CommandLine(ctx, newSystem(), args, nil)
++	if err := checker.WritePropertyLoopCensus(); err != nil {
++		fmt.Fprintln(os.Stderr, err)
++		return 1
++	}
+ 	return int(result.Status)
+ }
+diff --git a/packages/tsc-go/internal/checker/checker.go b/packages/tsc-go/internal/checker/checker.go
+index 0904719..a00ed5b 100644
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -578,6 +578,7 @@ type Host interface {
+ var nextCheckerID atomic.Uint32
+ 
+ type Checker struct {
++	propertyLoopCensus                          *propertyLoopCensus
+ 	instantiatedMemberLists                     map[instantiatedMemberListKey]*instantiatedMemberSource
+ 	id                                          uint32
+ 	program                                     Program
+@@ -906,6 +907,7 @@ func NewChecker(program Program, tracer *Tracer) (*Checker, *sync.Mutex) {
+ 	program.BindSourceFiles()
+ 
+ 	c := &Checker{}
++	c.propertyLoopCensus = newPropertyLoopCensus()
+ 	c.id = nextCheckerID.Add(1)
+ 	c.tracer = tracer
+ 	c.program = program
+diff --git a/packages/tsc-go/internal/checker/relater.go b/packages/tsc-go/internal/checker/relater.go
+index 12d42f6..aeaca87 100644
+--- a/packages/tsc-go/internal/checker/relater.go
++++ b/packages/tsc-go/internal/checker/relater.go
+@@ -4273,11 +4273,21 @@ func (r *Relater) propertiesRelatedTo(source *Type, target *Type, reportErrors b
+ 	// We only call this for union target types when we're attempting to do excess property checking - in those cases, we want to get _all possible props_
+ 	// from the target union, across all members
+ 	properties := r.c.getPropertiesOfType(target)
++	var observation propertyLoopObservation
++	if r.c.propertyLoopCensus != nil {
++		observation = r.c.propertyLoopCensus.begin(source, len(properties))
++	}
+ 	numericNamesOnly := isTupleType(source) && isTupleType(target)
+ 	for _, targetProp := range excludeProperties(properties, excludedProperties) {
++		if observation.counts != nil {
++			observation.counts.Visited++
++		}
+ 		name := targetProp.Name
+ 		if targetProp.Flags&ast.SymbolFlagsPrototype == 0 && (!numericNamesOnly || isNumericLiteralName(name) || name == "length") && (!optionalsOnly || targetProp.Flags&ast.SymbolFlagsOptional != 0) {
+ 			sourceProp := r.c.getPropertyOfType(source, name)
++			if observation.counts != nil {
++				observation.record(sourceProp, targetProp)
++			}
+ 			if sourceProp != nil && sourceProp != targetProp {
+ 				related := r.propertyRelatedTo(source, target, sourceProp, targetProp, r.c.getNonMissingTypeOfSymbol, reportErrors, intersectionState, r.relation == r.c.comparableRelation)
+ 				if related == TernaryFalse {
