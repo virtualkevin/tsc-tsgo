@@ -1,0 +1,13 @@
+# Merged-symbol membership filter candidate
+
+The completed diagnostic census found97.8–99.2% unchanged merged-symbol lookups and709–9317keys per checker across the pinned workloads. Normal CPU profiles attribute only modest fractions to this map caller, so this experiment is not a10× forecast.
+
+This candidate adds a checker-private65536-bit(8KiB) filter, with one existing PointerLinkStore pointer hash and one bit per key. Every recordMergedSymbol write updates the authoritative map and filter. getMergedSymbol skips the map only for a definite negative; possible membership always probes the unchanged map. Collisions, saturation, duplicate writes and nil-valued replacements remain conservative. There is no deletion or reset beyond constructing a new checker, and no shared symbol mutation or semantic result cache extension.
+
+The filter retains no roots. Inserted pointers must have stable heap addresses; the authoritative typed map roots its symbol keys and values. This explicitly relies on the existing pinned runtime's non-moving heap assumption and never reconstructs pointers from integers. Writes retain the checker's exclusive-ownership requirement. A future moving collector or reset/delete path would require a new design. The8KiB array enlarges Checker; hashing and filter accesses can cost more than a map miss. Actual occupancy and runtime gains are not established.
+
+Tests cover zero/independent filters, guaranteed fingerprint collision, saturation, GC, repeated additions, nil membership, checker-local replacements/updates/nil values,20,000-entry map growth and absent-key fallback. Full correctness and performance results are pending. Capacity and hash count are frozen before timing in COMPARISON_POLICY.md; failed screens must not be rescued by tuning or extra samples.
+
+Validation completed before timing: four focused tests pass under normal/race/strict-checkptr across two packages; the root suite passes2343records/119top-level tests across10packages,0fail/skip. Full pinned conformance passes12789fully checked configurations,8partial and2118unsupported skips,0failures. Native differential80/80 and API/emit/project12/12 pass. Eighteen raw evidence files are preserved in validation.tar.gz and hash-listed in validation-archive.json.
+
+Candidate binary2aba7daa/sourcee080bdef remains separately preserved. Guarded restoration returns production source/default executable exactly to retained216d40c7/8fe4bd80. Restored-workspace preflight verifies the intended four-file delta and identical build settings. The fixed performance screen remains pending; passing correctness does not establish a runtime gain.

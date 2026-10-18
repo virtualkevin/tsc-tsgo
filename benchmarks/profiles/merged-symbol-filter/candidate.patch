@@ -1,0 +1,29 @@
+diff --git a/packages/tsc-go/internal/checker/checker.go b/packages/tsc-go/internal/checker/checker.go
+index 0904719..fe74ebe 100644
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -668,6 +668,7 @@ type Checker struct {
+ 	signatureArena                              core.Arena[Signature]
+ 	indexInfoArena                              core.Arena[IndexInfo]
+ 	mergedSymbols                               map[*ast.Symbol]*ast.Symbol
++	mergedSymbolFilter                          core.PointerFilter[ast.Symbol]
+ 	factory                                     ast.NodeFactory
+ 	nodeLinks                                   core.LinkStore[*ast.Node, NodeLinks]
+ 	signatureLinks                              core.PointerLinkStore[ast.Node, SignatureLinks]
+@@ -14282,7 +14283,7 @@ func (c *Checker) cloneSymbol(symbol *ast.Symbol) *ast.Symbol {
+ }
+ 
+ func (c *Checker) getMergedSymbol(symbol *ast.Symbol) *ast.Symbol {
+-	if symbol != nil {
++	if symbol != nil && c.mergedSymbolFilter.MayContain(symbol) {
+ 		merged := c.mergedSymbols[symbol]
+ 		if merged != nil {
+ 			return merged
+@@ -14300,6 +14301,7 @@ func (c *Checker) getParentOfSymbol(symbol *ast.Symbol) *ast.Symbol {
+ 
+ func (c *Checker) recordMergedSymbol(target *ast.Symbol, source *ast.Symbol) {
+ 	c.mergedSymbols[source] = target
++	c.mergedSymbolFilter.Add(source)
+ }
+ 
+ func (c *Checker) getSymbolIfSameReference(s1 *ast.Symbol, s2 *ast.Symbol) *ast.Symbol {
