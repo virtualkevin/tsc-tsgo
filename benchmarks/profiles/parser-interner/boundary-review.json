@@ -1,0 +1,23 @@
+{
+  "sourceSha256": "1e5399a8058a1b41ef613763afec4801bfcfd703ad7ae6616458eb5d590ffba8",
+  "files": {
+    "packages/tsc-go/internal/parser/parser.go": "22552388daf90506e156b3c3afce669acf717e52c87dc64352a87274ee7da4ec",
+    "packages/tsc-go/internal/ast/ast.go": "8026f21499eb786afd3e89e9b8e97562eb94eee5a6df4a4bf6a68be596b0cbd3",
+    "packages/tsc-go/internal/printer/utilities.go": "d297cacd8ce9ee45cf0f21ebfb5e796ae77b51e97debe0e0b01e9a80ade618f5",
+    "packages/tsc-go/internal/api/session.go": "60e01b4451a58dfbfdc4e0b611eb7d07f3a4f73b459622a12a6bdcaa27824572",
+    "packages/tsc-go/internal/api/proto.go": "5cf38a8dbc87c3f2b5032e9362cefd19dde703d9c9bf3063b2789bb1d5ffea19",
+    "packages/tsc-go/internal/api/encoder/encoder.go": "98fc5d1c6a7bbac6692fca7a6f60c7637bf0ad528eb9f26237bd521f05372b83",
+    "packages/tsc-go/internal/api/encoder/encoder_generated.go": "a631e9b51781e2201b0b30fd7abe83acd581fe1ce778bef26df6c212f14aa7d7"
+  },
+  "findings": [
+    "Parser publishes its table to SourceFile.Identifiers; source-file clone copies the pointer, preserving old map aliasing.",
+    "Printer.IsFileLevelUniqueName checks membership after the existing global-name predicate; nil table returns absent.",
+    "API handleGetSourceFile calls encoder.EncodeSourceFile and returns raw binary or base64 data inside SourceFileResponse, rather than reflecting SourceFile fields.",
+    "The dedicated encoder serializes explicit source metadata; Identifiers is absent from encoder sources.",
+    "Direct SourceFile JSON marshaling by an unknown consumer would observe a different representation; this is an internal Go field and no such repository API path was identified. API/encoder/service regression suites remain required."
+  ],
+  "limits": [
+    "Source search and reviewed known paths are not proof about arbitrary reflection or unsupported external internal-package consumers.",
+    "No performance inference from representation or boundary inspection."
+  ]
+}

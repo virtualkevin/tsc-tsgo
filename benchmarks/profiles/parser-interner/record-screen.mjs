@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {join,resolve,relative} from 'node:path';
+import {root,load,hashFile,median,validateReport,capture,config,configPath} from './common-screen.mjs';
+const dir=resolve(process.argv[2]),summary=load(join(dir,'summary.json'));
+assert.equal(summary.status,'passed');assert.equal(config.name,'parser-interner');assert.deepEqual(capture(),summary.snapshot);
+for(const [path,h] of Object.entries(summary.controllerFiles))assert.equal(hashFile(path),h);
+const results=[];
+for(const run of summary.runs){assert.equal(run.status,'passed');assert.equal(hashFile(run.output),run.reportSha256);const report=load(run.output);const group=config.groups.find(g=>g.name===run.name);assert.deepEqual(validateReport(report,group,summary.snapshot,summary.unsetEnvironment),run.results);
+ for(const p of report.projects){const ratios=p.pairs.map(x=>x.baseline/x.candidate);results.push({...run.results.find(x=>x.name===p.name),pairedRatios:ratios,pairedMedian:median(ratios),pairedMin:Math.min(...ratios),pairedMax:Math.max(...ratios),candidateFasterPairs:ratios.filter(x=>x>1).length,rssCandidateOverBaseline:p.resources.candidate.peakRssKiB.median/p.resources.baseline.peakRssKiB.median});}}
+assert.deepEqual(results.map(x=>x.name),['typeorm','trpc','vscode','sentry']);
+const geometricMean=xs=>Math.exp(xs.reduce((sum,x)=>sum+Math.log(x),0)/xs.length);
+const aggregates={ratioOfMediansGeometricMean:geometricMean(results.map(x=>x.baselineOverCandidate)),pairedMedianGeometricMean:geometricMean(results.map(x=>x.pairedMedian))};
+const gates={bothAggregatesAtLeast101:aggregates.ratioOfMediansGeometricMean>=1.01&&aggregates.pairedMedianGeometricMean>=1.01,allWorkloadSummariesAtLeast098:results.every(r=>r.baselineOverCandidate>=.98&&r.pairedMedian>=.98),allWorkloadMedianRssAtMost105:results.every(r=>r.rssCandidateOverBaseline<=1.05)};
+const proposal={status:'passed',experiment:config.name,summarySha256:hashFile(join(dir,'summary.json')),configSha256:hashFile(configPath),comparisonPolicySha256:config.comparisonPolicySha256,results,aggregates,gates,qualifiesForConfirmation:Object.values(gates).every(Boolean),limitations:['Screening only; not promotion or a statistical-confidence claim.','This candidate requires two independent confirmations and full correctness validation before promotion.','All paired samples retained; ratios above one favor the configured candidate.','Not a comparison to the original native target; do not multiply historical ratios.']};
+const out=join(dir,'recording');mkdirSync(out);writeFileSync(join(out,'proposal.json'),JSON.stringify(proposal,null,2)+'\n');
+const labels={typeorm:'TypeORM source + tests; Node20 compatibility',trpc:'tRPC server',vscode:'VS Code client',sentry:'Sentry frontend'};
+const stages={'parser-interner':'Per-file parser interner versus retained node-pointer Go'};
+const reference='Go retained node-pointer baseline';
+const rows=results.map(r=>`| ${stages[config.name]} (capture ${summary.repositoryStartingHead.slice(0,7)}); default settings; GNU time wrapped | ${labels[r.name]} | ${reference} | ${r.baselineMedianMs.toFixed(2)} | ${r.candidateMedianMs.toFixed(2)} | ${r.baselineOverCandidate.toFixed(3)}× | ${r.runs} | Screening only; identical ${r.files.toLocaleString('en-US')} inputs; clean diagnostics; median peak RSS reference/candidate ${r.baselineMedianRssMiB.toFixed(1)}/${r.candidateMedianRssMiB.toFixed(1)} MiB; paired median ${r.pairedMedian.toFixed(3)}; [samples](${relative(root,dir)}/${r.name==='typeorm'||r.name==='trpc'?'small':'large'}.json). |`).join('\n')+'\n';
+writeFileSync(join(out,'PERF.rows.md'),rows);console.log(JSON.stringify({results:results.map(r=>({workload:r.name,ratioOfMedians:r.baselineOverCandidate,pairedMedian:r.pairedMedian,pairRange:[r.pairedMin,r.pairedMax],rss:[r.baselineMedianRssMiB,r.candidateMedianRssMiB]})),aggregates,gates,qualifies:proposal.qualifiesForConfirmation},null,2));

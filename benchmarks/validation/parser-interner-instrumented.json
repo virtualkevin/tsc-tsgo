@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "sourceSha256": "1e5399a8058a1b41ef613763afec4801bfcfd703ad7ae6616458eb5d590ffba8",
+  "head": "758a5d32758daed59de1e640b2155ff2bdaad29c",
+  "controllerSha256": "36535a9b4d758e7390c677268ae44bdaf2512bb1f0b8dbc9ec077d7b7aec9dfd",
+  "runs": [
+    {
+      "mode": "race",
+      "buildCommand": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "build",
+        "-race",
+        "-trimpath",
+        "-o",
+        "/tmp/tsc-parser-interner/instrumented/tsc-go-race",
+        "./cmd/tsgo"
+      ],
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "buildLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binarySha256": "fabbded05347e970b3bfcabe2a3af0fe2282f27db23360bc9b8bd82e896efba8",
+      "logSha256": "b5e784cc1a8d21d32c5cfcfb5afb55619810a10c3506226bfc9059acd2d5575c",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "passed": true
+    },
+    {
+      "mode": "checkptr",
+      "buildCommand": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "build",
+        "-gcflags=all=-d=checkptr=2",
+        "-trimpath",
+        "-o",
+        "/tmp/tsc-parser-interner/instrumented/tsc-go-checkptr",
+        "./cmd/tsgo"
+      ],
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "buildLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binarySha256": "b935f8b30065d608f720750c19393ccbe6b544133d50df8ae171fd73a9d1a75b",
+      "logSha256": "18af0a1b7de3912f647978f07681e256ff2b384a9125f260a55793233c3bfb83",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "passed": true
+    }
+  ]
+}
