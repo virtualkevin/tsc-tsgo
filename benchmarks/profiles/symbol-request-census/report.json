@@ -1,0 +1,587 @@
+{
+  "status": "passed",
+  "scope": "Diagnostic bounded symbol-instantiation request census; weak partial descriptors, no safe reuse or speedup claim.",
+  "baseHead": "80e2bf35b52eca90cdca1b69157a258dcfff045b",
+  "baseSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "baselineSha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+  "baselineSidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+  "candidateSha256": "b572b9894574d9c602188019a056f5d7d69d3d9a6568fc608c6408f392a693af",
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "fe6ef0d9a4bb262639d679b132a6dbcb2852658fd991e61cd719e75722e12431",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "fb6815b2661b43b25418fa7c54b78235dcd6f0e4f62efc9a55f06b6df7ba9775",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/symbol_request_census.go": "5b66d8bc8070ac0fed117243c8b209abdd48a4de2a1350da1312f67e4454a92f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/symbol_request_census_test.go": "f55f5e23dfa1df8e91648604f3e1a9a3bfc37b3fb14c0682d79eb386cebb21d7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/symbol_request_census.go": "ce986858ab0a4cc824e035816e7bea0c1c0fa9947b5c54cc3036ab07a2b3db06"
+  },
+  "controllerSha256": "47fdfcca07649dc5b3ec0f2381e90ae08fc1c11dc092e4f9c4588d32166e7bd9",
+  "countsValidatorSha256": "c81666fc09f3387c57738a3cb086a6bc02b3d7fc039d994b7abee5de80cf6834",
+  "validationSha256": "b6692cd0f0e88c96f4b2991f8bd1f315748b4288d7ca833e8c1562a22289ccbd",
+  "buildReportSha256": "2c97f8f7c23f78c310810c0bb5327d50c17f11439862d2ca0c4c6c6f78e64d74",
+  "runs": [
+    {
+      "project": "typeorm",
+      "mode": "baseline",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+      "reference": "benchmarks/results/native-node-pointer/small.json",
+      "referenceSha256": "4789ef007ad567373952c2a451d39474f6c31988efc3d669a3de3c512c641785",
+      "inputCount": 3572,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {},
+      "counts": null
+    },
+    {
+      "project": "typeorm",
+      "mode": "disabled",
+      "command": [
+        "/tmp/tsc-symbol-request-census",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+      "reference": "benchmarks/results/native-node-pointer/small.json",
+      "referenceSha256": "4789ef007ad567373952c2a451d39474f6c31988efc3d669a3de3c512c641785",
+      "inputCount": 3572,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {},
+      "counts": null
+    },
+    {
+      "project": "typeorm",
+      "mode": "enabled",
+      "command": [
+        "/tmp/tsc-symbol-request-census",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+      "reference": "benchmarks/results/native-node-pointer/small.json",
+      "referenceSha256": "4789ef007ad567373952c2a451d39474f6c31988efc3d669a3de3c512c641785",
+      "inputCount": 3572,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {
+        "census.json": {
+          "sha256": "e7ecd46b9acc7ab2105098e7b4857c81f21ed10c45219740103e3f30a2b75ad8",
+          "bytes": 3039
+        }
+      },
+      "counts": {
+        "owners": 4,
+        "totals": {
+          "Requests": 176521,
+          "NewKeys": 131072,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 45449
+        },
+        "byMapperKind": [
+          {
+            "kind": "nil",
+            "Requests": 0,
+            "NewKeys": 0,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "simple",
+            "Requests": 24358,
+            "NewKeys": 19339,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 5019
+          },
+          {
+            "kind": "array",
+            "Requests": 135872,
+            "NewKeys": 98349,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 37523
+          },
+          {
+            "kind": "merged",
+            "Requests": 0,
+            "NewKeys": 0,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "unknown",
+            "Requests": 16291,
+            "NewKeys": 13384,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 2907
+          }
+        ],
+        "limitation": "Counts concern a bounded first-key ledger and selected last-observed state, not safe reuse or population repetition rates. Unknown-at-capacity requests remain unknown."
+      }
+    },
+    {
+      "project": "trpc",
+      "mode": "baseline",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "reference": "benchmarks/results/native-node-pointer/small.json",
+      "referenceSha256": "4789ef007ad567373952c2a451d39474f6c31988efc3d669a3de3c512c641785",
+      "inputCount": 942,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {},
+      "counts": null
+    },
+    {
+      "project": "trpc",
+      "mode": "disabled",
+      "command": [
+        "/tmp/tsc-symbol-request-census",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "reference": "benchmarks/results/native-node-pointer/small.json",
+      "referenceSha256": "4789ef007ad567373952c2a451d39474f6c31988efc3d669a3de3c512c641785",
+      "inputCount": 942,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {},
+      "counts": null
+    },
+    {
+      "project": "trpc",
+      "mode": "enabled",
+      "command": [
+        "/tmp/tsc-symbol-request-census",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+      "reference": "benchmarks/results/native-node-pointer/small.json",
+      "referenceSha256": "4789ef007ad567373952c2a451d39474f6c31988efc3d669a3de3c512c641785",
+      "inputCount": 942,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {
+        "census.json": {
+          "sha256": "9d9e98a9c96789ef6d3126e9213959d5f4110ecc29c0d844c2765ab14e6506ec",
+          "bytes": 2992
+        }
+      },
+      "counts": {
+        "owners": 4,
+        "totals": {
+          "Requests": 37474,
+          "NewKeys": 37474,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        "byMapperKind": [
+          {
+            "kind": "nil",
+            "Requests": 0,
+            "NewKeys": 0,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "simple",
+            "Requests": 6782,
+            "NewKeys": 6782,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "array",
+            "Requests": 26365,
+            "NewKeys": 26365,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "merged",
+            "Requests": 0,
+            "NewKeys": 0,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "unknown",
+            "Requests": 4327,
+            "NewKeys": 4327,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          }
+        ],
+        "limitation": "Counts concern a bounded first-key ledger and selected last-observed state, not safe reuse or population repetition rates. Unknown-at-capacity requests remain unknown."
+      }
+    },
+    {
+      "project": "vscode",
+      "mode": "baseline",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "reference": "benchmarks/results/native-node-pointer/large.json",
+      "referenceSha256": "a84d0b2f136f30d4c4926549a6ab63199d568c53fbec0d9d9b70a3983e396298",
+      "inputCount": 11563,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {},
+      "counts": null
+    },
+    {
+      "project": "vscode",
+      "mode": "disabled",
+      "command": [
+        "/tmp/tsc-symbol-request-census",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "reference": "benchmarks/results/native-node-pointer/large.json",
+      "referenceSha256": "a84d0b2f136f30d4c4926549a6ab63199d568c53fbec0d9d9b70a3983e396298",
+      "inputCount": 11563,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {},
+      "counts": null
+    },
+    {
+      "project": "vscode",
+      "mode": "enabled",
+      "command": [
+        "/tmp/tsc-symbol-request-census",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+      "reference": "benchmarks/results/native-node-pointer/large.json",
+      "referenceSha256": "a84d0b2f136f30d4c4926549a6ab63199d568c53fbec0d9d9b70a3983e396298",
+      "inputCount": 11563,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {
+        "census.json": {
+          "sha256": "0ff2d591e0e8955f53f218bfbb2dfc5518d9aeaedf0c75855d723b31237f63a9",
+          "bytes": 3072
+        }
+      },
+      "counts": {
+        "owners": 4,
+        "totals": {
+          "Requests": 1859702,
+          "NewKeys": 131072,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 1728630
+        },
+        "byMapperKind": [
+          {
+            "kind": "nil",
+            "Requests": 0,
+            "NewKeys": 0,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "simple",
+            "Requests": 398337,
+            "NewKeys": 23644,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 374693
+          },
+          {
+            "kind": "array",
+            "Requests": 1349488,
+            "NewKeys": 98690,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 1250798
+          },
+          {
+            "kind": "merged",
+            "Requests": 0,
+            "NewKeys": 0,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "unknown",
+            "Requests": 111877,
+            "NewKeys": 8738,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 103139
+          }
+        ],
+        "limitation": "Counts concern a bounded first-key ledger and selected last-observed state, not safe reuse or population repetition rates. Unknown-at-capacity requests remain unknown."
+      }
+    },
+    {
+      "project": "sentry",
+      "mode": "baseline",
+      "command": [
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "reference": "benchmarks/results/native-node-pointer/large.json",
+      "referenceSha256": "a84d0b2f136f30d4c4926549a6ab63199d568c53fbec0d9d9b70a3983e396298",
+      "inputCount": 13290,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {},
+      "counts": null
+    },
+    {
+      "project": "sentry",
+      "mode": "disabled",
+      "command": [
+        "/tmp/tsc-symbol-request-census",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "reference": "benchmarks/results/native-node-pointer/large.json",
+      "referenceSha256": "a84d0b2f136f30d4c4926549a6ab63199d568c53fbec0d9d9b70a3983e396298",
+      "inputCount": 13290,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {},
+      "counts": null
+    },
+    {
+      "project": "sentry",
+      "mode": "enabled",
+      "command": [
+        "/tmp/tsc-symbol-request-census",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry",
+      "reference": "benchmarks/results/native-node-pointer/large.json",
+      "referenceSha256": "a84d0b2f136f30d4c4926549a6ab63199d568c53fbec0d9d9b70a3983e396298",
+      "inputCount": 13290,
+      "exitStatus": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": {
+        "census.json": {
+          "sha256": "b190aece1c3d0221aa6205033daad44ae54f0619c6c4ca641f14bb688d3c876f",
+          "bytes": 3066
+        }
+      },
+      "counts": {
+        "owners": 4,
+        "totals": {
+          "Requests": 1688083,
+          "NewKeys": 131072,
+          "RepeatedSameObservedState": 5,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 1557006
+        },
+        "byMapperKind": [
+          {
+            "kind": "nil",
+            "Requests": 0,
+            "NewKeys": 0,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "simple",
+            "Requests": 139576,
+            "NewKeys": 8161,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 131415
+          },
+          {
+            "kind": "array",
+            "Requests": 1492384,
+            "NewKeys": 118433,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 1373951
+          },
+          {
+            "kind": "merged",
+            "Requests": 0,
+            "NewKeys": 0,
+            "RepeatedSameObservedState": 0,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 0
+          },
+          {
+            "kind": "unknown",
+            "Requests": 56123,
+            "NewKeys": 4478,
+            "RepeatedSameObservedState": 5,
+            "RepeatedChangedObservedState": 0,
+            "UntrackedAtCapacity": 51640
+          }
+        ],
+        "limitation": "Counts concern a bounded first-key ledger and selected last-observed state, not safe reuse or population repetition rates. Unknown-at-capacity requests remain unknown."
+      }
+    }
+  ],
+  "removedEnvironmentNames": []
+}

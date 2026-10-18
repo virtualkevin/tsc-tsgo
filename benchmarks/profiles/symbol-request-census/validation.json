@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "fe6ef0d9a4bb262639d679b132a6dbcb2852658fd991e61cd719e75722e12431",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "fb6815b2661b43b25418fa7c54b78235dcd6f0e4f62efc9a55f06b6df7ba9775",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/symbol_request_census.go": "5b66d8bc8070ac0fed117243c8b209abdd48a4de2a1350da1312f67e4454a92f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/symbol_request_census_test.go": "f55f5e23dfa1df8e91648604f3e1a9a3bfc37b3fb14c0682d79eb386cebb21d7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/symbol_request_census.go": "ce986858ab0a4cc824e035816e7bea0c1c0fa9947b5c54cc3036ab07a2b3db06"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/symbol-request-census/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestSymbolRequest"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestSymbolRequestStateAndCapacity",
+        "TestSymbolRequestMapperKinds",
+        "TestSymbolRequestExclusiveOutput"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/symbol-request-census/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestSymbolRequest"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestSymbolRequestStateAndCapacity",
+        "TestSymbolRequestMapperKinds",
+        "TestSymbolRequestExclusiveOutput"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/symbol-request-census/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestSymbolRequest"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestSymbolRequestStateAndCapacity",
+        "TestSymbolRequestMapperKinds",
+        "TestSymbolRequestExclusiveOutput"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "scope": "Verified diagnostic counts for first32768weakidentitykeys perchecker; unknown-at-capacity remainsunknown, samepartialstate isnotreuseeligibility. No speedupclaim.",
+  "captureHead": "80e2bf35b52eca90cdca1b69157a258dcfff045b",
+  "reportSha256": "14be222e2fee4d76b81219a5b29e842c85ba57f52b4148e4bfde4f0b94ef294c",
+  "projects": [
+    {
+      "project": "typeorm",
+      "owners": 4,
+      "totals": {
+        "Requests": 176521,
+        "NewKeys": 131072,
+        "RepeatedSameObservedState": 0,
+        "RepeatedChangedObservedState": 0,
+        "UntrackedAtCapacity": 45449
+      },
+      "byMapperKind": [
+        {
+          "kind": "nil",
+          "Requests": 0,
+          "NewKeys": 0,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "simple",
+          "Requests": 24358,
+          "NewKeys": 19339,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 5019
+        },
+        {
+          "kind": "array",
+          "Requests": 135872,
+          "NewKeys": 98349,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 37523
+        },
+        {
+          "kind": "merged",
+          "Requests": 0,
+          "NewKeys": 0,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "unknown",
+          "Requests": 16291,
+          "NewKeys": 13384,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 2907
+        }
+      ],
+      "limitation": "Counts concern a bounded first-key ledger and selected last-observed state, not safe reuse or population repetition rates. Unknown-at-capacity requests remain unknown."
+    },
+    {
+      "project": "trpc",
+      "owners": 4,
+      "totals": {
+        "Requests": 37474,
+        "NewKeys": 37474,
+        "RepeatedSameObservedState": 0,
+        "RepeatedChangedObservedState": 0,
+        "UntrackedAtCapacity": 0
+      },
+      "byMapperKind": [
+        {
+          "kind": "nil",
+          "Requests": 0,
+          "NewKeys": 0,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "simple",
+          "Requests": 6782,
+          "NewKeys": 6782,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "array",
+          "Requests": 26365,
+          "NewKeys": 26365,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "merged",
+          "Requests": 0,
+          "NewKeys": 0,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "unknown",
+          "Requests": 4327,
+          "NewKeys": 4327,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        }
+      ],
+      "limitation": "Counts concern a bounded first-key ledger and selected last-observed state, not safe reuse or population repetition rates. Unknown-at-capacity requests remain unknown."
+    },
+    {
+      "project": "vscode",
+      "owners": 4,
+      "totals": {
+        "Requests": 1859702,
+        "NewKeys": 131072,
+        "RepeatedSameObservedState": 0,
+        "RepeatedChangedObservedState": 0,
+        "UntrackedAtCapacity": 1728630
+      },
+      "byMapperKind": [
+        {
+          "kind": "nil",
+          "Requests": 0,
+          "NewKeys": 0,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "simple",
+          "Requests": 398337,
+          "NewKeys": 23644,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 374693
+        },
+        {
+          "kind": "array",
+          "Requests": 1349488,
+          "NewKeys": 98690,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 1250798
+        },
+        {
+          "kind": "merged",
+          "Requests": 0,
+          "NewKeys": 0,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "unknown",
+          "Requests": 111877,
+          "NewKeys": 8738,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 103139
+        }
+      ],
+      "limitation": "Counts concern a bounded first-key ledger and selected last-observed state, not safe reuse or population repetition rates. Unknown-at-capacity requests remain unknown."
+    },
+    {
+      "project": "sentry",
+      "owners": 4,
+      "totals": {
+        "Requests": 1688083,
+        "NewKeys": 131072,
+        "RepeatedSameObservedState": 5,
+        "RepeatedChangedObservedState": 0,
+        "UntrackedAtCapacity": 1557006
+      },
+      "byMapperKind": [
+        {
+          "kind": "nil",
+          "Requests": 0,
+          "NewKeys": 0,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "simple",
+          "Requests": 139576,
+          "NewKeys": 8161,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 131415
+        },
+        {
+          "kind": "array",
+          "Requests": 1492384,
+          "NewKeys": 118433,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 1373951
+        },
+        {
+          "kind": "merged",
+          "Requests": 0,
+          "NewKeys": 0,
+          "RepeatedSameObservedState": 0,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 0
+        },
+        {
+          "kind": "unknown",
+          "Requests": 56123,
+          "NewKeys": 4478,
+          "RepeatedSameObservedState": 5,
+          "RepeatedChangedObservedState": 0,
+          "UntrackedAtCapacity": 51640
+        }
+      ],
+      "limitation": "Counts concern a bounded first-key ledger and selected last-observed state, not safe reuse or population repetition rates. Unknown-at-capacity requests remain unknown."
+    }
+  ]
+}

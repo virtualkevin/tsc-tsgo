@@ -1,0 +1,24 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/symbol-request-census/overlay.json",
+    "-o",
+    "/tmp/tsc-symbol-request-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "fe6ef0d9a4bb262639d679b132a6dbcb2852658fd991e61cd719e75722e12431",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "fb6815b2661b43b25418fa7c54b78235dcd6f0e4f62efc9a55f06b6df7ba9775",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/symbol_request_census.go": "5b66d8bc8070ac0fed117243c8b209abdd48a4de2a1350da1312f67e4454a92f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/symbol_request_census_test.go": "f55f5e23dfa1df8e91648604f3e1a9a3bfc37b3fb14c0682d79eb386cebb21d7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/symbol_request_census.go": "ce986858ab0a4cc824e035816e7bea0c1c0fa9947b5c54cc3036ab07a2b3db06"
+  },
+  "controllerSha256": "c387ce75a11dacb39e5d18718e83e896e02d11051251bea174077e42587e0218",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "b572b9894574d9c602188019a056f5d7d69d3d9a6568fc608c6408f392a693af",
+  "buildInfoSha256": "a6fd40c4594e4515569e5cd43544e26d8cd8440c04de42b29e186e87d786715d"
+}
