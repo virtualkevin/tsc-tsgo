@@ -1,0 +1,24 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/variable-branch-census/overlay.json",
+    "-o",
+    "/tmp/tsc-variable-branch-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "6def5ee413bda42788fef736d25683112a811cd6dbb17a3bcec72e77371ec835",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "9cf76b18af7e55cd0f096586dce9d115a77ff48bb5a11f5cb7c78dc99ce543ad",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/variable_branch_census.go": "28eebf503b7f926d7211c7e57d482836697d77197d499e9649c923e3e9f67c8b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/variable_branch_census_test.go": "b8bfe12be9aad62651760f26b0b984db303ad1550fb74bfc8431089c572d2dac",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/variable_branch_census.go": "e0faa9612f7dcbc99dc3308a0cb98e14c9def5467135b0813394b6bd167654f2"
+  },
+  "controllerSha256": "223a8c2d3ba3982e0cef14567ca97b5fb0d200d6ef29e923d79229ca74220f0c",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "377bea24c4a0c925ce31f42dd96010e3da2f59c3a2097e52be63add635cf629f",
+  "buildInfoSha256": "14f794f45e0f3b480a5c27c73964ff6d5e8a8dee11f9435afbfb88c9f6abc56c"
+}

@@ -1,0 +1,4596 @@
+{
+  "scope": "All observed variable-like resolver calls, not only symbol misses. Uncapped branch totals. Exclusive instrumented elapsed intervals subtract nested observed calls, but include other callees and prior failed alternatives. Parallel checker intervals can overlap in wall time. These are not CPU percentages, safe-reuse proof, or speedup estimates.",
+  "kindSourceSha256": "c3cdd3cdc865e44c3f6dbb45295556fb6321e5c555c7dfde7c652b2dbefc0a66",
+  "analyzerSha256": "db67357506839fc4cc2a9528b2aa490a840eaa2fb757e74955f9236819926972",
+  "captureSha256": "e691ef28772b05e65a33e78b8d9c83fd10459850576c01fbf059a75529e6dc05",
+  "verificationSha256": "4098cf88e919cb8bf9607bb2968cb0aa50a2d9ef494abc17fd7f25fbdf24f32f",
+  "projects": [
+    {
+      "project": "typeorm",
+      "checkers": 1,
+      "censusSha256": "29b2ca6d737acdf6a0e29d92fd75eeb28a427463573800eeeb3b9d5760e2b3d5",
+      "totals": {
+        "owners": 1,
+        "calls": 41648,
+        "nonNil": 41636,
+        "errorResults": 0,
+        "exclusiveNs": 672815579,
+        "exclusiveInstantiations": 107206,
+        "branchCalls": [
+          0,
+          7,
+          737,
+          750,
+          247,
+          22512,
+          18,
+          11,
+          0,
+          0,
+          1,
+          0,
+          6,
+          17347,
+          10,
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      "branches": [
+        {
+          "branch": "unclassified",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-in",
+          "calls": 7,
+          "nonNil": 7,
+          "errorResults": 0,
+          "exclusiveNs": 44551,
+          "exclusiveInstantiations": 7,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-of",
+          "calls": 737,
+          "nonNil": 737,
+          "errorResults": 0,
+          "exclusiveNs": 6396765,
+          "exclusiveInstantiations": 545,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-element",
+          "calls": 750,
+          "nonNil": 750,
+          "errorResults": 0,
+          "exclusiveNs": 7473293,
+          "exclusiveInstantiations": 1487,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "catch",
+          "calls": 247,
+          "nonNil": 247,
+          "errorResults": 0,
+          "exclusiveNs": 107004,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "annotation",
+          "calls": 22512,
+          "nonNil": 22512,
+          "errorResults": 0,
+          "exclusiveNs": 51901611,
+          "exclusiveInstantiations": 1843,
+          "activeContextCalls": 786
+        },
+        {
+          "branch": "auto",
+          "calls": 18,
+          "nonNil": 18,
+          "errorResults": 0,
+          "exclusiveNs": 16634,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "auto-array",
+          "calls": 11,
+          "nonNil": 11,
+          "errorResults": 0,
+          "exclusiveNs": 7381,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "parameter-no-symbol",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-this",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-return",
+          "calls": 1,
+          "nonNil": 1,
+          "errorResults": 0,
+          "exclusiveNs": 608,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "full-signature",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "contextual-parameter",
+          "calls": 6,
+          "nonNil": 6,
+          "errorResults": 0,
+          "exclusiveNs": 8964,
+          "exclusiveInstantiations": 4,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "initializer",
+          "calls": 17347,
+          "nonNil": 17347,
+          "errorResults": 0,
+          "exclusiveNs": 606852615,
+          "exclusiveInstantiations": 103320,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "calls": 10,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 4755,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "static-flow-or-base",
+          "calls": 2,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 1398,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "jsx-boolean",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-pattern",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "no-inferred-type",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        }
+      ],
+      "cohorts": [
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 15430,
+          "exclusiveNs": 589760649,
+          "exclusiveInstantiations": 101111,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 8793,
+          "exclusiveNs": 26959521,
+          "exclusiveInstantiations": 1546,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1713,
+          "exclusiveNs": 15487924,
+          "exclusiveInstantiations": 2200,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 7324,
+          "exclusiveNs": 12637049,
+          "exclusiveInstantiations": 31,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 742,
+          "exclusiveNs": 7469755,
+          "exclusiveInstantiations": 1487,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2995,
+          "exclusiveNs": 5923205,
+          "exclusiveInstantiations": 126,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2208,
+          "exclusiveNs": 5106704,
+          "exclusiveInstantiations": 133,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 412,
+          "exclusiveNs": 4366099,
+          "exclusiveInstantiations": 415,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 325,
+          "exclusiveNs": 2030666,
+          "exclusiveInstantiations": 130,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 166,
+          "exclusiveNs": 1503583,
+          "exclusiveInstantiations": 9,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 607,
+          "exclusiveNs": 580898,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 176,
+          "exclusiveNs": 377002,
+          "exclusiveInstantiations": 7,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 174,
+          "exclusiveNs": 127407,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 247,
+          "exclusiveNs": 107004,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 3,
+          "exclusiveNs": 101790,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 232,
+          "exclusiveNs": 88035,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 28,
+          "exclusiveNs": 51893,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 10,
+          "exclusiveNs": 48566,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-in",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 7,
+          "exclusiveNs": 44551,
+          "exclusiveInstantiations": 7,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "auto",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 18,
+          "exclusiveNs": 16634,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 6,
+          "exclusiveNs": 8964,
+          "exclusiveInstantiations": 4,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "auto-array",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 11,
+          "exclusiveNs": 7381,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 10,
+          "exclusiveNs": 4755,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 8,
+          "exclusiveNs": 3538,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "static-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 1398,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "accessor-return",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1,
+          "exclusiveNs": 608,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        }
+      ]
+    },
+    {
+      "project": "typeorm",
+      "checkers": 4,
+      "censusSha256": "9f35df2512b0ea7451ba094d0867a8afb47ade793990f6bb0559a1418a08b156",
+      "totals": {
+        "owners": 4,
+        "calls": 65143,
+        "nonNil": 65129,
+        "errorResults": 0,
+        "exclusiveNs": 1234677483,
+        "exclusiveInstantiations": 131028,
+        "branchCalls": [
+          0,
+          7,
+          743,
+          777,
+          247,
+          45430,
+          18,
+          11,
+          0,
+          0,
+          1,
+          0,
+          6,
+          17889,
+          12,
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      "branches": [
+        {
+          "branch": "unclassified",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-in",
+          "calls": 7,
+          "nonNil": 7,
+          "errorResults": 0,
+          "exclusiveNs": 77707,
+          "exclusiveInstantiations": 7,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-of",
+          "calls": 743,
+          "nonNil": 743,
+          "errorResults": 0,
+          "exclusiveNs": 9501687,
+          "exclusiveInstantiations": 767,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-element",
+          "calls": 777,
+          "nonNil": 777,
+          "errorResults": 0,
+          "exclusiveNs": 14111873,
+          "exclusiveInstantiations": 2871,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "catch",
+          "calls": 247,
+          "nonNil": 247,
+          "errorResults": 0,
+          "exclusiveNs": 182262,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "annotation",
+          "calls": 45430,
+          "nonNil": 45430,
+          "errorResults": 0,
+          "exclusiveNs": 192009589,
+          "exclusiveInstantiations": 5227,
+          "activeContextCalls": 1993
+        },
+        {
+          "branch": "auto",
+          "calls": 18,
+          "nonNil": 18,
+          "errorResults": 0,
+          "exclusiveNs": 31322,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "auto-array",
+          "calls": 11,
+          "nonNil": 11,
+          "errorResults": 0,
+          "exclusiveNs": 7520,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "parameter-no-symbol",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-this",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-return",
+          "calls": 1,
+          "nonNil": 1,
+          "errorResults": 0,
+          "exclusiveNs": 1077,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "full-signature",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "contextual-parameter",
+          "calls": 6,
+          "nonNil": 6,
+          "errorResults": 0,
+          "exclusiveNs": 21476,
+          "exclusiveInstantiations": 4,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "initializer",
+          "calls": 17889,
+          "nonNil": 17889,
+          "errorResults": 0,
+          "exclusiveNs": 1018722422,
+          "exclusiveInstantiations": 122152,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "calls": 12,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 8035,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "static-flow-or-base",
+          "calls": 2,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 2513,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "jsx-boolean",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-pattern",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "no-inferred-type",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        }
+      ],
+      "cohorts": [
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 15665,
+          "exclusiveNs": 981368849,
+          "exclusiveInstantiations": 119671,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 21513,
+          "exclusiveNs": 99083987,
+          "exclusiveInstantiations": 4447,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 12733,
+          "exclusiveNs": 48758444,
+          "exclusiveInstantiations": 159,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1765,
+          "exclusiveNs": 33015599,
+          "exclusiveInstantiations": 2460,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 6379,
+          "exclusiveNs": 25745644,
+          "exclusiveInstantiations": 421,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 769,
+          "exclusiveNs": 14108189,
+          "exclusiveInstantiations": 2871,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2406,
+          "exclusiveNs": 9013860,
+          "exclusiveInstantiations": 149,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 418,
+          "exclusiveNs": 6886080,
+          "exclusiveInstantiations": 563,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 704,
+          "exclusiveNs": 4712808,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 394,
+          "exclusiveNs": 4162258,
+          "exclusiveInstantiations": 21,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 511,
+          "exclusiveNs": 3038090,
+          "exclusiveInstantiations": 51,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 325,
+          "exclusiveNs": 2615607,
+          "exclusiveInstantiations": 204,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 770,
+          "exclusiveNs": 1181835,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 174,
+          "exclusiveNs": 204791,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 247,
+          "exclusiveNs": 182262,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 8,
+          "exclusiveNs": 139429,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 55,
+          "exclusiveNs": 136979,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 232,
+          "exclusiveNs": 130701,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "for-in",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 7,
+          "exclusiveNs": 77707,
+          "exclusiveInstantiations": 7,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 10,
+          "exclusiveNs": 38737,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "auto",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 18,
+          "exclusiveNs": 31322,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 6,
+          "exclusiveNs": 21476,
+          "exclusiveInstantiations": 4,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 12,
+          "exclusiveNs": 8035,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "auto-array",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 11,
+          "exclusiveNs": 7520,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 8,
+          "exclusiveNs": 3684,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "static-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 2513,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "accessor-return",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1,
+          "exclusiveNs": 1077,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        }
+      ]
+    },
+    {
+      "project": "trpc",
+      "checkers": 1,
+      "censusSha256": "03612145e3d5376cb6abe2abbd26b1eb4b24e6fb706f08989faf8f42f22311e3",
+      "totals": {
+        "owners": 1,
+        "calls": 6717,
+        "nonNil": 6717,
+        "errorResults": 0,
+        "exclusiveNs": 134808644,
+        "exclusiveInstantiations": 29947,
+        "branchCalls": [
+          0,
+          2,
+          196,
+          176,
+          25,
+          4736,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1575,
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "branches": [
+        {
+          "branch": "unclassified",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-in",
+          "calls": 2,
+          "nonNil": 2,
+          "errorResults": 0,
+          "exclusiveNs": 119024,
+          "exclusiveInstantiations": 9,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-of",
+          "calls": 196,
+          "nonNil": 196,
+          "errorResults": 0,
+          "exclusiveNs": 3065363,
+          "exclusiveInstantiations": 375,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-element",
+          "calls": 176,
+          "nonNil": 176,
+          "errorResults": 0,
+          "exclusiveNs": 1918757,
+          "exclusiveInstantiations": 333,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "catch",
+          "calls": 25,
+          "nonNil": 25,
+          "errorResults": 0,
+          "exclusiveNs": 10723,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "annotation",
+          "calls": 4736,
+          "nonNil": 4736,
+          "errorResults": 0,
+          "exclusiveNs": 20458665,
+          "exclusiveInstantiations": 3190,
+          "activeContextCalls": 124
+        },
+        {
+          "branch": "auto",
+          "calls": 4,
+          "nonNil": 4,
+          "errorResults": 0,
+          "exclusiveNs": 1685,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "auto-array",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "parameter-no-symbol",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-this",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-return",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "full-signature",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "contextual-parameter",
+          "calls": 1,
+          "nonNil": 1,
+          "errorResults": 0,
+          "exclusiveNs": 226472,
+          "exclusiveInstantiations": 57,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "initializer",
+          "calls": 1575,
+          "nonNil": 1575,
+          "errorResults": 0,
+          "exclusiveNs": 108920004,
+          "exclusiveInstantiations": 25983,
+          "activeContextCalls": 1
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "calls": 2,
+          "nonNil": 2,
+          "errorResults": 0,
+          "exclusiveNs": 87951,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "static-flow-or-base",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "jsx-boolean",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-pattern",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "no-inferred-type",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        }
+      ],
+      "cohorts": [
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 995,
+          "exclusiveNs": 104202079,
+          "exclusiveInstantiations": 24988,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2794,
+          "exclusiveNs": 10896419,
+          "exclusiveInstantiations": 1667,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1289,
+          "exclusiveNs": 4919962,
+          "exclusiveInstantiations": 323,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 569,
+          "exclusiveNs": 4665788,
+          "exclusiveInstantiations": 995,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 411,
+          "exclusiveNs": 3207153,
+          "exclusiveInstantiations": 1021,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 174,
+          "exclusiveNs": 1881032,
+          "exclusiveInstantiations": 324,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 148,
+          "exclusiveNs": 1651126,
+          "exclusiveInstantiations": 115,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 48,
+          "exclusiveNs": 1414237,
+          "exclusiveInstantiations": 260,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 68,
+          "exclusiveNs": 674654,
+          "exclusiveInstantiations": 178,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 112,
+          "exclusiveNs": 496842,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1,
+          "exclusiveNs": 226472,
+          "exclusiveInstantiations": 57,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 33,
+          "exclusiveNs": 159366,
+          "exclusiveInstantiations": 1,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "for-in",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 119024,
+          "exclusiveInstantiations": 9,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 22,
+          "exclusiveNs": 101755,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 87951,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 37725,
+          "exclusiveInstantiations": 9,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1,
+          "exclusiveNs": 33995,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 5,
+          "exclusiveNs": 11091,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 25,
+          "exclusiveNs": 10723,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 4,
+          "exclusiveNs": 4382,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1,
+          "exclusiveNs": 2669,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "auto",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 4,
+          "exclusiveNs": 1685,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 6,
+          "exclusiveNs": 1355,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1,
+          "exclusiveNs": 1159,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        }
+      ]
+    },
+    {
+      "project": "trpc",
+      "checkers": 4,
+      "censusSha256": "4eb62a527206582367b36e825dddd25e4a6a6f872946298f593763e5745df994",
+      "totals": {
+        "owners": 4,
+        "calls": 10258,
+        "nonNil": 10258,
+        "errorResults": 0,
+        "exclusiveNs": 266389897,
+        "exclusiveInstantiations": 66300,
+        "branchCalls": [
+          0,
+          2,
+          196,
+          176,
+          25,
+          8216,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1632,
+          6,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "branches": [
+        {
+          "branch": "unclassified",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-in",
+          "calls": 2,
+          "nonNil": 2,
+          "errorResults": 0,
+          "exclusiveNs": 263899,
+          "exclusiveInstantiations": 9,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-of",
+          "calls": 196,
+          "nonNil": 196,
+          "errorResults": 0,
+          "exclusiveNs": 5977539,
+          "exclusiveInstantiations": 1843,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-element",
+          "calls": 176,
+          "nonNil": 176,
+          "errorResults": 0,
+          "exclusiveNs": 2561317,
+          "exclusiveInstantiations": 439,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "catch",
+          "calls": 25,
+          "nonNil": 25,
+          "errorResults": 0,
+          "exclusiveNs": 14640,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "annotation",
+          "calls": 8216,
+          "nonNil": 8216,
+          "errorResults": 0,
+          "exclusiveNs": 59465639,
+          "exclusiveInstantiations": 7139,
+          "activeContextCalls": 498
+        },
+        {
+          "branch": "auto",
+          "calls": 4,
+          "nonNil": 4,
+          "errorResults": 0,
+          "exclusiveNs": 3304,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "auto-array",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "parameter-no-symbol",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-this",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-return",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "full-signature",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "contextual-parameter",
+          "calls": 1,
+          "nonNil": 1,
+          "errorResults": 0,
+          "exclusiveNs": 285137,
+          "exclusiveInstantiations": 57,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "initializer",
+          "calls": 1632,
+          "nonNil": 1632,
+          "errorResults": 0,
+          "exclusiveNs": 197552787,
+          "exclusiveInstantiations": 56813,
+          "activeContextCalls": 2
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "calls": 6,
+          "nonNil": 6,
+          "errorResults": 0,
+          "exclusiveNs": 265635,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "static-flow-or-base",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "jsx-boolean",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-pattern",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "no-inferred-type",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        }
+      ],
+      "cohorts": [
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1050,
+          "exclusiveNs": 190941230,
+          "exclusiveInstantiations": 55750,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 4754,
+          "exclusiveNs": 30932960,
+          "exclusiveInstantiations": 4960,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2249,
+          "exclusiveNs": 14454251,
+          "exclusiveInstantiations": 695,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 512,
+          "exclusiveNs": 9520767,
+          "exclusiveInstantiations": 1175,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 569,
+          "exclusiveNs": 6441680,
+          "exclusiveInstantiations": 1058,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 48,
+          "exclusiveNs": 3430517,
+          "exclusiveInstantiations": 1677,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 148,
+          "exclusiveNs": 2547022,
+          "exclusiveInstantiations": 166,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 174,
+          "exclusiveNs": 2517651,
+          "exclusiveInstantiations": 430,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 192,
+          "exclusiveNs": 1843754,
+          "exclusiveInstantiations": 255,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 197,
+          "exclusiveNs": 1225464,
+          "exclusiveInstantiations": 7,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 96,
+          "exclusiveNs": 856551,
+          "exclusiveInstantiations": 47,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 204,
+          "exclusiveNs": 616944,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1,
+          "exclusiveNs": 285137,
+          "exclusiveInstantiations": 57,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 6,
+          "exclusiveNs": 265635,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "for-in",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 263899,
+          "exclusiveInstantiations": 9,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 2,
+          "exclusiveNs": 141052,
+          "exclusiveInstantiations": 5,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 43666,
+          "exclusiveInstantiations": 9,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 6,
+          "exclusiveNs": 19835,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 25,
+          "exclusiveNs": 14640,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 6,
+          "exclusiveNs": 13367,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 4,
+          "exclusiveNs": 6874,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "auto",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 4,
+          "exclusiveNs": 3304,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1,
+          "exclusiveNs": 2116,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 6,
+          "exclusiveNs": 1581,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "checkers": 1,
+      "censusSha256": "26a139407afc6e310d29108c236e38fc5218f5b366fe133109898fdd38748508",
+      "totals": {
+        "owners": 1,
+        "calls": 1023961,
+        "nonNil": 1023956,
+        "errorResults": 2,
+        "exclusiveNs": 17671747279,
+        "exclusiveInstantiations": 1273806,
+        "branchCalls": [
+          0,
+          225,
+          38945,
+          41677,
+          4367,
+          419384,
+          365,
+          501,
+          0,
+          0,
+          39,
+          0,
+          47,
+          517827,
+          579,
+          0,
+          0,
+          3,
+          2
+        ]
+      },
+      "branches": [
+        {
+          "branch": "unclassified",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-in",
+          "calls": 225,
+          "nonNil": 225,
+          "errorResults": 0,
+          "exclusiveNs": 1770129,
+          "exclusiveInstantiations": 118,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-of",
+          "calls": 38945,
+          "nonNil": 38945,
+          "errorResults": 0,
+          "exclusiveNs": 1013626668,
+          "exclusiveInstantiations": 79688,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-element",
+          "calls": 41677,
+          "nonNil": 41677,
+          "errorResults": 0,
+          "exclusiveNs": 230444805,
+          "exclusiveInstantiations": 32538,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "catch",
+          "calls": 4367,
+          "nonNil": 4367,
+          "errorResults": 0,
+          "exclusiveNs": 2751627,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "annotation",
+          "calls": 419384,
+          "nonNil": 419384,
+          "errorResults": 0,
+          "exclusiveNs": 1117852290,
+          "exclusiveInstantiations": 63648,
+          "activeContextCalls": 10298
+        },
+        {
+          "branch": "auto",
+          "calls": 365,
+          "nonNil": 365,
+          "errorResults": 0,
+          "exclusiveNs": 255129,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "auto-array",
+          "calls": 501,
+          "nonNil": 501,
+          "errorResults": 0,
+          "exclusiveNs": 599704,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "parameter-no-symbol",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-this",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-return",
+          "calls": 39,
+          "nonNil": 39,
+          "errorResults": 0,
+          "exclusiveNs": 45679,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "full-signature",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "contextual-parameter",
+          "calls": 47,
+          "nonNil": 47,
+          "errorResults": 0,
+          "exclusiveNs": 198496,
+          "exclusiveInstantiations": 18,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "initializer",
+          "calls": 517827,
+          "nonNil": 517827,
+          "errorResults": 2,
+          "exclusiveNs": 15183790993,
+          "exclusiveInstantiations": 1083055,
+          "activeContextCalls": 58
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "calls": 579,
+          "nonNil": 576,
+          "errorResults": 0,
+          "exclusiveNs": 120373814,
+          "exclusiveInstantiations": 14741,
+          "activeContextCalls": 1
+        },
+        {
+          "branch": "static-flow-or-base",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "jsx-boolean",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-pattern",
+          "calls": 3,
+          "nonNil": 3,
+          "errorResults": 0,
+          "exclusiveNs": 35472,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "no-inferred-type",
+          "calls": 2,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 2473,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        }
+      ],
+      "cohorts": [
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 343048,
+          "exclusiveNs": 13852395916,
+          "exclusiveInstantiations": 982007,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 24953,
+          "exclusiveNs": 699039107,
+          "exclusiveInstantiations": 33644,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 146348,
+          "exclusiveNs": 601275738,
+          "exclusiveInstantiations": 66774,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 23980,
+          "exclusiveNs": 595091451,
+          "exclusiveInstantiations": 51124,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 231703,
+          "exclusiveNs": 574176917,
+          "exclusiveInstantiations": 23340,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 14953,
+          "exclusiveNs": 418349443,
+          "exclusiveInstantiations": 28542,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 41117,
+          "exclusiveNs": 228817875,
+          "exclusiveInstantiations": 32421,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 112422,
+          "exclusiveNs": 219810032,
+          "exclusiveInstantiations": 4357,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 26256,
+          "exclusiveNs": 159805128,
+          "exclusiveInstantiations": 31452,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 37017,
+          "exclusiveNs": 125044280,
+          "exclusiveInstantiations": 4005,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 578,
+          "exclusiveNs": 120340010,
+          "exclusiveInstantiations": 14741,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 8395,
+          "exclusiveNs": 21135780,
+          "exclusiveInstantiations": 13,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2921,
+          "exclusiveNs": 19513334,
+          "exclusiveInstantiations": 107,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1869,
+          "exclusiveNs": 16701834,
+          "exclusiveInstantiations": 481,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 482,
+          "exclusiveNs": 5774168,
+          "exclusiveInstantiations": 251,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 51,
+          "exclusiveNs": 5592894,
+          "exclusiveInstantiations": 272,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 4367,
+          "exclusiveNs": 2751627,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-in",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 225,
+          "exclusiveNs": 1770129,
+          "exclusiveInstantiations": 118,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 558,
+          "exclusiveNs": 1625469,
+          "exclusiveInstantiations": 117,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1624,
+          "exclusiveNs": 907290,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "auto-array",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 501,
+          "exclusiveNs": 599704,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "auto",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 365,
+          "exclusiveNs": 255129,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 12,
+          "exclusiveNs": 185774,
+          "exclusiveInstantiations": 22,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 30,
+          "exclusiveNs": 156290,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 45,
+          "exclusiveNs": 150236,
+          "exclusiveInstantiations": 18,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 17,
+          "exclusiveNs": 125487,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 6,
+          "exclusiveNs": 69299,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 58,
+          "exclusiveNs": 65834,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 48260,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 4,
+          "exclusiveNs": 47276,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "accessor-return",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 39,
+          "exclusiveNs": 45679,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 3,
+          "exclusiveNs": 35472,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1,
+          "exclusiveNs": 33804,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1,
+          "exclusiveNs": 5050,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "no-inferred-type",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 2473,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 1461,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 4,
+          "exclusiveNs": 901,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 728,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "checkers": 4,
+      "censusSha256": "8bd61ad92aa36b16a6776048f011d6602761d0a236c6a1988e7b3120b8290a64",
+      "totals": {
+        "owners": 4,
+        "calls": 1335771,
+        "nonNil": 1335766,
+        "errorResults": 2,
+        "exclusiveNs": 23971626716,
+        "exclusiveInstantiations": 2061049,
+        "branchCalls": [
+          0,
+          225,
+          38992,
+          41768,
+          4369,
+          707635,
+          375,
+          507,
+          0,
+          0,
+          39,
+          0,
+          47,
+          540794,
+          1010,
+          0,
+          0,
+          8,
+          2
+        ]
+      },
+      "branches": [
+        {
+          "branch": "unclassified",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-in",
+          "calls": 225,
+          "nonNil": 225,
+          "errorResults": 0,
+          "exclusiveNs": 2505551,
+          "exclusiveInstantiations": 125,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-of",
+          "calls": 38992,
+          "nonNil": 38992,
+          "errorResults": 0,
+          "exclusiveNs": 1078368573,
+          "exclusiveInstantiations": 88210,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-element",
+          "calls": 41768,
+          "nonNil": 41768,
+          "errorResults": 0,
+          "exclusiveNs": 233261096,
+          "exclusiveInstantiations": 35622,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "catch",
+          "calls": 4369,
+          "nonNil": 4369,
+          "errorResults": 0,
+          "exclusiveNs": 2769025,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 2
+        },
+        {
+          "branch": "annotation",
+          "calls": 707635,
+          "nonNil": 707635,
+          "errorResults": 0,
+          "exclusiveNs": 3404676374,
+          "exclusiveInstantiations": 151783,
+          "activeContextCalls": 33601
+        },
+        {
+          "branch": "auto",
+          "calls": 375,
+          "nonNil": 375,
+          "errorResults": 0,
+          "exclusiveNs": 263305,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "auto-array",
+          "calls": 507,
+          "nonNil": 507,
+          "errorResults": 0,
+          "exclusiveNs": 599493,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "parameter-no-symbol",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-this",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-return",
+          "calls": 39,
+          "nonNil": 39,
+          "errorResults": 0,
+          "exclusiveNs": 73601,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "full-signature",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "contextual-parameter",
+          "calls": 47,
+          "nonNil": 47,
+          "errorResults": 0,
+          "exclusiveNs": 182374,
+          "exclusiveInstantiations": 21,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "initializer",
+          "calls": 540794,
+          "nonNil": 540794,
+          "errorResults": 2,
+          "exclusiveNs": 19009814299,
+          "exclusiveInstantiations": 1745590,
+          "activeContextCalls": 221
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "calls": 1010,
+          "nonNil": 1007,
+          "errorResults": 0,
+          "exclusiveNs": 239053646,
+          "exclusiveInstantiations": 39698,
+          "activeContextCalls": 2
+        },
+        {
+          "branch": "static-flow-or-base",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "jsx-boolean",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-pattern",
+          "calls": 8,
+          "nonNil": 8,
+          "errorResults": 0,
+          "exclusiveNs": 57236,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "no-inferred-type",
+          "calls": 2,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 2143,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        }
+      ],
+      "cohorts": [
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 353813,
+          "exclusiveNs": 17059808982,
+          "exclusiveInstantiations": 1603691,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 381388,
+          "exclusiveNs": 1777040094,
+          "exclusiveInstantiations": 77978,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 35899,
+          "exclusiveNs": 1139769667,
+          "exclusiveInstantiations": 61884,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 208803,
+          "exclusiveNs": 885328153,
+          "exclusiveInstantiations": 11530,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 146456,
+          "exclusiveNs": 758175282,
+          "exclusiveInstantiations": 77681,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 23999,
+          "exclusiveNs": 626277706,
+          "exclusiveInstantiations": 52604,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 14981,
+          "exclusiveNs": 451910484,
+          "exclusiveInstantiations": 35584,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 40584,
+          "exclusiveNs": 295282319,
+          "exclusiveInstantiations": 49175,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1008,
+          "exclusiveNs": 238969649,
+          "exclusiveInstantiations": 39697,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 41208,
+          "exclusiveNs": 231383439,
+          "exclusiveInstantiations": 35503,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 21463,
+          "exclusiveNs": 197400287,
+          "exclusiveInstantiations": 918,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 41547,
+          "exclusiveNs": 177517443,
+          "exclusiveInstantiations": 10293,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 11836,
+          "exclusiveNs": 68359761,
+          "exclusiveInstantiations": 1887,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 3906,
+          "exclusiveNs": 29800065,
+          "exclusiveInstantiations": 187,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 108,
+          "exclusiveNs": 11903616,
+          "exclusiveInstantiations": 1661,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 482,
+          "exclusiveNs": 5069764,
+          "exclusiveInstantiations": 251,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 95,
+          "exclusiveNs": 4941916,
+          "exclusiveInstantiations": 235,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 4367,
+          "exclusiveNs": 2768080,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-in",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 225,
+          "exclusiveNs": 2505551,
+          "exclusiveInstantiations": 125,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 280,
+          "exclusiveNs": 2451675,
+          "exclusiveInstantiations": 2,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 558,
+          "exclusiveNs": 1876804,
+          "exclusiveInstantiations": 119,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1648,
+          "exclusiveNs": 999768,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "auto-array",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 507,
+          "exclusiveNs": 599493,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 18,
+          "exclusiveNs": 268133,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "auto",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 375,
+          "exclusiveNs": 263305,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 22,
+          "exclusiveNs": 233783,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 12,
+          "exclusiveNs": 180383,
+          "exclusiveInstantiations": 22,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 45,
+          "exclusiveNs": 141366,
+          "exclusiveInstantiations": 21,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 2,
+          "exclusiveNs": 83997,
+          "exclusiveInstantiations": 1,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 17,
+          "exclusiveNs": 76874,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "accessor-return",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 39,
+          "exclusiveNs": 73601,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 58,
+          "exclusiveNs": 60124,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 41008,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 4,
+          "exclusiveNs": 29140,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 4,
+          "exclusiveNs": 28096,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "no-inferred-type",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 2143,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 4,
+          "exclusiveNs": 1821,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 1146,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 2,
+          "exclusiveNs": 945,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 853,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindBindingElement"
+        }
+      ]
+    },
+    {
+      "project": "sentry",
+      "checkers": 1,
+      "censusSha256": "97b7c94b4b8bc08425db307b6abd419dbfa7b3553a066bbb724992a81921baf7",
+      "totals": {
+        "owners": 1,
+        "calls": 444191,
+        "nonNil": 444010,
+        "errorResults": 238,
+        "exclusiveNs": 12297671070,
+        "exclusiveInstantiations": 2002445,
+        "branchCalls": [
+          0,
+          48,
+          2843,
+          45479,
+          310,
+          201339,
+          13,
+          69,
+          0,
+          0,
+          0,
+          0,
+          55,
+          193822,
+          173,
+          0,
+          0,
+          32,
+          8
+        ]
+      },
+      "branches": [
+        {
+          "branch": "unclassified",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-in",
+          "calls": 48,
+          "nonNil": 48,
+          "errorResults": 0,
+          "exclusiveNs": 284872,
+          "exclusiveInstantiations": 9,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-of",
+          "calls": 2843,
+          "nonNil": 2843,
+          "errorResults": 0,
+          "exclusiveNs": 54428507,
+          "exclusiveInstantiations": 6913,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-element",
+          "calls": 45479,
+          "nonNil": 45479,
+          "errorResults": 2,
+          "exclusiveNs": 365961550,
+          "exclusiveInstantiations": 34652,
+          "activeContextCalls": 105
+        },
+        {
+          "branch": "catch",
+          "calls": 310,
+          "nonNil": 310,
+          "errorResults": 0,
+          "exclusiveNs": 181851,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "annotation",
+          "calls": 201339,
+          "nonNil": 201339,
+          "errorResults": 5,
+          "exclusiveNs": 1306735845,
+          "exclusiveInstantiations": 43891,
+          "activeContextCalls": 9373
+        },
+        {
+          "branch": "auto",
+          "calls": 13,
+          "nonNil": 13,
+          "errorResults": 0,
+          "exclusiveNs": 11380,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "auto-array",
+          "calls": 69,
+          "nonNil": 69,
+          "errorResults": 0,
+          "exclusiveNs": 73241,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "parameter-no-symbol",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-this",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-return",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "full-signature",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "contextual-parameter",
+          "calls": 55,
+          "nonNil": 55,
+          "errorResults": 0,
+          "exclusiveNs": 233167,
+          "exclusiveInstantiations": 16,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "initializer",
+          "calls": 193822,
+          "nonNil": 193822,
+          "errorResults": 231,
+          "exclusiveNs": 10569345148,
+          "exclusiveInstantiations": 1916963,
+          "activeContextCalls": 277
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "calls": 173,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 128220,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "static-flow-or-base",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "jsx-boolean",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-pattern",
+          "calls": 32,
+          "nonNil": 32,
+          "errorResults": 0,
+          "exclusiveNs": 279804,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 1
+        },
+        {
+          "branch": "no-inferred-type",
+          "calls": 8,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 7485,
+          "exclusiveInstantiations": 1,
+          "activeContextCalls": 0
+        }
+      ],
+      "cohorts": [
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 100778,
+          "exclusiveNs": 8805716886,
+          "exclusiveInstantiations": 1687867,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 91621,
+          "exclusiveNs": 1731685482,
+          "exclusiveInstantiations": 226147,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 36069,
+          "exclusiveNs": 804011995,
+          "exclusiveInstantiations": 12819,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 44228,
+          "exclusiveNs": 354311637,
+          "exclusiveInstantiations": 24114,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 55116,
+          "exclusiveNs": 212120928,
+          "exclusiveInstantiations": 19873,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 6941,
+          "exclusiveNs": 197521086,
+          "exclusiveInstantiations": 6215,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 91833,
+          "exclusiveNs": 48552917,
+          "exclusiveInstantiations": 7,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1200,
+          "exclusiveNs": 33373848,
+          "exclusiveInstantiations": 2465,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 7114,
+          "exclusiveNs": 24987369,
+          "exclusiveInstantiations": 3253,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1641,
+          "exclusiveNs": 21052794,
+          "exclusiveInstantiations": 4448,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 149,
+          "exclusiveNs": 14312893,
+          "exclusiveInstantiations": 2124,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1136,
+          "exclusiveNs": 10537098,
+          "exclusiveInstantiations": 10414,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1417,
+          "exclusiveNs": 9662302,
+          "exclusiveInstantiations": 1399,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 362,
+          "exclusiveNs": 9293609,
+          "exclusiveInstantiations": 501,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 827,
+          "exclusiveNs": 5333341,
+          "exclusiveInstantiations": 297,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 875,
+          "exclusiveNs": 3860808,
+          "exclusiveInstantiations": 28,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": true,
+          "calls": 88,
+          "exclusiveNs": 2327800,
+          "exclusiveInstantiations": 172,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 40,
+          "exclusiveNs": 2203527,
+          "exclusiveInstantiations": 148,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 404,
+          "exclusiveNs": 1791028,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 350,
+          "exclusiveNs": 1780684,
+          "exclusiveInstantiations": 4,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 105,
+          "exclusiveNs": 1103508,
+          "exclusiveInstantiations": 124,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 953,
+          "exclusiveNs": 338724,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "for-in",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 48,
+          "exclusiveNs": 284872,
+          "exclusiveInstantiations": 9,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 73,
+          "exclusiveNs": 245906,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 30,
+          "exclusiveNs": 233239,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 49,
+          "exclusiveNs": 222136,
+          "exclusiveInstantiations": 16,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 24,
+          "exclusiveNs": 204100,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 310,
+          "exclusiveNs": 181851,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 173,
+          "exclusiveNs": 128220,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "auto-array",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 69,
+          "exclusiveNs": 73241,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 5,
+          "exclusiveNs": 71436,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": true,
+          "calls": 67,
+          "exclusiveNs": 69115,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 52,
+          "exclusiveNs": 27958,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "auto",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 13,
+          "exclusiveNs": 11380,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 6,
+          "exclusiveNs": 11031,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 10,
+          "exclusiveNs": 9307,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "no-inferred-type",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 8,
+          "exclusiveNs": 7485,
+          "exclusiveInstantiations": 1,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 3403,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 3396,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 1865,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1,
+          "exclusiveNs": 865,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        }
+      ]
+    },
+    {
+      "project": "sentry",
+      "checkers": 4,
+      "censusSha256": "7409833ea6652f8bdd32e8168b12ac6efed6c8b163497a772b946a267f9890ed",
+      "totals": {
+        "owners": 4,
+        "calls": 601490,
+        "nonNil": 601122,
+        "errorResults": 262,
+        "exclusiveNs": 25945265650,
+        "exclusiveInstantiations": 5051883,
+        "branchCalls": [
+          0,
+          48,
+          2843,
+          52248,
+          314,
+          333412,
+          13,
+          78,
+          0,
+          0,
+          0,
+          0,
+          64,
+          212069,
+          359,
+          0,
+          0,
+          33,
+          9
+        ]
+      },
+      "branches": [
+        {
+          "branch": "unclassified",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-in",
+          "calls": 48,
+          "nonNil": 48,
+          "errorResults": 0,
+          "exclusiveNs": 318685,
+          "exclusiveInstantiations": 10,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "for-of",
+          "calls": 2843,
+          "nonNil": 2843,
+          "errorResults": 0,
+          "exclusiveNs": 64554377,
+          "exclusiveInstantiations": 8824,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-element",
+          "calls": 52248,
+          "nonNil": 52248,
+          "errorResults": 2,
+          "exclusiveNs": 683661747,
+          "exclusiveInstantiations": 55894,
+          "activeContextCalls": 1182
+        },
+        {
+          "branch": "catch",
+          "calls": 314,
+          "nonNil": 314,
+          "errorResults": 0,
+          "exclusiveNs": 225345,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "annotation",
+          "calls": 333412,
+          "nonNil": 333412,
+          "errorResults": 11,
+          "exclusiveNs": 3734168474,
+          "exclusiveInstantiations": 279920,
+          "activeContextCalls": 33878
+        },
+        {
+          "branch": "auto",
+          "calls": 13,
+          "nonNil": 13,
+          "errorResults": 0,
+          "exclusiveNs": 8438,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "auto-array",
+          "calls": 78,
+          "nonNil": 78,
+          "errorResults": 0,
+          "exclusiveNs": 75081,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "parameter-no-symbol",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-this",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "accessor-return",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "full-signature",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "contextual-parameter",
+          "calls": 64,
+          "nonNil": 64,
+          "errorResults": 0,
+          "exclusiveNs": 335423,
+          "exclusiveInstantiations": 37,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "initializer",
+          "calls": 212069,
+          "nonNil": 212069,
+          "errorResults": 249,
+          "exclusiveNs": 21460902873,
+          "exclusiveInstantiations": 4707197,
+          "activeContextCalls": 2940
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "calls": 359,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 216771,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "static-flow-or-base",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "jsx-boolean",
+          "calls": 0,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 0,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 0
+        },
+        {
+          "branch": "binding-pattern",
+          "calls": 33,
+          "nonNil": 33,
+          "errorResults": 0,
+          "exclusiveNs": 777825,
+          "exclusiveInstantiations": 0,
+          "activeContextCalls": 2
+        },
+        {
+          "branch": "no-inferred-type",
+          "calls": 9,
+          "nonNil": 0,
+          "errorResults": 0,
+          "exclusiveNs": 20611,
+          "exclusiveInstantiations": 1,
+          "activeContextCalls": 0
+        }
+      ],
+      "cohorts": [
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 110958,
+          "exclusiveNs": 17938169839,
+          "exclusiveInstantiations": 4211666,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 96461,
+          "exclusiveNs": 3180520254,
+          "exclusiveInstantiations": 446652,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 64726,
+          "exclusiveNs": 1598108701,
+          "exclusiveInstantiations": 131391,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 123403,
+          "exclusiveNs": 1052471637,
+          "exclusiveInstantiations": 91576,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 172,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 23567,
+          "exclusiveNs": 808848057,
+          "exclusiveInstantiations": 30844,
+          "declarationKindName": "KindPropertySignature"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 49646,
+          "exclusiveNs": 647820466,
+          "exclusiveInstantiations": 42064,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1132,
+          "exclusiveNs": 230831773,
+          "exclusiveInstantiations": 37409,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 9715,
+          "exclusiveNs": 83980379,
+          "exclusiveInstantiations": 12810,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 6320,
+          "exclusiveNs": 70117849,
+          "exclusiveInstantiations": 11875,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 98173,
+          "exclusiveNs": 64491325,
+          "exclusiveInstantiations": 108,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": true,
+          "calls": 1609,
+          "exclusiveNs": 50135517,
+          "exclusiveInstantiations": 7305,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 1200,
+          "exclusiveNs": 41074215,
+          "exclusiveInstantiations": 4216,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 715,
+          "exclusiveNs": 39363551,
+          "exclusiveInstantiations": 3358,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 2312,
+          "exclusiveNs": 30865810,
+          "exclusiveInstantiations": 1029,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1641,
+          "exclusiveNs": 23478243,
+          "exclusiveInstantiations": 4608,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 3534,
+          "exclusiveNs": 22261290,
+          "exclusiveInstantiations": 163,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1410,
+          "exclusiveNs": 17793199,
+          "exclusiveInstantiations": 11352,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 1134,
+          "exclusiveNs": 17332725,
+          "exclusiveInstantiations": 2322,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 183,
+          "exclusiveNs": 14858746,
+          "exclusiveInstantiations": 646,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 431,
+          "exclusiveNs": 4284691,
+          "exclusiveInstantiations": 156,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 534,
+          "exclusiveNs": 2398845,
+          "exclusiveInstantiations": 5,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 186,
+          "exclusiveNs": 2003426,
+          "exclusiveInstantiations": 22,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 1151,
+          "exclusiveNs": 722773,
+          "exclusiveInstantiations": 102,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": true,
+          "calls": 48,
+          "exclusiveNs": 705615,
+          "exclusiveInstantiations": 156,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 24,
+          "exclusiveNs": 651174,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 58,
+          "exclusiveNs": 326947,
+          "exclusiveInstantiations": 37,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "for-in",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 48,
+          "exclusiveNs": 318685,
+          "exclusiveInstantiations": 10,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 30,
+          "exclusiveNs": 299416,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": true,
+          "calls": 265,
+          "exclusiveNs": 256714,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "catch",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 314,
+          "exclusiveNs": 225345,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "instance-flow-or-base",
+          "declarationKind": 173,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 359,
+          "exclusiveNs": 216771,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindPropertyDeclaration"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 5,
+          "exclusiveNs": 103161,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "auto-array",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 78,
+          "exclusiveNs": 75081,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 52,
+          "exclusiveNs": 32566,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": true,
+          "calls": 9,
+          "exclusiveNs": 22791,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 2,
+          "exclusiveNs": 21462,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "no-inferred-type",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 9,
+          "exclusiveNs": 20611,
+          "exclusiveInstantiations": 1,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "initializer",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": true,
+          "calls": 7,
+          "exclusiveNs": 17450,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-element",
+          "declarationKind": 209,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 10,
+          "exclusiveNs": 9742,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindBindingElement"
+        },
+        {
+          "branch": "contextual-parameter",
+          "declarationKind": 170,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 6,
+          "exclusiveNs": 8476,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "auto",
+          "declarationKind": 261,
+          "checkMode": 0,
+          "includeOptionality": true,
+          "activeContext": false,
+          "calls": 13,
+          "exclusiveNs": 8438,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 4966,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        },
+        {
+          "branch": "annotation",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": true,
+          "calls": 6,
+          "exclusiveNs": 2981,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "binding-pattern",
+          "declarationKind": 170,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 2028,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindParameter"
+        },
+        {
+          "branch": "for-of",
+          "declarationKind": 261,
+          "checkMode": 32,
+          "includeOptionality": false,
+          "activeContext": false,
+          "calls": 2,
+          "exclusiveNs": 1919,
+          "exclusiveInstantiations": 0,
+          "declarationKindName": "KindVariableDeclaration"
+        }
+      ]
+    }
+  ]
+}

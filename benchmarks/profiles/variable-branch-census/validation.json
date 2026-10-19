@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "6def5ee413bda42788fef736d25683112a811cd6dbb17a3bcec72e77371ec835",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "9cf76b18af7e55cd0f096586dce9d115a77ff48bb5a11f5cb7c78dc99ce543ad",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/variable_branch_census.go": "28eebf503b7f926d7211c7e57d482836697d77197d499e9649c923e3e9f67c8b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/variable_branch_census_test.go": "b8bfe12be9aad62651760f26b0b984db303ad1550fb74bfc8431089c572d2dac",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/variable_branch_census.go": "e0faa9612f7dcbc99dc3308a0cb98e14c9def5467135b0813394b6bd167654f2"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/variable-branch-census/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestVariableBranch"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestVariableBranchNestedPartition",
+        "TestVariableBranchAnnotationDifferential",
+        "TestVariableBranchSnapshotFields"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/variable-branch-census/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestVariableBranch"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestVariableBranchNestedPartition",
+        "TestVariableBranchAnnotationDifferential",
+        "TestVariableBranchSnapshotFields"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/variable-branch-census/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestVariableBranch"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestVariableBranchNestedPartition",
+        "TestVariableBranchAnnotationDifferential",
+        "TestVariableBranchSnapshotFields"
+      ]
+    }
+  ]
+}

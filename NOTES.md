@@ -1116,3 +1116,39 @@ calls/taggedtemplates/contextualcallbacks. Resolver source includescycle diagnos
 initializer/contextual/flow inference. Do not buildorigin-only sharedresultcache.
 Next targeteduncapped branch aggregates withbounded detail foractualannotation/
 contextual/initializer/flow/binding paths, preservingexistingqueries/order. NoPERF.
+
+Uncapped variable-branch-census overlay implemented on retainedsource, actual
+getTypeForVariableLikeDeclaration branch decisions only. Allcalls notjustcachemisses;
+19labels and declarationkind/checkmode/optionality/recordedcontext dimensions.
+Finalselectedbranch includes precedingfailedalternatives, nestedobservedcalls
+subtracted; noorigins/cap/semanticgraphretention. Noextraresolvercalls. Focused3tests
+normal/race/checkptr session77379 running; normaldiagbuild and24controls prepared
+but notstarted. Counters NonNil/errorTypesentinel do not claimdiagnosticcompleteness.
+Productionunchanged. Nextvalidate thenbaseline/disabled/enabled one/four controls.
+
+Branch census initialfocused77379 failed in annotationfixture before observerenabled:
+synthetic annotation lacked Parent links, causing getConditionalFlowTypeOfType nil
+parent access. Preserved rawfailure andtestsource underinitial-fixture-failure;
+fixed annotation->property->interface ancestry only. Restartedfocused58323; diagnostic
+build launched separately (capture remains gated on passingvalidation). Added
+independent24control verifier and2passing countvalidator tests. No productionchange.
+
+Branch census focused58323 passed all3 tests normal/race/checkptr; independent
+raw-log readback passed. Diagnosticbuild62064 passed. Sourceaudit removes explicit
+observer additions and restores byte-identical production checker (not behavioral
+proof). Supervised24control capture78827 running, HEAD1a66583 frozen; TypeORM all6
+controls passed so far. Analysis remains gated on completecapture/independentverify.
+
+Branchcapture78827 terminated143 after14 passingcontrols, during VS1-enabled.
+Signalaudit identifies sendercodexPID3841/UID1000; reasonunknown. Originalfailed
+report andunfinishedoutputs preserved; resumedonly10unfinished controls via20425,
+allpins checked against original. Verifier now checks unchanged14run prefix and
+bothcontroller/report hashes. No timing or productionchange.
+
+Branch resumed20425 completed0; independentverify79065 passed all24 controls/8
+snapshots and unchanged14prefix. Analyzer reconciles all branch/cohort totals.
+Initializers lead all4workloads at1/4checkers; fourchecker exclusive instrumented
+seconds TypeORM1.0187,tRPC.1976,VS19.0098,Sentry21.4609. Annotation .1920/.0595/
+3.4047/3.7342. Not CPU/savings; no caploss. Existing initializer quicktype/cache,
+contextual checks, bindingpatternpadding and JS wideningdiagnostics exclude naive
+origin-cache sharing. Evidence complete; noPERF or productionchange. Goalunmet.
