@@ -47,4 +47,6 @@ source `fe85ceeeecd9525e78a89e2309d456476cd87f83029ec72d7d65b4f247bc8e0d`,
 and provenance sidecar `f8e562075d1f26d82ffeaeeb4f06e01009e2675b0668b04b301ffd2450fb3986`.
 The binary matches the tested normal overlay build. Only checker.go and the new
 query-order test differ from retained source. Retained source, default binary,
-and default sidecar were restored and verified. The workload screen is pending.
+and default sidecar were restored and verified. The completed workload screen failed acceptance; see DECISION.md.
+
+Status: rejected after the complete frozen screen. Production unchanged.
