@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/paired-property-cache/overlay.json",
+    "-o",
+    "/tmp/tsc-paired-property-cache-validation/tsc-paired-property-cache",
+    "./cmd/tsgo"
+  ],
+  "binarySha256": "e2eefe22adcef517b4ee48a1df2a3ea966005ca9fb0ec2164c3e99f6028f0653",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "caa9d146ef197db4ff75eda41a5c06b6a39aff9d9494eaf7d18c54cb442fff90",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/lazy_properties_test.go": "5dbb5b232cfe03622c257fb07015c68c4cd12884af76e61a35a8f56283ef5d62",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_cache_ownership_test.go": "1a43665a567464553d09665f4054acf2356bd9525585fc10dd445196ebbb0549",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/types.go": "27d7e3c01288888a21e80e5a4950fa5af4c94be55034c731a7ad93d815cc65a0",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/union_property_cache_test.go": "cbcc1c2980221f5e2a06425b286b76e2a55a14c23e1b2a676ada70cee28073d7"
+  },
+  "scope": "Isolated overlay; normal production build provenance still required."
+}

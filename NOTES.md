@@ -1161,3 +1161,82 @@ cannotexplain10x; existing quicktype/expressioncache/signatureflow/reentrance ef
 precludeorigin-cache. Broadersemanticrepresentation remains direction, no established
 10xmechanism. Production/PERF unchanged. Temporary callleafinspection exploratory
 only, notarchived/claimed asverified attribution.
+
+Property-cache-ownership audit starts after7f654d8. Distinct proposed storagepooling
+keeps type identity/augmentation namespaces, unlike rejected semanticsharing. Source
+shows type-owned caches read before receiver synthesis; checker-local TypeId notglobally
+unique. Pooledreceiver cache maybreak crossreceiver publication; ownerpool changes
+concurrencygranularity/retention. Two stateful overlaytests added for late member
+mutation plus crossreceiver hits/distinct typecache identities; focusednormal/race/
+checkptr95951 running. No candidateimplementation/promotion/timing. Productionunchanged.
+
+Implemented paired-property-cache isolatedoverlay at7f654d8. Centralizedpool idea
+replaced bytype-local map[name]{augmented,nonAugmented}; removesduplicatekey/second
+map storage withoutcross-type sharing orsharedmapconcurrency. Existinglookup/synthesis
+order kept; pair reread aftersynthesis preservesrecursiveotherslot winner. Nilmisses
+remainretryable. Twoheaderfields->one; pairvalueslarger, onesidedcost mayregress.
+10focused tests (7existingcache+lazyregression+2ownership) normal/race/checkptr45222
+running. Existingrepresentationassertions decode slots; empty-mapallocationstates
+notpreserved/claimed. Productionunchanged; fullgates/perfnotstarted. Ownershipbaseline
+95951 stillrunning whencandidate launched; stagedsourcefrozen duringtests.
+
+Ownershipbaseline95951 terminal0, bothtests passednormal/race/checkptr; independent
+raw-logreadbackpassed. Pairedcandidate45222 stillrunning; no productionchanges.
+
+Pairedcandidate45222 normalmode10tests passed; race/checkptr stillrunning. Prepared
+fullunit/conformance andCLI/API/emit/race/checkptr controllers, gated onfocusedpass,
+HEAD/source/defaultbinary/fixture pins. Expectedroot21177 derives prior21193 minus
+18propertyview tests plus2ownershiptests; no otherunit tests changed orremoved.
+Revieweddiff: pairfieldsandlookup onlyproduction changes, testreadadaptations explicit.
+
+Pairedfocused45222 terminal0 all10 eachnormal/race/checkptr; independentrawreadback
+passed sourcefreeze. Supervisedfull77547 andCLI36504 started atHEAD7f654d8 with
+frozensource/default/pins. Comparisonpolicy and independentverifier prepared before
+timing; standard9/5screen andtwo19/11confirmations unchanged. No perf/buildpromotion.
+
+Pairedcache77547/36504 confirmedlive duringfollowup; no outputs yet. Prepared
+screen/preflight/record/archive controllers using existing frozenpolicy and exact5file
+provenancedelta. Syntaxchecks passed; no executions/timing/productionapply. Buildrestore
+controller additionally handles partialsourceapplication byallowing originalorstaged
+hashes and missingnewfile duringrollback; unexpectededits refused. HEAD/source frozen.
+
+Pairedcache root21177/services219 passed under77547; rootrawarchive fullcount/no
+fail/skip verified, servicesrawcount/no testfails/skips verified. NormalCLI80 passed
+under36504 withrawarchivehash checked. Conformance/APIemit/race/checkptr remainrunning;
+no timing. Source/HEAD/defaults unchanged, benchmarkcontrollers preparedonly.
+
+PairedAPI/emit/project integration12passed under36504; rawgzip/hash/count readback
+passed. Conformance77547 and instrumentedCLI36504 stilllive; no sourcechange/timing.
+
+Fullcontroller77547 terminal0: root21177/services219/conformance14915 (12789full,
+8partial,2118unsupported,0failed). Fullindependentreadback waits forinstrumented
+CLIcompletion. No productionapply/perf; samefrozenHEAD7f654d8.
+
+CLI36504 terminal1 dueKeyboardInterrupt15 duringraceCLI, notreportedtestfailure.
+Supervisor sendercodexPID3841UID1000, reasonunknown. Originalreport retainedwith
+normal80/integration12passingprefix; interruptedrace/build output copied+hashed.
+Resumedonlyrace/checkptr via59650/newpaths, samefrozenHEAD/source/normal/comparators;
+instrumentedrebuilds sameflags. Verifier checksoriginal/resumed reports and prefix.
+Allunit/services/conformance evidence stillpassed. No timing/productionchange.
+
+Resumed59650 raceCLI80passed withrawgzip/hash/countreadback. Activeprocessinspection
+confirmed actualcompilerinvocations whiletestreporterbuffered output. Checkptrphase
+remaining; samefrozenpins, no source/perfchange.
+
+ResumedCLI59650 terminal1 KeyboardInterrupt15 duringcheckptrCLI afterrace80pass.
+Sendercodex3841UID1000 again, reasonunknown. Preservedsecondfailedreport and raw
+checkptr/build logs. Checkptr-only79779 startednewpaths, samepins; finalreport chains
+unchanged3passingprefix tobothhistoricalreports. No completedtestphase rerun/perf.
+
+Checkptr-only79779 terminal0 all80pass. Independentverifier3145 terminal0 checked
+completefull/focused/CLIrawarchives and three-report interruptionchain. Allcorrectness
+gates passed. Supervisednormalproductionbuild33671 started with exact5fileallowlist,
+source/binarybackups, source/buildprovenancecheck and guardedrestore. No competing
+builds/tests/timing; holdHEAD7f654d8 until buildrestore complete. Candidateunpromoted.
+
+Normalbuild33671 terminal0 binarye2eefe22adcef517b4ee48a1df2a3ea966005ca9fb0ec2164c3e99f6028f0653,
+sidecar52ff8f2ba251bd9476045dc2e8e526f2f73a422d7612125bc5eac80c7a118613,
+source26786e64904ea30e276686719634222cb1f87ac2d50ce720233d6f46b617966f.
+Exact5filedelta,5155candidate/5154retained; identicalbuildsettings andoverlaybinary.
+Retainedsource/defaultbinary/sidecarrestoredverified. Configprepared; preflight11974
+running. No performance samples yet. Savevalidatedcandidate beforefixedscreen.
