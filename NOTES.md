@@ -864,3 +864,17 @@ Baseline216d40c7/default8fe4bd80 restored. Benchmark config prepared, unchanged
 No new workload timing yet. Can now commit frozen candidate and obsolete-source
 counterexample evidence before launching the screen; do not run verifier against
 changed captureHEAD as if the build were captured later.
+
+Combined corrected relation-view screen38501 terminal143 after SIGTERM during
+Sentry. Supervisor recorded senderPID3841 UID1000 commcodex, cause unknown;
+forwarded immediately; zero leftover marked processes. Recorder64257 terminal0
+independently verified completed9pair small group: TypeORM2460.792515->2413.626815,
+ratio1.019541422/paired1.020287482; tRPC444.114781->456.927425, ratio.971959127/
+paired.972207952. tRPC fails both. REJECTED without replacement, confirmation,
+extra samples, threshold retuning or promotion. Large report/VSconsole preserved
+raw but no fourworkload aggregate/largePERFrows. Archived/readback11executionfiles,
+added2table-onlyPERFrows. CaptureHEAD32d8218; retainedsource/default unchanged.
+Waiting turns were verified waits on live38501; current turn obtained terminal
+signal evidence and definitive frozen-gate rejection. Next investigate view
+coverage and added cache/materialization work before another structural redesign;
+do not treat allocated-symbol reductions as demonstrated whole-compiler savings.

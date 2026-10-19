@@ -1,0 +1,41 @@
+{
+  "status": "incomplete screen; completed small workloads independently verified",
+  "summarySha256": "07652488a4cb49569319b920c78757c677c9fac76d0fad8eab3276568e3ad723",
+  "configSha256": "54fe9be07001865ac60f8eb2d1a6771755f83f4d8192add1731667216e46952a",
+  "results": [
+    {
+      "name": "typeorm",
+      "runs": 9,
+      "files": 3572,
+      "baselineMedianMs": 2460.792515,
+      "candidateMedianMs": 2413.626815,
+      "baselineOverCandidate": 1.0195414219409888,
+      "baselineMedianRssMiB": 882.62890625,
+      "candidateMedianRssMiB": 891.51171875,
+      "pairedMedian": 1.0202874815705818,
+      "rssCandidateOverBaseline": 1.010064039866698
+    },
+    {
+      "name": "trpc",
+      "runs": 9,
+      "files": 942,
+      "baselineMedianMs": 444.114781,
+      "candidateMedianMs": 456.927425,
+      "baselineOverCandidate": 0.9719591267694206,
+      "baselineMedianRssMiB": 241,
+      "candidateMedianRssMiB": 240.5,
+      "pairedMedian": 0.9722079521121284,
+      "rssCandidateOverBaseline": 0.9979253112033195
+    }
+  ],
+  "failedFloors": [
+    "trpc"
+  ],
+  "decision": "reject candidate; no confirmation, extra samples, retuning or promotion",
+  "limitations": [
+    "Large group interrupted; no four-workload aggregate computed.",
+    "Completed nine-pair workload-floor failure suffices to reject under the predeclared all-workloads gate.",
+    "VSCode console summary and partial large report retained as raw evidence, not independently credited here.",
+    "No comparison to original native target."
+  ]
+}
