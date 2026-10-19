@@ -1,0 +1,98 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "60a109c65b5ad83461c4970e3805e37bc57742d5513f7e96f0dc7f61fed5eed1",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "50489f52f3f8986e3f0fd21f2e7a5f6e1b1ac8b990bf16956c6a912c5f5f40e2",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view.go": "5f26ace70ccdc4cabee552e9404c75000d431cc074835853e6f6e6d1edc036d6",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_test.go": "b182a1b90faec06b3284eacbc57377ac7751e4f7daeccc89c8732d9eadc6b76a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "2eed574b877b11e5eb2efcffef61bf52c0e6b11cc4f90730ac75ca5bdba1c99a"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-relation-view-candidate/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory",
+        "TestPropertyViewRelationDifferential",
+        "TestPropertyViewRelationFallbackBeforeQueries"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-relation-view-candidate/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory",
+        "TestPropertyViewRelationDifferential",
+        "TestPropertyViewRelationFallbackBeforeQueries"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-relation-view-candidate/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory",
+        "TestPropertyViewRelationDifferential",
+        "TestPropertyViewRelationFallbackBeforeQueries"
+      ]
+    }
+  ]
+}

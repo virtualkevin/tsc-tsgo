@@ -1,0 +1,71 @@
+{
+  "scope": "Frozen overlay normal CLI/API/emit integration and race/checkptr CLI differential tests. Not workload timing or standard production build provenance.",
+  "passed": false,
+  "freezeSha256": "3e884d7dd0b682a15e02f8bb67bca4e579bbad9dfb4ace21edad426d80f27326",
+  "controllerSha256": "ef412c5ed92a68f5959cadfd796e2b7028982fc5a7b11aa9bf540826e1268ce9",
+  "commonSha256": "d3cd51b4446df5332c4d757b1fbd589fd6e0558ad028e3b95d177b5d4e865251",
+  "normalBuildSha256": "4bcdef97d9c39983ea4833b9d02e722d94dd28ecaacdf45254e26de3a2c77c77",
+  "comparators": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+    "/home/dev/tssss/tsc-tsgo/packages/tsgo/dist/tsgo": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a",
+    "/home/dev/tssss/tsc-tsgo/node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+  },
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "binarySha256": "80c5f93b94bff5c77008d67247e5982f139082705203dc3e1acdf8ab3926ecf6",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "file": "normal.log.gz",
+        "sha256": "8a0db698cec0a49a7a69e9ac22805876f17d43cf174ed84309c989d72a175eba",
+        "rawSha256": "872180fd6c231560d5dfd2a9e3e39c94b0e17fba86bbe7327c1842483ceda82a"
+      },
+      "passed": true
+    },
+    {
+      "mode": "integration",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "binarySha256": "80c5f93b94bff5c77008d67247e5982f139082705203dc3e1acdf8ab3926ecf6",
+      "exitCode": 0,
+      "counts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "file": "integration.log.gz",
+        "sha256": "9ea382c154655c1333670e6229cb5936f5ad866b797a212ad0e68ddcdc399aaa",
+        "rawSha256": "8d69b0f056a17f5784d53fa149d64f0d8287daf70355db8768e931ac26c61467"
+      },
+      "passed": true
+    }
+  ],
+  "error": "KeyboardInterrupt('15')"
+}

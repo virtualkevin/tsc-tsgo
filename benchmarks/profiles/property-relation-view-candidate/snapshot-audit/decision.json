@@ -1,0 +1,23 @@
+{
+  "accepted": false,
+  "reason": "View captured nameType after presence lookup, unlike earlier materialized clone.",
+  "regressionExitCode": 1,
+  "cliStop": "Intentional SIGTERM after regression confirmation; remaining instrumented CLI checks not credited.",
+  "completedCliModes": [
+    "normal",
+    "integration"
+  ],
+  "fullValidationPassed": true,
+  "files": {
+    "snapshot-audit/stdout.jsonl": "d7aa6bd67f0af804da1a38aeca17878e804378de31449f73d52afe76c6829307",
+    "snapshot-audit/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "snapshot-audit/snapshot_test.go": "6020d2401931097dcee5ef6d3c2d97526b2820631a0999af452fefa227c5ad9f",
+    "final-cli.json": "7160fa610ebafd5045b81acaf094e9db8aec230ad29c78698abdc0fc6a8fb881",
+    "full-validation.json": "78faf2a457c6a75beb0af82273ff12b30fb0d34518bcb329dd85744b1c754ce4",
+    "staged/checker.go": "60a109c65b5ad83461c4970e3805e37bc57742d5513f7e96f0dc7f61fed5eed1",
+    "staged/pending_members.go": "50489f52f3f8986e3f0fd21f2e7a5f6e1b1ac8b990bf16956c6a912c5f5f40e2",
+    "staged/property_view.go": "5f26ace70ccdc4cabee552e9404c75000d431cc074835853e6f6e6d1edc036d6",
+    "staged/property_view_test.go": "b182a1b90faec06b3284eacbc57377ac7751e4f7daeccc89c8732d9eadc6b76a",
+    "staged/relater.go": "2eed574b877b11e5eb2efcffef61bf52c0e6b11cc4f90730ac75ca5bdba1c99a"
+  }
+}

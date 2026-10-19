@@ -790,3 +790,77 @@ relations; a type-only adaptation would miss the key allocation opportunity.
 Retain target-before-source query order, private declaration identity, protected
 fallback, readonly checks and optionality-after-relation ordering. The earlier
 presence-only experiment remains rejected; no rescue rerun is justified.
+
+## Combined property relation view candidate (validation active)
+
+Implemented frozen five-file isolated overlay under
+`benchmarks/profiles/property-relation-view-candidate/` at HEAD32c711f. Presence
+checking and ordinary source-side property relations now share property views,
+including the pending type-cache/transfer mechanism. Missing or unsupported lookup
+uses original reduced lookup without repeating reduction/member resolution.
+Diagnostic, strict-subtype, protected, kept and already materialized relation paths
+fall back before type queries. Accepted paths preserve target-first queries,
+private declaration identity, missingness handling and optionality-after-relation.
+This is a materially broader consumer than the rejected presence-only experiment.
+
+Focused session6959: normal11 tests passed; race/checkptr still active at last poll.
+Full session96355 and CLI session26608 launched and confirmed live. Root expected
+21186 (baseline21175+11 focused), services219, pinned conformance14915; CLI80 each
+normal/race/checkptr plus API/emit12. Freeze HEAD, staged source and controllers
+until terminal results; do not commit yet. Production source/default remain
+unchanged. No timing or PERF rows. All three sessions were live at end-of-turn poll.
+
+Combined relation-view audit found a real component-contract counterexample before
+benchmarking. Old candidate focused11 normal/race/checkptr passed; root21186,
+services219 and conformance14915 passed (session96355 terminal0), normalCLI80 and
+API12 passed. Separate snapshot-audit session55334 terminal1 demonstrated that the
+old materialized presence lookup captured nameType before a later source-link
+mutation, while the view captured it at its later type query. No end-user triggering
+program is claimed. Preserved raw counterexample and hashes in old candidate's
+snapshot-audit/decision.json. Intentionally SIGTERM-stopped obsolete CLI controller
+PID857411; session26608 terminal1 records KeyboardInterrupt, not pass. No timing or
+promotion of that source. Prior successful suites do not override counterexample.
+
+Corrected five-file overlay: property-relation-view-snapshot. prepareTypeState
+captures nameType at first eligible logical lookup, without evaluating property
+type, and is reused by type queries. Kept/materialized states retain originalpath.
+Added the failing snapshot regression to focused suite. Session91232 normal12
+passed; race/checkptr remain running. Fresh full session47724 and CLI session44772
+launched/live. Expectedroot21187,services219,conformance14915,CLI80 each/API12.
+Keep HEAD32c711f and both candidate source/controllers frozen while validation is
+active; do not commit yet. Production source/default unchanged. No new PERF rows.
+
+Corrected snapshot continuation: focused session91232 completed0, all12 tests each
+normal/race/checkptr passed. Full session47724 reports root0 True (21187 tests),
+services/conformance still pending; CLI session44772 remains live. Prepared corrected
+normal-build/performance controllers, fixed at5 source-file deltas, and strengthened
+verify.py to reconstruct conformance coverage from gzip logs with the pinned helper.
+No build/timing started and no commit while HEAD freeze32c711f is active. Previous
+turn made semantic regression/fix progress; current turn completed instrumented
+component evidence and prepared downstream validation/build controls.
+
+Corrected snapshot validation update: full session47724 completed0; root21187,
+services219 and conformance coverage12789 full/8 partial/2118 unsupported/0failed
+all passed. Raw gzip archives were hash/readback checked. CLI session44772 ended1
+with KeyboardInterrupt('15') during race build, after normal80/API12 passed; no
+race test log existed. Cause/sender not captured, and no intentional stop was sent
+to this corrected controller. Preserved report/controller/empty buildlog as gzip
+under interrupted/ with hashes in interrupted.json. Do not mark interrupted run
+passed or rerun already completed phases.
+
+Resumed only race/checkptr using validate-cli-remaining.py with same HEAD32c711f,
+overlay, comparators and normal binary; supervised session55769 launched and
+confirmed live. Updated verify.py to require original successful phases plus both
+resumed phases and validate interruption archives, rather than rewrite failure.
+All source/HEAD remain frozen; no normal production build or timing started yet.
+
+Corrected snapshot validation/build completed: supervised55769 terminal0,
+race80/checkptr80 passed; supervisor contains started/exited0 only. Independent
+readback24204 terminal0 validates all focused/full/CLI and conformance coverage,
+plus preserved original interruption. Guarded normal build79712 terminal0 matched
+validated binary0cee0116, provenance8fbdc948, source52bd0f35,5156files andexact5delta.
+Baseline216d40c7/default8fe4bd80 restored. Benchmark config prepared, unchanged
+9small/5large alternating-pair/RSS screen and1.01bothaggregates/.98allfloors gates.
+No new workload timing yet. Can now commit frozen candidate and obsolete-source
+counterexample evidence before launching the screen; do not run verifier against
+changed captureHEAD as if the build were captured later.

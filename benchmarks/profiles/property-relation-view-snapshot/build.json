@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-relation-view-snapshot/overlay.json",
+    "-o",
+    "/tmp/tsc-property-relation-snapshot-validation/tsc-property-relation-snapshot",
+    "./cmd/tsgo"
+  ],
+  "binarySha256": "0cee0116847b25ac1cc87ffc1613a77971659b8aa92fc7d3da8995d542439022",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "6fce9d7a3a478afa8b86f1c9fca44e452aec117ab4a00a911ad414997954cd25",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "50489f52f3f8986e3f0fd21f2e7a5f6e1b1ac8b990bf16956c6a912c5f5f40e2",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view.go": "afa47e23b51a4ae35fdcea6ce8977297ac9d453a02bdc2248e8aab5e0c1a773b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_test.go": "fb187ae025342ddb45254523bd77c412e15e41193177c7922681cfeca903b1d5",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "2eed574b877b11e5eb2efcffef61bf52c0e6b11cc4f90730ac75ca5bdba1c99a"
+  },
+  "scope": "Isolated overlay; normal production build provenance still required."
+}
