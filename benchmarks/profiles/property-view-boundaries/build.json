@@ -1,0 +1,28 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-view-boundaries/overlay.json",
+    "-o",
+    "/tmp/tsc-property-view-boundaries",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "19f9fc24096e339f328a187410fab95ada4631620328f627d00f9290353907a2",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "58e32c2bd7ee797929f959956936461813bdc89382d0bad956df76187f65dea2",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_census_test.go": "6b45ee0af4c56db13cd2b6746eefa3225961352ab48b12cd18ab3d0815af3faa",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "98ca711f81ed21ebefa27cef5e1fba061e1a548d64a8f3d3fa34ea079e6af2bd",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_test.go": "fb187ae025342ddb45254523bd77c412e15e41193177c7922681cfeca903b1d5",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_census.go": "4735f5b5cf1d4a2a6d5998c491d68b6d3cc0d05744db918e924191a4f22cbc14",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view.go": "7c4e4771198b4776a2da515c9d87ed482fd460a14a6c03662bbcb3a53b5b58ce",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/property_view_census.go": "eab035e7036738d9d0a0f73c41a1ccf4a761fb11e40a49d9c9d611070a551a14",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "ebf4d8b9b51757be101b0848a46e9c00afa33e94249ee061de6aabb331264028"
+  },
+  "controllerSha256": "add470c70add2c1fb03e115897224d98a20b6a854d002b7ab3451e8c59667fbd",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "db0feb45d437eeaa64af6ff85119ff7b6f2c56321ef4f8b9e2840c45fa2d29e2",
+  "buildInfoSha256": "d2c26241f282094df6981e636bdd34f08d6ce581c9a17cf4f05fb183fae6602b"
+}

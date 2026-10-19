@@ -1,0 +1,722 @@
+{
+  "scope": "Ordered diagnostic exclusions and systematically sampled materialization callers. Not CPU cost, liveness, random estimation or speedup evidence.",
+  "omittedDispatchWrappers": [
+    "(*Checker).getPropertiesOfObjectType",
+    "(*Checker).getPropertiesOfType",
+    "(*StructuredType).Members",
+    "(*StructuredType).Properties",
+    "(*pendingInstantiatedMembers).materialize",
+    "(*pendingInstantiatedMembers).materializeTable"
+  ],
+  "results": [
+    {
+      "project": "typeorm",
+      "lookups": 390699,
+      "boundaries": {
+        "lookup-nonobject": {
+          "count": 4865,
+          "fractionOfLookups": 0.012452041085336794
+        },
+        "lookup-module": {
+          "count": 20,
+          "fractionOfLookups": 5.1190302509092675e-05
+        },
+        "lookup-no-pending": {
+          "count": 260724,
+          "fractionOfLookups": 0.667327021569034
+        },
+        "lookup-materialized-layout": {
+          "count": 59273,
+          "fractionOfLookups": 0.15171014003107253
+        },
+        "lookup-resolving": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-bases": {
+          "count": 33109,
+          "fractionOfLookups": 0.08474298628867748
+        },
+        "lookup-no-source": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-duplicates": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-missing-or-skipped": {
+          "count": 25781,
+          "fractionOfLookups": 0.06598685944934592
+        },
+        "lookup-name-or-kind": {
+          "count": 4217,
+          "fractionOfLookups": 0.010793475284042191
+        },
+        "lookup-instantiated-source": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-eligible": {
+          "count": 2710,
+          "fractionOfLookups": 0.006936285989982058
+        }
+      },
+      "bulkMaterializations": 10767,
+      "bulkSourceSlots": 149774,
+      "sampledEvents": 44,
+      "sampledCallers": [
+        {
+          "caller": "(*Checker).getUnmatchedPropertiesWorker",
+          "sampledEvents": 34,
+          "sampledSourceSlots": 404
+        },
+        {
+          "caller": "(*Checker).getPropertiesOfUnionOrIntersectionType",
+          "sampledEvents": 5,
+          "sampledSourceSlots": 92
+        },
+        {
+          "caller": "(*Checker).getLiteralTypeFromProperties",
+          "sampledEvents": 2,
+          "sampledSourceSlots": 15
+        },
+        {
+          "caller": "(*Checker).removeSubtypes",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 5
+        },
+        {
+          "caller": "(*Relater).propertiesIdenticalTo",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 4
+        },
+        {
+          "caller": "resolvedPropertiesAreOptional",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 3
+        }
+      ],
+      "topStacks": [
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx:423\npossibly truncated\n",
+          "sampledEvents": 9,
+          "sampledSourceSlots": 80
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\npossibly truncated\n",
+          "sampledEvents": 5,
+          "sampledSourceSlots": 30
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).hasUnmatchedProperty:114\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).typesDefinitelyUnrelated:1174\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromObjectTypes:698\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).invokeOnce:399\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromTypes:304\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferTypes:62\npossibly truncated\n",
+          "sampledEvents": 4,
+          "sampledSourceSlots": 172
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToSomeType:3045\npossibly truncated\n",
+          "sampledEvents": 4,
+          "sampledSourceSlots": 16
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).hasUnmatchedProperty:114\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).typesDefinitelyUnrelated:1175\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromObjectTypes:698\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).invokeOnce:399\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromTypes:304\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferTypes:62\npossibly truncated\n",
+          "sampledEvents": 3,
+          "sampledSourceSlots": 51
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToEachType:3064\npossibly truncated\n",
+          "sampledEvents": 3,
+          "sampledSourceSlots": 9
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfUnionOrIntersectionType:18738\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18720\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers:30647\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getApparentTypeOfContextualType:30575\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkObjectLiteral:13120\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7748\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx:7547\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWithContextualType:7471\npossibly truncated\n",
+          "sampledEvents": 2,
+          "sampledSourceSlots": 86
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfUnionOrIntersectionType:18738\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18720\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers:30647\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getApparentTypeOfContextualType:30575\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkObjectLiteral:13120\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7748\npossibly truncated\n",
+          "sampledEvents": 2,
+          "sampledSourceSlots": 4
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).hasUnmatchedProperty:114\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).typesDefinitelyUnrelated:1174\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromObjectTypes:698\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).invokeOnce:399\npossibly truncated\n",
+          "sampledEvents": 2,
+          "sampledSourceSlots": 4
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getLiteralTypeFromProperties:26677\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexTypeEx:26657\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexType:26632\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker:22203\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias:22076\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType:22041\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getConstraintFromTypeParameter:16999\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).computeBaseConstraint:27439\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 2
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getLiteralTypeFromProperties:26677\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexTypeEx:26657\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexType:26632\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker:22203\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias:22076\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType:22041\ngithub.com/microsoft/typescript-go/internal/checker.(*CompositeTypeMapper).Map:278\ngithub.com/microsoft/typescript-go/internal/checker.(*TypeMapper).Map:26\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 13
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfUnionOrIntersectionType:18738\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18720\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByObjectMembers:30647\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getApparentTypeOfContextualType:30575\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkObjectLiteral:13120\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7748\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx:7547\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionCachedEx:7513\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 2
+        }
+      ]
+    },
+    {
+      "project": "trpc",
+      "lookups": 37861,
+      "boundaries": {
+        "lookup-nonobject": {
+          "count": 2141,
+          "fractionOfLookups": 0.056548955389450886
+        },
+        "lookup-module": {
+          "count": 202,
+          "fractionOfLookups": 0.005335305459443755
+        },
+        "lookup-no-pending": {
+          "count": 9140,
+          "fractionOfLookups": 0.2414093658381976
+        },
+        "lookup-materialized-layout": {
+          "count": 11979,
+          "fractionOfLookups": 0.3163941787063205
+        },
+        "lookup-resolving": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-bases": {
+          "count": 9000,
+          "fractionOfLookups": 0.2377116293811574
+        },
+        "lookup-no-source": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-duplicates": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-missing-or-skipped": {
+          "count": 106,
+          "fractionOfLookups": 0.0027997147460447425
+        },
+        "lookup-name-or-kind": {
+          "count": 1823,
+          "fractionOfLookups": 0.04814981115131666
+        },
+        "lookup-instantiated-source": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-eligible": {
+          "count": 3470,
+          "fractionOfLookups": 0.09165103932806846
+        }
+      },
+      "bulkMaterializations": 3618,
+      "bulkSourceSlots": 28564,
+      "sampledEvents": 17,
+      "sampledCallers": [
+        {
+          "caller": "(*Checker).getUnmatchedPropertiesWorker",
+          "sampledEvents": 13,
+          "sampledSourceSlots": 121
+        },
+        {
+          "caller": "(*Checker).removeSubtypes",
+          "sampledEvents": 2,
+          "sampledSourceSlots": 46
+        },
+        {
+          "caller": "(*Checker).getLiteralTypeFromProperties",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 1
+        },
+        {
+          "caller": "(*Checker).resolveObjectTypeMembers",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 5
+        }
+      ],
+      "topStacks": [
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx:423\npossibly truncated\n",
+          "sampledEvents": 7,
+          "sampledSourceSlots": 60
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getLiteralTypeFromProperties:26677\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexTypeEx:26657\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexType:26632\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker:22203\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias:22076\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType:22041\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getConstraintFromTypeParameter:16999\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).computeBaseConstraint:27439\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 1
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).hasUnmatchedProperty:114\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).typesDefinitelyUnrelated:1174\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromObjectTypes:698\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).invokeOnce:399\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromTypes:304\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferTypes:62\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 3
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).signatureRelatedTo.func1:4589\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 17
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).someTypeRelatedToType:2977\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 2
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).typeArgumentsRelatedTo:3968\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 4
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).removeSubtypes:25948\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25670\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeEx:25635\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkConditionalExpression:10920\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7795\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx:7547\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionCachedEx:7513\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkDeclarationInitializer:16723\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 43
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).removeSubtypes:25948\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25670\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeEx:25635\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getReturnTypeFromBody:20109\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).contextuallyCheckFunctionExpressionOrObjectLiteralMethod:10178\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkFunctionExpressionOrObjectLiteralMethod:10130\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7769\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx:7547\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 3
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 32
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 3
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).resolveObjectTypeMembers:19058\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).resolveTypeReferenceMembers:19013\npossibly truncated\n",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 5
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "lookups": 8468315,
+      "boundaries": {
+        "lookup-nonobject": {
+          "count": 123011,
+          "fractionOfLookups": 0.014526030266942125
+        },
+        "lookup-module": {
+          "count": 4545,
+          "fractionOfLookups": 0.0005367065348891722
+        },
+        "lookup-no-pending": {
+          "count": 6427843,
+          "fractionOfLookups": 0.759046280163173
+        },
+        "lookup-materialized-layout": {
+          "count": 1190891,
+          "fractionOfLookups": 0.14062903895284953
+        },
+        "lookup-resolving": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-bases": {
+          "count": 607112,
+          "fractionOfLookups": 0.07169218433655337
+        },
+        "lookup-no-source": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-duplicates": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-missing-or-skipped": {
+          "count": 13321,
+          "fractionOfLookups": 0.0015730402092978355
+        },
+        "lookup-name-or-kind": {
+          "count": 65739,
+          "fractionOfLookups": 0.007762937491106554
+        },
+        "lookup-instantiated-source": {
+          "count": 12,
+          "fractionOfLookups": 1.4170469568030948e-06
+        },
+        "lookup-eligible": {
+          "count": 35841,
+          "fractionOfLookups": 0.004232364998231644
+        }
+      },
+      "bulkMaterializations": 103103,
+      "bulkSourceSlots": 1490390,
+      "sampledEvents": 405,
+      "sampledCallers": [
+        {
+          "caller": "(*Checker).getUnmatchedPropertiesWorker",
+          "sampledEvents": 206,
+          "sampledSourceSlots": 2273
+        },
+        {
+          "caller": "(*Checker).removeSubtypes",
+          "sampledEvents": 53,
+          "sampledSourceSlots": 1603
+        },
+        {
+          "caller": "(*Relater).propertiesIdenticalTo",
+          "sampledEvents": 36,
+          "sampledSourceSlots": 363
+        },
+        {
+          "caller": "hasResolvedProperties",
+          "sampledEvents": 25,
+          "sampledSourceSlots": 171
+        },
+        {
+          "caller": "(*Checker).resolveObjectTypeMembers",
+          "sampledEvents": 20,
+          "sampledSourceSlots": 133
+        },
+        {
+          "caller": "(*Checker).checkKindsOfPropertyMemberOverrides",
+          "sampledEvents": 13,
+          "sampledSourceSlots": 132
+        },
+        {
+          "caller": "(*Checker).hasNeverReducedProperty",
+          "sampledEvents": 10,
+          "sampledSourceSlots": 170
+        },
+        {
+          "caller": "(*Checker).getPropertiesOfUnionOrIntersectionType",
+          "sampledEvents": 7,
+          "sampledSourceSlots": 18
+        },
+        {
+          "caller": "(*Checker).getTypeWithoutSignatures",
+          "sampledEvents": 7,
+          "sampledSourceSlots": 14
+        },
+        {
+          "caller": "(*Checker).getLiteralTypeFromProperties",
+          "sampledEvents": 6,
+          "sampledSourceSlots": 93
+        },
+        {
+          "caller": "resolvedPropertiesAreOptional",
+          "sampledEvents": 6,
+          "sampledSourceSlots": 47
+        },
+        {
+          "caller": "truncated-or-wrapper-only",
+          "sampledEvents": 5,
+          "sampledSourceSlots": 67
+        },
+        {
+          "caller": "(*Checker).createReverseMappedType",
+          "sampledEvents": 3,
+          "sampledSourceSlots": 49
+        },
+        {
+          "caller": "(*Checker).checkSpreadPropOverrides",
+          "sampledEvents": 2,
+          "sampledSourceSlots": 24
+        },
+        {
+          "caller": "(*Relater).isRelatedToEx",
+          "sampledEvents": 2,
+          "sampledSourceSlots": 13
+        },
+        {
+          "caller": "(*Checker).checkInheritedPropertiesAreIdentical",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 6
+        },
+        {
+          "caller": "(*Checker).forEachMappedTypePropertyKeyTypeAndIndexSignatureKeyType",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 3
+        },
+        {
+          "caller": "(*Checker).hasUnmatchedProperty",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 22
+        },
+        {
+          "caller": "(*Relater).typeRelatedToDiscriminatedType",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 2
+        }
+      ],
+      "topStacks": [
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx:423\npossibly truncated\n",
+          "sampledEvents": 103,
+          "sampledSourceSlots": 1032
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\npossibly truncated\n",
+          "sampledEvents": 25,
+          "sampledSourceSlots": 266
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesIdenticalTo:4454\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4132\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2686\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx:423\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedTo:405\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).isTypeRelatedTo:226\npossibly truncated\n",
+          "sampledEvents": 21,
+          "sampledSourceSlots": 241
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).removeSubtypes:25948\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25670\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeEx:25635\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkArrayLiteral:8079\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7746\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx:7547\npossibly truncated\n",
+          "sampledEvents": 12,
+          "sampledSourceSlots": 516
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).removeSubtypes:25948\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25670\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeEx:25635\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkArrayLiteral:8079\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7746\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx:7547\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWithContextualType:7471\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).isSignatureApplicable:9273\npossibly truncated\n",
+          "sampledEvents": 9,
+          "sampledSourceSlots": 79
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).hasUnmatchedProperty:114\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).typesDefinitelyUnrelated:1174\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromObjectTypes:698\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).invokeOnce:399\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferFromTypes:304\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).inferTypes:62\npossibly truncated\n",
+          "sampledEvents": 8,
+          "sampledSourceSlots": 97
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesIdenticalTo:4455\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4132\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2686\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx:423\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedTo:405\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).isTypeRelatedTo:226\npossibly truncated\n",
+          "sampledEvents": 8,
+          "sampledSourceSlots": 96
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\npossibly truncated\n",
+          "sampledEvents": 8,
+          "sampledSourceSlots": 137
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).signatureRelatedTo.func1:4589\npossibly truncated\n",
+          "sampledEvents": 7,
+          "sampledSourceSlots": 42
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToEachType:3064\npossibly truncated\n",
+          "sampledEvents": 7,
+          "sampledSourceSlots": 8
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToSomeType:3045\npossibly truncated\n",
+          "sampledEvents": 6,
+          "sampledSourceSlots": 97
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).resolveObjectTypeMembers:19058\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).resolveTypeReferenceMembers:19013\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).resolveStructuredTypeMembers:18978\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfReducedType:18812\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx:18772\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAccessExpressionOrQualifiedName:11301\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAccessExpression:11227\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7750\npossibly truncated\n",
+          "sampledEvents": 6,
+          "sampledSourceSlots": 50
+        }
+      ]
+    },
+    {
+      "project": "sentry",
+      "lookups": 33052864,
+      "boundaries": {
+        "lookup-nonobject": {
+          "count": 535031,
+          "fractionOfLookups": 0.016187129805150923
+        },
+        "lookup-module": {
+          "count": 1007,
+          "fractionOfLookups": 3.046634627486441e-05
+        },
+        "lookup-no-pending": {
+          "count": 31474507,
+          "fractionOfLookups": 0.9522474966163296
+        },
+        "lookup-materialized-layout": {
+          "count": 859982,
+          "fractionOfLookups": 0.026018380736991507
+        },
+        "lookup-resolving": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-bases": {
+          "count": 131390,
+          "fractionOfLookups": 0.003975147206608178
+        },
+        "lookup-no-source": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-duplicates": {
+          "count": 0,
+          "fractionOfLookups": 0.0
+        },
+        "lookup-missing-or-skipped": {
+          "count": 21040,
+          "fractionOfLookups": 0.0006365560333894213
+        },
+        "lookup-name-or-kind": {
+          "count": 7292,
+          "fractionOfLookups": 0.0002206162830549268
+        },
+        "lookup-instantiated-source": {
+          "count": 1867,
+          "fractionOfLookups": 5.648527159401376e-05
+        },
+        "lookup-eligible": {
+          "count": 20748,
+          "fractionOfLookups": 0.0006277217006066403
+        }
+      },
+      "bulkMaterializations": 121244,
+      "bulkSourceSlots": 1841789,
+      "sampledEvents": 475,
+      "sampledCallers": [
+        {
+          "caller": "(*Checker).getUnmatchedPropertiesWorker",
+          "sampledEvents": 156,
+          "sampledSourceSlots": 1359
+        },
+        {
+          "caller": "(*Checker).hasNeverReducedProperty",
+          "sampledEvents": 82,
+          "sampledSourceSlots": 610
+        },
+        {
+          "caller": "(*Relater).propertiesIdenticalTo",
+          "sampledEvents": 49,
+          "sampledSourceSlots": 713
+        },
+        {
+          "caller": "(*Checker).getPropertiesOfUnionOrIntersectionType",
+          "sampledEvents": 48,
+          "sampledSourceSlots": 1837
+        },
+        {
+          "caller": "(*Checker).getLiteralTypeFromProperties",
+          "sampledEvents": 42,
+          "sampledSourceSlots": 553
+        },
+        {
+          "caller": "hasResolvedProperties",
+          "sampledEvents": 39,
+          "sampledSourceSlots": 276
+        },
+        {
+          "caller": "(*Checker).removeSubtypes",
+          "sampledEvents": 23,
+          "sampledSourceSlots": 709
+        },
+        {
+          "caller": "resolvedPropertiesAreOptional",
+          "sampledEvents": 14,
+          "sampledSourceSlots": 101
+        },
+        {
+          "caller": "(*Relater).isRelatedToEx",
+          "sampledEvents": 5,
+          "sampledSourceSlots": 31
+        },
+        {
+          "caller": "(*Relater).typeRelatedToDiscriminatedType",
+          "sampledEvents": 5,
+          "sampledSourceSlots": 53
+        },
+        {
+          "caller": "(*Checker).getSpreadType",
+          "sampledEvents": 4,
+          "sampledSourceSlots": 64
+        },
+        {
+          "caller": "truncated-or-wrapper-only",
+          "sampledEvents": 3,
+          "sampledSourceSlots": 9
+        },
+        {
+          "caller": "(*Checker).checkIndexConstraints",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 2
+        },
+        {
+          "caller": "(*Checker).checkKindsOfPropertyMemberOverrides",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 10
+        },
+        {
+          "caller": "(*Checker).getRestType",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 56
+        },
+        {
+          "caller": "(*Checker).hasUnmatchedProperty",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 3
+        },
+        {
+          "caller": "(*Checker).resolveObjectTypeMembers",
+          "sampledEvents": 1,
+          "sampledSourceSlots": 2
+        }
+      ],
+      "topStacks": [
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx:423\npossibly truncated\n",
+          "sampledEvents": 41,
+          "sampledSourceSlots": 318
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesIdenticalTo:4454\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4132\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2686\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx:423\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedTo:405\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).isTypeRelatedTo:226\npossibly truncated\n",
+          "sampledEvents": 21,
+          "sampledSourceSlots": 275
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfUnionOrIntersectionType:18738\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18720\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3263\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\npossibly truncated\n",
+          "sampledEvents": 18,
+          "sampledSourceSlots": 369
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:29\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getReducedType:21773\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getReducedApparentType:21805\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx:18771\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAccessExpressionOrQualifiedName:11301\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkPropertyAccessExpression:11227\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionWorker:7750\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkExpressionEx:7547\npossibly truncated\n",
+          "sampledEvents": 18,
+          "sampledSourceSlots": 50
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\npossibly truncated\n",
+          "sampledEvents": 18,
+          "sampledSourceSlots": 189
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getLiteralTypeFromProperties:26677\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexTypeEx:26657\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexType:26632\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker:22203\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias:22076\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType:22041\npossibly truncated\n",
+          "sampledEvents": 14,
+          "sampledSourceSlots": 170
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToEachType:3064\npossibly truncated\n",
+          "sampledEvents": 13,
+          "sampledSourceSlots": 43
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.hasResolvedProperties:345\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).isEmptyResolvedType:26451\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).isEmptyObjectType:26457\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3883\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToSomeType:3045\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).unionOrIntersectionRelatedTo:2929\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3403\npossibly truncated\n",
+          "sampledEvents": 11,
+          "sampledSourceSlots": 18
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getLiteralTypeFromProperties:26677\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexTypeEx:26657\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getIndexType:26632\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWorker:22203\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias:22076\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType:22041\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getConstraintFromTypeParameter:16999\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).computeBaseConstraint:27439\npossibly truncated\n",
+          "sampledEvents": 9,
+          "sampledSourceSlots": 98
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4256\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2755\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).typeRelatedToSomeType:3045\npossibly truncated\n",
+          "sampledEvents": 9,
+          "sampledSourceSlots": 38
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesIdenticalTo:4454\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo:4132\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker:3894\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedTo:3224\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo:3165\ngithub.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx:2686\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).checkTypeRelatedToEx:423\npossibly truncated\n",
+          "sampledEvents": 9,
+          "sampledSourceSlots": 77
+        },
+        {
+          "stack": "github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:162\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).materialize:174\ngithub.com/microsoft/typescript-go/internal/checker.(*StructuredType).Properties:941\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfObjectType:18727\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfType:18722\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedPropertiesWorker:1035\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).getUnmatchedProperty:1025\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).hasUnmatchedProperty:114\ngithub.com/microsoft/typescript-go/internal/checker.(*Checker).typesDefinitelyUnrelated:1174\npossibly truncated\n",
+          "sampledEvents": 9,
+          "sampledSourceSlots": 57
+        }
+      ]
+    }
+  ]
+}

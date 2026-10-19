@@ -921,3 +921,41 @@ consumer coverage is tiny on bigprojects despite millions of lookups; next audit
 bulk enumeration/earlier materialization and ordered eligibility causes before
 expanding representation. Counts do not establish which guard dominates or CPUcost.
 No timing/PERF rows, no productionchange. CaptureHEAD37f384d.
+
+## Property-view boundaries observer (active)
+
+Forked diagnostic overlay into benchmarks/profiles/property-view-boundaries at
+HEADc074a46. Adds12 ordered lookup exclusions partitioning every lookup and matching
+eligible count to actual returnedviews. Adds exact bulk-materialization event/source
+slot counters plus systematic every256th event perchecker(max12frames) symboliccaller
+samples. Does not force queries or retain semantic symbol/type roots; stack samples
+are not unbiased estimates and must not be extrapolated to CPU/savedclones/liveness.
+Observer remains based on rejectedcandidate0cee0116; no production or benchmarkrun.
+
+Five Python invariant tests passed. Focused session76571 normal16 passed, race/
+checkptr remainactive. Diagnostic build47843 completed0. Capture/verify controllers
+prepared for same12 controls and pinnedinputs, but capture not launched until all
+focusedmodes pass. Keep currentHEAD/stagedsources fixed. No PERF rows or commityet.
+
+Boundary observer76571 completed0: all16 focused tests eachnormal/race/checkptr
+passed; build47843 already passed. Supervised capture20701 launched; TypeORM/tRPC
+andVS all3 controls passed, Sentry pending. Prepared analyze.py to preserve full
+rawsampled stacks, aggregate first non-dispatch caller, and report ordered boundary
+fractions; never extrapolate systematic samples to time or unsampled allocations.
+Preliminary smallcounts: TypeORM no-pending260724,materialized-layout59273,bases33109
+of390699lookups; tRPC materialized-layout11979,no-pending9140,bases9000 of37861.
+Already-instantiated source is not a leading exclusion in these two. Prefer earlier
+materialization/consumer analysis over blindly broadening the instantiated guard.
+Keep HEADc074a46/source/controller fixed until capture and readbackfinish. No PERF.
+
+Boundary capture20701 completed0; independent verifier59353 completed0. All12controls
+passed. getUnmatchedPropertiesWorker leads sampled bulk callers on everyworkload
+(34/13/206/156samples), not a CPU/cost estimate. Bulk events10767/3618/103103/121244.
+No-pending fractions66.73/24.14/75.90/95.22%; materializedlayout15.17/31.64/14.06/2.60%;
+bases8.47/23.77/7.17/.398%. Saved fullsampled stacks/caller grouping and exclusions
+in summary.json. Code confirms getUnmatchedPropertiesWorker enumerates target via
+getPropertiesOfType before sourcepresence. Next prototype ordered target metadata
+sequence with initial clone-time metadata capture and later stablematerialization;
+then target-view relation consumption to avoid shifting allocation into nextloop.
+Do not extrapolate samples or assume no-pending always means earliermaterialization
+(it also includes ordinary concrete types). No PERF rows. CaptureHEADc074a46.
