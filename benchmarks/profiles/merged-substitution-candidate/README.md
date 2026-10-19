@@ -19,3 +19,7 @@ Original controllers42429/75717 were interrupted bySIGTERM; their failed reports
 Normalbuild99211 passed: source04c8543327a74557b352d80769d25b642136c1074c733254ccc0316306682d16 (5156files), binaryd234c3c6e9e08a2863c7886ce0a98acb44340186ea97801df57ce5599cb976f5, sidecar7cafd9d842f3c61f475cb6ba45ae9d8f54197882455fac0fb30dd597c49f3507. Baseline216d40c7/8fe4bd80 restored. Benchmarkpreflight passed with exactly3changedfiles/identicalbuildsettings. Candidate notpromoted; workloadperformance unmeasured.
 
 Compressed test logs are committed; raw decompressed logs remain local and ignored. The verifier is captureHEAD-bound and was run before commit. Reconstruct raw logs from their corresponding .gz files when inspecting archived evidence; do not reinterpret a laterHEAD mismatch as a test failure.
+
+## Final decision
+
+Screen26463 interrupted143 duringSentry; completed9pair TypeORM/tRPC independentlyverified76548. Bothworkloads failrequiredtimingfloors (see results/merged-substitution-candidate-screen/DECISION.md). Candidate rejected; no replacement/confirmation/retuning/promotion. TwoPERFrows only; nofourworkloadaggregate ornative-relativeclaim. Productionunchanged.
