@@ -1,0 +1,127 @@
+{
+  "scope": "Historical normal-build CPU samples from retained production. Inclusive categories overlap; exclusive buckets partition all samples and count recursive matches once. Costs include cache hits and callees, not duplicated or immutable work, removable time, or projected speedup. No cross-checker equivalence conclusion.",
+  "patterns": {
+    "alias_resolution": "checker\\.\\(\\*Checker\\)\\.resolveAlias$",
+    "alias_target": "checker\\.\\(\\*Checker\\)\\.getTargetOfAliasDeclaration$",
+    "entity_name": "checker\\.\\(\\*Checker\\)\\.resolveEntityName$",
+    "module_exports": "checker\\.\\(\\*Checker\\)\\.getExportsOfModule$",
+    "merged_symbol": "checker\\.\\(\\*Checker\\)\\.getMergedSymbol$"
+  },
+  "inputsSha256": "0aa0bb12c3b5a5b6fd2e83d92d4f0302a8d056c50f501a1bf1c4c7ac53d1b95e",
+  "parserSha256": "0dce30590aab850ded245658be32742e06dd7fa011a730cbeecc0473a9af2823",
+  "projects": [
+    {
+      "project": "trpc",
+      "profileSha256": "60b02db0e5922d815d70961e7d45b80e09c9c562634ca5c1c92f04f31361a943",
+      "rawSha256": "90b8a0e2a7f4e3b8e2dc4705a89b7a86fd546836d0788cbe9fc6a67b89eca3a0",
+      "totalCpuNs": 1970000000,
+      "inclusivePercent": {
+        "alias_resolution": 2.5380710659898478,
+        "alias_target": 2.5380710659898478,
+        "entity_name": 2.5380710659898478,
+        "module_exports": 1.5228426395939085,
+        "merged_symbol": 1.015228426395939
+      },
+      "exclusiveBucketsNs": {
+        "outside": 1840000000,
+        "alias_target": 10000000,
+        "entity_name": 30000000,
+        "merged_symbol": 20000000,
+        "alias_resolution+alias_target": 10000000,
+        "alias_resolution+alias_target+entity_name": 20000000,
+        "alias_resolution+alias_target+module_exports": 10000000,
+        "module_exports": 20000000,
+        "alias_resolution": 10000000
+      }
+    },
+    {
+      "project": "typeorm",
+      "profileSha256": "e6e4b60726f4a2cabf8f309f5919a6bde86019f89e5cffc58492175890cbc00b",
+      "rawSha256": "288de09c0ed1d95c20f19fb3631335e47909556ada884d4ad363020cc4a8ceca",
+      "totalCpuNs": 11370000000,
+      "inclusivePercent": {
+        "alias_resolution": 0.7915567282321899,
+        "alias_target": 0.9674582233948988,
+        "entity_name": 0.6156552330694811,
+        "module_exports": 0.1759014951627089,
+        "merged_symbol": 0.4397537379067722
+      },
+      "exclusiveBucketsNs": {
+        "outside": 11140000000,
+        "entity_name": 40000000,
+        "alias_resolution+alias_target+entity_name": 20000000,
+        "alias_resolution+alias_target+entity_name+module_exports": 10000000,
+        "alias_target": 40000000,
+        "alias_resolution+alias_target": 30000000,
+        "merged_symbol": 50000000,
+        "alias_resolution": 30000000,
+        "alias_target+module_exports": 10000000
+      }
+    },
+    {
+      "project": "vscode",
+      "profileSha256": "19bfa2f4204510b877d55173362910c12cf4c0c6ae343988bfb887f1e0b8dc71",
+      "rawSha256": "f84842371ab3025e4d7096dd90bc1f8ec83e3f2aabc35783abe8eebc7c1a6409",
+      "totalCpuNs": 157780000000,
+      "inclusivePercent": {
+        "alias_resolution": 1.6098364811763215,
+        "alias_target": 1.9394093040943086,
+        "entity_name": 1.7112435036126252,
+        "module_exports": 0.25351755609075927,
+        "merged_symbol": 1.2866015971606033
+      },
+      "exclusiveBucketsNs": {
+        "outside": 150260000000,
+        "module_exports": 20000000,
+        "alias_resolution+alias_target+module_exports": 180000000,
+        "merged_symbol": 1770000000,
+        "alias_target": 1290000000,
+        "alias_resolution+alias_target": 760000000,
+        "entity_name": 1560000000,
+        "alias_resolution+entity_name": 270000000,
+        "alias_resolution": 630000000,
+        "entity_name+merged_symbol": 180000000,
+        "alias_resolution+alias_target+entity_name+module_exports": 70000000,
+        "entity_name+module_exports": 20000000,
+        "alias_resolution+alias_target+entity_name+merged_symbol": 20000000,
+        "alias_resolution+alias_target+entity_name": 580000000,
+        "alias_target+module_exports": 110000000,
+        "alias_resolution+alias_target+merged_symbol": 20000000,
+        "alias_target+merged_symbol": 30000000,
+        "alias_resolution+merged_symbol": 10000000
+      }
+    },
+    {
+      "project": "sentry",
+      "profileSha256": "41c1dd391cb188916792843d7f1c1206af99fecc0fe8fe838fa1c51069c5645e",
+      "rawSha256": "db09cadc109d91f868ec1ab7af74d7963fe970c06c9e49031b463a888216dfdf",
+      "totalCpuNs": 121550000000,
+      "inclusivePercent": {
+        "alias_resolution": 1.439736733854381,
+        "alias_target": 1.9580419580419581,
+        "entity_name": 1.225832990538873,
+        "module_exports": 0.24681201151789386,
+        "merged_symbol": 0.7404360345536816
+      },
+      "exclusiveBucketsNs": {
+        "outside": 117270000000,
+        "alias_resolution+alias_target": 490000000,
+        "alias_resolution+alias_target+entity_name+module_exports": 40000000,
+        "entity_name": 570000000,
+        "alias_resolution+alias_target+module_exports": 80000000,
+        "module_exports": 140000000,
+        "alias_resolution+entity_name": 60000000,
+        "alias_resolution+alias_target+entity_name": 740000000,
+        "merged_symbol": 760000000,
+        "entity_name+merged_symbol": 60000000,
+        "alias_target": 920000000,
+        "alias_resolution": 300000000,
+        "alias_resolution+alias_target+merged_symbol": 10000000,
+        "alias_resolution+alias_target+entity_name+merged_symbol": 20000000,
+        "alias_target+merged_symbol": 40000000,
+        "alias_target+module_exports": 40000000,
+        "alias_resolution+merged_symbol": 10000000
+      }
+    }
+  ]
+}

@@ -1248,3 +1248,11 @@ Sentry1.018419/1.014134. Aggregates.990758/.969772 fail1.01; multiple.98floorsfa
 RSSpass. REJECT, no confirmations/rescue/retuning/promotion. Elevenexecutionfiles
 archived/readbackverified,4measuredPERFrows appended. Decision/failedgateevidence
 preserved. Production216d40c7/default8fe4bd80 unchanged; no nativegain/10xclaim.
+
+Afterpairedcache rejection754ff1f, checkedexistingunionconstructionaudit (small
+directbudget; no revivedbatchsortcandidate). Alias-resolution-budget offline84689
+passedprofile/rawhashes andtotalCPUreconciliation. resolveAlias CPU TypeORM.792%,
+tRPC2.538%,VS1.610%,Sentry1.440%; aliastargetdispatch .967/2.538/1.939/1.958.
+Source requirescycle stack/diagnostics/unknownsentinel/typeonlypropagation/mergedtarget.
+No standalone sharedaliastarget cache justified; oldsymboltypecensus isnot alias-target
+protocol evidence. No newcandidate/PERF/productionchange;10xmechanism unestablished.
