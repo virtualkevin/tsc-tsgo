@@ -1,0 +1,24 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/symbol-cold-field-census/overlay.json",
+    "-o",
+    "/tmp/tsc-symbol-cold-field-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/binder/binder.go": "9b39c046d1329b20a9443e11a220d9a3f8749bfff448e35e05b0816387bf029d",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "97cdae04a3e4e31878a7b06ef36c0fbe6cf12df1a4d21f95cd19e4b708448dc7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "b74e2e86dfd317738a5250df573849c7f31ab4b9656c73c2354a2b13c3bff62c",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/symbol_cold_census.go": "a28f9b9dbe08a2ad42f6c9c7ccfc96ca22d7fb6aac5bcbecde5f5c848cd5f01b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/symbol_cold_census_test.go": "798884a9548948237346b8aa58962cb4e2c92b5a7cdd361b45dd3c2f9f043648"
+  },
+  "controllerSha256": "8ddb48b2224fb66ee82c9f367d335a5bea770f0c1eaf80437e6aeadd6fbe5264",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "49c2f20bd30c04018dbe0cc7bb51a899c3703233b49f6582ebd1926770fdcb42",
+  "buildInfoSha256": "dcb2c6ad1db506bcd83e1c3caa151713e4fadd8b709c530a994986926e56db20"
+}
