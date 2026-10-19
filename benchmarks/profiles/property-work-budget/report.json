@@ -1,0 +1,125 @@
+{
+  "scope": "Offline historical normal-build CPU samples, same retained production source. Inclusive categories overlap; exclusive buckets partition samples. Property union counts each matching sample once. Includes callees, not removable work, wall-time budget or speedup forecast. Sampling and workload variation apply.",
+  "patterns": {
+    "property_relation": "checker\\.\\(\\*Relater\\)\\.(?:propertiesRelatedTo|propertyRelatedTo|propertiesIdenticalTo)$",
+    "property_lookup": "checker\\.\\(\\*Checker\\)\\.getPropert(?:yOfTypeEx|iesOfType|iesOfObjectType|iesOfUnionOrIntersectionType|yOfUnionOrIntersectionType)$",
+    "member_materialization": "checker\\.\\(\\*Checker\\)\\.(?:instantiateSymbol|instantiateSymbols|resolveStructuredTypeMembers|getObjectTypeInstantiation)$",
+    "mapper_execution": "checker\\.\\(\\*(?:TypeMapper|SimpleTypeMapper|ArrayTypeMapper|ArrayToSingleTypeMapper|DeferredTypeMapper|FunctionTypeMapper|MergedTypeMapper|CompositeTypeMapper|InferenceTypeMapper)\\)\\.Map$"
+  },
+  "projects": [
+    {
+      "project": "trpc",
+      "profileSha256": "60b02db0e5922d815d70961e7d45b80e09c9c562634ca5c1c92f04f31361a943",
+      "rawSha256": "90b8a0e2a7f4e3b8e2dc4705a89b7a86fd546836d0788cbe9fc6a67b89eca3a0",
+      "totalCpuNs": 1970000000,
+      "inclusivePercent": {
+        "property_relation": 12.690355329949238,
+        "property_lookup": 9.137055837563452,
+        "member_materialization": 10.152284263959391,
+        "mapper_execution": 3.045685279187817
+      },
+      "exclusiveBucketsNs": {
+        "outside": 1530000000,
+        "member_materialization": 50000000,
+        "property_lookup+member_materialization": 60000000,
+        "property_relation": 150000000,
+        "property_relation+property_lookup+member_materialization": 30000000,
+        "property_relation+property_lookup": 40000000,
+        "member_materialization+mapper_execution": 30000000,
+        "property_lookup": 40000000,
+        "property_relation+member_materialization": 10000000,
+        "property_relation+mapper_execution": 10000000,
+        "property_lookup+member_materialization+mapper_execution": 10000000,
+        "property_relation+member_materialization+mapper_execution": 10000000
+      },
+      "propertyUnionPercent": 22.33502538071066
+    },
+    {
+      "project": "typeorm",
+      "profileSha256": "e6e4b60726f4a2cabf8f309f5919a6bde86019f89e5cffc58492175890cbc00b",
+      "rawSha256": "288de09c0ed1d95c20f19fb3631335e47909556ada884d4ad363020cc4a8ceca",
+      "totalCpuNs": 11370000000,
+      "inclusivePercent": {
+        "property_relation": 5.189094107299912,
+        "property_lookup": 7.124010554089709,
+        "member_materialization": 6.156552330694811,
+        "mapper_execution": 0.3518029903254178
+      },
+      "exclusiveBucketsNs": {
+        "outside": 9820000000,
+        "property_relation+property_lookup": 130000000,
+        "property_relation+member_materialization": 140000000,
+        "property_lookup+member_materialization": 210000000,
+        "property_relation": 280000000,
+        "property_lookup+member_materialization+mapper_execution": 10000000,
+        "member_materialization": 300000000,
+        "property_lookup": 410000000,
+        "property_relation+property_lookup+member_materialization": 40000000,
+        "property_lookup+mapper_execution": 10000000,
+        "mapper_execution": 20000000
+      },
+      "propertyUnionPercent": 13.45646437994723
+    },
+    {
+      "project": "vscode",
+      "profileSha256": "19bfa2f4204510b877d55173362910c12cf4c0c6ae343988bfb887f1e0b8dc71",
+      "rawSha256": "f84842371ab3025e4d7096dd90bc1f8ec83e3f2aabc35783abe8eebc7c1a6409",
+      "totalCpuNs": 157780000000,
+      "inclusivePercent": {
+        "property_relation": 6.984408670300418,
+        "property_lookup": 6.572442641652935,
+        "member_materialization": 7.371022943338827,
+        "mapper_execution": 1.400684497401445
+      },
+      "exclusiveBucketsNs": {
+        "outside": 132330000000,
+        "property_lookup+member_materialization": 2200000000,
+        "property_lookup": 4440000000,
+        "property_relation+member_materialization": 1270000000,
+        "property_relation+property_lookup+member_materialization": 1090000000,
+        "property_relation": 5850000000,
+        "property_relation+property_lookup": 2490000000,
+        "member_materialization": 5900000000,
+        "property_lookup+member_materialization+mapper_execution": 10000000,
+        "mapper_execution": 790000000,
+        "property_relation+property_lookup+member_materialization+mapper_execution": 30000000,
+        "property_relation+mapper_execution": 140000000,
+        "member_materialization+mapper_execution": 1020000000,
+        "property_lookup+mapper_execution": 70000000,
+        "property_relation+property_lookup+mapper_execution": 40000000,
+        "property_relation+member_materialization+mapper_execution": 110000000
+      },
+      "propertyUnionPercent": 15.62935733299531
+    },
+    {
+      "project": "sentry",
+      "profileSha256": "41c1dd391cb188916792843d7f1c1206af99fecc0fe8fe838fa1c51069c5645e",
+      "rawSha256": "db09cadc109d91f868ec1ab7af74d7963fe970c06c9e49031b463a888216dfdf",
+      "totalCpuNs": 121550000000,
+      "inclusivePercent": {
+        "property_relation": 10.415466886055121,
+        "property_lookup": 20.427807486631018,
+        "member_materialization": 14.520773344302755,
+        "mapper_execution": 1.7030028794734677
+      },
+      "exclusiveBucketsNs": {
+        "outside": 83830000000,
+        "member_materialization": 5210000000,
+        "property_relation+property_lookup+member_materialization": 590000000,
+        "member_materialization+mapper_execution": 890000000,
+        "property_lookup+member_materialization": 9640000000,
+        "property_lookup": 8420000000,
+        "property_relation+property_lookup": 5700000000,
+        "property_relation": 5400000000,
+        "property_lookup+member_materialization+mapper_execution": 420000000,
+        "property_relation+property_lookup+member_materialization+mapper_execution": 30000000,
+        "mapper_execution": 450000000,
+        "property_relation+member_materialization+mapper_execution": 180000000,
+        "property_relation+member_materialization": 690000000,
+        "property_lookup+mapper_execution": 30000000,
+        "property_relation+mapper_execution": 70000000
+      },
+      "propertyUnionPercent": 30.662278897573014
+    }
+  ]
+}
