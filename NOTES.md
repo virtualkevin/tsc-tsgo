@@ -1240,3 +1240,11 @@ source26786e64904ea30e276686719634222cb1f87ac2d50ce720233d6f46b617966f.
 Exact5filedelta,5155candidate/5154retained; identicalbuildsettings andoverlaybinary.
 Retainedsource/defaultbinary/sidecarrestoredverified. Configprepared; preflight11974
 running. No performance samples yet. Savevalidatedcandidate beforefixedscreen.
+
+Pairedscreen3417 terminal0 atdd93178, complete28pairs. Recorder19116 independently
+passedinputs/provenance/rawpairs/RSS; integritypassed notacceptance. Ratiosmedians/
+paired: TypeORM.983902/.978931,tRPC.989120/.931753,VS.972171/.956157,
+Sentry1.018419/1.014134. Aggregates.990758/.969772 fail1.01; multiple.98floorsfail;
+RSSpass. REJECT, no confirmations/rescue/retuning/promotion. Elevenexecutionfiles
+archived/readbackverified,4measuredPERFrows appended. Decision/failedgateevidence
+preserved. Production216d40c7/default8fe4bd80 unchanged; no nativegain/10xclaim.

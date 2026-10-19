@@ -114,3 +114,10 @@ and 5,155 candidate source files versus 5,154 retained. Build settings match the
 retained comparator. Source and default binary/provenance were restored and verified.
 The preserved candidate is `packages/tsc-go/dist/tsc-go-paired-property-cache`.
 Workload performance remains unmeasured pending the frozen screen.
+
+## Performance decision
+
+The complete screen was independently verified and rejected. Aggregate ratios
+0.990758/0.969772 fail 1.01, and several workload floors fail. No confirmations or
+promotion. See `DECISION.md` and the preserved raw reports; production remains
+unchanged. Four measured rows are recorded in PERF.md.
