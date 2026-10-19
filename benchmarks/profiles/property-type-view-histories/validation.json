@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "50489f52f3f8986e3f0fd21f2e7a5f6e1b1ac8b990bf16956c6a912c5f5f40e2",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view.go": "5f26ace70ccdc4cabee552e9404c75000d431cc074835853e6f6e6d1edc036d6",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_test.go": "249023b3243e0b5163bcb98dc240b201ba6219f0416054a429e7528d414d5c15"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-type-view-histories/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-type-view-histories/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-type-view-histories/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory"
+      ]
+    }
+  ]
+}

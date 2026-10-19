@@ -771,3 +771,22 @@ matching instantiation counts after materialization. This is component evidence,
 not pinned compiler parity or a formal proof. Next: independent effectful histories
 and a broader type-query/relation consumer, then normal full validation and frozen
 workload performance gates. No PERF rows, since no new workload timing occurred.
+
+Property-type-view independent histories: isolated extension at
+`benchmarks/profiles/property-type-view-histories/`, production mechanism unchanged
+from aaee04b. Added64 seeded24-operation independent reference/view histories with
+observable exact-optional read/write results, mapper/instantiation counters,
+enumeration, active-cache clearing and GC. Added nested-query assignment histories
+with/without reentrant materialization, and panic-residue comparison. Session50013
+completed0: nine tests each normal/race/checkptr passed, raw/source readback passed.
+Initial launch approval timed out before execution; split workspace creation from
+cache-using validation and retry succeeded. Initial test compile uint32/int errors
+were fixed; raw failure logs preserved. No workload timing or PERF rows.
+
+Integration audit: propertiesRelatedTo invokes getUnmatchedProperty before its
+main target-property loop. Required source symbols are already materialized there.
+Next combined consumer must preserve views across that presence stage and type
+relations; a type-only adaptation would miss the key allocation opportunity.
+Retain target-before-source query order, private declaration identity, protected
+fallback, readonly checks and optionality-after-relation ordering. The earlier
+presence-only experiment remains rejected; no rescue rerun is justified.
