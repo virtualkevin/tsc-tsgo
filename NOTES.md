@@ -1105,3 +1105,14 @@ identity so no safe-sharingclaim. Ordinaryvariable/property recordedwork warrant
 context/annotation/flow/diagnosticeffect classification next, with targeted coverage
 ratherthan extrapolating first-seen cappedrecords. Evidence33MBgzip; noPERFrows,
 productionstill216d40c7/8fe4bd80, captureHEADf49f9c0. Fullreport summary/README saved.
+
+Variable-resolution-cohorts offlineanalysis12236/26966 passed exactcensushashes and
+all4per-kind call/time totals reconciled against verifiedprior summary. Variables
+are largest retainedelapsedcohort; repeatedorigincalls576/18000TypeORM,154/1372tRPC,
+4378/54760VS,11774/40370Sentry forzerorecordedcontext variable declarations. Not
+semanticequivalence oravoidedcost; largecappedrecordings biased. RankedVSvariables
+EditorOptions/codiconsLibrary arebigobjectinitializers; SentryInput/Prose use styled
+calls/taggedtemplates/contextualcallbacks. Resolver source includescycle diagnostics,
+initializer/contextual/flow inference. Do not buildorigin-only sharedresultcache.
+Next targeteduncapped branch aggregates withbounded detail foractualannotation/
+contextual/initializer/flow/binding paths, preservingexistingqueries/order. NoPERF.

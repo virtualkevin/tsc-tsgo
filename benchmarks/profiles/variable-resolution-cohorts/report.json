@@ -1,0 +1,1561 @@
+{
+  "scope": "Retained variable/property miss origins in four-checker diagnostic captures. Large-workload cap losses are not random. Declaration kind describes the sole recorded declaration, not proof of annotation, flow, diagnostic, mapper or inference equivalence. Zero recorded context only means zero instantiation depth and active mapper count. Elapsed values are instrumented, not CPU or savings; repeated costs include first owner.",
+  "captureSha256": "122e2240e2d9ae133e477783ea0c244a74e09a03eb8e60ad21cfc28806576f4b",
+  "kindSourceSha256": "c3cdd3cdc865e44c3f6dbb45295556fb6321e5c555c7dfde7c652b2dbefc0a66",
+  "projects": [
+    {
+      "project": "typeorm",
+      "censusSha256": "6cae317999e3357f2f98c2f249c448f0d2fb60e83779453aa942a1ae40cec987",
+      "misses": 62326,
+      "recorded": 62326,
+      "unrecorded": 0,
+      "groups": {
+        "KindParameter / zero-recorded-context": {
+          "calls": 21560,
+          "completed": 21560,
+          "cached": 21436,
+          "errorResults": 0,
+          "exclusiveNs": 139356548,
+          "exclusiveInstantiations": 4402,
+          "repeatedOriginCalls": 18083,
+          "repeatedOriginExclusiveNs": 126046774
+        },
+        "KindPropertySignature / zero-recorded-context": {
+          "calls": 6379,
+          "completed": 6379,
+          "cached": 6379,
+          "errorResults": 0,
+          "exclusiveNs": 28689540,
+          "exclusiveInstantiations": 155,
+          "repeatedOriginCalls": 4912,
+          "repeatedOriginExclusiveNs": 25833895
+        },
+        "KindPropertySignature / active-context": {
+          "calls": 511,
+          "completed": 511,
+          "cached": 511,
+          "errorResults": 0,
+          "exclusiveNs": 2810640,
+          "exclusiveInstantiations": 51,
+          "repeatedOriginCalls": 306,
+          "repeatedOriginExclusiveNs": 1604030
+        },
+        "KindPropertyDeclaration / zero-recorded-context": {
+          "calls": 13141,
+          "completed": 13141,
+          "cached": 13141,
+          "errorResults": 0,
+          "exclusiveNs": 60600068,
+          "exclusiveInstantiations": 180,
+          "repeatedOriginCalls": 9975,
+          "repeatedOriginExclusiveNs": 56346922
+        },
+        "KindVariableDeclaration / zero-recorded-context": {
+          "calls": 18000,
+          "completed": 18000,
+          "cached": 18000,
+          "errorResults": 0,
+          "exclusiveNs": 1060682773,
+          "exclusiveInstantiations": 42208,
+          "repeatedOriginCalls": 576,
+          "repeatedOriginExclusiveNs": 61589157
+        },
+        "multiple-declarations / zero-recorded-context": {
+          "calls": 128,
+          "completed": 128,
+          "cached": 128,
+          "errorResults": 0,
+          "exclusiveNs": 1651874,
+          "exclusiveInstantiations": 124,
+          "repeatedOriginCalls": 106,
+          "repeatedOriginExclusiveNs": 1279474
+        },
+        "KindBindingElement / zero-recorded-context": {
+          "calls": 769,
+          "completed": 769,
+          "cached": 769,
+          "errorResults": 0,
+          "exclusiveNs": 19766459,
+          "exclusiveInstantiations": 1649,
+          "repeatedOriginCalls": 42,
+          "repeatedOriginExclusiveNs": 1071518
+        },
+        "KindPropertyDeclaration / active-context": {
+          "calls": 704,
+          "completed": 704,
+          "cached": 704,
+          "errorResults": 0,
+          "exclusiveNs": 5166896,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 34,
+          "repeatedOriginExclusiveNs": 242707
+        },
+        "KindParameter / active-context": {
+          "calls": 770,
+          "completed": 770,
+          "cached": 770,
+          "errorResults": 0,
+          "exclusiveNs": 1738913,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 104,
+          "repeatedOriginExclusiveNs": 282699
+        },
+        "KindVariableDeclaration / active-context": {
+          "calls": 8,
+          "completed": 8,
+          "cached": 8,
+          "errorResults": 0,
+          "exclusiveNs": 155429,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 4,
+          "repeatedOriginExclusiveNs": 15970
+        },
+        "KindExportAssignment / zero-recorded-context": {
+          "calls": 4,
+          "completed": 4,
+          "cached": 4,
+          "errorResults": 0,
+          "exclusiveNs": 164612,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 2,
+          "repeatedOriginExclusiveNs": 133286
+        },
+        "KindSourceFile / zero-recorded-context": {
+          "calls": 2,
+          "completed": 2,
+          "cached": 2,
+          "errorResults": 0,
+          "exclusiveNs": 98523,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "KindBinaryExpression / zero-recorded-context": {
+          "calls": 3,
+          "completed": 3,
+          "cached": 3,
+          "errorResults": 0,
+          "exclusiveNs": 199360,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "unresolved / zero-recorded-context": {
+          "calls": 342,
+          "completed": 342,
+          "cached": 342,
+          "errorResults": 0,
+          "exclusiveNs": 460153,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "KindPropertyAssignment / zero-recorded-context": {
+          "calls": 5,
+          "completed": 5,
+          "cached": 5,
+          "errorResults": 0,
+          "exclusiveNs": 24691,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        }
+      },
+      "topRepeatedVariables": [
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "OrderEntity",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/functional/entity-schema/foreign-keys/entity/order.ts",
+                "Pos": 185,
+                "End": 1680,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 9160982,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "generatedMap",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/src/driver/aurora-mysql/AuroraMysqlDriver.ts",
+                "Pos": 28369,
+                "End": 29362,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 2014794,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "generatedMap",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/src/driver/sqlite-abstract/AbstractSqliteDriver.ts",
+                "Pos": 25177,
+                "End": 26113,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 1728219,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "CityEntity",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/functional/entity-schema/foreign-keys/entity/city.ts",
+                "Pos": 148,
+                "End": 709,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 3,
+          "calls": 3,
+          "exclusiveNs": 1716765,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "Activity",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/functional/entity-schema/columns/virtual-columns/entity/Activity.ts",
+                "Pos": 66,
+                "End": 526,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 1587205,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "BaseSchema",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/github-issues/9833/schema/Base.ts",
+                "Pos": 94,
+                "End": 606,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 1458328,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "selection",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/src/query-builder/SelectQueryBuilder.ts",
+                "Pos": 78242,
+                "End": 78522,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 1374544,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "BaseSchema",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/github-issues/10494/schema/Base.ts",
+                "Pos": 94,
+                "End": 606,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 1329726,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "UserEntity",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/functional/repository/find-methods/schema/UserEntity.ts",
+                "Pos": 63,
+                "End": 414,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 1245935,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "PostSchema",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/functional/cascades/cascade-insert-composite-pk-duplicate/entity/Post.ts",
+                "Pos": 363,
+                "End": 1033,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 1184854,
+          "errorResults": 0
+        }
+      ]
+    },
+    {
+      "project": "trpc",
+      "censusSha256": "cfa9159153ae6b2c9b1a9dff859fd835779ae73d16d63a281d1e70ab4ee983c9",
+      "misses": 9407,
+      "recorded": 9407,
+      "unrecorded": 0,
+      "groups": {
+        "KindPropertySignature / zero-recorded-context": {
+          "calls": 2249,
+          "completed": 2249,
+          "cached": 2249,
+          "errorResults": 0,
+          "exclusiveNs": 19515395,
+          "exclusiveInstantiations": 671,
+          "repeatedOriginCalls": 1486,
+          "repeatedOriginExclusiveNs": 13829870
+        },
+        "multiple-declarations / zero-recorded-context": {
+          "calls": 109,
+          "completed": 109,
+          "cached": 109,
+          "errorResults": 0,
+          "exclusiveNs": 1065950,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 89,
+          "repeatedOriginExclusiveNs": 877893
+        },
+        "KindPropertyDeclaration / zero-recorded-context": {
+          "calls": 204,
+          "completed": 204,
+          "cached": 204,
+          "errorResults": 0,
+          "exclusiveNs": 2219375,
+          "exclusiveInstantiations": 7,
+          "repeatedOriginCalls": 122,
+          "repeatedOriginExclusiveNs": 1851792
+        },
+        "KindPropertySignature / active-context": {
+          "calls": 192,
+          "completed": 192,
+          "cached": 192,
+          "errorResults": 0,
+          "exclusiveNs": 2080326,
+          "exclusiveInstantiations": 255,
+          "repeatedOriginCalls": 57,
+          "repeatedOriginExclusiveNs": 447685
+        },
+        "KindVariableDeclaration / zero-recorded-context": {
+          "calls": 1372,
+          "completed": 1372,
+          "cached": 1372,
+          "errorResults": 0,
+          "exclusiveNs": 238893881,
+          "exclusiveInstantiations": 34702,
+          "repeatedOriginCalls": 154,
+          "repeatedOriginExclusiveNs": 21853745
+        },
+        "KindParameter / zero-recorded-context": {
+          "calls": 4761,
+          "completed": 4761,
+          "cached": 4729,
+          "errorResults": 0,
+          "exclusiveNs": 40936483,
+          "exclusiveInstantiations": 4963,
+          "repeatedOriginCalls": 3194,
+          "repeatedOriginExclusiveNs": 30082221
+        },
+        "KindBinaryExpression / zero-recorded-context": {
+          "calls": 7,
+          "completed": 7,
+          "cached": 7,
+          "errorResults": 0,
+          "exclusiveNs": 266479,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "KindPropertyDeclaration / active-context": {
+          "calls": 204,
+          "completed": 204,
+          "cached": 204,
+          "errorResults": 0,
+          "exclusiveNs": 911838,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 143,
+          "repeatedOriginExclusiveNs": 609678
+        },
+        "KindParameter / active-context": {
+          "calls": 96,
+          "completed": 96,
+          "cached": 96,
+          "errorResults": 0,
+          "exclusiveNs": 767944,
+          "exclusiveInstantiations": 47,
+          "repeatedOriginCalls": 38,
+          "repeatedOriginExclusiveNs": 139297
+        },
+        "KindBindingElement / zero-recorded-context": {
+          "calls": 174,
+          "completed": 174,
+          "cached": 174,
+          "errorResults": 0,
+          "exclusiveNs": 5530091,
+          "exclusiveInstantiations": 108,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "KindPropertyAssignment / zero-recorded-context": {
+          "calls": 1,
+          "completed": 1,
+          "cached": 1,
+          "errorResults": 0,
+          "exclusiveNs": 3393,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "unresolved / zero-recorded-context": {
+          "calls": 30,
+          "completed": 30,
+          "cached": 30,
+          "errorResults": 0,
+          "exclusiveNs": 36288,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "KindVariableDeclaration / active-context": {
+          "calls": 8,
+          "completed": 8,
+          "cached": 8,
+          "errorResults": 0,
+          "exclusiveNs": 169699,
+          "exclusiveInstantiations": 2,
+          "repeatedOriginCalls": 2,
+          "repeatedOriginExclusiveNs": 5252
+        }
+      },
+      "topRepeatedVariables": [
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "server",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/__tests__/fetchServerResource.ts",
+                "Pos": 586,
+                "End": 1144,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 3,
+          "calls": 3,
+          "exclusiveNs": 5423101,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "test",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/node_modules/.pnpm/vitest@5.0.0_@edge-runtime+vm@2.0.2_@types+node@24.13.4_@vitest+coverage-istanbul@5.0.0_11f7727b66a0906be1d69ffaa5618cb5/node_modules/vitest/globals.d.ts",
+                "Pos": 68,
+                "End": 106,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 2258907,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "httpStatuses",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/http/getHTTPStatusCode.ts",
+                "Pos": 1977,
+                "End": 2357,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 2136416,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "expect",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/node_modules/.pnpm/vitest@5.0.0_@edge-runtime+vm@2.0.2_@types+node@24.13.4_@vitest+coverage-istanbul@5.0.0_11f7727b66a0906be1d69ffaa5618cb5/node_modules/vitest/globals.d.ts",
+                "Pos": 364,
+                "End": 406,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 1288236,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "vi",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/node_modules/.pnpm/vitest@5.0.0_@edge-runtime+vm@2.0.2_@types+node@24.13.4_@vitest+coverage-istanbul@5.0.0_11f7727b66a0906be1d69ffaa5618cb5/node_modules/vitest/globals.d.ts",
+                "Pos": 508,
+                "End": 546,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 1167651,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "arr",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/http/getHTTPStatusCode.ts",
+                "Pos": 1926,
+                "End": 1968,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 1038699,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "handleViaMiddleware",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/adapters/node-http/nodeHTTPRequestHandler.ts",
+                "Pos": 2134,
+                "End": 2212,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 994717,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "test",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/node_modules/.pnpm/vitest@5.0.0_@edge-runtime+vm@2.0.2_@types+node@24.13.4_@vitest+coverage-istanbul@5.0.0_11f7727b66a0906be1d69ffaa5618cb5/node_modules/vitest/dist/index.d.ts",
+                "Pos": 39896,
+                "End": 39910,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 910566,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "code",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/http/getHTTPStatusCode.ts",
+                "Pos": 2225,
+                "End": 2275,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 813373,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "promise",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/stream/utils/timerResource.ts",
+                "Pos": 346,
+                "End": 535,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 684662,
+          "errorResults": 0
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "censusSha256": "e3cfc2b45735465340083d1a5165b54be27337025626d55bf43c5220a21edb23",
+      "misses": 1134331,
+      "recorded": 242109,
+      "unrecorded": 892222,
+      "groups": {
+        "KindParameter / zero-recorded-context": {
+          "calls": 103201,
+          "completed": 103201,
+          "cached": 102811,
+          "errorResults": 0,
+          "exclusiveNs": 680996868,
+          "exclusiveInstantiations": 14655,
+          "repeatedOriginCalls": 59652,
+          "repeatedOriginExclusiveNs": 571790337
+        },
+        "KindVariableDeclaration / zero-recorded-context": {
+          "calls": 54760,
+          "completed": 54760,
+          "cached": 54760,
+          "errorResults": 2,
+          "exclusiveNs": 2817553971,
+          "exclusiveInstantiations": 280163,
+          "repeatedOriginCalls": 4378,
+          "repeatedOriginExclusiveNs": 692693438
+        },
+        "KindPropertySignature / zero-recorded-context": {
+          "calls": 54174,
+          "completed": 54174,
+          "cached": 54174,
+          "errorResults": 0,
+          "exclusiveNs": 225416361,
+          "exclusiveInstantiations": 1439,
+          "repeatedOriginCalls": 31843,
+          "repeatedOriginExclusiveNs": 169716056
+        },
+        "KindPropertyDeclaration / zero-recorded-context": {
+          "calls": 17684,
+          "completed": 17684,
+          "cached": 17684,
+          "errorResults": 0,
+          "exclusiveNs": 761950996,
+          "exclusiveInstantiations": 35333,
+          "repeatedOriginCalls": 8667,
+          "repeatedOriginExclusiveNs": 416904825
+        },
+        "multiple-declarations / zero-recorded-context": {
+          "calls": 3241,
+          "completed": 3241,
+          "cached": 3241,
+          "errorResults": 0,
+          "exclusiveNs": 79581689,
+          "exclusiveInstantiations": 1459,
+          "repeatedOriginCalls": 3086,
+          "repeatedOriginExclusiveNs": 74848324
+        },
+        "KindPropertySignature / active-context": {
+          "calls": 2723,
+          "completed": 2723,
+          "cached": 2723,
+          "errorResults": 0,
+          "exclusiveNs": 14036491,
+          "exclusiveInstantiations": 504,
+          "repeatedOriginCalls": 1338,
+          "repeatedOriginExclusiveNs": 7174715
+        },
+        "KindBindingElement / zero-recorded-context": {
+          "calls": 2824,
+          "completed": 2824,
+          "cached": 2812,
+          "errorResults": 0,
+          "exclusiveNs": 47353580,
+          "exclusiveInstantiations": 2481,
+          "repeatedOriginCalls": 61,
+          "repeatedOriginExclusiveNs": 5454935
+        },
+        "KindParameter / active-context": {
+          "calls": 1754,
+          "completed": 1754,
+          "cached": 1754,
+          "errorResults": 0,
+          "exclusiveNs": 16194666,
+          "exclusiveInstantiations": 54,
+          "repeatedOriginCalls": 496,
+          "repeatedOriginExclusiveNs": 5231264
+        },
+        "KindPropertyDeclaration / active-context": {
+          "calls": 62,
+          "completed": 62,
+          "cached": 62,
+          "errorResults": 0,
+          "exclusiveNs": 1141600,
+          "exclusiveInstantiations": 13,
+          "repeatedOriginCalls": 2,
+          "repeatedOriginExclusiveNs": 2882
+        },
+        "KindVariableDeclaration / active-context": {
+          "calls": 21,
+          "completed": 21,
+          "cached": 21,
+          "errorResults": 0,
+          "exclusiveNs": 867476,
+          "exclusiveInstantiations": 36,
+          "repeatedOriginCalls": 16,
+          "repeatedOriginExclusiveNs": 694427
+        },
+        "unresolved / zero-recorded-context": {
+          "calls": 1647,
+          "completed": 1647,
+          "cached": 1647,
+          "errorResults": 0,
+          "exclusiveNs": 2341003,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "KindExportAssignment / zero-recorded-context": {
+          "calls": 1,
+          "completed": 1,
+          "cached": 1,
+          "errorResults": 0,
+          "exclusiveNs": 10306,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "multiple-declarations / active-context": {
+          "calls": 2,
+          "completed": 2,
+          "cached": 2,
+          "errorResults": 0,
+          "exclusiveNs": 8166,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "KindBinaryExpression / zero-recorded-context": {
+          "calls": 15,
+          "completed": 15,
+          "cached": 15,
+          "errorResults": 0,
+          "exclusiveNs": 222691,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        }
+      },
+      "topRepeatedVariables": [
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "EditorOptions",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/editor/common/config/editorOptions.ts",
+                "Pos": 202825,
+                "End": 255409,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 454514841,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "itemToPreserve",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/editor/contrib/inlineCompletions/browser/model/inlineCompletionsModel.ts",
+                "Pos": 22166,
+                "End": 22306,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 31169039,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "codiconsLibrary",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/base/common/codiconsLibrary.ts",
+                "Pos": 629,
+                "End": 37588,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 23622136,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "replacements",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/editor/contrib/inlineCompletions/browser/model/inlineCompletionsModel.ts",
+                "Pos": 30257,
+                "End": 30374,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 6116623,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "BrowserFeatures",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/base/browser/canIUse.ts",
+                "Pos": 655,
+                "End": 1677,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 3,
+          "calls": 3,
+          "exclusiveNs": 6063418,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "agentHostFirstResponseValidator",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/platform/agentHost/common/otel/agentHostTiming.ts",
+                "Pos": 1196,
+                "End": 1890,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 3,
+          "calls": 3,
+          "exclusiveNs": 6031824,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "MainContext",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/workbench/api/common/extHost.protocol.ts",
+                "Pos": 181752,
+                "End": 190624,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 5813989,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "Codicon",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/base/common/codicons.ts",
+                "Pos": 2991,
+                "End": 3056,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 3804099,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "_allApiProposals",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/platform/extensions/common/extensionsApiProposals.ts",
+                "Pos": 410,
+                "End": 28973,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 3,
+          "calls": 3,
+          "exclusiveNs": 3332938,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "augmentedCompletion",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/editor/contrib/inlineCompletions/browser/model/inlineCompletionsModel.ts",
+                "Pos": 34829,
+                "End": 35205,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 3121022,
+          "errorResults": 0
+        }
+      ]
+    },
+    {
+      "project": "sentry",
+      "censusSha256": "ce6cea5d7b4cc84826c1c14516875049c4d8848b01d86c3761e53a72f07322bd",
+      "misses": 376562,
+      "recorded": 197512,
+      "unrecorded": 179050,
+      "groups": {
+        "KindPropertySignature / zero-recorded-context": {
+          "calls": 71312,
+          "completed": 71312,
+          "cached": 71312,
+          "errorResults": 2,
+          "exclusiveNs": 1070555630,
+          "exclusiveInstantiations": 59162,
+          "repeatedOriginCalls": 53249,
+          "repeatedOriginExclusiveNs": 933314382
+        },
+        "KindPropertySignature / active-context": {
+          "calls": 16273,
+          "completed": 16273,
+          "cached": 16273,
+          "errorResults": 3,
+          "exclusiveNs": 1222840105,
+          "exclusiveInstantiations": 13466,
+          "repeatedOriginCalls": 9592,
+          "repeatedOriginExclusiveNs": 781600387
+        },
+        "KindPropertyDeclaration / zero-recorded-context": {
+          "calls": 2638,
+          "completed": 2638,
+          "cached": 2638,
+          "errorResults": 0,
+          "exclusiveNs": 104632422,
+          "exclusiveInstantiations": 2702,
+          "repeatedOriginCalls": 2296,
+          "repeatedOriginExclusiveNs": 96910095
+        },
+        "KindVariableDeclaration / zero-recorded-context": {
+          "calls": 40370,
+          "completed": 40370,
+          "cached": 40370,
+          "errorResults": 59,
+          "exclusiveNs": 17281217833,
+          "exclusiveInstantiations": 2443774,
+          "repeatedOriginCalls": 11774,
+          "repeatedOriginExclusiveNs": 3717919179
+        },
+        "KindParameter / zero-recorded-context": {
+          "calls": 37120,
+          "completed": 37120,
+          "cached": 36710,
+          "errorResults": 3,
+          "exclusiveNs": 645112492,
+          "exclusiveInstantiations": 85571,
+          "repeatedOriginCalls": 24470,
+          "repeatedOriginExclusiveNs": 487876296
+        },
+        "KindVariableDeclaration / active-context": {
+          "calls": 653,
+          "completed": 653,
+          "cached": 653,
+          "errorResults": 0,
+          "exclusiveNs": 208922893,
+          "exclusiveInstantiations": 16194,
+          "repeatedOriginCalls": 377,
+          "repeatedOriginExclusiveNs": 139153938
+        },
+        "multiple-declarations / zero-recorded-context": {
+          "calls": 640,
+          "completed": 640,
+          "cached": 640,
+          "errorResults": 0,
+          "exclusiveNs": 18781090,
+          "exclusiveInstantiations": 49,
+          "repeatedOriginCalls": 538,
+          "repeatedOriginExclusiveNs": 16831720
+        },
+        "KindBindingElement / zero-recorded-context": {
+          "calls": 24400,
+          "completed": 24400,
+          "cached": 24368,
+          "errorResults": 0,
+          "exclusiveNs": 845081993,
+          "exclusiveInstantiations": 14672,
+          "repeatedOriginCalls": 4260,
+          "repeatedOriginExclusiveNs": 428379211
+        },
+        "multiple-declarations / active-context": {
+          "calls": 782,
+          "completed": 782,
+          "cached": 782,
+          "errorResults": 0,
+          "exclusiveNs": 3127276,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 30,
+          "repeatedOriginExclusiveNs": 142093
+        },
+        "KindBinaryExpression / zero-recorded-context": {
+          "calls": 216,
+          "completed": 216,
+          "cached": 216,
+          "errorResults": 0,
+          "exclusiveNs": 10862061,
+          "exclusiveInstantiations": 2014,
+          "repeatedOriginCalls": 199,
+          "repeatedOriginExclusiveNs": 7302404
+        },
+        "KindParameter / active-context": {
+          "calls": 2154,
+          "completed": 2154,
+          "cached": 2154,
+          "errorResults": 0,
+          "exclusiveNs": 53239827,
+          "exclusiveInstantiations": 9445,
+          "repeatedOriginCalls": 1410,
+          "repeatedOriginExclusiveNs": 28004435
+        },
+        "KindBindingElement / active-context": {
+          "calls": 563,
+          "completed": 563,
+          "cached": 563,
+          "errorResults": 0,
+          "exclusiveNs": 68765811,
+          "exclusiveInstantiations": 2736,
+          "repeatedOriginCalls": 307,
+          "repeatedOriginExclusiveNs": 52723077
+        },
+        "KindPropertyDeclaration / active-context": {
+          "calls": 311,
+          "completed": 311,
+          "cached": 311,
+          "errorResults": 0,
+          "exclusiveNs": 24572754,
+          "exclusiveInstantiations": 543,
+          "repeatedOriginCalls": 222,
+          "repeatedOriginExclusiveNs": 22645964
+        },
+        "KindExportAssignment / zero-recorded-context": {
+          "calls": 18,
+          "completed": 18,
+          "cached": 18,
+          "errorResults": 0,
+          "exclusiveNs": 22844286,
+          "exclusiveInstantiations": 746,
+          "repeatedOriginCalls": 10,
+          "repeatedOriginExclusiveNs": 19460502
+        },
+        "KindBinaryExpression / active-context": {
+          "calls": 5,
+          "completed": 5,
+          "cached": 5,
+          "errorResults": 0,
+          "exclusiveNs": 336284,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 4,
+          "repeatedOriginExclusiveNs": 323245
+        },
+        "KindSourceFile / zero-recorded-context": {
+          "calls": 1,
+          "completed": 1,
+          "cached": 1,
+          "errorResults": 0,
+          "exclusiveNs": 767916,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        },
+        "unresolved / zero-recorded-context": {
+          "calls": 56,
+          "completed": 56,
+          "cached": 56,
+          "errorResults": 0,
+          "exclusiveNs": 52463,
+          "exclusiveInstantiations": 0,
+          "repeatedOriginCalls": 0,
+          "repeatedOriginExclusiveNs": 0
+        }
+      },
+      "topRepeatedVariables": [
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "Input",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/input/input.tsx",
+                "Pos": 786,
+                "End": 1238,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 240893271,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "Prose",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/text/prose.tsx",
+                "Pos": 383,
+                "End": 1276,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 2,
+          "calls": 2,
+          "exclusiveNs": 164700913,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "dataConditionNodesMap",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/automations/components/dataConditionNodes.tsx",
+                "Pos": 3638,
+                "End": 11776,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 3,
+          "calls": 3,
+          "exclusiveNs": 144665630,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "Badge",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/badge/badge.tsx",
+                "Pos": 500,
+                "End": 876,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 131501991,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "Radio",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/radio/radio.tsx",
+                "Pos": 2084,
+                "End": 2434,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 113807439,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "StyledTextArea",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/textarea/textarea.tsx",
+                "Pos": 2476,
+                "End": 2863,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 97321331,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "OverlayTrigger",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/overlayTrigger.tsx",
+                "Pos": 1293,
+                "End": 1947,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 85737402,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "actionNodesMap",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/automations/components/actionNodes.tsx",
+                "Pos": 2064,
+                "End": 4875,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 3,
+          "calls": 3,
+          "exclusiveNs": 64102541,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "SEER_EMBED_SCHEMAS",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts",
+                "Pos": 3553,
+                "End": 42741,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 4,
+          "calls": 4,
+          "exclusiveNs": 63736450,
+          "errorResults": 0
+        },
+        {
+          "origin": {
+            "Kind": 5,
+            "Name": "useSpans",
+            "Flags": 2,
+            "CheckFlags": 0,
+            "Declarations": [
+              {
+                "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/common/queries/useDiscover.ts",
+                "Pos": 1686,
+                "End": 1889,
+                "Kind": 261
+              }
+            ],
+            "Unresolved": false,
+            "InstantiationDepth": 0,
+            "ActiveMappers": 0
+          },
+          "owners": 3,
+          "calls": 3,
+          "exclusiveNs": 54412147,
+          "errorResults": 0
+        }
+      ]
+    }
+  ]
+}
