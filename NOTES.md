@@ -1152,3 +1152,12 @@ seconds TypeORM1.0187,tRPC.1976,VS19.0098,Sentry21.4609. Annotation .1920/.0595/
 3.4047/3.7342. Not CPU/savings; no caploss. Existing initializer quicktype/cache,
 contextual checks, bindingpatternpadding and JS wideningdiagnostics exclude naive
 origin-cache sharing. Evidence complete; noPERF or productionchange. Goalunmet.
+
+Initializer-work-budget offline64709 passed originalprofile/rawhashes and totalCPU
+reconciliation; 2recursive/overlap/parser tests pass. Initializer inclusiveCPU
+TypeORM6.860%,tRPC4.061%,VS11.624%,Sentry14.677%; callresolution23.571/12.183/
+42.027/46.063%. Overlappingcallees, notremovable/walltime. Initializer-onlysharing
+cannotexplain10x; existing quicktype/expressioncache/signatureflow/reentrance effects
+precludeorigin-cache. Broadersemanticrepresentation remains direction, no established
+10xmechanism. Production/PERF unchanged. Temporary callleafinspection exploratory
+only, notarchived/claimed asverified attribution.
