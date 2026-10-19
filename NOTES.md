@@ -972,3 +972,46 @@ Next integrate target sequence into unmatched checks and main relation loop;
 optimizing only the former risks shifting all allocation into the latter.
 Full correctness gates and normal build provenance still required before timing.
 Production source/default binary unchanged; no PERF row for component tests.
+
+Property-sequence-consumer integration is staged in an isolated overlay, based on
+8ae8db8. Both non-discriminant unmatched checks and propertiesRelatedTo use ordered
+target references. Dual propertyRef supports target/source pending views, exact
+identity, target-first query order, optionality after type relation, and actual
+symbol fallback for diagnostics/strict/protected. Added 3 independent differential
+history/identity/fallback tests (18 focused total); normal mode passed. Ongoing
+sessions: focused normal/race/checkptr90963, full root/services/conformance59454,
+supervised CLI/API/emit59595. Freeze HEAD8ae8db8 and all staged source/controllers
+until those sessions finish. No production edits, build promotion, timing or PERF
+rows yet. Root expected21193; services219; pinned conformance14915.
+
+Sequence-consumer validation update:90963 completed0, independently read back
+18tests each normal/race/checkptr with exact overlay hashes. Full59454 root21193
+and services219 passed; conformance still running. SupervisedCLI59595 normal80
+passed, integration underway at latest poll. Both handles confirmed live. Prepared
+verify.py (fresh complete-run schema plus decompressed conformance recount) and
+9-file guarded build-production.py; neither full verification nor normal production
+build has run yet. Keep HEAD/source/controllers frozen until validations finish.
+
+Full sequence-consumer59454 completed0: root21193/services219 plus pinned14915
+conformance configurations (12789full/8partial/2118unsupported/0failed). Independently
+recounted decompressed conformance archives and hashes successfully. CLI59595 normal80
+and integration12 passed; race build live at latest poll. Added benchmark controllers
+and frozen policy for nine-file candidate, but no performance config/build/timing yet.
+Raw full logs remain local, deterministic gzip archives are retained for Git; profile
+.gitignore excludes rawlogs/pycache. Recorder newline byte inspection confirmed valid
+single-backslash JS escapes (initial suspected formatting issue was display escaping,
+no recorder modification). Keep frozenHEAD8ae8db8 and overlays unchanged until CLI done.
+
+CLI59595 race mode passed80/80 (279.524sec test run), exit0; independently verified
+compressed raw log hashes and parsed all counts. Checkptr build/testing now remains.
+The race test run was confirmed actively launching compiler subprocesses before
+completion. No candidate/source/HEAD edits during validation.
+
+Sequence-consumer CLI59595 completed0:80normal/12integration/80race/80checkptr.
+Independent full raw-evidence verifier22851 passed; guarded normal build30711
+passed exact9-file delta and identical buildsettings, binary identical to validated
+overlay. Candidate binaryc08f624c4ec018c9c0b65d2acf807c74dd563b6f5cbc1dc97f55cda5fa0590ce,
+sidecar0576a875b8eef28688c2788f3265a83da56fc6688a587674d07022e5f0f9b47e,
+source383cbdbbf4c69d58b5e45a7b2889a9665e7d5d5aca2ea4913d507f8551dd0a2f,
+5160files. Default8fe4bd80/source216d40c7 restored exactly. Validation/build HEAD
+8ae8db8. Ready for frozen9small/5large paired screen, no timing completed yet.
