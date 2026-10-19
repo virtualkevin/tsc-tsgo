@@ -1037,3 +1037,71 @@ instrument/implement signature-only shared cache. Broader symboltype inclusiveCP
 checkerownership, and context/synthetic/instantiation classification. Inclusive
 costs includehits/callees and overlap; neither duplication nor savings demonstrated.
 Two parser tests passed; no PERF rows or production changes. Main stays solo.
+
+Symbol-resolution-census overlay implemented on retained production (not views).
+Nine actual resolvedType cache boundaries count hit/miss; named return observer
+records completion/cache/errorType, nested exclusive elapsed and instantiation
+counts, full ordered declaration origins plus contextdepth/activemappercount.
+Origins are not semantic equivalence: mapper/inference/diagnostic/flow descriptors
+remain incomplete. No new semantic queries or compiler IDs; capped100k origins per
+checker, dropped count, bounded ancestry and unresolvedgroups. Program exporter
+uses existing pool locks after ordinaryCLI; build/watch not covered. Focused3test
+normal/race/checkptr session91058 running. Production unchanged; no build/capture
+or performance yet. Initial setup assertion caught two stopTracing sites; hook
+was scoped to ordinary compile only before any validation started.
+
+Symbol census focused91058 completed0:3tests each normal/race/checkptr. Diagnostic
+normal build87630 remains live. Prepared capture.py and independent verify.py for
+24controls (4workloads x 1/4checkers x baseline/disabled/enabled), exactinput/source/
+binary hashes, cleanoutputs, no timingclaims. counts.py reconciles recorded+dropped
+misses and per-kind totals;2Pythonvalidator tests passed. Capture has not started;
+keep source frozen. Retainednodepointer sidecar confirmed76e6c4f0. No production edits.
+
+Symbol census build87630 completed0; controlled capture37790 launched under signal
+supervisor at HEADf49f9c0. Small12controls passed (1/4checker x baseline/disabled/
+enabled for TypeORM/tRPC), exactinputs/cleanoutputs. Preliminary enabled counts:
+TypeORM1/4 hits1266814/1323214 misses137355/198484; tRPC1/4 hits105178/124802,
+misses27535/42671. No origin drops on smallworkloads; actualowners1/4 as requested.
+No semantic-equivalence inference from count inflation. Largecontrols ongoing.
+Added origin-summary analyzer and3passing tests: unresolved exclusion, full-key
+separation, cross-owner repetition; repeated-origin elapsed includes firstowner,
+not removable work. Analyze fullreport only after capture and independentverify.
+Keep HEAD, observer sources and capture/count controllers frozen until complete.
+
+Census capture37790 remains live,13/24controls complete through VSsinglebaseline.
+Added artifacts.py/archive.py for deterministic gzip and full byte/hash readback;
+updated analysis/independentverification to support committed compressed captures
+and archive-manifest verification. Raw census files ignored (smallcaptures already
+40/61MB for TypeORM), compressed evidence will remain. Analysis3tests stillpass.
+Do not run archiving/analysis until fullcapture and verify pass; no HEAD/source/
+capture/countcontroller changes. These are diagnostic elapsed times, not benchmark.
+
+Capture37790 terminal143, supervisorSIGTERM sender3841/1000/codex, causeunknown;
+13controls completed, interruptedVS1-disabled stdout/stderr empty. Originalreport
+failed SystemExit143 preserved unchanged; interrupted/manifest stores original
+report/controller/supervisor/partiallogs byteverified. Added capture-remaining.py,
+verifies identicalHEAD/source/binaries/overlay/countvalidator/validation/build,
+carries unchanged13-run prefix, skips those controls, writes report-resumed.json.
+Resumed only11unfinished diagnosticcontrols in session34917. Updated verify/analyze/
+archive to resumedreport, verifier checks originalfailedreporthash and prefix.
+Not a performance retry; no benchmark/perf claim or production change. KeepHEADf49f9c0
+and existing observer/controllerpins frozen until remainingcapture completes.
+
+VSsingle enabled capture complete with2284046misses,792678recorded,1491368dropped,
+23537468hits;100kfirst-seen origin cap materially limits retainedorigincoverage.
+Allper-kind hit/miss totals remain complete, but origin/time/repetition cannot be
+extrapolated (notrandomsample). Analyzer now explicitly reports coveragecomplete
+and recordedmissfraction;3tests pass. Preserve cap unchanged for runningcapture;
+if a family merits followup, use targeted census instead of treating missingorigins
+as absentduplication or extending this run opportunistically. Capture34917 live.
+
+Remaining census34917 completed0; all24controls pass. Verify27635 passed raw input/
+source/binary/reportpins; analysis97831 and archive33128 passed; postarchive verify
+1650 passed all8gzip raw-equivalence checks. Independent focusedraw3/mode readback
+also passed. Original13-run failedreport/prefix preserved; 11remaining only resumed.
+Sentrymisses1/4=1205042/1996474,VS2284046/3055256. Origincoverage VS34.70/45.33%,
+Sentry59.89/77.90%; small100%. Instantiated leadsmisses but origin excludesmapper
+identity so no safe-sharingclaim. Ordinaryvariable/property recordedwork warrants
+context/annotation/flow/diagnosticeffect classification next, with targeted coverage
+ratherthan extrapolating first-seen cappedrecords. Evidence33MBgzip; noPERFrows,
+productionstill216d40c7/8fe4bd80, captureHEADf49f9c0. Fullreport summary/README saved.
