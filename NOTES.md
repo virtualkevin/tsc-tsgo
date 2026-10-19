@@ -715,3 +715,32 @@ Previous turn madeprogress:147848a archived/pushed rejected4workloadscreen. Solo
 - Propertyview89512 verifiedlive:4normaltestspassed,raceinprogress. Reviewedactualpropertyconsumerordering: targetenumeration/missingchecks precedesourcequeries; discriminantsquerytargetthensource; relationoptionalityfollows typecheck; accessor/syntheticmodifiersneedmorethancurrentmetadata. AddedCONSUMER_CONTRACT.md with fallback/effect/identityobligations andrestrictedown-presenceboundary. No consumerintegration/no performanceclaim. Preserveoverlay/controlleruntilterminal;10×unmet.
 
 - Propertyview89512 terminal0:4testsnormal/race/checkptr allpass; independentverify source/logcoveragepass. Archivedprototype/evidence/consumercontract; no productionconsumer orperformanceclaim. Next non-discriminantown-presencecandidate mustpreserve reduction/resolution andsinglefallbacklookup (avoid repeatingsemanticprelude), exclude modules/unsupported pending states, keeptypecomparisons materialized.10×unmet.
+
+## Property-presence compiler consumer (in progress)
+
+Implemented an isolated four-file overlay in
+`benchmarks/profiles/property-presence-consumer/` at capture HEAD `4d23435`.
+Non-discriminant unmatched-property checks can answer positive own-property
+presence from the pending view without materializing a symbol. Reduction and
+member resolution precede the view; fallback reuses them and preserves module
+filtering and Object/Function augmentation. Discriminant type queries are unchanged.
+Production source/default binary remain unchanged. No timing or speedup claim.
+
+Focused six-test suite passed normal/race/checkptr. Full validation session 47800
+finished successfully: root 21,181 tests/14 packages, services 219, conformance
+14,915 configurations (12,789 full, 8 partial, 2,118 unsupported, zero failed).
+CLI validation session 33037 is still active: normal 80 and integration 12 passed;
+race CLI execution and then checkptr remain pending. Keep HEAD, overlay and
+validation controllers fixed until it finishes. Afterwards run `verify.py`, review
+and archive evidence, and use guarded normal build provenance before any workload
+screen. Do not infer workload gains from allocation-focused tests. Previous
+prototype commit `4d23435` was successfully pushed to main during this turn.
+
+Property-presence follow-up: CLI session 33037 completed successfully, including
+race80/checkptr80. Independent raw-evidence readback passed. Guarded normal build
+session34784 passed, candidate dded877d/source e773bc7b, exactly four source-file
+changes, identical build settings, baseline/default restored. Performance controls
+prepared with unchanged 9-small/5-large paired screen and existing gates. No
+performance result yet; candidate remains isolated. Previous goal turn made
+implementation/validation progress; this continuation completed correctness and
+normal build evidence.

@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-presence-consumer/overlay.json",
+    "-o",
+    "/tmp/tsc-property-presence-validation/tsc-property-presence",
+    "./cmd/tsgo"
+  ],
+  "binarySha256": "dded877d210b88f1724e8890ccf7521453c17f8822b163e99aeb690564bb99ce",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "aa17c13eb90b6ec1b0ec3213149ff7817152068dfb3e211aa593b472e1d2a6a8",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view.go": "926f0afb0aa80ba20eac083173d8d23de9df6304a32bcf7187d0c5e739cd379e",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_test.go": "590c7a1d8ee925a811621de2ff41d1d7fe0efe476fc1b798e1c715d1a9cfed3a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "16959cd0d48431dfa3da1265490180226d7b2d3177943cea465df3d5d2c2ce16"
+  },
+  "scope": "Isolated overlay; normal production build provenance still required."
+}
