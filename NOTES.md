@@ -878,3 +878,46 @@ Waiting turns were verified waits on live38501; current turn obtained terminal
 signal evidence and definitive frozen-gate rejection. Next investigate view
 coverage and added cache/materialization work before another structural redesign;
 do not treat allocated-symbol reductions as demonstrated whole-compiler savings.
+
+## Property-view census (active)
+
+Implemented isolated diagnostic observer under benchmarks/profiles/property-view-census
+on rejected corrected candidate0cee0116/source52bd0f35. Nineteen per-checker scalar
+counters cover lookup eligibility, kept views, cache entries/preparations, type
+queries/cache hits/misses/delegation, entry-to-symbol transfer, relation fallback
+partitions/acceptance/private rejection, and all clone constructors. Reporting uses
+existing compiler-pool lock mechanism after CLI check without extra semanticqueries.
+Counts/observer timing are not CPU costs, liveness or speedup evidence. In particular
+created-minus-materialized includes unreachable and retained entries; preparations
+include creation, not only reuse. No rejected-candidate performance rescue rerun.
+
+Three Python invariant-validator tests passed. Focused Go session23762 normal14
+passed; race/checkptr remain active. Diagnostic build session52031 remains active.
+Prepared12 controls (uninstrumented rejected candidate, disabled observer, enabled
+observer x4 workloads), pinned originalphysicalinputs with clean-output/hash gates.
+Capture not yet launched; requires all focusedmodes and build to pass. Baseline in
+this diagnostic capture is0cee0116, not retaineddefault8fe4bd80; workspace source stays
+216d40c7. No PERF rows. Removed only own generated helper validate.pyc directory.
+
+Property-view census follow-up: focused23762 and diagnosticbuild52031 completed0;
+all14 tests eachnormal/race/checkptr passed. Launched supervised capture39242;
+TypeORM andtRPC baseline(candidate0cee)/disabled/enabled controls all passed.
+Preliminary invariant-checked counters: TypeORM486entry creations,287latermaterialized
+(.590535),449accepted relations of1334,387typecachemisses,176326totalcloneconstructors.
+tRPC1240entries,839latermaterialized(.676613),948accepted of1540,886misses,37073clones.
+These show limited coverage, not CPU cost or permanent savings. VS/Sentry controls
+still active; no final interpretation/readback/commit yet. Keep HEAD37f384d,observer
+sources andcapturecontroller fixed. Next likely audit already-instantiated-source
+exclusion and exact flatten/composed-mapper semantics if full counts confirm low
+coverage; do not simply remove eligibility guards or claim scalar counts as time.
+
+Property-view census39242 completed0; independent verifier83363 completed0. All12
+controls and raw input/source/binary/controller hashes passed. Returned view fraction
+TypeORM.6936%,tRPC9.1651%,VS.4232%,Sentry.06277%; includes kept originals. Entries
+created/materialized:486/287,1240/839,6642/4772,5155/3501. Entries not materialized
+at report199/401/1870/1654; no liveness/permanent-savings claim. Totalcloneconstructors
+176326/37073/1857832/1686429. Saved summary.json and README table. Current narrow
+consumer coverage is tiny on bigprojects despite millions of lookups; next audit
+bulk enumeration/earlier materialization and ordered eligibility causes before
+expanding representation. Counts do not establish which guard dominates or CPUcost.
+No timing/PERF rows, no productionchange. CaptureHEAD37f384d.

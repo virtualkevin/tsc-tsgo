@@ -1,0 +1,57 @@
+{
+  "scope": "Diagnostic coverage, not CPU/liveness/speedup evidence.",
+  "results": [
+    {
+      "project": "typeorm",
+      "lookups": 390699,
+      "returnedViews": 2710,
+      "viewFraction": 0.006936285989982058,
+      "keptViews": 1862,
+      "entries": 486,
+      "materializedEntries": 287,
+      "entriesNotMaterialized": 199,
+      "materializedFraction": 0.5905349794238683,
+      "acceptedRelations": 449,
+      "cloneConstructors": 176326
+    },
+    {
+      "project": "trpc",
+      "lookups": 37861,
+      "returnedViews": 3470,
+      "viewFraction": 0.09165103932806846,
+      "keptViews": 1308,
+      "entries": 1240,
+      "materializedEntries": 839,
+      "entriesNotMaterialized": 401,
+      "materializedFraction": 0.6766129032258065,
+      "acceptedRelations": 948,
+      "cloneConstructors": 37073
+    },
+    {
+      "project": "vscode",
+      "lookups": 8468315,
+      "returnedViews": 35841,
+      "viewFraction": 0.004232364998231644,
+      "keptViews": 21800,
+      "entries": 6642,
+      "materializedEntries": 4772,
+      "entriesNotMaterialized": 1870,
+      "materializedFraction": 0.718458295694068,
+      "acceptedRelations": 5932,
+      "cloneConstructors": 1857832
+    },
+    {
+      "project": "sentry",
+      "lookups": 33052864,
+      "returnedViews": 20748,
+      "viewFraction": 0.0006277217006066403,
+      "keptViews": 10042,
+      "entries": 5155,
+      "materializedEntries": 3501,
+      "entriesNotMaterialized": 1654,
+      "materializedFraction": 0.6791464597478176,
+      "acceptedRelations": 4360,
+      "cloneConstructors": 1686429
+    }
+  ]
+}

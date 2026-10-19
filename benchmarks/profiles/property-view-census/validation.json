@@ -1,0 +1,111 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "cfb1c2b4d0698acf5f53f290ca9728fd02b3f5e29e50c5ab327cf1ab4fee97c6",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "58e32c2bd7ee797929f959956936461813bdc89382d0bad956df76187f65dea2",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "98ca711f81ed21ebefa27cef5e1fba061e1a548d64a8f3d3fa34ea079e6af2bd",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_test.go": "fb187ae025342ddb45254523bd77c412e15e41193177c7922681cfeca903b1d5",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_census.go": "52b8abcd8da4a2529e5691825b3153a42f0ae294235ab44d19091d76cdf14d26",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view.go": "7c4e4771198b4776a2da515c9d87ed482fd460a14a6c03662bbcb3a53b5b58ce",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/property_view_census.go": "eab035e7036738d9d0a0f73c41a1ccf4a761fb11e40a49d9c9d611070a551a14",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "e8b0e334cc83ae69a1960ed8a449a9f6f072a7df992b59f03bfa795dd5e025c3",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_census_test.go": "afe6890c904cca433409d7b2b71ce4e564ebfd1843c3bfc227e8ff7938d35190"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-view-census/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewCensusLifecycle",
+        "TestPropertyViewCensusEnableAndOutput",
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory",
+        "TestPropertyViewRelationDifferential",
+        "TestPropertyViewRelationFallbackBeforeQueries",
+        "TestPropertyViewPresenceSnapshot"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-view-census/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewCensusLifecycle",
+        "TestPropertyViewCensusEnableAndOutput",
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory",
+        "TestPropertyViewRelationDifferential",
+        "TestPropertyViewRelationFallbackBeforeQueries",
+        "TestPropertyViewPresenceSnapshot"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-view-census/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewCensusLifecycle",
+        "TestPropertyViewCensusEnableAndOutput",
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories",
+        "TestPropertyViewTypeCacheTransfer",
+        "TestPropertyViewReentrantTypeMaterialization",
+        "TestPropertyViewTypeIndependentHistories",
+        "TestPropertyViewNestedQueryAssignment",
+        "TestPropertyViewPanicHistory",
+        "TestPropertyViewRelationDifferential",
+        "TestPropertyViewRelationFallbackBeforeQueries",
+        "TestPropertyViewPresenceSnapshot"
+      ]
+    }
+  ]
+}
