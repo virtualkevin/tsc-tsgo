@@ -1015,3 +1015,15 @@ sidecar0576a875b8eef28688c2788f3265a83da56fc6688a587674d07022e5f0f9b47e,
 source383cbdbbf4c69d58b5e45a7b2889a9665e7d5d5aca2ea4913d507f8551dd0a2f,
 5160files. Default8fe4bd80/source216d40c7 restored exactly. Validation/build HEAD
 8ae8db8. Ready for frozen9small/5large paired screen, no timing completed yet.
+
+Sequence-consumer screen89769 terminated143 bySIGTERM while Sentry unfinished.
+Supervisor senderPID3841/UID1000/commcodex, causeunknown; forwarded, zero leftovers.
+Recorder11585 independently verified completed9pairs each: TypeORM2583.371807 ->
+2639.082598 ratio.9788900919424728 paired.9675025703535588; tRPC499.419030 ->
+521.555727 ratio.9575564108415974 paired.9682376564181435. Both timingfloorfail,
+RSSpass. REJECT, no unchangedretry/confirm/rescue/promotion. VSconsole50055.54 ->
+51705.81 preserved but not independently credited; no4workloadaggregate orlargePERF.
+Archived/readback11executionfiles; appended2verifiedPERFrows. CaptureHEADd1159f7.
+Actual cause of regression unproven; sequence sorting/map entries/dispatch are
+hypotheses. Further pending-view elaboration is not justified by these timings
+without new cost evidence or broader coverage. Production remains216d40c7/8fe4bd80.
