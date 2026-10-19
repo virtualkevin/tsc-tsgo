@@ -744,3 +744,11 @@ prepared with unchanged 9-small/5-large paired screen and existing gates. No
 performance result yet; candidate remains isolated. Previous goal turn made
 implementation/validation progress; this continuation completed correctness and
 normal build evidence.
+
+Property-presence screen session49011 completed0. Independent recorder69652
+passed provenance/input/raw-sample checks: aggregate ratio-of-medians1.004820012,
+paired-median1.016744847. Required both>=1.01; first failed. All individual floors
+and medianRSS gates passed. REJECTED; no confirmation/rescue/retuning/promotion.
+Archived/readback11 execution files and added4 table-only PERF rows. CaptureHEAD
+3dd098a; baseline/source unchanged. Prior waiting turns were verified waits on
+live session49011; this turn obtained terminal evidence and a definitive decision.
