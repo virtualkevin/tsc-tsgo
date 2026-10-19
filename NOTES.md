@@ -1027,3 +1027,13 @@ Archived/readback11executionfiles; appended2verifiedPERFrows. CaptureHEADd1159f7
 Actual cause of regression unproven; sequence sorting/map entries/dispatch are
 hypotheses. Further pending-view elaboration is not justified by these timings
 without new cost evidence or broader coverage. Production remains216d40c7/8fe4bd80.
+
+Semantic-sharing CPU budget audited from preserved normal profiles, exact input/raw
+hashes and totalCPU cross-check; semantic-sharing-budget scripts/report/manifest.
+Signatureconstruction+return unionCPU TypeORM2.287%,tRPC4.569%,VS3.410%,Sentry3.916%,
+below proposed10%researchgate even before duplicate/context exclusions. Do not
+instrument/implement signature-only shared cache. Broader symboltype inclusiveCPU
+11.873/9.137/19.603/21.448%; next diagnostic boundary actualcachemisses plus origin,
+checkerownership, and context/synthetic/instantiation classification. Inclusive
+costs includehits/callees and overlap; neither duplication nor savings demonstrated.
+Two parser tests passed; no PERF rows or production changes. Main stays solo.
