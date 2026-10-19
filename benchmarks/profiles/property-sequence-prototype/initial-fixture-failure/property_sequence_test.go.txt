@@ -1,0 +1,95 @@
+package checker
+
+import (
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/core"
+	"reflect"
+	"runtime"
+	"testing"
+)
+
+func TestPropertyViewSequenceOrder(t *testing.T) {
+	fixture := func() (*Checker, *StructuredType) {
+		c := pendingTestChecker()
+		c.compareSymbols = c.compareSymbolsWorker
+		container := c.newSymbol(ast.SymbolFlagsInterface, "I")
+		container.Declarations = []*ast.Node{{Loc: core.NewTextRange(0, 100)}}
+		z := c.newSymbol(ast.SymbolFlagsProperty, "z")
+		z.ValueDeclaration = &ast.Node{Loc: core.NewTextRange(10, 20)}
+		a := c.newSymbol(ast.SymbolFlagsProperty, "a")
+		a.ValueDeclaration = &ast.Node{Loc: core.NewTextRange(200, 210)}
+		reserved := c.newSymbol(ast.SymbolFlagsProperty, "__call")
+		typ := c.newObjectType(ObjectFlagsAnonymous, container)
+		c.setPendingStructuredTypeMembers(typ, c.pendingInstantiatedList([]*ast.Symbol{a, reserved, z}, nil), nil, nil, nil)
+		return c, typ.AsStructuredType()
+	}
+	c, owner := fixture()
+	_, reference := fixture()
+	before := c.SymbolCount
+	sequence, ok := c.pendingPropertySequence(owner)
+	if !ok || c.SymbolCount != before {
+		t.Fatal("sequence allocated symbols or fell back")
+	}
+	var names, expected []string
+	for i := range sequence.originals {
+		names = append(names, sequence.at(i).metadata().name)
+	}
+	for _, symbol := range reference.Properties() {
+		expected = append(expected, symbol.Name)
+	}
+	if !reflect.DeepEqual(names, expected) || !reflect.DeepEqual(names, []string{"z", "a"}) {
+		t.Fatalf("order %v != %v", names, expected)
+	}
+	owner.Properties()
+	owner.Members()
+	runtime.GC()
+	for i := range sequence.originals {
+		v := sequence.at(i)
+		if v.materialize() != getResolvedMember(owner, names[i]) || v.metadata() != metadataOfProperty(v.materialize()) {
+			t.Fatal("retired sequence identity")
+		}
+	}
+}
+
+func TestPropertyViewSequenceSnapshot(t *testing.T) {
+	c, owner, original, _ := viewFixture()
+	old := &Type{flags: TypeFlagsString}
+	c.valueSymbolLinks.Get(original).nameType = old
+	sequence, ok := c.pendingPropertySequence(owner)
+	if !ok {
+		t.Fatal("unsupported")
+	}
+	c.valueSymbolLinks.Get(original).nameType = &Type{flags: TypeFlagsNumber}
+	for i := range sequence.originals {
+		v := sequence.at(i)
+		if v.name == original.Name && c.valueSymbolLinks.Get(v.materialize()).nameType != old {
+			t.Fatal("late snapshot")
+		}
+	}
+}
+
+func TestPropertyViewSequenceFallback(t *testing.T) {
+	for _, mode := range []string{"method", "instantiated", "duplicate", "bases", "resolving"} {
+		c, owner, _, last := viewFixture()
+		p := owner.pendingMembers
+		switch mode {
+		case "method":
+			last.Flags = ast.SymbolFlagsMethod
+		case "instantiated":
+			last.CheckFlags |= ast.CheckFlagsInstantiated
+		case "duplicate":
+			p.source.entries = append(p.source.entries, last)
+		case "bases":
+			p.hasBases = true
+		case "resolving":
+			p.resolving = true
+		}
+		before := c.SymbolCount
+		if _, ok := c.pendingPropertySequence(owner); ok {
+			t.Fatalf("accepted %s", mode)
+		}
+		if c.SymbolCount != before || p.viewTypes != nil || len(p.instantiated) != 0 {
+			t.Fatalf("fallback effects %s", mode)
+		}
+	}
+}

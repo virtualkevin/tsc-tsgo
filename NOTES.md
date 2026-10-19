@@ -959,3 +959,16 @@ sequence with initial clone-time metadata capture and later stablematerializatio
 then target-view relation consumption to avoid shifting allocation into nextloop.
 Do not extrapolate samples or assume no-pending always means earliermaterialization
 (it also includes ordinary concrete types). No PERF rows. CaptureHEADc074a46.
+
+Ordered target sequence prototype (property-sequence-prototype), based on the
+snapshot-corrected rejected relation-view overlay. Whole-layout preflight,
+eager nameType capture including reserved members, declared-first compiler
+sorting, typed original roots, lazy stable symbol materialization. No consumer
+integration or performance claim yet. Fifteen focused tests passed independently
+in normal/race/checkptr modes (session99555), raw logs/source hashes read back.
+Initial fixture failure preserved: __call was visible, not the reserved internal
+constant; eager and sequence orders agreed, explicit expected list was wrong.
+Next integrate target sequence into unmatched checks and main relation loop;
+optimizing only the former risks shifting all allocation into the latter.
+Full correctness gates and normal build provenance still required before timing.
+Production source/default binary unchanged; no PERF row for component tests.
