@@ -752,3 +752,22 @@ and medianRSS gates passed. REJECTED; no confirmation/rescue/retuning/promotion.
 Archived/readback11 execution files and added4 table-only PERF rows. CaptureHEAD
 3dd098a; baseline/source unchanged. Prior waiting turns were verified waits on
 live session49011; this turn obtained terminal evidence and a definitive decision.
+
+## Pending property type-cache prototype
+
+At retained production HEAD bff6b8c, implemented isolated three-file overlay in
+`benchmarks/profiles/property-type-view-prototype/`: a per-pending-clone read-type
+cache, captured nameType, and transfer to eventual symbol links. Reentrant
+materialization publishes the symbol into the cache entry; the outer query's final
+assignment updates actual symbol links even after enumeration retires the pending
+map. Actual symbols remain authoritative thereafter. Ordinary property write
+queries preserve read-then-remove-missing order. No broad memoization or compiler
+consumer yet; the rejected presence consumer is not promoted or rerun.
+
+Session16422 completed0: six focused tests each normal/race/checkptr passed.
+Independent raw-event/source-hash readback passed. Added tests cover repeated read
+cache, metadata snapshot transfer, enumeration/GC during mapper evaluation and
+matching instantiation counts after materialization. This is component evidence,
+not pinned compiler parity or a formal proof. Next: independent effectful histories
+and a broader type-query/relation consumer, then normal full validation and frozen
+workload performance gates. No PERF rows, since no new workload timing occurred.
