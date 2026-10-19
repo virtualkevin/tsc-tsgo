@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view_test.go": "82469c1e6dcb82acfad666dfc31ffded60d353b4e97698decba467294b914e48",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/property_view.go": "926f0afb0aa80ba20eac083173d8d23de9df6304a32bcf7187d0c5e739cd379e"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-view-prototype/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-view-prototype/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-view-prototype/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestPropertyView"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPropertyViewMetadataAndIdentity",
+        "TestPropertyViewFrozenDecisionAndRetirement",
+        "TestPropertyViewFallbackBeforeEffects",
+        "TestPropertyViewIndependentHistories"
+      ]
+    }
+  ]
+}
