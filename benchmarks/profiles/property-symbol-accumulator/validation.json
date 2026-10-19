@@ -1,0 +1,169 @@
+{
+  "passed": true,
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-symbol-accumulator/staged/property_accumulator_test.go": "05f32b33ebb3c78d6988681e67d0bc4785f9ba3cb8f6160ccd2def2f7ea29505",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-symbol-accumulator/staged/checker.go": "6609cf82a01082b2b8f08e37e523b3fe8ae793dd933d682dd8505999c5cb45e6"
+  },
+  "runs": [
+    {
+      "name": "baseline-normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-symbol-accumulator/baseline-overlay.json",
+        "./internal/checker",
+        "-run",
+        "^(TestPropertyAccumulatorQueryOrder|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestPropertyAccumulatorQueryOrder",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ]
+    },
+    {
+      "name": "baseline-race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-symbol-accumulator/baseline-overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^(TestPropertyAccumulatorQueryOrder|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestPropertyAccumulatorQueryOrder",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ]
+    },
+    {
+      "name": "baseline-checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-symbol-accumulator/baseline-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^(TestPropertyAccumulatorQueryOrder|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestPropertyAccumulatorQueryOrder",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ]
+    },
+    {
+      "name": "candidate-normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-symbol-accumulator/candidate-overlay.json",
+        "./internal/checker",
+        "-run",
+        "^(TestPropertyAccumulatorQueryOrder|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestPropertyAccumulatorQueryOrder",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ]
+    },
+    {
+      "name": "candidate-race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-symbol-accumulator/candidate-overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^(TestPropertyAccumulatorQueryOrder|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestPropertyAccumulatorQueryOrder",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ]
+    },
+    {
+      "name": "candidate-checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/property-symbol-accumulator/candidate-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^(TestPropertyAccumulatorQueryOrder|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestPropertyAccumulatorQueryOrder",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ]
+    }
+  ]
+}

@@ -1256,3 +1256,25 @@ tRPC2.538%,VS1.610%,Sentry1.440%; aliastargetdispatch .967/2.538/1.939/1.958.
 Source requirescycle stack/diagnostics/unknownsentinel/typeonlypropagation/mergedtarget.
 No standalone sharedaliastarget cache justified; oldsymboltypecensus isnot alias-target
 protocol evidence. No newcandidate/PERF/productionchange;10xmechanism unestablished.
+
+Atfe0b6cb inspectedcompletedheap/headerlifetime constraints; wholesale numeric-type
+handles would require typedownerretention and mayroot temporarygraphs forcheckerlife,
+no unprovedmigration. Implemented distinctproperty-symbol-accumulator overlay using
+existingorderedSet threshold16 forlocalappend-only propSet inpropertysynthesis, not
+rejectedpairedcache orsmall-pairreduction. Allarbitraryadds dedup beforeadd; initial
+singleprop onlyintoempty; hasCommonDeclaration/queryloop consume sameorderedvalues.
+Newactualmapperquery-order/duplicate/promotionwidthfixture runs onbaseline+candidate
+alongside7existingcachetests undernormal/race/checkptr31806. Sourcefrozen, nofullgates
+or timingyet. Productionunchanged; standalone10xmechanismnotclaimed.
+
+Property-symbol accumulator focused validation completed successfully (session 31806, exit 0): baseline and candidate each passed all eight stateful/query-order tests normally, under race, and under checkptr. Full compiler/services/conformance validation launched as supervised session 90330 against the frozen two-file overlay. Production source and default executable remain unchanged; no performance claim.
+
+Property-symbol accumulator full validation session 90330 has passed root (21,176 test records) and services (219); conformance remains live. Independent CLI/API/emit plus race/checkptr CLI validation launched under signal supervision as session 61613. Candidate, retained source and HEAD are frozen while both run.
+
+Property-symbol accumulator full validation session 90330 completed exit 0: root 21,176, services 219, conformance 14,915 configurations (12,789 fully checked, 8 partially checked, 2,118 unsupported/skipped, zero failures). CLI session 61613 remains live; normal isolated overlay build succeeded and parity cases are executing. No promotion or timing yet.
+
+CLI session 61613 terminated exit 1 during race parity: final-cli.json preserves KeyboardInterrupt(15), supervisor records SIGTERM from codex PID 3841 UID 1000, reason unknown. Normal80 and integration12 remain completed/passed; interrupted raw CLI logs copied/readback verified. Prepared continuation of only unfinished race/checkptr with identical frozen source/comparators and separate reports.
+
+Resumed CLI session 35737 passed all80 race parity tests; raw race test/build archives independently hash/readback checked. Checkptr is now the only pending phase. Original interrupted report/controller/logs remain preserved. Source/default binary unchanged and no workload timing yet.
+
+Property-symbol accumulator CLI continuation35737 completed0: race80/checkptr80 passed, normal80/API12 prefix preserved. Independent verifier78035 passed raw archive counts/hashes and report chain. Guarded normal build64063 completed0, exact2filedelta and identical overlaybinary d463cf16/sourcefe85ceee/sidecarf8e56207; production/default restored. Preparing frozen screen, no performance conclusion yet.
