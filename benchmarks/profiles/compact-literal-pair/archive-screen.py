@@ -13,7 +13,7 @@ def copy(src,rel,expected):
  manifest.append({'path':str(rel),'sha256':expected,'bytes':dst.stat().st_size})
 for src,h in files.items():copy(src,src.relative_to(root),h)
 recorder=root/'benchmarks/profiles/compact-literal-pair/record-screen.mjs';copy(recorder,recorder.relative_to(root),sha(recorder))
-src=Path('/tmp/tsc-compact-literal-pair-screen-supervisor.jsonl');copy(src,Path('supervisor.jsonl'),sha(src))
+src=Path('/tmp/compact-literal-screen-supervisor.jsonl');copy(src,Path('supervisor.jsonl'),sha(src))
 (execution/'manifest.json').write_text(json.dumps({'files':manifest,'allCopiesReadBackVerified':True},indent=2)+'\n')
 for f in json.loads((execution/'manifest.json').read_text())['files']:assert sha(execution/f['path'])==f['sha256']
 rows=(out/'recording/PERF.rows.md').read_text();assert len(rows.splitlines())==4

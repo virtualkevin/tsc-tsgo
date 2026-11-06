@@ -8,6 +8,6 @@ Full units/services/pinned conformance completed (resumed session90584): root21,
 
 CLI validation27490 completed: normal80, API/emit/project12, race80 and checkptr80 all pass. Independent complete raw-evidence verifier7067 passed. Normal provenance build50227 passed: binaryd9252a12, source35b57efd,5156source files and exactlyfive source changes. Retained production source/default executable were restored and verified. Duplicate raw logs were removed only after exact gzip readback; raw-compression.json preserves their hashes.
 
-Validation/build ran with HEAD8b1d1fe and fixed overlay sources. All correctness gates required for screening passed. This remains an unpromoted performance candidate; no timing or speedup result exists yet. Benchmark policy and finalized identities are in COMPARISON_POLICY.md and screen.json.
+Validation/build ran with HEAD8b1d1fe and fixed overlay sources. All correctness gates required for screening passed. The completed performance screen rejected this candidate; see RESULTS.md. Both aggregate timing gates and the workload floor failed. No confirmation or promotion. Benchmark policy and finalized identities are in COMPARISON_POLICY.md and screen.json.
 
-The memory saving may lose to added accessor branches and dispatch. Full correctness gates, normal provenance build, and the existing matched four-workload screening/confirmation policy are required before any promotion. PERF.md remains unchanged until actual compiler workload timing.
+The memory saving may lose to added accessor branches and dispatch. Full correctness and provenance build passed, but the fixed screen failed. Four actual compiler workload rows are recorded in PERF.md; production remains unchanged.
