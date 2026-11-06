@@ -3,7 +3,7 @@
 Eight-file overlay preserves slice capacity and backing identity while reducing
 three StructuredType headers from24to16bytes each on amd64. See CONTRACT.md and
 the standalone compact-slice-header prototype for representation and assurance.
-Production/default compiler remain unchanged. No workload timing yet.
+Production/default compiler remain unchanged. The completed screen rejected this candidate.
 
 Initial compile failed because compactSliceFrom(nil) cannot infer its generic
 element type. Exact staged sources/controller/logs are preserved in
@@ -20,5 +20,6 @@ Instrumented CLI race and checkptr parity each passed80/80. Independent final
 raw-evidence verification passed. The normal production build matched the tested
 binary a2974b77 exactly, with8changed/newfiles and5156candidate source files;
 source3a16fa1b/sidecar8fd4282a. Retained source/default executable were restored.
-Preflight passed; workload timing is next.
+The complete workload screen failed the frozen performance gates; see DECISION.md.
+The candidate is rejected with no confirmation runs or promotion.
 Production/default compiler remain unchanged; no speedup or10×claim.

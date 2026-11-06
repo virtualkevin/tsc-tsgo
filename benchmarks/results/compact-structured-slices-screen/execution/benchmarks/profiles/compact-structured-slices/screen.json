@@ -1,0 +1,142 @@
+{
+  "name": "compact-structured-slices",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-compact-structured-slices",
+      "sha256": "a2974b77a21bdbea650d9e14169c7fd1b297abf56aa29a68f47e3662b16104f6",
+      "source": "3a16fa1b52fbfdb1ed954ee87f1c2eef126d641703fb63ae2d11024097e8791f",
+      "sidecarSha256": "8fd4282aa35887af67edb4dc18a796b1462ae7affbeb1e29fc4810ab5c6d0057",
+      "revisionLabel": "Compact structured slices"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "ad78ba5ac3cb9e80590672572a432d8ce89ca6028815409d2ccde344447e5e64",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/compact_slice.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/compact_slice.go",
+        "sha256": "6df33fdd7085c6fc51bd53f872a6f9fedf539ad4797d87c102c21d4efeb92222",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/compact_structured_slices_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/compact_structured_slices_test.go",
+        "sha256": "e95106fb8335a348a9071d078ee42f963f230a799b5ee622b67e5b344dd77c4e",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/lazy_properties.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/lazy_properties.go",
+        "sha256": "9ae90d40cfedc29c093844a13b6ec66cb3624299b726e9337b67c7280f916fb9",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/lazy_properties.go",
+        "sha256": "e108829f080a90f11e087ad1842c3b738aa2406050705cde2393f08895127ff5",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/nodebuilderimpl.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/nodebuilderimpl.go",
+        "sha256": "c29c3388562d69d76c24cf33072881db6b3246e2dcc548a104fb67dfe8b21657",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/nodebuilderimpl.go",
+        "sha256": "c617dccccb711f76345dae84f028480020cbb843067265e8fdc8c6c045ffe81d",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/pending_members.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/pending_members.go",
+        "sha256": "778607282e1f2d649cc0726c61f35972196a64dddc12e52edf9ef906296693bb",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/pending_members.go",
+        "sha256": "3f3e62b2bb913fa08e98e7e844de713964052486d921d55c8d2de5a1f9bfc380",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/relater.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/relater.go",
+        "sha256": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/relater.go",
+        "sha256": "f1d44b29eb7b42cf61761df55cf2bb8c759d7b6e1989c67ff141898fe6579300",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/types.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/types.go",
+        "sha256": "9a39b928846926090a175d94773d5e3ab4b093b887061b0ef32cfa40548871f4",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/types.go",
+        "sha256": "362c24bad2a4d60e01156aa0fcf7fdf743140073258f08e6a9c4ff4f33c3f541",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5156
+  },
+  "comparisonPolicySha256": "793bf557b6bc245c49f63a074193b7e5bec8a31fccbb59273d0f069fe2930834",
+  "methodology": "Fresh-process/default-runtime matched GNU-time RSS screen of compact structured slices on pinned physical inputs; no timing during validation/build/Git work."
+}
