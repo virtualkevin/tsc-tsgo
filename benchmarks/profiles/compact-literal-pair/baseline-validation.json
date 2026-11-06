@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/compact_literal_pair.go": "58582bb9e7a03fffac8b8a3b8cdb15385c831f5590422c9ab4a8a811209abdfc",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/compact_literal_pair_test.go": "31d1bdbe87ab54e2e646582657c81e084c29d128354fc97851f5c7f77fe87310"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-literal-pair/baseline-overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestCompactLiteralPair"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-literal-pair/baseline-overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestCompactLiteralPair"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-literal-pair/baseline-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestCompactLiteralPair"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "priorRawSha256": "40f36ae55b9e06168038fa25c95b770e19d60a22d75db1e78c8e48d69a4052cc",
+  "currentRawSha256": "c5cf8565328e5837908e828e01aec1f129600e03751bf9a2a73a54f1d683cd65",
+  "priorTests": 21179,
+  "currentTests": 21178,
+  "removed": [
+    [
+      "github.com/microsoft/typescript-go/internal/checker",
+      "TestFusedIntersectionCurrentCacheAndSymbolState"
+    ],
+    [
+      "github.com/microsoft/typescript-go/internal/checker",
+      "TestFusedIntersectionFallbackHistories"
+    ],
+    [
+      "github.com/microsoft/typescript-go/internal/checker",
+      "TestFusedIntersectionGuards"
+    ],
+    [
+      "github.com/microsoft/typescript-go/internal/checker",
+      "TestFusedIntersectionInstantiatedSymbolQuery"
+    ]
+  ],
+  "added": [
+    [
+      "github.com/microsoft/typescript-go/internal/checker",
+      "TestCompactLiteralPairInterningAndGC"
+    ],
+    [
+      "github.com/microsoft/typescript-go/internal/checker",
+      "TestCompactLiteralPairLayout"
+    ],
+    [
+      "github.com/microsoft/typescript-go/internal/checker",
+      "TestCompactLiteralPairStateAndCopies"
+    ]
+  ],
+  "explanation": "Prior focused set included seven already-existing tests. Only four prior overlay tests were added to root suite; replace them with three candidate tests."
+}

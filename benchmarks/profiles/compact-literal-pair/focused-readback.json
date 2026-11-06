@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "representation": "candidate",
+      "mode": "normal",
+      "stdoutSha256": "1c14688a3b4b24003ee26d5e5f3894fa39dd678033d76e5a498ac7aa98199fd8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "representation": "candidate",
+      "mode": "race",
+      "stdoutSha256": "b7b24a511e58abfe96a344a5af68db920b79f9a9521e275c49e79a52c7866eb7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "representation": "candidate",
+      "mode": "checkptr",
+      "stdoutSha256": "da5698d5eaf374472f22b503d71a78c9c2b05e329710752a99373bc8ba1ceccf",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "representation": "baseline-",
+      "mode": "normal",
+      "stdoutSha256": "53292721aa58e49b5c26475ed9346b7f95605ed68a5c4590919b5db03032bcb8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "representation": "baseline-",
+      "mode": "race",
+      "stdoutSha256": "88ebdf50ea03f9cc293a5d37d49d187512c3d341d62dcfccb04e827a6c22c21b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "representation": "baseline-",
+      "mode": "checkptr",
+      "stdoutSha256": "12318b155af54b7091a31e9c98ad7e2dbced6774450a4ed9f7cb9adc51c5dfcc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    }
+  ],
+  "verifierSha256": "abae3778fc0ff1189a56f72c468c2f83bd2145b0653af452cb18e2eaf9c7fbb6"
+}

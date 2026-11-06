@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/types.go": "813096aa1da942b8d5777b99ba2c3de80ef8d02f022038e5c5506d6b89a93fd7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "b32fb8394f336919875628f798ba371236e1150cbabfbd4bd7d667c638b076f0",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "be0f95ce353c25cc2b7a782ffc13db84ea71e8fecf3c27bca4c258c5a49db335",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/compact_literal_pair.go": "b69add6d6120f1a0f79568144ba87d946588e8f0f0226088a89e68002d2e3ce3",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/compact_literal_pair_test.go": "5e5345cd5bfb9037ec9f21a705c9a160d7ecc2b7bc6eac184599020f1bb7f2e3"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-literal-pair/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestCompactLiteralPair"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-literal-pair/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestCompactLiteralPair"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-literal-pair/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestCompactLiteralPair"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactLiteralPairStateAndCopies",
+        "TestCompactLiteralPairInterningAndGC",
+        "TestCompactLiteralPairLayout"
+      ]
+    }
+  ]
+}

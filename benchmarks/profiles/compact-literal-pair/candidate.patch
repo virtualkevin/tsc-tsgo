@@ -1,0 +1,194 @@
+--- packages/tsc-go/internal/checker/checker.go	2026-11-06 13:17:37.906316406 +0000
++++ benchmarks/profiles/compact-literal-pair/staged/checker.go	2026-11-06 14:24:21.404816130 +0000
+@@ -996,12 +996,12 @@
+ 	c.bigintType = c.newIntrinsicType(TypeFlagsBigInt, "bigint")
+ 	c.regularFalseType = c.newLiteralType(TypeFlagsBooleanLiteral, false, nil)
+ 	c.falseType = c.newLiteralType(TypeFlagsBooleanLiteral, false, c.regularFalseType)
+-	c.regularFalseType.AsLiteralType().freshType = c.falseType
+-	c.falseType.AsLiteralType().freshType = c.falseType
++	c.regularFalseType.AsLiteralType().setFreshType(c.falseType)
++	c.falseType.AsLiteralType().setFreshType(c.falseType)
+ 	c.regularTrueType = c.newLiteralType(TypeFlagsBooleanLiteral, true, nil)
+ 	c.trueType = c.newLiteralType(TypeFlagsBooleanLiteral, true, c.regularTrueType)
+-	c.regularTrueType.AsLiteralType().freshType = c.trueType
+-	c.trueType.AsLiteralType().freshType = c.trueType
++	c.regularTrueType.AsLiteralType().setFreshType(c.trueType)
++	c.trueType.AsLiteralType().setFreshType(c.trueType)
+ 	c.booleanType = c.getUnionType([]*Type{c.regularFalseType, c.regularTrueType})
+ 	c.esSymbolType = c.newIntrinsicType(TypeFlagsESSymbol, "symbol")
+ 	c.voidType = c.newIntrinsicType(TypeFlagsVoid, "void")
+@@ -23819,8 +23819,8 @@
+ 	regularType.symbol = symbol
+ 	freshType := c.newLiteralType(TypeFlagsEnum, nil, regularType)
+ 	freshType.symbol = symbol
+-	regularType.AsLiteralType().freshType = freshType
+-	freshType.AsLiteralType().freshType = freshType
++	regularType.AsLiteralType().setFreshType(freshType)
++	freshType.AsLiteralType().setFreshType(freshType)
+ 	return regularType
+ }
+ 
+@@ -24986,9 +24986,10 @@
+ 	data.value = value
+ 	t := c.newType(flags, ObjectFlagsNone, data)
+ 	if regularType != nil {
+-		data.regularType = regularType
++		data.literalState = 3
++		data.literalPartner = regularType
+ 	} else {
+-		data.regularType = t
++		data.literalState = 1
+ 	}
+ 	return t
+ }
+@@ -25214,7 +25215,7 @@
+ 
+ func (c *Checker) getRegularTypeOfLiteralType(t *Type) *Type {
+ 	if t.flags&TypeFlagsFreshable != 0 {
+-		return t.AsLiteralType().regularType
++		return t.AsLiteralType().RegularType()
+ 	}
+ 	if t.flags&TypeFlagsUnion != 0 {
+ 		u := t.AsUnionType()
+@@ -25229,19 +25230,19 @@
+ func (c *Checker) getFreshTypeOfLiteralType(t *Type) *Type {
+ 	if t.flags&TypeFlagsFreshable != 0 {
+ 		d := t.AsLiteralType()
+-		if d.freshType == nil {
++		if d.FreshType() == nil {
+ 			f := c.newLiteralType(t.flags, d.value, t)
+ 			f.symbol = t.symbol
+-			f.AsLiteralType().freshType = f
+-			d.freshType = f
++			f.AsLiteralType().setFreshType(f)
++			d.setFreshType(f)
+ 		}
+-		return d.freshType
++		return d.FreshType()
+ 	}
+ 	return t
+ }
+ 
+ func isFreshLiteralType(t *Type) bool {
+-	return t.flags&TypeFlagsFreshable != 0 && t.AsLiteralType().freshType == t
++	return t.flags&TypeFlagsFreshable != 0 && t.AsLiteralType().FreshType() == t
+ }
+ 
+ func (c *Checker) getStringLiteralType(value string) *Type {
+@@ -25774,7 +25775,7 @@
+ 			flags&TypeFlagsBigIntLiteral != 0 && includes&TypeFlagsBigInt != 0 ||
+ 			flags&TypeFlagsUniqueESSymbol != 0 && includes&TypeFlagsESSymbol != 0 ||
+ 			reduceVoidUndefined && flags&TypeFlagsUndefined != 0 && includes&TypeFlagsVoid != 0 ||
+-			isFreshLiteralType(t) && containsType(types, t.AsLiteralType().regularType)
++			isFreshLiteralType(t) && containsType(types, t.AsLiteralType().RegularType())
+ 		if remove {
+ 			types = slices.Delete(types, i, i+1)
+ 		}
+@@ -27733,7 +27734,7 @@
+ 		var n *Type
+ 		switch {
+ 		case isFreshLiteralType(t):
+-			n = t.AsLiteralType().regularType
++			n = t.AsLiteralType().RegularType()
+ 		case c.isGenericTupleType(t):
+ 			n = c.getNormalizedTupleType(t, writing)
+ 		case t.objectFlags&ObjectFlagsReference != 0:
+--- packages/tsc-go/internal/checker/types.go	2026-11-06 11:29:05.267473416 +0000
++++ benchmarks/profiles/compact-literal-pair/staged/types.go	2026-11-06 14:24:21.243809919 +0000
+@@ -664,13 +664,14 @@
+ // Type
+ 
+ type Type struct {
+-	flags       TypeFlags
+-	objectFlags ObjectFlags
+-	id          TypeId
+-	symbol      *ast.Symbol
+-	alias       *TypeAlias
+-	checker     *Checker
+-	data        TypeData // Type specific data
++	flags        TypeFlags
++	objectFlags  ObjectFlags
++	id           TypeId
++	literalState uint8 // Private LiteralType state, stored in existing header padding.
++	symbol       *ast.Symbol
++	alias        *TypeAlias
++	checker      *Checker
++	data         TypeData // Type specific data
+ }
+ 
+ func (t *Type) Id() TypeId {
+@@ -875,9 +876,8 @@
+ 
+ type LiteralType struct {
+ 	TypeBase
+-	value       any   // string | jsnum.Number | bool | PseudoBigInt | nil (computed enum)
+-	freshType   *Type // Fresh version of type
+-	regularType *Type // Regular version of type
++	value          any   // string | jsnum.Number | bool | PseudoBigInt | nil (computed enum)
++	literalPartner *Type // Other freshness form; role and initialization are in Type.literalState.
+ }
+ 
+ func (t *LiteralType) Value() any {
+@@ -885,11 +885,23 @@
+ }
+ 
+ func (t *LiteralType) FreshType() *Type {
+-	return t.freshType
++	if t.literalState&2 != 0 {
++		if t.literalState&4 == 0 {
++			return nil
++		}
++		return t.data.AsType()
++	}
++	return t.literalPartner
+ }
+ 
+ func (t *LiteralType) RegularType() *Type {
+-	return t.regularType
++	if t.literalState&1 == 0 {
++		return nil
++	}
++	if t.literalState&2 != 0 {
++		return t.literalPartner
++	}
++	return t.data.AsType()
+ }
+ 
+ func (t *LiteralType) String() string {
+--- packages/tsc-go/internal/checker/relater.go	2026-11-06 11:29:05.275473720 +0000
++++ benchmarks/profiles/compact-literal-pair/staged/relater.go	2026-11-06 14:24:21.232809495 +0000
+@@ -169,10 +169,10 @@
+ 
+ func (c *Checker) isTypeRelatedTo(source *Type, target *Type, relation *Relation) bool {
+ 	if isFreshLiteralType(source) {
+-		source = source.AsLiteralType().regularType
++		source = source.AsLiteralType().RegularType()
+ 	}
+ 	if isFreshLiteralType(target) {
+-		target = target.AsLiteralType().regularType
++		target = target.AsLiteralType().RegularType()
+ 	}
+ 	if source == target {
+ 		return true
+@@ -196,7 +196,7 @@
+ 					for _, t := range types {
+ 						u := t
+ 						if isFreshLiteralType(u) {
+-							u = u.AsLiteralType().regularType
++							u = u.AsLiteralType().RegularType()
+ 						}
+ 						if source == u || relation == c.comparableRelation && u.flags&TypeFlagsNever == 0 && c.isSimpleTypeRelatedTo(u, source, relation, nil) || c.isSimpleTypeRelatedTo(source, u, relation, nil) {
+ 							return true
+@@ -239,9 +239,9 @@
+ 
+ func (c *Checker) literalRelatedToPrimitiveUnion(source *Type, target *Type) bool {
+ 	literal := source.AsLiteralType()
+-	alternateForm := literal.regularType
+-	if source == literal.regularType {
+-		alternateForm = literal.freshType
++	alternateForm := literal.RegularType()
++	if source == literal.RegularType() {
++		alternateForm = literal.FreshType()
+ 	}
+ 	var primitive *Type
+ 	switch {
