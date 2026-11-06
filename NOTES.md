@@ -1579,3 +1579,9 @@ recomputed and 11executionfiles archived; four measured PERF rows appended.
 Both aggregates1.053323/1.032315 pass; all workload floors and RSS gates pass.
 Prepared independent19/11 forward and reversed-role confirmations. No promotion
 or 10x/native claim; both confirmations must separately pass unchanged gates.
+
+Inlining forward82478 terminal0 (~50.7min); recorder32811 terminal0. All60pairs
+independently recomputed; 12executionfiles archived and four PERF rows appended.
+Aggregates1.017755/1.023989 pass; workload floors/RSS pass. VSmedian0.988351
+shows smaller/mixed benefit than screen; no pooling or promotion. Proceed to
+preconfigured reverse roles, same binaries/flags/source/default runtime.
