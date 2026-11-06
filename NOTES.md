@@ -1414,3 +1414,5 @@ Spreadtable full87754terminal0 root21176/services219/conformance14915(12789full/
 Spreadtable CLI30467race80passed;rawarchivehash/countreadbackpassed. Finalcheckptrstage stilllive; allpriorrequiredcorrectnesspassed. Production/PERFunchanged.
 
 SpreadtableCLI30467terminal0 normal80/API12/race80/checkptr80;completeverifier50790terminal0. Provenancebuild99009terminal0 binary3b1f019dd17bc2497a544fa280e1b95f88594f4074eb13a4109dcf35a5e48d82/source66a9d7175846cefbc04d8e5855c088b9e0054c19e4d872e55262b095e446b4d4/sidecara59e85f7581f1d032f16f2aeb61bcbd562a25426bdd8602d6724726a74e8655f;5155sources/2delta. Retainedsource/defaultrestored. Duplicaterawlogsremovedonlyafterexactgzipreadback. Screenconfigfinalized;no timings/promotionyet.
+
+Spread override table screen81226 terminal0, recorder69204 terminal0. Independent readback verified all28pairs/order/timing/RSS/aggregates/copied hashes/PERF rows. Aggregate ratios0.920191596/0.930743644 fail; TypeORM+tRPC both floors and VS median floor fail; RSS all pass. Rejected without rescue/retuning/confirmation. Source/default binary retained, four PERF rows recorded, 10x native-relative goal unmet.
