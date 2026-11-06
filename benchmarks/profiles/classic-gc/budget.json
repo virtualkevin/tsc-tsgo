@@ -1,0 +1,60 @@
+{
+  "scope": "Historical CPU samples containing background GC mark-worker or mutator-assist frames, counted once. Not all GC work, wall time, removable work, or predicted classic-GC savings.",
+  "patterns": {
+    "mark_or_assist": "runtime\\.(?:gcBgMarkWorker(?:\\.|$)|gcAssistAlloc(?:\\.|$))"
+  },
+  "parserSha256": "0dce30590aab850ded245658be32742e06dd7fa011a730cbeecc0473a9af2823",
+  "archiveSha256": "1e5c0a8a67d71dfcdad2a70e532ecdfd54bf164a9755172bbb50dc3938931a05",
+  "inputsSha256": "0aa0bb12c3b5a5b6fd2e83d92d4f0302a8d056c50f501a1bf1c4c7ac53d1b95e",
+  "analyzerSha256": "bab7e5871ce5037c2bddc148f7a786551a2520c21e37abe20d64042eea5fed09",
+  "projects": [
+    {
+      "project": "trpc",
+      "rawSha256": "90b8a0e2a7f4e3b8e2dc4705a89b7a86fd546836d0788cbe9fc6a67b89eca3a0",
+      "totalCpuNs": 1970000000,
+      "inclusivePercent": {
+        "mark_or_assist": 14.720812182741117
+      },
+      "exclusiveBucketsNs": {
+        "outside": 1680000000,
+        "mark_or_assist": 290000000
+      }
+    },
+    {
+      "project": "typeorm",
+      "rawSha256": "288de09c0ed1d95c20f19fb3631335e47909556ada884d4ad363020cc4a8ceca",
+      "totalCpuNs": 11370000000,
+      "inclusivePercent": {
+        "mark_or_assist": 18.117854001759014
+      },
+      "exclusiveBucketsNs": {
+        "outside": 9310000000,
+        "mark_or_assist": 2060000000
+      }
+    },
+    {
+      "project": "vscode",
+      "rawSha256": "f84842371ab3025e4d7096dd90bc1f8ec83e3f2aabc35783abe8eebc7c1a6409",
+      "totalCpuNs": 157780000000,
+      "inclusivePercent": {
+        "mark_or_assist": 17.80960831537584
+      },
+      "exclusiveBucketsNs": {
+        "outside": 129680000000,
+        "mark_or_assist": 28100000000
+      }
+    },
+    {
+      "project": "sentry",
+      "rawSha256": "db09cadc109d91f868ec1ab7af74d7963fe970c06c9e49031b463a888216dfdf",
+      "totalCpuNs": 121550000000,
+      "inclusivePercent": {
+        "mark_or_assist": 17.367338543809133
+      },
+      "exclusiveBucketsNs": {
+        "outside": 100440000000,
+        "mark_or_assist": 21110000000
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "controllerSha256": "4da83ad3cacf349cf74d86eff0e6c483e3bf1b0ed8b890d4ba06d92c1d36176d",
+  "toolchainSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+  "runtimeSources": {
+    "internal/buildcfg/exp.go": "eb81c42738c23056ba44561039c8ee09b337f045f852a1bf4bf81a24b5196b4d",
+    "internal/goexperiment/flags.go": "b34bfa58c283c17def13d43173fabd633dd361ebc22a1fe172750ceb14c43a3a",
+    "internal/goexperiment/exp_greenteagc_off.go": "af14996ef42f61adbdf7d78571641803a5c1d2ba0117df88c9ebffee83656be7",
+    "runtime/mgc.go": "8ac2523177e5915edfaf4e122a903eceef08b5abd765f8d7ed96a8cc1ed3a504",
+    "runtime/mgcmark.go": "68dac83a612229a11677b08cf7ee90101b3001096292cd80e890fb3a5cd4e817"
+  },
+  "sourceSha256": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-o",
+    "/tmp/tsc-classic-gc-validation/tsc-go-classic-gc",
+    "./cmd/tsgo"
+  ],
+  "experiment": "nogreenteagc",
+  "scope": "Isolated normal compiler build; identical compiler source, different collector implementation. No correctness or performance claim.",
+  "exitCode": 0,
+  "signal": null,
+  "binary": "/tmp/tsc-classic-gc-validation/tsc-go-classic-gc",
+  "binarySha256": "6940a08e1e29951b1950ba3c9a79a9d2f254c08b1452e0a9d902ab6aa14564d3",
+  "sidecarSha256": "8ca75452da70dd9401db6c1d4c36dbe9123d4ba89f4b64a705cf86959c27ab20",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

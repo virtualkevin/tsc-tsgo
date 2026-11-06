@@ -1466,3 +1466,16 @@ Direct-instantiation screen7507terminal0/recorder56425terminal0 all28pairs. Inde
 After367d331, contextual-type-partition offlineaudit uses pinnednormalrawCPU/source/parser, innermostgetContextualType sourcecallsite ownership;6tests passed andcomplete reportreproducesexactly. Initialsourceguard expected28 but actual25; correctedbefore report, no compilerexecution affected. SelectedCPU tRPC1.523/TypeORM1.143/VS2.706/Sentry10.358%; SentryJSXattribute6.425/objectelement3.332; stacklookupcallsiteVS.038/Sentry.025,notbroadcost. JSXstage discriminateContextualTypeByJSXAttributes5.356% anddiscriminateTypeByDiscriminableItems3.233 overlap; exactnode/typecache alreadyexists. Objectstage resolveMappedTypeMembers2.435%/findApplicableIndexInfo2.155 overlap, distinctfromrejectedordinarypendingmaterialization. Needwholemappedconstruction phasecosts beforeon-demandplan; preserveemptypublication,keyorder/remapping/collisions/modifier/indexeffects. No genericcontextcache/stackindexcandidate, no PERF orspeedclaim;10xunmet.
 
 Mapped-construction-partition at8f7629d: hashcheckednormalCPU, innermostmethod/closure sourceoperation partition;6tests pass/exactreproduction. WholemappedCPU tRPC1.015/TypeORM.352/VS.475/Sentry9.297%. Sentryindexvalue5.323/modifierindex1.645/linktables.617/symbolcreation.049; stageindependentindexlookup4.796+1.645=6.442%. Indexvalue descendants indexedaccess5.315, notprimarilymapperdispatch. Thus newcontextuallead returns toalready-investigatedsemanticindexrelations; no lazy mapped-symbol/mapper-specialization candidate justified, priorrejectsnotreopened. No compiler/PERF change or10xclaim.
+
+
+### Classic collector experiment: isolated build
+
+Built unchanged retained compiler source 216d40c7 with pinned Go 1.26.9 and
+GOEXPERIMENT=nogreenteagc. Complete recorded build settings match the retained
+build after normalizing only that experiment flag; default executable/sidecar
+remain unchanged. Isolated binary 6940a08e, sidecar 8ca75452. Historical
+mark-worker/assist CPU is 14.72–18.12% across workloads (hash-checked and
+reproduced); this is neither removable wall time nor a speedup prediction.
+Prepared lifetime, full conformance and CLI/API validation before any timing.
+No PERF rows or performance claim; the native-relative 10× goal remains unmet.
+Evidence: benchmarks/profiles/classic-gc/.
