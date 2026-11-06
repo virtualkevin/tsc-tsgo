@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "controllerSha256": "f2ca98d6b241128736f2ac4309aad9b3754c106c4b3ace889d8dcb18f3263c24",
+  "runs": [
+    {
+      "prefix": "",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-c",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-instantiation-loops/overlay.json",
+        "-o",
+        "/tmp/direct-instantiation-candidate-test",
+        "./internal/checker"
+      ],
+      "exitCode": 0,
+      "binary": "/tmp/direct-instantiation-candidate-test",
+      "binarySha256": "2ce75957f697615d59e3ba68014ae76784f030df2c523f249fa40ad028b84272",
+      "sources": {
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "5489744a6fc79c52d19dbf3fbd5658120f7750b2fb47c0f5f6c6c3132af0fade",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/direct_instantiation_loops_test.go": "dfcc2075d0cdeae65fa894ca5800e6b454c6fbc1c233c67e096d36961273f33e"
+      },
+      "toolchainSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+      "objdumpCommand": [
+        "/tmp/tsc-fused-objdump/objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.instantiate(Types|Symbols|Signatures|IndexInfos)$|checker\\.instantiateList",
+        "/tmp/direct-instantiation-candidate-test"
+      ],
+      "objdumpSha256": "79b1c6addca205aff706c904a59511b3004aeb5008a413981896b6fbe9600ff5",
+      "assemblySha256": "eaf1a59de322cc47b45a7ed165ede0da380081685d03a3199b2da98484528c38"
+    },
+    {
+      "prefix": "baseline-",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-c",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-instantiation-loops/baseline-overlay.json",
+        "-o",
+        "/tmp/direct-instantiation-baseline-test",
+        "./internal/checker"
+      ],
+      "exitCode": 0,
+      "binary": "/tmp/direct-instantiation-baseline-test",
+      "binarySha256": "4b3ebb480c31f75836ea9d3ed94341ecf3442e8ad3dd732c12fe6f086d007367",
+      "sources": {
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/direct_instantiation_loops_test.go": "dfcc2075d0cdeae65fa894ca5800e6b454c6fbc1c233c67e096d36961273f33e"
+      },
+      "toolchainSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+      "objdumpCommand": [
+        "/tmp/tsc-fused-objdump/objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.instantiate(Types|Symbols|Signatures|IndexInfos)$|checker\\.instantiateList",
+        "/tmp/direct-instantiation-baseline-test"
+      ],
+      "objdumpSha256": "79b1c6addca205aff706c904a59511b3004aeb5008a413981896b6fbe9600ff5",
+      "assemblySha256": "5343ef71a77562ae84acbef65c3e4516c6840ed93b317fd82fa4b65d1c5f2f09"
+    }
+  ]
+}

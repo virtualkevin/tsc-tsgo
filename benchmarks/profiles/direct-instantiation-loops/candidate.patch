@@ -1,0 +1,74 @@
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -22663,19 +22663,67 @@
+ }
+ 
+ func (c *Checker) instantiateTypes(types []*Type, m *TypeMapper) []*Type {
+-	return instantiateList(c, types, m, (*Checker).instantiateType)
++	for i, value := range types {
++		mapped := c.instantiateType(value, m)
++		if mapped != value {
++			result := make([]*Type, len(types))
++			copy(result, types[:i])
++			result[i] = mapped
++			for j := i + 1; j < len(types); j++ {
++				result[j] = c.instantiateType(types[j], m)
++			}
++			return result
++		}
++	}
++	return types
+ }
+ 
+ func (c *Checker) instantiateSymbols(symbols []*ast.Symbol, m *TypeMapper) []*ast.Symbol {
+-	return instantiateList(c, symbols, m, (*Checker).instantiateSymbol)
++	for i, value := range symbols {
++		mapped := c.instantiateSymbol(value, m)
++		if mapped != value {
++			result := make([]*ast.Symbol, len(symbols))
++			copy(result, symbols[:i])
++			result[i] = mapped
++			for j := i + 1; j < len(symbols); j++ {
++				result[j] = c.instantiateSymbol(symbols[j], m)
++			}
++			return result
++		}
++	}
++	return symbols
+ }
+ 
+ func (c *Checker) instantiateSignatures(signatures []*Signature, m *TypeMapper) []*Signature {
+-	return instantiateList(c, signatures, m, (*Checker).instantiateSignature)
++	for i, value := range signatures {
++		mapped := c.instantiateSignature(value, m)
++		if mapped != value {
++			result := make([]*Signature, len(signatures))
++			copy(result, signatures[:i])
++			result[i] = mapped
++			for j := i + 1; j < len(signatures); j++ {
++				result[j] = c.instantiateSignature(signatures[j], m)
++			}
++			return result
++		}
++	}
++	return signatures
+ }
+ 
+ func (c *Checker) instantiateIndexInfos(indexInfos []*IndexInfo, m *TypeMapper) []*IndexInfo {
+-	return instantiateList(c, indexInfos, m, (*Checker).instantiateIndexInfo)
++	for i, value := range indexInfos {
++		mapped := c.instantiateIndexInfo(value, m)
++		if mapped != value {
++			result := make([]*IndexInfo, len(indexInfos))
++			copy(result, indexInfos[:i])
++			result[i] = mapped
++			for j := i + 1; j < len(indexInfos); j++ {
++				result[j] = c.instantiateIndexInfo(indexInfos[j], m)
++			}
++			return result
++		}
++	}
++	return indexInfos
+ }
+ 
+ func instantiateList[T comparable](c *Checker, values []T, m *TypeMapper, instantiator func(c *Checker, value T, m *TypeMapper) T) []T {

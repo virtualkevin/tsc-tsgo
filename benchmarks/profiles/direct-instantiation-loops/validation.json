@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "5489744a6fc79c52d19dbf3fbd5658120f7750b2fb47c0f5f6c6c3132af0fade",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/direct_instantiation_loops_test.go": "dfcc2075d0cdeae65fa894ca5800e6b454c6fbc1c233c67e096d36961273f33e"
+  },
+  "controllerSha256": "3e2a8b7fc7ac47c928dc8bbab46ecedcb36ea914b48026dbc61f2a6f6d1de76a",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-instantiation-loops/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestDirectInstantiation(Type|Symbol|Signature|Index)Histories$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestDirectInstantiationTypeHistories",
+        "TestDirectInstantiationIndexHistories",
+        "TestDirectInstantiationSymbolHistories",
+        "TestDirectInstantiationSignatureHistories"
+      ],
+      "ok": true,
+      "observations": [],
+      "stdoutSha256": "7bb92f9f8abb185024154da50a2bcc633cbd344ff609ecd79d723d332d1af1e4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-instantiation-loops/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestDirectInstantiation(Type|Symbol|Signature|Index)Histories$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestDirectInstantiationTypeHistories",
+        "TestDirectInstantiationIndexHistories",
+        "TestDirectInstantiationSymbolHistories",
+        "TestDirectInstantiationSignatureHistories"
+      ],
+      "ok": true,
+      "observations": [],
+      "stdoutSha256": "2cc0cf2fbe71348777a2d1a5315d2a555966000f1569b91e8b98dbc12a70a6c4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/direct-instantiation-loops/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestDirectInstantiation(Type|Symbol|Signature|Index)Histories$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestDirectInstantiationTypeHistories",
+        "TestDirectInstantiationIndexHistories",
+        "TestDirectInstantiationSymbolHistories",
+        "TestDirectInstantiationSignatureHistories"
+      ],
+      "ok": true,
+      "observations": [],
+      "stdoutSha256": "ec9b70144f7e91a9af8e934edef6ec907158b5163685192f4878735b170f27f4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

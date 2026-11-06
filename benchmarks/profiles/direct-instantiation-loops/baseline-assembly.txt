@@ -1,0 +1,495 @@
+TEXT github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Signature](SB) /home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go
+  checker.go:22681	0xf2ed40		493b6610		CMPQ SP, 0x10(R14)																	
+  checker.go:22681	0xf2ed44		0f86ad010000		JBE 0xf2eef7																		
+  checker.go:22681	0xf2ed4a		55			PUSHQ BP																		
+  checker.go:22681	0xf2ed4b		4889e5			MOVQ SP, BP																		
+  checker.go:22681	0xf2ed4e		4883ec50		SUBQ $0x50, SP																		
+  checker.go:22682	0xf2ed52		4889442460		MOVQ AX, 0x60(SP)																	
+  checker.go:22682	0xf2ed57		48895c2468		MOVQ BX, 0x68(SP)																	
+  checker.go:22682	0xf2ed5c		4c89842488000000	MOVQ R8, 0x88(SP)																	
+  checker.go:22682	0xf2ed64		4c898c2490000000	MOVQ R9, 0x90(SP)																	
+  checker.go:22682	0xf2ed6c		4889b42480000000	MOVQ SI, 0x80(SP)																	
+  checker.go:22682	0xf2ed74		48897c2478		MOVQ DI, 0x78(SP)																	
+  checker.go:22682	0xf2ed79		48894c2470		MOVQ CX, 0x70(SP)																	
+  checker.go:22682	0xf2ed7e		31d2			XORL DX, DX																		
+  checker.go:22682	0xf2ed80		eb34			JMP 0xf2edb6																		
+  checker.go:22682	0xf2ed82		488b542430		MOVQ 0x30(SP), DX																	
+  checker.go:22682	0xf2ed87		48ffc2			INCQ DX																			
+  checker.go:22685	0xf2ed8a		488b442460		MOVQ 0x60(SP), AX																	
+  checker.go:22682	0xf2ed8f		488b4c2470		MOVQ 0x70(SP), CX																	
+  checker.go:22683	0xf2ed94		488b5c2468		MOVQ 0x68(SP), BX																	
+  checker.go:22694	0xf2ed99		488bb42480000000	MOVQ 0x80(SP), SI																	
+  checker.go:22682	0xf2eda1		488b7c2478		MOVQ 0x78(SP), DI																	
+  checker.go:22683	0xf2eda6		4c8b842488000000	MOVQ 0x88(SP), R8																	
+  checker.go:22683	0xf2edae		4c8b8c2490000000	MOVQ 0x90(SP), R9																	
+  checker.go:22682	0xf2edb6		4839d7			CMPQ DI, DX																		
+  checker.go:22682	0xf2edb9		0f8eb0000000		JLE 0xf2ee6f																		
+  checker.go:22682	0xf2edbf		4889542430		MOVQ DX, 0x30(SP)																	
+  checker.go:22682	0xf2edc4		488b34d1		MOVQ 0(CX)(DX*8), SI																	
+  checker.go:22682	0xf2edc8		4889742438		MOVQ SI, 0x38(SP)																	
+  checker.go:22683	0xf2edcd		498b39			MOVQ 0(R9), DI																		
+  checker.go:22683	0xf2edd0		4889d8			MOVQ BX, AX																		
+  checker.go:22683	0xf2edd3		4889f3			MOVQ SI, BX																		
+  checker.go:22683	0xf2edd6		4c89c1			MOVQ R8, CX																		
+  checker.go:22683	0xf2edd9		4c89ca			MOVQ R9, DX																		
+  checker.go:22683	0xf2eddc		ffd7			CALL DI																			
+  checker.go:22684	0xf2edde		488b742438		MOVQ 0x38(SP), SI																	
+  checker.go:22684	0xf2ede3		4839f0			CMPQ AX, SI																		
+  checker.go:22684	0xf2ede6		749a			JE 0xf2ed82																		
+  checker.go:22683	0xf2ede8		4889442440		MOVQ AX, 0x40(SP)																	
+  checker.go:22685	0xf2eded		488b542460		MOVQ 0x60(SP), DX																	
+  checker.go:22685	0xf2edf2		488b4218		MOVQ 0x18(DX), AX																	
+  checker.go:22685	0xf2edf6		488b5c2478		MOVQ 0x78(SP), BX																	
+  checker.go:22685	0xf2edfb		4889d9			MOVQ BX, CX																		
+  checker.go:22685	0xf2edfe		6690			NOPW																			
+  checker.go:22685	0xf2ee00		e83bfe55ff		CALL runtime.makeslice(SB)																
+  checker.go:22685	0xf2ee05		4889442448		MOVQ AX, 0x48(SP)																	
+  checker.go:22686	0xf2ee0a		488b542460		MOVQ 0x60(SP), DX																	
+  checker.go:22686	0xf2ee0f		488b5218		MOVQ 0x18(DX), DX																	
+  checker.go:22686	0xf2ee13		4889c3			MOVQ AX, BX																		
+  checker.go:22686	0xf2ee16		488b4c2478		MOVQ 0x78(SP), CX																	
+  checker.go:22686	0xf2ee1b		488b7c2470		MOVQ 0x70(SP), DI																	
+  checker.go:22686	0xf2ee20		488b742430		MOVQ 0x30(SP), SI																	
+  checker.go:22686	0xf2ee25		4889d0			MOVQ DX, AX																		
+  checker.go:22686	0xf2ee28		e853bf55ff		CALL runtime.typedslicecopy(SB)																
+  checker.go:22687	0xf2ee2d		833d5c05c10100		CMPL runtime.writeBarrier(SB), $0x0															
+  checker.go:22687	0xf2ee34		7511			JNE 0xf2ee47																		
+  checker.go:22687	0xf2ee36		488b442448		MOVQ 0x48(SP), AX																	
+  checker.go:22687	0xf2ee3b		488b742430		MOVQ 0x30(SP), SI																	
+  checker.go:22687	0xf2ee40		4c8b442440		MOVQ 0x40(SP), R8																	
+  checker.go:22687	0xf2ee45		eb1f			JMP 0xf2ee66																		
+  checker.go:22687	0xf2ee47		488b742430		MOVQ 0x30(SP), SI																	
+  checker.go:22687	0xf2ee4c		488b442448		MOVQ 0x48(SP), AX																	
+  checker.go:22687	0xf2ee51		488b3cf0		MOVQ 0(AX)(SI*8), DI																	
+  checker.go:22687	0xf2ee55		e8265156ff		CALL runtime.gcWriteBarrier2(SB)															
+  checker.go:22687	0xf2ee5a		4c8b442440		MOVQ 0x40(SP), R8																	
+  checker.go:22687	0xf2ee5f		4d8903			MOVQ R8, 0(R11)																		
+  checker.go:22687	0xf2ee62		49897b08		MOVQ DI, 0x8(R11)																	
+  checker.go:22687	0xf2ee66		4c8904f0		MOVQ R8, 0(AX)(SI*8)																	
+  checker.go:22688	0xf2ee6a		48ffc6			INCQ SI																			
+  checker.go:22688	0xf2ee6d		eb19			JMP 0xf2ee88																		
+  checker.go:22694	0xf2ee6f		4889c8			MOVQ CX, AX																		
+  checker.go:22694	0xf2ee72		4889fb			MOVQ DI, BX																		
+  checker.go:22694	0xf2ee75		4889f1			MOVQ SI, CX																		
+  checker.go:22694	0xf2ee78		4883c450		ADDQ $0x50, SP																		
+  checker.go:22694	0xf2ee7c		5d			POPQ BP																			
+  checker.go:22694	0xf2ee7d		c3			RET																			
+  checker.go:22689	0xf2ee7e		488904f7		MOVQ AX, 0(DI)(SI*8)																	
+  checker.go:22688	0xf2ee82		48ffc6			INCQ SI																			
+  checker.go:22691	0xf2ee85		4889f8			MOVQ DI, AX																		
+  checker.go:22688	0xf2ee88		488b4c2478		MOVQ 0x78(SP), CX																	
+  checker.go:22688	0xf2ee8d		4839f1			CMPQ CX, SI																		
+  checker.go:22688	0xf2ee90		7e5c			JLE 0xf2eeee																		
+  checker.go:22688	0xf2ee92		4889742428		MOVQ SI, 0x28(SP)																	
+  checker.go:22689	0xf2ee97		488b942490000000	MOVQ 0x90(SP), DX																	
+  checker.go:22689	0xf2ee9f		488b3a			MOVQ 0(DX), DI																		
+  checker.go:22689	0xf2eea2		4c8b442470		MOVQ 0x70(SP), R8																	
+  checker.go:22689	0xf2eea7		498b1cf0		MOVQ 0(R8)(SI*8), BX																	
+  checker.go:22689	0xf2eeab		488b442468		MOVQ 0x68(SP), AX																	
+  checker.go:22689	0xf2eeb0		488b8c2488000000	MOVQ 0x88(SP), CX																	
+  checker.go:22689	0xf2eeb8		ffd7			CALL DI																			
+  checker.go:22689	0xf2eeba		833dcf04c10100		CMPL runtime.writeBarrier(SB), $0x0															
+  checker.go:22689	0xf2eec1		750c			JNE 0xf2eecf																		
+  checker.go:22689	0xf2eec3		488b742428		MOVQ 0x28(SP), SI																	
+  checker.go:22689	0xf2eec8		488b7c2448		MOVQ 0x48(SP), DI																	
+  checker.go:22689	0xf2eecd		ebaf			JMP 0xf2ee7e																		
+  checker.go:22689	0xf2eecf		488b742428		MOVQ 0x28(SP), SI																	
+  checker.go:22689	0xf2eed4		488b7c2448		MOVQ 0x48(SP), DI																	
+  checker.go:22689	0xf2eed9		4c8b04f7		MOVQ 0(DI)(SI*8), R8																	
+  checker.go:22689	0xf2eedd		0f1f00			NOPL 0(AX)																		
+  checker.go:22689	0xf2eee0		e89b5056ff		CALL runtime.gcWriteBarrier2(SB)															
+  checker.go:22689	0xf2eee5		498903			MOVQ AX, 0(R11)																		
+  checker.go:22689	0xf2eee8		4d894308		MOVQ R8, 0x8(R11)																	
+  checker.go:22689	0xf2eeec		eb90			JMP 0xf2ee7e																		
+  checker.go:22691	0xf2eeee		4889cb			MOVQ CX, BX																		
+  checker.go:22691	0xf2eef1		4883c450		ADDQ $0x50, SP																		
+  checker.go:22691	0xf2eef5		5d			POPQ BP																			
+  checker.go:22691	0xf2eef6		c3			RET																			
+  checker.go:22681	0xf2eef7		4889442408		MOVQ AX, 0x8(SP)																	
+  checker.go:22681	0xf2eefc		48895c2410		MOVQ BX, 0x10(SP)																	
+  checker.go:22681	0xf2ef01		48894c2418		MOVQ CX, 0x18(SP)																	
+  checker.go:22681	0xf2ef06		48897c2420		MOVQ DI, 0x20(SP)																	
+  checker.go:22681	0xf2ef0b		4889742428		MOVQ SI, 0x28(SP)																	
+  checker.go:22681	0xf2ef10		4c89442430		MOVQ R8, 0x30(SP)																	
+  checker.go:22681	0xf2ef15		4c894c2438		MOVQ R9, 0x38(SP)																	
+  checker.go:22681	0xf2ef1a		e8e13656ff		CALL runtime.morestack_noctxt.abi0(SB)															
+  checker.go:22681	0xf2ef1f		488b442408		MOVQ 0x8(SP), AX																	
+  checker.go:22681	0xf2ef24		488b5c2410		MOVQ 0x10(SP), BX																	
+  checker.go:22681	0xf2ef29		488b4c2418		MOVQ 0x18(SP), CX																	
+  checker.go:22681	0xf2ef2e		488b7c2420		MOVQ 0x20(SP), DI																	
+  checker.go:22681	0xf2ef33		488b742428		MOVQ 0x28(SP), SI																	
+  checker.go:22681	0xf2ef38		4c8b442430		MOVQ 0x30(SP), R8																	
+  checker.go:22681	0xf2ef3d		4c8b4c2438		MOVQ 0x38(SP), R9																	
+  checker.go:22681	0xf2ef42		e9f9fdffff		JMP github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Signature](SB)	
+
+TEXT github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol](SB) /home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go
+  checker.go:22681	0xf2ef60		493b6610		CMPQ SP, 0x10(R14)																
+  checker.go:22681	0xf2ef64		0f86ad010000		JBE 0xf2f117																	
+  checker.go:22681	0xf2ef6a		55			PUSHQ BP																	
+  checker.go:22681	0xf2ef6b		4889e5			MOVQ SP, BP																	
+  checker.go:22681	0xf2ef6e		4883ec50		SUBQ $0x50, SP																	
+  checker.go:22682	0xf2ef72		4889442460		MOVQ AX, 0x60(SP)																
+  checker.go:22682	0xf2ef77		48895c2468		MOVQ BX, 0x68(SP)																
+  checker.go:22682	0xf2ef7c		4c89842488000000	MOVQ R8, 0x88(SP)																
+  checker.go:22682	0xf2ef84		4c898c2490000000	MOVQ R9, 0x90(SP)																
+  checker.go:22682	0xf2ef8c		4889b42480000000	MOVQ SI, 0x80(SP)																
+  checker.go:22682	0xf2ef94		48897c2478		MOVQ DI, 0x78(SP)																
+  checker.go:22682	0xf2ef99		48894c2470		MOVQ CX, 0x70(SP)																
+  checker.go:22682	0xf2ef9e		31d2			XORL DX, DX																	
+  checker.go:22682	0xf2efa0		eb34			JMP 0xf2efd6																	
+  checker.go:22682	0xf2efa2		488b542430		MOVQ 0x30(SP), DX																
+  checker.go:22682	0xf2efa7		48ffc2			INCQ DX																		
+  checker.go:22685	0xf2efaa		488b442460		MOVQ 0x60(SP), AX																
+  checker.go:22682	0xf2efaf		488b4c2470		MOVQ 0x70(SP), CX																
+  checker.go:22683	0xf2efb4		488b5c2468		MOVQ 0x68(SP), BX																
+  checker.go:22694	0xf2efb9		488bb42480000000	MOVQ 0x80(SP), SI																
+  checker.go:22682	0xf2efc1		488b7c2478		MOVQ 0x78(SP), DI																
+  checker.go:22683	0xf2efc6		4c8b842488000000	MOVQ 0x88(SP), R8																
+  checker.go:22683	0xf2efce		4c8b8c2490000000	MOVQ 0x90(SP), R9																
+  checker.go:22682	0xf2efd6		4839d7			CMPQ DI, DX																	
+  checker.go:22682	0xf2efd9		0f8eb0000000		JLE 0xf2f08f																	
+  checker.go:22682	0xf2efdf		4889542430		MOVQ DX, 0x30(SP)																
+  checker.go:22682	0xf2efe4		488b34d1		MOVQ 0(CX)(DX*8), SI																
+  checker.go:22682	0xf2efe8		4889742438		MOVQ SI, 0x38(SP)																
+  checker.go:22683	0xf2efed		498b39			MOVQ 0(R9), DI																	
+  checker.go:22683	0xf2eff0		4889d8			MOVQ BX, AX																	
+  checker.go:22683	0xf2eff3		4889f3			MOVQ SI, BX																	
+  checker.go:22683	0xf2eff6		4c89c1			MOVQ R8, CX																	
+  checker.go:22683	0xf2eff9		4c89ca			MOVQ R9, DX																	
+  checker.go:22683	0xf2effc		ffd7			CALL DI																		
+  checker.go:22684	0xf2effe		488b742438		MOVQ 0x38(SP), SI																
+  checker.go:22684	0xf2f003		4839f0			CMPQ AX, SI																	
+  checker.go:22684	0xf2f006		749a			JE 0xf2efa2																	
+  checker.go:22683	0xf2f008		4889442440		MOVQ AX, 0x40(SP)																
+  checker.go:22685	0xf2f00d		488b542460		MOVQ 0x60(SP), DX																
+  checker.go:22685	0xf2f012		488b4218		MOVQ 0x18(DX), AX																
+  checker.go:22685	0xf2f016		488b5c2478		MOVQ 0x78(SP), BX																
+  checker.go:22685	0xf2f01b		4889d9			MOVQ BX, CX																	
+  checker.go:22685	0xf2f01e		6690			NOPW																		
+  checker.go:22685	0xf2f020		e81bfc55ff		CALL runtime.makeslice(SB)															
+  checker.go:22685	0xf2f025		4889442448		MOVQ AX, 0x48(SP)																
+  checker.go:22686	0xf2f02a		488b542460		MOVQ 0x60(SP), DX																
+  checker.go:22686	0xf2f02f		488b5218		MOVQ 0x18(DX), DX																
+  checker.go:22686	0xf2f033		4889c3			MOVQ AX, BX																	
+  checker.go:22686	0xf2f036		488b4c2478		MOVQ 0x78(SP), CX																
+  checker.go:22686	0xf2f03b		488b7c2470		MOVQ 0x70(SP), DI																
+  checker.go:22686	0xf2f040		488b742430		MOVQ 0x30(SP), SI																
+  checker.go:22686	0xf2f045		4889d0			MOVQ DX, AX																	
+  checker.go:22686	0xf2f048		e833bd55ff		CALL runtime.typedslicecopy(SB)															
+  checker.go:22687	0xf2f04d		833d3c03c10100		CMPL runtime.writeBarrier(SB), $0x0														
+  checker.go:22687	0xf2f054		7511			JNE 0xf2f067																	
+  checker.go:22687	0xf2f056		488b442448		MOVQ 0x48(SP), AX																
+  checker.go:22687	0xf2f05b		488b742430		MOVQ 0x30(SP), SI																
+  checker.go:22687	0xf2f060		4c8b442440		MOVQ 0x40(SP), R8																
+  checker.go:22687	0xf2f065		eb1f			JMP 0xf2f086																	
+  checker.go:22687	0xf2f067		488b742430		MOVQ 0x30(SP), SI																
+  checker.go:22687	0xf2f06c		488b442448		MOVQ 0x48(SP), AX																
+  checker.go:22687	0xf2f071		488b3cf0		MOVQ 0(AX)(SI*8), DI																
+  checker.go:22687	0xf2f075		e8064f56ff		CALL runtime.gcWriteBarrier2(SB)														
+  checker.go:22687	0xf2f07a		4c8b442440		MOVQ 0x40(SP), R8																
+  checker.go:22687	0xf2f07f		4d8903			MOVQ R8, 0(R11)																	
+  checker.go:22687	0xf2f082		49897b08		MOVQ DI, 0x8(R11)																
+  checker.go:22687	0xf2f086		4c8904f0		MOVQ R8, 0(AX)(SI*8)																
+  checker.go:22688	0xf2f08a		48ffc6			INCQ SI																		
+  checker.go:22688	0xf2f08d		eb19			JMP 0xf2f0a8																	
+  checker.go:22694	0xf2f08f		4889c8			MOVQ CX, AX																	
+  checker.go:22694	0xf2f092		4889fb			MOVQ DI, BX																	
+  checker.go:22694	0xf2f095		4889f1			MOVQ SI, CX																	
+  checker.go:22694	0xf2f098		4883c450		ADDQ $0x50, SP																	
+  checker.go:22694	0xf2f09c		5d			POPQ BP																		
+  checker.go:22694	0xf2f09d		c3			RET																		
+  checker.go:22689	0xf2f09e		488904f7		MOVQ AX, 0(DI)(SI*8)																
+  checker.go:22688	0xf2f0a2		48ffc6			INCQ SI																		
+  checker.go:22691	0xf2f0a5		4889f8			MOVQ DI, AX																	
+  checker.go:22688	0xf2f0a8		488b4c2478		MOVQ 0x78(SP), CX																
+  checker.go:22688	0xf2f0ad		4839f1			CMPQ CX, SI																	
+  checker.go:22688	0xf2f0b0		7e5c			JLE 0xf2f10e																	
+  checker.go:22688	0xf2f0b2		4889742428		MOVQ SI, 0x28(SP)																
+  checker.go:22689	0xf2f0b7		488b942490000000	MOVQ 0x90(SP), DX																
+  checker.go:22689	0xf2f0bf		488b3a			MOVQ 0(DX), DI																	
+  checker.go:22689	0xf2f0c2		4c8b442470		MOVQ 0x70(SP), R8																
+  checker.go:22689	0xf2f0c7		498b1cf0		MOVQ 0(R8)(SI*8), BX																
+  checker.go:22689	0xf2f0cb		488b442468		MOVQ 0x68(SP), AX																
+  checker.go:22689	0xf2f0d0		488b8c2488000000	MOVQ 0x88(SP), CX																
+  checker.go:22689	0xf2f0d8		ffd7			CALL DI																		
+  checker.go:22689	0xf2f0da		833daf02c10100		CMPL runtime.writeBarrier(SB), $0x0														
+  checker.go:22689	0xf2f0e1		750c			JNE 0xf2f0ef																	
+  checker.go:22689	0xf2f0e3		488b742428		MOVQ 0x28(SP), SI																
+  checker.go:22689	0xf2f0e8		488b7c2448		MOVQ 0x48(SP), DI																
+  checker.go:22689	0xf2f0ed		ebaf			JMP 0xf2f09e																	
+  checker.go:22689	0xf2f0ef		488b742428		MOVQ 0x28(SP), SI																
+  checker.go:22689	0xf2f0f4		488b7c2448		MOVQ 0x48(SP), DI																
+  checker.go:22689	0xf2f0f9		4c8b04f7		MOVQ 0(DI)(SI*8), R8																
+  checker.go:22689	0xf2f0fd		0f1f00			NOPL 0(AX)																	
+  checker.go:22689	0xf2f100		e87b4e56ff		CALL runtime.gcWriteBarrier2(SB)														
+  checker.go:22689	0xf2f105		498903			MOVQ AX, 0(R11)																	
+  checker.go:22689	0xf2f108		4d894308		MOVQ R8, 0x8(R11)																
+  checker.go:22689	0xf2f10c		eb90			JMP 0xf2f09e																	
+  checker.go:22691	0xf2f10e		4889cb			MOVQ CX, BX																	
+  checker.go:22691	0xf2f111		4883c450		ADDQ $0x50, SP																	
+  checker.go:22691	0xf2f115		5d			POPQ BP																		
+  checker.go:22691	0xf2f116		c3			RET																		
+  checker.go:22681	0xf2f117		4889442408		MOVQ AX, 0x8(SP)																
+  checker.go:22681	0xf2f11c		48895c2410		MOVQ BX, 0x10(SP)																
+  checker.go:22681	0xf2f121		48894c2418		MOVQ CX, 0x18(SP)																
+  checker.go:22681	0xf2f126		48897c2420		MOVQ DI, 0x20(SP)																
+  checker.go:22681	0xf2f12b		4889742428		MOVQ SI, 0x28(SP)																
+  checker.go:22681	0xf2f130		4c89442430		MOVQ R8, 0x30(SP)																
+  checker.go:22681	0xf2f135		4c894c2438		MOVQ R9, 0x38(SP)																
+  checker.go:22681	0xf2f13a		e8c13456ff		CALL runtime.morestack_noctxt.abi0(SB)														
+  checker.go:22681	0xf2f13f		488b442408		MOVQ 0x8(SP), AX																
+  checker.go:22681	0xf2f144		488b5c2410		MOVQ 0x10(SP), BX																
+  checker.go:22681	0xf2f149		488b4c2418		MOVQ 0x18(SP), CX																
+  checker.go:22681	0xf2f14e		488b7c2420		MOVQ 0x20(SP), DI																
+  checker.go:22681	0xf2f153		488b742428		MOVQ 0x28(SP), SI																
+  checker.go:22681	0xf2f158		4c8b442430		MOVQ 0x30(SP), R8																
+  checker.go:22681	0xf2f15d		4c8b4c2438		MOVQ 0x38(SP), R9																
+  checker.go:22681	0xf2f162		e9f9fdffff		JMP github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol](SB)	
+
+TEXT github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.IndexInfo](SB) /home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go
+  checker.go:22681	0xf2f180		493b6610		CMPQ SP, 0x10(R14)																	
+  checker.go:22681	0xf2f184		0f86ad010000		JBE 0xf2f337																		
+  checker.go:22681	0xf2f18a		55			PUSHQ BP																		
+  checker.go:22681	0xf2f18b		4889e5			MOVQ SP, BP																		
+  checker.go:22681	0xf2f18e		4883ec50		SUBQ $0x50, SP																		
+  checker.go:22682	0xf2f192		4889442460		MOVQ AX, 0x60(SP)																	
+  checker.go:22682	0xf2f197		48895c2468		MOVQ BX, 0x68(SP)																	
+  checker.go:22682	0xf2f19c		4c89842488000000	MOVQ R8, 0x88(SP)																	
+  checker.go:22682	0xf2f1a4		4c898c2490000000	MOVQ R9, 0x90(SP)																	
+  checker.go:22682	0xf2f1ac		4889b42480000000	MOVQ SI, 0x80(SP)																	
+  checker.go:22682	0xf2f1b4		48897c2478		MOVQ DI, 0x78(SP)																	
+  checker.go:22682	0xf2f1b9		48894c2470		MOVQ CX, 0x70(SP)																	
+  checker.go:22682	0xf2f1be		31d2			XORL DX, DX																		
+  checker.go:22682	0xf2f1c0		eb34			JMP 0xf2f1f6																		
+  checker.go:22682	0xf2f1c2		488b542430		MOVQ 0x30(SP), DX																	
+  checker.go:22682	0xf2f1c7		48ffc2			INCQ DX																			
+  checker.go:22685	0xf2f1ca		488b442460		MOVQ 0x60(SP), AX																	
+  checker.go:22682	0xf2f1cf		488b4c2470		MOVQ 0x70(SP), CX																	
+  checker.go:22683	0xf2f1d4		488b5c2468		MOVQ 0x68(SP), BX																	
+  checker.go:22694	0xf2f1d9		488bb42480000000	MOVQ 0x80(SP), SI																	
+  checker.go:22682	0xf2f1e1		488b7c2478		MOVQ 0x78(SP), DI																	
+  checker.go:22683	0xf2f1e6		4c8b842488000000	MOVQ 0x88(SP), R8																	
+  checker.go:22683	0xf2f1ee		4c8b8c2490000000	MOVQ 0x90(SP), R9																	
+  checker.go:22682	0xf2f1f6		4839d7			CMPQ DI, DX																		
+  checker.go:22682	0xf2f1f9		0f8eb0000000		JLE 0xf2f2af																		
+  checker.go:22682	0xf2f1ff		4889542430		MOVQ DX, 0x30(SP)																	
+  checker.go:22682	0xf2f204		488b34d1		MOVQ 0(CX)(DX*8), SI																	
+  checker.go:22682	0xf2f208		4889742438		MOVQ SI, 0x38(SP)																	
+  checker.go:22683	0xf2f20d		498b39			MOVQ 0(R9), DI																		
+  checker.go:22683	0xf2f210		4889d8			MOVQ BX, AX																		
+  checker.go:22683	0xf2f213		4889f3			MOVQ SI, BX																		
+  checker.go:22683	0xf2f216		4c89c1			MOVQ R8, CX																		
+  checker.go:22683	0xf2f219		4c89ca			MOVQ R9, DX																		
+  checker.go:22683	0xf2f21c		ffd7			CALL DI																			
+  checker.go:22684	0xf2f21e		488b742438		MOVQ 0x38(SP), SI																	
+  checker.go:22684	0xf2f223		4839f0			CMPQ AX, SI																		
+  checker.go:22684	0xf2f226		749a			JE 0xf2f1c2																		
+  checker.go:22683	0xf2f228		4889442440		MOVQ AX, 0x40(SP)																	
+  checker.go:22685	0xf2f22d		488b542460		MOVQ 0x60(SP), DX																	
+  checker.go:22685	0xf2f232		488b4218		MOVQ 0x18(DX), AX																	
+  checker.go:22685	0xf2f236		488b5c2478		MOVQ 0x78(SP), BX																	
+  checker.go:22685	0xf2f23b		4889d9			MOVQ BX, CX																		
+  checker.go:22685	0xf2f23e		6690			NOPW																			
+  checker.go:22685	0xf2f240		e8fbf955ff		CALL runtime.makeslice(SB)																
+  checker.go:22685	0xf2f245		4889442448		MOVQ AX, 0x48(SP)																	
+  checker.go:22686	0xf2f24a		488b542460		MOVQ 0x60(SP), DX																	
+  checker.go:22686	0xf2f24f		488b5218		MOVQ 0x18(DX), DX																	
+  checker.go:22686	0xf2f253		4889c3			MOVQ AX, BX																		
+  checker.go:22686	0xf2f256		488b4c2478		MOVQ 0x78(SP), CX																	
+  checker.go:22686	0xf2f25b		488b7c2470		MOVQ 0x70(SP), DI																	
+  checker.go:22686	0xf2f260		488b742430		MOVQ 0x30(SP), SI																	
+  checker.go:22686	0xf2f265		4889d0			MOVQ DX, AX																		
+  checker.go:22686	0xf2f268		e813bb55ff		CALL runtime.typedslicecopy(SB)																
+  checker.go:22687	0xf2f26d		833d1c01c10100		CMPL runtime.writeBarrier(SB), $0x0															
+  checker.go:22687	0xf2f274		7511			JNE 0xf2f287																		
+  checker.go:22687	0xf2f276		488b442448		MOVQ 0x48(SP), AX																	
+  checker.go:22687	0xf2f27b		488b742430		MOVQ 0x30(SP), SI																	
+  checker.go:22687	0xf2f280		4c8b442440		MOVQ 0x40(SP), R8																	
+  checker.go:22687	0xf2f285		eb1f			JMP 0xf2f2a6																		
+  checker.go:22687	0xf2f287		488b742430		MOVQ 0x30(SP), SI																	
+  checker.go:22687	0xf2f28c		488b442448		MOVQ 0x48(SP), AX																	
+  checker.go:22687	0xf2f291		488b3cf0		MOVQ 0(AX)(SI*8), DI																	
+  checker.go:22687	0xf2f295		e8e64c56ff		CALL runtime.gcWriteBarrier2(SB)															
+  checker.go:22687	0xf2f29a		4c8b442440		MOVQ 0x40(SP), R8																	
+  checker.go:22687	0xf2f29f		4d8903			MOVQ R8, 0(R11)																		
+  checker.go:22687	0xf2f2a2		49897b08		MOVQ DI, 0x8(R11)																	
+  checker.go:22687	0xf2f2a6		4c8904f0		MOVQ R8, 0(AX)(SI*8)																	
+  checker.go:22688	0xf2f2aa		48ffc6			INCQ SI																			
+  checker.go:22688	0xf2f2ad		eb19			JMP 0xf2f2c8																		
+  checker.go:22694	0xf2f2af		4889c8			MOVQ CX, AX																		
+  checker.go:22694	0xf2f2b2		4889fb			MOVQ DI, BX																		
+  checker.go:22694	0xf2f2b5		4889f1			MOVQ SI, CX																		
+  checker.go:22694	0xf2f2b8		4883c450		ADDQ $0x50, SP																		
+  checker.go:22694	0xf2f2bc		5d			POPQ BP																			
+  checker.go:22694	0xf2f2bd		c3			RET																			
+  checker.go:22689	0xf2f2be		488904f7		MOVQ AX, 0(DI)(SI*8)																	
+  checker.go:22688	0xf2f2c2		48ffc6			INCQ SI																			
+  checker.go:22691	0xf2f2c5		4889f8			MOVQ DI, AX																		
+  checker.go:22688	0xf2f2c8		488b4c2478		MOVQ 0x78(SP), CX																	
+  checker.go:22688	0xf2f2cd		4839f1			CMPQ CX, SI																		
+  checker.go:22688	0xf2f2d0		7e5c			JLE 0xf2f32e																		
+  checker.go:22688	0xf2f2d2		4889742428		MOVQ SI, 0x28(SP)																	
+  checker.go:22689	0xf2f2d7		488b942490000000	MOVQ 0x90(SP), DX																	
+  checker.go:22689	0xf2f2df		488b3a			MOVQ 0(DX), DI																		
+  checker.go:22689	0xf2f2e2		4c8b442470		MOVQ 0x70(SP), R8																	
+  checker.go:22689	0xf2f2e7		498b1cf0		MOVQ 0(R8)(SI*8), BX																	
+  checker.go:22689	0xf2f2eb		488b442468		MOVQ 0x68(SP), AX																	
+  checker.go:22689	0xf2f2f0		488b8c2488000000	MOVQ 0x88(SP), CX																	
+  checker.go:22689	0xf2f2f8		ffd7			CALL DI																			
+  checker.go:22689	0xf2f2fa		833d8f00c10100		CMPL runtime.writeBarrier(SB), $0x0															
+  checker.go:22689	0xf2f301		750c			JNE 0xf2f30f																		
+  checker.go:22689	0xf2f303		488b742428		MOVQ 0x28(SP), SI																	
+  checker.go:22689	0xf2f308		488b7c2448		MOVQ 0x48(SP), DI																	
+  checker.go:22689	0xf2f30d		ebaf			JMP 0xf2f2be																		
+  checker.go:22689	0xf2f30f		488b742428		MOVQ 0x28(SP), SI																	
+  checker.go:22689	0xf2f314		488b7c2448		MOVQ 0x48(SP), DI																	
+  checker.go:22689	0xf2f319		4c8b04f7		MOVQ 0(DI)(SI*8), R8																	
+  checker.go:22689	0xf2f31d		0f1f00			NOPL 0(AX)																		
+  checker.go:22689	0xf2f320		e85b4c56ff		CALL runtime.gcWriteBarrier2(SB)															
+  checker.go:22689	0xf2f325		498903			MOVQ AX, 0(R11)																		
+  checker.go:22689	0xf2f328		4d894308		MOVQ R8, 0x8(R11)																	
+  checker.go:22689	0xf2f32c		eb90			JMP 0xf2f2be																		
+  checker.go:22691	0xf2f32e		4889cb			MOVQ CX, BX																		
+  checker.go:22691	0xf2f331		4883c450		ADDQ $0x50, SP																		
+  checker.go:22691	0xf2f335		5d			POPQ BP																			
+  checker.go:22691	0xf2f336		c3			RET																			
+  checker.go:22681	0xf2f337		4889442408		MOVQ AX, 0x8(SP)																	
+  checker.go:22681	0xf2f33c		48895c2410		MOVQ BX, 0x10(SP)																	
+  checker.go:22681	0xf2f341		48894c2418		MOVQ CX, 0x18(SP)																	
+  checker.go:22681	0xf2f346		48897c2420		MOVQ DI, 0x20(SP)																	
+  checker.go:22681	0xf2f34b		4889742428		MOVQ SI, 0x28(SP)																	
+  checker.go:22681	0xf2f350		4c89442430		MOVQ R8, 0x30(SP)																	
+  checker.go:22681	0xf2f355		4c894c2438		MOVQ R9, 0x38(SP)																	
+  checker.go:22681	0xf2f35a		e8a13256ff		CALL runtime.morestack_noctxt.abi0(SB)															
+  checker.go:22681	0xf2f35f		488b442408		MOVQ 0x8(SP), AX																	
+  checker.go:22681	0xf2f364		488b5c2410		MOVQ 0x10(SP), BX																	
+  checker.go:22681	0xf2f369		488b4c2418		MOVQ 0x18(SP), CX																	
+  checker.go:22681	0xf2f36e		488b7c2420		MOVQ 0x20(SP), DI																	
+  checker.go:22681	0xf2f373		488b742428		MOVQ 0x28(SP), SI																	
+  checker.go:22681	0xf2f378		4c8b442430		MOVQ 0x30(SP), R8																	
+  checker.go:22681	0xf2f37d		4c8b4c2438		MOVQ 0x38(SP), R9																	
+  checker.go:22681	0xf2f382		e9f9fdffff		JMP github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.IndexInfo](SB)	
+
+TEXT github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type](SB) /home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go
+  checker.go:22681	0xf2f3a0		493b6610		CMPQ SP, 0x10(R14)																
+  checker.go:22681	0xf2f3a4		0f86ad010000		JBE 0xf2f557																	
+  checker.go:22681	0xf2f3aa		55			PUSHQ BP																	
+  checker.go:22681	0xf2f3ab		4889e5			MOVQ SP, BP																	
+  checker.go:22681	0xf2f3ae		4883ec50		SUBQ $0x50, SP																	
+  checker.go:22682	0xf2f3b2		4889442460		MOVQ AX, 0x60(SP)																
+  checker.go:22682	0xf2f3b7		48895c2468		MOVQ BX, 0x68(SP)																
+  checker.go:22682	0xf2f3bc		4c89842488000000	MOVQ R8, 0x88(SP)																
+  checker.go:22682	0xf2f3c4		4c898c2490000000	MOVQ R9, 0x90(SP)																
+  checker.go:22682	0xf2f3cc		4889b42480000000	MOVQ SI, 0x80(SP)																
+  checker.go:22682	0xf2f3d4		48897c2478		MOVQ DI, 0x78(SP)																
+  checker.go:22682	0xf2f3d9		48894c2470		MOVQ CX, 0x70(SP)																
+  checker.go:22682	0xf2f3de		31d2			XORL DX, DX																	
+  checker.go:22682	0xf2f3e0		eb34			JMP 0xf2f416																	
+  checker.go:22682	0xf2f3e2		488b542430		MOVQ 0x30(SP), DX																
+  checker.go:22682	0xf2f3e7		48ffc2			INCQ DX																		
+  checker.go:22685	0xf2f3ea		488b442460		MOVQ 0x60(SP), AX																
+  checker.go:22682	0xf2f3ef		488b4c2470		MOVQ 0x70(SP), CX																
+  checker.go:22683	0xf2f3f4		488b5c2468		MOVQ 0x68(SP), BX																
+  checker.go:22694	0xf2f3f9		488bb42480000000	MOVQ 0x80(SP), SI																
+  checker.go:22682	0xf2f401		488b7c2478		MOVQ 0x78(SP), DI																
+  checker.go:22683	0xf2f406		4c8b842488000000	MOVQ 0x88(SP), R8																
+  checker.go:22683	0xf2f40e		4c8b8c2490000000	MOVQ 0x90(SP), R9																
+  checker.go:22682	0xf2f416		4839d7			CMPQ DI, DX																	
+  checker.go:22682	0xf2f419		0f8eb0000000		JLE 0xf2f4cf																	
+  checker.go:22682	0xf2f41f		4889542430		MOVQ DX, 0x30(SP)																
+  checker.go:22682	0xf2f424		488b34d1		MOVQ 0(CX)(DX*8), SI																
+  checker.go:22682	0xf2f428		4889742438		MOVQ SI, 0x38(SP)																
+  checker.go:22683	0xf2f42d		498b39			MOVQ 0(R9), DI																	
+  checker.go:22683	0xf2f430		4889d8			MOVQ BX, AX																	
+  checker.go:22683	0xf2f433		4889f3			MOVQ SI, BX																	
+  checker.go:22683	0xf2f436		4c89c1			MOVQ R8, CX																	
+  checker.go:22683	0xf2f439		4c89ca			MOVQ R9, DX																	
+  checker.go:22683	0xf2f43c		ffd7			CALL DI																		
+  checker.go:22684	0xf2f43e		488b742438		MOVQ 0x38(SP), SI																
+  checker.go:22684	0xf2f443		4839f0			CMPQ AX, SI																	
+  checker.go:22684	0xf2f446		749a			JE 0xf2f3e2																	
+  checker.go:22683	0xf2f448		4889442440		MOVQ AX, 0x40(SP)																
+  checker.go:22685	0xf2f44d		488b542460		MOVQ 0x60(SP), DX																
+  checker.go:22685	0xf2f452		488b4218		MOVQ 0x18(DX), AX																
+  checker.go:22685	0xf2f456		488b5c2478		MOVQ 0x78(SP), BX																
+  checker.go:22685	0xf2f45b		4889d9			MOVQ BX, CX																	
+  checker.go:22685	0xf2f45e		6690			NOPW																		
+  checker.go:22685	0xf2f460		e8dbf755ff		CALL runtime.makeslice(SB)															
+  checker.go:22685	0xf2f465		4889442448		MOVQ AX, 0x48(SP)																
+  checker.go:22686	0xf2f46a		488b542460		MOVQ 0x60(SP), DX																
+  checker.go:22686	0xf2f46f		488b5218		MOVQ 0x18(DX), DX																
+  checker.go:22686	0xf2f473		4889c3			MOVQ AX, BX																	
+  checker.go:22686	0xf2f476		488b4c2478		MOVQ 0x78(SP), CX																
+  checker.go:22686	0xf2f47b		488b7c2470		MOVQ 0x70(SP), DI																
+  checker.go:22686	0xf2f480		488b742430		MOVQ 0x30(SP), SI																
+  checker.go:22686	0xf2f485		4889d0			MOVQ DX, AX																	
+  checker.go:22686	0xf2f488		e8f3b855ff		CALL runtime.typedslicecopy(SB)															
+  checker.go:22687	0xf2f48d		833dfcfec00100		CMPL runtime.writeBarrier(SB), $0x0														
+  checker.go:22687	0xf2f494		7511			JNE 0xf2f4a7																	
+  checker.go:22687	0xf2f496		488b442448		MOVQ 0x48(SP), AX																
+  checker.go:22687	0xf2f49b		488b742430		MOVQ 0x30(SP), SI																
+  checker.go:22687	0xf2f4a0		4c8b442440		MOVQ 0x40(SP), R8																
+  checker.go:22687	0xf2f4a5		eb1f			JMP 0xf2f4c6																	
+  checker.go:22687	0xf2f4a7		488b742430		MOVQ 0x30(SP), SI																
+  checker.go:22687	0xf2f4ac		488b442448		MOVQ 0x48(SP), AX																
+  checker.go:22687	0xf2f4b1		488b3cf0		MOVQ 0(AX)(SI*8), DI																
+  checker.go:22687	0xf2f4b5		e8c64a56ff		CALL runtime.gcWriteBarrier2(SB)														
+  checker.go:22687	0xf2f4ba		4c8b442440		MOVQ 0x40(SP), R8																
+  checker.go:22687	0xf2f4bf		4d8903			MOVQ R8, 0(R11)																	
+  checker.go:22687	0xf2f4c2		49897b08		MOVQ DI, 0x8(R11)																
+  checker.go:22687	0xf2f4c6		4c8904f0		MOVQ R8, 0(AX)(SI*8)																
+  checker.go:22688	0xf2f4ca		48ffc6			INCQ SI																		
+  checker.go:22688	0xf2f4cd		eb19			JMP 0xf2f4e8																	
+  checker.go:22694	0xf2f4cf		4889c8			MOVQ CX, AX																	
+  checker.go:22694	0xf2f4d2		4889fb			MOVQ DI, BX																	
+  checker.go:22694	0xf2f4d5		4889f1			MOVQ SI, CX																	
+  checker.go:22694	0xf2f4d8		4883c450		ADDQ $0x50, SP																	
+  checker.go:22694	0xf2f4dc		5d			POPQ BP																		
+  checker.go:22694	0xf2f4dd		c3			RET																		
+  checker.go:22689	0xf2f4de		488904f7		MOVQ AX, 0(DI)(SI*8)																
+  checker.go:22688	0xf2f4e2		48ffc6			INCQ SI																		
+  checker.go:22691	0xf2f4e5		4889f8			MOVQ DI, AX																	
+  checker.go:22688	0xf2f4e8		488b4c2478		MOVQ 0x78(SP), CX																
+  checker.go:22688	0xf2f4ed		4839f1			CMPQ CX, SI																	
+  checker.go:22688	0xf2f4f0		7e5c			JLE 0xf2f54e																	
+  checker.go:22688	0xf2f4f2		4889742428		MOVQ SI, 0x28(SP)																
+  checker.go:22689	0xf2f4f7		488b942490000000	MOVQ 0x90(SP), DX																
+  checker.go:22689	0xf2f4ff		488b3a			MOVQ 0(DX), DI																	
+  checker.go:22689	0xf2f502		4c8b442470		MOVQ 0x70(SP), R8																
+  checker.go:22689	0xf2f507		498b1cf0		MOVQ 0(R8)(SI*8), BX																
+  checker.go:22689	0xf2f50b		488b442468		MOVQ 0x68(SP), AX																
+  checker.go:22689	0xf2f510		488b8c2488000000	MOVQ 0x88(SP), CX																
+  checker.go:22689	0xf2f518		ffd7			CALL DI																		
+  checker.go:22689	0xf2f51a		833d6ffec00100		CMPL runtime.writeBarrier(SB), $0x0														
+  checker.go:22689	0xf2f521		750c			JNE 0xf2f52f																	
+  checker.go:22689	0xf2f523		488b742428		MOVQ 0x28(SP), SI																
+  checker.go:22689	0xf2f528		488b7c2448		MOVQ 0x48(SP), DI																
+  checker.go:22689	0xf2f52d		ebaf			JMP 0xf2f4de																	
+  checker.go:22689	0xf2f52f		488b742428		MOVQ 0x28(SP), SI																
+  checker.go:22689	0xf2f534		488b7c2448		MOVQ 0x48(SP), DI																
+  checker.go:22689	0xf2f539		4c8b04f7		MOVQ 0(DI)(SI*8), R8																
+  checker.go:22689	0xf2f53d		0f1f00			NOPL 0(AX)																	
+  checker.go:22689	0xf2f540		e83b4a56ff		CALL runtime.gcWriteBarrier2(SB)														
+  checker.go:22689	0xf2f545		498903			MOVQ AX, 0(R11)																	
+  checker.go:22689	0xf2f548		4d894308		MOVQ R8, 0x8(R11)																
+  checker.go:22689	0xf2f54c		eb90			JMP 0xf2f4de																	
+  checker.go:22691	0xf2f54e		4889cb			MOVQ CX, BX																	
+  checker.go:22691	0xf2f551		4883c450		ADDQ $0x50, SP																	
+  checker.go:22691	0xf2f555		5d			POPQ BP																		
+  checker.go:22691	0xf2f556		c3			RET																		
+  checker.go:22681	0xf2f557		4889442408		MOVQ AX, 0x8(SP)																
+  checker.go:22681	0xf2f55c		48895c2410		MOVQ BX, 0x10(SP)																
+  checker.go:22681	0xf2f561		48894c2418		MOVQ CX, 0x18(SP)																
+  checker.go:22681	0xf2f566		48897c2420		MOVQ DI, 0x20(SP)																
+  checker.go:22681	0xf2f56b		4889742428		MOVQ SI, 0x28(SP)																
+  checker.go:22681	0xf2f570		4c89442430		MOVQ R8, 0x30(SP)																
+  checker.go:22681	0xf2f575		4c894c2438		MOVQ R9, 0x38(SP)																
+  checker.go:22681	0xf2f57a		e8813056ff		CALL runtime.morestack_noctxt.abi0(SB)														
+  checker.go:22681	0xf2f57f		488b442408		MOVQ 0x8(SP), AX																
+  checker.go:22681	0xf2f584		488b5c2410		MOVQ 0x10(SP), BX																
+  checker.go:22681	0xf2f589		488b4c2418		MOVQ 0x18(SP), CX																
+  checker.go:22681	0xf2f58e		488b7c2420		MOVQ 0x20(SP), DI																
+  checker.go:22681	0xf2f593		488b742428		MOVQ 0x28(SP), SI																
+  checker.go:22681	0xf2f598		4c8b442430		MOVQ 0x30(SP), R8																
+  checker.go:22681	0xf2f59d		4c8b4c2438		MOVQ 0x38(SP), R9																
+  checker.go:22681	0xf2f5a2		e9f9fdffff		JMP github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type](SB)	

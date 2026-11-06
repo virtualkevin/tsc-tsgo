@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "buildReportSha256": "7c914846c70c3000e133a77e67ce87be2f3e7a213cb23dfc7c729fc79a9ffefe",
+  "directLoops": [
+    {
+      "function": "Types",
+      "instructions": 110,
+      "instructionBytes": 453,
+      "indirectCalls": 0,
+      "directInstantiationCallsites": 2
+    },
+    {
+      "function": "Symbols",
+      "instructions": 104,
+      "instructionBytes": 443,
+      "indirectCalls": 0,
+      "directInstantiationCallsites": 2
+    },
+    {
+      "function": "Signatures",
+      "instructions": 110,
+      "instructionBytes": 467,
+      "indirectCalls": 0,
+      "directInstantiationCallsites": 2
+    },
+    {
+      "function": "IndexInfos",
+      "instructions": 104,
+      "instructionBytes": 443,
+      "indirectCalls": 0,
+      "directInstantiationCallsites": 2
+    }
+  ],
+  "baseline": "Each of four generic loops has two indirect CALL DI sites. Baseline wrappers were inlined; candidate wrappers now have bodies.",
+  "scope": "Pinned normal test-binary assembly; no performance or production executable claim.",
+  "verifierSha256": "48bd99933f024e7cae136d78e97d2732761acd1b1b88eef645ba20474ba38474"
+}
