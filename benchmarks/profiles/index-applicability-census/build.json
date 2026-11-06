@@ -1,0 +1,24 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/index-applicability-census/overlay.json",
+    "-o",
+    "/tmp/tsc-index-applicability-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "c08f46a2189436086522b03e35cde51b9c5bb634b9993d845d5802a456878aff",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "a9021e28b802004badc0bdd494e08bb85ac68a4fadeeba18397195107ae1877d",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/index_applicability_census.go": "a32141cd3d0e2fd70580a721d6f02390df1ca58ed8123050e5fe83cd18b9a86a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/index_applicability_census.go": "cce5019a3887ee630dd18c33af14ef323a414f4667c3f51603d39083f031002c",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/index_applicability_census_test.go": "7597e33a947c48362007243cfe35424370ccb4ba4094d68a49ab9ee628f154a0"
+  },
+  "controllerSha256": "9437f9edd25de52b52fb932f87b35c92d5b1443a91eef40bf0e4f5cbe8f70c55",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "329aac831e3d5ec7c03e02e0740f7b9f0664cb92d2da5605028c2cfddc231c77",
+  "buildInfoSha256": "f89c0f2bbd6444f3199d7599846404dad7fd2876a91737df7a37d8883f8fd9d9"
+}

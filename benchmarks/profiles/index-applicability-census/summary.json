@@ -1,0 +1,3629 @@
+{
+  "scope": "Diagnostic counts only. Bounded early-pair history is biased; repeats and unchanged booleans do not prove cache equivalence. No speedup or removable CPU claim.",
+  "flagsSourceSha256": "9a39b928846926090a175d94773d5e3ab4b093b887061b0ef32cfa40548871f4",
+  "projects": [
+    {
+      "project": "typeorm",
+      "owners": 4,
+      "saturatedOwners": 0,
+      "totals": {
+        "Calls": 71110,
+        "True": 38895,
+        "TrackedFirst": 2519,
+        "TrackedRepeat": 68591,
+        "Dropped": 0,
+        "ChangedResult": 0,
+        "InclusiveInstantiations": 20,
+        "ExclusiveInstantiations": 20,
+        "InclusiveRelationGrowth": 49,
+        "ExclusiveRelationGrowth": 49,
+        "RepeatExclusiveInstantiations": 0,
+        "RepeatExclusiveRelationGrowth": 0
+      },
+      "rowsByCalls": [
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 47325,
+          "True": 15353,
+          "TrackedFirst": 1597,
+          "TrackedRepeat": 45728,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 7712,
+          "True": 7712,
+          "TrackedFirst": 768,
+          "TrackedRepeat": 6944,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 6837,
+          "True": 6837,
+          "TrackedFirst": 48,
+          "TrackedRepeat": 6789,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 5609,
+          "True": 5609,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 5605,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 2856,
+          "True": 2856,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 2853,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 289,
+          "True": 289,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 288,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 93,
+          "True": 93,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 89,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 68,
+          "True": 68,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 68,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 63,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 60,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 60,
+          "True": 60,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 60,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 54,
+          "True": 0,
+          "TrackedFirst": 23,
+          "TrackedRepeat": 31,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 25,
+          "True": 5,
+          "TrackedFirst": 25,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 20,
+          "ExclusiveInstantiations": 20,
+          "InclusiveRelationGrowth": 20,
+          "ExclusiveRelationGrowth": 20,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 25,
+          "True": 0,
+          "TrackedFirst": 25,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 25,
+          "ExclusiveRelationGrowth": 25,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 21,
+          "True": 0,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 19,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 20,
+          "True": 0,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 18,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 16,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 15,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 10,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 9,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 7,
+          "True": 2,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 6,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 4,
+          "True": 4,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 3,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": false,
+          "Calls": 3,
+          "True": 0,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 1,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 2,
+          "ExclusiveRelationGrowth": 2,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Intersection"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 3,
+          "True": 0,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 1,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 2,
+          "ExclusiveRelationGrowth": 2,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Intersection"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": false,
+          "Calls": 3,
+          "True": 3,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 1,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 3,
+          "True": 3,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 1,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 3,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 2,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        }
+      ]
+    },
+    {
+      "project": "trpc",
+      "owners": 4,
+      "saturatedOwners": 0,
+      "totals": {
+        "Calls": 4911,
+        "True": 3510,
+        "TrackedFirst": 878,
+        "TrackedRepeat": 4033,
+        "Dropped": 0,
+        "ChangedResult": 0,
+        "InclusiveInstantiations": 0,
+        "ExclusiveInstantiations": 0,
+        "InclusiveRelationGrowth": 1,
+        "ExclusiveRelationGrowth": 1,
+        "RepeatExclusiveInstantiations": 0,
+        "RepeatExclusiveRelationGrowth": 0
+      },
+      "rowsByCalls": [
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 962,
+          "True": 962,
+          "TrackedFirst": 41,
+          "TrackedRepeat": 921,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 622,
+          "True": 10,
+          "TrackedFirst": 178,
+          "TrackedRepeat": 444,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 519,
+          "True": 519,
+          "TrackedFirst": 155,
+          "TrackedRepeat": 364,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 505,
+          "True": 505,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 505,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 447,
+          "True": 280,
+          "TrackedFirst": 113,
+          "TrackedRepeat": 334,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 349,
+          "True": 349,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 345,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 312,
+          "True": 312,
+          "TrackedFirst": 136,
+          "TrackedRepeat": 176,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 228,
+          "True": 228,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 228,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 224,
+          "True": 224,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 220,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 191,
+          "True": 0,
+          "TrackedFirst": 168,
+          "TrackedRepeat": 23,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 99,
+          "True": 0,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 95,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 93,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 93,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 62,
+          "True": 0,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 58,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 54,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 51,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 42,
+          "True": 0,
+          "TrackedFirst": 42,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 37,
+          "True": 37,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 37,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 33,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 32,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 26,
+          "True": 26,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 22,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 26,
+          "True": 26,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 25,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 20,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 20,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 15,
+          "True": 15,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 13,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 10,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 7,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 10,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 7,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 10,
+          "True": 10,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 7,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 6,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 5,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 2,
+          "True": 2,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 1,
+          "ExclusiveRelationGrowth": 1,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringMapping"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 2,
+          "True": 2,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 1,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 1,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 1,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Intersection"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        }
+      ]
+    },
+    {
+      "project": "vscode",
+      "owners": 4,
+      "saturatedOwners": 0,
+      "totals": {
+        "Calls": 988516,
+        "True": 900447,
+        "TrackedFirst": 31138,
+        "TrackedRepeat": 957378,
+        "Dropped": 0,
+        "ChangedResult": 0,
+        "InclusiveInstantiations": 0,
+        "ExclusiveInstantiations": 0,
+        "InclusiveRelationGrowth": 12,
+        "ExclusiveRelationGrowth": 12,
+        "RepeatExclusiveInstantiations": 0,
+        "RepeatExclusiveRelationGrowth": 0
+      },
+      "rowsByCalls": [
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 509370,
+          "True": 424664,
+          "TrackedFirst": 6300,
+          "TrackedRepeat": 503070,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 185615,
+          "True": 185615,
+          "TrackedFirst": 20582,
+          "TrackedRepeat": 165033,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 180006,
+          "True": 180006,
+          "TrackedFirst": 308,
+          "TrackedRepeat": 179698,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 50198,
+          "True": 50198,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 50194,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 19568,
+          "True": 19568,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 19568,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 16553,
+          "True": 16553,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 16549,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 12308,
+          "True": 12308,
+          "TrackedFirst": 2401,
+          "TrackedRepeat": 9907,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 8136,
+          "True": 8136,
+          "TrackedFirst": 880,
+          "TrackedRepeat": 7256,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 1650,
+          "True": 0,
+          "TrackedFirst": 305,
+          "TrackedRepeat": 1345,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 1167,
+          "True": 1167,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 1167,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 942,
+          "True": 0,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 938,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 895,
+          "True": 895,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 891,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 520,
+          "True": 520,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 520,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 331,
+          "True": 331,
+          "TrackedFirst": 38,
+          "TrackedRepeat": 293,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 272,
+          "True": 4,
+          "TrackedFirst": 117,
+          "TrackedRepeat": 155,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 226,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 223,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 170,
+          "True": 170,
+          "TrackedFirst": 59,
+          "TrackedRepeat": 111,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Union"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 118,
+          "True": 118,
+          "TrackedFirst": 25,
+          "TrackedRepeat": 93,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 58,
+          "True": 0,
+          "TrackedFirst": 47,
+          "TrackedRepeat": 11,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 43,
+          "True": 43,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 43,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 43,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 43,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 31,
+          "True": 31,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 27,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 24,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 24,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 23,
+          "True": 0,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 19,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 22,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 21,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 20,
+          "True": 20,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 20,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Intersection"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 18,
+          "True": 0,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 14,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 4,
+          "ExclusiveRelationGrowth": 4,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Intersection"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": false,
+          "Calls": 18,
+          "True": 18,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 14,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": false,
+          "Calls": 18,
+          "True": 0,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 14,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 4,
+          "ExclusiveRelationGrowth": 4,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 17,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 16,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 15,
+          "True": 15,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 14,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": true,
+          "Calls": 15,
+          "True": 15,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 13,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": true,
+          "Calls": 15,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 15,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 12,
+          "True": 12,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 12,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 12,
+          "True": 12,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 11,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 8,
+          "True": 0,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 4,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 8,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 5,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 7,
+          "True": 7,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 3,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 7,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 7,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": true,
+          "Calls": 6,
+          "True": 6,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 4,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 6,
+          "True": 6,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 4,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 4,
+          "True": 0,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 2,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 4,
+          "True": 0,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 2,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Union"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 4,
+          "True": 0,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 2,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 3,
+          "True": 3,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 1,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 2,
+          "True": 2,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 1,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 2,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 1,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 1,
+          "ExclusiveRelationGrowth": 1,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Intersection"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 1,
+          "ExclusiveRelationGrowth": 1,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 1,
+          "ExclusiveRelationGrowth": 1,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 1,
+          "ExclusiveRelationGrowth": 1,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": true,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringMapping"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "EnumLiteral",
+            "Union"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        }
+      ]
+    },
+    {
+      "project": "sentry",
+      "owners": 4,
+      "saturatedOwners": 4,
+      "totals": {
+        "Calls": 18652240,
+        "True": 591196,
+        "TrackedFirst": 524288,
+        "TrackedRepeat": 3462157,
+        "Dropped": 14665795,
+        "ChangedResult": 0,
+        "InclusiveInstantiations": 2571337,
+        "ExclusiveInstantiations": 2571337,
+        "InclusiveRelationGrowth": 3442938,
+        "ExclusiveRelationGrowth": 3442938,
+        "RepeatExclusiveInstantiations": 0,
+        "RepeatExclusiveRelationGrowth": 0
+      },
+      "rowsByCalls": [
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": true,
+          "Calls": 8998888,
+          "True": 32484,
+          "TrackedFirst": 512693,
+          "TrackedRepeat": 1285878,
+          "Dropped": 7200317,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 2571327,
+          "ExclusiveInstantiations": 2571327,
+          "InclusiveRelationGrowth": 2571330,
+          "ExclusiveRelationGrowth": 2571330,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 6417528,
+          "True": 23022,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 1282679,
+          "Dropped": 5134849,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 10,
+          "ExclusiveInstantiations": 10,
+          "InclusiveRelationGrowth": 10,
+          "ExclusiveRelationGrowth": 10,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 1748100,
+          "True": 267,
+          "TrackedFirst": 864,
+          "TrackedRepeat": 6490,
+          "Dropped": 1740746,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 869137,
+          "ExclusiveRelationGrowth": 869137,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 1193151,
+          "True": 257043,
+          "TrackedFirst": 4344,
+          "TrackedRepeat": 713686,
+          "Dropped": 475121,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 196357,
+          "True": 196357,
+          "TrackedFirst": 6057,
+          "TrackedRepeat": 91348,
+          "Dropped": 98952,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 42350,
+          "True": 42350,
+          "TrackedFirst": 105,
+          "TrackedRepeat": 41698,
+          "Dropped": 547,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 12902,
+          "True": 12902,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 12900,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 10253,
+          "True": 3325,
+          "TrackedFirst": 35,
+          "TrackedRepeat": 10148,
+          "Dropped": 70,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 7483,
+          "True": 7483,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 7481,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 6798,
+          "True": 6798,
+          "TrackedFirst": 79,
+          "TrackedRepeat": 79,
+          "Dropped": 6640,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 4806,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 4806,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 2403,
+          "ExclusiveRelationGrowth": 2403,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 4099,
+          "True": 4099,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 4097,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 1335,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 1334,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 1309,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 1306,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 1275,
+          "True": 1275,
+          "TrackedFirst": 21,
+          "TrackedRepeat": 409,
+          "Dropped": 845,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 1209,
+          "True": 1209,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 1209,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 1099,
+          "True": 1099,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 1097,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 749,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 21,
+          "Dropped": 725,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 577,
+          "True": 577,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 575,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 450,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 450,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 257,
+          "True": 257,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 45,
+          "Dropped": 211,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 4,
+          "ExclusiveRelationGrowth": 4,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 170,
+          "True": 170,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 170,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 150,
+          "True": 150,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 148,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": true,
+          "Calls": 126,
+          "True": 126,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 126,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 110,
+          "True": 0,
+          "TrackedFirst": 8,
+          "TrackedRepeat": 102,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 96,
+          "True": 0,
+          "TrackedFirst": 12,
+          "TrackedRepeat": 60,
+          "Dropped": 24,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 16,
+          "ExclusiveRelationGrowth": 16,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 96,
+          "True": 0,
+          "TrackedFirst": 12,
+          "TrackedRepeat": 60,
+          "Dropped": 24,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 16,
+          "ExclusiveRelationGrowth": 16,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 70,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 36,
+          "Dropped": 34,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 68,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 67,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 58,
+          "True": 58,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 58,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 36,
+          "True": 0,
+          "TrackedFirst": 3,
+          "TrackedRepeat": 24,
+          "Dropped": 9,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": false,
+          "Calls": 36,
+          "True": 0,
+          "TrackedFirst": 12,
+          "TrackedRepeat": 16,
+          "Dropped": 8,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 16,
+          "ExclusiveRelationGrowth": 16,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 29,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 3,
+          "Dropped": 25,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "NumberLiteral",
+            "EnumLiteral"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 28,
+          "True": 28,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 28,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 21,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 12,
+          "Dropped": 9,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "EnumLiteral",
+            "Union"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 21,
+          "True": 21,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 21,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TemplateLiteral"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 20,
+          "True": 20,
+          "TrackedFirst": 12,
+          "TrackedRepeat": 4,
+          "Dropped": 4,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Union"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 16,
+          "True": 12,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 16,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 14,
+          "True": 14,
+          "TrackedFirst": 4,
+          "TrackedRepeat": 10,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 13,
+          "True": 13,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 13,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 10,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 2,
+          "Dropped": 7,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": true,
+          "Calls": 9,
+          "True": 0,
+          "TrackedFirst": 2,
+          "TrackedRepeat": 3,
+          "Dropped": 4,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": false,
+          "Calls": 8,
+          "True": 8,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 8,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 8,
+          "True": 8,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 8,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 6,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 6,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 5,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 2,
+          "Dropped": 3,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Number"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 5,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 2,
+          "Dropped": 3,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Any"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": true,
+          "Calls": 5,
+          "True": 5,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 5,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "ESSymbol"
+          ],
+          "target": [
+            "ESSymbol"
+          ],
+          "activeContext": true,
+          "Calls": 5,
+          "True": 5,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 5,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "UniqueESSymbol"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 5,
+          "True": 0,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 2,
+          "Dropped": 2,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Union"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 4,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 4,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "String"
+          ],
+          "target": [
+            "TemplateLiteral"
+          ],
+          "activeContext": true,
+          "Calls": 4,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 4,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 2,
+          "ExclusiveRelationGrowth": 2,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TypeParameter"
+          ],
+          "target": [
+            "String"
+          ],
+          "activeContext": false,
+          "Calls": 4,
+          "True": 4,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 4,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Intersection"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": false,
+          "Calls": 3,
+          "True": 3,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 3,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "TypeParameter"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 2,
+          "True": 0,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 2,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "StringLiteral"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": false,
+          "Calls": 2,
+          "True": 2,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 2,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 4,
+          "ExclusiveRelationGrowth": 4,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Intersection"
+          ],
+          "target": [
+            "Intersection"
+          ],
+          "activeContext": true,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 0,
+          "TrackedRepeat": 0,
+          "Dropped": 1,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        },
+        {
+          "source": [
+            "Never"
+          ],
+          "target": [
+            "Number"
+          ],
+          "activeContext": false,
+          "Calls": 1,
+          "True": 1,
+          "TrackedFirst": 1,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveInstantiations": 0,
+          "ExclusiveInstantiations": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatExclusiveInstantiations": 0,
+          "RepeatExclusiveRelationGrowth": 0
+        }
+      ]
+    }
+  ]
+}
