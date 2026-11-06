@@ -1,0 +1,129 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/types.go": "362c24bad2a4d60e01156aa0fcf7fdf743140073258f08e6a9c4ff4f33c3f541",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "ad78ba5ac3cb9e80590672572a432d8ce89ca6028815409d2ccde344447e5e64",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/pending_members.go": "3f3e62b2bb913fa08e98e7e844de713964052486d921d55c8d2de5a1f9bfc380",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/lazy_properties.go": "e108829f080a90f11e087ad1842c3b738aa2406050705cde2393f08895127ff5",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/nodebuilderimpl.go": "c617dccccb711f76345dae84f028480020cbb843067265e8fdc8c6c045ffe81d",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "f1d44b29eb7b42cf61761df55cf2bb8c759d7b6e1989c67ff141898fe6579300",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/compact_slice.go": "6df33fdd7085c6fc51bd53f872a6f9fedf539ad4797d87c102c21d4efeb92222",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/compact_structured_slices_test.go": "e95106fb8335a348a9071d078ee42f963f230a799b5ee622b67e5b344dd77c4e"
+  },
+  "controllerSha256": "d04f319aa57c3dd3a447526559501876e23f99b7db1f65939bcf8d41530d7520",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-structured-slices/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^(TestCompactStructured|TestPending)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactStructuredSliceAliases",
+        "TestCompactStructuredSignatureCapacity",
+        "TestCompactStructuredNilAndEmpty",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/internal",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/resolving",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+        "TestPendingOptionalQueriesDoNotInstantiateMembers",
+        "TestPendingMembersAPISparseLookupThenEnumeration",
+        "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+        "TestPendingMembersAPIRecursiveBaseAndPrivateStatic"
+      ],
+      "ok": true,
+      "stdoutSha256": "0153cfff20f6e24a3943fe80876d66fd3e6f29d83ef40fb52a02ba8268c80ff7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-structured-slices/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^(TestCompactStructured|TestPending)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactStructuredSliceAliases",
+        "TestCompactStructuredSignatureCapacity",
+        "TestCompactStructuredNilAndEmpty",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/internal",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/resolving",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+        "TestPendingOptionalQueriesDoNotInstantiateMembers",
+        "TestPendingMembersAPISparseLookupThenEnumeration",
+        "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+        "TestPendingMembersAPIRecursiveBaseAndPrivateStatic"
+      ],
+      "ok": true,
+      "stdoutSha256": "c548a925ead0e67e4930005c6dafc80b2c28b74d9943828bfe57bd865d8985b5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-structured-slices/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^(TestCompactStructured|TestPending)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactStructuredSliceAliases",
+        "TestCompactStructuredSignatureCapacity",
+        "TestCompactStructuredNilAndEmpty",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/internal",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/resolving",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+        "TestPendingOptionalQueriesDoNotInstantiateMembers",
+        "TestPendingMembersAPISparseLookupThenEnumeration",
+        "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+        "TestPendingMembersAPIRecursiveBaseAndPrivateStatic"
+      ],
+      "ok": true,
+      "stdoutSha256": "e942a7ead988e3c34701f3d4685c357ae811d8b0f1f0329f7f65fb9f553cbe66",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

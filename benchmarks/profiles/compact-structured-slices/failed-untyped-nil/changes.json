@@ -1,0 +1,177 @@
+[
+  {
+    "file": "types.go",
+    "before": "\treturn slices.Clip(t.signatures[:t.callSignatureCount])",
+    "after": "\treturn slices.Clip(t.signatures.Values()[:t.callSignatureCount])"
+  },
+  {
+    "file": "types.go",
+    "before": "\treturn slices.Clip(t.signatures[t.callSignatureCount:])",
+    "after": "\treturn slices.Clip(t.signatures.Values()[t.callSignatureCount:])"
+  },
+  {
+    "file": "types.go",
+    "before": "\treturn t.properties",
+    "after": "\treturn t.properties.Values()"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\tif len(resolved.signatures) != 0 {",
+    "after": "\t\tif len(resolved.signatures.Values()) != 0 {"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\t\tresult.AsObjectType().properties = resolved.Properties()",
+    "after": "\t\t\tresult.AsObjectType().properties = compactSliceFrom(resolved.Properties())"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\t\t\t\tc.setStructuredTypeMembers(result, resolved.Members(), callSignatures, constructSignatures, resolved.indexInfos)",
+    "after": "\t\t\t\t\tc.setStructuredTypeMembers(result, resolved.Members(), callSignatures, constructSignatures, resolved.indexInfos.Values())"
+  },
+  {
+    "file": "checker.go",
+    "before": "\tc.valueSymbolLinks.Get(result).resolvedType = c.newAnonymousType(result, resolvedModuleType.Members(), nil, nil, resolvedModuleType.indexInfos)",
+    "after": "\tc.valueSymbolLinks.Get(result).resolvedType = c.newAnonymousType(result, resolvedModuleType.Members(), nil, nil, resolvedModuleType.indexInfos.Values())"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\treturn resolved.signatures[:resolved.callSignatureCount]",
+    "after": "\t\treturn resolved.signatures.Values()[:resolved.callSignatureCount]"
+  },
+  {
+    "file": "checker.go",
+    "before": "\treturn resolved.signatures[resolved.callSignatureCount:]",
+    "after": "\treturn resolved.signatures.Values()[resolved.callSignatureCount:]"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\treturn c.resolveStructuredTypeMembers(t).indexInfos",
+    "after": "\t\treturn c.resolveStructuredTypeMembers(t).indexInfos.Values()"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\tif allowMembers || !hasResolvedProperties(resolved) && len(resolved.indexInfos) == 0 {",
+    "after": "\t\tif allowMembers || !hasResolvedProperties(resolved) && len(resolved.indexInfos.Values()) == 0 {"
+  },
+  {
+    "file": "checker.go",
+    "before": "\td.indexInfos = indexInfos",
+    "after": "\td.indexInfos = compactSliceFrom(indexInfos)"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\td.signatures = c.getSignaturesOfSymbol(symbol)",
+    "after": "\t\td.signatures = compactSliceFrom(c.getSignaturesOfSymbol(symbol))"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\td.callSignatureCount = len(d.signatures)",
+    "after": "\t\td.callSignatureCount = len(d.signatures.Values())"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\td.signatures = append(d.signatures, constructSignatures...)",
+    "after": "\t\td.signatures = compactSliceFrom(append(d.signatures.Values(), constructSignatures...))"
+  },
+  {
+    "file": "checker.go",
+    "before": "\tdata.properties = c.getNamedMembers(members, t.symbol)",
+    "after": "\tdata.properties = compactSliceFrom(c.getNamedMembers(members, t.symbol))"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\t\tdata.signatures = core.Concatenate(callSignatures, constructSignatures)",
+    "after": "\t\t\tdata.signatures = compactSliceFrom(core.Concatenate(callSignatures, constructSignatures))"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\t\tdata.signatures = slices.Clip(callSignatures)",
+    "after": "\t\t\tdata.signatures = compactSliceFrom(slices.Clip(callSignatures))"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\t\tdata.signatures = slices.Clip(constructSignatures)",
+    "after": "\t\t\tdata.signatures = compactSliceFrom(slices.Clip(constructSignatures))"
+  },
+  {
+    "file": "checker.go",
+    "before": "\t\t\tdata.signatures = nil",
+    "after": "\t\t\tdata.signatures = compactSliceFrom(nil)"
+  },
+  {
+    "file": "checker.go",
+    "before": "\tdata.indexInfos = slices.Clip(indexInfos)",
+    "after": "\tdata.indexInfos = compactSliceFrom(slices.Clip(indexInfos))"
+  },
+  {
+    "file": "checker.go",
+    "before": "\treturn t.AsType() != c.anyFunctionType && !hasResolvedProperties(t) && len(t.signatures) == 0 && len(t.indexInfos) == 0",
+    "after": "\treturn t.AsType() != c.anyFunctionType && !hasResolvedProperties(t) && len(t.signatures.Values()) == 0 && len(t.indexInfos.Values()) == 0"
+  },
+  {
+    "file": "checker.go",
+    "before": "\treturn t.flags&TypeFlagsStructuredType != 0 && len(c.resolveStructuredTypeMembers(t).signatures) != 0",
+    "after": "\treturn t.flags&TypeFlagsStructuredType != 0 && len(c.resolveStructuredTypeMembers(t).signatures.Values()) != 0"
+  },
+  {
+    "file": "checker.go",
+    "before": "\tregular := c.newAnonymousType(t.symbol, members, resolved.CallSignatures(), resolved.ConstructSignatures(), resolved.indexInfos)",
+    "after": "\tregular := c.newAnonymousType(t.symbol, members, resolved.CallSignatures(), resolved.ConstructSignatures(), resolved.indexInfos.Values())"
+  },
+  {
+    "file": "checker.go",
+    "before": "\treturn len(resolved.signatures) != 0 || getResolvedMember(resolved, \"bind\") != nil && c.isTypeSubtypeOf(t, c.globalFunctionType)",
+    "after": "\treturn len(resolved.signatures.Values()) != 0 || getResolvedMember(resolved, \"bind\") != nil && c.isTypeSubtypeOf(t, c.globalFunctionType)"
+  },
+  {
+    "file": "pending_members.go",
+    "before": "\t\tt.properties = ownProperties",
+    "after": "\t\tt.properties = compactSliceFrom(ownProperties)"
+  },
+  {
+    "file": "pending_members.go",
+    "before": "\t\tt.properties = p.checker.getNamedMembers(members, t.symbol)",
+    "after": "\t\tt.properties = compactSliceFrom(p.checker.getNamedMembers(members, t.symbol))"
+  },
+  {
+    "file": "pending_members.go",
+    "before": "\tproperties := t.properties",
+    "after": "\tproperties := t.properties.Values()"
+  },
+  {
+    "file": "lazy_properties.go",
+    "before": "\t\t} else if costliestPending == 0 && len(resolved.properties) > costliestProperties {",
+    "after": "\t\t} else if costliestPending == 0 && len(resolved.properties.Values()) > costliestProperties {"
+  },
+  {
+    "file": "lazy_properties.go",
+    "before": "\t\t\tcostliest, costliestProperties = current, len(resolved.properties)",
+    "after": "\t\t\tcostliest, costliestProperties = current, len(resolved.properties.Values())"
+  },
+  {
+    "file": "nodebuilderimpl.go",
+    "before": "\ttypeCopy := b.ch.newAnonymousType(t.symbol, t.Members(), t.CallSignatures(), core.IfElse(len(constructSignatures) > 0, constructSignatures, []*Signature{}), t.indexInfos)",
+    "after": "\ttypeCopy := b.ch.newAnonymousType(t.symbol, t.Members(), t.CallSignatures(), core.IfElse(len(constructSignatures) > 0, constructSignatures, []*Signature{}), t.indexInfos.Values())"
+  },
+  {
+    "file": "nodebuilderimpl.go",
+    "before": "\tfor _, info := range resolvedType.indexInfos {",
+    "after": "\tfor _, info := range resolvedType.indexInfos.Values() {"
+  },
+  {
+    "file": "nodebuilderimpl.go",
+    "before": "\tif len(resolved.Properties()) == 0 && len(resolved.indexInfos) == 0 {",
+    "after": "\tif len(resolved.Properties()) == 0 && len(resolved.indexInfos.Values()) == 0 {"
+  },
+  {
+    "file": "nodebuilderimpl.go",
+    "before": "\t\ttypeElementCount := len(callSigs) + (len(ctorSigs) - len(abstractSignatures)) + len(resolved.indexInfos) + core.IfElse(b.ctx.flags&nodebuilder.FlagsWriteClassExpressionAsTypeLiteral != 0, core.CountWhere(resolved.Properties(), func(p *ast.Symbol) bool {",
+    "after": "\t\ttypeElementCount := len(callSigs) + (len(ctorSigs) - len(abstractSignatures)) + len(resolved.indexInfos.Values()) + core.IfElse(b.ctx.flags&nodebuilder.FlagsWriteClassExpressionAsTypeLiteral != 0, core.CountWhere(resolved.Properties(), func(p *ast.Symbol) bool {"
+  },
+  {
+    "file": "relater.go",
+    "before": "\t\treturn len(resolved.signatures) == 0 && len(resolved.indexInfos) == 0 && hasResolvedProperties(resolved) && resolvedPropertiesAreOptional(resolved)",
+    "after": "\t\treturn len(resolved.signatures.Values()) == 0 && len(resolved.indexInfos.Values()) == 0 && hasResolvedProperties(resolved) && resolvedPropertiesAreOptional(resolved)"
+  }
+]

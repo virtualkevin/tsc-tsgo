@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "sources": {
+    "slice_test.go": "dae6b42272a322fcaad5ffb42280d2d5758a127d9dcbe44c84be3b7666969633",
+    "go.mod": "1b5852d0490fe5eeddb8e3b45dc31fe8b737e856cc1626dfe0b3cec22692d35a",
+    "slice.go": "49e4cd4c84ee1842c707285d8a48c6f6564fad3608296446a2d66acafeb50a3b"
+  },
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestHeaderRoundTrip",
+        "TestAliasingAndAppend",
+        "TestRandomHeaderHistories",
+        "TestPackingAndLargeSlices",
+        "TestRetainedBackingGraph",
+        "TestConcurrentPublishedReads"
+      ],
+      "stdoutSha256": "9621f9fee958c33f0197ca1154e4ba60aafa6c48508c596f6798ec59705c3879",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-race",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestHeaderRoundTrip",
+        "TestAliasingAndAppend",
+        "TestRandomHeaderHistories",
+        "TestPackingAndLargeSlices",
+        "TestRetainedBackingGraph",
+        "TestConcurrentPublishedReads"
+      ],
+      "stdoutSha256": "4ffb94d1571ff82568b1095063f07acd4b86ba350b9932088632efd3980eba79",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-gcflags=all=-d=checkptr=2",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestHeaderRoundTrip",
+        "TestAliasingAndAppend",
+        "TestRandomHeaderHistories",
+        "TestPackingAndLargeSlices",
+        "TestRetainedBackingGraph",
+        "TestConcurrentPublishedReads"
+      ],
+      "stdoutSha256": "fbe4aa33d4161f8352d92d8506df62ff9c78ccc4e6b6b954b0167088bb0874a5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Standalone storage prototype; no compiler integration, conformance or performance claim."
+}

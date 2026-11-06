@@ -1,0 +1,13 @@
+{
+  "solverVersion": "4.15.4",
+  "claims": {
+    "length_roundtrip": "unsat",
+    "capacity_roundtrip": "unsat",
+    "sentinel_exclusion": "unsat",
+    "injectivity": "unsat",
+    "zero_header_shape": "unsat"
+  },
+  "negativeControl": "sat",
+  "sourceSha256": "49e4cd4c84ee1842c707285d8a48c6f6564fad3608296446a2d66acafeb50a3b",
+  "scope": "64-bit packing model only. Not a proof of Go implementation, pointer safety, GC, compiler equivalence or performance. Source uses the same capacity shift, length OR and all-ones sentinel; source linkage is a review plus hash pin, not verified translation."
+}

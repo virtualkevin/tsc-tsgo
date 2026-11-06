@@ -1,0 +1,122 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/compact_structured_slices_test.go": "2352248848aec081f8db6c4d2d03515d2a5aea9f55ca090adef6fc7326d2cca6"
+  },
+  "controllerSha256": "d04f319aa57c3dd3a447526559501876e23f99b7db1f65939bcf8d41530d7520",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-structured-slices/baseline-overlay.json",
+        "./internal/checker",
+        "-run",
+        "^(TestCompactStructured|TestPending)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactStructuredSliceAliases",
+        "TestCompactStructuredSignatureCapacity",
+        "TestCompactStructuredNilAndEmpty",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/internal",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/resolving",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+        "TestPendingOptionalQueriesDoNotInstantiateMembers",
+        "TestPendingMembersAPISparseLookupThenEnumeration",
+        "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+        "TestPendingMembersAPIRecursiveBaseAndPrivateStatic"
+      ],
+      "ok": true,
+      "stdoutSha256": "317653a240c3a3ca8a1c2fe15e5438017bb721087731db529cba8ba5b4264e37",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-structured-slices/baseline-overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^(TestCompactStructured|TestPending)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactStructuredSliceAliases",
+        "TestCompactStructuredSignatureCapacity",
+        "TestCompactStructuredNilAndEmpty",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/internal",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/resolving",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+        "TestPendingOptionalQueriesDoNotInstantiateMembers",
+        "TestPendingMembersAPISparseLookupThenEnumeration",
+        "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+        "TestPendingMembersAPIRecursiveBaseAndPrivateStatic"
+      ],
+      "ok": true,
+      "stdoutSha256": "8ba2ed8a8baa0d24ac033fd6b2eee39cb30ab33f1880611309e57d575fd46605",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/compact-structured-slices/baseline-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^(TestCompactStructured|TestPending)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestCompactStructuredSliceAliases",
+        "TestCompactStructuredSignatureCapacity",
+        "TestCompactStructuredNilAndEmpty",
+        "TestPendingMemberNamesPropertiesAndLookupKeepIdentity",
+        "TestPendingMemberNamesShareLayoutAcrossSourceInstantiations",
+        "TestPendingMemberNamesDuplicateAllocationOrder",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/internal",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager/resolving",
+        "TestPendingMemberNamesNonPropertiesAndResolvingStayEager",
+        "TestPendingMemberNamesEmptyLayoutAndOrderValidation",
+        "TestPendingMembersSnapshotKeepAndClone",
+        "TestPendingMembersFrozenMapPositions",
+        "TestPendingMembersDuplicateNameAndInheritanceMaterialization",
+        "TestPendingOptionalQueriesDoNotInstantiateMembers",
+        "TestPendingMembersAPISparseLookupThenEnumeration",
+        "TestPendingMembersAPIInheritanceAnonymousAndSetter",
+        "TestPendingMembersAPIRecursiveBaseAndPrivateStatic"
+      ],
+      "ok": true,
+      "stdoutSha256": "0fe488e78296734d793e8ec24254ae0085b2d78cc97110e53aeecc3e235a88eb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

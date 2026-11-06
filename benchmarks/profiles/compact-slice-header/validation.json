@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "sources": {
+    "slice_test.go": "0e5609447888de1c5b930c9f4ccdff66428154f83a0a867b58ee7f7bbc81402f",
+    "go.mod": "1b5852d0490fe5eeddb8e3b45dc31fe8b737e856cc1626dfe0b3cec22692d35a",
+    "slice.go": "a48585a8227ab6b9edc65ea6ab5b7a0da372b170b76cd12584a021e66fb5eb70"
+  },
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestHeaderRoundTrip",
+        "TestAliasingAndAppend",
+        "TestRandomHeaderHistories",
+        "TestPackingAndLargeSlices",
+        "TestRetainedBackingGraph",
+        "TestConcurrentPublishedReads",
+        "TestOrdinaryHeaderDoesNotAllocate",
+        "TestIndirectBackingGraph"
+      ],
+      "stdoutSha256": "03c70016ff7ad59b3564bf8ae1dc3feefc55448cd6e63e9adc94272528d7699d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-race",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestHeaderRoundTrip",
+        "TestAliasingAndAppend",
+        "TestRandomHeaderHistories",
+        "TestPackingAndLargeSlices",
+        "TestRetainedBackingGraph",
+        "TestConcurrentPublishedReads",
+        "TestOrdinaryHeaderDoesNotAllocate",
+        "TestIndirectBackingGraph"
+      ],
+      "stdoutSha256": "ddc5f750d85357b0b3e642f9c4e5bf44f2b7d402058e769614b4f8d523524afa",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-gcflags=all=-d=checkptr=2",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestHeaderRoundTrip",
+        "TestAliasingAndAppend",
+        "TestRandomHeaderHistories",
+        "TestPackingAndLargeSlices",
+        "TestRetainedBackingGraph",
+        "TestConcurrentPublishedReads",
+        "TestOrdinaryHeaderDoesNotAllocate",
+        "TestIndirectBackingGraph"
+      ],
+      "stdoutSha256": "5778f2199978b9e394db18f1f0b32d360172aa80e8bd1afbe8a81090d716ace9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Standalone storage prototype; no compiler integration, conformance or performance claim."
+}
