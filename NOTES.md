@@ -1506,3 +1506,18 @@ archived conformance data. Benchmark preflight passed with no compiler-source
 difference and only GOEXPERIMENT differing in recorded build settings. Fixed
 screen: nine small-workload pairs and five large-workload pairs, default runtime
 settings, GNU time RSS; no concurrent development during measurement.
+
+
+### Classic collector screen rejected
+
+Capture 0f65095 completed 28 pairs with unchanged retained compiler sources and
+only GOEXPERIMENT=nogreenteagc differing in recorded build settings. Ratios of
+medians / median paired ratios: TypeORM 1.020997 / 1.018951; tRPC 1.063417 /
+1.013847; VS Code 0.943242 / 0.950031; Sentry 1.056568 / 1.037111. Aggregate
+geomeans 1.019910682 / 1.004435838: paired aggregate fails 1.01, and VS Code
+fails both 0.98 workload floors. All RSS gates pass. Reject without confirmation
+or rescue runs; retained default remains unchanged. Wide small-workload ranges
+limit causal precision. Independent 28-pair readback passed, eleven execution
+files were archived/read back, and four real workload rows appended to the
+table-only PERF.md. Results: benchmarks/results/classic-gc-screen/.
+This collector change does not establish the native-relative 10× goal.

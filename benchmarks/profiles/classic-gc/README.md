@@ -65,3 +65,24 @@ No workload timing or speedup conclusion is available yet.
 Independent final readback and benchmark preflight passed. screen.json records
 the exact source/binary/sidecar hashes and the sole build-setting difference.
 The fixed screen is prepared; no performance result at this checkpoint.
+
+## Screen result: rejected
+
+Capture 0f65095 completed all 28 fixed pairs. Independent readback verified
+paired orders/counts, timing and RSS medians, aggregates, execution copies and
+four appended PERF rows. Ratios above one favor the classic-collector candidate.
+
+| Workload | Ratio of medians | Median paired ratio | RSS baseline/candidate MiB |
+| --- | ---: | ---: | ---: |
+| typeorm | 1.020997 | 1.018951 | 892.988/875.953 |
+| trpc | 1.063417 | 1.013847 | 242.750/238.500 |
+| vscode | 0.943242 | 0.950031 | 7816.160/7663.605 |
+| sentry | 1.056568 | 1.037111 | 5372.293/5328.500 |
+
+Aggregate ratio-of-medians geometric mean: 1.019910682. Aggregate paired-median
+geometric mean: 1.004435838, below required 1.01. VS Code fails both 0.98 floors.
+All median RSS gates pass. Reject: no confirmation/rescue runs or promotion.
+Small-workload pair ranges are wide (TypeORM 0.692–1.379, tRPC 0.363–1.370);
+this screen is a conservative retention decision, not a precise causal estimate
+of collector speed. Default compiler/source remain retained and unchanged.
+The native-relative 10× goal remains unmet.
