@@ -1,0 +1,25 @@
+{"Time":"2026-11-06T13:53:11.037090501Z","Action":"start","Package":"example.invalid/typed-handle-graph"}
+{"Time":"2026-11-06T13:53:11.058461587Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestStatefulGraphAgainstIndependentModel"}
+{"Time":"2026-11-06T13:53:11.058524892Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStatefulGraphAgainstIndependentModel","Output":"=== RUN   TestStatefulGraphAgainstIndependentModel\n"}
+{"Time":"2026-11-06T13:53:11.301153479Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStatefulGraphAgainstIndependentModel","Output":"--- PASS: TestStatefulGraphAgainstIndependentModel (0.24s)\n"}
+{"Time":"2026-11-06T13:53:11.301224497Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestStatefulGraphAgainstIndependentModel","Elapsed":0.24}
+{"Time":"2026-11-06T13:53:11.301257744Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestOwnerAndExhaustionFailuresAreAtomic"}
+{"Time":"2026-11-06T13:53:11.301263517Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestOwnerAndExhaustionFailuresAreAtomic","Output":"=== RUN   TestOwnerAndExhaustionFailuresAreAtomic\n"}
+{"Time":"2026-11-06T13:53:11.301402062Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestOwnerAndExhaustionFailuresAreAtomic","Output":"--- PASS: TestOwnerAndExhaustionFailuresAreAtomic (0.00s)\n"}
+{"Time":"2026-11-06T13:53:11.301425906Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestOwnerAndExhaustionFailuresAreAtomic","Elapsed":0}
+{"Time":"2026-11-06T13:53:11.301480264Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestPublishedRefRetainsPagesAcrossGCAndGrowth"}
+{"Time":"2026-11-06T13:53:11.301486688Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestPublishedRefRetainsPagesAcrossGCAndGrowth","Output":"=== RUN   TestPublishedRefRetainsPagesAcrossGCAndGrowth\n"}
+{"Time":"2026-11-06T13:53:11.311830823Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestPublishedRefRetainsPagesAcrossGCAndGrowth","Output":"--- PASS: TestPublishedRefRetainsPagesAcrossGCAndGrowth (0.01s)\n"}
+{"Time":"2026-11-06T13:53:11.311897371Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestPublishedRefRetainsPagesAcrossGCAndGrowth","Elapsed":0.01}
+{"Time":"2026-11-06T13:53:11.311911073Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestConcurrentCompletedReads"}
+{"Time":"2026-11-06T13:53:11.311916408Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestConcurrentCompletedReads","Output":"=== RUN   TestConcurrentCompletedReads\n"}
+{"Time":"2026-11-06T13:53:11.319075601Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestConcurrentCompletedReads","Output":"--- PASS: TestConcurrentCompletedReads (0.01s)\n"}
+{"Time":"2026-11-06T13:53:11.31913605Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestConcurrentCompletedReads","Elapsed":0.01}
+{"Time":"2026-11-06T13:53:11.31916992Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries"}
+{"Time":"2026-11-06T13:53:11.319176171Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries","Output":"=== RUN   TestLayoutAndHandleBoundaries\n"}
+{"Time":"2026-11-06T13:53:11.319436625Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries","Output":"    graph_test.go:206: record=32 page=8192 publishedRef=16 graph=32\n"}
+{"Time":"2026-11-06T13:53:11.319514272Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries","Output":"--- PASS: TestLayoutAndHandleBoundaries (0.00s)\n"}
+{"Time":"2026-11-06T13:53:11.319575521Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries","Elapsed":0}
+{"Time":"2026-11-06T13:53:11.319633022Z","Action":"output","Package":"example.invalid/typed-handle-graph","Output":"PASS\n"}
+{"Time":"2026-11-06T13:53:12.325668286Z","Action":"output","Package":"example.invalid/typed-handle-graph","Output":"ok  \texample.invalid/typed-handle-graph\t1.288s\n"}
+{"Time":"2026-11-06T13:53:12.325776916Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Elapsed":1.289}

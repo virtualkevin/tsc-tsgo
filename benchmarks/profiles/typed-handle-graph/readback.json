@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "scope": "Independent source and raw test event/hash readback; arithmetic report verified for source binding and stated solver outcomes, not an independent prover or whole implementation proof.",
+  "sources": {
+    "graph.go": "42d88100bc409a0c4c5cf0b95be7d786979bed90507893ee7417c1eecec5e22b",
+    "graph_test.go": "b5e7f68d39ab43f1d9877a6fe8c93832b9cc1531b7a404397579028908b98fbb",
+    "go.mod": "e0b365468b2e757cf959dd73ed7812412659f4932b0cfe8a653d122ac49927f3"
+  },
+  "toolchain": {
+    "path": "/tmp/tsc-toolchains/go/bin/go",
+    "sha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "version": "go version go1.26.9 linux/amd64"
+  },
+  "layouts": [
+    [
+      "32",
+      "8192",
+      "16",
+      "32"
+    ],
+    [
+      "32",
+      "8192",
+      "16",
+      "32"
+    ],
+    [
+      "32",
+      "8192",
+      "16",
+      "32"
+    ]
+  ],
+  "evidence": {
+    "validation.json": "713f3e6a51e15136cb0adc69da75b981d17c9f9df83dc74451ecbcaa74f0dc5d",
+    "proof.json": "b108a47d1039e57a47cf4ceaf2e573f11a8489889daf886f70d4a3e9e269321c",
+    "normal.stdout": "3a1bb6ac02360be82998134031e7e62f98a58bd6686c56b9ddae8e9cd154fe63",
+    "normal.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "race.stdout": "f0f79a3c037647ea754fc3c6ea64dd4db4f608b202efb6e4cc007188f169aaa6",
+    "race.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "checkptr.stdout": "fe689be21a1184b969debb195c4ca28da75884ff449468af64ff696016f98d26",
+    "checkptr.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "verifierSha256": "48b1d26000b4d914b1ac3f6bb806fadd2f13cdc3d70f796cbdd669faf1d235ce"
+}

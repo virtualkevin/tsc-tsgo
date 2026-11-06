@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "sources": {
+    "go.mod": "e0b365468b2e757cf959dd73ed7812412659f4932b0cfe8a653d122ac49927f3",
+    "graph.go": "42d88100bc409a0c4c5cf0b95be7d786979bed90507893ee7417c1eecec5e22b",
+    "graph_test.go": "b5e7f68d39ab43f1d9877a6fe8c93832b9cc1531b7a404397579028908b98fbb"
+  },
+  "controllerSha256": "2709eb461f56edbeac58015136d549c77a19982c9a6b56d4ce155fd5517adf58",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestStatefulGraphAgainstIndependentModel",
+        "TestOwnerAndExhaustionFailuresAreAtomic",
+        "TestPublishedRefRetainsPagesAcrossGCAndGrowth",
+        "TestConcurrentCompletedReads",
+        "TestLayoutAndHandleBoundaries"
+      ],
+      "ok": true,
+      "stdoutSha256": "3a1bb6ac02360be82998134031e7e62f98a58bd6686c56b9ddae8e9cd154fe63",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-race",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestStatefulGraphAgainstIndependentModel",
+        "TestOwnerAndExhaustionFailuresAreAtomic",
+        "TestPublishedRefRetainsPagesAcrossGCAndGrowth",
+        "TestConcurrentCompletedReads",
+        "TestLayoutAndHandleBoundaries"
+      ],
+      "ok": true,
+      "stdoutSha256": "f0f79a3c037647ea754fc3c6ea64dd4db4f608b202efb6e4cc007188f169aaa6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-gcflags=all=-d=checkptr=2",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestStatefulGraphAgainstIndependentModel",
+        "TestOwnerAndExhaustionFailuresAreAtomic",
+        "TestPublishedRefRetainsPagesAcrossGCAndGrowth",
+        "TestConcurrentCompletedReads",
+        "TestLayoutAndHandleBoundaries"
+      ],
+      "ok": true,
+      "stdoutSha256": "fe689be21a1184b969debb195c4ca28da75884ff449468af64ff696016f98d26",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

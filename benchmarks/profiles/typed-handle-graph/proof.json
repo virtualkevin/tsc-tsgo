@@ -1,0 +1,41 @@
+{
+  "scope": "Unsigned 32-bit handle arithmetic within one owner. Parameter/expression text checks link this model to recorded source, but do not prove Go execution, Graph invariants, GC retention, concurrent safety, compiler compatibility or performance. Allocation lemma assumes count<limit; callers maintain count<=limit.",
+  "sourceSha256": "42d88100bc409a0c4c5cf0b95be7d786979bed90507893ee7417c1eecec5e22b",
+  "controllerSha256": "282012aa6d6e24d6e96bbca4ff6d494bde26c53de8e66e2ce9cbe13615287f21",
+  "solver": "4.15.4.0",
+  "pageBits": 8,
+  "claims": [
+    {
+      "name": "decode_reencode",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "name": "slot_bound",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "name": "page_bound",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "name": "scoped_injectivity",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "name": "allocation_no_wrap",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "name": "last_handle_location",
+      "counterexampleQuery": "unsat"
+    }
+  ],
+  "negativeControl": {
+    "description": "Halving the slot mask loses a bit and aliases distinct handles within a page.",
+    "result": "sat",
+    "witness": {
+      "h": 2147483520,
+      "k": 2147483648
+    }
+  }
+}
