@@ -1,0 +1,363 @@
+{
+  "name": "optional-symbol-storage",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-optional-symbol-storage",
+      "sha256": "d47536592b7b87bb08b2e511c616ef8cd21d8b2cb74cb71a5e3fe9adf6dd6002",
+      "source": "e4affb9a1247bd775b85aa9c45e13c5520b90e77344006a0f2a61dad37967a7c",
+      "sidecarSha256": "398289bb31eb78bead7aafb2dc175933359b37acfdb601c481c6531fad5d08eb",
+      "revisionLabel": "Optional symbol storage"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/api/session.go",
+      "before": {
+        "path": "packages/tsc-go/internal/api/session.go",
+        "sha256": "60e01b4451a58dfbfdc4e0b611eb7d07f3a4f73b459622a12a6bdcaa27824572",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/api/session.go",
+        "sha256": "5f8f78e3d686353adae5052898976ae79d5bffd5e193ded713ca68422f742b46",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/optional_symbol_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/ast/optional_symbol_test.go",
+        "sha256": "184544924509c035392fcfe3e8cd42e40f97cca3915ced9672f600df4073b698",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/symbol.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ast/symbol.go",
+        "sha256": "7c2e4e59c0b72fa384559d77db10be01b7aa5529047ef12a81e544d17c051aa6",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ast/symbol.go",
+        "sha256": "0a31cd85af9309a7d77bdf318ec093c7585400e8ac650b8dac694ee184c0c5ad",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ast/utilities.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ast/utilities.go",
+        "sha256": "c28220655fca1911ae9580c8fd43a78796ed18a95e0df9c73ce52dad31483d13",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ast/utilities.go",
+        "sha256": "776b6d2fa4628da70ae83b3cf51c2248be39363da3ad98956ac9407058add3b1",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/binder/binder.go",
+      "before": {
+        "path": "packages/tsc-go/internal/binder/binder.go",
+        "sha256": "84e8c0e303cd929f84dbe4594700d5af28e290d71a88564264422705c61cd84c",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/binder/binder.go",
+        "sha256": "d4c43c21ba37bb7c7a82f3bab8b9ba42671f8cd5a11d9b61d989ae93dd5c1032",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/binder/nameresolver.go",
+      "before": {
+        "path": "packages/tsc-go/internal/binder/nameresolver.go",
+        "sha256": "937f1892f3c1c217a659103ffd47c286dc5a2660ca789e6ad061242fae36eadd",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/binder/nameresolver.go",
+        "sha256": "519c6c440db01554ebefea4880ea35253d6c655e01bb82d733d57da79609f6f1",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/binder/referenceresolver.go",
+      "before": {
+        "path": "packages/tsc-go/internal/binder/referenceresolver.go",
+        "sha256": "688115d25136ed6228b2c97672c18c036123461c27506ab85214e1b849e96173",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/binder/referenceresolver.go",
+        "sha256": "a7c9fb3471f5d8872b6d58537f448791cc2836efa7da60174a4141e3ecca43a8",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "f131074fe5d0e0a9a5d710b0615a2b7b674ec3c0e9c407eb8f3b1fbc46ab0808",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/jsx.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/jsx.go",
+        "sha256": "f52dfede2f2893a70538af8c1cd27448d922f9a17a4082499bcc2a75d409b210",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/jsx.go",
+        "sha256": "393672298985fdf9d780b20f102b656d0af4a3b6a6d2c8350a1b3b9432521873",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/nodebuilder_hover.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/nodebuilder_hover.go",
+        "sha256": "3c2e5502c8de2b804e68197ee2bd5a1adde5dd1a5bf70621c03bd8198295615d",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/nodebuilder_hover.go",
+        "sha256": "89002deffca7dc8578c4e3ff7f6a5c9ded35f614124be554113358a5aa7da560",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/nodebuilderimpl.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/nodebuilderimpl.go",
+        "sha256": "c29c3388562d69d76c24cf33072881db6b3246e2dcc548a104fb67dfe8b21657",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/nodebuilderimpl.go",
+        "sha256": "6c497e843e1d25dd2f39eb63f994394cfb82fa1ccf4912ffa71a1a4b3c524037",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/optional_symbol_clone_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/optional_symbol_clone_test.go",
+        "sha256": "7e985cbc22c02a9f4aa9075ca236f85ebba35d75d923abdebec7e4dab083a8d0",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/services.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/services.go",
+        "sha256": "60b50f593a5aa9a688750bd6285ff51a6e0e0f8ecafb3e9f8876b95b5120aa65",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/services.go",
+        "sha256": "2667df8c4881036e378fd0a372fa3fd25ec918f7443a543c2b1c8a686aa6a60f",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/symbolaccessibility.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/symbolaccessibility.go",
+        "sha256": "dec168bc000a111aeb287c99de38cb3514e97974ef5e56058450e3757500a1c5",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/symbolaccessibility.go",
+        "sha256": "dbe3b08ab51d0a81f36b22bbdf57f6fa1e6e035fd8ebec61cab613980d27bf10",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/utilities.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/utilities.go",
+        "sha256": "d5840b7b62ef15a1597bc9d145c847ee37ca87dd610a54227582837649ba15b8",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/utilities.go",
+        "sha256": "862a320c7234f6d84e04bd05253b3b051f00e4b0ff9df66d4d34c93c2f634607",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/execute/incremental/affectedfileshandler.go",
+      "before": {
+        "path": "packages/tsc-go/internal/execute/incremental/affectedfileshandler.go",
+        "sha256": "c8fa041ae4670490f50108e1564c2893f208f99a9b5ce4e3e17ce67814989e04",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/execute/incremental/affectedfileshandler.go",
+        "sha256": "eb201c2a57aaecc5f9809e04a03528fe2b93a0ff0e76b95dd3968808cd50a59a",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ls/autoimport/extract.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ls/autoimport/extract.go",
+        "sha256": "ec3e5aca14798f2274176bdab077ad40119723e78492b63d75f38aafead3d3c8",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ls/autoimport/extract.go",
+        "sha256": "86a94450fddf4b4d55c2edd1265ade59cdae1c1d1a2800c0229545454faf0f48",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ls/codeactions_fixclassincorrectlyimplementsinterface.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ls/codeactions_fixclassincorrectlyimplementsinterface.go",
+        "sha256": "658d6c011e4beec370b312c86fb76767506a2ab37ca61df16f6c449720514762",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ls/codeactions_fixclassincorrectlyimplementsinterface.go",
+        "sha256": "5594cffd9fefe9d7f7e9bc36ba871dae6cc9216cde58fd2eb7542c5d45a4d683",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ls/completions.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ls/completions.go",
+        "sha256": "b43c0a79d8ce56e286e26e805d0f4d24c8a0334d2be774062f7219e33b776fd6",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ls/completions.go",
+        "sha256": "25f83fcc0d890143ab0a6b245a29663928e62bfb1c0a3a9fec815e8db345de5c",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ls/definition.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ls/definition.go",
+        "sha256": "a145842b8fe0e3d190f4dac2c5a06ad67aadf2eae7533a8f1bec18ce383dd57f",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ls/definition.go",
+        "sha256": "0e7bb4440bb6961a8c87c17e6ed63bbe8ed4aebedfc1152e624e5ac5fb4529e4",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ls/findallreferences.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ls/findallreferences.go",
+        "sha256": "a6ce3b395f3ed94c9a611571ce3f5b3be3a5add82473d6576ae066858b1cd0ff",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ls/findallreferences.go",
+        "sha256": "9a6672335502dfc7910116c1de7630f125268c8da347b0d1e1512d0f6429dd3a",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ls/hover.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ls/hover.go",
+        "sha256": "376e51239fac43eb8e9fe92389c1e99d428fa9f414030b4141170c2d5c55271a",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ls/hover.go",
+        "sha256": "f7f5f63c7a21b42cfd2494e7654878ab2975543130f74f4d48b892b3d2915138",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/ls/importTracker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/ls/importTracker.go",
+        "sha256": "eba97b8de507971476d0686f41f5a764925c0079ad20260f15309794df1b5fbc",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/ls/importTracker.go",
+        "sha256": "2ca371e24bb32e95e8aa78b51431150bacfce4258fe7c354b2e503da7679f641",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/modulespecifiers/specifiers.go",
+      "before": {
+        "path": "packages/tsc-go/internal/modulespecifiers/specifiers.go",
+        "sha256": "e6d4df11d45bff2f1c39a5f79959bd0fe1dab4f1a0aea5a9413016ca5ab1a2a6",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/modulespecifiers/specifiers.go",
+        "sha256": "e881823e420fda7d2bda19596efa43f9637a7381b230d95153f3a7138c94a16f",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/transformers/declarations/transform.go",
+      "before": {
+        "path": "packages/tsc-go/internal/transformers/declarations/transform.go",
+        "sha256": "3642d191e79150264e99afdadf9a832930c6f4ab2a39257d313e65498e9aa072",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/transformers/declarations/transform.go",
+        "sha256": "689bd2d2fdf56effc292e47b8bf96c1d8078253c193d262ddec1e75c334b7c8c",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5156
+  },
+  "comparisonPolicySha256": "d895897245c0a8f1fd61cac814893240bfb127998936af110d3c6f121e52f555",
+  "methodology": "Fresh-process/default-runtime matched GNU-time RSS screen of optional symbol storage on pinned physical inputs; no timing during validation/build/Git work."
+}
