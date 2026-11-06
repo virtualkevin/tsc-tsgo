@@ -1,0 +1,197 @@
+{
+  "scope": "Offline comparison of unchanged retained binary on identical input manifests/configs/arguments across three earlier screens. Different candidates, dates, cache state and external conditions coexist; this is neither A/A pairing nor causal attribution. No observations are removed or corrected.",
+  "observations": [
+    {
+      "experiment": "compact-literal-pair",
+      "workload": "typeorm",
+      "report": "benchmarks/results/compact-literal-pair-screen/small.json",
+      "reportSha256": "b9c96e21df688446e3f240ee0df346dab5f062b1a436b1896602cfc83d6fd80f",
+      "baselineMedianMs": 3611.509087,
+      "baselineRangeMs": [
+        3274.106696,
+        4675.540775
+      ],
+      "inputIdentitySha256": "186b3e0cd1c7388b9b223d957c00a0b2b7ed41ad7eac9f8c26acef64e8f51e2b",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "compact-literal-pair",
+      "workload": "trpc",
+      "report": "benchmarks/results/compact-literal-pair-screen/small.json",
+      "reportSha256": "b9c96e21df688446e3f240ee0df346dab5f062b1a436b1896602cfc83d6fd80f",
+      "baselineMedianMs": 718.923759,
+      "baselineRangeMs": [
+        599.525332,
+        1597.910794
+      ],
+      "inputIdentitySha256": "a9d96fef4094d0056dda2e0013ce7b991f6684f4be97e22d7725b1bc85d304a7",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "compact-literal-pair",
+      "workload": "vscode",
+      "report": "benchmarks/results/compact-literal-pair-screen/large.json",
+      "reportSha256": "a1f5104b6006b3ffb768a710ee183592ec8c8c178e0368c8cca7e8372990051b",
+      "baselineMedianMs": 52338.848361,
+      "baselineRangeMs": [
+        41408.061703,
+        63614.83584
+      ],
+      "inputIdentitySha256": "a2b68243a6aaa56aaace5e6e3fb50300f59c41ff4e92af57dc09cc51df6d06bb",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "compact-literal-pair",
+      "workload": "sentry",
+      "report": "benchmarks/results/compact-literal-pair-screen/large.json",
+      "reportSha256": "a1f5104b6006b3ffb768a710ee183592ec8c8c178e0368c8cca7e8372990051b",
+      "baselineMedianMs": 32233.508303,
+      "baselineRangeMs": [
+        30543.759745,
+        37547.487778
+      ],
+      "inputIdentitySha256": "a946fda85627ad2b0dd2e85c0ce4e726a2a8b94be795a08ed1c79f26fb385258",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "spread-override-table",
+      "workload": "typeorm",
+      "report": "benchmarks/results/spread-override-table-screen/small.json",
+      "reportSha256": "60e0af1160310a42ac8d270bb552247c71f594ca8d1603c7477ebb9934749995",
+      "baselineMedianMs": 4293.464266,
+      "baselineRangeMs": [
+        3611.018114,
+        6382.486605
+      ],
+      "inputIdentitySha256": "186b3e0cd1c7388b9b223d957c00a0b2b7ed41ad7eac9f8c26acef64e8f51e2b",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "spread-override-table",
+      "workload": "trpc",
+      "report": "benchmarks/results/spread-override-table-screen/small.json",
+      "reportSha256": "60e0af1160310a42ac8d270bb552247c71f594ca8d1603c7477ebb9934749995",
+      "baselineMedianMs": 911.705926,
+      "baselineRangeMs": [
+        772.432233,
+        1195.154291
+      ],
+      "inputIdentitySha256": "a9d96fef4094d0056dda2e0013ce7b991f6684f4be97e22d7725b1bc85d304a7",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "spread-override-table",
+      "workload": "vscode",
+      "report": "benchmarks/results/spread-override-table-screen/large.json",
+      "reportSha256": "4adbf7ad4600851686b34f2cbc915e1909fe4e1a90dad966975d042808181fc4",
+      "baselineMedianMs": 39330.695068,
+      "baselineRangeMs": [
+        37125.652776,
+        45538.961773
+      ],
+      "inputIdentitySha256": "a2b68243a6aaa56aaace5e6e3fb50300f59c41ff4e92af57dc09cc51df6d06bb",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "spread-override-table",
+      "workload": "sentry",
+      "report": "benchmarks/results/spread-override-table-screen/large.json",
+      "reportSha256": "4adbf7ad4600851686b34f2cbc915e1909fe4e1a90dad966975d042808181fc4",
+      "baselineMedianMs": 33813.108124,
+      "baselineRangeMs": [
+        30245.132546,
+        49059.72914
+      ],
+      "inputIdentitySha256": "a946fda85627ad2b0dd2e85c0ce4e726a2a8b94be795a08ed1c79f26fb385258",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "coallocated-instantiated-symbol",
+      "workload": "typeorm",
+      "report": "benchmarks/results/coallocated-instantiated-symbol-screen/small.json",
+      "reportSha256": "e143fc5d644354e79db5aec1935de5de53c824b25ad79172091d2cf450eb297d",
+      "baselineMedianMs": 5619.49777,
+      "baselineRangeMs": [
+        4123.028551,
+        11852.115696
+      ],
+      "inputIdentitySha256": "186b3e0cd1c7388b9b223d957c00a0b2b7ed41ad7eac9f8c26acef64e8f51e2b",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "coallocated-instantiated-symbol",
+      "workload": "trpc",
+      "report": "benchmarks/results/coallocated-instantiated-symbol-screen/small.json",
+      "reportSha256": "e143fc5d644354e79db5aec1935de5de53c824b25ad79172091d2cf450eb297d",
+      "baselineMedianMs": 786.26273,
+      "baselineRangeMs": [
+        622.034491,
+        2897.223309
+      ],
+      "inputIdentitySha256": "a9d96fef4094d0056dda2e0013ce7b991f6684f4be97e22d7725b1bc85d304a7",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "coallocated-instantiated-symbol",
+      "workload": "vscode",
+      "report": "benchmarks/results/coallocated-instantiated-symbol-screen/large.json",
+      "reportSha256": "207948376d4db56090d3d70607601b04c513eef91c8902818c6d5c026340b2c5",
+      "baselineMedianMs": 63227.135972,
+      "baselineRangeMs": [
+        47351.7457,
+        69540.972818
+      ],
+      "inputIdentitySha256": "a2b68243a6aaa56aaace5e6e3fb50300f59c41ff4e92af57dc09cc51df6d06bb",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    },
+    {
+      "experiment": "coallocated-instantiated-symbol",
+      "workload": "sentry",
+      "report": "benchmarks/results/coallocated-instantiated-symbol-screen/large.json",
+      "reportSha256": "207948376d4db56090d3d70607601b04c513eef91c8902818c6d5c026340b2c5",
+      "baselineMedianMs": 43709.377165,
+      "baselineRangeMs": [
+        41499.85049,
+        55319.145716
+      ],
+      "inputIdentitySha256": "a946fda85627ad2b0dd2e85c0ce4e726a2a8b94be795a08ed1c79f26fb385258",
+      "baselineBinarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "visibleCpuQuotaCpus": 5.6,
+      "cpuQuotaReadComplete": false,
+      "node": "v24.15.0"
+    }
+  ]
+}
