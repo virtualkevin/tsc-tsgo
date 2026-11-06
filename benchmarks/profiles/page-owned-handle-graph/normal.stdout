@@ -1,0 +1,33 @@
+{"Time":"2026-11-06T18:05:41.614121592Z","Action":"start","Package":"example.com/page-owned-handle-graph"}
+{"Time":"2026-11-06T18:05:41.616604062Z","Action":"run","Package":"example.com/page-owned-handle-graph","Test":"TestStatefulGraphAgreement"}
+{"Time":"2026-11-06T18:05:41.616658108Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestStatefulGraphAgreement","Output":"=== RUN   TestStatefulGraphAgreement\n"}
+{"Time":"2026-11-06T18:05:41.663386868Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestStatefulGraphAgreement","Output":"--- PASS: TestStatefulGraphAgreement (0.05s)\n"}
+{"Time":"2026-11-06T18:05:41.66345147Z","Action":"pass","Package":"example.com/page-owned-handle-graph","Test":"TestStatefulGraphAgreement","Elapsed":0.05}
+{"Time":"2026-11-06T18:05:41.663467534Z","Action":"run","Package":"example.com/page-owned-handle-graph","Test":"TestOwnershipAndFailureAtomicity"}
+{"Time":"2026-11-06T18:05:41.663469908Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestOwnershipAndFailureAtomicity","Output":"=== RUN   TestOwnershipAndFailureAtomicity\n"}
+{"Time":"2026-11-06T18:05:41.663476247Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestOwnershipAndFailureAtomicity","Output":"--- PASS: TestOwnershipAndFailureAtomicity (0.00s)\n"}
+{"Time":"2026-11-06T18:05:41.663479882Z","Action":"pass","Package":"example.com/page-owned-handle-graph","Test":"TestOwnershipAndFailureAtomicity","Elapsed":0}
+{"Time":"2026-11-06T18:05:41.663482401Z","Action":"run","Package":"example.com/page-owned-handle-graph","Test":"TestRemoteCapacityAndReuse"}
+{"Time":"2026-11-06T18:05:41.663484463Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestRemoteCapacityAndReuse","Output":"=== RUN   TestRemoteCapacityAndReuse\n"}
+{"Time":"2026-11-06T18:05:41.724679039Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestRemoteCapacityAndReuse","Output":"--- PASS: TestRemoteCapacityAndReuse (0.06s)\n"}
+{"Time":"2026-11-06T18:05:41.724723396Z","Action":"pass","Package":"example.com/page-owned-handle-graph","Test":"TestRemoteCapacityAndReuse","Elapsed":0.06}
+{"Time":"2026-11-06T18:05:41.724730309Z","Action":"run","Package":"example.com/page-owned-handle-graph","Test":"TestPageGraphReachability"}
+{"Time":"2026-11-06T18:05:41.72473272Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestPageGraphReachability","Output":"=== RUN   TestPageGraphReachability\n"}
+{"Time":"2026-11-06T18:05:41.726088736Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestPageGraphReachability","Output":"--- PASS: TestPageGraphReachability (0.00s)\n"}
+{"Time":"2026-11-06T18:05:41.726133618Z","Action":"pass","Package":"example.com/page-owned-handle-graph","Test":"TestPageGraphReachability","Elapsed":0}
+{"Time":"2026-11-06T18:05:41.726141099Z","Action":"run","Package":"example.com/page-owned-handle-graph","Test":"TestEscapedRootAndConcurrentReads"}
+{"Time":"2026-11-06T18:05:41.726144607Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestEscapedRootAndConcurrentReads","Output":"=== RUN   TestEscapedRootAndConcurrentReads\n"}
+{"Time":"2026-11-06T18:05:41.729484877Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestEscapedRootAndConcurrentReads","Output":"--- PASS: TestEscapedRootAndConcurrentReads (0.00s)\n"}
+{"Time":"2026-11-06T18:05:41.729526661Z","Action":"pass","Package":"example.com/page-owned-handle-graph","Test":"TestEscapedRootAndConcurrentReads","Elapsed":0}
+{"Time":"2026-11-06T18:05:41.729554833Z","Action":"run","Package":"example.com/page-owned-handle-graph","Test":"TestRecordLayout"}
+{"Time":"2026-11-06T18:05:41.72955895Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestRecordLayout","Output":"=== RUN   TestRecordLayout\n"}
+{"Time":"2026-11-06T18:05:41.729571093Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestRecordLayout","Output":"    graph_test.go:338: record=32 page-header-and-records=8264 remote=16 ref=16 graph=32\n"}
+{"Time":"2026-11-06T18:05:41.729602238Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestRecordLayout","Output":"--- PASS: TestRecordLayout (0.00s)\n"}
+{"Time":"2026-11-06T18:05:41.729618544Z","Action":"pass","Package":"example.com/page-owned-handle-graph","Test":"TestRecordLayout","Elapsed":0}
+{"Time":"2026-11-06T18:05:41.729622689Z","Action":"run","Package":"example.com/page-owned-handle-graph","Test":"TestUnreachableRemoteCycleCollected"}
+{"Time":"2026-11-06T18:05:41.729625951Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestUnreachableRemoteCycleCollected","Output":"=== RUN   TestUnreachableRemoteCycleCollected\n"}
+{"Time":"2026-11-06T18:05:41.730308188Z","Action":"output","Package":"example.com/page-owned-handle-graph","Test":"TestUnreachableRemoteCycleCollected","Output":"--- PASS: TestUnreachableRemoteCycleCollected (0.00s)\n"}
+{"Time":"2026-11-06T18:05:41.730332631Z","Action":"pass","Package":"example.com/page-owned-handle-graph","Test":"TestUnreachableRemoteCycleCollected","Elapsed":0}
+{"Time":"2026-11-06T18:05:41.73033766Z","Action":"output","Package":"example.com/page-owned-handle-graph","Output":"PASS\n"}
+{"Time":"2026-11-06T18:05:41.730869703Z","Action":"output","Package":"example.com/page-owned-handle-graph","Output":"ok  \texample.com/page-owned-handle-graph\t0.116s\n"}
+{"Time":"2026-11-06T18:05:41.730893596Z","Action":"pass","Package":"example.com/page-owned-handle-graph","Elapsed":0.117}

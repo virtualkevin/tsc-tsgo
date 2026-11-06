@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/graph.go": "07300704e74764e782acadbf42c4ce798e87172f7d08406cc0292c7455e384e4",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/graph_test.go": "297d285fdddb4fba4b2e449090d36a60809d3e8c8ec9cd8fa5cef368a6190717",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/go.mod": "d6b1ee9b9521e04d4f536faf2d564ba96715ccd1227bb3c06772ae66af19a3a7"
+  },
+  "controllerSha256": "0cf5c9f210d71e5d78626b37dfcee93096631d70ecf9b0c7debb6972f3a79100",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestStatefulGraphAgreement",
+        "TestOwnershipAndFailureAtomicity",
+        "TestRemoteCapacityAndReuse",
+        "TestPageGraphReachability",
+        "TestEscapedRootAndConcurrentReads",
+        "TestRecordLayout"
+      ],
+      "ok": true,
+      "stdoutSha256": "47c973573897f996307ab3eea6f55fbaa16f2d845f8280d8eaebc2214ee0b3fc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-race",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestStatefulGraphAgreement",
+        "TestOwnershipAndFailureAtomicity",
+        "TestRemoteCapacityAndReuse",
+        "TestPageGraphReachability",
+        "TestEscapedRootAndConcurrentReads",
+        "TestRecordLayout"
+      ],
+      "ok": true,
+      "stdoutSha256": "43145d768de9cf90b105e618e037c8f466b9c8db29fc23ac34a5d5e09fd0fba3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-gcflags=all=-d=checkptr=2",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestStatefulGraphAgreement",
+        "TestOwnershipAndFailureAtomicity",
+        "TestRemoteCapacityAndReuse",
+        "TestPageGraphReachability",
+        "TestEscapedRootAndConcurrentReads",
+        "TestRecordLayout"
+      ],
+      "ok": true,
+      "stdoutSha256": "53f3ab4ad181124160f1d1ffa41d7dd3ad56cca1d515b0908da9b3edfa7a8290",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

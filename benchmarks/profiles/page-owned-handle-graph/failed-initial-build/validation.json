@@ -1,0 +1,27 @@
+{
+  "status": "failed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/graph.go": "07300704e74764e782acadbf42c4ce798e87172f7d08406cc0292c7455e384e4",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/graph_test.go": "8060e44127e6572941a3d0d109027596f4025b00935c52d4cf5735c4817a7868",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/go.mod": "d6b1ee9b9521e04d4f536faf2d564ba96715ccd1227bb3c06772ae66af19a3a7"
+  },
+  "controllerSha256": "0cf5c9f210d71e5d78626b37dfcee93096631d70ecf9b0c7debb6972f3a79100",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "./..."
+      ],
+      "exitCode": 1,
+      "passed": [],
+      "ok": false,
+      "stdoutSha256": "01704f8a35313a2a1ccdc032b1ed33aca15e641a9cfd9d06a4d2ef0907259db9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "error": "AssertionError()"
+}
