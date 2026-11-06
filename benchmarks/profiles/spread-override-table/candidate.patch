@@ -1,0 +1,24 @@
+--- packages/tsc-go/internal/checker/checker.go	2026-11-06 14:54:41.170000442 +0000
++++ benchmarks/profiles/spread-override-table/staged/checker.go	2026-11-06 15:24:15.994980590 +0000
+@@ -13107,9 +13107,6 @@
+ 	// Grammar checking
+ 	c.checkGrammarObjectLiteralExpression(node.AsObjectLiteralExpression(), inDestructuringPattern)
+ 	var allPropertiesTable ast.SymbolTable
+-	if c.strictNullChecks {
+-		allPropertiesTable = make(ast.SymbolTable)
+-	}
+ 	propertiesTable := make(ast.SymbolTable)
+ 	var propertiesArray []*ast.Symbol
+ 	spread := c.emptyObjectType
+@@ -13135,6 +13132,11 @@
+ 	// As otherwise they may not be checked until exports for the type at this position are retrieved,
+ 	// which may never occur.
+ 	for _, elem := range node.Properties() {
++		// Only spread override diagnostics consume this private table. Allocate
++		// during the existing prepass so all preceding properties are recorded.
++		if elem.Kind == ast.KindSpreadAssignment && c.strictNullChecks && allPropertiesTable == nil {
++			allPropertiesTable = make(ast.SymbolTable)
++		}
+ 		if elem.Name() != nil && ast.IsComputedPropertyName(elem.Name()) {
+ 			c.checkComputedPropertyName(elem.Name())
+ 		}

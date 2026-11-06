@@ -1,0 +1,19 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/spread-override-table/overlay.json",
+    "-o",
+    "/tmp/tsc-spread-override-table-validation/tsc-spread-override-table",
+    "./cmd/tsgo"
+  ],
+  "binarySha256": "3b1f019dd17bc2497a544fa280e1b95f88594f4074eb13a4109dcf35a5e48d82",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "be46b2defe575475560f87a92d7b0fc13dd58b5d393edb889f0b032b21c51453",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/spread_override_table_api_test.go": "d17c0de1f99ddf5b6dec304b189c7b01289ebc27f5f2c9691abddbb86a3dc674"
+  },
+  "scope": "Isolated overlay; normal production build provenance still required."
+}

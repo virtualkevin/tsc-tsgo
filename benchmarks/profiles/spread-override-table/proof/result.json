@@ -1,0 +1,73 @@
+{
+  "scope": "Machine-checked array-state induction obligations under a fixed prepass classification and reads only at spreads. Source text pins the named local table sites; it does not prove AST immutability, Go execution, diagnostic equivalence, GC behavior, or whole-compiler correctness. Name/symbol bitvectors model arbitrary equality classes, not actual Go pointer encoding.",
+  "solverVersion": "4.15.4",
+  "controllerSha256": "1f7a8cdbfd25baf41adcf04d12916b305bca128d39f965bb1a98b13c01eb1fee",
+  "checkerSha256": "be46b2defe575475560f87a92d7b0fc13dd58b5d393edb889f0b032b21c51453",
+  "tableSites": [
+    "var allPropertiesTable ast.SymbolTable",
+    "if elem.Kind == ast.KindSpreadAssignment && c.strictNullChecks && allPropertiesTable == nil {",
+    "allPropertiesTable = make(ast.SymbolTable)",
+    "if allPropertiesTable != nil {",
+    "allPropertiesTable[prop.Name] = prop",
+    "if allPropertiesTable != nil {",
+    "c.checkSpreadPropOverrides(mergedType, allPropertiesTable, memberDecl)"
+  ],
+  "lemmas": [
+    {
+      "name": "spread-read-eligibility",
+      "result": "unsat",
+      "assertions": [
+        "Implies(read_spread, has_spread)",
+        "And(read_spread, strict != And(strict, has_spread))"
+      ]
+    },
+    {
+      "name": "spread-domain-initial-state",
+      "result": "unsat",
+      "assertions": [
+        "strict",
+        "has_spread",
+        "If(strict, K(BitVec(32), 0), old) !=\nIf(And(strict, has_spread), K(BitVec(32), 0), old)"
+      ]
+    },
+    {
+      "name": "spread-domain-step",
+      "result": "unsat",
+      "assertions": [
+        "strict",
+        "has_spread",
+        "old == new",
+        "If(And(property_write, strict),\n   Store(old, name, symbol),\n   old) !=\nIf(And(property_write, And(strict, has_spread)),\n   Store(new, name, symbol),\n   new)"
+      ]
+    },
+    {
+      "name": "spread-query-equality",
+      "result": "unsat",
+      "assertions": [
+        "strict",
+        "read_spread",
+        "Implies(read_spread, has_spread)",
+        "old == new",
+        "If(And(property_write, strict),\n   Store(old, name, symbol),\n   old)[lookup] !=\nIf(And(property_write, And(strict, has_spread)),\n   Store(new, name, symbol),\n   new)[lookup]"
+      ]
+    },
+    {
+      "name": "no-spread-domain-unobservable",
+      "result": "unsat",
+      "assertions": [
+        "Not(has_spread)",
+        "Implies(read_spread, has_spread)",
+        "read_spread"
+      ]
+    },
+    {
+      "name": "broken-main-loop-lazy-allocation-control",
+      "result": "sat",
+      "assertions": [
+        "symbol != 0",
+        "Store(K(BitVec(32), 0), name, symbol)[name] !=\nK(BitVec(32), 0)[name]"
+      ],
+      "model": "[symbol = 4294967295]"
+    }
+  ]
+}

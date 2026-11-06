@@ -1,0 +1,7 @@
+# Private override-table map-state model
+
+`prove.py` uses pinned z3-solver4.15.4.0. Five counterexample queries are unsatisfiable: spread-read eligibility, initial state, arbitrary property-store induction, query equality, and no-spread unobservability. A deliberately broken policy that first allocates in the MAIN loop at a spread has a satisfiable counterexample: it loses an earlier property. This distinguishes the required prepass allocation from an incorrect superficially similar transformation.
+
+The model uses total maps from32-bit name equality classes to32-bit symbol equality classes, with0representing absence. It proves state obligations for arbitrary keys/values, including duplicate stores. It does not encode Go pointers, allocate real symbols, model heap collection or check TypeScript diagnostics. It assumes fixed AST prepass classification, the original write/read order, and no other observations of the private map. A source-text check and SHA256 bind the model to the seven named table-use lines; this is a limited link, not a proof of the Go implementation or AST immutability.
+
+Run with a Python environment containing requirements.txt and redirect stdout to compare with result.json. Keep the original result if changing the model; do not reinterpret the deliberately satisfiable negative control as a candidate failure. Real retained/candidate histories and full correctness gates remain independent requirements.

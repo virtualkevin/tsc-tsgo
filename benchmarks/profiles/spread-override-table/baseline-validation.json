@@ -1,0 +1,689 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/spread_override_table_api_test.go": "d17c0de1f99ddf5b6dec304b189c7b01289ebc27f5f2c9691abddbb86a3dc674"
+  },
+  "controllerSha256": "192ead8977a3ffe4cdc04c2eea516231421f2bc6b9ef5492b7f8842fa3d29299",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/spread-override-table/baseline-overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestSpreadOverrideTableHistories$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestSpreadOverrideTableHistories"
+      ],
+      "ok": true,
+      "observations": [
+        {
+          "Name": "ordinary",
+          "Strict": false,
+          "Type": "{ value: number; method(x: number): number; readonly label: string; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "required",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "optional",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "leading",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "multiple",
+          "Strict": false,
+          "Type": "{ value: number; other: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            104,
+            214
+          ]
+        },
+        {
+          "Name": "computed",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            97,
+            213
+          ]
+        },
+        {
+          "Name": "accessor",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            95,
+            212
+          ]
+        },
+        {
+          "Name": "ordinary",
+          "Strict": true,
+          "Type": "{ value: number; method(x: number): number; readonly label: string; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            92,
+            212
+          ]
+        },
+        {
+          "Name": "required",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": [
+            2783
+          ],
+          "Positions": [
+            43
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "optional",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "leading",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "multiple",
+          "Strict": true,
+          "Type": "{ value: number; other: number; }",
+          "Codes": [
+            2783,
+            2783
+          ],
+          "Positions": [
+            43,
+            64
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten.",
+            "'other' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            104,
+            214
+          ]
+        },
+        {
+          "Name": "computed",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": [
+            2783
+          ],
+          "Positions": [
+            37
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            97,
+            213
+          ]
+        },
+        {
+          "Name": "accessor",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            94,
+            212
+          ]
+        }
+      ],
+      "stdoutSha256": "158abe437da33cee766ba8633f42b055f6e99eeef0726aec59c42b7fcd8189f1",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/spread-override-table/baseline-overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestSpreadOverrideTableHistories$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestSpreadOverrideTableHistories"
+      ],
+      "ok": true,
+      "observations": [
+        {
+          "Name": "ordinary",
+          "Strict": false,
+          "Type": "{ value: number; method(x: number): number; readonly label: string; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "required",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "optional",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "leading",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "multiple",
+          "Strict": false,
+          "Type": "{ value: number; other: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            104,
+            214
+          ]
+        },
+        {
+          "Name": "computed",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            97,
+            213
+          ]
+        },
+        {
+          "Name": "accessor",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            95,
+            212
+          ]
+        },
+        {
+          "Name": "ordinary",
+          "Strict": true,
+          "Type": "{ value: number; method(x: number): number; readonly label: string; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            92,
+            212
+          ]
+        },
+        {
+          "Name": "required",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": [
+            2783
+          ],
+          "Positions": [
+            43
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "optional",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "leading",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "multiple",
+          "Strict": true,
+          "Type": "{ value: number; other: number; }",
+          "Codes": [
+            2783,
+            2783
+          ],
+          "Positions": [
+            43,
+            64
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten.",
+            "'other' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            104,
+            214
+          ]
+        },
+        {
+          "Name": "computed",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": [
+            2783
+          ],
+          "Positions": [
+            37
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            97,
+            213
+          ]
+        },
+        {
+          "Name": "accessor",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            94,
+            212
+          ]
+        }
+      ],
+      "stdoutSha256": "424bfb6afb504bb894a3d80c0f5ed4afe2cdcca325cb5b9cd499d4837de37d3e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/spread-override-table/baseline-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestSpreadOverrideTableHistories$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestSpreadOverrideTableHistories"
+      ],
+      "ok": true,
+      "observations": [
+        {
+          "Name": "ordinary",
+          "Strict": false,
+          "Type": "{ value: number; method(x: number): number; readonly label: string; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "required",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "optional",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "leading",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "multiple",
+          "Strict": false,
+          "Type": "{ value: number; other: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            104,
+            214
+          ]
+        },
+        {
+          "Name": "computed",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            97,
+            213
+          ]
+        },
+        {
+          "Name": "accessor",
+          "Strict": false,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            95,
+            212
+          ]
+        },
+        {
+          "Name": "ordinary",
+          "Strict": true,
+          "Type": "{ value: number; method(x: number): number; readonly label: string; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            92,
+            212
+          ]
+        },
+        {
+          "Name": "required",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": [
+            2783
+          ],
+          "Positions": [
+            43
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "optional",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            93,
+            212
+          ]
+        },
+        {
+          "Name": "leading",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            96,
+            212
+          ]
+        },
+        {
+          "Name": "multiple",
+          "Strict": true,
+          "Type": "{ value: number; other: number; }",
+          "Codes": [
+            2783,
+            2783
+          ],
+          "Positions": [
+            43,
+            64
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten.",
+            "'other' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            104,
+            214
+          ]
+        },
+        {
+          "Name": "computed",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": [
+            2783
+          ],
+          "Positions": [
+            37
+          ],
+          "Messages": [
+            "'value' is specified more than once, so this usage will be overwritten."
+          ],
+          "Counters": [
+            0,
+            97,
+            213
+          ]
+        },
+        {
+          "Name": "accessor",
+          "Strict": true,
+          "Type": "{ value: number; }",
+          "Codes": null,
+          "Positions": null,
+          "Messages": null,
+          "Counters": [
+            0,
+            94,
+            212
+          ]
+        }
+      ],
+      "stdoutSha256": "d98d6d4fac7e8f21c8c19977f4df7f43e51d519e00a4f111eb8f880043627454",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

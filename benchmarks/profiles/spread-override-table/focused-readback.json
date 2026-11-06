@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "side": "baseline-",
+      "mode": "normal",
+      "stdoutSha256": "158abe437da33cee766ba8633f42b055f6e99eeef0726aec59c42b7fcd8189f1"
+    },
+    {
+      "side": "baseline-",
+      "mode": "race",
+      "stdoutSha256": "424bfb6afb504bb894a3d80c0f5ed4afe2cdcca325cb5b9cd499d4837de37d3e"
+    },
+    {
+      "side": "baseline-",
+      "mode": "checkptr",
+      "stdoutSha256": "d98d6d4fac7e8f21c8c19977f4df7f43e51d519e00a4f111eb8f880043627454"
+    },
+    {
+      "side": "candidate",
+      "mode": "normal",
+      "stdoutSha256": "aa70ddf939ab861897e0c96ce7777cf387ec4cce0ab5cabc65a35b123828edbd"
+    },
+    {
+      "side": "candidate",
+      "mode": "race",
+      "stdoutSha256": "63011c54e16c8523502b3e1fb669dbcc5280d26077fc8b554da1ba77885c9dd8"
+    },
+    {
+      "side": "candidate",
+      "mode": "checkptr",
+      "stdoutSha256": "2e26b316cd709c40b1feee9535b67fb9fa85a62a474de6f8d240439f8932999a"
+    }
+  ],
+  "historiesPerRun": 14,
+  "verifierSha256": "2df376abea04dba656e166b41da8f0135b8b680a509cfb98f36b0b19d803ebeb"
+}
