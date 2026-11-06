@@ -1,0 +1,105 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup.go": "7ad484e5751dfb1acf65b77b214d74e091b954970381d0ae97927ef40292c2cf",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup_test.go": "9a320bc380964a53f6ed8a5f9587f61b32dfaedc4315c002bf8c4b663be110b4"
+  },
+  "controllerSha256": "1f0f8bf9623ac0e474920bb7e4b6d764d5dad07e18e672518e7c05a5066f276b",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/baseline-overlay.json",
+        "./internal/checker",
+        "-run",
+        "^(TestFusedIntersection|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestFusedIntersectionGuards",
+        "TestFusedIntersectionCurrentCacheAndSymbolState",
+        "TestFusedIntersectionFallbackHistories",
+        "TestFusedIntersectionInstantiatedSymbolQuery",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ],
+      "ok": true,
+      "stdoutSha256": "e6e92d4bd13e17c022d00ff5827fd81d66a61c37bedc683ce66391d0178db104",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/baseline-overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^(TestFusedIntersection|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestFusedIntersectionGuards",
+        "TestFusedIntersectionCurrentCacheAndSymbolState",
+        "TestFusedIntersectionFallbackHistories",
+        "TestFusedIntersectionInstantiatedSymbolQuery",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ],
+      "ok": true,
+      "stdoutSha256": "b556b9f4b39f94b017b6cc2e902ae12b33470f4cd109e34026ef1fe736023c21",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/baseline-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^(TestFusedIntersection|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestFusedIntersectionGuards",
+        "TestFusedIntersectionCurrentCacheAndSymbolState",
+        "TestFusedIntersectionFallbackHistories",
+        "TestFusedIntersectionInstantiatedSymbolQuery",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ],
+      "ok": true,
+      "stdoutSha256": "0c4afa63c6e3fb1acb6e96c46ea3a426f42618fc1b84ec2b4735917a3e71c5dc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

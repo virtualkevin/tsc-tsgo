@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "base": {
+    "internal/checker/checker.go": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760"
+  },
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "86d5d529e5edf3557e96c1761959bfb9c6079504ed5fb7301345f803223ed8ff",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup.go": "7ad484e5751dfb1acf65b77b214d74e091b954970381d0ae97927ef40292c2cf",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup_test.go": "9a320bc380964a53f6ed8a5f9587f61b32dfaedc4315c002bf8c4b663be110b4"
+  },
+  "baselineSources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup.go": "7ad484e5751dfb1acf65b77b214d74e091b954970381d0ae97927ef40292c2cf",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup_test.go": "9a320bc380964a53f6ed8a5f9587f61b32dfaedc4315c002bf8c4b663be110b4"
+  },
+  "controllerSha256": "ab6ac06cefee811ed769e72ade65597937591ab8119583531f6bfb9a4a675b9f",
+  "scope": "Removing the single guarded entry dispatch reproduces checker.go exactly. All original fallback, reduction, cache population and symbol type query code remain unchanged. Baseline includes identical helper/tests but does not dispatch to it."
+}

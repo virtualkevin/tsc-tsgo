@@ -1,0 +1,106 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "86d5d529e5edf3557e96c1761959bfb9c6079504ed5fb7301345f803223ed8ff",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup.go": "7ad484e5751dfb1acf65b77b214d74e091b954970381d0ae97927ef40292c2cf",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup_test.go": "9a320bc380964a53f6ed8a5f9587f61b32dfaedc4315c002bf8c4b663be110b4"
+  },
+  "controllerSha256": "1f0f8bf9623ac0e474920bb7e4b6d764d5dad07e18e672518e7c05a5066f276b",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^(TestFusedIntersection|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestFusedIntersectionGuards",
+        "TestFusedIntersectionCurrentCacheAndSymbolState",
+        "TestFusedIntersectionFallbackHistories",
+        "TestFusedIntersectionInstantiatedSymbolQuery",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ],
+      "ok": true,
+      "stdoutSha256": "33881980b0feb0b5b2f35f99769c91e7513f438933d420da101a9e725eccb3d4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^(TestFusedIntersection|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestFusedIntersectionGuards",
+        "TestFusedIntersectionCurrentCacheAndSymbolState",
+        "TestFusedIntersectionFallbackHistories",
+        "TestFusedIntersectionInstantiatedSymbolQuery",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ],
+      "ok": true,
+      "stdoutSha256": "29940fb98af02b6bab49502e17a33d8bf4af6e15cebd9ac04fc3ff268324f823",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^(TestFusedIntersection|TestUnionPropertyCache)"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestFusedIntersectionGuards",
+        "TestFusedIntersectionCurrentCacheAndSymbolState",
+        "TestFusedIntersectionFallbackHistories",
+        "TestFusedIntersectionInstantiatedSymbolQuery",
+        "TestUnionPropertyCacheMissDoesNotCacheAbsence",
+        "TestUnionPropertyCacheSharesCompleteResultIdentity",
+        "TestUnionPropertyCacheKeepsAugmentedPrecedence",
+        "TestUnionPropertyCacheDoesNotReusePartialResults",
+        "TestUnionPropertyCachePreservesReentrantPopulation",
+        "TestUnionPropertyCachePreservesRecursiveAugmentedWinner",
+        "TestUnionPropertyCacheSameSymbolRecursiveOverwritePreservesIdentity"
+      ],
+      "ok": true,
+      "stdoutSha256": "1925c9f53ba2515f9135cce7fd2e1dca483da6b492ecfc1eb88c41258bd96b30",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

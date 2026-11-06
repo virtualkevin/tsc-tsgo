@@ -1,0 +1,156 @@
+{
+  "scope": "Frozen overlay normal CLI/API/emit integration and race/checkptr CLI differential tests. Not workload timing or standard production build provenance.",
+  "passed": true,
+  "freezeSha256": "62ccf118fa07e6c216d4c3ac23ec365b9c61c30ace6581cddd97063dad544cf3",
+  "controllerSha256": "5740bccd6e9ff37ca02387584a8d794b0813f9ad7ccb2573a940d8570fab2d05",
+  "commonSha256": "699a9d88b091786e03f945d28a84f9268c1b44f8c0d162e8ffd592f746c1511c",
+  "normalBuildSha256": "f2d3b37e9f55f7403ff0059ecfd00c344b4c34539c76f5dc40de0ab105df61d5",
+  "comparators": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+    "/home/dev/tssss/tsc-tsgo/packages/tsgo/dist/tsgo": "b7b9a43499f3b54a63d4901b2c5f05589ebbadb88c21bd8d174773be00502e1a",
+    "/home/dev/tssss/tsc-tsgo/node_modules/@scriptc/cli-linux-x64-gnu/dist/lib/typescript/lib/tsc": "4f2de678286401759b3fb4475bafe35b8f32b4b3a07d92642bbf37eadc9b34a4"
+  },
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "binarySha256": "af2f332d9aa963f486c22e433dd0e16b248315037dfd8cf01f065813279fb775",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "file": "normal.log.gz",
+        "sha256": "78df419c03a70987eae532b7730e44f719b6f4a488508d636813624c8277ee92",
+        "rawSha256": "51f70370f515872c20bf38d9e22684b8f7a55d8ee2b4ed63b7eed97c6696636c"
+      },
+      "passed": true
+    },
+    {
+      "mode": "integration",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "tests/api.test.mjs",
+        "tests/parallel-emit.test.mjs",
+        "tests/projects.test.mjs",
+        "tests/tsc-project.test.mjs"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts",
+      "binarySha256": "af2f332d9aa963f486c22e433dd0e16b248315037dfd8cf01f065813279fb775",
+      "exitCode": 0,
+      "counts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "file": "integration.log.gz",
+        "sha256": "ce172488e8e26c6757838ae74439d22223f962fa70fb1071a0b2f9e291f0cf11",
+        "rawSha256": "713d3dde179f5dd0d54a82549f0277e5f7b56b3f6948dafd8ca0eb3e24ef880e"
+      },
+      "passed": true
+    },
+    {
+      "mode": "race",
+      "buildCommand": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "build",
+        "-race",
+        "-trimpath",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/overlay.json",
+        "-o",
+        "/tmp/tsc-fused-intersection-lookup-validation/cli/tsc-go-race",
+        "./cmd/tsgo"
+      ],
+      "buildExitCode": 0,
+      "buildLog": {
+        "file": "race-build.log.gz",
+        "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "binarySha256": "ddc478dce8b8187113abf293e474463e5b5ba2f840c57839c59fea1506f51a77",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "file": "race.log.gz",
+        "sha256": "67fc22b01e469f3b1e7ab1552a55229eb3e664ece6dade7c88d035921de6f497",
+        "rawSha256": "e9ec7899df662652fddb38706724168ce7198e36e6629cbabeb7d972abe6f359"
+      },
+      "passed": true
+    },
+    {
+      "mode": "checkptr",
+      "buildCommand": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "build",
+        "-gcflags=all=-d=checkptr=2",
+        "-trimpath",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/overlay.json",
+        "-o",
+        "/tmp/tsc-fused-intersection-lookup-validation/cli/tsc-go-checkptr",
+        "./cmd/tsgo"
+      ],
+      "buildExitCode": 0,
+      "buildLog": {
+        "file": "checkptr-build.log.gz",
+        "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "packages/tsc-go/tests/parity.mjs"
+      ],
+      "cwd": "/home/dev/tssss/tsc-tsgo",
+      "binarySha256": "c29bf3039f982e5479d3b6d2b8d41b2903b0a4227a56daf5c7afd0ace2ad67a4",
+      "exitCode": 0,
+      "counts": {
+        "tests": 80,
+        "pass": 80,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": {
+        "file": "checkptr.log.gz",
+        "sha256": "8dd4ef0f9d9331a5bcff631bd936451ec3897f345baa5a4af73bf58a1c0325c8",
+        "rawSha256": "5ad1e26c24cd3ee36e4da71f3c2e74b8a7363c46a881d9eb2476e4a675fd38bb"
+      },
+      "passed": true
+    }
+  ]
+}

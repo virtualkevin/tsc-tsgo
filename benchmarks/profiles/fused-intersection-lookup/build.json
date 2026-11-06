@@ -1,0 +1,20 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/fused-intersection-lookup/overlay.json",
+    "-o",
+    "/tmp/tsc-fused-intersection-lookup-validation/tsc-fused-intersection-lookup",
+    "./cmd/tsgo"
+  ],
+  "binarySha256": "af2f332d9aa963f486c22e433dd0e16b248315037dfd8cf01f065813279fb775",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "86d5d529e5edf3557e96c1761959bfb9c6079504ed5fb7301345f803223ed8ff",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup.go": "7ad484e5751dfb1acf65b77b214d74e091b954970381d0ae97927ef40292c2cf",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/fused_intersection_lookup_test.go": "9a320bc380964a53f6ed8a5f9587f61b32dfaedc4315c002bf8c4b663be110b4"
+  },
+  "scope": "Isolated overlay; normal production build provenance still required."
+}

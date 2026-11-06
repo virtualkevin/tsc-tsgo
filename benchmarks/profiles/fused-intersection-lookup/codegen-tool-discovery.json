@@ -1,0 +1,17 @@
+{
+  "initialToolError": "go: no such tool \"objdump\"",
+  "archiveAttempt": "Existing go.tar.gz has matching go/bin/go but no go/pkg/tool/linux_amd64/objdump; extraction attempt raised KeyError and produced no tool. A second unchanged capture invocation again reported no such tool.",
+  "resolution": "Build cmd/objdump from installed go1.26.9 source into a separate /tmp directory. No installed toolchain files changed.",
+  "buildCommand": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-o",
+    "/tmp/tsc-fused-objdump/objdump",
+    "cmd/objdump"
+  ],
+  "buildEnvironment": {
+    "GOTOOLCHAIN": "local",
+    "GOCACHE": "/home/dev/.cache/go-build"
+  },
+  "scope": "Optional static inspection only. Initial pattern escaping also corrected before any successful capture; no earlier assembly results existed."
+}

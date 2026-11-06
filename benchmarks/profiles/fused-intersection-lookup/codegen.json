@@ -1,0 +1,53 @@
+{
+  "scope": "Static code size/call sites, not executed instruction counts, timing, CPU budget or speedup. Absent standalone helper does not by itself prove every call was inlined.",
+  "controllerSha256": "9f356aa9d261533ad3c9ccd39587bd3952f8be390c34f95863f00bf24d66102a",
+  "goSha256": "79b1c6addca205aff706c904a59511b3004aeb5008a413981896b6fbe9600ff5",
+  "buildSha256": "f2d3b37e9f55f7403ff0059ecfd00c344b4c34539c76f5dc40de0ab105df61d5",
+  "binaries": {
+    "baseline": {
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "command": [
+        "/tmp/tsc-fused-objdump/objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.getTypeOfPropertyOfType$|checker\\.cachedIntersectionProperty$",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer"
+      ],
+      "assemblySha256": "30c01a25eb165e6cfdaf8cc702eacf43dd75e5f15595f6c3b723b828da95234d",
+      "functions": {
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfPropertyOfType(SB)": {
+          "encodedBytes": 116,
+          "instructions": 34,
+          "calls": [
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx(SB)",
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)",
+            "runtime.morestack_noctxt.abi0(SB)"
+          ]
+        }
+      }
+    },
+    "candidate": {
+      "sha256": "af2f332d9aa963f486c22e433dd0e16b248315037dfd8cf01f065813279fb775",
+      "command": [
+        "/tmp/tsc-fused-objdump/objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.getTypeOfPropertyOfType$|checker\\.cachedIntersectionProperty$",
+        "/tmp/tsc-fused-intersection-lookup-validation/tsc-fused-intersection-lookup"
+      ],
+      "assemblySha256": "547c09b5f3c264cb98304e8870d68c65a1385ec7811e81d4b8d76a59bf7a948f",
+      "functions": {
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfPropertyOfType(SB)": {
+          "encodedBytes": 331,
+          "instructions": 86,
+          "calls": [
+            "runtime.mapaccess1_faststr(SB)",
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx(SB)",
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)",
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)",
+            "runtime.panicdottypeI(SB)",
+            "runtime.morestack_noctxt.abi0(SB)"
+          ]
+        }
+      }
+    }
+  }
+}
