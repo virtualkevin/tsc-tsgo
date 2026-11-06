@@ -1,0 +1,229 @@
+{
+  "status": "passed",
+  "kind": "same-binary calibration, not a candidate speedup",
+  "summarySha256": "45f30606e0a11aaa525556073ff6220fdd58dda697a1900d5a90e6b1f77df4fa",
+  "configSha256": "d1d6bf3578095fbf734a1e51a327ce284a70c6134225d686956dcd37a7fbaf68",
+  "results": [
+    {
+      "name": "typeorm",
+      "runs": 9,
+      "files": 3572,
+      "baselineMedianMs": 3543.736875,
+      "candidateMedianMs": 3498.909091,
+      "baselineOverCandidate": 1.012811931614716,
+      "baselineMedianRssMiB": 879.6484375,
+      "candidateMedianRssMiB": 858.75390625,
+      "pairedRatios": [
+        1.181623398415565,
+        1.0139148330219876,
+        0.9635686767833203,
+        0.9891569358775026,
+        0.8524030280716757,
+        0.9574256587130423,
+        0.8671413279381276,
+        1.0007783479063317,
+        1.1551183065147332
+      ],
+      "pairedMedian": 0.9891569358775026,
+      "pairedMin": 0.8524030280716757,
+      "pairedMax": 1.181623398415565,
+      "medianAbsoluteLogDeviation": 0.03260492339694107,
+      "pairOrders": [
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ]
+      ],
+      "secondLabelFasterPairs": 4
+    },
+    {
+      "name": "trpc",
+      "runs": 9,
+      "files": 942,
+      "baselineMedianMs": 649.189824,
+      "candidateMedianMs": 639.701022,
+      "baselineOverCandidate": 1.0148331824925552,
+      "baselineMedianRssMiB": 242.625,
+      "candidateMedianRssMiB": 244.125,
+      "pairedRatios": [
+        0.8767285092404182,
+        1.0003415304612742,
+        1.0220221761030621,
+        0.8725166854796883,
+        1.2640408338530522,
+        0.9519804063044851,
+        1.0148331824925552,
+        1.0214499721950658,
+        0.9819232700300239
+      ],
+      "pairedMedian": 1.0003415304612742,
+      "pairedMin": 0.8725166854796883,
+      "pairedMax": 1.2640408338530522,
+      "medianAbsoluteLogDeviation": 0.021441718124057353,
+      "pairOrders": [
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ]
+      ],
+      "secondLabelFasterPairs": 5
+    },
+    {
+      "name": "vscode",
+      "runs": 5,
+      "files": 11563,
+      "baselineMedianMs": 55483.710435,
+      "candidateMedianMs": 58018.242204,
+      "baselineOverCandidate": 0.9563149162622293,
+      "baselineMedianRssMiB": 7642.14453125,
+      "candidateMedianRssMiB": 7686.3671875,
+      "pairedRatios": [
+        0.8823779254289522,
+        0.9049912340820527,
+        1.0227313047242066,
+        1.0711144739122116,
+        1.0690978281905366
+      ],
+      "pairedMedian": 1.0227313047242066,
+      "pairedMin": 0.8823779254289522,
+      "pairedMax": 1.0711144739122116,
+      "medianAbsoluteLogDeviation": 0.04622287258461302,
+      "pairOrders": [
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ]
+      ],
+      "secondLabelFasterPairs": 3
+    },
+    {
+      "name": "sentry",
+      "runs": 5,
+      "files": 13290,
+      "baselineMedianMs": 29035.110048,
+      "candidateMedianMs": 29396.96785,
+      "baselineOverCandidate": 0.9876906419789141,
+      "baselineMedianRssMiB": 5399.109375,
+      "candidateMedianRssMiB": 5434.1484375,
+      "pairedRatios": [
+        1.0471081706476064,
+        0.9633317546204567,
+        0.8411642902905396,
+        1.1026568171374431,
+        0.9557254945765199
+      ],
+      "pairedMedian": 0.9633317546204567,
+      "pairedMin": 0.8411642902905396,
+      "pairedMax": 1.1026568171374431,
+      "medianAbsoluteLogDeviation": 0.08338966674886591,
+      "pairOrders": [
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ],
+        [
+          "candidate",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "candidate"
+        ]
+      ],
+      "secondLabelFasterPairs": 2
+    }
+  ],
+  "limitations": [
+    "Both labels execute the identical binary; any non-unit ratio is measurement variation.",
+    "Fixed finite within-session sample; no confidence/independence/stationarity claim.",
+    "All samples retained; no inference from correctness durations or historical timings."
+  ]
+}

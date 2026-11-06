@@ -23,6 +23,8 @@ order, provenance and post-capture integrity checks remain intact.
 COMPARISON_POLICY.md freezes nine small-workload and five large-workload pairs,
 one warmup, default settings and matched RSS. All four workloads are included.
 The recorder reports variation only; no candidate promotion or speedup can
-follow. Rejected candidates remain rejected. Preflight verified identical artifacts and no source difference. No benchmark
-has run at this preparation checkpoint, and no PERF row is added until measured observations
-are verified. The original native-relative 10x goal remains unmet.
+follow. Rejected candidates remain rejected. Capture44244 and recorder71874
+completed successfully; independent readback verified all28pairs and copied
+execution hashes. See RESULTS.md for the observations and their limits. Four
+explicitly calibration-only rows were appended to PERF.md. The original
+native-relative 10x goal remains unmet.
