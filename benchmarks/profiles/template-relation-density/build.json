@@ -1,0 +1,25 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/template-relation-density/overlay.json",
+    "-o",
+    "/tmp/tsc-template-relation-density",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "4d8ed5fcabcfa316a2fdb8e125d77854238ddb9602cabf5d2698086e9bf45bf7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "c5aca026563cc4a481227d754a54e40369be73adbf404eb1a36d0538e9cef628",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "207ab66207aa63d0214a8e7ea2343a00a542ffd90a41d55339552b8e8675f860",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/template_relation_density.go": "a1b31412a6e26247f2277a4d1b11affae310071fe47d5b9a7aed338d461792aa",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/template_relation_density.go": "8f42b875d6c973a5b2417348dd3184990983d61140c4e13c8652a5e61cbb28dc",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/template_relation_density_test.go": "8391db959879a1c42f78a5c338fa4697f118e8ad5d85bd174d866be5bd29d987"
+  },
+  "controllerSha256": "dd92a00a2fd930ee2eb90efb9bf18e1e6a68ebbff7b2e027f903fc30a4af671d",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "67f01d5aab49f9885bf16ca2b4299bbe462a4b267b9e278d978892280f072cff",
+  "buildInfoSha256": "2aa8ff4c8412923f2bf3b597ce087e300fb76c90eea3ae89e6cd746e1ec2aa03"
+}

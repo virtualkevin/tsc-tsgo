@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "4d8ed5fcabcfa316a2fdb8e125d77854238ddb9602cabf5d2698086e9bf45bf7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "c5aca026563cc4a481227d754a54e40369be73adbf404eb1a36d0538e9cef628",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "207ab66207aa63d0214a8e7ea2343a00a542ffd90a41d55339552b8e8675f860",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/template_relation_density.go": "a1b31412a6e26247f2277a4d1b11affae310071fe47d5b9a7aed338d461792aa",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/template_relation_density.go": "8f42b875d6c973a5b2417348dd3184990983d61140c4e13c8652a5e61cbb28dc",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/template_relation_density_test.go": "8391db959879a1c42f78a5c338fa4697f118e8ad5d85bd174d866be5bd29d987"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/template-relation-density/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestTemplateDensity"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTemplateDensityPacking",
+        "TestTemplateDensityCapAndResults",
+        "TestTemplateDensityIdentityAndDomain"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/template-relation-density/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestTemplateDensity"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTemplateDensityPacking",
+        "TestTemplateDensityCapAndResults",
+        "TestTemplateDensityIdentityAndDomain"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/template-relation-density/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestTemplateDensity"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTemplateDensityPacking",
+        "TestTemplateDensityCapAndResults",
+        "TestTemplateDensityIdentityAndDomain"
+      ]
+    }
+  ]
+}
