@@ -1,0 +1,51 @@
+{
+  "name": "classic-gc",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/tmp/tsc-classic-gc-validation/tsc-go-classic-gc",
+      "sha256": "6940a08e1e29951b1950ba3c9a79a9d2f254c08b1452e0a9d902ab6aa14564d3",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "8ca75452da70dd9401db6c1d4c36dbe9123d4ba89f4b64a705cf86959c27ab20",
+      "revisionLabel": "Classic collector"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5154
+  },
+  "comparisonPolicySha256": "0b8e383260b640d54944b2ba4a747803670e755b42e4e262a949e4bc8423ddae",
+  "methodology": "Fresh-process/default-runtime matched GNU-time RSS collector screen; candidate built GOEXPERIMENT=nogreenteagc, all other recorded build settings identical; pinned physical inputs; no timing during validation/build/Git work.",
+  "buildDifference": {
+    "GOEXPERIMENT": {
+      "baseline": "",
+      "candidate": "nogreenteagc"
+    }
+  }
+}

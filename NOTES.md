@@ -1479,3 +1479,30 @@ reproduced); this is neither removable wall time nor a speedup prediction.
 Prepared lifetime, full conformance and CLI/API validation before any timing.
 No PERF rows or performance claim; the native-relative 10× goal remains unmet.
 Evidence: benchmarks/profiles/classic-gc/.
+
+
+### Classic collector correctness progress
+
+The isolated nogreenteagc candidate passed ten lifetime tests in each of normal,
+race and checkptr modes, 21,175 compiler tests across 14 packages, 219 services
+tests, and pinned conformance (14,915 configurations: 12,789 fully checked,
+8 partially checked, 2,118 unsupported/skipped, zero failures). Independent
+archived-log readback passed. Normal CLI parity passed all 80 cases; API/emit
+integration passed all 12. Instrumented CLI parity is still in progress.
+The first lifetime controller stopped on an incorrect expected count of nine;
+all ten tests had passed. Its controller/report are preserved, and the
+continuation checked the exact ten names and reused the run without rerunning.
+Full raw streams were removed only after exact decompression/hash readback;
+logs/archive-manifest.json records the retained archives. No workload timing
+or performance improvement is claimed at this checkpoint.
+
+Classic collector update: race and checkptr CLI parity each passed all 80
+cases. The complete validation controller finished successfully. Independent
+final readback and benchmark preparation are the next gates; no performance
+claim or default-compiler promotion has been made.
+
+Final collector raw-evidence readback passed, including all CLI modes and
+archived conformance data. Benchmark preflight passed with no compiler-source
+difference and only GOEXPERIMENT differing in recorded build settings. Fixed
+screen: nine small-workload pairs and five large-workload pairs, default runtime
+settings, GNU time RSS; no concurrent development during measurement.

@@ -26,9 +26,24 @@ helper=r/'benchmarks/profiles/prehashed-relations-512/validation-controller/vali
 spec=importlib.util.spec_from_file_location('conformance_summary',helper);summary_module=importlib.util.module_from_spec(spec);spec.loader.exec_module(summary_module)
 root_packages=['./internal/'+x for x in ['parser','printer','core','ast','bundled','scanner','compiler','checker','execute','execute/build','execute/watchmanager','binder','api/encoder']]+['./cmd/tsgo']
 lifetime=['./internal/core','./internal/checker','-run','^Test(PointerLinkStore|LinkStore|NodeLinksRetainGraphsAcrossGrowthAndGC)']
-phases = [('lifetime-normal',lifetime,2,9),('lifetime-race',['-race',*lifetime],2,9),('lifetime-checkptr',['-gcflags=all=-d=checkptr=2',*lifetime],2,9),('root',root_packages,14,21175),('services',['./internal/api/...','./internal/ls/...'],7,219),('conformance',['./internal/testrunner','-run','^TestSubmodule$','-parallel','4'],1,None)]
+phases = [('lifetime-race',['-race',*lifetime],2,10),('lifetime-checkptr',['-gcflags=all=-d=checkptr=2',*lifetime],2,10),('root',root_packages,14,21175),('services',['./internal/api/...','./internal/ls/...'],7,219),('conformance',['./internal/testrunner','-run','^TestSubmodule$','-parallel','4'],1,None)]
 report={'passed':False,'head':head,'artifacts':frozen,'experiment':'nogreenteagc','buildReportSha256':sha(p/'build.json'),'pins':pins,'controllerSha256':sha(__file__),'helperSha256':sha(helper),'runs':[]}
-output=p/'logs';output.mkdir(exist_ok=False)
+# The original normal run passed all tests; only our expected count was wrong.
+previous=json.loads((p/'count-guard-failure.json').read_text())
+assert previous['controllerSha256']==sha(p/'validate-full-count-guard.py')
+assert previous['head']==head and previous['artifacts']==frozen
+normal=previous['runs'][0];assert normal['name']=='lifetime-normal' and normal['exit_code']==0
+raw=Path(normal['stdout']);data=gzip.decompress(raw.with_suffix(raw.suffix+'.gz').read_bytes())
+assert hashlib.sha256(data).hexdigest()==normal['stdout_sha256']==sha(raw)
+events=[json.loads(x) for x in data.splitlines()]
+expected_names={'TestLinkStoreConcurrentExistingKeyReads','TestLinkStoreNewPreservesIdentityAndValues','TestLinkStoreNewAndGetPreserveEntriesAcrossGrowth','TestLinkStoreNewAcceptsNilPointerKey','TestPointerLinkStoreDifferential','TestPointerLinkStoreNilAndReplacement','TestPointerLinkStoreCollisionsAndGrowth','TestPointerLinkStoreRetainsDisplacedArenaSlots','TestPointerLinkStoreConcurrentReadOnlyCopies','TestNodeLinksRetainGraphsAcrossGrowthAndGC'}
+assert not any(e.get('Action') in ('fail','skip','build-fail') for e in events)
+passed=[e['Test'] for e in events if e.get('Action')=='pass' and 'Test' in e]
+assert len(passed)==10 and set(passed)==expected_names
+assert len([e for e in events if e.get('Action')=='pass' and 'Test' not in e])==2
+normal['passed']=True;normal['countGuardCorrection']='Original controller expected nine; exact ten passing test names independently checked, no rerun.'
+report['runs'].append(normal);report['countGuardFailureSha256']=sha(p/'count-guard-failure.json')
+output=p/'logs';assert output.is_dir()
 def save():(p/'full-validation.json').write_text(json.dumps(report,indent=2)+'\n')
 def interrupt(signum,frame):raise KeyboardInterrupt(str(signum))
 for sig in (signal.SIGINT,signal.SIGTERM):signal.signal(sig,interrupt)

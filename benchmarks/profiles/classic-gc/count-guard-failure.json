@@ -1,0 +1,63 @@
+{
+  "passed": false,
+  "head": "46e03c24865f2c7d920a10cd0e086de131fe0332",
+  "artifacts": {
+    "binary": "6940a08e1e29951b1950ba3c9a79a9d2f254c08b1452e0a9d902ab6aa14564d3",
+    "sidecar": "8ca75452da70dd9401db6c1d4c36dbe9123d4ba89f4b64a705cf86959c27ab20"
+  },
+  "experiment": "nogreenteagc",
+  "buildReportSha256": "e588c528cb38fceb7400ffe5f54c70592c3cddf3084a7f2e9b01d6570b2fc8f6",
+  "pins": {
+    "TypeScript": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+    "typescript-go": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b"
+  },
+  "controllerSha256": "678f61366aeedbeb88ca506514988da9d73ed56981a2a13f760d66241ab88280",
+  "helperSha256": "aebdb6e5d2e21df0faddc0d1e66a1103cac58c5c38f91db1cf2d8f5579866431",
+  "runs": [
+    {
+      "name": "lifetime-normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "./internal/core",
+        "./internal/checker",
+        "-run",
+        "^Test(PointerLinkStore|LinkStore|NodeLinksRetainGraphsAcrossGrowthAndGC)",
+        "-count=1",
+        "-timeout",
+        "30m"
+      ],
+      "exit_code": 0,
+      "stdout": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/classic-gc/logs/lifetime-normal.jsonl",
+      "stderr": "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/classic-gc/logs/lifetime-normal.stderr",
+      "stdout_sha256": "bd11cc7c434c99e43073a72f9d5675cf90f26807642a00765415e5f9f71147e0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": false,
+      "summary": {
+        "tests": 10,
+        "topLevelTests": [
+          "TestLinkStoreConcurrentExistingKeyReads",
+          "TestLinkStoreNewPreservesIdentityAndValues",
+          "TestLinkStoreNewAndGetPreserveEntriesAcrossGrowth",
+          "TestLinkStoreNewAcceptsNilPointerKey",
+          "TestPointerLinkStoreDifferential",
+          "TestPointerLinkStoreNilAndReplacement",
+          "TestPointerLinkStoreCollisionsAndGrowth",
+          "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+          "TestPointerLinkStoreConcurrentReadOnlyCopies",
+          "TestNodeLinksRetainGraphsAcrossGrowthAndGC"
+        ],
+        "packages": {
+          "github.com/microsoft/typescript-go/internal/core": "pass",
+          "github.com/microsoft/typescript-go/internal/checker": "pass"
+        }
+      },
+      "archive": {
+        "lifetime-normal.jsonl.gz": "e80491f63cd37878c5bf8d5c29dd437a4630c9269df03c1312ae0105a212abb1",
+        "lifetime-normal.stderr.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+      }
+    }
+  ],
+  "error": "AssertionError('lifetime-normal')"
+}

@@ -15,7 +15,7 @@ for run in full['runs']:
   if stream=='stdout':
    events=[json.loads(x) for x in data.splitlines()]
    assert not any(e.get('Action') in ['fail','build-fail'] for e in events)
-   if run['name']!='conformance':assert len([e for e in events if e.get('Action')=='pass' and 'Test' in e])=={'lifetime-normal':9,'lifetime-race':9,'lifetime-checkptr':9,'root':21175,'services':219}[run['name']]
+   if run['name']!='conformance':assert len([e for e in events if e.get('Action')=='pass' and 'Test' in e])=={'lifetime-normal':10,'lifetime-race':10,'lifetime-checkptr':10,'root':21175,'services':219}[run['name']]
 helper=p.parents[2]/'benchmarks/profiles/prehashed-relations-512/validation-controller/validate.py';assert sha(helper)==full['helperSha256']
 spec=importlib.util.spec_from_file_location('conformance_readback',helper);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 run=full['runs'][-1]

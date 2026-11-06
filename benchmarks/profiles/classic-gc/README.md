@@ -40,7 +40,28 @@ build time. No diagnostic or build durations belong in PERF.md.
 
 The isolated build completed successfully (binary 6940a08e, sidecar 8ca75452).
 The retained default executable and sidecar remain unchanged. Validation
-controllers are prepared for nine existing lifetime tests in each of normal,
+controllers cover ten existing lifetime tests in each of normal,
 race and checkptr modes, the 21,175-test compiler suite, 219 services tests,
 pinned conformance and CLI/API parity. No correctness or performance conclusion
 is available at this build checkpoint.
+
+The first validation controller stopped after a successful normal lifetime run
+because its expected count was nine; the selector also matches
+TestLinkStoreConcurrentExistingKeyReads in linkstore_split_race_test.go.
+The original controller and failure report are retained. The continuation
+verifies all ten exact test names and the raw log hash, reuses this successful
+run without rerunning it, and proceeds with race/checkptr and full validation.
+
+## Completed correctness gates
+
+The isolated candidate passed 30 lifetime checks (ten each normal/race/checkptr),
+21,175 compiler tests, 219 services tests and 14,915 pinned conformance
+configurations (12,789 full, eight partial, 2,118 unsupported/skipped, zero
+failures). CLI parity passed 80 cases in each of normal/race/checkptr modes;
+API/emit integration passed 12. These are tested cases, not a whole-compiler
+proof. Full raw streams are retained as hash-verified gzip archives.
+No workload timing or speedup conclusion is available yet.
+
+Independent final readback and benchmark preflight passed. screen.json records
+the exact source/binary/sidecar hashes and the sole build-setting difference.
+The fixed screen is prepared; no performance result at this checkpoint.
