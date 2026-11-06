@@ -1573,3 +1573,9 @@ Project inlining CLI53681 terminal0: normal80/API12/race80/checkptr80 passed.
 Independent full verifier9153 terminal0 checked archived logs, exact flags,
 binary hashes and preserved setup failure. Prepared frozen 28-pair screen;
 retained compiler/default artifacts unchanged. No performance claim yet.
+
+Inlining screen58115 terminal0, recorder50740 terminal0. All28pairs independently
+recomputed and 11executionfiles archived; four measured PERF rows appended.
+Both aggregates1.053323/1.032315 pass; all workload floors and RSS gates pass.
+Prepared independent19/11 forward and reversed-role confirmations. No promotion
+or 10x/native claim; both confirmations must separately pass unchanged gates.

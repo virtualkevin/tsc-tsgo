@@ -76,3 +76,10 @@ Normal, race, and checkptr CLI runs each passed all 80 cases; API/emit passed 12
 Independent raw archive readback passed. The preserved initial trimpath setup
 failure is excluded from these passing counts. The fixed screen is prepared;
 no workload speedup has yet been measured for this candidate.
+
+The 28-pair screen passed all frozen gates. Aggregate median and paired ratios
+were 1.053323 and 1.032315. Workload median ratios: TypeORM 1.053898, tRPC
+1.087038, VS Code 1.027335, Sentry 1.045902. Memory gates passed. Independent
+readback verified every pair and archived execution file. Variation is substantial
+(for example TypeORM pair ratios 0.948–1.842), so this is not promotion evidence.
+Two separate confirmations remain required; neither has completed.
