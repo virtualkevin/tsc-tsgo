@@ -18,5 +18,5 @@ normally, under race, and under checkptr. Full compiler/services/conformance and
 CLI/API/emit validation passed, including80 CLI cases in each normal/race/checkptr
 mode and12 API/emit cases. Independent raw-evidence verification passed. The normal
 production build matched the tested binary exactly (fbe59ec1), with six changed
-files and retained production restored. Workload timing is next. No production source
-or default executable has been replaced, and no timing has started.
+files and retained production restored. The complete workload screen failed the frozen performance gates; see DECISION.md. No production source
+or default executable has been replaced. The candidate is rejected and will not receive confirmation runs.

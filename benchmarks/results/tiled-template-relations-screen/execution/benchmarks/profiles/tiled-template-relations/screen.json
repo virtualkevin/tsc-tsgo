@@ -1,0 +1,112 @@
+{
+  "name": "tiled-template-relations",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-tiled-template-relations",
+      "sha256": "fbe59ec1b62dd1b2b6a386d32e17a51df7168a0cf8e808ad85c5be82c29bf23e",
+      "source": "8f49f3a18ff5f0b43d6a772daac267d8a43f7e187d27f86118e6933e983b7b85",
+      "sidecarSha256": "917abfa94a15540c9a530190fffd68ddd5513822690e4c845b3b9f8375b1dd28",
+      "revisionLabel": "Tiled template relations"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "64595ccec2019443c95339a419abce4945a0471dff0d269be754f0151416b102",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/primitive_union_test.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/primitive_union_test.go",
+        "sha256": "0a13807ff496c8dc82b9d20dca9a341f86ccbf3e5bddeeac4c02dd6cdd565110",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/primitive_union_test.go",
+        "sha256": "7f4e7041124701224314ed3e0f6c30fdf3064c058e8920b3c12b060a2fdf4a28",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/relater.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/relater.go",
+        "sha256": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/relater.go",
+        "sha256": "811301c6e31e2017d1ce44c20831da9a8ed604e21d839c70f16c07c681f6ccb1",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/tiled_relation_results.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/tiled_relation_results.go",
+        "sha256": "f3365361c6e7a4073244950d832188d0ef1d87d9df07b2c34d00427c0e7fa507",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/tiled_relation_results_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/tiled_relation_results_test.go",
+        "sha256": "47838741d3389c178817adfa3a09fe5717d727f7402f94dd3eb5819b93e7d266",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/tiled_relation_semantics_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/tiled_relation_semantics_test.go",
+        "sha256": "21b5b8398e8f48298a77da05aaf372de8ef6a8dd9efbab58f85c3813fd956fb0",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5157
+  },
+  "comparisonPolicySha256": "af0de5fcdf6f1c6e1a94669e856536872607c4a8d420ad6af01fbe1d21248180",
+  "methodology": "Fresh-process/default-runtime matched GNU-time RSS screen of tiled template relations on pinned physical inputs; no timing during validation/build/Git work."
+}
