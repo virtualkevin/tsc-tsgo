@@ -1,0 +1,26 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/discriminant-query-census/overlay.json",
+    "-o",
+    "/tmp/tsc-discriminant-query-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "7df5a2688c056df8d7c8a53684b36809d9ad144fbaf12b33e2525c672e382744",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "b678056af29d9151b2a6c28d02e20862d177953034c0c97d77dad22a46dd87bf",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "fb4fdf4378b2128bf3a767617e88892c34e80ac03538bf4d9a5bb976318433d2",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/discriminant_query_census.go": "deb8f7b008b701606a9a11f33f49e6a91896112c86283b474b649ed2d0fc04af",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/discriminant_query_census.go": "569b7c10aad7ea7c71a3a78d9a668355867af8c2700d008909eec3c81a124f35",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/discriminant_query_census_test.go": "e6a053078faf85e4bcaa590c085c54e6fb6440a1a74d477cdd4814f887e9bf69",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/discriminant_query_census_api_test.go": "3864d64a40f8be71af922e73337b35bb6ff8f5deec5f525c8a5ac6d0087d396d"
+  },
+  "controllerSha256": "7f1903ab18092d8650e49ea880b573f5735e92a77f51a870664ef78185f2a047",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "74cf130dcacdf1dba36c84bad46b0e78c580b088d54103230938a16da47de9c8",
+  "buildInfoSha256": "f8badad0950c0cd22686a258d16c3de321f396f357da89f68dbc4238610661fe"
+}
