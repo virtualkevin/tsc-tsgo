@@ -1,0 +1,10 @@
+{
+  "sizes": [4096, 262144],
+  "operations": ["construct", "internal", "public"],
+  "sides": ["pointer", "compact"],
+  "benchmarkPairs": 9,
+  "benchtime": "200ms",
+  "retentionPairs": 5,
+  "shapes": ["linked", "sparse"],
+  "scope": "Standalone model comparison, not compiler performance. Fresh process per observation; alternating side order within each case; default runtime settings; no sample selection. Construction uses temporary external reference tables on both sides. Traversal setup excluded. Retention uses separate fresh processes and two GCs before/after construction, with only the final root kept alive. Report all results without extrapolating to real compiler edge families or time."
+}

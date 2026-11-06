@@ -1,0 +1,34 @@
+{"Time":"2026-11-06T14:02:11.525373594Z","Action":"start","Package":"example.invalid/typed-handle-graph"}
+{"Time":"2026-11-06T14:02:11.549377574Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestStatefulGraphAgainstIndependentModel"}
+{"Time":"2026-11-06T14:02:11.549483279Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStatefulGraphAgainstIndependentModel","Output":"=== RUN   TestStatefulGraphAgainstIndependentModel\n"}
+{"Time":"2026-11-06T14:02:11.831551345Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStatefulGraphAgainstIndependentModel","Output":"--- PASS: TestStatefulGraphAgainstIndependentModel (0.28s)\n"}
+{"Time":"2026-11-06T14:02:11.831681634Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestStatefulGraphAgainstIndependentModel","Elapsed":0.28}
+{"Time":"2026-11-06T14:02:11.831718355Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestOwnerAndExhaustionFailuresAreAtomic"}
+{"Time":"2026-11-06T14:02:11.831723942Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestOwnerAndExhaustionFailuresAreAtomic","Output":"=== RUN   TestOwnerAndExhaustionFailuresAreAtomic\n"}
+{"Time":"2026-11-06T14:02:11.83194724Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestOwnerAndExhaustionFailuresAreAtomic","Output":"--- PASS: TestOwnerAndExhaustionFailuresAreAtomic (0.00s)\n"}
+{"Time":"2026-11-06T14:02:11.831973131Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestOwnerAndExhaustionFailuresAreAtomic","Elapsed":0}
+{"Time":"2026-11-06T14:02:11.832063201Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestPublishedRefRetainsPagesAcrossGCAndGrowth"}
+{"Time":"2026-11-06T14:02:11.832076442Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestPublishedRefRetainsPagesAcrossGCAndGrowth","Output":"=== RUN   TestPublishedRefRetainsPagesAcrossGCAndGrowth\n"}
+{"Time":"2026-11-06T14:02:11.849777598Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestPublishedRefRetainsPagesAcrossGCAndGrowth","Output":"--- PASS: TestPublishedRefRetainsPagesAcrossGCAndGrowth (0.01s)\n"}
+{"Time":"2026-11-06T14:02:11.849859704Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestPublishedRefRetainsPagesAcrossGCAndGrowth","Elapsed":0.01}
+{"Time":"2026-11-06T14:02:11.849876637Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestConcurrentCompletedReads"}
+{"Time":"2026-11-06T14:02:11.849882123Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestConcurrentCompletedReads","Output":"=== RUN   TestConcurrentCompletedReads\n"}
+{"Time":"2026-11-06T14:02:11.855348512Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestConcurrentCompletedReads","Output":"--- PASS: TestConcurrentCompletedReads (0.01s)\n"}
+{"Time":"2026-11-06T14:02:11.855438225Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestConcurrentCompletedReads","Elapsed":0.01}
+{"Time":"2026-11-06T14:02:11.855461713Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries"}
+{"Time":"2026-11-06T14:02:11.855466889Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries","Output":"=== RUN   TestLayoutAndHandleBoundaries\n"}
+{"Time":"2026-11-06T14:02:11.857000383Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries","Output":"    graph_test.go:206: record=32 page=8192 publishedRef=16 graph=32\n"}
+{"Time":"2026-11-06T14:02:11.857069595Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries","Output":"--- PASS: TestLayoutAndHandleBoundaries (0.00s)\n"}
+{"Time":"2026-11-06T14:02:11.857085549Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestLayoutAndHandleBoundaries","Elapsed":0}
+{"Time":"2026-11-06T14:02:11.85722559Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestStorageFixtureEquality"}
+{"Time":"2026-11-06T14:02:11.857282036Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStorageFixtureEquality","Output":"=== RUN   TestStorageFixtureEquality\n"}
+{"Time":"2026-11-06T14:02:13.62946828Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStorageFixtureEquality","Output":"    storage_experiment_test.go:199: pointerRecord=48 compactRecord=32 pointerPage=12288 compactPage=8192\n"}
+{"Time":"2026-11-06T14:02:13.629536628Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStorageFixtureEquality","Output":"--- PASS: TestStorageFixtureEquality (1.77s)\n"}
+{"Time":"2026-11-06T14:02:13.62954445Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestStorageFixtureEquality","Elapsed":1.77}
+{"Time":"2026-11-06T14:02:13.62963817Z","Action":"run","Package":"example.invalid/typed-handle-graph","Test":"TestStoragePointerPageLifetime"}
+{"Time":"2026-11-06T14:02:13.629643197Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStoragePointerPageLifetime","Output":"=== RUN   TestStoragePointerPageLifetime\n"}
+{"Time":"2026-11-06T14:02:13.640729962Z","Action":"output","Package":"example.invalid/typed-handle-graph","Test":"TestStoragePointerPageLifetime","Output":"--- PASS: TestStoragePointerPageLifetime (0.01s)\n"}
+{"Time":"2026-11-06T14:02:13.640795163Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Test":"TestStoragePointerPageLifetime","Elapsed":0.01}
+{"Time":"2026-11-06T14:02:13.640809587Z","Action":"output","Package":"example.invalid/typed-handle-graph","Output":"PASS\n"}
+{"Time":"2026-11-06T14:02:14.652317849Z","Action":"output","Package":"example.invalid/typed-handle-graph","Output":"ok  \texample.invalid/typed-handle-graph\t3.126s\n"}
+{"Time":"2026-11-06T14:02:14.652386742Z","Action":"pass","Package":"example.invalid/typed-handle-graph","Elapsed":3.127}

@@ -1,0 +1,185 @@
+{
+  "captureSha256": "157b00038cfebda40913a2427d158d57874bc1c5b62a2f3de77e19ad032279ad",
+  "verifiedObservations": 148,
+  "validationPasses": 21,
+  "benchmarks": [
+    {
+      "case": "construct",
+      "n": 4096,
+      "ratioOfMedians": 1.2713893003391001,
+      "medianPairedRatio": 0.911011308205105,
+      "pairedRange": [
+        0.5748931235051659,
+        1.383826934313945
+      ],
+      "pointer": {
+        "nsPerOp": 780230.0,
+        "bytesPerOp": 258067,
+        "allocsPerOp": 17
+      },
+      "compact": {
+        "nsPerOp": 613683.0,
+        "bytesPerOp": 205126,
+        "allocsPerOp": 23
+      }
+    },
+    {
+      "case": "internal",
+      "n": 4096,
+      "ratioOfMedians": 0.5367750243515874,
+      "medianPairedRatio": 0.5271192694400886,
+      "pairedRange": [
+        0.4490157480314961,
+        0.5484279063490992
+      ],
+      "pointer": {
+        "nsPerOp": 32513.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 60571.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "public",
+      "n": 4096,
+      "ratioOfMedians": 0.10442919493894215,
+      "medianPairedRatio": 0.0994401343482574,
+      "pairedRange": [
+        0.08398153641821754,
+        0.11008846758425028
+      ],
+      "pointer": {
+        "nsPerOp": 40723.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 389958.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "construct",
+      "n": 262144,
+      "ratioOfMedians": 0.7493031186308632,
+      "medianPairedRatio": 0.8025581242773835,
+      "pairedRange": [
+        0.5959930882669374,
+        0.8548185743438359
+      ],
+      "pointer": {
+        "nsPerOp": 45408026.0,
+        "bytesPerOp": 16001148,
+        "allocsPerOp": 1027
+      },
+      "compact": {
+        "nsPerOp": 60600343.0,
+        "bytesPerOp": 12624498,
+        "allocsPerOp": 1042
+      }
+    },
+    {
+      "case": "internal",
+      "n": 262144,
+      "ratioOfMedians": 0.7284059732876094,
+      "medianPairedRatio": 0.7037666600583627,
+      "pairedRange": [
+        0.5419125968763062,
+        0.9089277168978357
+      ],
+      "pointer": {
+        "nsPerOp": 14671363.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 20141739.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "public",
+      "n": 262144,
+      "ratioOfMedians": 0.2412833122864504,
+      "medianPairedRatio": 0.2586898787668215,
+      "pairedRange": [
+        0.22402906648062645,
+        0.345026111543653
+      ],
+      "pointer": {
+        "nsPerOp": 15629564.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 64776813.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    }
+  ],
+  "retention": [
+    {
+      "case": "linked",
+      "n": 4096,
+      "pointer": {
+        "heapAllocDelta": 222424,
+        "heapObjectsDelta": 23,
+        "totalAllocDelta": 263384
+      },
+      "compact": {
+        "heapAllocDelta": 136568,
+        "heapObjectsDelta": 25,
+        "totalAllocDelta": 210416
+      }
+    },
+    {
+      "case": "sparse",
+      "n": 4096,
+      "pointer": {
+        "heapAllocDelta": 24224,
+        "heapObjectsDelta": 14,
+        "totalAllocDelta": 268704
+      },
+      "compact": {
+        "heapAllocDelta": 131456,
+        "heapObjectsDelta": 20,
+        "totalAllocDelta": 205304
+      }
+    },
+    {
+      "case": "linked",
+      "n": 262144,
+      "pointer": {
+        "heapAllocDelta": 13914928,
+        "heapObjectsDelta": 1049,
+        "totalAllocDelta": 16020272
+      },
+      "compact": {
+        "heapAllocDelta": 8411584,
+        "heapObjectsDelta": 1039,
+        "totalAllocDelta": 12631608
+      }
+    },
+    {
+      "case": "sparse",
+      "n": 262144,
+      "pointer": {
+        "heapAllocDelta": 29656,
+        "heapObjectsDelta": 21,
+        "totalAllocDelta": 16015064
+      },
+      "compact": {
+        "heapAllocDelta": 8411584,
+        "heapObjectsDelta": 1039,
+        "totalAllocDelta": 12631608
+      }
+    }
+  ]
+}
