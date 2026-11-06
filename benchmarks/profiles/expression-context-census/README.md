@@ -1,0 +1,9 @@
+# Ordinary contextual expression request census
+
+Diagnostic-only adaptation of the JSX contextual census. Observes `checkExpressionWithContextualType` for inputs other than `JsxAttributes`, including nested ordinary calls. Uncapped aggregate rows distinguish AST kind, check mode, contextual flags, inference presence and active instantiation context. The first 131072 distinct (node pointer, contextual type ID and nil bit, inference pointer, check mode) keys per checker track completed requests, result identity changes, and observed effects. Drops and saturation remain explicit. Node kind is a reporting dimension, not an added cache key.
+
+This is not a cache. Keys retain node/inference graphs and omit mutable semantic state. A repeat with unchanged result identity is not proof of reusability. Counts of instantiations/types/symbols and relation-size changes do not cover all diagnostics, inference or flow effects. Exclusive totals subtract nested observed calls only. Observed durations are instrumentation context, not CPU or compiler performance; no PERF.md rows are appropriate.
+
+The original checker function body remains byte-identical after removing the wrapper, field and initialization; the exporter is the only CLI hook. `audit_source.py` verifies that correspondence. This establishes source adaptation, not complete semantic noninterference. Focused validation includes nested accounting, cap/key behavior, effects/output exclusivity and an actual generic-call/object-union API history with observer off/on, checking diagnostics, type identity and counters. Normal/race/checkptr validation, diagnostic build, all twelve workload controls, and independent raw verification are complete; see RESULTS.md. No optimization benefit is claimed.
+
+Production sources and default binary are unchanged. Do not promote this observer. The completed evidence rules out indiscriminate result reuse; large-project capped histories remain incomplete.

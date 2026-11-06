@@ -1,0 +1,150 @@
+{
+  "scope": "Diagnostic counts only. Bounded early-request history is biased; inference pointer identity is not immutable state and repeated keys or unchanged result TypeIDs do not prove cache equivalence. No speedup or removable CPU claim.",
+  "flagsSourceSha256": "9a39b928846926090a175d94773d5e3ab4b093b887061b0ef32cfa40548871f4",
+  "projects": [
+    {
+      "project": "typeorm",
+      "owners": 4,
+      "saturatedOwners": 0,
+      "totals": {
+        "Calls": 150857,
+        "NonNil": 150857,
+        "TrackedFirst": 149909,
+        "TrackedRepeat": 948,
+        "Dropped": 0,
+        "ChangedResult": 40,
+        "InclusiveRelationGrowth": 15288,
+        "ExclusiveRelationGrowth": 11332,
+        "RepeatRelationGrowth": 0,
+        "InclusiveNs": 2684795134,
+        "ExclusiveNs": 2032949735,
+        "InferenceSitesBefore": 0,
+        "InferenceSitesAfter": 0,
+        "ChangedInferenceFlags": 0,
+        "Inclusive": [
+          197486,
+          120583,
+          126330
+        ],
+        "Exclusive": [
+          174259,
+          105519,
+          110652
+        ],
+        "RepeatExclusive": [
+          0,
+          84,
+          94
+        ]
+      }
+    },
+    {
+      "project": "trpc",
+      "owners": 4,
+      "saturatedOwners": 0,
+      "totals": {
+        "Calls": 4789,
+        "NonNil": 4789,
+        "TrackedFirst": 4759,
+        "TrackedRepeat": 30,
+        "Dropped": 0,
+        "ChangedResult": 8,
+        "InclusiveRelationGrowth": 4729,
+        "ExclusiveRelationGrowth": 4129,
+        "RepeatRelationGrowth": 0,
+        "InclusiveNs": 224287532,
+        "ExclusiveNs": 171799475,
+        "InferenceSitesBefore": 0,
+        "InferenceSitesAfter": 0,
+        "ChangedInferenceFlags": 37,
+        "Inclusive": [
+          44250,
+          17931,
+          14603
+        ],
+        "Exclusive": [
+          30701,
+          14795,
+          10556
+        ],
+        "RepeatExclusive": [
+          0,
+          14,
+          20
+        ]
+      }
+    },
+    {
+      "project": "vscode",
+      "owners": 4,
+      "saturatedOwners": 4,
+      "totals": {
+        "Calls": 2414062,
+        "NonNil": 2414062,
+        "TrackedFirst": 524288,
+        "TrackedRepeat": 3248,
+        "Dropped": 1886526,
+        "ChangedResult": 153,
+        "InclusiveRelationGrowth": 914423,
+        "ExclusiveRelationGrowth": 619830,
+        "RepeatRelationGrowth": 6,
+        "InclusiveNs": 76934554157,
+        "ExclusiveNs": 49724972618,
+        "InferenceSitesBefore": 0,
+        "InferenceSitesAfter": 0,
+        "ChangedInferenceFlags": 1137,
+        "Inclusive": [
+          4228351,
+          3757873,
+          3572545
+        ],
+        "Exclusive": [
+          2684051,
+          2395138,
+          2204249
+        ],
+        "RepeatExclusive": [
+          138,
+          344,
+          620
+        ]
+      }
+    },
+    {
+      "project": "sentry",
+      "owners": 4,
+      "saturatedOwners": 4,
+      "totals": {
+        "Calls": 648441,
+        "NonNil": 648441,
+        "TrackedFirst": 524288,
+        "TrackedRepeat": 2181,
+        "Dropped": 121972,
+        "ChangedResult": 166,
+        "InclusiveRelationGrowth": 817841,
+        "ExclusiveRelationGrowth": 786530,
+        "RepeatRelationGrowth": 0,
+        "InclusiveNs": 24187858961,
+        "ExclusiveNs": 19981825053,
+        "InferenceSitesBefore": 0,
+        "InferenceSitesAfter": 0,
+        "ChangedInferenceFlags": 501,
+        "Inclusive": [
+          2299719,
+          1079724,
+          1099945
+        ],
+        "Exclusive": [
+          1978122,
+          873738,
+          871209
+        ],
+        "RepeatExclusive": [
+          6120,
+          6754,
+          6978
+        ]
+      }
+    }
+  ]
+}

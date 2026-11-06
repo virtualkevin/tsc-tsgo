@@ -1,0 +1,25 @@
+{
+  "exitCode": 0,
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-trimpath",
+    "-overlay",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/expression-context-census/overlay.json",
+    "-o",
+    "/tmp/tsc-expression-context-census",
+    "./cmd/tsgo"
+  ],
+  "overlaySources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "43bac757311cea3695b93b055e098da8d0761ff25dc7ef7e0dddf2f35bf4123b",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "89bd2b636eb0e48af503d251b63e978ef6792edf915c0c02d8db0a17eb9b64d6",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/expression_context_census.go": "3048dceeada7fddd514bb26c87ac19954e0a697bc3602eb97439aa3d0256f080",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/expression_context_census.go": "c9e367059babbf2138c6a657fe6339d0c4a2f576eadeba630f63ac433837dd51",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/expression_context_census_test.go": "0d2f1773b849def648061a8cba6ccf6fa3667943d2fd0fa6134c0925b1aefba7",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/expression_context_census_api_test.go": "f7f15ef69ca011aafe9589ccbee0fa855b1e195edbc308b804de6bb3c09c45fc"
+  },
+  "controllerSha256": "2edcba1c512e5de5d01314231191bbed195c1ea91500fd7a8bbaac648815116e",
+  "scope": "Diagnostic overlay build only; not a performance candidate or standard production provenance.",
+  "binarySha256": "451d1f27042e47405d3993f516e1dce9c56492ceae051ff70976b2e905fbd57e",
+  "buildInfoSha256": "c9c8aa8fffc10e27dcd951b0e66c02f1add8b2818dbc149e5a9c8cd3a6e4d2da"
+}
