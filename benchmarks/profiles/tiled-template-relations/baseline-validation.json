@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/tiled_relation_semantics_test.go": "182b4d70b14854c5b08ab59f00b57e882359eb1098a85644c0142adbf4f7d77a"
+  },
+  "controllerSha256": "5aae82f58b86e08f109cfc90ac05a4f60d13633b25519d2b5c168e8d1e0045f4",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/tiled-template-relations/baseline-overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestTiledRelation"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTiledRelationReplay",
+        "TestTiledRelationMaybeStack"
+      ],
+      "ok": true,
+      "stdoutSha256": "fdcce7a25d0064feb5e26265336388bb520010f90c28e80aadd1e5df405e2157",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/tiled-template-relations/baseline-overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestTiledRelation"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTiledRelationReplay",
+        "TestTiledRelationMaybeStack"
+      ],
+      "ok": true,
+      "stdoutSha256": "fc17895dc8dbd0b94947217056478dbde0b3baac04f45c15ac3f8d54c2076945",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/tiled-template-relations/baseline-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestTiledRelation"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTiledRelationReplay",
+        "TestTiledRelationMaybeStack"
+      ],
+      "ok": true,
+      "stdoutSha256": "b9ee667fb504dfd380066186fb352e89d1e6264e14c8485fc531f5f7ba7373c4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "64595ccec2019443c95339a419abce4945a0471dff0d269be754f0151416b102",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/relater.go": "811301c6e31e2017d1ce44c20831da9a8ed604e21d839c70f16c07c681f6ccb1",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/primitive_union_test.go": "7f4e7041124701224314ed3e0f6c30fdf3064c058e8920b3c12b060a2fdf4a28",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/tiled_relation_results.go": "f3365361c6e7a4073244950d832188d0ef1d87d9df07b2c34d00427c0e7fa507",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/tiled_relation_results_test.go": "47838741d3389c178817adfa3a09fe5717d727f7402f94dd3eb5819b93e7d266",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/tiled_relation_semantics_test.go": "21b5b8398e8f48298a77da05aaf372de8ef6a8dd9efbab58f85c3813fd956fb0"
+  },
+  "controllerSha256": "5aae82f58b86e08f109cfc90ac05a4f60d13633b25519d2b5c168e8d1e0045f4",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/tiled-template-relations/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestTiledRelation"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTiledRelationHistory",
+        "TestTiledRelationKeys",
+        "TestTiledRelationReplay",
+        "TestTiledRelationMaybeStack"
+      ],
+      "ok": true,
+      "stdoutSha256": "e130a98a05052f8fecb7032c76c19d300b90020b165d3e48bd4909223819e173",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/tiled-template-relations/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestTiledRelation"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTiledRelationHistory",
+        "TestTiledRelationKeys",
+        "TestTiledRelationReplay",
+        "TestTiledRelationMaybeStack"
+      ],
+      "ok": true,
+      "stdoutSha256": "1726481d4c24a98ca12e2993c99be63e8a6b0fe1ffa0dfd9b9d13d7736b3d3a9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/tiled-template-relations/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestTiledRelation"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestTiledRelationHistory",
+        "TestTiledRelationKeys",
+        "TestTiledRelationReplay",
+        "TestTiledRelationMaybeStack"
+      ],
+      "ok": true,
+      "stdoutSha256": "8960046d057ba9c671754f204c6ea1da4044affd15d42c3316111b9906f33e36",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
