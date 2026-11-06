@@ -1539,3 +1539,37 @@ names at spaces; failed script/report preserved, corrected delimiter parser
 reused retained archive, independent exact disassembly readback passed.
 Proceed to correctness then fixed workload comparison; no speed/default/PERF
 claim and native-relative10×stillunmet. Evidence project-inlining/.
+
+Project-inlining validation80240 launched at frozene0d3790. Normal lifetime
+phase passed ten tests; independent archived raw hash/count/flag readback passed.
+Race/checkptr and full compiler/services/conformance remain pending. Test builds
+use trimpath and the exact project -l=4 flag; checkptr uses an all-package rule
+followed by a project rule containing BOTH -l=4 and -d=checkptr=2, because pinned
+Go driver selects the last matching per-package flags rather than merging.
+CLI/readback and fixed benchmark controllers prepared and syntax-checked, not
+executed. No compiler/default/PERF change or speedup claim.
+
+Project-inlining lifetime phases completed: ten each normal/race/checkptr,
+all passed. Independent readbacks verified each archived raw stream and the
+mode-specific flags, including combined project -l=4/checkptr. Full root suite
+now running in80240; HEADe0d3790 remains fixed. No timing/promotion yet.
+
+Inlining80240terminal1 atroot: source-fixture harness explicitly rejects
+-trimpath, causing repo-root panic and missinglib paths (including JSX fixture).
+Original controller/report/raw logs preserved; this is not passing correctness
+evidence. Corrected remaining root/services/conformance test command omits
+trimpath but retains project -l=4; production/CLI remain trimpath. Thirty
+completed lifetime checks reused with archivehashverification. No timing.
+
+Inlining remaining46872terminal0: corrected root21175/14packages, services219,
+pinnedconformance14915(12789full/8partial/2118unsupported/0failed) passed.
+Independent full raw readback98031terminal0 includes preserved trimpath-failure
+evidence and exact per-mode flags. Duplicate raw streams removed only after
+exact gzip/hashreadback; archive-manifest records both original and corrected
+runs. Supervised CLI53681 nowlive normal/API/race/checkptr with production
+trimpath executable and project -l=4. KeepHEADe0d3790 untilterminal; no timing.
+
+Project inlining CLI53681 terminal0: normal80/API12/race80/checkptr80 passed.
+Independent full verifier9153 terminal0 checked archived logs, exact flags,
+binary hashes and preserved setup failure. Prepared frozen 28-pair screen;
+retained compiler/default artifacts unchanged. No performance claim yet.
