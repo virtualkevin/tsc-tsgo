@@ -1,0 +1,155 @@
+{
+  "scope": "Historical normal-build CPU samples, not wall-time measurements. Inclusive categories overlap. Outside-relation samples include other callees, not just lookup-local instructions. No call counts, duplicate-query estimate, cache purity proof, or removable-runtime forecast.",
+  "patterns": {
+    "index_lookup": "checker\\.\\(\\*Checker\\)\\.findApplicableIndexInfo$",
+    "index_predicate": "checker\\.\\(\\*Checker\\)\\.isApplicableIndexType$",
+    "relation_entry": "checker\\.\\(\\*Checker\\)\\.isTypeRelatedTo$",
+    "relation_check": "checker\\.\\(\\*Checker\\)\\.checkTypeRelatedTo$",
+    "template_matching": "checker\\.\\(\\*Checker\\)\\.(?:isTypeMatchedByTemplateLiteralType|inferTypesFromTemplateLiteralType|inferFromLiteralPartsToTemplateLiteral)$",
+    "relation_cache": "checker\\.\\(\\*Relation\\)\\.(?:get|set)$",
+    "intersection_creation": "checker\\.\\(\\*Checker\\)\\.getIntersectionType$"
+  },
+  "sources": {
+    "packages/tsc-go/internal/checker/checker.go": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+    "packages/tsc-go/internal/checker/relater.go": "5e4638c881b4371c828a4a71cd1b2204a90c0aa4b1da8c9a5c1759f0b4c58aae"
+  },
+  "parserSha256": "0dce30590aab850ded245658be32742e06dd7fa011a730cbeecc0473a9af2823",
+  "inputsSha256": "0aa0bb12c3b5a5b6fd2e83d92d4f0302a8d056c50f501a1bf1c4c7ac53d1b95e",
+  "archiveSha256": "1e5c0a8a67d71dfcdad2a70e532ecdfd54bf164a9755172bbb50dc3938931a05",
+  "projects": [
+    {
+      "totalCpuNs": 1970000000,
+      "inclusivePercent": {
+        "index_lookup": 0.5076142131979695,
+        "index_predicate": 0.0,
+        "relation_entry": 15.736040609137056,
+        "relation_check": 15.228426395939087,
+        "template_matching": 0.0,
+        "relation_cache": 0.5076142131979695,
+        "intersection_creation": 0.0
+      },
+      "exclusiveBucketsNs": {
+        "outside": 1650000000,
+        "relation_entry+relation_check": 290000000,
+        "index_lookup": 10000000,
+        "relation_entry+relation_check+relation_cache": 10000000,
+        "relation_entry": 10000000
+      },
+      "lookupOutsideRelationEntryPercent": 0.5076142131979695,
+      "lookupWithFullRelationPercent": 0.0,
+      "lookupWithRelationCachePercent": 0.0,
+      "lookupWithTemplateMatchingPercent": 0.0,
+      "project": "trpc",
+      "rawSha256": "90b8a0e2a7f4e3b8e2dc4705a89b7a86fd546836d0788cbe9fc6a67b89eca3a0",
+      "profileSha256": "60b02db0e5922d815d70961e7d45b80e09c9c562634ca5c1c92f04f31361a943"
+    },
+    {
+      "totalCpuNs": 11370000000,
+      "inclusivePercent": {
+        "index_lookup": 0.2638522427440633,
+        "index_predicate": 0.2638522427440633,
+        "relation_entry": 6.596306068601583,
+        "relation_check": 5.892700087950748,
+        "template_matching": 0.0,
+        "relation_cache": 0.8795074758135444,
+        "intersection_creation": 0.0
+      },
+      "exclusiveBucketsNs": {
+        "outside": 10590000000,
+        "relation_entry+relation_check": 600000000,
+        "relation_entry+relation_check+relation_cache": 70000000,
+        "relation_entry": 50000000,
+        "relation_cache": 10000000,
+        "relation_entry+relation_cache": 20000000,
+        "index_lookup+index_predicate+relation_entry": 10000000,
+        "index_lookup+index_predicate": 20000000
+      },
+      "lookupOutsideRelationEntryPercent": 0.1759014951627089,
+      "lookupWithFullRelationPercent": 0.0,
+      "lookupWithRelationCachePercent": 0.0,
+      "lookupWithTemplateMatchingPercent": 0.0,
+      "project": "typeorm",
+      "rawSha256": "288de09c0ed1d95c20f19fb3631335e47909556ada884d4ad363020cc4a8ceca",
+      "profileSha256": "e6e4b60726f4a2cabf8f309f5919a6bde86019f89e5cffc58492175890cbc00b"
+    },
+    {
+      "totalCpuNs": 157780000000,
+      "inclusivePercent": {
+        "index_lookup": 0.1774622892635315,
+        "index_predicate": 0.11408290024084168,
+        "relation_entry": 10.311826593991634,
+        "relation_check": 9.34212194194448,
+        "template_matching": 0.019013816706806946,
+        "relation_cache": 1.5211053365445557,
+        "intersection_creation": 0.06337938902268982
+      },
+      "exclusiveBucketsNs": {
+        "outside": 141090000000,
+        "relation_entry+relation_check": 13290000000,
+        "relation_entry": 600000000,
+        "relation_entry+relation_cache": 880000000,
+        "relation_entry+relation_check+relation_cache": 1380000000,
+        "index_lookup": 80000000,
+        "relation_cache": 130000000,
+        "intersection_creation": 50000000,
+        "relation_entry+relation_check+intersection_creation": 30000000,
+        "index_lookup+index_predicate": 130000000,
+        "template_matching": 30000000,
+        "index_lookup+index_predicate+relation_entry": 40000000,
+        "index_lookup+relation_entry+relation_check": 20000000,
+        "relation_entry+intersection_creation": 10000000,
+        "index_lookup+index_predicate+relation_entry+relation_check": 10000000,
+        "relation_entry+relation_check+relation_cache+intersection_creation": 10000000
+      },
+      "lookupOutsideRelationEntryPercent": 0.13309671694764863,
+      "lookupWithFullRelationPercent": 0.019013816706806946,
+      "lookupWithRelationCachePercent": 0.0,
+      "lookupWithTemplateMatchingPercent": 0.0,
+      "project": "vscode",
+      "rawSha256": "f84842371ab3025e4d7096dd90bc1f8ec83e3f2aabc35783abe8eebc7c1a6409",
+      "profileSha256": "19bfa2f4204510b877d55173362910c12cf4c0c6ae343988bfb887f1e0b8dc71"
+    },
+    {
+      "totalCpuNs": 121550000000,
+      "inclusivePercent": {
+        "index_lookup": 6.6310160427807485,
+        "index_predicate": 7.4125874125874125,
+        "relation_entry": 24.46729740847388,
+        "relation_check": 23.052241875771287,
+        "template_matching": 0.36199095022624433,
+        "relation_cache": 6.170300287947347,
+        "intersection_creation": 0.5265322912381736
+      },
+      "exclusiveBucketsNs": {
+        "outside": 90650000000,
+        "relation_entry+relation_check": 17180000000,
+        "relation_entry+relation_check+relation_cache": 2060000000,
+        "index_lookup+index_predicate+relation_entry+relation_check": 3070000000,
+        "relation_entry+relation_cache": 460000000,
+        "index_lookup+relation_entry+relation_check": 30000000,
+        "relation_entry+relation_check+template_matching": 70000000,
+        "intersection_creation": 530000000,
+        "relation_entry": 910000000,
+        "template_matching": 210000000,
+        "relation_cache": 90000000,
+        "relation_entry+relation_check+intersection_creation": 70000000,
+        "index_lookup+index_predicate+relation_entry+relation_check+template_matching": 150000000,
+        "index_lookup+index_predicate+relation_entry+relation_check+relation_cache": 4130000000,
+        "index_lookup+index_predicate+relation_entry": 350000000,
+        "index_lookup": 240000000,
+        "index_lookup+intersection_creation": 40000000,
+        "index_lookup+index_predicate": 50000000,
+        "index_predicate+relation_entry+relation_check+relation_cache": 760000000,
+        "index_predicate+relation_entry+relation_check": 490000000,
+        "index_predicate+relation_entry+relation_check+template_matching": 10000000
+      },
+      "lookupOutsideRelationEntryPercent": 0.27149321266968324,
+      "lookupWithFullRelationPercent": 6.071575483340189,
+      "lookupWithRelationCachePercent": 3.397778691896339,
+      "lookupWithTemplateMatchingPercent": 0.12340600575894693,
+      "project": "sentry",
+      "rawSha256": "db09cadc109d91f868ec1ab7af74d7963fe970c06c9e49031b463a888216dfdf",
+      "profileSha256": "41c1dd391cb188916792843d7f1c1206af99fecc0fe8fe838fa1c51069c5645e"
+    }
+  ]
+}
