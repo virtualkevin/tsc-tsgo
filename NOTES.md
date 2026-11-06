@@ -1418,3 +1418,19 @@ SpreadtableCLI30467terminal0 normal80/API12/race80/checkptr80;completeverifier50
 Spread override table screen81226 terminal0, recorder69204 terminal0. Independent readback verified all28pairs/order/timing/RSS/aggregates/copied hashes/PERF rows. Aggregate ratios0.920191596/0.930743644 fail; TypeORM+tRPC both floors and VS median floor fail; RSS all pass. Rejected without rescue/retuning/confirmation. Source/default binary retained, four PERF rows recorded, 10x native-relative goal unmet.
 
 At b6874c0, staged coallocated-instantiated-symbol five-file overlay: newInstantiatedSymbolWithLinks allocates symbol+mandatory value links in one typed record, publishes both at old table insertion point using Install. No Symbol ABI fields, handle decoder, lookup replacement or semantic reuse. Exact checker inverse audit passed. Explicit cost: escaped symbol retains links/sibling slab and potentially checker graph; replacement old links retained by original symbol. Focused normal/race/checkptr session12208 live; existing graph/replacement/store tests included. Full validation and perf unperformed; production untouched and10x unmet.
+
+Coallocated-symbol candidate12208 normal9/race9 passed; checkptr live. Retained same constructor-history run44790 live, test differs only in layout logging; independent verifier expects51 total test records (27candidate+24retained). Full/CLI controllers frozen at1b28eb7, not launched; full expected root21177 verified from prior raw21176 minus1old plus2new. Prepared normal provenance/screen controllers and unchanged fixed9/5screen+two19/11confirmation thresholds. Layout96+56=152payload bytes, no payload saving claim; production unchanged.
+
+Coallocated-symbol candidate12208 terminal0 normal9/race9/checkptr9; retained44790 terminal0 normal8/race8/checkptr8. Independent raw verifier passed51records +exact source inverse. Full12736 and CLI98092 launched at frozenHEAD1b28eb7; source5files unchanged. CONTRACT.md records reviewed state relation and explicit escaped-symbol graph retention cost, not machine-checked proof. Production unchanged, timings unperformed,10x unmet.
+
+Coallocated full12736 root phase terminal0:21177tests/14packages passed. Independent raw/gzip hash/count readback confirms0failures/skips. Services/conformance and CLI98092 remain live; no timing/build-provenance/promotion yet.
+
+Coallocated full12736 services219 passed; independent raw/gzip hashes/counts verified, only known empty ls/change package skip. Pinned conformance and CLI98092 remain live.
+
+Coallocated full12736 terminal0:root21177/services219/conformance14915(12789full,8partial,2118unsupported,0failed). Full raw readback36659 terminal0. CLI98092 normal80 andintegration12 passed; independent log hash/count readback passed. Race/checkptr CLI remain live. Retainedproduction/default untouched; fullprovenance build andtiming notstarted.
+
+Coallocated CLI98092 race80 passed; independent build/test archive hash/count readback passed. FinalcheckptrCLI stilllive. No candidate/source changes orperformancecapture.
+
+Coallocated CLI98092 terminal0 normal80/API12/race80/checkptr80; complete independent raw verifier9665 terminal0. Normal provenance build56340 launched after verification, with exact5file overlay and automatic retained-source/default-executable restoration. No timing or promotion yet.
+
+Coallocated provenance56340 terminal0:binary5f1e5c9c7c3cc291042c985e02222c35b4f2cfd663a58ef38c62033975f681ab/source9815347f517d79868e66cd5546d61ecf3d7c129855f60a15de471e9d4bb070b6/sidecar16cbaf5b5df1a8903d86cddeb3f72008429dfa46c3a9b90b6c0443abd5c37aae.5158sources/exact5delta; tested normalbinarymatches,retainedsource/default restored. Duplicate fullrawlogs removed onlyafter exactgzip/hashreadback,raw-compression.json recorded. Screen configprepared,no timingsyet.

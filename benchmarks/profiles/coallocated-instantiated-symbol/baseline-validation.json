@@ -1,0 +1,98 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/coallocated-instantiated-symbol/baseline-staged/instantiated_symbol_record_test.go": "754733c44f8be17a5bdc648298e28c057bd702bd4eb427d86b0fd7977b0669fa"
+  },
+  "controllerSha256": "ef153bffe3d7f10ed6322290d081b5ef6d2210326e6f2f9a6b51f57d30e4ae88",
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/coallocated-instantiated-symbol/baseline-overlay.json",
+        "./internal/core",
+        "./internal/checker",
+        "-run",
+        "^(TestPointerLinkStore.*|TestInstantiatedSymbolCoallocationIdentity|TestValueSymbolLinks.*)$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPointerLinkStoreDifferential",
+        "TestPointerLinkStoreNilAndReplacement",
+        "TestPointerLinkStoreCollisionsAndGrowth",
+        "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+        "TestPointerLinkStoreConcurrentReadOnlyCopies",
+        "TestInstantiatedSymbolCoallocationIdentity",
+        "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+        "TestValueSymbolLinksReplacementKeepsPublishedPointers"
+      ],
+      "ok": true,
+      "stdoutSha256": "7c1c1684917f74ed2460117708806ad295dc4c7a00e8022e635ef12ecceadaf2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/coallocated-instantiated-symbol/baseline-overlay.json",
+        "-race",
+        "./internal/core",
+        "./internal/checker",
+        "-run",
+        "^(TestPointerLinkStore.*|TestInstantiatedSymbolCoallocationIdentity|TestValueSymbolLinks.*)$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPointerLinkStoreDifferential",
+        "TestPointerLinkStoreNilAndReplacement",
+        "TestPointerLinkStoreCollisionsAndGrowth",
+        "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+        "TestPointerLinkStoreConcurrentReadOnlyCopies",
+        "TestInstantiatedSymbolCoallocationIdentity",
+        "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+        "TestValueSymbolLinksReplacementKeepsPublishedPointers"
+      ],
+      "ok": true,
+      "stdoutSha256": "2b9a934a440bd5b454ae4f689399a1a44c830162bb52d06474451b12d26f8493",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/coallocated-instantiated-symbol/baseline-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/core",
+        "./internal/checker",
+        "-run",
+        "^(TestPointerLinkStore.*|TestInstantiatedSymbolCoallocationIdentity|TestValueSymbolLinks.*)$"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestPointerLinkStoreDifferential",
+        "TestPointerLinkStoreNilAndReplacement",
+        "TestPointerLinkStoreCollisionsAndGrowth",
+        "TestPointerLinkStoreRetainsDisplacedArenaSlots",
+        "TestPointerLinkStoreConcurrentReadOnlyCopies",
+        "TestInstantiatedSymbolCoallocationIdentity",
+        "TestValueSymbolLinksRetainInstantiatedGraphAcrossGC",
+        "TestValueSymbolLinksReplacementKeepsPublishedPointers"
+      ],
+      "ok": true,
+      "stdoutSha256": "0f232d9047516d29f38f04713177881647d6524cab8e2a0a064c19d5cd866a1a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
