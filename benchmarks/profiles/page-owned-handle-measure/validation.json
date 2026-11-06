@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/go.mod": "d6b1ee9b9521e04d4f536faf2d564ba96715ccd1227bb3c06772ae66af19a3a7",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/graph.go": "07300704e74764e782acadbf42c4ce798e87172f7d08406cc0292c7455e384e4",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-graph/prototype/graph_test.go": "39415718a7f19d1924b5a32f165e320e1d5e6224d6a28c5e4d44b6575250dda0",
+    "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-measure/staged/storage_experiment_test.go": "3da6aa489b0b1a39ce26f71891b188e287f68144bfa946552de468bece3817b2"
+  },
+  "overlaySha256": "153fb98ad16ed0a79bbd7680a50a65e3b5107deadb73c811758bfce62b3a9f83",
+  "controllerSha256": "04d884b506a972550a61e89ea40054bec50640d0d69aa9865b0fef4cf2018490",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-measure/overlay.json",
+        "-run",
+        "^(TestEscapedRootAndConcurrentReads|TestOwnershipAndFailureAtomicity|TestPageGraphReachability|TestRecordLayout|TestRemoteCapacityAndReuse|TestStatefulGraphAgreement|TestStorageFixtureEquality|TestStoragePointerPageLifetime|TestUnreachableRemoteCycleCollected)$",
+        "./..."
+      ],
+      "exitCode": 0,
+      "ok": true,
+      "passed": [
+        "TestStatefulGraphAgreement",
+        "TestOwnershipAndFailureAtomicity",
+        "TestRemoteCapacityAndReuse",
+        "TestPageGraphReachability",
+        "TestEscapedRootAndConcurrentReads",
+        "TestRecordLayout",
+        "TestUnreachableRemoteCycleCollected",
+        "TestStorageFixtureEquality",
+        "TestStoragePointerPageLifetime"
+      ],
+      "stdoutSha256": "33242cd5c9602d68016ad90291607840bc7359cb1c17a6941b2028d1f8e2fca4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-measure/overlay.json",
+        "-race",
+        "-run",
+        "^(TestEscapedRootAndConcurrentReads|TestOwnershipAndFailureAtomicity|TestPageGraphReachability|TestRecordLayout|TestRemoteCapacityAndReuse|TestStatefulGraphAgreement|TestStorageFixtureEquality|TestStoragePointerPageLifetime|TestUnreachableRemoteCycleCollected)$",
+        "./..."
+      ],
+      "exitCode": 0,
+      "ok": true,
+      "passed": [
+        "TestStatefulGraphAgreement",
+        "TestOwnershipAndFailureAtomicity",
+        "TestRemoteCapacityAndReuse",
+        "TestPageGraphReachability",
+        "TestEscapedRootAndConcurrentReads",
+        "TestRecordLayout",
+        "TestUnreachableRemoteCycleCollected",
+        "TestStorageFixtureEquality",
+        "TestStoragePointerPageLifetime"
+      ],
+      "stdoutSha256": "df0746e1aeff2bff67b5d33b57e1920ae4a0bf5e80a6286209d6b42cc11a9c45",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-measure/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "-run",
+        "^(TestEscapedRootAndConcurrentReads|TestOwnershipAndFailureAtomicity|TestPageGraphReachability|TestRecordLayout|TestRemoteCapacityAndReuse|TestStatefulGraphAgreement|TestStorageFixtureEquality|TestStoragePointerPageLifetime|TestUnreachableRemoteCycleCollected)$",
+        "./..."
+      ],
+      "exitCode": 0,
+      "ok": true,
+      "passed": [
+        "TestStatefulGraphAgreement",
+        "TestOwnershipAndFailureAtomicity",
+        "TestRemoteCapacityAndReuse",
+        "TestPageGraphReachability",
+        "TestEscapedRootAndConcurrentReads",
+        "TestRecordLayout",
+        "TestUnreachableRemoteCycleCollected",
+        "TestStorageFixtureEquality",
+        "TestStoragePointerPageLifetime"
+      ],
+      "stdoutSha256": "04038f3a5d9ac060449a288e8e04906af83c1f64628cd537f5ac59bd6cb61efc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "build": {
+    "command": [
+      "/tmp/tsc-toolchains/go/bin/go",
+      "test",
+      "-c",
+      "-trimpath",
+      "-overlay",
+      "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/page-owned-handle-measure/overlay.json",
+      "-o",
+      "/tmp/page-owned-handle-measure.test",
+      "."
+    ],
+    "exitCode": 0,
+    "binary": "/tmp/page-owned-handle-measure.test",
+    "binarySha256": "cb0215d0ba34084c800b12e88d6bda861ec594144b41e0d351ed5e3acb1a39ba",
+    "toolchainSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+    "version": "go version go1.26.9 linux/amd64"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "sizes": [
+    4096,
+    262144
+  ],
+  "operations": [
+    "linked/construct",
+    "linked/internal",
+    "linked/public",
+    "local/construct",
+    "local/internal",
+    "local/public"
+  ],
+  "sides": [
+    "pointer",
+    "compact"
+  ],
+  "benchmarkPairs": 9,
+  "benchtime": "200ms",
+  "retentionPairs": 5,
+  "shapes": [
+    "linked",
+    "local",
+    "sparse"
+  ],
+  "scope": "Standalone page-owned graph comparison, not compiler performance. Fixed alternating fresh-process observations, default runtime, all samples retained. Linked shape includes distant references; local shape favors within-page edges, both retain the full prior-node chain. Construction includes temporary public reference tables. Traversal setup excluded. Separate endpoint retention probes after two GCs with only the last root; metadata counted after endpoint snapshot. Sparse baseline can collect old pages."
+}
