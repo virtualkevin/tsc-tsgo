@@ -1,0 +1,68 @@
+{
+  "name": "direct-instantiation-loops",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-node-pointer",
+      "sha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "source": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+      "sidecarSha256": "76e6c4f05d244f4f3f1cd562950bbc3388716b139176ee3583ecc912e3a2bca2",
+      "revisionLabel": "Retained node pointer Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-direct-instantiation-loops",
+      "sha256": "f21911fb045fdf39a96d8a72cebdeec3ea01cf318ef480a7ad037ce3ef302e36",
+      "source": "e3a463f6807eef3d762420c31a9885b2cbf327acd8f8344a56af2b7fce2bea67",
+      "sidecarSha256": "7a44c21c94e461d1d0e001ed641f39eaf2dc2b4a5aaa9766033494848a22a52a",
+      "revisionLabel": "Direct instantiation loops"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "5489744a6fc79c52d19dbf3fbd5658120f7750b2fb47c0f5f6c6c3132af0fade",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/direct_instantiation_loops_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/direct_instantiation_loops_test.go",
+        "sha256": "dfcc2075d0cdeae65fa894ca5800e6b454c6fbc1c233c67e096d36961273f33e",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5155
+  },
+  "comparisonPolicySha256": "9a599ba6ef9a52fa1bc416ad9729a39d68047e7acc5dc4bcb22870536af1a83e",
+  "methodology": "Fresh-process/default-runtime matched GNU-time RSS screen of direct instantiation loops on pinned physical inputs; no timing during validation/build/Git work."
+}
