@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "controllerSha256": "326babe0cdc125b9374acfadab30aa6a0af7b7d5c0088295a18537bca5c105fb",
+  "toolchainSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+  "compilerSources": {
+    "cmd/compile/internal/inline/inl.go": "bd0dd9143a3132bf7cfbd0bb12777fddec614310306af9f7cddb8d9cf69fe5dc",
+    "cmd/compile/internal/inline/inlheur/scoring.go": "5795709f111ba8b2b21525d3485a4aad63a963a5cfa2d59e02352a9a6815fd34",
+    "cmd/compile/internal/base/flag.go": "796554ec94a3b6eae434ba0cacb4b5cf74c15b6323c593e71e4c818b44015c73"
+  },
+  "sourceSha256": "216d40c773062d193391ca6a7ccced033224047aa8f75f656e19b999d0b764cd",
+  "command": [
+    "/tmp/tsc-toolchains/go/bin/go",
+    "build",
+    "-gcflags=github.com/microsoft/typescript-go/...=-l=4",
+    "-trimpath",
+    "-o",
+    "/tmp/tsc-project-inlining-validation/tsc-go-project-inlining",
+    "./cmd/tsgo"
+  ],
+  "experiment": "project-packages-l4",
+  "scope": "Isolated normal compiler build; identical compiler source, project-package inline call-cost policy. No correctness or performance claim.",
+  "exitCode": 0,
+  "signal": null,
+  "binary": "/tmp/tsc-project-inlining-validation/tsc-go-project-inlining",
+  "binarySha256": "861bb976759b424b299f80489e6907cf6f36e9ea7e393a9a33c3be0108541f46",
+  "sidecarSha256": "80b2cddf5370ab0d8d67d22ea81885779d164436eecbe58a3a949dbb95610a96",
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,243 @@
+{
+  "scope": "Bounded actual executable disassembly and file size; no whole-program inlining, performance or correctness claim. Missing emitted symbols alone do not prove every call inlines.",
+  "controllerSha256": "5b6d58bfc25fe435f48f30df29885288e1269f0c4a6d474dcf15c80fb6a7c714",
+  "buildReportSha256": "528d4269708b0e835c71135fef85fe61e725184e913d9e52a3baf78e0cecd5fd",
+  "toolSha256": "79b1c6addca205aff706c904a59511b3004aeb5008a413981896b6fbe9600ff5",
+  "pattern": "checker\\.\\(\\*Checker\\)\\.(newType|getTypeOfSymbol|getTypeOfInstantiatedSymbol|instantiateType|getPropertyOfType)$|core\\.\\(\\*PointerLinkStore.*\\)\\.(Get|slot)$",
+  "runs": [
+    {
+      "side": "retained",
+      "binary": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+      "binarySha256": "8fe4bd800cdb24434745e4ad87a8376e0f689b8f12d63a2fbcd0293a7d200b4f",
+      "binaryBytes": 38952698,
+      "command": [
+        "/tmp/tsc-fused-objdump/objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.(newType|getTypeOfSymbol|getTypeOfInstantiatedSymbol|instantiateType|getPropertyOfType)$|core\\.\\(\\*PointerLinkStore.*\\)\\.(Get|slot)$",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go"
+      ],
+      "archive": "retained-selected.asm.gz",
+      "archiveSha256": "d818c2484f8c5ca417f8d7ed5ee9bac337da0bae132d2f811a5b2e4aee968af2",
+      "rawSha256": "46c632c4cf68000bc94747db20759b685cd4025c813158d5dd61b24fee5f414a",
+      "functions": {
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)": {
+          "instructionBytes": 246,
+          "instructions": 73,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfAlias(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfEnumMember(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfFuncClassEnumModule(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfVariableOrParameterOrProperty(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfAccessors(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfReverseMappedSymbol(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfInstantiatedSymbol(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbolWithDeferredType(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfInstantiatedSymbol(SB)": {
+          "instructionBytes": 180,
+          "instructions": 45,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)": 1,
+            "runtime.gcWriteBarrier2(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType(SB)": {
+          "instructionBytes": 66,
+          "instructions": 19,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).newType(SB)": {
+          "instructionBytes": 345,
+          "instructions": 86,
+          "calls": {
+            "CX": 1,
+            "runtime.gcWriteBarrier4(SB)": 1,
+            "runtime.newobject(SB)": 1,
+            "runtime.gcWriteBarrier1(SB)": 2,
+            "SI": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.effectsSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.decoratorSignature *github.com/microsoft/typescript-go/internal/checker.Signature }]).Get(SB)": {
+          "instructionBytes": 174,
+          "instructions": 48,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.effectsSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.decoratorSignature *github.com/microsoft/typescript-go/internal/checker.Signature }]).slot(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.effectsSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.decoratorSignature *github.com/microsoft/typescript-go/internal/checker.Signature }]).insertAt(SB)": 1,
+            "runtime.panicBounds(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.effectsSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.decoratorSignature *github.com/microsoft/typescript-go/internal/checker.Signature }]).slot(SB)": {
+          "instructionBytes": 218,
+          "instructions": 58,
+          "calls": {
+            "runtime.panicBounds(SB)": 1,
+            "runtime.gopanic(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSymbol *github.com/microsoft/typescript-go/internal/ast.Symbol }]).Get(SB)": {
+          "instructionBytes": 174,
+          "instructions": 48,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSymbol *github.com/microsoft/typescript-go/internal/ast.Symbol }]).slot(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSymbol *github.com/microsoft/typescript-go/internal/ast.Symbol }]).insertAt(SB)": 1,
+            "runtime.panicBounds(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSymbol *github.com/microsoft/typescript-go/internal/ast.Symbol }]).slot(SB)": {
+          "instructionBytes": 218,
+          "instructions": 58,
+          "calls": {
+            "runtime.panicBounds(SB)": 1,
+            "runtime.gopanic(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.outerTypeParameters []*github.com/microsoft/typescript-go/internal/checker.Type }]).Get(SB)": {
+          "instructionBytes": 174,
+          "instructions": 48,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.outerTypeParameters []*github.com/microsoft/typescript-go/internal/checker.Type }]).slot(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.outerTypeParameters []*github.com/microsoft/typescript-go/internal/checker.Type }]).insertAt(SB)": 1,
+            "runtime.panicBounds(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.outerTypeParameters []*github.com/microsoft/typescript-go/internal/checker.Type }]).slot(SB)": {
+          "instructionBytes": 218,
+          "instructions": 58,
+          "calls": {
+            "runtime.panicBounds(SB)": 1,
+            "runtime.gopanic(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get(SB)": {
+          "instructionBytes": 174,
+          "instructions": 48,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).insertAt(SB)": 1,
+            "runtime.panicBounds(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot(SB)": {
+          "instructionBytes": 218,
+          "instructions": 58,
+          "calls": {
+            "runtime.panicBounds(SB)": 1,
+            "runtime.gopanic(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        }
+      }
+    },
+    {
+      "side": "candidate",
+      "binary": "/tmp/tsc-project-inlining-validation/tsc-go-project-inlining",
+      "binarySha256": "861bb976759b424b299f80489e6907cf6f36e9ea7e393a9a33c3be0108541f46",
+      "binaryBytes": 43949926,
+      "command": [
+        "/tmp/tsc-fused-objdump/objdump",
+        "-s",
+        "checker\\.\\(\\*Checker\\)\\.(newType|getTypeOfSymbol|getTypeOfInstantiatedSymbol|instantiateType|getPropertyOfType)$|core\\.\\(\\*PointerLinkStore.*\\)\\.(Get|slot)$",
+        "/tmp/tsc-project-inlining-validation/tsc-go-project-inlining"
+      ],
+      "archive": "candidate-selected.asm.gz",
+      "archiveSha256": "92b60c978650d48e5e64e2d68eccbcb522c4debc6e28fe6eabbacec57ccf0abd",
+      "rawSha256": "dbfa82443008c5b189e686260996e3e26a0dde5650127aa518952ee093380400",
+      "functions": {
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)": {
+          "instructionBytes": 683,
+          "instructions": 176,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot(SB)": 2,
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).insertAt(SB)": 2,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfFuncClassEnumModuleWorker(SB)": 1,
+            "runtime.gcWriteBarrier2(SB)": 2,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getDeclaredTypeOfEnumMember(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfAlias(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfVariableOrParameterOrProperty(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfAccessors(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfReverseMappedSymbol(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfInstantiatedSymbol(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbolWithDeferredType(SB)": 1,
+            "runtime.panicBounds(SB)": 2,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfInstantiatedSymbol(SB)": {
+          "instructionBytes": 309,
+          "instructions": 75,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).insertAt(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfSymbol(SB)": 1,
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)": 1,
+            "runtime.gcWriteBarrier2(SB)": 1,
+            "runtime.panicBounds(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateType(SB)": {
+          "instructionBytes": 66,
+          "instructions": 19,
+          "calls": {
+            "github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.effectsSignature *github.com/microsoft/typescript-go/internal/checker.Signature; github.com/microsoft/typescript-go/internal/checker.decoratorSignature *github.com/microsoft/typescript-go/internal/checker.Signature }]).slot(SB)": {
+          "instructionBytes": 218,
+          "instructions": 58,
+          "calls": {
+            "runtime.panicBounds(SB)": 1,
+            "runtime.gopanic(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSymbol *github.com/microsoft/typescript-go/internal/ast.Symbol }]).slot(SB)": {
+          "instructionBytes": 218,
+          "instructions": 58,
+          "calls": {
+            "runtime.panicBounds(SB)": 1,
+            "runtime.gopanic(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.outerTypeParameters []*github.com/microsoft/typescript-go/internal/checker.Type }]).slot(SB)": {
+          "instructionBytes": 218,
+          "instructions": 58,
+          "calls": {
+            "runtime.panicBounds(SB)": 1,
+            "runtime.gopanic(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        },
+        "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot(SB)": {
+          "instructionBytes": 218,
+          "instructions": 58,
+          "calls": {
+            "runtime.panicBounds(SB)": 1,
+            "runtime.gopanic(SB)": 1,
+            "runtime.morestack_noctxt.abi0(SB)": 1
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1521,3 +1521,21 @@ limit causal precision. Independent 28-pair readback passed, eleven execution
 files were archived/read back, and four real workload rows appended to the
 table-only PERF.md. Results: benchmarks/results/classic-gc-screen/.
 This collector change does not establish the native-relative 10× goal.
+
+
+### Project-wide inline call-cost experiment
+
+Distinct build-only candidate after collector rejection: unchanged216d40c7,
+pinnedGo1.26.9, explicit-gcflags=github.com/microsoft/typescript-go/...=-l=4;
+standard library/runtime remain normal. Pinned inliner changes extra call cost
+57→1 for LowerL4. Build78839terminal0: binary861bb976/sidecar80b2cddf,
+all recorded settings match retained except that explicit argument; default
+unchanged. File size38,952,698→43,949,926(+12.829%, not text size/RSS).
+Actual selected getTypeOfInstantiatedSymbol180→309bytes removes Get call in
+favor of slot/insertAt; getTypeOfSymbol246→683; instantiateType66unchanged;
+four selected slot bodies218unchanged. Missing emitted Get/newType symbols
+alone are not whole-program inlining proof. First assembly parser truncated
+names at spaces; failed script/report preserved, corrected delimiter parser
+reused retained archive, independent exact disassembly readback passed.
+Proceed to correctness then fixed workload comparison; no speed/default/PERF
+claim and native-relative10×stillunmet. Evidence project-inlining/.
