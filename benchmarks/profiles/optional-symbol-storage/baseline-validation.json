@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/optional_symbol_clone_test.go": "29658150a70b057eaa6db4abde33382470506594b076b079efb24c2004e24b14"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/optional-symbol-storage/baseline-overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestOptionalSymbolStorage"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestOptionalSymbolStorageCheckerClone"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/optional-symbol-storage/baseline-overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestOptionalSymbolStorage"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestOptionalSymbolStorageCheckerClone"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/optional-symbol-storage/baseline-overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestOptionalSymbolStorage"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestOptionalSymbolStorageCheckerClone"
+      ]
+    }
+  ]
+}

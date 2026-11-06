@@ -1,0 +1,39 @@
+{
+  "passed": false,
+  "session": 65307,
+  "exitCode": 1,
+  "failure": "clone test fixture omitted mergedSymbols map; panic in unchanged recordMergedSymbol",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/symbol.go": "0a31cd85af9309a7d77bdf318ec093c7585400e8ac650b8dac694ee184c0c5ad",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/utilities.go": "776b6d2fa4628da70ae83b3cf51c2248be39363da3ad98956ac9407058add3b1",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/binder/binder.go": "d4c43c21ba37bb7c7a82f3bab8b9ba42671f8cd5a11d9b61d989ae93dd5c1032",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/binder/nameresolver.go": "519c6c440db01554ebefea4880ea35253d6c655e01bb82d733d57da79609f6f1",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/binder/referenceresolver.go": "a7c9fb3471f5d8872b6d58537f448791cc2836efa7da60174a4141e3ecca43a8",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/modulespecifiers/specifiers.go": "e881823e420fda7d2bda19596efa43f9637a7381b230d95153f3a7138c94a16f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "f131074fe5d0e0a9a5d710b0615a2b7b674ec3c0e9c407eb8f3b1fbc46ab0808",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/jsx.go": "393672298985fdf9d780b20f102b656d0af4a3b6a6d2c8350a1b3b9432521873",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/nodebuilder_hover.go": "89002deffca7dc8578c4e3ff7f6a5c9ded35f614124be554113358a5aa7da560",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/nodebuilderimpl.go": "6c497e843e1d25dd2f39eb63f994394cfb82fa1ccf4912ffa71a1a4b3c524037",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/services.go": "2667df8c4881036e378fd0a372fa3fd25ec918f7443a543c2b1c8a686aa6a60f",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/symbolaccessibility.go": "dbe3b08ab51d0a81f36b22bbdf57f6fa1e6e035fd8ebec61cab613980d27bf10",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/utilities.go": "862a320c7234f6d84e04bd05253b3b051f00e4b0ff9df66d4d34c93c2f634607",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/transformers/declarations/transform.go": "689bd2d2fdf56effc292e47b8bf96c1d8078253c193d262ddec1e75c334b7c8c",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ls/autoimport/extract.go": "86a94450fddf4b4d55c2edd1265ade59cdae1c1d1a2800c0229545454faf0f48",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ls/codeactions_fixclassincorrectlyimplementsinterface.go": "5594cffd9fefe9d7f7e9bc36ba871dae6cc9216cde58fd2eb7542c5d45a4d683",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ls/completions.go": "25f83fcc0d890143ab0a6b245a29663928e62bfb1c0a3a9fec815e8db345de5c",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ls/definition.go": "0e7bb4440bb6961a8c87c17e6ed63bbe8ed4aebedfc1152e624e5ac5fb4529e4",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ls/findallreferences.go": "9a6672335502dfc7910116c1de7630f125268c8da347b0d1e1512d0f6429dd3a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ls/hover.go": "f7f5f63c7a21b42cfd2494e7654878ab2975543130f74f4d48b892b3d2915138",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ls/importTracker.go": "2ca371e24bb32e95e8aa78b51431150bacfce4258fe7c354b2e503da7679f641",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/api/session.go": "5f8f78e3d686353adae5052898976ae79d5bffd5e193ded713ca68422f742b46",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/incremental/affectedfileshandler.go": "eb201c2a57aaecc5f9809e04a03528fe2b93a0ff0e76b95dd3968808cd50a59a",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/ast/optional_symbol_test.go": "184544924509c035392fcfe3e8cd42e40f97cca3915ced9672f600df4073b698",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/optional_symbol_clone_test.go": "99fefbe4becc25ebde0ee7af025e349af2e76ed0735386c0cf89a8dc498649c4"
+  },
+  "artifacts": {
+    "validate.py": "ff0484ec1712ace86985cba54509e136d6123a41dfe508eade7678ef590fc9da",
+    "normal.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "optional_symbol_clone_test.go": "99fefbe4becc25ebde0ee7af025e349af2e76ed0735386c0cf89a8dc498649c4",
+    "normal.stdout": "32c6c8aa18ab81fc2898a5c4b7eda0131f6060ea94a7df85a2058d9a7a627435"
+  }
+}
