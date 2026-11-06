@@ -45,3 +45,19 @@ bodies contain 110/104/110/104 instructions (453/443/467/443 instruction bytes).
 These counts are static code size, not executed instructions or runtime savings.
 Generic helpers still occur in the candidate test binary because the differential
 tests explicitly call them. The baseline thin wrappers were inlined into callers.
+
+## Validation checkpoint
+
+Candidate and retained focused runs passed four tests each in normal, race and
+checkptr modes (24 total records). Full compiler validation passed 21179 root
+records across 14 packages, 219 services records, and all 14915 pinned conformance
+configurations: 12789 fully checked, 8 partially checked, 2118 unsupported, zero
+failures. CLI parity passed 80 normal, 80 race and 80 checkptr tests; API/emit
+integration passed 12. Independent verification checks archived logs, source
+identity, instrumented flags and current binary hashes. Duplicate full raw logs
+were removed only after exact gzip readback; archives and manifest remain.
+
+Normal production provenance build succeeded with exactly two source differences,
+5155 candidate files versus 5154 retained, and matches the validated normal
+executable. Retained source and default binary were restored. Frozen screen input
+and provenance preflight passed. No performance capture has run at this checkpoint.
