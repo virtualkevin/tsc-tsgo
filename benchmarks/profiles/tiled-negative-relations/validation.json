@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "sources": {
+    "store.go": "3072584042e6631430a32c8826c1a3ef5fb271074bedfd0d9a1fb400fee33f2e",
+    "store_test.go": "0a732ab1811234e9fa8f7943db8243e110f6718ee745c2344684cf30ed6997eb",
+    "go.mod": "70c735e1063c0a14b36fc26f4073d99a168796bc42de8cfd846839a5e6b1e03b"
+  },
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestBoundaryHistory",
+        "TestRandomHistories",
+        "TestTileSharingAndIndependentStores"
+      ],
+      "stdoutSha256": "54f8b3cad49142fe10df1b7d5a1d1ecd2afe7523beb35f3a1e67fe6c7b378668",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-race",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestBoundaryHistory",
+        "TestRandomHistories",
+        "TestTileSharingAndIndependentStores"
+      ],
+      "stdoutSha256": "41a759bbc963d7f7b801f18eba2d462105cbd26f7634dc36f18fc282182f267f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-gcflags=all=-d=checkptr=2",
+        "./..."
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "tests": [
+        "TestBoundaryHistory",
+        "TestRandomHistories",
+        "TestTileSharingAndIndependentStores"
+      ],
+      "stdoutSha256": "05f39d1ebf8a07362c933a48c624c11f6a94a70efbc53f0602581d48b548fa9f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Standalone storage prototype; no compiler integration, conformance or performance claim."
+}

@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "solver": "z3-solver 4.15.4.0",
+  "claims": [
+    {
+      "claim": "tile plus lane reconstructs every 64-bit key",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "claim": "distinct keys cannot share tile and lane",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "claim": "eligible keys exclude fallback and reserved high bits",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "claim": "intersection state retained in tile",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "claim": "lane is inside 256-bit tile",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "claim": "distinct lanes have distinct word/mask addresses",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "claim": "Set has exclusive representation",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "claim": "Set reads back every full-width result",
+      "counterexampleQuery": "unsat"
+    },
+    {
+      "claim": "Set increments logical size iff key was absent",
+      "counterexampleQuery": "unsat"
+    }
+  ],
+  "sources": {
+    "store.go": "3072584042e6631430a32c8826c1a3ef5fb271074bedfd0d9a1fb400fee33f2e",
+    "store_test.go": "0a732ab1811234e9fa8f7943db8243e110f6718ee745c2344684cf30ed6997eb",
+    "go.mod": "70c735e1063c0a14b36fc26f4073d99a168796bc42de8cfd846839a5e6b1e03b"
+  },
+  "proofScriptSha256": "60c0ae226d4f5b9aeefe1764363373912bb4e0433007d14a39001c5eb0e28626",
+  "scope": "Machine-checked bitvector/one-key transition model. Translation to Go, Go map/array behavior, memory safety, concurrency, compiler key equivalence, semantic integration, and performance are not proved. Go differential histories independently test the supplied implementation."
+}
