@@ -25,7 +25,8 @@ archive verification passed. These are tested domains, not a whole-compiler proo
 The normal production build passed with exactly three changed/new files and
 5,156 candidate source files; its executable matches the tested normal overlay.
 Retained source/default executable restoration and benchmark preflight passed.
-The performance screen has not run yet. Source audit
+The completed performance screen failed acceptance; this candidate is rejected.
+See DECISION.md. Production remains retained source216d40c7/default8fe4bd80. Source audit
 proves exact original fallback restoration and correspondence of candidate/baseline
 helper and tests.
 
