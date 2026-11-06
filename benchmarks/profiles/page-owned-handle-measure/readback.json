@@ -1,0 +1,384 @@
+{
+  "captureSha256": "03e81351da4f9f20b9aba3a7082180116d05bcaf837f570bc69ee1d53ad50a6f",
+  "verifiedObservations": 276,
+  "validationPasses": 27,
+  "benchmarks": [
+    {
+      "case": "linked/construct",
+      "n": 4096,
+      "ratioOfMedians": 0.5053993822418539,
+      "medianPairedRatio": 0.5188288201779656,
+      "pairedRange": [
+        0.4662456383743023,
+        0.5984616868684284
+      ],
+      "pointer": {
+        "nsPerOp": 252635.0,
+        "bytesPerOp": 258061,
+        "allocsPerOp": 17
+      },
+      "compact": {
+        "nsPerOp": 499872.0,
+        "bytesPerOp": 235797,
+        "allocsPerOp": 131
+      }
+    },
+    {
+      "case": "linked/internal",
+      "n": 4096,
+      "ratioOfMedians": 0.4406290791191208,
+      "medianPairedRatio": 0.4406290791191208,
+      "pairedRange": [
+        0.28374944412680264,
+        0.6031992998492731
+      ],
+      "pointer": {
+        "nsPerOp": 20929.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 47498.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "linked/public",
+      "n": 4096,
+      "ratioOfMedians": 0.06733544754384829,
+      "medianPairedRatio": 0.0628395141630531,
+      "pairedRange": [
+        0.046325174085273604,
+        0.07821816262364308
+      ],
+      "pointer": {
+        "nsPerOp": 31212.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 463530.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "local/construct",
+      "n": 4096,
+      "ratioOfMedians": 0.6810356110692518,
+      "medianPairedRatio": 0.6914391230062293,
+      "pairedRange": [
+        0.6454320838655389,
+        0.7645953078118787
+      ],
+      "pointer": {
+        "nsPerOp": 192524.0,
+        "bytesPerOp": 258053,
+        "allocsPerOp": 17
+      },
+      "compact": {
+        "nsPerOp": 282693.0,
+        "bytesPerOp": 228408,
+        "allocsPerOp": 63
+      }
+    },
+    {
+      "case": "local/internal",
+      "n": 4096,
+      "ratioOfMedians": 0.4818438381937912,
+      "medianPairedRatio": 0.5021409329363391,
+      "pairedRange": [
+        0.2863903367254075,
+        0.7515941225395065
+      ],
+      "pointer": {
+        "nsPerOp": 17927.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 37205.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "local/public",
+      "n": 4096,
+      "ratioOfMedians": 0.06167378751001565,
+      "medianPairedRatio": 0.06337873660680868,
+      "pairedRange": [
+        0.04980990631391436,
+        0.08236334056945417
+      ],
+      "pointer": {
+        "nsPerOp": 24554.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 398127.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "linked/construct",
+      "n": 262144,
+      "ratioOfMedians": 0.32076103959531954,
+      "medianPairedRatio": 0.3334148698413451,
+      "pairedRange": [
+        0.24350998142235436,
+        0.3819080907972168
+      ],
+      "pointer": {
+        "nsPerOp": 30946730.0,
+        "bytesPerOp": 16000498,
+        "allocsPerOp": 1026
+      },
+      "compact": {
+        "nsPerOp": 96479080.0,
+        "bytesPerOp": 32672920,
+        "allocsPerOp": 23029
+      }
+    },
+    {
+      "case": "linked/internal",
+      "n": 262144,
+      "ratioOfMedians": 0.486629800480174,
+      "medianPairedRatio": 0.469131415695407,
+      "pairedRange": [
+        0.37073565034178063,
+        0.7132640010001291
+      ],
+      "pointer": {
+        "nsPerOp": 12602996.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 25898529.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "linked/public",
+      "n": 262144,
+      "ratioOfMedians": 0.128162805494831,
+      "medianPairedRatio": 0.13020396669132434,
+      "pairedRange": [
+        0.08928080173428664,
+        0.19640277005170279
+      ],
+      "pointer": {
+        "nsPerOp": 11182158.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 87249635.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "local/construct",
+      "n": 262144,
+      "ratioOfMedians": 0.850370273668344,
+      "medianPairedRatio": 0.8419031278949474,
+      "pairedRange": [
+        0.7617880062773513,
+        0.9044075871457248
+      ],
+      "pointer": {
+        "nsPerOp": 17222658.0,
+        "bytesPerOp": 15999828,
+        "allocsPerOp": 1026
+      },
+      "compact": {
+        "nsPerOp": 20253128.0,
+        "bytesPerOp": 14115688,
+        "allocsPerOp": 4096
+      }
+    },
+    {
+      "case": "local/internal",
+      "n": 262144,
+      "ratioOfMedians": 0.7924294004164792,
+      "medianPairedRatio": 0.8115460835519138,
+      "pairedRange": [
+        0.6130920662851109,
+        0.9849897041419838
+      ],
+      "pointer": {
+        "nsPerOp": 3620812.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 4569255.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    },
+    {
+      "case": "local/public",
+      "n": 262144,
+      "ratioOfMedians": 0.13479092060978182,
+      "medianPairedRatio": 0.1331500023862374,
+      "pairedRange": [
+        0.11612177019683655,
+        0.15191557189395535
+      ],
+      "pointer": {
+        "nsPerOp": 4094760.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      },
+      "compact": {
+        "nsPerOp": 30378604.0,
+        "bytesPerOp": 0,
+        "allocsPerOp": 0
+      }
+    }
+  ],
+  "retention": [
+    {
+      "case": "linked",
+      "n": 4096,
+      "pointer": {
+        "heapAllocDelta": 227728,
+        "heapObjectsDelta": 28,
+        "totalAllocDelta": 268688
+      },
+      "compact": {
+        "heapAllocDelta": 169272,
+        "heapObjectsDelta": 90,
+        "totalAllocDelta": 246568
+      },
+      "compactMetadata": {
+        "freeCapacity": 0,
+        "freeLength": 0,
+        "pages": 16,
+        "remoteCapacity": 155,
+        "remoteIndexEntries": 120,
+        "remoteLength": 120
+      }
+    },
+    {
+      "case": "local",
+      "n": 4096,
+      "pointer": {
+        "heapAllocDelta": 222424,
+        "heapObjectsDelta": 23,
+        "totalAllocDelta": 263384
+      },
+      "compact": {
+        "heapAllocDelta": 160248,
+        "heapObjectsDelta": 71,
+        "totalAllocDelta": 233976
+      },
+      "compactMetadata": {
+        "freeCapacity": 0,
+        "freeLength": 0,
+        "pages": 16,
+        "remoteCapacity": 15,
+        "remoteIndexEntries": 15,
+        "remoteLength": 15
+      }
+    },
+    {
+      "case": "sparse",
+      "n": 4096,
+      "pointer": {
+        "heapAllocDelta": 19016,
+        "heapObjectsDelta": 9,
+        "totalAllocDelta": 263496
+      },
+      "compact": {
+        "heapAllocDelta": 14824,
+        "heapObjectsDelta": 9,
+        "totalAllocDelta": 230632
+      },
+      "compactMetadata": {
+        "freeCapacity": 0,
+        "freeLength": 0,
+        "pages": 1,
+        "remoteCapacity": 0,
+        "remoteIndexEntries": 0,
+        "remoteLength": 0
+      }
+    },
+    {
+      "case": "linked",
+      "n": 262144,
+      "pointer": {
+        "heapAllocDelta": 13914928,
+        "heapObjectsDelta": 1049,
+        "totalAllocDelta": 16020272
+      },
+      "compact": {
+        "heapAllocDelta": 19430936,
+        "heapObjectsDelta": 6149,
+        "totalAllocDelta": 32690664
+      },
+      "compactMetadata": {
+        "freeCapacity": 0,
+        "freeLength": 0,
+        "pages": 1024,
+        "remoteCapacity": 271284,
+        "remoteIndexEntries": 185334,
+        "remoteLength": 185334
+      }
+    },
+    {
+      "case": "local",
+      "n": 262144,
+      "pointer": {
+        "heapAllocDelta": 13909608,
+        "heapObjectsDelta": 1043,
+        "totalAllocDelta": 16014952
+      },
+      "compact": {
+        "heapAllocDelta": 9922768,
+        "heapObjectsDelta": 4106,
+        "totalAllocDelta": 14125264
+      },
+      "compactMetadata": {
+        "freeCapacity": 0,
+        "freeLength": 0,
+        "pages": 1024,
+        "remoteCapacity": 1023,
+        "remoteIndexEntries": 1023,
+        "remoteLength": 1023
+      }
+    },
+    {
+      "case": "sparse",
+      "n": 262144,
+      "pointer": {
+        "heapAllocDelta": 29656,
+        "heapObjectsDelta": 21,
+        "totalAllocDelta": 16015064
+      },
+      "compact": {
+        "heapAllocDelta": 20144,
+        "heapObjectsDelta": 15,
+        "totalAllocDelta": 13912496
+      },
+      "compactMetadata": {
+        "freeCapacity": 0,
+        "freeLength": 0,
+        "pages": 1,
+        "remoteCapacity": 0,
+        "remoteIndexEntries": 0,
+        "remoteLength": 0
+      }
+    }
+  ],
+  "passed": true,
+  "verifierSha256": "1d42ba8a38a7e5674f5388d8d9a449b308ebb29cfd3cc6ac1369f8c415eb5061",
+  "scope": "Standalone model only; fixed fresh-process paired timings and endpoint retention. No compiler performance or promotion claim."
+}
