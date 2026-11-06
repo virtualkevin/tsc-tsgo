@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "sources": {
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/checker.go": "d07b6bddeaf5056475a10ba04aceb69207d728694f5e1cb94faab53469024879",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/execute/tsc.go": "95e7d6d74f72fc1b1aa22e820b888259482e8158ff424e3ade4d62c28ed01d7e",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/compiler/jsx_context_census.go": "2cb0aaf74a15d7cbd83be9f397bcb06fbe58713d1a79d2fa3bc0b5f2a5cdd85e",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/jsx_context_census.go": "4477c7f8e524622bcad04a4005c28a0c133316beb082c255b8a7cbf66cc351c1",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/jsx_context_census_test.go": "470a5b3597d43413728bb28fbdf165f77bfd917648c9c5ff1dd65f86d4bd85af",
+    "/home/dev/tssss/tsc-tsgo/packages/tsc-go/internal/checker/jsx_context_census_api_test.go": "5b8617ffc19c0ad125f59fa7cee8a5adcb3fa80c4747c24ee3c9912068a6faf0"
+  },
+  "results": [
+    {
+      "name": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/jsx-context-census/overlay.json",
+        "./internal/checker",
+        "-run",
+        "^TestJsxContext"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestJsxContextNestedCompletion",
+        "TestJsxContextKeyAndCap",
+        "TestJsxContextEffectsAndExclusiveOutput",
+        "TestJsxContextActualCheckerDifferential"
+      ]
+    },
+    {
+      "name": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/jsx-context-census/overlay.json",
+        "-race",
+        "./internal/checker",
+        "-run",
+        "^TestJsxContext"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestJsxContextNestedCompletion",
+        "TestJsxContextKeyAndCap",
+        "TestJsxContextEffectsAndExclusiveOutput",
+        "TestJsxContextActualCheckerDifferential"
+      ]
+    },
+    {
+      "name": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-overlay",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/jsx-context-census/overlay.json",
+        "-gcflags=all=-d=checkptr=2",
+        "./internal/checker",
+        "-run",
+        "^TestJsxContext"
+      ],
+      "exitCode": 0,
+      "passed": [
+        "TestJsxContextNestedCompletion",
+        "TestJsxContextKeyAndCap",
+        "TestJsxContextEffectsAndExclusiveOutput",
+        "TestJsxContextActualCheckerDifferential"
+      ]
+    }
+  ]
+}

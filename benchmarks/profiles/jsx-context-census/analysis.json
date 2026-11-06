@@ -1,0 +1,403 @@
+{
+  "scope": "Verified observer counts/cohorts, not compiler performance. Keys omit mutable inference/flow/diagnostic state. Changed TypeID is identity difference, not proved semantic difference. Zero relation-size or construction change is not absence of effects. Early capped histories are biased and cannot be extrapolated. Instrumented exclusive elapsed time excludes only nested observed JSX calls.",
+  "captureSha256": "0efb1c34d6f2a565212d0f0c965cafecfc9ab629cbae6b52103143bd943ab028",
+  "readbackSha256": "617f8933ca827531bdce6e4489e5c4fbf652f2123e34fd49a9a667c8a0415823",
+  "analyzerSha256": "cc5821b3958a3c7a03c227ac276654a99adea77dec52fd06ddd8c9804cee3aeb",
+  "projects": [
+    {
+      "project": "typeorm",
+      "rawSha256": "0c1352031e7e37f5af18e1e9029b9d90d4737b689db153aa47ccdc673c736d22",
+      "totals": {
+        "Calls": 0,
+        "NonNil": 0,
+        "TrackedFirst": 0,
+        "TrackedRepeat": 0,
+        "Dropped": 0,
+        "ChangedResult": 0,
+        "InclusiveRelationGrowth": 0,
+        "ExclusiveRelationGrowth": 0,
+        "RepeatRelationGrowth": 0,
+        "InclusiveNs": 0,
+        "ExclusiveNs": 0,
+        "InferenceSitesBefore": 0,
+        "InferenceSitesAfter": 0,
+        "ChangedInferenceFlags": 0,
+        "Inclusive": [
+          0,
+          0,
+          0
+        ],
+        "Exclusive": [
+          0,
+          0,
+          0
+        ],
+        "RepeatExclusive": [
+          0,
+          0,
+          0
+        ]
+      },
+      "owners": 4,
+      "saturatedOwners": 0,
+      "cohorts": [],
+      "recordedHistoryComplete": true
+    },
+    {
+      "project": "trpc",
+      "rawSha256": "9ea0eec0e70f759c2fd5e2d2f3beca46c49852a4079dce413ad8e624ce1eae03",
+      "totals": {
+        "Calls": 0,
+        "NonNil": 0,
+        "TrackedFirst": 0,
+        "TrackedRepeat": 0,
+        "Dropped": 0,
+        "ChangedResult": 0,
+        "InclusiveRelationGrowth": 0,
+        "ExclusiveRelationGrowth": 0,
+        "RepeatRelationGrowth": 0,
+        "InclusiveNs": 0,
+        "ExclusiveNs": 0,
+        "InferenceSitesBefore": 0,
+        "InferenceSitesAfter": 0,
+        "ChangedInferenceFlags": 0,
+        "Inclusive": [
+          0,
+          0,
+          0
+        ],
+        "Exclusive": [
+          0,
+          0,
+          0
+        ],
+        "RepeatExclusive": [
+          0,
+          0,
+          0
+        ]
+      },
+      "owners": 4,
+      "saturatedOwners": 0,
+      "cohorts": [],
+      "recordedHistoryComplete": true
+    },
+    {
+      "project": "vscode",
+      "rawSha256": "9c645926904b21d41cfe777f83355a133f56b99d5c3fb3658844cd69642ee734",
+      "totals": {
+        "Calls": 0,
+        "NonNil": 0,
+        "TrackedFirst": 0,
+        "TrackedRepeat": 0,
+        "Dropped": 0,
+        "ChangedResult": 0,
+        "InclusiveRelationGrowth": 0,
+        "ExclusiveRelationGrowth": 0,
+        "RepeatRelationGrowth": 0,
+        "InclusiveNs": 0,
+        "ExclusiveNs": 0,
+        "InferenceSitesBefore": 0,
+        "InferenceSitesAfter": 0,
+        "ChangedInferenceFlags": 0,
+        "Inclusive": [
+          0,
+          0,
+          0
+        ],
+        "Exclusive": [
+          0,
+          0,
+          0
+        ],
+        "RepeatExclusive": [
+          0,
+          0,
+          0
+        ]
+      },
+      "owners": 4,
+      "saturatedOwners": 0,
+      "cohorts": [],
+      "recordedHistoryComplete": true
+    },
+    {
+      "project": "sentry",
+      "rawSha256": "282c2f8b37622e1ab551177a3feb6fd5d31f943fc6e5bd16c0367c2433b26407",
+      "totals": {
+        "Calls": 82230,
+        "NonNil": 82230,
+        "TrackedFirst": 80625,
+        "TrackedRepeat": 1605,
+        "Dropped": 0,
+        "ChangedResult": 1563,
+        "InclusiveRelationGrowth": 40286,
+        "ExclusiveRelationGrowth": 40286,
+        "RepeatRelationGrowth": 0,
+        "InclusiveNs": 19368561861,
+        "ExclusiveNs": 19368561861,
+        "InferenceSitesBefore": 0,
+        "InferenceSitesAfter": 0,
+        "ChangedInferenceFlags": 192,
+        "Inclusive": [
+          1184760,
+          515063,
+          631322
+        ],
+        "Exclusive": [
+          1184760,
+          515063,
+          631322
+        ],
+        "RepeatExclusive": [
+          186,
+          6313,
+          9247
+        ]
+      },
+      "owners": 4,
+      "saturatedOwners": 0,
+      "cohorts": [
+        {
+          "mode": 0,
+          "hasInference": false,
+          "activeContext": false,
+          "Calls": 67788,
+          "NonNil": 67788,
+          "TrackedFirst": 66548,
+          "TrackedRepeat": 1240,
+          "Dropped": 0,
+          "ChangedResult": 1198,
+          "InclusiveRelationGrowth": 28099,
+          "ExclusiveRelationGrowth": 28099,
+          "RepeatRelationGrowth": 0,
+          "InclusiveNs": 12156430122,
+          "ExclusiveNs": 12156430122,
+          "InferenceSitesBefore": 0,
+          "InferenceSitesAfter": 0,
+          "ChangedInferenceFlags": 0,
+          "Inclusive": [
+            713149,
+            328651,
+            447615
+          ],
+          "Exclusive": [
+            713149,
+            328651,
+            447615
+          ],
+          "RepeatExclusive": [
+            48,
+            5119,
+            6781
+          ]
+        },
+        {
+          "mode": 0,
+          "hasInference": true,
+          "activeContext": false,
+          "Calls": 1307,
+          "NonNil": 1307,
+          "TrackedFirst": 1307,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveRelationGrowth": 979,
+          "ExclusiveRelationGrowth": 979,
+          "RepeatRelationGrowth": 0,
+          "InclusiveNs": 277916310,
+          "ExclusiveNs": 277916310,
+          "InferenceSitesBefore": 0,
+          "InferenceSitesAfter": 0,
+          "ChangedInferenceFlags": 0,
+          "Inclusive": [
+            102339,
+            11077,
+            13845
+          ],
+          "Exclusive": [
+            102339,
+            11077,
+            13845
+          ],
+          "RepeatExclusive": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "mode": 4,
+          "hasInference": false,
+          "activeContext": false,
+          "Calls": 1815,
+          "NonNil": 1815,
+          "TrackedFirst": 1465,
+          "TrackedRepeat": 350,
+          "Dropped": 0,
+          "ChangedResult": 350,
+          "InclusiveRelationGrowth": 3745,
+          "ExclusiveRelationGrowth": 3745,
+          "RepeatRelationGrowth": 0,
+          "InclusiveNs": 776786618,
+          "ExclusiveNs": 776786618,
+          "InferenceSitesBefore": 0,
+          "InferenceSitesAfter": 0,
+          "ChangedInferenceFlags": 0,
+          "Inclusive": [
+            104485,
+            18970,
+            58037
+          ],
+          "Exclusive": [
+            104485,
+            18970,
+            58037
+          ],
+          "RepeatExclusive": [
+            123,
+            1096,
+            2334
+          ]
+        },
+        {
+          "mode": 8,
+          "hasInference": false,
+          "activeContext": false,
+          "Calls": 173,
+          "NonNil": 173,
+          "TrackedFirst": 158,
+          "TrackedRepeat": 15,
+          "Dropped": 0,
+          "ChangedResult": 15,
+          "InclusiveRelationGrowth": 9,
+          "ExclusiveRelationGrowth": 9,
+          "RepeatRelationGrowth": 0,
+          "InclusiveNs": 29916505,
+          "ExclusiveNs": 29916505,
+          "InferenceSitesBefore": 0,
+          "InferenceSitesAfter": 0,
+          "ChangedInferenceFlags": 0,
+          "Inclusive": [
+            5021,
+            1226,
+            1879
+          ],
+          "Exclusive": [
+            5021,
+            1226,
+            1879
+          ],
+          "RepeatExclusive": [
+            15,
+            98,
+            132
+          ]
+        },
+        {
+          "mode": 8,
+          "hasInference": true,
+          "activeContext": false,
+          "Calls": 9431,
+          "NonNil": 9431,
+          "TrackedFirst": 9431,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveRelationGrowth": 6437,
+          "ExclusiveRelationGrowth": 6437,
+          "RepeatRelationGrowth": 0,
+          "InclusiveNs": 5634044353,
+          "ExclusiveNs": 5634044353,
+          "InferenceSitesBefore": 0,
+          "InferenceSitesAfter": 0,
+          "ChangedInferenceFlags": 173,
+          "Inclusive": [
+            208946,
+            139690,
+            89526
+          ],
+          "Exclusive": [
+            208946,
+            139690,
+            89526
+          ],
+          "RepeatExclusive": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "mode": 12,
+          "hasInference": false,
+          "activeContext": false,
+          "Calls": 19,
+          "NonNil": 19,
+          "TrackedFirst": 19,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveRelationGrowth": 0,
+          "ExclusiveRelationGrowth": 0,
+          "RepeatRelationGrowth": 0,
+          "InclusiveNs": 4525218,
+          "ExclusiveNs": 4525218,
+          "InferenceSitesBefore": 0,
+          "InferenceSitesAfter": 0,
+          "ChangedInferenceFlags": 0,
+          "Inclusive": [
+            549,
+            189,
+            291
+          ],
+          "Exclusive": [
+            549,
+            189,
+            291
+          ],
+          "RepeatExclusive": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "mode": 12,
+          "hasInference": true,
+          "activeContext": false,
+          "Calls": 1697,
+          "NonNil": 1697,
+          "TrackedFirst": 1697,
+          "TrackedRepeat": 0,
+          "Dropped": 0,
+          "ChangedResult": 0,
+          "InclusiveRelationGrowth": 1017,
+          "ExclusiveRelationGrowth": 1017,
+          "RepeatRelationGrowth": 0,
+          "InclusiveNs": 488942735,
+          "ExclusiveNs": 488942735,
+          "InferenceSitesBefore": 0,
+          "InferenceSitesAfter": 0,
+          "ChangedInferenceFlags": 19,
+          "Inclusive": [
+            50271,
+            15260,
+            20129
+          ],
+          "Exclusive": [
+            50271,
+            15260,
+            20129
+          ],
+          "RepeatExclusive": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "recordedHistoryComplete": true
+    }
+  ]
+}

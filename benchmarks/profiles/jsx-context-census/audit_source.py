@@ -1,0 +1,17 @@
+from pathlib import Path
+import hashlib,json,re,subprocess
+p=Path(__file__).resolve().parent;r=p.parents[2];m=r/'packages/tsc-go';sha=lambda f:hashlib.sha256(Path(f).read_bytes()).hexdigest()
+fmt=lambda s:subprocess.check_output(['/tmp/tsc-toolchains/go/bin/gofmt'],input=s.encode()).decode()
+s=(p/'staged/checker.go').read_text()
+s,n=re.subn(r'^\s*jsxContextCensus\s+\*jsxContextCensus\n','',s,count=1,flags=re.M);assert n==1
+s=s.replace('\n\tc.jsxContextCensus = newJsxContextCensus()','',1)
+a=s.index('func (c *Checker) checkExpressionWithContextualType(');b=s.index('\n\tcontextNode :=',a)
+wrapper=s[a:b];assert 'defer func() { c.endJsxContext(frame, observedResult) }()' in wrapper and 'c.jsxContextCensus != nil && ast.IsJsxAttributes(node)' in wrapper
+original='func (c *Checker) checkExpressionWithContextualType(node *ast.Node, contextualType *Type, inferenceContext *InferenceContext, checkMode CheckMode) *Type {'
+s=s[:a]+original+s[b:];assert fmt(s)==(m/'internal/checker/checker.go').read_text()
+s=(p/'staged/tsc.go').read_text();hook='\n\tif err := program.WriteJsxContextCensus(); err != nil {\n\t\tpanic(err)\n\t}\n';assert s.count(hook)==1
+assert s.replace(hook,'',1)==(m/'internal/execute/tsc.go').read_text()
+base=json.loads((p/'base.json').read_text());assert all(sha(m/k)==v for k,v in base.items())
+paths=json.loads((p/'overlay.json').read_text())['Replace'];assert len(paths)==len(set(paths.values()))==6
+(p/'source-audit.json').write_text(json.dumps({'passed':True,'base':base,'sources':{k:sha(v) for k,v in paths.items()},'controllerSha256':sha(__file__),'scope':'Removing the observer wrapper, field, initialization and post-CLI exporter restores the exact retained production files. This checks source adaptation, not observer noninterference or semantic equivalence.'},indent=2)+'\n')
+print('Exact original checker body and CLI flow restored after removing observer hooks')
