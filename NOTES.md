@@ -1661,3 +1661,10 @@ Scratch normal phase passed148records; independentrawhash/eventreadback confirms
 Prepared full/CLI independentreadback scripts: archivedrawhashes, sourcepins,
 exactmodeflags(includingcombinedcheckptr), requiredcounts andbinary/comparator
 hashes. Syntaxchecked; broaderresults do notexistyet, no validationclaimforthose.
+
+Scratch focused81942 terminal0: normal148/race148/checkptr148. Independent
+verify-focused readback confirms444rawrecords, exactsource/log/controllerhashes,
+64reference subcasespermode, packagecompletion andcombinedcheckptrflags.
+Exactinverse sourceauditpassed again. Proceed to frozenHEAD fullroot/services/
+14915configuration conformance and normal/API/race/checkptrCLI validation.
+No productionchange orspeedclaim; workloadmeasurement remains gatedonfullpass.
