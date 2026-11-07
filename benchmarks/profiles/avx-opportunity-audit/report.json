@@ -1,0 +1,331 @@
+{
+  "scope": "Offline historical production CPU samples; inclusive categories overlap and include callees. Not removable wall time, SIMD eligibility proof, or speedup. Assembly proves available code paths, not dynamic execution frequency. CPU flags are kernel-advertised; runtime dispatch remains required.",
+  "controllerSha256": "f8afcd039c3b88eac45503a9db696907c2ac9cf83b3632626937da00fb9d4ae5",
+  "parserSha256": "0dce30590aab850ded245658be32742e06dd7fa011a730cbeecc0473a9af2823",
+  "binarySha256": "9017fa9abe7add6cadf8cefffca2aea161938b63aeac46ed8d226d7dca916d2a",
+  "goSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+  "objdumpSha256": "325c4205a4c658a9d1e1ebc469ae55975a2b897a3d3c1e79d9b158612d37f745",
+  "priorManifestSha256": "325b4982f58902e2b0cf9f5c5f66a1f58380d5d42834aee0bb309ca468bffb50",
+  "priorArchiveSha256": "7c33c9edf7dd87f65a28cbf9c510aa164e5c5a2aaf3fcf7fda452edc2c443a17",
+  "cpuModel": "Intel Xeon Processor (Cascadelake)",
+  "advertisedFeatures": [
+    "aes",
+    "avx",
+    "avx2",
+    "avx512_vnni",
+    "avx512bw",
+    "avx512cd",
+    "avx512dq",
+    "avx512f",
+    "avx512vl",
+    "sse",
+    "sse2",
+    "sse4_1",
+    "sse4_2",
+    "xsave",
+    "xsavec",
+    "xsaveopt",
+    "xsaves"
+  ],
+  "patterns": {
+    "scanner": "/scanner\\.",
+    "byte_search_compare": "^(?:indexbytebody|memeqbody|cmpbody|internal/bytealg\\.|strings\\.(?:Index|Compare|Equal)|bytes\\.(?:Index|Compare|Equal))",
+    "memory_copy_clear": "^runtime\\.(?:memmove|memclrNoHeapPointers)$",
+    "map_control_match": "^internal/runtime/maps\\.ctrlGroup\\.match",
+    "hashing": "^(?:aeshashbody|runtime\\.(?:memhash|strhash)|internal/runtime/maps\\.h[12]$)",
+    "slice_search": "^slices\\.(?:Contains|Index)"
+  },
+  "projects": [
+    {
+      "workload": "typeorm",
+      "profile": "typeorm/558040-cpuprofile.pb.gz",
+      "profileSha256": "3c469b26e3e225236e7d90e193c90dfede753a6e9e8e506526fe0489dee42ac3",
+      "rawSha256": "ed1e9420181f09a0ae75bdc4cda9d2c84dc28a47627b3a34b0c3195002cbb86d",
+      "archiveSha256": "d827235c76927aeedfb1f536b254c7b333ae6936987507922551c29d97cfbda9",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "/tmp/avx-profile-audit-cdxi1kct/558040-cpuprofile.pb.gz"
+      ],
+      "stderr": "",
+      "totalCpuNs": 44080000000,
+      "inclusivePercent": {
+        "scanner": 1.1569872958257714,
+        "byte_search_compare": 1.2704174228675136,
+        "memory_copy_clear": 12.522686025408348,
+        "map_control_match": 1.4065335753176043,
+        "hashing": 1.0662431941923776,
+        "slice_search": 0.0
+      },
+      "exclusiveBucketsNs": {
+        "outside": 36440000000,
+        "memory_copy_clear": 5520000000,
+        "byte_search_compare": 560000000,
+        "hashing": 430000000,
+        "scanner": 470000000,
+        "map_control_match": 620000000,
+        "scanner+hashing": 40000000
+      }
+    },
+    {
+      "workload": "trpc",
+      "profile": "trpc/558056-cpuprofile.pb.gz",
+      "profileSha256": "1f9a1a34c27573542e523544e5151b24daf7e261fd1006c265066b602aae4714",
+      "rawSha256": "1d940fea92829681818a9c8070c890bdcd071994e0a26a9824266332eb70327b",
+      "archiveSha256": "25d9093f030717d3e7250ad2e0f805e52163c204a192ba85b284a487c13347ee",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "/tmp/avx-profile-audit-cdxi1kct/558056-cpuprofile.pb.gz"
+      ],
+      "stderr": "",
+      "totalCpuNs": 11690000000,
+      "inclusivePercent": {
+        "scanner": 1.3686911890504705,
+        "byte_search_compare": 1.2831479897348161,
+        "memory_copy_clear": 8.126603934987168,
+        "map_control_match": 0.9409751924721984,
+        "hashing": 1.1976047904191616,
+        "slice_search": 0.0
+      },
+      "exclusiveBucketsNs": {
+        "outside": 10200000000,
+        "byte_search_compare": 140000000,
+        "memory_copy_clear": 950000000,
+        "scanner": 140000000,
+        "scanner+hashing": 10000000,
+        "hashing": 130000000,
+        "map_control_match": 110000000,
+        "scanner+byte_search_compare": 10000000
+      }
+    },
+    {
+      "workload": "vscode",
+      "profile": "vscode/558071-cpuprofile.pb.gz",
+      "profileSha256": "3887bf464599d14f0e5fa5b1339ee27700cf20a1a9bb8185cef8745575b70631",
+      "rawSha256": "e940e807962a9790acffb8861ca770e915e8b05f8c8510b61991bdf203e6b5f4",
+      "archiveSha256": "d4a93b1cfb55e84694ff31117c54da8fea68b9f805b41bec53519a166594f335",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "/tmp/avx-profile-audit-cdxi1kct/558071-cpuprofile.pb.gz"
+      ],
+      "stderr": "",
+      "totalCpuNs": 441610000000,
+      "inclusivePercent": {
+        "scanner": 1.4062181562917506,
+        "byte_search_compare": 0.7925545164285229,
+        "memory_copy_clear": 5.495799461062929,
+        "map_control_match": 2.6516609678222864,
+        "hashing": 1.759471026471321,
+        "slice_search": 0.02490885623061072
+      },
+      "exclusiveBucketsNs": {
+        "byte_search_compare": 3140000000,
+        "outside": 388930000000,
+        "hashing": 7520000000,
+        "memory_copy_clear": 24230000000,
+        "scanner": 5330000000,
+        "scanner+map_control_match": 250000000,
+        "byte_search_compare+memory_copy_clear": 10000000,
+        "scanner+byte_search_compare": 350000000,
+        "map_control_match": 11460000000,
+        "scanner+hashing": 250000000,
+        "scanner+memory_copy_clear": 30000000,
+        "slice_search": 110000000
+      }
+    },
+    {
+      "workload": "sentry",
+      "profile": "sentry/558119-cpuprofile.pb.gz",
+      "profileSha256": "719fc43f0f9fbbf2df23fd739aa65cdb4c4f16938e8353e4c85f4247371146d6",
+      "rawSha256": "53bbf24cc3d5abe4cf5017ad709966f9f8b2c4280f1c50bca72313d3660cfb4f",
+      "archiveSha256": "01f754f603cd2d6e75a2daea7f81584b9fe0efdf57ffc19a9b92278245f00eaf",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-raw",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "/tmp/avx-profile-audit-cdxi1kct/558119-cpuprofile.pb.gz"
+      ],
+      "stderr": "",
+      "totalCpuNs": 243670000000,
+      "inclusivePercent": {
+        "scanner": 0.8577174046866664,
+        "byte_search_compare": 1.465096236713588,
+        "memory_copy_clear": 4.895965855460253,
+        "map_control_match": 4.657939015882135,
+        "hashing": 3.295440554848771,
+        "slice_search": 0.057454754380925024
+      },
+      "exclusiveBucketsNs": {
+        "outside": 206830000000,
+        "byte_search_compare": 3430000000,
+        "memory_copy_clear": 11900000000,
+        "scanner": 1820000000,
+        "map_control_match": 11310000000,
+        "scanner+hashing": 60000000,
+        "hashing": 7970000000,
+        "scanner+memory_copy_clear": 30000000,
+        "slice_search": 140000000,
+        "scanner+byte_search_compare": 140000000,
+        "scanner+map_control_match": 40000000
+      }
+    }
+  ],
+  "assembly": [
+    {
+      "symbol": "runtime.memclrNoHeapPointers",
+      "command": [
+        "/usr/bin/objdump",
+        "-d",
+        "--disassemble=runtime.memclrNoHeapPointers",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go"
+      ],
+      "sha256": "e1a0a1956ef24ad86f7198c542d3af7e1112f64aef0b41044b4cd147818e7be3",
+      "vectorInstructionLines": [
+        "  491a65:\tc5 f9 ef c0          \tvpxor  %xmm0,%xmm0,%xmm0",
+        "  491a72:\tc5 fe 7f 07          \tvmovdqu %ymm0,(%rdi)",
+        "  491a76:\tc5 fe 7f 47 20       \tvmovdqu %ymm0,0x20(%rdi)",
+        "  491a7b:\tc5 fe 7f 47 40       \tvmovdqu %ymm0,0x40(%rdi)",
+        "  491a80:\tc5 fe 7f 47 60       \tvmovdqu %ymm0,0x60(%rdi)",
+        "  491a9c:\tc5 fe 7f 44 1f e0    \tvmovdqu %ymm0,-0x20(%rdi,%rbx,1)",
+        "  491aa2:\tc5 fe 7f 44 1f c0    \tvmovdqu %ymm0,-0x40(%rdi,%rbx,1)",
+        "  491aa8:\tc5 fe 7f 44 1f a0    \tvmovdqu %ymm0,-0x60(%rdi,%rbx,1)",
+        "  491aae:\tc5 fe 7f 44 1f 80    \tvmovdqu %ymm0,-0x80(%rdi,%rbx,1)",
+        "  491ac1:\tc5 f9 ef c0          \tvpxor  %xmm0,%xmm0,%xmm0",
+        "  491ae1:\tc5 fe 7f 07          \tvmovdqu %ymm0,(%rdi)",
+        "  491af6:\tc5 fd e7 07          \tvmovntdq %ymm0,(%rdi)",
+        "  491afa:\tc5 fd e7 47 20       \tvmovntdq %ymm0,0x20(%rdi)",
+        "  491aff:\tc5 fd e7 47 40       \tvmovntdq %ymm0,0x40(%rdi)",
+        "  491b04:\tc5 fd e7 47 60       \tvmovntdq %ymm0,0x60(%rdi)",
+        "  491b23:\tc5 fe 7f 44 1f e0    \tvmovdqu %ymm0,-0x20(%rdi,%rbx,1)",
+        "  491b29:\tc5 fe 7f 44 1f c0    \tvmovdqu %ymm0,-0x40(%rdi,%rbx,1)",
+        "  491b2f:\tc5 fe 7f 44 1f a0    \tvmovdqu %ymm0,-0x60(%rdi,%rbx,1)",
+        "  491b35:\tc5 fe 7f 44 1f 80    \tvmovdqu %ymm0,-0x80(%rdi,%rbx,1)"
+      ]
+    },
+    {
+      "symbol": "runtime.memmove",
+      "command": [
+        "/usr/bin/objdump",
+        "-d",
+        "--disassemble=runtime.memmove",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go"
+      ],
+      "sha256": "85bd318e88e9dd13d3380f65f9083459f5e67545d177cd9fc653c8c1ef5e31f6",
+      "vectorInstructionLines": [
+        "  492072:\tc5 fe 6f 26          \tvmovdqu (%rsi),%ymm4",
+        "  49207c:\tc5 fe 6f 06          \tvmovdqu (%rsi),%ymm0",
+        "  492080:\tc5 fe 6f 4e 20       \tvmovdqu 0x20(%rsi),%ymm1",
+        "  492085:\tc5 fe 6f 56 40       \tvmovdqu 0x40(%rsi),%ymm2",
+        "  49208a:\tc5 fe 6f 5e 60       \tvmovdqu 0x60(%rsi),%ymm3",
+        "  492092:\tc5 fd 7f 07          \tvmovdqa %ymm0,(%rdi)",
+        "  492096:\tc5 fd 7f 4f 20       \tvmovdqa %ymm1,0x20(%rdi)",
+        "  49209b:\tc5 fd 7f 57 40       \tvmovdqa %ymm2,0x40(%rdi)",
+        "  4920a0:\tc5 fd 7f 5f 60       \tvmovdqa %ymm3,0x60(%rdi)",
+        "  4920b3:\tc4 c1 7e 7f 22       \tvmovdqu %ymm4,(%r10)",
+        "  49211b:\tc5 fe 6f 26          \tvmovdqu (%rsi),%ymm4",
+        "  49214f:\tc5 fe 6f 06          \tvmovdqu (%rsi),%ymm0",
+        "  492153:\tc5 fe 6f 4e 20       \tvmovdqu 0x20(%rsi),%ymm1",
+        "  492158:\tc5 fe 6f 56 40       \tvmovdqu 0x40(%rsi),%ymm2",
+        "  49215d:\tc5 fe 6f 5e 60       \tvmovdqu 0x60(%rsi),%ymm3",
+        "  492169:\tc5 fd e7 07          \tvmovntdq %ymm0,(%rdi)",
+        "  49216d:\tc5 fd e7 4f 20       \tvmovntdq %ymm1,0x20(%rdi)",
+        "  492172:\tc5 fd e7 57 40       \tvmovntdq %ymm2,0x40(%rdi)",
+        "  492177:\tc5 fd e7 5f 60       \tvmovntdq %ymm3,0x60(%rdi)",
+        "  49218f:\tc4 c1 7e 7f 20       \tvmovdqu %ymm4,(%r8)",
+        "  492208:\tc5 fe 6f 66 e0       \tvmovdqu -0x20(%rsi),%ymm4",
+        "  492223:\tc5 fe 6f 46 e0       \tvmovdqu -0x20(%rsi),%ymm0",
+        "  492228:\tc5 fe 6f 4e c0       \tvmovdqu -0x40(%rsi),%ymm1",
+        "  49222d:\tc5 fe 6f 56 a0       \tvmovdqu -0x60(%rsi),%ymm2",
+        "  492232:\tc5 fe 6f 5e 80       \tvmovdqu -0x80(%rsi),%ymm3",
+        "  49223e:\tc5 fd 7f 47 e0       \tvmovdqa %ymm0,-0x20(%rdi)",
+        "  492243:\tc5 fd 7f 4f c0       \tvmovdqa %ymm1,-0x40(%rdi)",
+        "  492248:\tc5 fd 7f 57 a0       \tvmovdqa %ymm2,-0x60(%rdi)",
+        "  49224d:\tc5 fd 7f 5f 80       \tvmovdqa %ymm3,-0x80(%rdi)",
+        "  492262:\tc4 c1 7e 7f 22       \tvmovdqu %ymm4,(%r10)",
+        "  4922ac:\tc5 fe 6f 46 e0       \tvmovdqu -0x20(%rsi),%ymm0",
+        "  4922b1:\tc5 fe 6f 4e c0       \tvmovdqu -0x40(%rsi),%ymm1",
+        "  4922b6:\tc5 fe 6f 56 a0       \tvmovdqu -0x60(%rsi),%ymm2",
+        "  4922bb:\tc5 fe 6f 5e 80       \tvmovdqu -0x80(%rsi),%ymm3",
+        "  4922c7:\tc5 fd e7 47 e0       \tvmovntdq %ymm0,-0x20(%rdi)",
+        "  4922cc:\tc5 fd e7 4f c0       \tvmovntdq %ymm1,-0x40(%rdi)",
+        "  4922d1:\tc5 fd e7 57 a0       \tvmovntdq %ymm2,-0x60(%rdi)",
+        "  4922d6:\tc5 fd e7 5f 80       \tvmovntdq %ymm3,-0x80(%rdi)",
+        "  4922ee:\tc4 c1 7e 7f 22       \tvmovdqu %ymm4,(%r10)"
+      ]
+    },
+    {
+      "symbol": "memeqbody",
+      "command": [
+        "/usr/bin/objdump",
+        "-d",
+        "--disassemble=memeqbody",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go"
+      ],
+      "sha256": "8fe37606a90a569e80f011ee0a226cf479a73db02809f99e07d989831836b8b5",
+      "vectorInstructionLines": [
+        "  404530:\t66 0f 74 c1          \tpcmpeqb %xmm1,%xmm0",
+        "  404534:\t66 0f 74 d3          \tpcmpeqb %xmm3,%xmm2",
+        "  404538:\t66 0f 74 e5          \tpcmpeqb %xmm5,%xmm4",
+        "  40453c:\t66 0f 74 f7          \tpcmpeqb %xmm7,%xmm6",
+        "  40454c:\t66 0f d7 d0          \tpmovmskb %xmm0,%edx",
+        "  404576:\tc5 fe 6f 06          \tvmovdqu (%rsi),%ymm0",
+        "  40457a:\tc5 fe 6f 0f          \tvmovdqu (%rdi),%ymm1",
+        "  40457e:\tc5 fe 6f 56 20       \tvmovdqu 0x20(%rsi),%ymm2",
+        "  404583:\tc5 fe 6f 5f 20       \tvmovdqu 0x20(%rdi),%ymm3",
+        "  404588:\tc5 fd 74 e1          \tvpcmpeqb %ymm1,%ymm0,%ymm4",
+        "  40458c:\tc5 e5 74 ea          \tvpcmpeqb %ymm2,%ymm3,%ymm5",
+        "  404590:\tc5 d5 db f4          \tvpand  %ymm4,%ymm5,%ymm6",
+        "  404594:\tc5 fd d7 d6          \tvpmovmskb %ymm6,%edx"
+      ]
+    },
+    {
+      "symbol": "indexbytebody",
+      "command": [
+        "/usr/bin/objdump",
+        "-d",
+        "--disassemble=indexbytebody",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go"
+      ],
+      "sha256": "f8b19f9208be8038f3ac428171e11598c517d93717480f41d65ec7dd491a6ed3",
+      "vectorInstructionLines": [
+        "  404a54:\t66 0f 74 c8          \tpcmpeqb %xmm0,%xmm1",
+        "  404a58:\t66 0f d7 d1          \tpmovmskb %xmm1,%edx",
+        "  404a71:\t66 0f 74 c8          \tpcmpeqb %xmm0,%xmm1",
+        "  404a75:\t66 0f d7 d1          \tpmovmskb %xmm1,%edx",
+        "  404aa3:\t66 0f 74 c8          \tpcmpeqb %xmm0,%xmm1",
+        "  404aa7:\t66 0f d7 d1          \tpmovmskb %xmm1,%edx",
+        "  404abe:\t66 0f 74 c8          \tpcmpeqb %xmm0,%xmm1",
+        "  404ac2:\t66 0f d7 d1          \tpmovmskb %xmm1,%edx",
+        "  404aed:\tc4 e2 7d 78 c8       \tvpbroadcastb %xmm0,%ymm1",
+        "  404b00:\tc5 fe 6f 17          \tvmovdqu (%rdi),%ymm2",
+        "  404b04:\tc5 ed 74 d9          \tvpcmpeqb %ymm1,%ymm2,%ymm3",
+        "  404b08:\tc4 e2 7d 17 db       \tvptest %ymm3,%ymm3",
+        "  404b1b:\tc5 fe 6f 17          \tvmovdqu (%rdi),%ymm2",
+        "  404b1f:\tc5 ed 74 d9          \tvpcmpeqb %ymm1,%ymm2,%ymm3",
+        "  404b23:\tc4 e2 7d 17 db       \tvptest %ymm3,%ymm3",
+        "  404b35:\tc5 fd d7 d3          \tvpmovmskb %ymm3,%edx"
+      ]
+    }
+  ],
+  "runtimeSources": {
+    "runtime/memclr_amd64.s": "826fb9aef6f97dda8e5a994e21ec692479712f69fefcf1469b756bdff29739ef",
+    "runtime/memmove_amd64.s": "1d239c1a965baf43cbdfb82a5144d33aadd95d20ff95becf8347a93ddf08985d",
+    "internal/bytealg/equal_amd64.s": "d5c88b17e90ab21582c77774684d90ca244f3224f09d05625de4d9c2d56b2b21",
+    "internal/bytealg/indexbyte_amd64.s": "362335dc6a582b92f6def9f118dbdbb492194862b322b94dcedde6d90717549f",
+    "internal/runtime/maps/group.go": "cd99fe64dc1c3aa3a80516a070e6826afc424ddb11e883cd9dd761a2d5570aef",
+    "internal/cpu/cpu_x86.go": "d1071bde37c203929b294beb870c7a3d6d6cb0f3ee2ae45eba3a2b15beb84a50"
+  }
+}

@@ -1712,3 +1712,21 @@ Prepared separate project-inlining-scaling experiment: same retainedbinary at
 1/2/4/8checkers, fourbalancedrounds afterwarmup, GNUtimeCPU/RSS+monotonicwall,
 exactinput andprovenanceguards. Three parser/order/summary tests passed; no scaling
 workloadcaptureyet. Runonlyafter scratchbenchmark finishes, neverconcurrently.
+
+Scratch screen57096 terminal0; recorder and independent28pair recomputation pass.
+Rejected under frozen policy: ratio-of-medians aggregate1.009437689 <1.01;
+TypeORM0.948185568 andSentry0.963918597 <0.98. tRPC1.023565390,VS1.109861460.
+Paired medians0.994272825/1.023565390/1.042489279/1.061220007; aggregate1.030088520.
+Wide pairedranges preserved; no causalclaim about small differences. RSSallpass.
+Four PERFrows plus exactexecution/rawsamples/readback archived. No confirmation,
+rescue runs orpromotion. Retainedproduction9017fa9 unchanged;10xunmet.
+User SIMD/AVX suggestion: launched offline avx-opportunity-audit66170 on current
+normalprofiles, exactruntimebinary/source inspections. HostadvertisesAVX2/AVX512;
+runtimealreadycontainsvectorcopy/clear/equality. No newcompilerimplementationyet.
+
+AVX audit66170 terminal0 andrawbudget/assembly readbackpassed: scannerCPU%
+TypeORM1.157/tRPC1.369/VS1.406/Sentry0.858. Memorycopyclear12.523/8.127/5.496/4.896
+is NOTunvectorizedbudget: shippedmemclr/memmove/memeqbody/indexbytebody allhave
+YMMpaths. HostadvertisesAVX2/AVX512; preserveportableGOAMD64v1+runtimechecks.
+No scannerrewrite justifiedas10xstrategy; nextretainedproductionworker scaling
+measureswall/CPU/RSS andduplication tradeoffs. Auditnotperformance;noPERFrows.
