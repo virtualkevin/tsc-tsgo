@@ -1,0 +1,210 @@
+{
+  "scope": "Isolated grouping microbenchmark, five fixed-order observations; not compiler workload speedup or memory retention measurement.",
+  "results": [
+    {
+      "width": 8,
+      "reuse": false,
+      "samples": [
+        [
+          1881.0,
+          303,
+          12
+        ],
+        [
+          1670.0,
+          304,
+          12
+        ],
+        [
+          1747.0,
+          304,
+          12
+        ],
+        [
+          2221.0,
+          304,
+          12
+        ],
+        [
+          1853.0,
+          304,
+          11
+        ]
+      ],
+      "medianNs": 1853.0,
+      "medianBytes": 304,
+      "medianAllocs": 12
+    },
+    {
+      "width": 8,
+      "reuse": true,
+      "samples": [
+        [
+          997.5,
+          0,
+          0
+        ],
+        [
+          1054.0,
+          0,
+          0
+        ],
+        [
+          1063.0,
+          0,
+          0
+        ],
+        [
+          1317.0,
+          0,
+          0
+        ],
+        [
+          1090.0,
+          0,
+          0
+        ]
+      ],
+      "medianNs": 1063.0,
+      "medianBytes": 0,
+      "medianAllocs": 0
+    },
+    {
+      "width": 64,
+      "reuse": false,
+      "samples": [
+        [
+          29804.0,
+          12984,
+          80
+        ],
+        [
+          29103.0,
+          12984,
+          80
+        ],
+        [
+          25077.0,
+          12984,
+          80
+        ],
+        [
+          34984.0,
+          12984,
+          80
+        ],
+        [
+          74964.0,
+          12984,
+          80
+        ]
+      ],
+      "medianNs": 29804.0,
+      "medianBytes": 12984,
+      "medianAllocs": 80
+    },
+    {
+      "width": 64,
+      "reuse": true,
+      "samples": [
+        [
+          11937.0,
+          0,
+          0
+        ],
+        [
+          12584.0,
+          0,
+          0
+        ],
+        [
+          10312.0,
+          0,
+          0
+        ],
+        [
+          11269.0,
+          0,
+          0
+        ],
+        [
+          10783.0,
+          0,
+          0
+        ]
+      ],
+      "medianNs": 11269.0,
+      "medianBytes": 0,
+      "medianAllocs": 0
+    },
+    {
+      "width": 512,
+      "reuse": false,
+      "samples": [
+        [
+          551671.0,
+          115098,
+          537
+        ],
+        [
+          399494.0,
+          115097,
+          537
+        ],
+        [
+          354114.0,
+          115097,
+          537
+        ],
+        [
+          285871.0,
+          115097,
+          537
+        ],
+        [
+          283185.0,
+          115096,
+          537
+        ]
+      ],
+      "medianNs": 354114.0,
+      "medianBytes": 115097,
+      "medianAllocs": 537
+    },
+    {
+      "width": 512,
+      "reuse": true,
+      "samples": [
+        [
+          91428.0,
+          40,
+          0
+        ],
+        [
+          73175.0,
+          38,
+          0
+        ],
+        [
+          82926.0,
+          53,
+          0
+        ],
+        [
+          66030.0,
+          37,
+          0
+        ],
+        [
+          69511.0,
+          34,
+          0
+        ]
+      ],
+      "medianNs": 73175.0,
+      "medianBytes": 38,
+      "medianAllocs": 0
+    }
+  ],
+  "stdoutSha256": "bd980c03c76ac45409d3db894bcd4d357d02817d727f04e627ebfdb078de40ac"
+}

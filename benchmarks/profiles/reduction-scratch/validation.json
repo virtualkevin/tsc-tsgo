@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "sources": {
+    "scratch_test.go": "9a2faddbd68275ddfbd72e15ee865307329ef2f6f3cf02c7b26e8cc8384940bd",
+    "scratch.go": "a6b52aa57e07a26c825b495a1e0791c3deb499d9b0de7e1d0ad19440f068c01f",
+    "go.mod": "31d7b712dc8f0155afaa05fa6c300beb99735bcd65c073423782e1c1f8c460f6"
+  },
+  "runs": [
+    {
+      "mode": "normal",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "./..."
+      ],
+      "passed": [
+        "TestHistories",
+        "TestBoundsAndLifetime"
+      ],
+      "stdoutSha256": "3284b4709359fd20abe9db9af59957e000c6a3964e2ea03a801db1ea9063862c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "race",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-race",
+        "./..."
+      ],
+      "passed": [
+        "TestHistories",
+        "TestBoundsAndLifetime"
+      ],
+      "stdoutSha256": "391484163a89066a75391f4079817f9c69895c09c72d837afb42b1a1ab2f96bf",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "checkptr",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "test",
+        "-json",
+        "-count=1",
+        "-gcflags=all=-d=checkptr=2",
+        "./..."
+      ],
+      "passed": [
+        "TestHistories",
+        "TestBoundsAndLifetime"
+      ],
+      "stdoutSha256": "9b1c3636bd822319678aa6c94bc771443bb6c1d051d7ebefcef875dee862d2c5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

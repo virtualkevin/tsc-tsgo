@@ -1,0 +1,36 @@
+goos: linux
+goarch: amd64
+pkg: reduction-scratch
+cpu: Intel Xeon Processor (Cascadelake)
+BenchmarkGroups/width8/reusefalse-8         	  136678	      1881 ns/op	     303 B/op	      12 allocs/op
+BenchmarkGroups/width8/reusefalse-8         	  144848	      1670 ns/op	     304 B/op	      12 allocs/op
+BenchmarkGroups/width8/reusefalse-8         	  162160	      1747 ns/op	     304 B/op	      12 allocs/op
+BenchmarkGroups/width8/reusefalse-8         	  125205	      2221 ns/op	     304 B/op	      12 allocs/op
+BenchmarkGroups/width8/reusefalse-8         	  119842	      1853 ns/op	     304 B/op	      11 allocs/op
+BenchmarkGroups/width8/reusetrue-8          	  262857	       997.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width8/reusetrue-8          	  272541	      1054 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width8/reusetrue-8          	  205255	      1063 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width8/reusetrue-8          	  226549	      1317 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width8/reusetrue-8          	  232970	      1090 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width64/reusefalse-8        	    8588	     29804 ns/op	   12984 B/op	      80 allocs/op
+BenchmarkGroups/width64/reusefalse-8        	   10000	     29103 ns/op	   12984 B/op	      80 allocs/op
+BenchmarkGroups/width64/reusefalse-8        	    9253	     25077 ns/op	   12984 B/op	      80 allocs/op
+BenchmarkGroups/width64/reusefalse-8        	   10000	     34984 ns/op	   12984 B/op	      80 allocs/op
+BenchmarkGroups/width64/reusefalse-8        	   10000	     74964 ns/op	   12984 B/op	      80 allocs/op
+BenchmarkGroups/width64/reusetrue-8         	   23247	     11937 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width64/reusetrue-8         	   17918	     12584 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width64/reusetrue-8         	   30039	     10312 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width64/reusetrue-8         	   22797	     11269 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width64/reusetrue-8         	   27433	     10783 ns/op	       0 B/op	       0 allocs/op
+BenchmarkGroups/width512/reusefalse-8       	     538	    551671 ns/op	  115098 B/op	     537 allocs/op
+BenchmarkGroups/width512/reusefalse-8       	     730	    399494 ns/op	  115097 B/op	     537 allocs/op
+BenchmarkGroups/width512/reusefalse-8       	     625	    354114 ns/op	  115097 B/op	     537 allocs/op
+BenchmarkGroups/width512/reusefalse-8       	     997	    285871 ns/op	  115097 B/op	     537 allocs/op
+BenchmarkGroups/width512/reusefalse-8       	    1069	    283185 ns/op	  115096 B/op	     537 allocs/op
+BenchmarkGroups/width512/reusetrue-8        	    3648	     91428 ns/op	      40 B/op	       0 allocs/op
+BenchmarkGroups/width512/reusetrue-8        	    3854	     73175 ns/op	      38 B/op	       0 allocs/op
+BenchmarkGroups/width512/reusetrue-8        	    2743	     82926 ns/op	      53 B/op	       0 allocs/op
+BenchmarkGroups/width512/reusetrue-8        	    3903	     66030 ns/op	      37 B/op	       0 allocs/op
+BenchmarkGroups/width512/reusetrue-8        	    4221	     69511 ns/op	      34 B/op	       0 allocs/op
+PASS
+ok  	reduction-scratch	11.240s

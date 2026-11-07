@@ -1627,3 +1627,14 @@ No bitmap loop; fixed pointer-bearing arraystillrequiresheader. Initialinteracti
 pprof lackedsource_path; correctedcontrollerrejects missing-source output and
 recordsGo/runtime/profile hashes. Nohardwarestallcause/removablewallbudgetclaim.
 Do not implement fixed-array replacement onthis premise; production/PERFunchanged.
+
+Implemented isolated reduction-scratch prototype after allocation review:
+reuse cleared map[string][]T +names+pergroup buffers; single idle frame removed
+onAcquire prevents recursivealiasing; clear full pointercapacities/map/names on
+Release, discard>1024nameframes/>64capacitygroups. Differentfromrejectedgroup
+layout/smallpair changes. Validation87419terminal0 normal/race/checkptr2each,
+4096seededmodelhistories+recursiveownership/GC/clearing/bounds. Benchmark93646
+terminal0 fivefixedorder200ms observationspercase: baseline/reuse mediansns
+8names1853/1063,64names29804/11269,512names354114/73175; allocs12/0,80/0,537/0.
+Syntheticwarmreuse only, notcompiler/RSS claim. Prototype notintegrated; next
+stagedchecker experiment must preserve exact semantic callorder andcleanup.
