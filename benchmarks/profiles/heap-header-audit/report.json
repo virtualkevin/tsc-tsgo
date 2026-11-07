@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "project": "sentry",
+      "profileSha256": "719fc43f0f9fbbf2df23fd739aa65cdb4c4f16938e8353e4c85f4247371146d6",
+      "outputSha256": "e27e9dbe3acfb1d707811fba10f0e8a1925b47cf35321f81b619546040b0d20b",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-source_path=/tmp/tsc-toolchains/go/src",
+        "-list=heapSetTypeSmallHeader",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "/tmp/tsc-heap-header-audit/sentry.pb.gz"
+      ]
+    },
+    {
+      "project": "trpc",
+      "profileSha256": "1f9a1a34c27573542e523544e5151b24daf7e261fd1006c265066b602aae4714",
+      "outputSha256": "bfa94a4dd95027854fca180af7eb43e05e9a0a02bccf413ce3ff7a69305130d1",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-source_path=/tmp/tsc-toolchains/go/src",
+        "-list=heapSetTypeSmallHeader",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "/tmp/tsc-heap-header-audit/trpc.pb.gz"
+      ]
+    },
+    {
+      "project": "typeorm",
+      "profileSha256": "3c469b26e3e225236e7d90e193c90dfede753a6e9e8e506526fe0489dee42ac3",
+      "outputSha256": "b68fb2d96386045d0da09858e7c2b6bc3a0749e8562064f629d809f2496fa1c2",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-source_path=/tmp/tsc-toolchains/go/src",
+        "-list=heapSetTypeSmallHeader",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "/tmp/tsc-heap-header-audit/typeorm.pb.gz"
+      ]
+    },
+    {
+      "project": "vscode",
+      "profileSha256": "3887bf464599d14f0e5fa5b1339ee27700cf20a1a9bb8185cef8745575b70631",
+      "outputSha256": "a6d196476ffb1e6f2c8203aff42c12b68c86c9f70d70eac97e8877cb29f0422e",
+      "command": [
+        "/tmp/tsc-toolchains/go/bin/go",
+        "tool",
+        "pprof",
+        "-source_path=/tmp/tsc-toolchains/go/src",
+        "-list=heapSetTypeSmallHeader",
+        "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+        "/tmp/tsc-heap-header-audit/vscode.pb.gz"
+      ]
+    }
+  ],
+  "toolchainSha256": "e90c4e12df236ea0c2e7536fd68da8a47fc0b585c19588bf6c1a70cfc296a0f9",
+  "runtimeSources": {
+    "mbitmap.go": "e107a955bb9db0f9c5d0d1f128978723f1e5b1c02c46a020f4310f47e8739bc2",
+    "malloc.go": "67e74184452cc6cb5bedee04fbbd6f395822e1cffbb4f91ad4a484796d7f021f"
+  },
+  "binarySha256": "9017fa9abe7add6cadf8cefffca2aea161938b63aeac46ed8d226d7dca916d2a"
+}

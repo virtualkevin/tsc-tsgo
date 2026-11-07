@@ -1,0 +1,30 @@
+Total: 441.61s
+ROUTINE ======================== runtime.heapSetTypeSmallHeader in runtime/mbitmap.go
+    44.25s     44.27s (flat, cum) 10.02% of Total
+         .          .    716:func heapSetTypeSmallHeader(x, dataSize uintptr, typ *_type, header **_type, span *mspan) uintptr {
+         .          .    717:	if header == nil {
+         .          .    718:		// This nil check and throw is almost pointless. Normally we would
+         .          .    719:		// expect header to never be nil. However, this is called on potentially
+         .          .    720:		// freshly-allocated virtual memory. As of 2025, the compiler-inserted
+         .          .    721:		// nil check is not a branch but a memory read that we expect to fault
+         .          .    722:		// if the pointer really is nil.
+         .          .    723:		//
+         .          .    724:		// However, this causes a read of the page, and operating systems may
+         .          .    725:		// take it as a hint to back the accessed memory with a read-only zero
+         .          .    726:		// page. However, we immediately write to this memory, which can then
+         .          .    727:		// force operating systems to have to update the page table and flush
+         .          .    728:		// the TLB.
+         .          .    729:		//
+         .          .    730:		// This nil check is thus an explicit branch instead of what the compiler
+         .          .    731:		// would insert circa 2025, which is a memory read instruction.
+         .          .    732:		//
+         .          .    733:		// See go.dev/issue/74375 for details of a similar issue in
+         .          .    734:		// spanInlineMarkBits.
+         .          .    735:		throw("runtime: pointer to heap type header nil?")
+         .          .    736:	}
+    44.25s     44.27s    737:	*header = typ
+         .          .    738:	if doubleCheckHeapSetType {
+         .          .    739:		doubleCheckHeapType(x, dataSize, typ, header, span)
+         .          .    740:	}
+         .          .    741:	return span.elemsize
+         .          .    742:}

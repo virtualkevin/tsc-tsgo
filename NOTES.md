@@ -1618,3 +1618,12 @@ VSCode lostProfileEvent1.62% is retained as sampling limitation. Alloc-space
 summaries remain sampled cumulative/non-final-GC; no runtime/RSS savings claim.
 Existing ast-arena-audit already establishes noncopying typed pages and retention
 tradeoffs; do not infer a new slab-size tuning from these refreshed profiles.
+
+Heap-header audit after fresh profiles: proposed fixed-array pages to avoid
+per-slice bitmap setup; pinnedruntime inspection disproves that mechanism.
+Four hashverified source-attribution captures16853terminal0 place allhelperflat
+samples onmbitmap.go737 '*header=typ': TypeORM3.69CPU s,tRPC1.70,VS44.25,Sentry10.19.
+No bitmap loop; fixed pointer-bearing arraystillrequiresheader. Initialinteractive
+pprof lackedsource_path; correctedcontrollerrejects missing-source output and
+recordsGo/runtime/profile hashes. Nohardwarestallcause/removablewallbudgetclaim.
+Do not implement fixed-array replacement onthis premise; production/PERFunchanged.
