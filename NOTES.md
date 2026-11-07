@@ -1602,3 +1602,9 @@ Native/Go median ratios TypeORM0.459967,tRPC0.422494,VSCode0.428693,Sentry0.4234
 paired medians0.451852/0.435729/0.431122/0.438098. Go slower in every pair.
 Target remains unmet: current Go needs roughly21.7–23.7x acceleration to reach
 10x native in this window. No historical-ratio multiplication or rescue run.
+
+After native comparison, prepare refreshed production CPU/allocation profiles:
+project-inlining-normal controller pins9017fa9/sidecar5164f588/sourceb50f489 and
+all physical inputs from completed native milestone. Existing normal profiles
+predate adopted inlining; refresh before selecting next architecture experiment.
+Four sequential diagnostic captures, decode after all complete; no PERF claims.
