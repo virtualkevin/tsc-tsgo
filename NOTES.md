@@ -1638,3 +1638,12 @@ terminal0 fivefixedorder200ms observationspercase: baseline/reuse mediansns
 8names1853/1063,64names29804/11269,512names354114/73175; allocs12/0,80/0,537/0.
 Syntheticwarmreuse only, notcompiler/RSS claim. Prototype notintegrated; next
 stagedchecker experiment must preserve exact semantic callorder andcleanup.
+
+Staged reduction-scratch-candidate three-file overlay after prototype9b7149a:
+Checker idleframepointer, acquire/release helper, originalmap/symbolorder with
+reusedpergroup buffers anddeferredcleanup. Exactinverse sourceauditpassed;
+contractcovers recursion, skippedappend aliasing, referenceclearing andretention.
+Focused81942 live normal/race/checkptr using adoptedproject-l4 (combinedproject
+checkptrrule), frozenoriginalalgorithm widths0..1025/duplicates/optional/conflict/
+reuse/singleton plusrecursiveownership/unwind andexistinglazy/lifetime tests.
+Production source/defaultbinary unchanged; fullvalidation/workloadperf pending.
