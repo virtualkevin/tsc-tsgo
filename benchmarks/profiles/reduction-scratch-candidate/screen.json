@@ -1,0 +1,81 @@
+{
+  "name": "reduction-scratch-candidate",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+      "sha256": "9017fa9abe7add6cadf8cefffca2aea161938b63aeac46ed8d226d7dca916d2a",
+      "source": "b50f489f20634bf3570a18d0fcc5cf811036fbcefe2a5ea481b193f848768445",
+      "sidecarSha256": "5164f58805236585d39258604fb12e274475039d04fd3efd5b8572d84c2cf287",
+      "revisionLabel": "Retained project-inlining Go"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go-reduction-scratch",
+      "sha256": "b8227fa5e715e78a2706e2b4e8703971d675d5f1266a915508a53d7344692913",
+      "source": "a8763811645136ee814c31d1a12111209c124a99ea8f5c3920eee7d65016d562",
+      "sidecarSha256": "26c455cb3ea0f7b543bfbd57509ec1fe9ee2668bc808e3964876c11ab2206b0c",
+      "revisionLabel": "Reduction scratch reuse"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "b50f489f20634bf3570a18d0fcc5cf811036fbcefe2a5ea481b193f848768445",
+  "sourceDifference": [
+    {
+      "path": "packages/tsc-go/internal/checker/checker.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "d9adabab3d6a26d44b42411f96522083fccca26c4eacda2131566549b4c1b760",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/checker.go",
+        "sha256": "ff15cc1dac52e7084ff4c930c1da07b046212fa7399c9d45acb41667072468cf",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/lazy_properties.go",
+      "before": {
+        "path": "packages/tsc-go/internal/checker/lazy_properties.go",
+        "sha256": "9ae90d40cfedc29c093844a13b6ec66cb3624299b726e9337b67c7280f916fb9",
+        "executable": false
+      },
+      "after": {
+        "path": "packages/tsc-go/internal/checker/lazy_properties.go",
+        "sha256": "d452809666c2a1bc4a46e442489651a1d05acc91547529ef71e43b05cdc772b7",
+        "executable": false
+      }
+    },
+    {
+      "path": "packages/tsc-go/internal/checker/reduction_scratch_test.go",
+      "before": null,
+      "after": {
+        "path": "packages/tsc-go/internal/checker/reduction_scratch_test.go",
+        "sha256": "56eb9dd1295fb2c5e979126b7a5b2bd7c827676333852e21b84bf7c9eec04116",
+        "executable": false
+      }
+    }
+  ],
+  "sourceCounts": {
+    "baseline": 5154,
+    "candidate": 5155
+  },
+  "comparisonPolicySha256": "04fb6166b6ac5c0e27c7e15baf4de83bc1c22b9ee2f3d8b0e909e084a338a2a3",
+  "methodology": "Fresh-process/default-runtime matched GNU-time RSS screen of reduction scratch reuse on pinned physical inputs; no timing during validation/build/Git work."
+}

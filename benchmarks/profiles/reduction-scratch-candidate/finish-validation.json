@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "steps": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/reduction-scratch-candidate/verify-cli.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/reduction-scratch-candidate/build-production.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/dev/tssss/tsc-tsgo/benchmarks/profiles/reduction-scratch-candidate/prepare-screen.py"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "supervisor": "/tmp/tsc-reduction-scratch-cli-supervisor.jsonl"
+}

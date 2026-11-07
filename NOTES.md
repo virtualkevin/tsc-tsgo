@@ -1668,3 +1668,47 @@ verify-focused readback confirms444rawrecords, exactsource/log/controllerhashes,
 Exactinverse sourceauditpassed again. Proceed to frozenHEAD fullroot/services/
 14915configuration conformance and normal/API/race/checkptrCLI validation.
 No productionchange orspeedclaim; workloadmeasurement remains gatedonfullpass.
+
+Scratch full41152 terminal0: root21243 records/14packages, services219/7packages,
+conformance14915 configurations (12789full/8partial/2118unsupported/0failed).
+Independent full39865 readback passed. CLI44387 remains live: normal80, API/emit12,
+race80 passed; checkptr build still running. Host process inspection confirmed
+supervisor564866/controller564867/go573388/compiler573438 live; sandbox PID
+visibility alone incorrectly appears empty, so do not restart on that evidence.
+Prepared normal production-build/restore and screen controllers against current
+project-inlining baseline9017fa9/sourceb50f489; Python/JS syntax checks passed.
+Not executed: require final CLI readback before build and timing. Keep HEADccba49c
+until frozen validation and provenance build complete. No PERF change or speed claim.
+
+Parallelism follow-up: earlier symbol-resolution census already compares one/four
+checkers: misses TypeORM137355/198484, tRPC27535/42671, VS2284046/3055256,
+Sentry1205042/1996474. These are actual workload amplification, not proof of
+equivalent immutable queries or removable cost. Existing round-robin checker pool
+already has balanced/dependency experimental assignments; review earlier outcomes
+before reinventing a scheduler. Next architectural work should measure current
+normal-build scaling and target proven shared work, rather than infer 10x from
+adding goroutines. Current scratch candidate is a bounded allocation experiment,
+not a proposed complete route to the native-relative 10x objective.
+
+Continuation: previous turn progressed by preparing build/screen controllers and
+verified live CLI wait. Full validation rawlogs now losslessly verified against
+gzip and moved to /tmp/tsc-reduction-scratch-full-raw-archive; tracked archive
+manifest plus full supervisor terminal0 avoid committing122MiB conformance raw.
+Queued dependent finish-validation controller61538 under signal supervisor: waits
+for ORIGINAL CLI supervisor terminal0, then verify-cli, guarded normal production
+build/restore, and screen configuration. Does not restart original44387, benchmark,
+or changeHEAD. Keep ccba49c, staged sources and production unchanged while both
+jobs remain active; build may temporarily apply overlay and restores itself.
+Finish report and supervisor are authoritative; only commit after it terminates.
+
+Scratch CLI44387 anddependent61538 terminal0. CLI normal80/race80/checkptr80,
+API/emit12; independent archive/hash/source/mode readback passed. Guarded normal
+production build candidateb8227fa5 is byte-identical to validated overlay;
+sidecar26c455cb/sourcea8763811 (5155files), exact3file delta. Retainedproduction
+9017fa9/sourceb50f489 andsidecar5164f588 restored andbenchmarkpreflight passed.
+Ready for frozen28pair screen (9small/5large) underunchanged policy. No promotion
+or performanceclaim; native-relative10x remainsunmet.
+Prepared separate project-inlining-scaling experiment: same retainedbinary at
+1/2/4/8checkers, fourbalancedrounds afterwarmup, GNUtimeCPU/RSS+monotonicwall,
+exactinput andprovenanceguards. Three parser/order/summary tests passed; no scaling
+workloadcaptureyet. Runonlyafter scratchbenchmark finishes, neverconcurrently.
