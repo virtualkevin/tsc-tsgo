@@ -1647,3 +1647,11 @@ Focused81942 live normal/race/checkptr using adoptedproject-l4 (combinedproject
 checkptrrule), frozenoriginalalgorithm widths0..1025/duplicates/optional/conflict/
 reuse/singleton plusrecursiveownership/unwind andexistinglazy/lifetime tests.
 Production source/defaultbinary unchanged; fullvalidation/workloadperf pending.
+
+Scratch focused81942 remainslive ininitialbuild (no testoutput yet). Prepared
+fullroot/services/pinnedconformance andnormal/API/race/checkptrCLI controllers;
+syntaxchecked only, notexecuted. Fullroot expects21243records=21175retained+68
+newreference/lifecyclecases; services219; conformance14915 configurations.
+Independentfocusedverifier checks64reference subcases plus exactflags/modes/
+source/rawlogs. CLI freeze must be capturedaftercommit; broaderchecks gatedon
+focusedpass. No productionchanges orworkloadtiming.
