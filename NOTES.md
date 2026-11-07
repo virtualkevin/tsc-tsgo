@@ -1594,3 +1594,11 @@ Artifact9017fa9 versus validated861bb97: all ELF sections identical except build
 IDs and explicitly normalized VCS revision/time; build metadata equal and only
 build.mjs differs in5154-file manifest. New manifestb50f489. Prepared fresh direct
 original-native comparison; no10x claim. Retained node-pointer artifact preserved.
+
+Native inlining milestone70380 terminal0; recorder91045 terminal0. All28pairs,
+input/diagnostic/provenance checks passed; archived frozen execution files and
+independently recomputed timings/RSS/pair summaries. Four measured PERF rows.
+Native/Go median ratios TypeORM0.459967,tRPC0.422494,VSCode0.428693,Sentry0.423453;
+paired medians0.451852/0.435729/0.431122/0.438098. Go slower in every pair.
+Target remains unmet: current Go needs roughly21.7–23.7x acceleration to reach
+10x native in this window. No historical-ratio multiplication or rescue run.

@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "pairs": 28,
+  "results": [
+    {
+      "name": "typeorm",
+      "baselineMedianMs": 2551.947983,
+      "candidateMedianMs": 5548.107934,
+      "baselineOverCandidate": 0.45996725610926087,
+      "pairedMedian": 0.4518524493536729,
+      "pairedMin": 0.3128076411575365,
+      "pairedMax": 0.5858908035663409,
+      "baselineMedianRssMiB": 529.6875,
+      "candidateMedianRssMiB": 876.125
+    },
+    {
+      "name": "trpc",
+      "baselineMedianMs": 739.264135,
+      "candidateMedianMs": 1749.763329,
+      "baselineOverCandidate": 0.4224937868725902,
+      "pairedMedian": 0.43572882078613956,
+      "pairedMin": 0.27720624684110273,
+      "pairedMax": 0.6373529069325947,
+      "baselineMedianRssMiB": 217.53125,
+      "candidateMedianRssMiB": 235.5
+    },
+    {
+      "name": "vscode",
+      "baselineMedianMs": 35438.118642,
+      "candidateMedianMs": 82665.450435,
+      "baselineOverCandidate": 0.42869322619689904,
+      "pairedMedian": 0.4311215111927445,
+      "pairedMin": 0.42105422755691174,
+      "pairedMax": 0.5149080946655274,
+      "baselineMedianRssMiB": 6728.72265625,
+      "candidateMedianRssMiB": 7782.0390625
+    },
+    {
+      "name": "sentry",
+      "baselineMedianMs": 24385.011271,
+      "candidateMedianMs": 57586.048517,
+      "baselineOverCandidate": 0.42345345615789715,
+      "pairedMedian": 0.43809826620660886,
+      "pairedMin": 0.3973690669684333,
+      "pairedMax": 0.48119506196111217,
+      "baselineMedianRssMiB": 4114.75,
+      "candidateMedianRssMiB": 5217.84765625
+    }
+  ],
+  "scope": "Independent medians, pair ratios, RSS, raw order and recorded hashes; full input/diagnostic/provenance checks performed by frozen controller and recorder."
+}

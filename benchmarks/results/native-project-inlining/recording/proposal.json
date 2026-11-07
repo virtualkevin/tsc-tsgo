@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "experiment": "native-project-inlining",
+  "recorderSha256": "af47b3d51bbbe70225d3f1af62ad923d35eeda2fccd3c414c0b92faeaa92d33d",
+  "summarySha256": "261d9dddd777fa333ca2772c9586b341e2af4a5c85669e6a07ecf816eb8f4b42",
+  "configSha256": "05f4084ed52f14cf964ca67371ce88095beb796ce0f75f3290e09109c33eb192",
+  "ratioMeaning": "original native time / retained Go time",
+  "results": [
+    {
+      "name": "typeorm",
+      "runs": 9,
+      "files": 3572,
+      "baselineMedianMs": 2551.947983,
+      "candidateMedianMs": 5548.107934,
+      "baselineOverCandidate": 0.45996725610926087,
+      "baselineMedianRssMiB": 529.6875,
+      "candidateMedianRssMiB": 876.125,
+      "pairedRatios": [
+        0.5858908035663409,
+        0.43814606224143177,
+        0.3128076411575365,
+        0.47172644911273276,
+        0.42731170930750784,
+        0.43485939723315775,
+        0.46053926611956736,
+        0.48767711006692743,
+        0.4518524493536729
+      ],
+      "pairedMedian": 0.4518524493536729,
+      "pairedMin": 0.3128076411575365,
+      "pairedMax": 0.5858908035663409,
+      "goFasterPairs": 0
+    },
+    {
+      "name": "trpc",
+      "runs": 9,
+      "files": 942,
+      "baselineMedianMs": 739.264135,
+      "candidateMedianMs": 1749.763329,
+      "baselineOverCandidate": 0.4224937868725902,
+      "baselineMedianRssMiB": 217.53125,
+      "candidateMedianRssMiB": 235.5,
+      "pairedRatios": [
+        0.4470926258824063,
+        0.4625085615891696,
+        0.29611085993923636,
+        0.27720624684110273,
+        0.43572882078613956,
+        0.3841233534031228,
+        0.5323676262421955,
+        0.6373529069325947,
+        0.37780399836814327
+      ],
+      "pairedMedian": 0.43572882078613956,
+      "pairedMin": 0.27720624684110273,
+      "pairedMax": 0.6373529069325947,
+      "goFasterPairs": 0
+    },
+    {
+      "name": "vscode",
+      "runs": 5,
+      "files": 11563,
+      "baselineMedianMs": 35438.118642,
+      "candidateMedianMs": 82665.450435,
+      "baselineOverCandidate": 0.42869322619689904,
+      "baselineMedianRssMiB": 6728.72265625,
+      "candidateMedianRssMiB": 7782.0390625,
+      "pairedRatios": [
+        0.43343093237854524,
+        0.4311215111927445,
+        0.42869322619689904,
+        0.5149080946655274,
+        0.42105422755691174
+      ],
+      "pairedMedian": 0.4311215111927445,
+      "pairedMin": 0.42105422755691174,
+      "pairedMax": 0.5149080946655274,
+      "goFasterPairs": 0
+    },
+    {
+      "name": "sentry",
+      "runs": 5,
+      "files": 13290,
+      "baselineMedianMs": 24385.011271,
+      "candidateMedianMs": 57586.048517,
+      "baselineOverCandidate": 0.42345345615789715,
+      "baselineMedianRssMiB": 4114.75,
+      "candidateMedianRssMiB": 5217.84765625,
+      "pairedRatios": [
+        0.41462200310464825,
+        0.43940108348919565,
+        0.48119506196111217,
+        0.3973690669684333,
+        0.43809826620660886
+      ],
+      "pairedMedian": 0.43809826620660886,
+      "pairedMin": 0.3973690669684333,
+      "pairedMax": 0.48119506196111217,
+      "goFasterPairs": 0
+    }
+  ],
+  "allMeasuredWorkloadsAtLeast10InBothSummaries": false,
+  "limitations": [
+    "Finite fresh-process default-settings measurement; not a statistical-confidence claim.",
+    "Original native artifact is SHA-pinned but lacks a historical build provenance sidecar.",
+    "Native and Go default worker counts are not assumed equal.",
+    "These four clean workloads do not substitute for compiler correctness validation or establish universal performance.",
+    "No ratios multiplied across historical runs."
+  ]
+}
