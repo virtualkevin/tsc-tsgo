@@ -1585,3 +1585,12 @@ independently recomputed; 12executionfiles archived and four PERF rows appended.
 Aggregates1.017755/1.023989 pass; workload floors/RSS pass. VSmedian0.988351
 shows smaller/mixed benefit than screen; no pooling or promotion. Proceed to
 preconfigured reverse roles, same binaries/flags/source/default runtime.
+
+Inlining reverse23535 terminal0, recorder21994 terminal0. All60pairs independently
+recomputed and12executionfiles archived; four PERF rows appended. Aggregates
+1.034286/1.014911 and all workload/RSS gates pass. Both independent confirmations
+passed; adopt project-only -l=4 in default build. Production build85093terminal0.
+Artifact9017fa9 versus validated861bb97: all ELF sections identical except build
+IDs and explicitly normalized VCS revision/time; build metadata equal and only
+build.mjs differs in5154-file manifest. New manifestb50f489. Prepared fresh direct
+original-native comparison; no10x claim. Retained node-pointer artifact preserved.

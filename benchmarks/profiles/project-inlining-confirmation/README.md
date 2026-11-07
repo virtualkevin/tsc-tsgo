@@ -18,3 +18,9 @@ workload floors and RSS gates passing. Workload median ratios were TypeORM
 1.045956, tRPC 1.002890, VS Code 0.988351, Sentry 1.034893. The gain remains
 unconfirmed until the reversed-role run independently passes. All samples,
 including wide pair variation, are preserved; no statistical certainty claimed.
+
+The reversed-role confirmation also passed all fixed gates, with aggregates
+1.034286 and 1.014911. TypeORM/tRPC/VS Code/Sentry median ratios were 1.063766,
+1.025059, 1.057844, and 0.992079. Both independent confirmations support adopting
+this modest improvement; individual workloads still vary. Production adoption
+and ELF verification are recorded in ../project-inlining-adoption/verification.json.

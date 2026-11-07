@@ -1,0 +1,41 @@
+{
+  "name": "native-project-inlining",
+  "expected": {
+    "baseline": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-ts/dist/tsc-original",
+      "sha256": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+      "revisionLabel": "Preserved original native tsc-ts; historical build sidecar absent"
+    },
+    "candidate": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+      "sha256": "9017fa9abe7add6cadf8cefffca2aea161938b63aeac46ed8d226d7dca916d2a",
+      "source": "b50f489f20634bf3570a18d0fcc5cf811036fbcefe2a5ea481b193f848768445",
+      "sidecarSha256": "5164f58805236585d39258604fb12e274475039d04fd3efd5b8572d84c2cf287",
+      "revisionLabel": "Confirmed project-wide inlining production build"
+    }
+  },
+  "groups": [
+    {
+      "name": "small",
+      "projects": [
+        "typeorm",
+        "trpc"
+      ],
+      "runs": 9
+    },
+    {
+      "name": "large",
+      "projects": [
+        "vscode",
+        "sentry"
+      ],
+      "runs": 5
+    }
+  ],
+  "workspaceSource": "b50f489f20634bf3570a18d0fcc5cf811036fbcefe2a5ea481b193f848768445",
+  "currentNativeSourceSha256": "c8fda9057fe820236882146736f5ecbd28fb84a8875e283dc1fbeaa8a196b1dd",
+  "comparisonPolicySha256": "c496b8f7d93b1baa301a1b439b6160694956af3a8bf72228ab0a2e196b435cdf",
+  "totalTimeoutMs": 5400000,
+  "perInvocationTimeoutMs": 180000,
+  "methodology": "Direct original native artifact versus confirmed project-inlining Go, only after both independent confirmations pass. Nine alternating pairs TypeORM/tRPC and five VSCode/Sentry, one warmup, matched GNU-time/RSS wrappers and physical inputs, default runtime/checker settings. Native worker count is not assumed equal to Go. All samples retained; no historical ratio multiplication. Native artifact has no historical build sidecar."
+}

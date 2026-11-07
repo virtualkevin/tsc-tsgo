@@ -15,7 +15,8 @@ mkdirSync(join(root, 'dist'), { recursive: true });
 const executable = join(root, 'dist', process.platform === 'win32' ? 'tsc-go.exe' : 'tsc-go');
 const go = process.env.GO ?? 'go';
 const profile = process.env.TSC_GO_PGO ? resolve(process.env.TSC_GO_PGO) : null;
-const args = ['build', '-trimpath', '-o', executable];
+// Measured on all four pinned workloads; keep runtime/stdlib inlining unchanged.
+const args = ['build', '-gcflags=github.com/microsoft/typescript-go/...=-l=4', '-trimpath', '-o', executable];
 if (profile) args.push(`-pgo=${profile}`);
 args.push('./cmd/tsgo');
 const source = captureGoSources(root);
