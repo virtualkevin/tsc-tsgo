@@ -1655,3 +1655,9 @@ newreference/lifecyclecases; services219; conformance14915 configurations.
 Independentfocusedverifier checks64reference subcases plus exactflags/modes/
 source/rawlogs. CLI freeze must be capturedaftercommit; broaderchecks gatedon
 focusedpass. No productionchanges orworkloadtiming.
+
+Scratch normal phase passed148records; independentrawhash/eventreadback confirms
+64frozenreference subcases andno fail/skip. Race phase81942 remainslive.
+Prepared full/CLI independentreadback scripts: archivedrawhashes, sourcepins,
+exactmodeflags(includingcombinedcheckptr), requiredcounts andbinary/comparator
+hashes. Syntaxchecked; broaderresults do notexistyet, no validationclaimforthose.
