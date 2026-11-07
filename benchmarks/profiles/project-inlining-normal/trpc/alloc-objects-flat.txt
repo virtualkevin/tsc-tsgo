@@ -1,0 +1,88 @@
+File: tsc-go
+Build ID: bbe2fdc5d258d9fe8920277f2b02e2921d59d88b
+Type: alloc_objects
+Time: 2026-11-07 01:00:39 UTC
+Showing nodes accounting for 490834, 93.40% of 525512 total
+Dropped 341 nodes (cum <= 2627)
+Showing top 80 nodes out of 356
+      flat  flat%   sum%        cum   cum%
+     39387  7.49%  7.49%      76896 14.63%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolEx
+     35505  6.76% 14.25%      35505  6.76%  internal/bytealg.MakeNoZero
+     32768  6.24% 20.49%      32768  6.24%  github.com/microsoft/typescript-go/internal/collections.(*SyncMap[go.shape.string,go.shape.*uint8]).LoadOrStore
+     32768  6.24% 26.72%      39322  7.48%  github.com/microsoft/typescript-go/internal/collections.(*SyncMap[go.shape.string,go.shape.bool]).Store (inline)
+     32768  6.24% 32.96%      32768  6.24%  github.com/microsoft/typescript-go/internal/core.AppendIfUnique[go.shape.*github.com/microsoft/typescript-go/internal/ast.Node] (inline)
+     32768  6.24% 39.19%      32768  6.24%  slices.Grow[go.shape.[]go.shape.*uint8,go.shape.*uint8] (inline)
+     21846  4.16% 43.35%      21846  4.16%  github.com/microsoft/typescript-go/internal/ast.GetSymbolTable (inline)
+     21845  4.16% 47.51%      21845  4.16%  github.com/go-json-experiment/json.parseFieldOptions
+     18486  3.52% 51.02%      18505  3.52%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindFunctionOrConstructorType
+     18486  3.52% 54.54%      24767  4.71%  os.statNolog
+     17421  3.32% 57.86%      17421  3.32%  github.com/microsoft/typescript-go/internal/parser.(*Parser).internIdentifier (inline)
+     14430  2.75% 60.60%      14723  2.80%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).readPackageJsonPeerDependencies
+     12015  2.29% 62.89%      12015  2.29%  github.com/microsoft/typescript-go/internal/parser.extractPragmas
+     10962  2.09% 64.98%      10962  2.09%  syscall.ByteSliceFromString
+     10923  2.08% 67.05%      10923  2.08%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewImportClause (inline)
+     10923  2.08% 69.13%      10923  2.08%  github.com/microsoft/typescript-go/internal/module.GetConditions
+     10923  2.08% 71.21%      10923  2.08%  regexp.(*Regexp).FindStringSubmatch
+     10922  2.08% 73.29%      10922  2.08%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newLiteralType
+     10868  2.07% 75.36%      10868  2.07%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }] (inline)
+      9831  1.87% 77.23%       9831  1.87%  internal/sync.newIndirectNode[go.shape.interface {},go.shape.interface {}] (inline)
+      8192  1.56% 78.79%       8192  1.56%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewAsExpression (inline)
+      8192  1.56% 80.35%       8192  1.56%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewComputedPropertyName (inline)
+      8192  1.56% 81.91%      11469  2.18%  github.com/microsoft/typescript-go/internal/collections.(*SyncMap[go.shape.struct { github.com/microsoft/typescript-go/internal/module.containingDirectory string; github.com/microsoft/typescript-go/internal/module.moduleName string; github.com/microsoft/typescript-go/internal/module.resolutionMode github.com/microsoft/typescript-go/internal/core.ModuleKind; github.com/microsoft/typescript-go/internal/module.redirectConfigName string },go.shape.*uint8]).LoadOrStore
+      7143  1.36% 83.26%       7143  1.36%  slices.Grow[go.shape.[]go.shape.struct { Loc github.com/microsoft/typescript-go/internal/core.TextRange; Nodes []*github.com/microsoft/typescript-go/internal/ast.Node },go.shape.struct { Loc github.com/microsoft/typescript-go/internal/core.TextRange; Nodes []*github.com/microsoft/typescript-go/internal/ast.Node }] (inline)
+      6554  1.25% 84.51%       6554  1.25%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewTypeQueryNode (inline)
+      6554  1.25% 85.76%       6554  1.25%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newIndexType
+      5042  0.96% 86.72%       5042  0.96%  os.(*File).Stat
+      4681  0.89% 87.61%       4681  0.89%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewImportDeclaration (inline)
+      4560  0.87% 88.48%       4560  0.87%  runtime.mallocgc
+      4526  0.86% 89.34%       4526  0.86%  strings.genSplit
+      4096  0.78% 90.12%       4096  0.78%  os.dirFS.join
+      3853  0.73% 90.85%       3853  0.73%  slices.Grow[go.shape.[]go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0] (inline)
+      3641  0.69% 91.54%     153701 29.25%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).resolveImportsAndModuleAugmentations
+      2764  0.53% 92.07%       2764  0.53%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LiteralExpressionBase },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.LiteralExpressionBase }] (inline)
+      2730  0.52% 92.59%       2730  0.52%  github.com/microsoft/typescript-go/internal/compiler.(*parseTask).addSubTask (inline)
+      2048  0.39% 92.98%      25969  4.94%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseUnionOrIntersectionType
+      1820  0.35% 93.32%      62159 11.83%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).tryExtension (inline)
+       293 0.056% 93.38%      41959  7.98%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).getPackageJsonInfo
+       108 0.021% 93.40%     129290 24.60%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseListIndex
+         0     0% 93.40%      21953  4.18%  github.com/go-json-experiment/json.Unmarshal
+         0     0% 93.40%      21845  4.16%  github.com/go-json-experiment/json.makeDefaultArshaler.makeStructArshaler.func5
+         0     0% 93.40%      21953  4.18%  github.com/go-json-experiment/json.makeDefaultArshaler.makeStructArshaler.func7
+         0     0% 93.40%      21845  4.16%  github.com/go-json-experiment/json.makeStructFields
+         0     0% 93.40%      21953  4.18%  github.com/go-json-experiment/json.unmarshalDecode
+         0     0% 93.40%       4569  0.87%  github.com/microsoft/typescript-go/internal/ast.(*ArrowFunction).ForEachChild
+         0     0% 93.40%      10363  1.97%  github.com/microsoft/typescript-go/internal/ast.(*ClassDeclaration).ForEachChild
+         0     0% 93.40%      18357  3.49%  github.com/microsoft/typescript-go/internal/ast.(*FunctionDeclaration).ForEachChild
+         0     0% 93.40%       7710  1.47%  github.com/microsoft/typescript-go/internal/ast.(*FunctionTypeNode).ForEachChild
+         0     0% 93.40%       6554  1.25%  github.com/microsoft/typescript-go/internal/ast.(*IndexedAccessTypeNode).ForEachChild (inline)
+         0     0% 93.40%      47100  8.96%  github.com/microsoft/typescript-go/internal/ast.(*InterfaceDeclaration).ForEachChild
+         0     0% 93.40%       7810  1.49%  github.com/microsoft/typescript-go/internal/ast.(*MethodDeclaration).ForEachChild
+         0     0% 93.40%      31129  5.92%  github.com/microsoft/typescript-go/internal/ast.(*MethodSignatureDeclaration).ForEachChild
+         0     0% 93.40%      26883  5.12%  github.com/microsoft/typescript-go/internal/ast.(*ModuleDeclaration).ForEachChild (inline)
+         0     0% 93.40%     125338 23.85%  github.com/microsoft/typescript-go/internal/ast.(*Node).ForEachChild
+         0     0% 93.40%      10868  2.07%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewIdentifier (inline)
+         0     0% 93.40%       7143  1.36%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewNodeList (inline)
+         0     0% 93.40%       2764  0.53%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewStringLiteral
+         0     0% 93.40%      11198  2.13%  github.com/microsoft/typescript-go/internal/ast.(*PropertySignatureDeclaration).ForEachChild
+         0     0% 93.40%     119857 22.81%  github.com/microsoft/typescript-go/internal/ast.(*SourceFile).BindOnce
+         0     0% 93.40%     119857 22.81%  github.com/microsoft/typescript-go/internal/ast.(*SourceFile).BindOnce.func1
+         0     0% 93.40%       2942  0.56%  github.com/microsoft/typescript-go/internal/ast.(*TypeAliasDeclaration).ForEachChild
+         0     0% 93.40%       5336  1.02%  github.com/microsoft/typescript-go/internal/ast.(*TypeLiteralNode).ForEachChild (inline)
+         0     0% 93.40%       7582  1.44%  github.com/microsoft/typescript-go/internal/ast.(*VariableDeclaration).ForEachChild (inline)
+         0     0% 93.40%      40350  7.68%  github.com/microsoft/typescript-go/internal/ast.(*VariableDeclarationList).ForEachChild (inline)
+         0     0% 93.40%      40350  7.68%  github.com/microsoft/typescript-go/internal/ast.(*VariableStatement).ForEachChild (inline)
+         0     0% 93.40%      21846  4.16%  github.com/microsoft/typescript-go/internal/ast.GetLocals (inline)
+         0     0% 93.40%      86381 16.44%  github.com/microsoft/typescript-go/internal/ast.visit (inline)
+         0     0% 93.40%     117874 22.43%  github.com/microsoft/typescript-go/internal/ast.visitNodeList (inline)
+         0     0% 93.40%     117874 22.43%  github.com/microsoft/typescript-go/internal/ast.visitNodes (inline)
+         0     0% 93.40%      32768  6.24%  github.com/microsoft/typescript-go/internal/binder.(*Binder).addDeclarationToSymbol
+         0     0% 93.40%     119857 22.81%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bind
+         0     0% 93.40%     119857 22.81%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindChildren
+         0     0% 93.40%     119857 22.81%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindContainer
+         0     0% 93.40%     118752 22.60%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindEachChild (inline)
+         0     0% 93.40%     119857 22.81%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindEachStatementFunctionsFirst (inline)
+         0     0% 93.40%      39177  7.46%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindParameter
+         0     0% 93.40%      15373  2.93%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindParameterFlow (inline)
+         0     0% 93.40%       4491  0.85%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindPropertyOrMethodOrAccessor
+         0     0% 93.40%       4198   0.8%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindPropertyWorker
+         0     0% 93.40%      16551  3.15%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bindTypeParameter

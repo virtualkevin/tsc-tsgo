@@ -1,0 +1,89 @@
+File: tsc-go
+Build ID: bbe2fdc5d258d9fe8920277f2b02e2921d59d88b
+Type: cpu
+Time: 2026-11-07 01:02:20 UTC
+Duration: 54.53s, Total samples = 243.67s (446.88%)
+Showing nodes accounting for 149.30s, 61.27% of 243.67s total
+Dropped 3070 nodes (cum <= 1.22s)
+Showing top 80 nodes out of 626
+      flat  flat%   sum%        cum   cum%
+    10.95s  4.49%  4.49%     10.95s  4.49%  internal/runtime/maps.ctrlGroup.matchH2 (inline)
+    10.48s  4.30%  8.79%     12.19s  5.00%  runtime.findObject
+    10.19s  4.18% 12.98%     10.22s  4.19%  runtime.heapSetTypeSmallHeader (inline)
+     8.59s  3.53% 16.50%      8.59s  3.53%  runtime.memclrNoHeapPointers
+     7.76s  3.18% 19.69%      7.76s  3.18%  runtime.spanClass.sizeclass (inline)
+     5.90s  2.42% 22.11%     15.35s  6.30%  runtime.tryDeferToSpanScan
+     5.82s  2.39% 24.50%      5.90s  2.42%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot
+     5.59s  2.29% 26.79%      5.59s  2.29%  aeshashbody
+     4.92s  2.02% 28.81%     24.59s 10.09%  runtime.scanObject
+     4.35s  1.79% 30.59%      4.35s  1.79%  internal/runtime/maps.(*ctrlGroup).setEmpty (inline)
+     3.60s  1.48% 32.07%      3.60s  1.48%  runtime.futex
+     3.58s  1.47% 33.54%      3.98s  1.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newType (inline)
+     3.34s  1.37% 34.91%      3.34s  1.37%  runtime.memmove
+     3.31s  1.36% 36.27%     10.43s  4.28%  runtime.mapaccess1_faststr
+     2.66s  1.09% 37.36%     12.46s  5.11%  runtime.scanObjectsSmall
+     2.22s  0.91% 38.27%      2.49s  1.02%  runtime.(*mspan).markBitsForIndex (inline)
+     2.13s  0.87% 39.15%     10.15s  4.17%  runtime.mapaccess1
+     2.02s  0.83% 39.98%      5.02s  2.06%  github.com/microsoft/typescript-go/internal/checker.compareTypesWithOrder
+     1.77s  0.73% 40.70%      7.22s  2.96%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolEx
+     1.73s  0.71% 41.41%      2.04s  0.84%  runtime.step
+     1.67s  0.69% 42.10%      1.67s  0.69%  internal/runtime/maps.h1 (inline)
+     1.65s  0.68% 42.78%      1.65s  0.68%  internal/runtime/maps.(*Map).directoryAt (inline)
+     1.63s  0.67% 43.44%      3.64s  1.49%  internal/runtime/maps.(*Map).getWithoutKeySmallFastStr
+     1.62s  0.66% 44.11%      1.83s  0.75%  github.com/microsoft/typescript-go/internal/binder.(*Binder).addDeclarationToSymbol
+     1.51s  0.62% 44.73%      3.49s  1.43%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newInstantiatedSymbolWithLinks
+     1.49s  0.61% 45.34%      1.49s  0.61%  runtime.nextFreeFast (inline)
+     1.43s  0.59% 45.93%      1.61s  0.66%  github.com/microsoft/typescript-go/internal/ast.GetSourceFileOfNode (inline)
+     1.41s  0.58% 46.51%      1.41s  0.58%  cmpbody
+     1.40s  0.57% 47.08%      6.44s  2.64%  runtime.mapaccess1_fast64
+     1.37s  0.56% 47.64%      1.37s  0.56%  internal/runtime/syscall/linux.Syscall6
+     1.34s  0.55% 48.19%      1.34s  0.55%  runtime.memequal128
+     1.29s  0.53% 48.72%      1.29s  0.53%  runtime.asyncPreempt
+     1.28s  0.53% 49.25%      1.49s  0.61%  runtime.typePointers.next
+     1.25s  0.51% 49.76%     16.13s  6.62%  runtime.scanSpan
+     1.16s  0.48% 50.24%      1.38s  0.57%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow (inline)
+     1.11s  0.46% 50.69%     27.28s 11.20%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkObjectLiteral
+     1.09s  0.45% 51.14%      3.51s  1.44%  runtime.pcvalue
+     1.01s  0.41% 51.55%     51.02s 20.94%  github.com/microsoft/typescript-go/internal/checker.(*Relater).isRelatedToEx
+     0.98s   0.4% 51.96%      1.22s   0.5%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isSimpleTypeRelatedTo
+     0.86s  0.35% 52.31%      9.22s  3.78%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfUnionOrIntersectionType (inline)
+     0.85s  0.35% 52.66%      1.52s  0.62%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getApparentType
+     0.83s  0.34% 53.00%      7.39s  3.03%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol
+     0.79s  0.32% 53.32%      4.20s  1.72%  runtime.greyobject
+     0.78s  0.32% 53.64%      2.46s  1.01%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewIdentifier
+     0.72s   0.3% 53.94%      1.26s  0.52%  internal/sync.(*HashTrieMap[go.shape.interface {},go.shape.interface {}]).Load
+     0.71s  0.29% 54.23%     31.06s 12.75%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfVariableOrParameterOrProperty
+     0.71s  0.29% 54.52%     45.58s 18.71%  github.com/microsoft/typescript-go/internal/checker.(*Relater).recursiveTypeRelatedTo
+     0.70s  0.29% 54.81%     15.15s  6.22%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bind
+     0.68s  0.28% 55.09%     26.68s 10.95%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfTypeEx
+     0.68s  0.28% 55.37%     10.63s  4.36%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getReducedType
+     0.66s  0.27% 55.64%      2.03s  0.83%  runtime.mapaccess2_faststr
+     0.66s  0.27% 55.91%     11.66s  4.79%  runtime.mapassign_faststr
+     0.65s  0.27% 56.17%      4.36s  1.79%  runtime.wbBufFlush1
+     0.64s  0.26% 56.44%      2.57s  1.05%  runtime.bulkBarrierPreWrite
+     0.63s  0.26% 56.70%     14.03s  5.76%  runtime.mallocgcSmallScanNoHeader
+     0.58s  0.24% 56.93%      5.81s  2.38%  slices.BinarySearchFunc[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8,go.shape.*uint8] (inline)
+     0.57s  0.23% 57.17%      2.71s  1.11%  github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).get
+     0.56s  0.23% 57.40%      5.44s  2.23%  github.com/microsoft/typescript-go/internal/binder.(*NameResolver).Resolve
+     0.56s  0.23% 57.63%      4.98s  2.04%  runtime.mapassign
+     0.56s  0.23% 57.86%      2.21s  0.91%  runtime.scanObjectSmall
+     0.50s  0.21% 58.06%      2.29s  0.94%  github.com/microsoft/typescript-go/internal/checker.(*Checker).compareSymbolsWithOrder
+     0.49s   0.2% 58.26%      6.07s  2.49%  github.com/microsoft/typescript-go/internal/checker.(*Checker).addTypesToUnion (inline)
+     0.48s   0.2% 58.46%      3.39s  1.39%  gcWriteBarrier
+     0.46s  0.19% 58.65%      4.81s  1.97%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getNamedMembers
+     0.46s  0.19% 58.84%      7.19s  2.95%  github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8] (inline)
+     0.44s  0.18% 59.02%      7.57s  3.11%  github.com/microsoft/typescript-go/internal/checker.(*Checker).createUnionOrIntersectionProperty
+     0.44s  0.18% 59.20%      1.32s  0.54%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getLiteralTypeFromProperty
+     0.43s  0.18% 59.38%     13.91s  5.71%  github.com/microsoft/typescript-go/internal/ast.visit (inline)
+     0.43s  0.18% 59.55%     37.31s 15.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias
+     0.43s  0.18% 59.73%     32.52s 13.35%  github.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker
+     0.42s  0.17% 59.90%      1.53s  0.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).putRelater (inline)
+     0.42s  0.17% 60.07%     30.60s 12.56%  runtime.mallocgc
+     0.39s  0.16% 60.23%      8.51s  3.49%  runtime.newobject
+     0.38s  0.16% 60.39%      4.18s  1.72%  github.com/microsoft/typescript-go/internal/core.Some[go.shape.*uint8] (inline)
+     0.37s  0.15% 60.54%     23.14s  9.50%  github.com/microsoft/typescript-go/internal/checker.(*Relater).propertiesRelatedTo
+     0.36s  0.15% 60.69%      2.26s  0.93%  github.com/microsoft/typescript-go/internal/binder.(*Binder).newSymbol (inline)
+     0.36s  0.15% 60.84%     51.54s 21.15%  github.com/microsoft/typescript-go/internal/checker.(*Checker).isTypeRelatedTo
+     0.36s  0.15% 60.98%     14.63s  6.00%  github.com/microsoft/typescript-go/internal/checker.(*Checker).mapTypeEx
+     0.35s  0.14% 61.13%     28.07s 11.52%  github.com/microsoft/typescript-go/internal/checker.(*Checker).createJsxAttributesTypeFromAttributesProperty
+     0.35s  0.14% 61.27%     13.87s  5.69%  runtime.growslice

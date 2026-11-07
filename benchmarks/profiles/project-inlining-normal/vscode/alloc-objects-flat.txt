@@ -1,0 +1,88 @@
+File: tsc-go
+Build ID: bbe2fdc5d258d9fe8920277f2b02e2921d59d88b
+Type: alloc_objects
+Time: 2026-11-07 01:02:16 UTC
+Showing nodes accounting for 12451266, 78.42% of 15878373 total
+Dropped 1186 nodes (cum <= 79391)
+Showing top 80 nodes out of 566
+      flat  flat%   sum%        cum   cum%
+    829274  5.22%  5.22%    1027389  6.47%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolEx
+    720918  4.54%  9.76%     720918  4.54%  github.com/microsoft/typescript-go/internal/ast.GetSymbolTable
+    545572  3.44% 13.20%     898606  5.66%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker
+    450271  2.84% 16.03%     450271  2.84%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newObjectType
+    411736  2.59% 18.63%     411736  2.59%  github.com/microsoft/typescript-go/internal/tspath.GetNormalizedAbsolutePath
+    327690  2.06% 20.69%     327690  2.06%  github.com/microsoft/typescript-go/internal/checker.newCompositeTypeMapper (inline)
+    319489  2.01% 22.70%     319489  2.01%  github.com/microsoft/typescript-go/internal/checker.newArrayTypeMapper (inline)
+    314592  1.98% 24.68%     314592  1.98%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewObjectLiteralExpression (inline)
+    294260  1.85% 26.54%     294260  1.85%  slices.Grow[go.shape.[]go.shape.*uint8,go.shape.*uint8] (inline)
+    269001  1.69% 28.23%     269001  1.69%  internal/bytealg.MakeNoZero
+    262146  1.65% 29.88%    1032377  6.50%  github.com/microsoft/typescript-go/internal/core.Map[go.shape.*uint8,go.shape.*uint8] (inline)
+    229379  1.44% 31.33%     239210  1.51%  github.com/microsoft/typescript-go/internal/collections.(*SyncMap[go.shape.string,go.shape.*uint8]).LoadOrStore
+    226646  1.43% 32.76%     226646  1.43%  slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]
+    207519  1.31% 34.06%     207519  1.31%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newLiteralType
+    201540  1.27% 35.33%     314778  1.98%  github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty
+    196620  1.24% 36.57%     196620  1.24%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewArrayLiteralExpression (inline)
+    196612  1.24% 37.81%     196612  1.24%  sync.(*WaitGroup).Go
+    196608  1.24% 39.05%     765845  4.82%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveTypeReferenceMembers (inline)
+    189445  1.19% 40.24%    1620943 10.21%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).resolveImportsAndModuleAugmentations
+    181724  1.14% 41.38%     181724  1.14%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewArrowFunction
+    180212  1.13% 42.52%     180764  1.14%  github.com/microsoft/typescript-go/internal/checker.(*Checker).pendingInstantiatedTable
+    166025  1.05% 43.56%     166041  1.05%  github.com/microsoft/typescript-go/internal/checker.(*Checker).reorderCandidates
+    163840  1.03% 44.60%     163840  1.03%  github.com/microsoft/typescript-go/internal/core.AppendIfUnique[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type] (inline)
+    154720  0.97% 45.57%     224534  1.41%  github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8] (inline)
+    150742  0.95% 46.52%     150742  0.95%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewNewExpression (inline)
+    149266  0.94% 47.46%     180887  1.14%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).tryExtension (inline)
+    147469  0.93% 48.39%     743437  4.68%  github.com/microsoft/typescript-go/internal/compiler.(*filesParser).start
+    147456  0.93% 49.32%     147456  0.93%  github.com/microsoft/typescript-go/internal/checker.newSimpleTypeMapper (inline)
+    144944  0.91% 50.23%     144944  0.91%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getNamedMembers
+    143048   0.9% 51.13%     965570  6.08%  github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/checker.Type] (inline)
+    135161  0.85% 51.98%    1590095 10.01%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkObjectLiteral
+    131084  0.83% 52.81%     131084  0.83%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewImportClause (inline)
+    131076  0.83% 53.63%     131076  0.83%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newInferenceTypeMapper (inline)
+    131074  0.83% 54.46%     327686  2.06%  github.com/microsoft/typescript-go/internal/core.(*parallelWorkGroup).Queue
+    131072  0.83% 55.28%     146026  0.92%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getIntersectionTypeEx
+    131072  0.83% 56.11%     255968  1.61%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeWithThisArgument
+    128878  0.81% 56.92%     660726  4.16%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getObjectTypeInstantiation
+    120783  0.76% 57.68%     122348  0.77%  github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).ownTable
+    120280  0.76% 58.44%     193996  1.22%  github.com/microsoft/typescript-go/internal/tspath.pathComponents
+    117769  0.74% 59.18%     117769  0.74%  github.com/microsoft/typescript-go/internal/tspath.reducePathComponents
+    114730  0.72% 59.90%     114730  0.72%  github.com/microsoft/typescript-go/internal/compiler.(*parseTask).addSubTask (inline)
+    114692  0.72% 60.63%     114692  0.72%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewAwaitExpression (inline)
+    112359  0.71% 61.33%     112359  0.71%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewImportDeclaration (inline)
+    109231  0.69% 62.02%     109231  0.69%  internal/sync.newEntryNode[go.shape.interface {},go.shape.interface {}] (inline)
+    102984  0.65% 62.67%     102984  0.65%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewBindingElement (inline)
+    102400  0.64% 63.32%     233476  1.47%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newInferenceContextWorker
+    102245  0.64% 63.96%     102245  0.64%  slices.Grow[go.shape.[]go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string },go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }] (inline)
+    102045  0.64% 64.60%     102045  0.64%  github.com/microsoft/typescript-go/internal/parser.(*Parser).internIdentifier (inline)
+    100127  0.63% 65.23%     100127  0.63%  github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Set
+    100101  0.63% 65.86%     100101  0.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newUnionType
+     99769  0.63% 66.49%      99769  0.63%  slices.Grow[go.shape.[]go.shape.struct { Loc github.com/microsoft/typescript-go/internal/core.TextRange; Nodes []*github.com/microsoft/typescript-go/internal/ast.Node },go.shape.struct { Loc github.com/microsoft/typescript-go/internal/core.TextRange; Nodes []*github.com/microsoft/typescript-go/internal/ast.Node }] (inline)
+     98310  0.62% 67.11%      98310  0.62%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewNamedImports (inline)
+     98308  0.62% 67.73%      98308  0.62%  github.com/microsoft/typescript-go/internal/module.GetConditions
+     98304  0.62% 68.35%      98304  0.62%  slices.Clone[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8] (inline)
+     95611   0.6% 68.95%      95611   0.6%  strings.(*Builder).WriteString (inline)
+     92443  0.58% 69.53%     136706  0.86%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getSpreadType
+     88067  0.55% 70.09%      88067  0.55%  github.com/microsoft/typescript-go/internal/parser.collectModuleReferences
+     87382  0.55% 70.64%      87382  0.55%  os.newFile
+     87381  0.55% 71.19%      99321  0.63%  github.com/microsoft/typescript-go/internal/checker.instantiateList[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol] (inline)
+     84938  0.53% 71.72%      85724  0.54%  github.com/microsoft/typescript-go/internal/checker.(*pendingInstantiatedMembers).ownMember (inline)
+     81471  0.51% 72.24%      81471  0.51%  slices.Grow[go.shape.[]go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0] (inline)
+     79577   0.5% 72.74%      79577   0.5%  github.com/microsoft/typescript-go/internal/checker.newInferenceInfo (inline)
+     65574  0.41% 73.15%     251693  1.59%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveAnonymousTypeMembers
+     65536  0.41% 73.56%     538445  3.39%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkArrayLiteral
+     65536  0.41% 73.98%    3782925 23.82%  github.com/microsoft/typescript-go/internal/checker.(*Checker).chooseOverload
+     65536  0.41% 74.39%     172769  1.09%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getInferredTypes (inline)
+     65536  0.41% 74.80%     138355  0.87%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseErrorAtRange (inline)
+     65536  0.41% 75.21%     347623  2.19%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseSimpleArrowFunctionExpression
+     65536  0.41% 75.63%      82190  0.52%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseTagComments
+     65535  0.41% 76.04%     594750  3.75%  github.com/microsoft/typescript-go/internal/checker.(*Relater).signatureRelatedTo
+     52436  0.33% 76.37%     150744  0.95%  github.com/microsoft/typescript-go/internal/module.newResolutionState
+     49155  0.31% 76.68%     169312  1.07%  github.com/microsoft/typescript-go/internal/collections.(*SyncMap[go.shape.struct { github.com/microsoft/typescript-go/internal/module.containingDirectory string; github.com/microsoft/typescript-go/internal/module.moduleName string; github.com/microsoft/typescript-go/internal/module.resolutionMode github.com/microsoft/typescript-go/internal/core.ModuleKind; github.com/microsoft/typescript-go/internal/module.redirectConfigName string },go.shape.*uint8]).LoadOrStore
+     49152  0.31% 76.99%     245860  1.55%  github.com/microsoft/typescript-go/internal/checker.(*Checker).resolvePendingObjectTypeMembers
+     49152  0.31% 77.30%      90114  0.57%  os.(*File).readdir
+     44032  0.28% 77.58%     180177  1.13%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseJSDocCommentWorker
+     33130  0.21% 77.78%     147812  0.93%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getStringLiteralType (inline)
+     32768  0.21% 77.99%     103684  0.65%  github.com/microsoft/typescript-go/internal/checker.(*Checker).checkTemplateExpression
+     28057  0.18% 78.17%    3751743 23.63%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseListIndex
+     21846  0.14% 78.30%     194972  1.23%  github.com/microsoft/typescript-go/internal/vfs/internal.(*Common).GetAccessibleEntries
+     17725  0.11% 78.42%     997996  6.29%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getConditionalTypeInstantiation

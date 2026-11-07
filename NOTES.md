@@ -1608,3 +1608,13 @@ project-inlining-normal controller pins9017fa9/sidecar5164f588/sourceb50f489 and
 all physical inputs from completed native milestone. Existing normal profiles
 predate adopted inlining; refresh before selecting next architecture experiment.
 Four sequential diagnostic captures, decode after all complete; no PERF claims.
+
+Current production profile refresh3485 terminal0: four clean captures with pinned
+physical inputs and unchanged source/binary, decoded after all captures. Archived
+all49 files with exact gzip-member readback and supervisor terminal evidence.
+VSCode flat CPU heapSetTypeSmallHeader10.02%, findObject5.08%, memclr4.52%;
+Sentry mapcontrol4.49%, findObject4.30%, heapSetType4.18%, memclr3.53%.
+VSCode lostProfileEvent1.62% is retained as sampling limitation. Alloc-space
+summaries remain sampled cumulative/non-final-GC; no runtime/RSS savings claim.
+Existing ast-arena-audit already establishes noncopying typed pages and retention
+tradeoffs; do not infer a new slab-size tuning from these refreshed profiles.

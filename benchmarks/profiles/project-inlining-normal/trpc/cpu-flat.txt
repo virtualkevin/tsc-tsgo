@@ -1,0 +1,89 @@
+File: tsc-go
+Build ID: bbe2fdc5d258d9fe8920277f2b02e2921d59d88b
+Type: cpu
+Time: 2026-11-07 01:00:37 UTC
+Duration: 2.39s, Total samples = 11.69s (489.95%)
+Showing nodes accounting for 8.61s, 73.65% of 11.69s total
+Dropped 1159 nodes (cum <= 0.06s)
+Showing top 80 nodes out of 754
+      flat  flat%   sum%        cum   cum%
+     1.70s 14.54% 14.54%      1.70s 14.54%  runtime.heapSetTypeSmallHeader (inline)
+     0.69s  5.90% 20.44%      0.69s  5.90%  runtime.memclrNoHeapPointers
+     0.48s  4.11% 24.55%      0.48s  4.11%  internal/runtime/atomic.(*UnsafePointer).StoreNoWB (inline)
+     0.41s  3.51% 28.06%      0.48s  4.11%  github.com/microsoft/typescript-go/internal/binder.(*Binder).addDeclarationToSymbol
+     0.33s  2.82% 30.88%      0.93s  7.96%  runtime.scanObject
+     0.30s  2.57% 33.45%      0.30s  2.57%  runtime.futex
+     0.29s  2.48% 35.93%      1.36s 11.63%  github.com/microsoft/typescript-go/internal/binder.(*Binder).declareSymbolEx
+     0.26s  2.22% 38.15%      0.32s  2.74%  runtime.findObject
+     0.26s  2.22% 40.38%      0.26s  2.22%  runtime.memmove
+     0.19s  1.63% 42.00%      0.46s  3.93%  runtime.tryDeferToSpanScan
+     0.17s  1.45% 43.46%      0.17s  1.45%  runtime.spanClass.sizeclass (inline)
+     0.16s  1.37% 44.82%      0.51s  4.36%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewIdentifier (inline)
+     0.15s  1.28% 46.11%      0.37s  3.17%  runtime.(*spanSet).push
+     0.14s  1.20% 47.31%      0.14s  1.20%  internal/runtime/maps.(*ctrlGroup).setEmpty (inline)
+     0.14s  1.20% 48.50%      0.14s  1.20%  internal/runtime/syscall/linux.Syscall6
+     0.13s  1.11% 49.62%      0.13s  1.11%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newType (inline)
+     0.13s  1.11% 50.73%      0.42s  3.59%  runtime.scanObjectsSmall
+     0.12s  1.03% 51.75%      0.12s  1.03%  runtime.asyncPreempt
+     0.11s  0.94% 52.69%      0.21s  1.80%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewTypeReferenceNode (inline)
+     0.10s  0.86% 53.55%      0.23s  1.97%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewPropertySignatureDeclaration
+     0.10s  0.86% 54.41%      0.22s  1.88%  github.com/microsoft/typescript-go/internal/checker.(*Checker).newInstantiatedSymbolWithLinks
+     0.10s  0.86% 55.26%      0.10s  0.86%  internal/runtime/maps.ctrlGroup.matchH2 (inline)
+     0.09s  0.77% 56.03%      0.26s  2.22%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewParameterDeclaration
+     0.09s  0.77% 56.80%      0.19s  1.63%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewUnionTypeNode (inline)
+     0.09s  0.77% 57.57%      0.10s  0.86%  runtime.(*mspan).writeHeapBitsSmall
+     0.08s  0.68% 58.25%      0.08s  0.68%  aeshashbody
+     0.08s  0.68% 58.94%      0.36s  3.08%  github.com/microsoft/typescript-go/internal/binder.(*Binder).newSymbol (inline)
+     0.07s   0.6% 59.54%      0.10s  0.86%  github.com/microsoft/typescript-go/internal/printer.(*EmitContext).VisitParameters
+     0.07s   0.6% 60.14%      0.07s   0.6%  runtime.(*spanInlineMarkBits).init
+     0.06s  0.51% 60.65%      0.08s  0.68%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewMethodSignatureDeclaration
+     0.06s  0.51% 61.16%      1.93s 16.51%  github.com/microsoft/typescript-go/internal/binder.(*Binder).bind
+     0.06s  0.51% 61.68%      0.09s  0.77%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.outerTypeParameters []*github.com/microsoft/typescript-go/internal/checker.Type }]).grow (inline)
+     0.06s  0.51% 62.19%      0.06s  0.51%  github.com/microsoft/typescript-go/internal/parser.(*Parser).processPragmasIntoFields
+     0.06s  0.51% 62.70%      0.12s  1.03%  internal/runtime/maps.(*Iter).Next
+     0.06s  0.51% 63.22%      0.14s  1.20%  runtime.greyobject
+     0.06s  0.51% 63.73%      0.07s   0.6%  runtime.stackpoolalloc
+     0.06s  0.51% 64.24%      0.07s   0.6%  runtime.typePointers.next
+     0.05s  0.43% 64.67%      0.20s  1.71%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getObjectTypeInstantiation
+     0.05s  0.43% 65.10%      0.06s  0.51%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSymbol *github.com/microsoft/typescript-go/internal/ast.Symbol }]).grow (inline)
+     0.05s  0.43% 65.53%      0.07s   0.6%  runtime.heapArenaOf (inline)
+     0.05s  0.43% 65.95%      0.22s  1.88%  runtime.wbBufFlush1
+     0.04s  0.34% 66.30%      0.06s  0.51%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewInterfaceDeclaration
+     0.04s  0.34% 66.64%      0.06s  0.51%  github.com/microsoft/typescript-go/internal/ast.newNode (inline)
+     0.04s  0.34% 66.98%      0.07s   0.6%  github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow (inline)
+     0.04s  0.34% 67.32%      0.06s  0.51%  runtime.mapaccess1_fast64
+     0.04s  0.34% 67.66%      0.09s  0.77%  runtime.step
+     0.03s  0.26% 67.92%      2.03s 17.37%  github.com/microsoft/typescript-go/internal/ast.(*Node).ForEachChild
+     0.03s  0.26% 68.18%      0.38s  3.25%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeReference
+     0.03s  0.26% 68.43%      0.58s  4.96%  github.com/microsoft/typescript-go/internal/checker.(*Checker).instantiateTypeWithAlias
+     0.03s  0.26% 68.69%      0.10s  0.86%  runtime.(*stkframe).getStackMap
+     0.03s  0.26% 68.95%      0.10s  0.86%  runtime.(*unwinder).resolveInternal
+     0.03s  0.26% 69.20%      0.09s  0.77%  runtime.mapaccess1_faststr
+     0.02s  0.17% 69.38%      0.06s  0.51%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewStringLiteral
+     0.02s  0.17% 69.55%      1.40s 11.98%  github.com/microsoft/typescript-go/internal/ast.visit (inline)
+     0.02s  0.17% 69.72%      1.68s 14.37%  github.com/microsoft/typescript-go/internal/ast.visitNodeList (inline)
+     0.02s  0.17% 69.89%      1.68s 14.37%  github.com/microsoft/typescript-go/internal/ast.visitNodes (inline)
+     0.02s  0.17% 70.06%      0.14s  1.20%  github.com/microsoft/typescript-go/internal/binder.(*NameResolver).Resolve
+     0.02s  0.17% 70.23%      0.49s  4.19%  github.com/microsoft/typescript-go/internal/checker.(*Checker).compareSignaturesRelated
+     0.02s  0.17% 70.40%      0.19s  1.63%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getExportsOfModule
+     0.02s  0.17% 70.57%      0.11s  0.94%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getSimplifiedConditionalType
+     0.02s  0.17% 70.74%      0.07s   0.6%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getSymbolTableAliases
+     0.02s  0.17% 70.92%      0.48s  4.11%  github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeFromTypeNodeWorker
+     0.02s  0.17% 71.09%      0.06s  0.51%  github.com/microsoft/typescript-go/internal/checker.(*Checker).setStructuredTypeMembers
+     0.02s  0.17% 71.26%      0.91s  7.78%  github.com/microsoft/typescript-go/internal/checker.(*Relater).structuredTypeRelatedToWorker
+     0.02s  0.17% 71.43%      0.50s  4.28%  github.com/microsoft/typescript-go/internal/compiler.(*fileLoader).resolveImportsAndModuleAugmentations
+     0.02s  0.17% 71.60%      0.37s  3.17%  github.com/microsoft/typescript-go/internal/module.(*resolutionState).getPackageJsonInfo
+     0.02s  0.17% 71.77%      2.52s 21.56%  github.com/microsoft/typescript-go/internal/parser.(*Parser).parseList
+     0.02s  0.17% 71.94%      0.12s  1.03%  github.com/microsoft/typescript-go/internal/scanner.(*Scanner).Scan
+     0.02s  0.17% 72.11%      0.11s  0.94%  runtime.adjustframe
+     0.02s  0.17% 72.28%      2.28s 19.50%  runtime.growslice
+     0.02s  0.17% 72.46%      3.52s 30.11%  runtime.mallocgc
+     0.02s  0.17% 72.63%      0.11s  0.94%  runtime.mapassign
+     0.02s  0.17% 72.80%      0.57s  4.88%  runtime.mapassign_faststr
+     0.02s  0.17% 72.97%      0.15s  1.28%  runtime.pcvalue
+     0.02s  0.17% 73.14%      0.48s  4.11%  runtime.scanSpan
+     0.02s  0.17% 73.31%      0.08s  0.68%  runtime.typedmemmove
+     0.01s 0.086% 73.40%      0.17s  1.45%  gcWriteBarrier
+     0.01s 0.086% 73.48%      0.28s  2.40%  github.com/microsoft/typescript-go/internal/ast.(*Node).VisitEachChild
+     0.01s 0.086% 73.57%      0.07s   0.6%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewFunctionTypeNode
+     0.01s 0.086% 73.65%      0.12s  1.03%  github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewNodeList (inline)
