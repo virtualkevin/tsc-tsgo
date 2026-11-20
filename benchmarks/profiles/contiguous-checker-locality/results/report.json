@@ -1,0 +1,245 @@
+{
+  "binarySha256": "905dddb6d0b56ecc90c9445ba3858df4ae7b4ecb30ede478291c6d1ad698c74d",
+  "runs": [
+    {
+      "project": "typeorm",
+      "scheduler": "default",
+      "command": [
+        "/tmp/tsc-contiguous",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "counts": {
+        "Files": 3572,
+        "Lines": 386634,
+        "Identifiers": 444563,
+        "Symbols": 461595,
+        "Types": 257912,
+        "Instantiations": 425723
+      }
+    },
+    {
+      "project": "typeorm",
+      "scheduler": "contiguous",
+      "command": [
+        "/tmp/tsc-contiguous",
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "counts": {
+        "Files": 3572,
+        "Lines": 386634,
+        "Identifiers": 444563,
+        "Symbols": 443737,
+        "Types": 223076,
+        "Instantiations": 379592
+      }
+    },
+    {
+      "project": "trpc",
+      "scheduler": "default",
+      "command": [
+        "/tmp/tsc-contiguous",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "counts": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 186902,
+        "Types": 79462,
+        "Instantiations": 222416
+      }
+    },
+    {
+      "project": "trpc",
+      "scheduler": "contiguous",
+      "command": [
+        "/tmp/tsc-contiguous",
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "counts": {
+        "Files": 942,
+        "Lines": 209550,
+        "Identifiers": 203324,
+        "Symbols": 180167,
+        "Types": 70981,
+        "Instantiations": 201448
+      }
+    },
+    {
+      "project": "vscode",
+      "scheduler": "default",
+      "command": [
+        "/tmp/tsc-contiguous",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "counts": {
+        "Files": 11563,
+        "Lines": 4036783,
+        "Identifiers": 7444484,
+        "Symbols": 6846185,
+        "Types": 4277160,
+        "Instantiations": 5915965
+      }
+    },
+    {
+      "project": "vscode",
+      "scheduler": "contiguous",
+      "command": [
+        "/tmp/tsc-contiguous",
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "counts": {
+        "Files": 11563,
+        "Lines": 4036783,
+        "Identifiers": 7444484,
+        "Symbols": 6629561,
+        "Types": 3965870,
+        "Instantiations": 5406981
+      }
+    },
+    {
+      "project": "sentry",
+      "scheduler": "default",
+      "command": [
+        "/tmp/tsc-contiguous",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "counts": {
+        "Files": 13290,
+        "Lines": 2130849,
+        "Identifiers": 2594398,
+        "Symbols": 5032829,
+        "Types": 2725687,
+        "Instantiations": 11722854
+      }
+    },
+    {
+      "project": "sentry",
+      "scheduler": "contiguous",
+      "command": [
+        "/tmp/tsc-contiguous",
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--checkers",
+        "4",
+        "--extendedDiagnostics"
+      ],
+      "counts": {
+        "Files": 13290,
+        "Lines": 2130849,
+        "Identifiers": 2594398,
+        "Symbols": 4611900,
+        "Types": 2431877,
+        "Instantiations": 10567870
+      }
+    }
+  ]
+}

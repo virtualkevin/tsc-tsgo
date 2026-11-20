@@ -1,0 +1,64 @@
+--- a/packages/tsc-go/internal/compiler/checkerpool.go
++++ b/packages/tsc-go/internal/compiler/checkerpool.go
+@@ -2,9 +2,11 @@
+ 
+ import (
+ 	"context"
++	"encoding/json"
+ 	"os"
+ 	"slices"
+ 	"sync"
++	"time"
+ 
+ 	"github.com/microsoft/typescript-go/internal/ast"
+ 	"github.com/microsoft/typescript-go/internal/checker"
+@@ -163,6 +165,17 @@
+ 	p.createCheckers()
+ 
+ 	checkerCount := len(p.checkers)
++	type fileCost struct {
++		File           string
++		Checker        int
++		Checked        bool
++		Bytes          int
++		Nodes          int
++		Symbols        int
++		ElapsedNS      int64
++		Instantiations uint32
++	}
++	costs := make([]fileCost, len(files))
+ 	wg := core.NewWorkGroup(singleThreaded)
+ 	for checkerIdx := range checkerCount {
+ 		wg.Queue(func() {
+@@ -170,12 +183,31 @@
+ 			defer p.locks[checkerIdx].Unlock()
+ 			for i, file := range files {
+ 				if checker := p.checkers[checkerIdx]; checker == p.fileAssociations[file] {
++					before := checker.TotalInstantiationCount
++					start := time.Now()
+ 					cb(checker, i, file)
++					elapsed := time.Since(start)
++					costs[i] = fileCost{
++						File: file.FileName(), Checker: checkerIdx,
++						ElapsedNS: elapsed.Nanoseconds(), Instantiations: checker.TotalInstantiationCount - before,
++						Checked: !p.program.SkipTypeChecking(file, false),
++						Bytes:   len(file.Text()), Nodes: file.NodeCount, Symbols: file.SymbolCount,
++					}
+ 				}
+ 			}
+ 		})
+ 	}
+ 	wg.RunAndWait()
++	f, err := os.OpenFile(os.Getenv("TSC_GO_COST_LOG"), os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0600)
++	if err != nil {
++		panic(err)
++	}
++	if err := json.NewEncoder(f).Encode(costs); err != nil {
++		panic(err)
++	}
++	if err := f.Close(); err != nil {
++		panic(err)
++	}
+ }
+ 
+ func noop() {}
