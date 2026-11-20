@@ -1,0 +1,23 @@
+package core
+
+import "testing"
+
+func TestArenaBudget(t *testing.T) {
+	// Include zero-sized elements and an element larger than the byte target.
+	if nextArenaSize[struct{}](256) != 256 || nextArenaSize[[8193]byte](1) != 1 {
+		t.Fatal("invalid capacity at the element-size boundaries")
+	}
+	var a Arena[[80]int]
+	first := a.New()
+	first[0] = 17
+	batch := a.NewSlice(300)
+	batch[299][0] = 41
+	tail := a.NewSlice(2)
+	tail[1][0] = 23
+	for range 500 {
+		a.New()[0] = 31
+	}
+	if first[0] != 17 || batch[299][0] != 41 || tail[1][0] != 23 || cap(tail) != len(tail) || a.NewSlice(0) != nil {
+		t.Fatal("an earlier allocation changed after slab rollover")
+	}
+}

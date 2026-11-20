@@ -1,0 +1,48 @@
+--- a/packages/tsc-go/internal/core/arena.go
++++ b/packages/tsc-go/internal/core/arena.go
+@@ -1,6 +1,9 @@
+ package core
+ 
+-import "slices"
++import (
++	"slices"
++	"unsafe"
++)
+ 
+ // Arena allocator
+ 
+@@ -12,7 +15,7 @@
+ // a new arena of the next size up is allocated.
+ func (a *Arena[T]) New() *T {
+ 	if len(a.data) == cap(a.data) {
+-		nextSize := nextArenaSize(len(a.data))
++		nextSize := nextArenaSize[T](len(a.data))
+ 		// Use the same trick as slices.Concat; Grow rounds up to the next size class.
+ 		a.data = slices.Grow[[]T](nil, nextSize)
+ 	}
+@@ -30,7 +33,7 @@
+ 		return nil
+ 	}
+ 	if len(a.data)+size > cap(a.data) {
+-		nextSize := nextArenaSize(len(a.data))
++		nextSize := nextArenaSize[T](len(a.data))
+ 		if size > nextSize {
+ 			return make([]T, size)
+ 		}
+@@ -58,9 +61,13 @@
+ 	return slice
+ }
+ 
+-func nextArenaSize(size int) int {
+-	// This compiles down branch-free.
++func nextArenaSize[T any](size int) int {
++	// Bound the last partially filled slab by bytes as well as element count.
++	// Leave space for the allocation header of a scanned object.
++	const payload = 8192 - 8
++	var element T
++	limit := max(1, int(payload/max(1, unsafe.Sizeof(element))))
+ 	size = max(size, 1)
+-	size = min(size*2, 256)
++	size = min(size*2, 256, limit)
+ 	return size
+ }
