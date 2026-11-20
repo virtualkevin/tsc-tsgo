@@ -343,3 +343,11 @@
 | Byte-bounded typed arenas | trpc | Production Go | 454.31 | 440.02 | 1.032× | 4 | Median peak RSS 236.9/245.6 MiB. [Samples](benchmarks/profiles/arena-byte-budget/small.json.gz) |
 | Byte-bounded typed arenas | vscode | Production Go | 32516.26 | 32388.36 | 1.004× | 2 | Median peak RSS 7808.6/7680.5 MiB. [Samples](benchmarks/profiles/arena-byte-budget/large.json.gz) |
 | Byte-bounded typed arenas | sentry | Production Go | 26564.57 | 27974.69 | 0.950× | 2 | Median peak RSS 5394.7/5375.6 MiB. [Samples](benchmarks/profiles/arena-byte-budget/large.json.gz) |
+| Direct parser parent links | typeorm | Production Go | 2378.48 | 2381.08 | 0.999× | 4 | Median peak RSS 841.8/887.8 MiB. [Samples](benchmarks/profiles/direct-parser-parents/small.json.gz) |
+| Direct parser parent links | trpc | Production Go | 463.68 | 466.71 | 0.994× | 4 | Median peak RSS 243.5/238.8 MiB. [Samples](benchmarks/profiles/direct-parser-parents/small.json.gz) |
+| Direct parser parent links | vscode | Production Go | 34715.74 | 31486.00 | 1.103× | 2 | Median peak RSS 7702.9/7673.5 MiB. [Samples](benchmarks/profiles/direct-parser-parents/large.json.gz) |
+| Direct parser parent links | sentry | Production Go | 27648.58 | 27968.77 | 0.989× | 2 | Median peak RSS 5524.2/5333.0 MiB. [Samples](benchmarks/profiles/direct-parser-parents/large.json.gz) |
+| Direct parser parent links, file discovery only | typeorm | Production Go, --listFilesOnly | 599.57 | 601.67 | 0.997× | 4 | Verified full file lists. [Samples](benchmarks/profiles/direct-parser-parents/discovery.json) |
+| Direct parser parent links, file discovery only | trpc | Production Go, --listFilesOnly | 187.69 | 190.31 | 0.986× | 4 | Verified full file lists. [Samples](benchmarks/profiles/direct-parser-parents/discovery.json) |
+| Direct parser parent links, file discovery only | vscode | Production Go, --listFilesOnly | 5521.70 | 5499.42 | 1.004× | 4 | Verified full file lists. [Samples](benchmarks/profiles/direct-parser-parents/discovery.json) |
+| Direct parser parent links, file discovery only | sentry | Production Go, --listFilesOnly | 3107.98 | 3041.90 | 1.022× | 4 | Verified full file lists. [Samples](benchmarks/profiles/direct-parser-parents/discovery.json) |
