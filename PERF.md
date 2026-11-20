@@ -374,3 +374,5 @@
 | Go heap huge-page advice | trpc | Production Go | 477.81 | 446.04 | 1.071× | 4 | Median peak RSS 238.0/256.3 MiB. [Samples](benchmarks/profiles/native-go-discovery/small.json.gz) |
 | Go heap huge-page advice | vscode | Production Go | 36978.85 | 32413.43 | 1.141× | 2 | Median peak RSS 7843.3/7881.9 MiB. [Samples](benchmarks/profiles/native-go-discovery/large.json.gz) |
 | Go heap huge-page advice | sentry | Production Go | 29041.27 | 25846.71 | 1.124× | 2 | Median peak RSS 5382.7/5342.6 MiB. [Samples](benchmarks/profiles/native-go-discovery/large.json.gz) |
+| Matched heap huge-page confirmation | typeorm | Rebuilt Go control | 2472.60 | 2386.46 | 1.036× | 8 | Advised first in opening pair. Paired median 1.018×. [Samples](benchmarks/profiles/heap-page-confirmation/small.json.gz) |
+| Matched heap huge-page confirmation | trpc | Rebuilt Go control | 485.94 | 497.16 | 0.977× | 8 | Advised first in opening pair. Paired median 0.957×. [Samples](benchmarks/profiles/heap-page-confirmation/small.json.gz) |
