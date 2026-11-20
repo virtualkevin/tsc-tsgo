@@ -75,19 +75,3 @@ func TestCheckerSchedulingSkipsUncheckedFiles(t *testing.T) {
 		}
 	}
 }
-
-func TestContiguousCheckerAssignments(t *testing.T) {
-	for _, test := range []struct {
-		weights []int
-		count   int
-		want    []int
-	}{
-		{[]int{0, 0, 0}, 2, []int{0, 1, 0}},
-		{[]int{1, 1, 0, 1, 1}, 2, []int{0, 0, 0, 1, 1}},
-		{[]int{1, 10, 1}, 3, []int{0, 1, 2}},
-	} {
-		if got := contiguousCheckerAssignments(test.weights, test.count); !slices.Equal(got, test.want) {
-			t.Errorf("weights %v with %d checkers: got %v, want %v", test.weights, test.count, got, test.want)
-		}
-	}
-}

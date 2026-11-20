@@ -45,26 +45,3 @@ func checkerSchedulingWeights(program *Program) []int {
 	}
 	return weights
 }
-
-// contiguousCheckerAssignments gives adjacent checked files the same checker until
-// their combined source length fills a partition. Nearby files in the loader's
-// order may refer to the same declarations and reuse checker-local semantic facts.
-func contiguousCheckerAssignments(weights []int, checkerCount int) []int {
-	var total uint64
-	for _, weight := range weights {
-		total += uint64(weight)
-	}
-	owners := make([]int, len(weights))
-	var used uint64
-	for i, weight := range weights {
-		if weight == 0 {
-			owners[i] = i % checkerCount
-			continue
-		}
-		// Assign by the midpoint so a file crossing a boundary contributes to
-		// the side containing most of its estimated work.
-		owners[i] = int((used + uint64(weight)/2) * uint64(checkerCount) / total)
-		used += uint64(weight)
-	}
-	return owners
-}

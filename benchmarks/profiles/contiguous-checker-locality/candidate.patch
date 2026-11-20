@@ -1,0 +1,68 @@
+diff --git a/packages/tsc-go/internal/compiler/checkerpool.go b/packages/tsc-go/internal/compiler/checkerpool.go
+index d8ebd61..21e5ea2 100644
+--- a/packages/tsc-go/internal/compiler/checkerpool.go
++++ b/packages/tsc-go/internal/compiler/checkerpool.go
+@@ -115,6 +115,8 @@ func (p *checkerPool) createCheckers() {
+ 		p.fileAssociations = make(map[*ast.SourceFile]*checker.Checker, len(p.program.files))
+ 		var assignments []int
+ 		switch os.Getenv("TSC_GO_SCHEDULER") {
++		case "contiguous":
++			assignments = contiguousCheckerAssignments(checkerSchedulingWeights(p.program), checkerCount)
+ 		case "balanced":
+ 			assignments = balancedCheckerAssignments(checkerSchedulingWeights(p.program), checkerCount)
+ 		case "dependency":
+diff --git a/packages/tsc-go/internal/compiler/checkerschedule.go b/packages/tsc-go/internal/compiler/checkerschedule.go
+index ea3a50f..c6f781d 100644
+--- a/packages/tsc-go/internal/compiler/checkerschedule.go
++++ b/packages/tsc-go/internal/compiler/checkerschedule.go
+@@ -45,3 +45,26 @@ func checkerSchedulingWeights(program *Program) []int {
+ 	}
+ 	return weights
+ }
++
++// contiguousCheckerAssignments gives adjacent checked files the same checker until
++// their combined source length fills a partition. Nearby files in the loader's
++// order may refer to the same declarations and reuse checker-local semantic facts.
++func contiguousCheckerAssignments(weights []int, checkerCount int) []int {
++	var total uint64
++	for _, weight := range weights {
++		total += uint64(weight)
++	}
++	owners := make([]int, len(weights))
++	var used uint64
++	for i, weight := range weights {
++		if weight == 0 {
++			owners[i] = i % checkerCount
++			continue
++		}
++		// Assign by the midpoint so a file crossing a boundary contributes to
++		// the side containing most of its estimated work.
++		owners[i] = int((used + uint64(weight)/2) * uint64(checkerCount) / total)
++		used += uint64(weight)
++	}
++	return owners
++}
+diff --git a/packages/tsc-go/internal/compiler/checkerschedule_test.go b/packages/tsc-go/internal/compiler/checkerschedule_test.go
+index b84354a..f1a1db3 100644
+--- a/packages/tsc-go/internal/compiler/checkerschedule_test.go
++++ b/packages/tsc-go/internal/compiler/checkerschedule_test.go
+@@ -75,3 +75,19 @@ func TestCheckerSchedulingSkipsUncheckedFiles(t *testing.T) {
+ 		}
+ 	}
+ }
++
++func TestContiguousCheckerAssignments(t *testing.T) {
++	for _, test := range []struct {
++		weights []int
++		count   int
++		want    []int
++	}{
++		{[]int{0, 0, 0}, 2, []int{0, 1, 0}},
++		{[]int{1, 1, 0, 1, 1}, 2, []int{0, 0, 0, 1, 1}},
++		{[]int{1, 10, 1}, 3, []int{0, 1, 2}},
++	} {
++		if got := contiguousCheckerAssignments(test.weights, test.count); !slices.Equal(got, test.want) {
++			t.Errorf("weights %v with %d checkers: got %v, want %v", test.weights, test.count, got, test.want)
++		}
++	}
++}
