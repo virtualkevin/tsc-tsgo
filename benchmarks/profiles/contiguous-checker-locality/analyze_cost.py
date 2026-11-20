@@ -24,6 +24,9 @@ for run in json.loads((directory / 'report.json').read_text())['runs']:
             elapsed += r['ElapsedNS']
             if elapsed * 2 >= total:
                 break
+        skipped_nodes = sum(r['Nodes'] for r in rows if not r['Checked'])
+        all_nodes = sum(r['Nodes'] for r in rows)
+        print(project, mode, 'AST nodes in files skipped by the checker (%)', round(100 * skipped_nodes / all_nodes, 1))
         shares = [round(w / total * 100, 1) for w in workers]
         print(project, mode, len(checked), 'checked files;', half_files, 'cover half of callback time;',
               'worker shares (%)', shares, 'largest file (%)', round(top[0]['ElapsedNS'] / total * 100, 1))
