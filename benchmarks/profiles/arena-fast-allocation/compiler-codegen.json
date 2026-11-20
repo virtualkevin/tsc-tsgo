@@ -1,0 +1,50 @@
+{
+  "production": {
+    "parser.(*Parser).createIdentifierWithDiagnostic": {
+      "standaloneSymbol": true,
+      "relevantCalls": [
+        "github.com/microsoft/typescript-go/internal/parser.(*Parser).newIdentifier"
+      ]
+    },
+    "parser.(*Parser).newIdentifier": {
+      "standaloneSymbol": true,
+      "relevantCalls": [
+        "github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }]).New"
+      ]
+    },
+    "ast.(*NodeFactory).NewIdentifier": {
+      "standaloneSymbol": false,
+      "relevantCalls": []
+    },
+    "ast.(*NodeFactory).NewPropertyAccessExpression": {
+      "standaloneSymbol": true,
+      "relevantCalls": [
+        "github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.MemberExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Expression *github.com/microsoft/typescript-go/internal/ast.Node; QuestionDotToken *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.name *github.com/microsoft/typescript-go/internal/ast.Node }]).New"
+      ]
+    }
+  },
+  "candidate": {
+    "parser.(*Parser).createIdentifierWithDiagnostic": {
+      "standaloneSymbol": true,
+      "relevantCalls": [
+        "github.com/microsoft/typescript-go/internal/ast.(*NodeFactory).NewIdentifier"
+      ]
+    },
+    "parser.(*Parser).newIdentifier": {
+      "standaloneSymbol": false,
+      "relevantCalls": []
+    },
+    "ast.(*NodeFactory).NewIdentifier": {
+      "standaloneSymbol": true,
+      "relevantCalls": [
+        "github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.PrimaryExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; Text string }]).growForOne"
+      ]
+    },
+    "ast.(*NodeFactory).NewPropertyAccessExpression": {
+      "standaloneSymbol": true,
+      "relevantCalls": [
+        "github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/ast.MemberExpressionBase; github.com/microsoft/typescript-go/internal/ast.FlowNodeBase; github.com/microsoft/typescript-go/internal/ast.CompositeBase; Expression *github.com/microsoft/typescript-go/internal/ast.Node; QuestionDotToken *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.name *github.com/microsoft/typescript-go/internal/ast.Node }]).growForOne"
+      ]
+    }
+  }
+}
