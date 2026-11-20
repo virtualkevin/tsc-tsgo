@@ -17,8 +17,14 @@ env = {k:v for k,v in os.environ.items() if k not in old["environment"]["unsetEn
        and not k.startswith(("TSC_", "TS_GO_", "SCRIPTC_"))}
 env.update(old["environment"]["compilerEnvironment"])
 report = {"thpPolicy": Path("/sys/kernel/mm/transparent_hugepage/enabled").read_text().strip(), "runs": {}}
-for mode, binary in [("native",old["binaries"]["baseline"]["path"]),("go",old["binaries"]["candidate"]["path"]),
-                     ("goHeapAdvice",sys.argv[1])]:
+disabled = sys.argv[2:] == ["--disable-thp"]
+assert disabled or len(sys.argv) == 2
+runs = [("native", old["binaries"]["baseline"]["path"]), ("go", old["binaries"]["candidate"]["path"]),
+        ("goHeapAdvice", sys.argv[1])]
+if disabled:
+    env["GODEBUG"] = "disablethp=1"
+    runs = [("goHeapAdviceDisabled", sys.argv[1])]
+for mode, binary in runs:
     rows = []
     with tempfile.TemporaryFile(mode="w+") as stdout:
         proc = subprocess.Popen([binary, *project["fileDiscoveryArgs"]["baseline"]], cwd=cwd, env=env, stdout=stdout, stderr=subprocess.PIPE)
@@ -41,4 +47,4 @@ for mode, binary in [("native",old["binaries"]["baseline"]["path"]),("go",old["b
     assert rows
     report["runs"][mode] = {"samples":rows, "peakObservedHugeKiB":max(r["AnonHugePages"] for r in rows)}
     print(mode, report["runs"][mode]["peakObservedHugeKiB"], flush=True)
-(here / "pages.json").write_text(json.dumps(report,indent=2)+"\n")
+(here / ("pages-disabled.json" if disabled else "pages.json")).write_text(json.dumps(report,indent=2)+"\n")

@@ -372,3 +372,5 @@
 | Go heap huge-page advice, discovery only | sentry | Production Go | 3114.17 | 3268.86 | 0.953× | 4 | Median minor faults 505882/147172. [Samples](benchmarks/profiles/native-go-discovery/thp.json) |
 | Go heap huge-page advice | typeorm | Production Go | 2399.00 | 2329.80 | 1.030× | 4 | Median peak RSS 885.9/903.0 MiB. [Samples](benchmarks/profiles/native-go-discovery/small.json.gz) |
 | Go heap huge-page advice | trpc | Production Go | 477.81 | 446.04 | 1.071× | 4 | Median peak RSS 238.0/256.3 MiB. [Samples](benchmarks/profiles/native-go-discovery/small.json.gz) |
+| Go heap huge-page advice | vscode | Production Go | 36978.85 | 32413.43 | 1.141× | 2 | Median peak RSS 7843.3/7881.9 MiB. [Samples](benchmarks/profiles/native-go-discovery/large.json.gz) |
+| Go heap huge-page advice | sentry | Production Go | 29041.27 | 25846.71 | 1.124× | 2 | Median peak RSS 5382.7/5342.6 MiB. [Samples](benchmarks/profiles/native-go-discovery/large.json.gz) |
