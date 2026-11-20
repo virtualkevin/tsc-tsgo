@@ -1,0 +1,50 @@
+package parser_test
+
+import (
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/core"
+	"github.com/microsoft/typescript-go/internal/parser"
+)
+
+func TestDirectParserParents(t *testing.T) {
+	const source = `export interface Box<T> { field?: T; f(x: T): { result: T } }
+		export class C<T> { constructor(readonly x: T) {} }
+		export function read<T>(b: Box<T>, xs: T[]) {
+			const [first, ...rest] = xs;
+			return b?.f(first ?? rest[0]).result;
+		}
+		export const v = <div title={"a"}>{String(1)}</div>;`
+	file := parser.ParseSourceFile(ast.SourceFileParseOptions{FileName: "/fixture.tsx", Path: "/fixture.tsx"}, source, core.ScriptKindTSX)
+	if len(file.Diagnostics()) != 0 {
+		t.Fatal("fixture must parse cleanly")
+	}
+	count := 0
+	var check func(*ast.Node) bool
+	check = func(n *ast.Node) bool {
+		var children []*ast.Node
+		n.ForEachChild(func(c *ast.Node) bool { children = append(children, c); return false })
+		for _, child := range children {
+			if child.Parent != n {
+				t.Fatalf("child %v of %v has incorrect parent after parsing", child.Kind, n.Kind)
+			}
+			child.Parent = nil
+		}
+		if !ast.AssignParserParents(n) {
+			n.ForEachChild(func(child *ast.Node) bool { child.Parent = n; return false })
+		}
+		for _, child := range children {
+			if child.Parent != n {
+				t.Fatalf("child %v of %v was skipped", child.Kind, n.Kind)
+			}
+			check(child)
+		}
+		count++
+		return false
+	}
+	check(file.AsNode())
+	if count < 50 {
+		t.Fatalf("only visited %d fixture nodes", count)
+	}
+}
