@@ -1,0 +1,49 @@
+package core
+
+import "testing"
+
+// Match the allocation size and pointer-bearing fields of an amd64 identifier.
+type arenaBenchNode struct {
+	meta   [3]uint64
+	parent *arenaBenchNode
+	data   any
+	flow   *arenaBenchNode
+	text   string
+}
+
+var arenaBenchLast *arenaBenchNode
+
+func BenchmarkArenaNodeBatch(b *testing.B) {
+	b.ReportAllocs()
+	for b.Loop() {
+		var arena Arena[arenaBenchNode]
+		var parent *arenaBenchNode
+		for range 1024 {
+			node := arena.New()
+			node.parent = parent
+			node.text = "identifier"
+			parent = node
+		}
+		arenaBenchLast = parent
+	}
+}
+
+func TestPublishedArenaChain(t *testing.T) {
+	var arena Arena[arenaBenchNode]
+	var parent *arenaBenchNode
+	for i := range 1024 {
+		n := arena.New()
+		n.meta[0] = uint64(i)
+		n.parent = parent
+		parent = n
+	}
+	for i := 1023; i >= 0; i-- {
+		if parent == nil || parent.meta[0] != uint64(i) {
+			t.Fatalf("incorrect published node at %d", i)
+		}
+		parent = parent.parent
+	}
+	if parent != nil {
+		t.Fatal("unexpected extra node")
+	}
+}

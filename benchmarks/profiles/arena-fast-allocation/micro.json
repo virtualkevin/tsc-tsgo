@@ -1,0 +1,134 @@
+{
+  "goVersion": "go version go1.26.9 linux/amd64",
+  "buildArgs": [
+    "go",
+    "test",
+    "-c",
+    "-trimpath",
+    "-gcflags=github.com/microsoft/typescript-go/...=-l=4",
+    "-overlay=<mode overlay>",
+    "./internal/core"
+  ],
+  "testArgs": [
+    "-test.run=^TestPublishedArenaChain$",
+    "-test.bench=^BenchmarkArenaNodeBatch$",
+    "-test.benchtime=350ms",
+    "-test.cpu=1"
+  ],
+  "samples": [
+    {
+      "pair": 0,
+      "mode": "production",
+      "ns": 29011.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 0,
+      "mode": "candidate",
+      "ns": 19792.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 1,
+      "mode": "candidate",
+      "ns": 23557.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 1,
+      "mode": "production",
+      "ns": 24744.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 2,
+      "mode": "production",
+      "ns": 34621.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 2,
+      "mode": "candidate",
+      "ns": 32360.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 3,
+      "mode": "candidate",
+      "ns": 25480.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 3,
+      "mode": "production",
+      "ns": 25448.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 4,
+      "mode": "production",
+      "ns": 22596.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 4,
+      "mode": "candidate",
+      "ns": 22160.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 5,
+      "mode": "candidate",
+      "ns": 22391.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 5,
+      "mode": "production",
+      "ns": 27035.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 6,
+      "mode": "production",
+      "ns": 28341.0,
+      "bytes": 78512,
+      "allocs": 10
+    },
+    {
+      "pair": 6,
+      "mode": "candidate",
+      "ns": 27651.0,
+      "bytes": 78512,
+      "allocs": 10
+    }
+  ],
+  "binaries": {
+    "production": {
+      "sha256": "c900beefbe25efd7a0e0653ce9fa9e91f38c281b593c9ae948a4949b9c2944b5",
+      "medianNs": 26241.5,
+      "arenaCalls": [
+        "github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/core.meta [3]uint64; github.com/microsoft/typescript-go/internal/core.parent *github.com/microsoft/typescript-go/internal/core.arenaBenchNode; github.com/microsoft/typescript-go/internal/core.data interface {}; github.com/microsoft/typescript-go/internal/core.flow *github.com/microsoft/typescript-go/internal/core.arenaBenchNode; github.com/microsoft/typescript-go/internal/core.text string }]).New"
+      ]
+    },
+    "candidate": {
+      "sha256": "addfbf3525c751a54d6fdc656c787f80fe668e2a429eba561879e7ec9bb659fb",
+      "medianNs": 24518.5,
+      "arenaCalls": [
+        "github.com/microsoft/typescript-go/internal/core.(*Arena[go.shape.struct { github.com/microsoft/typescript-go/internal/core.meta [3]uint64; github.com/microsoft/typescript-go/internal/core.parent *github.com/microsoft/typescript-go/internal/core.arenaBenchNode; github.com/microsoft/typescript-go/internal/core.data interface {}; github.com/microsoft/typescript-go/internal/core.flow *github.com/microsoft/typescript-go/internal/core.arenaBenchNode; github.com/microsoft/typescript-go/internal/core.text string }]).growForOne"
+      ]
+    }
+  }
+}

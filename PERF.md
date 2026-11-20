@@ -355,3 +355,4 @@
 | Host-local parser arenas | trpc | Production Go | 448.86 | 425.00 | 1.056× | 4 | Median peak RSS 245.2/227.1 MiB. [Samples](benchmarks/profiles/host-parser-arenas/small.json.gz) |
 | Host-local parser arenas | vscode | Production Go | 33113.33 | 32813.37 | 1.009× | 2 | Median peak RSS 7888.3/7303.5 MiB. [Samples](benchmarks/profiles/host-parser-arenas/large.json.gz) |
 | Host-local parser arenas | sentry | Production Go | 26447.52 | 25284.93 | 1.046× | 2 | Median peak RSS 5338.7/4966.3 MiB. [Samples](benchmarks/profiles/host-parser-arenas/large.json.gz) |
+| Inline arena reservation microbenchmark | 1,024 node records | Production arena | 0.026242 | 0.024518 | 1.070× | 6 | Milliseconds per batch, single CPU, same bytes and allocations. [Samples](benchmarks/profiles/arena-fast-allocation/micro.json) |

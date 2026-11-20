@@ -1,0 +1,23 @@
+--- a/packages/tsc-go/internal/core/arena.go
++++ b/packages/tsc-go/internal/core/arena.go
+@@ -12,13 +12,17 @@
+ // a new arena of the next size up is allocated.
+ func (a *Arena[T]) New() *T {
+ 	if len(a.data) == cap(a.data) {
+-		nextSize := nextArenaSize(len(a.data))
+-		// Use the same trick as slices.Concat; Grow rounds up to the next size class.
+-		a.data = slices.Grow[[]T](nil, nextSize)
++		a.growForOne()
+ 	}
+ 	index := len(a.data)
+ 	a.data = a.data[:index+1]
+ 	return &a.data[index]
++}
++
++// Keep the infrequent allocation out of the element reservation path.
++//go:noinline
++func (a *Arena[T]) growForOne() {
++	a.data = slices.Grow[[]T](nil, nextArenaSize(len(a.data)))
+ }
+ 
+ // Allocate a slice of the given size in the arena. If the requested size is beyond the capacity of the arena
