@@ -331,3 +331,5 @@
 | Contiguous file ownership | trpc | Same binary, round-robin, four checkers | 640.77 | 677.20 | 0.946× | 4 | Fresh processes, one warmup per mode. [Samples](benchmarks/profiles/contiguous-checker-locality/timing.json) |
 | Contiguous file ownership | vscode | Same binary, round-robin, four checkers | 43931.54 | 45036.57 | 0.975× | 4 | Fresh processes, one warmup per mode. [Samples](benchmarks/profiles/contiguous-checker-locality/timing.json) |
 | Contiguous file ownership | sentry | Same binary, round-robin, four checkers | 32443.72 | 32791.01 | 0.989× | 4 | Fresh processes, one warmup per mode. [Samples](benchmarks/profiles/contiguous-checker-locality/timing.json) |
+| Bounded binder worker screen | typeorm | Same binary, one goroutine per unbound file | 2746.26 | 2776.79 | 0.989× | 4 | Extended diagnostics, GNU time. Median bind 120.0/50.0 ms. [Samples](benchmarks/profiles/bounded-bind/small/report.json) |
+| Bounded binder worker screen | trpc | Same binary, one goroutine per unbound file | 543.94 | 554.50 | 0.981× | 4 | Extended diagnostics, GNU time. Median bind 42.0/42.0 ms. [Samples](benchmarks/profiles/bounded-bind/small/report.json) |

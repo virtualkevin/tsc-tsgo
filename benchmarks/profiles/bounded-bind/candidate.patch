@@ -1,0 +1,63 @@
+--- a/packages/tsc-go/internal/compiler/program.go
++++ b/packages/tsc-go/internal/compiler/program.go
+@@ -5,6 +5,8 @@
+ 	"fmt"
+ 	"io"
+ 	"maps"
++	"os"
++	"runtime"
+ 	"slices"
+ 	"strings"
+ 	"sync"
+@@ -448,6 +450,10 @@
+ }
+ 
+ func (p *Program) BindSourceFiles() {
++	if !p.SingleThreaded() && os.Getenv("TSC_GO_BOUNDED_BIND") == "1" {
++		p.bindSourceFilesWithWorkers()
++		return
++	}
+ 	wg := core.NewWorkGroup(p.SingleThreaded())
+ 	for _, file := range p.files {
+ 		if !file.IsBound() {
+@@ -460,6 +466,40 @@
+ 		}
+ 	}
+ 	wg.RunAndWait()
++}
++
++// bindSourceFilesWithWorkers limits concurrent binder stacks and lets workers
++// claim another file as soon as their current file finishes.
++func (p *Program) bindSourceFilesWithWorkers() {
++	first := slices.IndexFunc(p.files, func(f *ast.SourceFile) bool { return !f.IsBound() })
++	if first < 0 {
++		return
++	}
++	files := p.files[first:]
++	var next atomic.Uint64
++	var wg sync.WaitGroup
++	for range min(len(files), runtime.GOMAXPROCS(0)) {
++		wg.Go(func() {
++			for {
++				i := next.Add(1) - 1
++				if i >= uint64(len(files)) {
++					return
++				}
++				file := files[i]
++				if !file.IsBound() {
++					p.bindSourceFileWithTracing(file)
++				}
++			}
++		})
++	}
++	wg.Wait()
++}
++
++func (p *Program) bindSourceFileWithTracing(file *ast.SourceFile) {
++	if p.opts.Tracing != nil {
++		defer p.opts.Tracing.Push(tracing.PhaseBind, "bindSourceFile", map[string]any{"path": string(file.Path())}, true)()
++	}
++	binder.BindSourceFile(file)
+ }
+ 
+ // Return the type checker associated with the program.
