@@ -1,0 +1,60 @@
+package parser_test
+
+import (
+	"fmt"
+	"slices"
+	"sync"
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/core"
+	"github.com/microsoft/typescript-go/internal/parser"
+)
+
+func batchShape(f *ast.SourceFile) []string {
+	var result []string
+	var visit func(*ast.Node) bool
+	visit = func(n *ast.Node) bool {
+		result = append(result, fmt.Sprintf("%v %d %d %v", n.Kind, n.Pos(), n.End(), n.Flags))
+		n.ForEachChild(visit)
+		return false
+	}
+	visit(f.AsNode())
+	return result
+}
+
+func TestHostParserArenas(t *testing.T) {
+	var batch parser.BatchParsers
+	src := []struct {
+		text string
+		kind core.ScriptKind
+	}{
+		{"export let x = 2 + 3", core.ScriptKindTS},
+		{"{\"nested\":[1,2,3]}", core.ScriptKindJSON},
+		{"export const view = <p>hello</p>", core.ScriptKindTSX},
+		{"/** @type {number} */ let x = 1", core.ScriptKindJS},
+		{"export const = ;", core.ScriptKindTS},
+	}
+	opts := ast.SourceFileParseOptions{FileName: "/fixture", Path: "/fixture"}
+	first := batch.ParseSourceFile(opts, src[0].text, src[0].kind)
+	before := batchShape(first)
+	var wg sync.WaitGroup
+	for range 4 {
+		wg.Go(func() {
+			for range 6 {
+				for _, item := range src {
+					f := batch.ParseSourceFile(opts, item.text, item.kind)
+					ref := parser.ParseSourceFile(opts, item.text, item.kind)
+					if !slices.Equal(batchShape(f), batchShape(ref)) || f.NodeCount != ref.NodeCount || f.TextCount != ref.TextCount || len(f.Diagnostics()) != len(ref.Diagnostics()) {
+						t.Errorf("fresh and reused parser differ for %v", item.kind)
+						return
+					}
+				}
+			}
+		})
+	}
+	wg.Wait()
+	if first.Text() != src[0].text || !slices.Equal(batchShape(first), before) {
+		t.Fatal("previously published tree changed")
+	}
+}

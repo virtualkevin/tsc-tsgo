@@ -12,6 +12,7 @@ root = here.parents[2]
 captures = Path(sys.argv[1]).resolve()
 env = {k: v for k, v in os.environ.items() if not k.startswith(('TSC_', 'TS_GO_'))}
 env['TSC_TS_LIB_DIR'] = str(root/'upstream/typescript-go/internal/bundled/libs')
+output = Path(sys.argv[2]) if len(sys.argv) > 2 else here/'retained-heap.json'
 report = []
 for group in ('small','large'):
     screen = json.loads((captures/(group+'.json')).read_text())
@@ -32,5 +33,5 @@ for group in ('small','large'):
         for k in ('Files','Lines','Identifiers','Types','Instantiations'):
             assert by_mode['baseline'][k] == by_mode['candidate'][k]
         report.append({'project':project['name'], 'counts':by_mode})
-        (here/'retained-heap.json').write_text(json.dumps(report,indent=2)+'\n')
+        output.write_text(json.dumps(report,indent=2)+'\n')
         print(project['name'],by_mode,flush=True)
