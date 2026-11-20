@@ -1823,3 +1823,16 @@ Retained production CPU stacks with an Arena.New frame accounted for 9.17% of Ty
 In the full candidate executable createIdentifierWithDiagnostic calls the identifier factory directly and that factory calls growForOne on exhaustion. The production executable calls Parser.newIdentifier, which calls Arena.New. NewPropertyAccessExpression calls Arena.New in production and growForOne in the candidate. The shift in inlining boundaries is preserved in compiler-codegen.json. All 80 CLI fixtures matched production Go. Small-project full-check ratios after four pairs were 0.983× on TypeORM and 1.039× on tRPC, with both workloads showing paired observations on either side of 1×.
 
 The final full-check pairs on VS Code were 0.983× and 1.111× and on Sentry 0.954× and 1.080×. Ratios of median times were 1.045× and 1.014× respectively. Every workload had paired results on both sides of 1×. Keep the inline-only candidate isolated. Exact-content deduplication also looks too narrow for this suite. After rehashing the inputs from the four reports, duplicate copies beyond the first represented 0.57%, 0.29%, 0.07% and 0.11% of input bytes on TypeORM, tRPC, VS Code and Sentry respectively. These byte shares describe the inputs and do not measure parsing time.
+
+An identifier flow-field observer counted distinct objects at two points in each full check. The binder marks an identifier immediately after storing its current flow. The first subsequent call to Node.FlowNodeData on that identifier counts one accessor visit, including presence checks. Atomic state on the identifier prevents repeated or concurrent visits from inflating the distinct count. Unbound synthetic identifiers are outside this denominator. The observer does not measure reads of identifier text, the need for the identifier itself, or demand from subsequent language-service requests.
+
+| Project | Bound identifiers | Accessor visited | Share visited | Raw pointer bytes in unvisited slots (MiB) |
+|---|---:|---:|---:|---:|
+| TypeORM | 427,689 | 127,333 | 29.77% | 2.29 |
+| tRPC | 185,507 | 5,656 | 3.05% | 1.37 |
+| VS Code | 7,120,230 | 2,362,289 | 33.18% | 36.30 |
+| Sentry | 2,504,113 | 752,291 | 30.04% | 13.37 |
+
+All bound identifiers had non-nil flow at binding, so a check for nil at the write site cannot remove these stores. The last column uses eight bytes per slot on amd64, before allocator effects and the cost of replacement storage. A sparse table still needs a way to find the correct flow on first access. On VS Code the raw payload of *all* bound identifier flow slots is 54.32 MiB against roughly 7.5 GiB measured peak RSS in the preceding production runs. Leave the production layout in place. This experiment favors studying whole-subtree or cross-phase work over moving this field by itself. The four runs verified pinned commits and input hashes and exited successfully with empty diagnostic output. Counts and the observer patch are in benchmarks/profiles/identifier-flow-demand. Observer timings are excluded from PERF.md.
+
+The observer also matched production Go on all 80 CLI parity cases, including diagnostics and emitted files.

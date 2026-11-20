@@ -1,0 +1,73 @@
+--- a/packages/tsc-go/internal/ast/ast_generated.go
++++ b/packages/tsc-go/internal/ast/ast_generated.go
+@@ -618,6 +618,7 @@
+ // ──────────────────────────────────────────────────────────────────────
+ 
+ type Identifier struct {
++	flowObserved atomic.Uint32
+ 	PrimaryExpressionBase
+ 	FlowNodeBase
+ 	Text string
+--- a/packages/tsc-go/internal/ast/ast.go
++++ b/packages/tsc-go/internal/ast/ast.go
+@@ -208,7 +208,25 @@
+ func (n *Node) VisitEachChild(v *NodeVisitor) *Node       { return n.data.VisitEachChild(v) }
+ func (n *Node) Name() *DeclarationName                    { return n.data.Name() }
+ func (n *Node) Modifiers() *ModifierList                  { return n.data.Modifiers() }
+-func (n *Node) FlowNodeData() *FlowNodeBase               { return n.data.FlowNodeData() }
++var FlowBound, FlowBoundNonNil, FlowAccessed, FlowAccessedNonNil atomic.Uint64
++
++func (id *Identifier) ObserveBoundFlow() {
++    if id.flowObserved.CompareAndSwap(0, 1) {
++        FlowBound.Add(1)
++        if id.FlowNode != nil { FlowBoundNonNil.Add(1) }
++    }
++}
++
++func (n *Node) FlowNodeData() *FlowNodeBase {
++    if n.Kind == KindIdentifier {
++        id := n.AsIdentifier()
++        if id.flowObserved.CompareAndSwap(1, 2) {
++            FlowAccessed.Add(1)
++            if id.FlowNode != nil { FlowAccessedNonNil.Add(1) }
++        }
++    }
++    return n.data.FlowNodeData()
++}
+ func (n *Node) DeclarationData() *DeclarationBase         { return n.data.DeclarationData() }
+ func (n *Node) ExportableData() *ExportableBase           { return n.data.ExportableData() }
+ func (n *Node) LocalsContainerData() *LocalsContainerBase { return n.data.LocalsContainerData() }
+--- a/packages/tsc-go/internal/binder/binder.go
++++ b/packages/tsc-go/internal/binder/binder.go
+@@ -601,6 +601,7 @@
+ 	switch node.Kind {
+ 	case ast.KindIdentifier:
+ 		node.AsIdentifier().FlowNode = b.currentFlow
++		node.AsIdentifier().ObserveBoundFlow()
+ 		b.checkContextualIdentifier(node)
+ 	case ast.KindThisKeyword, ast.KindSuperKeyword:
+ 		if node.Kind == ast.KindThisKeyword {
+--- a/packages/tsc-go/cmd/tsgo/main.go
++++ b/packages/tsc-go/cmd/tsgo/main.go
+@@ -2,6 +2,8 @@
+ 
+ import (
+ 	"context"
++	"fmt"
++	"github.com/microsoft/typescript-go/internal/ast"
+ 	"os"
+ 	"os/signal"
+ 	"syscall"
+@@ -11,7 +13,11 @@
+ )
+ 
+ func main() {
+-	os.Exit(runMain())
++	status := runMain()
++    if os.Getenv("TSC_FLOW_REPORT") != "" {
++        fmt.Fprintf(os.Stderr, "%d %d %d %d\n", ast.FlowBound.Load(), ast.FlowBoundNonNil.Load(), ast.FlowAccessed.Load(), ast.FlowAccessedNonNil.Load())
++    }
++    os.Exit(status)
+ }
+ 
+ func runMain() int {
