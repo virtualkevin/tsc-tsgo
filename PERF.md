@@ -351,3 +351,7 @@
 | Direct parser parent links, file discovery only | trpc | Production Go, --listFilesOnly | 187.69 | 190.31 | 0.986× | 4 | Verified full file lists. [Samples](benchmarks/profiles/direct-parser-parents/discovery.json) |
 | Direct parser parent links, file discovery only | vscode | Production Go, --listFilesOnly | 5521.70 | 5499.42 | 1.004× | 4 | Verified full file lists. [Samples](benchmarks/profiles/direct-parser-parents/discovery.json) |
 | Direct parser parent links, file discovery only | sentry | Production Go, --listFilesOnly | 3107.98 | 3041.90 | 1.022× | 4 | Verified full file lists. [Samples](benchmarks/profiles/direct-parser-parents/discovery.json) |
+| Host-local parser arenas | typeorm | Production Go | 2295.77 | 2500.60 | 0.918× | 4 | Median peak RSS 880.7/871.0 MiB. [Samples](benchmarks/profiles/host-parser-arenas/small.json.gz) |
+| Host-local parser arenas | trpc | Production Go | 448.86 | 425.00 | 1.056× | 4 | Median peak RSS 245.2/227.1 MiB. [Samples](benchmarks/profiles/host-parser-arenas/small.json.gz) |
+| Host-local parser arenas | vscode | Production Go | 33113.33 | 32813.37 | 1.009× | 2 | Median peak RSS 7888.3/7303.5 MiB. [Samples](benchmarks/profiles/host-parser-arenas/large.json.gz) |
+| Host-local parser arenas | sentry | Production Go | 26447.52 | 25284.93 | 1.046× | 2 | Median peak RSS 5338.7/4966.3 MiB. [Samples](benchmarks/profiles/host-parser-arenas/large.json.gz) |

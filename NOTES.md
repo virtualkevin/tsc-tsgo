@@ -1807,3 +1807,11 @@ Constructor attribution includes callees and does not quantify avoidable CPU or 
 The host-parser-arenas overlay gives each compiler host an exclusive parser pool. A parser returned to this pool clears per-file state and factory counters while preserving the typed arenas' current slabs. Subsequent files can allocate into unused slots. No published slot is recycled. Ordinary standalone parsing retains its original pooling path. AST, parser and compiler package tests passed, including a concurrent comparison against fresh parsing across TS, TSX, JS, JSON and invalid source with a previously published tree kept live. Sharing a slab can prolong the lifetime of an earlier file's graph when a later file survives, so short-lived CLI memory and incremental/API retention are separate questions.
 
 The concurrent host parser fixture passed under the Go race detector. A separate weak-pointer fixture passed three repetitions. Keeping only a second identifier rooted allowed the earlier tree's parent to be collected with separate factories, while a shared identifier slab kept that parent alive across two collections. The fixture establishes a real retention edge. It does not establish its frequency in watch or API sessions.
+
+Host-local parser arenas matched production Go on all 80 CLI fixtures. Four measured pairs gave TypeORM 0.918× and tRPC 1.056×. Two measured pairs gave VS Code 1.009× and Sentry 1.046×. Median peak RSS fell on all four, including 584.8 MiB on VS Code and 372.4 MiB on Sentry. Separate extended diagnostics recorded these heap and allocation deltas after the compiler forced two collections.
+- typeorm post-GC heap -5.67%, cumulative allocation count -1.07%.
+- trpc post-GC heap -3.99%, cumulative allocation count -2.48%.
+- vscode post-GC heap -6.10%, cumulative allocation count -2.11%.
+- sentry post-GC heap -4.46%, cumulative allocation count -1.44%.
+
+The candidate reduces allocation footprint but has mixed whole-command timing, including a TypeORM regression. Its cross-file retention edge also needs lifecycle-specific handling before use in long-lived hosts. Archive the prototype and retain production defaults. The cold 10× native-relative goal remains unmet.
