@@ -1,0 +1,2687 @@
+{
+  "status": "failed",
+  "head": "52b119eb6a9907b5645835d04858842e060925c8",
+  "binarySha256": "9017fa9abe7add6cadf8cefffca2aea161938b63aeac46ed8d226d7dca916d2a",
+  "sidecarSha256": "5164f58805236585d39258604fb12e274475039d04fd3efd5b8572d84c2cf287",
+  "sourceSha256": "b50f489f20634bf3570a18d0fcc5cf811036fbcefe2a5ea481b193f848768445",
+  "controllerSha256": "a2e458168e0e2ffa54797a3818c63c83f373ab3614ceb94e75a7960907a996cb",
+  "timeSha256": "3b11dec50514a8473e9f6efa7a34d584d0657538c09988f61b72d38ad4991a10",
+  "timeVersion": "time (GNU Time) UNKNOWN\nCopyright (C) 2018 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by David Keppel, David MacKenzie, and Assaf Gordon.\n",
+  "orders": [
+    [
+      1,
+      2,
+      8,
+      4
+    ],
+    [
+      2,
+      4,
+      1,
+      8
+    ],
+    [
+      4,
+      8,
+      2,
+      1
+    ],
+    [
+      8,
+      1,
+      4,
+      2
+    ]
+  ],
+  "cpuAffinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "scope": "Same production binary, fresh processes, warm filesystem. Default runtime settings, explicit checker count only. Four balanced rounds after one warmup/count. Exploratory scaling, not an adoption gate or native comparison. GNU time CPU precision is 0.01 seconds; wrapper-inclusive wall uses monotonic nanoseconds. RSS is command peak, not aggregate tree peak. No allocation counts measured.",
+  "projects": [
+    {
+      "name": "typeorm",
+      "reference": "/home/dev/tssss/tsc-tsgo/benchmarks/results/native-project-inlining/small.json",
+      "referenceSha256": "ba0b24da378abdc879688fe32934a7c25f092ea18e684db8e29bb3992ae89d45",
+      "inputCount": 3572,
+      "runs": [
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/0-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 7794.663923,
+          "resources": {
+            "userSeconds": 13.75,
+            "systemSeconds": 1.72,
+            "peakRssKiB": 791756,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-1.resources.json": "de2e6af093de8af660d3e6ec1133e61bd9a9897bd244c602c4605e80aa04cd91",
+            "0-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/0-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 4946.189446,
+          "resources": {
+            "userSeconds": 14.46,
+            "systemSeconds": 1.98,
+            "peakRssKiB": 864364,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-2.resources.json": "0f0dcb9a173df1b81b5a78e2ff38b6caaf6c0e9da6dc8f14c73043da47c16a5f",
+            "0-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/0-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 3813.709998,
+          "resources": {
+            "userSeconds": 15.06,
+            "systemSeconds": 2.62,
+            "peakRssKiB": 926016,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-4.resources.json": "a4f79fa45b40647ec891df6c463d7c95db92c5c31b10a29e5460a664535ba18c",
+            "0-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/0-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 3686.443911,
+          "resources": {
+            "userSeconds": 16.62,
+            "systemSeconds": 2.81,
+            "peakRssKiB": 858880,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-8.resources.json": "166a8dbf53343b1c08e00d6d1909dc8c15bfac1890670cf1a2b5e434e570be9f",
+            "0-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/1-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 7351.689271,
+          "resources": {
+            "userSeconds": 12.45,
+            "systemSeconds": 1.62,
+            "peakRssKiB": 838720,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-1.resources.json": "8ed072b4e3d013de3d50df1a75cf47de9d35da2112d042974a712a38da6fa323",
+            "1-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/1-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 5500.591352,
+          "resources": {
+            "userSeconds": 15.42,
+            "systemSeconds": 2.48,
+            "peakRssKiB": 885652,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-2.resources.json": "8a2dbb8ebfbb45985d1e5f07e6d3de174ea977ac463c5aed0515938f6a52e8ab",
+            "1-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/1-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 8089.463865,
+          "resources": {
+            "userSeconds": 26.42,
+            "systemSeconds": 17.2,
+            "peakRssKiB": 949252,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-8.resources.json": "1bf1fa622e60845d46a016cfadf45cf011b9a35ca543a62e1233c6893bdf96ea",
+            "1-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/1-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 5603.956132,
+          "resources": {
+            "userSeconds": 19.22,
+            "systemSeconds": 7.82,
+            "peakRssKiB": 909776,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-4.resources.json": "743e2bcfc9d25512eacb1c5ff8d1740eaa1a0aac88471a7a6c0754a634fd8941",
+            "1-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/2-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 5614.243984,
+          "resources": {
+            "userSeconds": 15.47,
+            "systemSeconds": 2.83,
+            "peakRssKiB": 858204,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-2.resources.json": "0961608283f973ac57e76da976c6860c90546a77a2547c0c8548362e17e60817",
+            "2-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/2-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 4986.542418,
+          "resources": {
+            "userSeconds": 17.96,
+            "systemSeconds": 5.54,
+            "peakRssKiB": 801400,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-4.resources.json": "4d11e8736c7bc84c1f18032de155500d73dcd05768dc47d76497f116697bff7e",
+            "2-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/2-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 7686.013512,
+          "resources": {
+            "userSeconds": 13.56,
+            "systemSeconds": 2.28,
+            "peakRssKiB": 839288,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-1.resources.json": "de6d5f3f86966a378632fa516fde7a71bc8a8f6df39cd4cb0e3442e6007371ac",
+            "2-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/2-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 4105.598455,
+          "resources": {
+            "userSeconds": 16.84,
+            "systemSeconds": 3.81,
+            "peakRssKiB": 955856,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-8.resources.json": "155004f94c7cf1f43f99be87e29446b2d597a0b354de48fed87767ad40df300d",
+            "2-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/3-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 4643.675638,
+          "resources": {
+            "userSeconds": 16.55,
+            "systemSeconds": 4.49,
+            "peakRssKiB": 848032,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-4.resources.json": "9b1b2ed3c3d9dab2f2fc7c44828db20731966782197200a92dee966c894f1675",
+            "3-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/3-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 5111.167667,
+          "resources": {
+            "userSeconds": 18.9,
+            "systemSeconds": 7.78,
+            "peakRssKiB": 946640,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-8.resources.json": "ad710e0634c38d8304a52df690132c9baad85f1f531c378a85a2d196762d56da",
+            "3-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/3-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 5137.528557,
+          "resources": {
+            "userSeconds": 14.09,
+            "systemSeconds": 2.41,
+            "peakRssKiB": 855476,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-2.resources.json": "2c230cd19ad2e8ffc356c9fc015cab8c59bf5384a466afdf9065e6a7790d3686",
+            "3-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/3-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 8645.982694,
+          "resources": {
+            "userSeconds": 14.38,
+            "systemSeconds": 2.44,
+            "peakRssKiB": 840088,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-1.resources.json": "473f84e50e56bc3b22ace8ffcb151cf0dbb72153cbb5245db63f690bc1cc19e9",
+            "3-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/4-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 8549.319995,
+          "resources": {
+            "userSeconds": 27.64,
+            "systemSeconds": 17.82,
+            "peakRssKiB": 959992,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-8.resources.json": "75ca82b1e22fdeb60155e7947b48baf9a34f3b49f26865446b4ebc32e723d853",
+            "4-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/4-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 8309.094131,
+          "resources": {
+            "userSeconds": 14.95,
+            "systemSeconds": 3.84,
+            "peakRssKiB": 716880,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-1.resources.json": "c00f19b71c4d250d53b8587e30787b15234ead296d647978d43cc31fce231b87",
+            "4-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/4-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 4743.246954,
+          "resources": {
+            "userSeconds": 17.07,
+            "systemSeconds": 4.44,
+            "peakRssKiB": 881452,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-4.resources.json": "2158d41bb509b55ed0c1ad3238ccdb1060baa516adbd0cf646fbbe2f7cdb9a40",
+            "4-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/typeorm/4-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/typeorm/tsconfig.json",
+            "--module",
+            "node20",
+            "--moduleResolution",
+            "node16",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm",
+          "wallMs": 5290.144608,
+          "resources": {
+            "userSeconds": 15.02,
+            "systemSeconds": 2.28,
+            "peakRssKiB": 762360,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-2.resources.json": "3962a4b605f982139e11da57e16a7731048710ba80c4f23dca9a318a7f01e471",
+            "4-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      ],
+      "summary": {
+        "1": {
+          "wallMedianMs": 7997.5538215,
+          "cpuMedianSeconds": 16.33,
+          "rssMedianKiB": 839004.0
+        },
+        "2": {
+          "wallMedianMs": 5395.36798,
+          "cpuMedianSeconds": 17.6,
+          "rssMedianKiB": 856840.0
+        },
+        "4": {
+          "wallMedianMs": 4864.894686,
+          "cpuMedianSeconds": 22.505000000000003,
+          "rssMedianKiB": 864742.0
+        },
+        "8": {
+          "wallMedianMs": 6600.315766,
+          "cpuMedianSeconds": 35.150000000000006,
+          "rssMedianKiB": 952554.0
+        }
+      }
+    },
+    {
+      "name": "trpc",
+      "reference": "/home/dev/tssss/tsc-tsgo/benchmarks/results/native-project-inlining/small.json",
+      "referenceSha256": "ba0b24da378abdc879688fe32934a7c25f092ea18e684db8e29bb3992ae89d45",
+      "inputCount": 942,
+      "runs": [
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/0-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1383.080366,
+          "resources": {
+            "userSeconds": 2.5,
+            "systemSeconds": 0.93,
+            "peakRssKiB": 222336,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-1.resources.json": "1753c52a7e7f26780ee412b5df8bbff0c4dac7c3a34b385216f71bf92708c68f",
+            "0-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/0-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1218.669563,
+          "resources": {
+            "userSeconds": 3.09,
+            "systemSeconds": 1.43,
+            "peakRssKiB": 230144,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-2.resources.json": "63dbfe53ec61c583ba41e3c171a1397702d265927c96581870084140f75b5f53",
+            "0-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/0-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1334.633283,
+          "resources": {
+            "userSeconds": 3.77,
+            "systemSeconds": 2.32,
+            "peakRssKiB": 241792,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-4.resources.json": "97d07ce2118645836a6f82d925c7b87aaf9d36c966b334a4aa92bbd427322207",
+            "0-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/0-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 786.17028,
+          "resources": {
+            "userSeconds": 3.03,
+            "systemSeconds": 0.77,
+            "peakRssKiB": 274944,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-8.resources.json": "347fb39c889e619e09492c58a8dd1273a9e9d06bacb735051c3820adf2f70ab3",
+            "0-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/1-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1071.478556,
+          "resources": {
+            "userSeconds": 2.03,
+            "systemSeconds": 0.42,
+            "peakRssKiB": 221440,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-1.resources.json": "b2e44b7cb6225fac3f10b057077b7f6f4f43687e145a51372a8f8faa0981f1a7",
+            "1-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/1-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1242.239898,
+          "resources": {
+            "userSeconds": 3.02,
+            "systemSeconds": 1.38,
+            "peakRssKiB": 223616,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-2.resources.json": "78b7152a7344a104fb6d5f1fb6711c214917637b14425ff1f6a0e8012c8e85c7",
+            "1-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/1-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 978.389215,
+          "resources": {
+            "userSeconds": 3.22,
+            "systemSeconds": 1.57,
+            "peakRssKiB": 273536,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-8.resources.json": "4eaf17ec393c93a32f45ed74e9e7a82ceb2e7ff167478d1216e9ddb1269e165f",
+            "1-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/1-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1100.770554,
+          "resources": {
+            "userSeconds": 3.17,
+            "systemSeconds": 1.98,
+            "peakRssKiB": 253824,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-4.resources.json": "eb7b7e2b229ed50a74efac517dcdc43369d32d22e75dbfab2888c97da6d30e05",
+            "1-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/2-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 870.844243,
+          "resources": {
+            "userSeconds": 2.36,
+            "systemSeconds": 0.56,
+            "peakRssKiB": 229888,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-2.resources.json": "e41d463e7e21801a6c6f5a1cc56db4b39b190fda2304cd9e3d069f64ffe0c5f0",
+            "2-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/2-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 667.455506,
+          "resources": {
+            "userSeconds": 2.26,
+            "systemSeconds": 0.51,
+            "peakRssKiB": 251392,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-4.resources.json": "decee7d53897b6cc7544b7798563f4da2e38a46117207f3e7aee1e6158239a42",
+            "2-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/2-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1196.282075,
+          "resources": {
+            "userSeconds": 2.35,
+            "systemSeconds": 0.82,
+            "peakRssKiB": 216704,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-1.resources.json": "545f958df30140569f72cb45ba4924f52b4f7b28242be336de3d4a5e26913e8b",
+            "2-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/2-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1052.659368,
+          "resources": {
+            "userSeconds": 3.35,
+            "systemSeconds": 1.56,
+            "peakRssKiB": 276864,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-8.resources.json": "787ac0f53da3b67dfc42fb67e22fd4acef7aeb86994a07854f562fff6ce7146e",
+            "2-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/3-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 788.582439,
+          "resources": {
+            "userSeconds": 2.7,
+            "systemSeconds": 0.73,
+            "peakRssKiB": 246656,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-4.resources.json": "5560da658fce6d7e6da9523956740837c38e27ea1db3d88f2684887af7336751",
+            "3-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/3-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1255.766842,
+          "resources": {
+            "userSeconds": 3.55,
+            "systemSeconds": 2.64,
+            "peakRssKiB": 276096,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-8.resources.json": "db37de06a2649b1d663548a740cc4d7c9ef9ee3dc12db338627801e81e7b2b48",
+            "3-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/3-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1506.597563,
+          "resources": {
+            "userSeconds": 3.41,
+            "systemSeconds": 2.85,
+            "peakRssKiB": 235776,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-2.resources.json": "d68c7f0c4df94e07351b46077f275c539a98c4b02724f2e794c5418f64c1e5ec",
+            "3-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/3-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1227.596755,
+          "resources": {
+            "userSeconds": 2.26,
+            "systemSeconds": 0.55,
+            "peakRssKiB": 221952,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-1.resources.json": "56603db87283b174d03f0f670108241f0bf792261c5938e65ff450de27c6eed5",
+            "3-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/4-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 944.080651,
+          "resources": {
+            "userSeconds": 3.2,
+            "systemSeconds": 1.07,
+            "peakRssKiB": 275712,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-8.resources.json": "fbbe60ce7fec54ca59ef9edb2908aca6f4c49154f451285f91d5677908cac975",
+            "4-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/4-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 1400.193867,
+          "resources": {
+            "userSeconds": 2.46,
+            "systemSeconds": 1.2,
+            "peakRssKiB": 220544,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-1.resources.json": "465f8c8ffc1e5570cf288bd08d364506007e13ba8625969c506f34945a7ef892",
+            "4-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/4-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 982.642464,
+          "resources": {
+            "userSeconds": 3.01,
+            "systemSeconds": 1.33,
+            "peakRssKiB": 254976,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-4.resources.json": "604ffb2645d8ed3ff79fadbcf383269d83bdf230f7339cfda06cb17cf03eb621",
+            "4-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/trpc/4-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "packages/server/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc",
+          "wallMs": 817.723075,
+          "resources": {
+            "userSeconds": 2.39,
+            "systemSeconds": 0.44,
+            "peakRssKiB": 224640,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-2.resources.json": "66705ae97ef773db34061173b8f09f93442bb5f7a9b5ced61841266c4beadee9",
+            "4-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      ],
+      "summary": {
+        "1": {
+          "wallMedianMs": 1211.939415,
+          "cpuMedianSeconds": 2.9899999999999998,
+          "rssMedianKiB": 220992.0
+        },
+        "2": {
+          "wallMedianMs": 1056.5420705000001,
+          "cpuMedianSeconds": 3.66,
+          "rssMedianKiB": 227264.0
+        },
+        "4": {
+          "wallMedianMs": 885.6124515,
+          "cpuMedianSeconds": 3.885,
+          "rssMedianKiB": 252608.0
+        },
+        "8": {
+          "wallMedianMs": 1015.5242915000001,
+          "cpuMedianSeconds": 4.85,
+          "rssMedianKiB": 275904.0
+        }
+      }
+    },
+    {
+      "name": "vscode",
+      "reference": "/home/dev/tssss/tsc-tsgo/benchmarks/results/native-project-inlining/large.json",
+      "referenceSha256": "461bd87815e61e19f698f8371a7f7ef1b1398653ca3c9714b5631bdf6e312a89",
+      "inputCount": 11563,
+      "runs": [
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/0-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 120000.646392,
+          "resources": {
+            "userSeconds": 159.96,
+            "systemSeconds": 22.73,
+            "peakRssKiB": 6708992,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-1.resources.json": "06ca7ce6539a6ce7ae3416fa8e5a38f4c43de73c4121651c574aa66648091d1f",
+            "0-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/0-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 77436.59622,
+          "resources": {
+            "userSeconds": 175.99,
+            "systemSeconds": 25.92,
+            "peakRssKiB": 7175552,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-2.resources.json": "0883f21be7cb824e14143e7f686a913c3df43e86d9ed7eff097c2b3a94d522e4",
+            "0-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/0-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 63034.314573,
+          "resources": {
+            "userSeconds": 212.81,
+            "systemSeconds": 59.67,
+            "peakRssKiB": 7688632,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-4.resources.json": "9013256df0abc658eccb7bd5fffbabf2c8399159569f32571214172ddbecfb39",
+            "0-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 0,
+          "phase": "warmup",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/0-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 88978.94858,
+          "resources": {
+            "userSeconds": 308.97,
+            "systemSeconds": 171.09,
+            "peakRssKiB": 8763676,
+            "exitStatus": 0
+          },
+          "files": {
+            "0-8.resources.json": "0e216887159093054fb1c945e1ed13e4c805446cf23f6e6efa0b7171a250392e",
+            "0-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "0-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/1-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 130869.577371,
+          "resources": {
+            "userSeconds": 182.19,
+            "systemSeconds": 32.75,
+            "peakRssKiB": 6895048,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-1.resources.json": "3a019e9bd438e4d1836402046ee40dad24a878b004763178577ef7abd3c39bab",
+            "1-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/1-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 109895.256912,
+          "resources": {
+            "userSeconds": 254.57,
+            "systemSeconds": 71.29,
+            "peakRssKiB": 6901684,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-2.resources.json": "693cd7199c2f3a18b3cb9da7f2ebd154a1c06621f7d308368f4d7701d5ed9bb6",
+            "1-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/1-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 113920.792383,
+          "resources": {
+            "userSeconds": 345.02,
+            "systemSeconds": 267.63,
+            "peakRssKiB": 8233312,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-8.resources.json": "6b671fef85141b31148df3ff010e49958b8f32fe7f9f4de2a6376e2c8e48cd84",
+            "1-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 1,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/1-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 76298.295556,
+          "resources": {
+            "userSeconds": 257.43,
+            "systemSeconds": 83.45,
+            "peakRssKiB": 8132832,
+            "exitStatus": 0
+          },
+          "files": {
+            "1-4.resources.json": "67e0b50661f974fc83024678eba0b76fb1db8f8f8dba879c8d29ce3ff36f7f2a",
+            "1-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "1-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/2-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 95789.182456,
+          "resources": {
+            "userSeconds": 228.42,
+            "systemSeconds": 60.41,
+            "peakRssKiB": 7190436,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-2.resources.json": "c9b2c529404321e43bac7a30cdf5418fa2d68e63eae47e901471d1c23c5cdacc",
+            "2-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/2-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 59153.11246,
+          "resources": {
+            "userSeconds": 205.31,
+            "systemSeconds": 47.37,
+            "peakRssKiB": 8016704,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-4.resources.json": "c97e5c185acd960853dad617afa6fe7635ff980d15e7fd7c1bffd8d4a6ce94f8",
+            "2-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/2-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 128711.233189,
+          "resources": {
+            "userSeconds": 186.08,
+            "systemSeconds": 35.93,
+            "peakRssKiB": 7032356,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-1.resources.json": "e6dd8b14c650fb60719894da346c23f4352dcb5c35768823a8b9f991f4340bf9",
+            "2-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 2,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/2-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 63141.847541,
+          "resources": {
+            "userSeconds": 264.2,
+            "systemSeconds": 72.32,
+            "peakRssKiB": 8904780,
+            "exitStatus": 0
+          },
+          "files": {
+            "2-8.resources.json": "881cf19eb2fea17632ec8fd2e8ea7f7da9d925b9eb3117706fad9d73f09f12f7",
+            "2-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "2-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/3-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 61861.287888,
+          "resources": {
+            "userSeconds": 211.91,
+            "systemSeconds": 55.41,
+            "peakRssKiB": 7857068,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-4.resources.json": "cce65258d44ddb94c72fcfbfb30ed1fb368850929822a3955d293c61f158f8fe",
+            "3-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/3-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 60267.940617,
+          "resources": {
+            "userSeconds": 245.24,
+            "systemSeconds": 70.34,
+            "peakRssKiB": 8464424,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-8.resources.json": "24638483e9cfb9193e276de86e7e3cd425aa7eab09ed543b2523c5183226e8ef",
+            "3-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/3-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 77127.890696,
+          "resources": {
+            "userSeconds": 174.93,
+            "systemSeconds": 35.16,
+            "peakRssKiB": 7184448,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-2.resources.json": "8e64736a8e74477759eb253f30cba95e001ca6b9c71ea8f0d449a961fcb6abb9",
+            "3-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 3,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/3-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 126181.852872,
+          "resources": {
+            "userSeconds": 177.35,
+            "systemSeconds": 32.22,
+            "peakRssKiB": 6552428,
+            "exitStatus": 0
+          },
+          "files": {
+            "3-1.resources.json": "33408a01cafec1a34b5fbb4fc224dd85cf054fcf6a289af25630d2b27e8ed413",
+            "3-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "3-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 8,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/4-8.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "8"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 73136.146812,
+          "resources": {
+            "userSeconds": 282.59,
+            "systemSeconds": 106.76,
+            "peakRssKiB": 8835996,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-8.resources.json": "134c46e293116bb21c57175b6f77fa40ce32e3fc5cf0f21ae6d4ff87f5c4f419",
+            "4-8.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-8.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 1,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/4-1.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "1"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 115513.848569,
+          "resources": {
+            "userSeconds": 153.05,
+            "systemSeconds": 17.29,
+            "peakRssKiB": 6836968,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-1.resources.json": "cd35b7444c1c88a12a7e2c98c388bfc180dda2ba9d1f766ecd01deb07e14d788",
+            "4-1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 4,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/4-4.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "4"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 51080.872842,
+          "resources": {
+            "userSeconds": 193.85,
+            "systemSeconds": 28.6,
+            "peakRssKiB": 7731700,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-4.resources.json": "b64b03fb23b4a852e5690d3a6ea97157a366e6e37e3b352d1edfb968920ba2a4",
+            "4-4.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "round": 4,
+          "phase": "timed",
+          "workers": 2,
+          "command": [
+            "/usr/bin/time",
+            "--quiet",
+            "--output",
+            "/home/dev/tssss/tsc-tsgo/benchmarks/results/project-inlining-scaling/vscode/4-2.resources.json",
+            "--format",
+            "{\"userSeconds\":%U,\"systemSeconds\":%S,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+            "--",
+            "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+            "-p",
+            "src/tsconfig.json",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "--composite",
+            "false",
+            "--noCheck",
+            "false",
+            "--pretty",
+            "false",
+            "--checkers",
+            "2"
+          ],
+          "cwd": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode",
+          "wallMs": 78975.574397,
+          "resources": {
+            "userSeconds": 185.78,
+            "systemSeconds": 34.25,
+            "peakRssKiB": 6951176,
+            "exitStatus": 0
+          },
+          "files": {
+            "4-2.resources.json": "03823e68483a7777b1c079481755688793ba6b059e95bb57bc7cdcf5fbcc695f",
+            "4-2.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "4-2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      ],
+      "summary": {
+        "1": {
+          "wallMedianMs": 127446.5430305,
+          "cpuMedianSeconds": 212.255,
+          "rssMedianKiB": 6866008.0
+        },
+        "2": {
+          "wallMedianMs": 87382.3784265,
+          "cpuMedianSeconds": 254.43,
+          "rssMedianKiB": 7067812.0
+        },
+        "4": {
+          "wallMedianMs": 60507.200174,
+          "cpuMedianSeconds": 260.0,
+          "rssMedianKiB": 7936886.0
+        },
+        "8": {
+          "wallMedianMs": 68138.99717650001,
+          "cpuMedianSeconds": 362.93499999999995,
+          "rssMedianKiB": 8650210.0
+        }
+      }
+    },
+    {
+      "name": "sentry",
+      "reference": "/home/dev/tssss/tsc-tsgo/benchmarks/results/native-project-inlining/large.json",
+      "referenceSha256": "461bd87815e61e19f698f8371a7f7ef1b1398653ca3c9714b5631bdf6e312a89",
+      "inputCount": 13290,
+      "runs": []
+    }
+  ],
+  "error": "KeyboardInterrupt('2')"
+}

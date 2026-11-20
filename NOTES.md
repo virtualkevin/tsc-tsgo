@@ -1730,3 +1730,7 @@ is NOTunvectorizedbudget: shippedmemclr/memmove/memeqbody/indexbytebody allhave
 YMMpaths. HostadvertisesAVX2/AVX512; preserveportableGOAMD64v1+runtimechecks.
 No scannerrewrite justifiedas10xstrategy; nextretainedproductionworker scaling
 measureswall/CPU/RSS andduplication tradeoffs. Auditnotperformance;noPERFrows.
+
+Worker scaling was interrupted on request during the first Sentry warmup. The three completed projects each have four timed observations per count. I verified the raw file hashes and recomputed their medians before adding the twelve rows to PERF.md. Four checkers had the lowest median wall time on all three. On VS Code eight checkers used 363 CPU seconds versus 260 at four, and elapsed time rose from 60.5 to 68.1 seconds. Sentry has no completed observation in this capture.
+
+The next experiment keeps four checkers and assigns contiguous runs of checked source files by cumulative source length. It tests whether locality in the loader's order reduces repeated instantiation across checker-private caches. The existing dependency scheduler only groups selected large, checked import closures. Use the same experimental binary in both modes and measure the work counters before attributing a timing change to reuse.
