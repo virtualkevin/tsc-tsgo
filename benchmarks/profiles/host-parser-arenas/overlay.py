@@ -58,4 +58,5 @@ edit('internal/compiler/host.go',[('type compilerHost struct {','type compilerHo
     ('return parser.ParseSourceFile(opts, text, core.GetScriptKindFromFileName(opts.FileName))',
      'return h.batch.ParseSourceFile(opts, text, core.GetScriptKindFromFileName(opts.FileName))')])
 replace[str(root/'internal/parser/batch_arenas_test.go')]=str(here/'batch_test.go.txt')
+replace[str(root/'internal/ast/slab_retention_test.go')]=str(here/'retention_test.go.txt')
 (out/'overlay.json').write_text(json.dumps({'Replace':replace}))

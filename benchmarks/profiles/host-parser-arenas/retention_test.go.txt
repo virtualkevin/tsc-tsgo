@@ -1,0 +1,38 @@
+package ast_test
+
+import (
+	"runtime"
+	"testing"
+	"weak"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+//go:noinline
+func parserSlabEdges(shared bool) (*ast.Node, weak.Pointer[ast.Node]) {
+	first := &ast.NodeFactory{}
+	earlier := first.NewIdentifier("old")
+	// Give the first identifier an out-of-slab parent, as in a parsed tree.
+	parent := first.NewPropertyAccessExpression(earlier, nil, nil, 0)
+	earlier.Parent = parent
+	observed := weak.Make(parent)
+	next := &ast.NodeFactory{}
+	if shared {
+		first.ContinueFileAllocation()
+		next = first
+	}
+	return next.NewIdentifier("new"), observed
+}
+
+func TestParserSlabRetention(t *testing.T) {
+	for _, shared := range []bool{false, true} {
+		keep, previous := parserSlabEdges(shared)
+		runtime.GC()
+		runtime.GC()
+		got := previous.Value() != nil
+		runtime.KeepAlive(keep)
+		if got != shared {
+			t.Fatalf("shared slab %v, previous tree parent reachable %v", shared, got)
+		}
+	}
+}
