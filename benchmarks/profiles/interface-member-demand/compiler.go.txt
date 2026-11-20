@@ -1,0 +1,58 @@
+package compiler
+
+import (
+	"encoding/json"
+	"os"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/checker"
+)
+
+var interfaceProgram *Program
+
+func ReportInterfaceDemand() {
+	var result struct {
+		Files, Nodes, SkippedDeclarationNodes int
+		Lists, MemberNodes                    [4]int
+	}
+	for _, file := range interfaceProgram.files {
+		result.Files++
+		eligible := file.IsDeclarationFile && interfaceProgram.SkipTypeChecking(file, false)
+		var visit func(*ast.Node, int)
+		visit = func(n *ast.Node, category int) {
+			result.Nodes++
+			if eligible {
+				result.SkippedDeclarationNodes++
+			}
+			if category >= 0 {
+				result.MemberNodes[category]++
+			}
+			if eligible && category < 0 && n.Kind == ast.KindInterfaceDeclaration {
+				bucket := checker.InterfaceDemand(n)
+				result.Lists[bucket]++
+				// Members occur in source order among the children. The declaration
+				// name, type parameters and heritage clauses remain outside the list.
+				members := n.Members()
+				i := 0
+				n.ForEachChild(func(child *ast.Node) bool {
+					if i < len(members) && members[i] == child {
+						visit(child, bucket)
+						i++
+					} else {
+						visit(child, -1)
+					}
+					return false
+				})
+				if i != len(members) {
+					panic("incomplete interface member traversal")
+				}
+				return
+			}
+			n.ForEachChild(func(child *ast.Node) bool { visit(child, category); return false })
+		}
+		visit(file.AsNode(), -1)
+	}
+	if err := json.NewEncoder(os.Stderr).Encode(result); err != nil {
+		panic(err)
+	}
+}

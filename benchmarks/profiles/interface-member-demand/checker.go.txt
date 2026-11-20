@@ -1,0 +1,31 @@
+package checker
+
+import (
+	"sync"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+var memberRequests, mergeRequests sync.Map
+
+func observeInterface(s *ast.Symbol, requests *sync.Map) {
+	if s == nil || s.Flags&ast.SymbolFlagsInterface == 0 {
+		return
+	}
+	for _, decl := range s.Declarations {
+		if decl.Kind == ast.KindInterfaceDeclaration {
+			requests.Store(decl, struct{}{})
+		}
+	}
+}
+
+func InterfaceDemand(decl *ast.Node) int {
+	result := 0
+	if _, ok := memberRequests.Load(decl); ok {
+		result |= 1
+	}
+	if _, ok := mergeRequests.Load(decl); ok {
+		result |= 2
+	}
+	return result
+}
