@@ -1,0 +1,27 @@
+{
+  "binding-escaped": {
+    "source": "export {}; let impl\\u0065ments = 1;",
+    "status": 1,
+    "output": "input.ts(1,16): error TS1214: Identifier expected. 'impl\\u0065ments' is a reserved word in strict mode. Modules are automatically in strict mode.\n"
+  },
+  "binding-plain": {
+    "source": "export {}; let implements = 1;",
+    "status": 1,
+    "output": "input.ts(1,16): error TS1214: Identifier expected. 'implements' is a reserved word in strict mode. Modules are automatically in strict mode.\n"
+  },
+  "property-name": {
+    "source": "export {}; const o = {implements: 1, await: 2}; o.implements;",
+    "status": 0,
+    "output": ""
+  },
+  "module-await": {
+    "source": "export {}; let await = 1;",
+    "status": 1,
+    "output": "input.ts(1,16): error TS1262: Identifier expected. 'await' is a reserved word at the top-level of a module.\n"
+  },
+  "ambient-property": {
+    "source": "export interface I { implements: number; yield: string; }",
+    "status": 0,
+    "output": ""
+  }
+}

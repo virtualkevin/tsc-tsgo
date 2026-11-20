@@ -360,3 +360,5 @@
 | Inline arena reservation | trpc | Production Go | 461.57 | 444.21 | 1.039× | 4 | Median peak RSS 246.1/244.0 MiB. [Samples](benchmarks/profiles/arena-fast-allocation/small.json.gz) |
 | Inline arena reservation | vscode | Production Go | 32458.29 | 31054.10 | 1.045× | 2 | Median peak RSS 7678.8/7616.6 MiB. [Samples](benchmarks/profiles/arena-fast-allocation/large.json.gz) |
 | Inline arena reservation | sentry | Production Go | 25931.85 | 25575.76 | 1.014× | 2 | Median peak RSS 5306.7/5369.6 MiB. [Samples](benchmarks/profiles/arena-fast-allocation/large.json.gz) |
+| Static keyword dispatch | typeorm | Production Go | 3163.21 | 3163.28 | 1.000× | 6 | Median peak RSS 890.9/895.2 MiB. [Samples](benchmarks/profiles/keyword-dispatch/small.json.gz) |
+| Static keyword dispatch | trpc | Production Go | 612.64 | 599.24 | 1.022× | 6 | Median peak RSS 241.4/246.2 MiB. [Samples](benchmarks/profiles/keyword-dispatch/small.json.gz) |

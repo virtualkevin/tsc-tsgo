@@ -1,0 +1,41 @@
+package binder
+
+import (
+	"strings"
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/scanner"
+)
+
+func TestKeywordDispatchMatchesTokenTable(t *testing.T) {
+	check := func(word string) {
+		t.Helper()
+		want := scanner.StringToToken(word)
+		if want < ast.KindFirstKeyword || want > ast.KindLastKeyword {
+			want = ast.KindIdentifier
+		}
+		if got := scanner.GetIdentifierToken(word); got != want {
+			t.Errorf("scanner(%q) = %v, want %v", word, got, want)
+		}
+		if want != ast.KindAwaitKeyword && (want < ast.KindFirstFutureReservedWord || want > ast.KindLastFutureReservedWord) {
+			want = ast.KindIdentifier
+		}
+		if got := contextualDiagnosticKeyword(word); got != want {
+			t.Errorf("binder(%q) = %v, want %v", word, got, want)
+		}
+	}
+	for kind := ast.KindFirstKeyword; kind <= ast.KindLastKeyword; kind++ {
+		word := scanner.TokenToString(kind)
+		check(word)
+		check(strings.ToUpper(word))
+		check(word + "x")
+		for i := range len(word) {
+			check(word[:i])
+			check(word[:i] + "_" + word[i+1:])
+		}
+	}
+	for _, word := range []string{"", "π", "awаit", "=>", "長い識別子"} {
+		check(word)
+	}
+}
