@@ -1783,3 +1783,11 @@ Byte-bounded arenas passed core and compiler package tests and all 80 CLI parity
 VS Code median peak RSS fell from 7,808.6 to 7,680.5 MiB and median wall time went from 32.516 to 32.388 s. Sentry fell from 5,394.7 to 5,375.6 MiB while median wall time increased from 26.565 to 27.975 s. Each large-project result uses two measured pairs with reversed order. The candidate remains an archived patch.
 
 A separate extended-diagnostics capture measured the compiler's heap after its two forced collections. Matched file, line, identifier, type and instantiation counts held on all four projects. Post-GC heap fell 1.66% on TypeORM, 2.21% on tRPC, 2.20% on VS Code and 1.25% on Sentry. This verifies a modest reduction in retained heap across the suite. Byte-capping existing slabs does not deliver the requested improvement in cold elapsed time.
+
+The November 20 front-end time budget uses fresh full checks with one warmup and two measured pairs per workload. The original native executable runs normally. Production Go runs its ordinary project check with extended diagnostics so its internal NewProgram interval is visible. This includes file loading, module resolution and parsing before binding. Go diagnostic process wall time includes extra reporting and forced GC and is excluded from the speed comparison. Both compilers listed the same pinned files, with content hashes verified before and after each group of timings.
+- typeorm native wall time was 1158.4 ms, giving a 115.8 ms whole-command budget. Go program construction took 436.5 ms, or 3.77 times that budget.
+- trpc native wall time was 343.8 ms, giving a 34.4 ms whole-command budget. Go program construction took 135.5 ms, or 3.94 times that budget.
+- vscode native wall time was 23549.5 ms, giving a 2355.0 ms whole-command budget. Go program construction took 4417.0 ms, or 1.88 times that budget.
+- sentry native wall time was 19360.8 ms, giving a 1936.1 ms whole-command budget. Go program construction took 3037.0 ms, or 1.57 times that budget.
+
+Under these sampled conditions the current front end alone exceeds the total target on all four projects. A checker-only rewrite leaves this measured cost intact. Actual target attainment requires a full, same-workload, ordinary-command native comparison.
