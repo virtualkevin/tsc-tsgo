@@ -378,3 +378,11 @@
 | Matched heap huge-page confirmation | trpc | Rebuilt Go control | 485.94 | 497.16 | 0.977× | 8 | Advised first in opening pair. Paired median 0.957×. [Samples](benchmarks/profiles/heap-page-confirmation/small.json.gz) |
 | Matched heap huge-page confirmation | vscode | Rebuilt Go control | 32409.40 | 30085.81 | 1.077× | 4 | Advised first in opening pair. Paired median 1.079×. [Samples](benchmarks/profiles/heap-page-confirmation/large.json.gz) |
 | Matched heap huge-page confirmation | sentry | Rebuilt Go control | 36435.58 | 34006.76 | 1.071× | 4 | Advised first in opening pair. Paired median 1.045×. [Samples](benchmarks/profiles/heap-page-confirmation/large.json.gz) |
+| Size-aware heap page advice | typeorm | Matched Go control | 2400.12 | 2342.49 | 1.025× | 6 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
+| Size-aware heap page advice | typeorm | Native tsc-ts | 1297.13 | 2342.49 | 0.554× | 6 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
+| Size-aware heap page advice | trpc | Matched Go control | 461.31 | 451.25 | 1.022× | 6 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
+| Size-aware heap page advice | trpc | Native tsc-ts | 307.45 | 451.25 | 0.681× | 6 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
+| Size-aware heap page advice | vscode | Matched Go control | 33576.82 | 30906.77 | 1.086× | 3 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
+| Size-aware heap page advice | vscode | Native tsc-ts | 19891.66 | 30906.77 | 0.644× | 3 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
+| Size-aware heap page advice | sentry | Matched Go control | 28771.63 | 24526.12 | 1.173× | 3 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
+| Size-aware heap page advice | sentry | Native tsc-ts | 12653.68 | 24526.12 | 0.516× | 3 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |

@@ -1,0 +1,858 @@
+{
+  "binaries": {
+    "native": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+    "control": "8005349873983b3a165ec37e91f73b54d03afefd3d51ab146cdcf1533f26a3e3",
+    "advised": "fd011a858feec96527b9bd3eba1a7d4ab194677dc8de11268a959999b4d79bae"
+  },
+  "projects": {
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "configSha256": "401a0cb026f47523a6996b3df996fe0460e9475a1d8b23078c1bb6b97fd35767",
+      "args": [
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "files": 3572,
+      "rows": [
+        {
+          "block": 0,
+          "mode": "native",
+          "ms": 1383.34757,
+          "userSeconds": 5.86,
+          "systemSeconds": 0.74,
+          "rssKiB": 543628,
+          "minorFaults": 108708,
+          "majorFaults": 0
+        },
+        {
+          "block": 0,
+          "mode": "control",
+          "ms": 2343.460278,
+          "userSeconds": 9.64,
+          "systemSeconds": 1.26,
+          "rssKiB": 915160,
+          "minorFaults": 264066,
+          "majorFaults": 0
+        },
+        {
+          "block": 0,
+          "mode": "advised",
+          "ms": 2255.817793,
+          "userSeconds": 9.19,
+          "systemSeconds": 1.25,
+          "rssKiB": 916392,
+          "minorFaults": 264961,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "native",
+          "ms": 1325.218347,
+          "userSeconds": 5.34,
+          "systemSeconds": 0.78,
+          "rssKiB": 541608,
+          "minorFaults": 108762,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "control",
+          "ms": 2209.513658,
+          "userSeconds": 9.02,
+          "systemSeconds": 1.3,
+          "rssKiB": 927564,
+          "minorFaults": 268635,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "advised",
+          "ms": 2627.583063,
+          "userSeconds": 10.55,
+          "systemSeconds": 1.34,
+          "rssKiB": 896044,
+          "minorFaults": 259596,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "control",
+          "ms": 2377.921662,
+          "userSeconds": 9.88,
+          "systemSeconds": 1.36,
+          "rssKiB": 945188,
+          "minorFaults": 270985,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "advised",
+          "ms": 2457.845935,
+          "userSeconds": 9.72,
+          "systemSeconds": 1.26,
+          "rssKiB": 862472,
+          "minorFaults": 243991,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "native",
+          "ms": 1188.621932,
+          "userSeconds": 4.88,
+          "systemSeconds": 0.76,
+          "rssKiB": 548972,
+          "minorFaults": 109613,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "advised",
+          "ms": 2308.711757,
+          "userSeconds": 9.41,
+          "systemSeconds": 1.3,
+          "rssKiB": 922828,
+          "minorFaults": 268699,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "native",
+          "ms": 1215.218363,
+          "userSeconds": 4.96,
+          "systemSeconds": 0.75,
+          "rssKiB": 546164,
+          "minorFaults": 109595,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "control",
+          "ms": 2603.337794,
+          "userSeconds": 10.43,
+          "systemSeconds": 1.18,
+          "rssKiB": 858796,
+          "minorFaults": 249504,
+          "majorFaults": 0
+        },
+        {
+          "block": 4,
+          "mode": "advised",
+          "ms": 2369.472149,
+          "userSeconds": 9.35,
+          "systemSeconds": 1.35,
+          "rssKiB": 910556,
+          "minorFaults": 264804,
+          "majorFaults": 0
+        },
+        {
+          "block": 4,
+          "mode": "control",
+          "ms": 2422.326122,
+          "userSeconds": 9.8,
+          "systemSeconds": 1.36,
+          "rssKiB": 915768,
+          "minorFaults": 266745,
+          "majorFaults": 0
+        },
+        {
+          "block": 4,
+          "mode": "native",
+          "ms": 1269.041407,
+          "userSeconds": 5.12,
+          "systemSeconds": 0.78,
+          "rssKiB": 544764,
+          "minorFaults": 108480,
+          "majorFaults": 0
+        },
+        {
+          "block": 5,
+          "mode": "native",
+          "ms": 1361.509523,
+          "userSeconds": 5.96,
+          "systemSeconds": 0.71,
+          "rssKiB": 546452,
+          "minorFaults": 110068,
+          "majorFaults": 0
+        },
+        {
+          "block": 5,
+          "mode": "advised",
+          "ms": 2315.507543,
+          "userSeconds": 9.54,
+          "systemSeconds": 1.15,
+          "rssKiB": 830048,
+          "minorFaults": 242973,
+          "majorFaults": 0
+        },
+        {
+          "block": 5,
+          "mode": "control",
+          "ms": 2592.687133,
+          "userSeconds": 10.4,
+          "systemSeconds": 1.54,
+          "rssKiB": 906224,
+          "minorFaults": 262110,
+          "majorFaults": 0
+        },
+        {
+          "block": 6,
+          "mode": "control",
+          "ms": 2269.634162,
+          "userSeconds": 9.4,
+          "systemSeconds": 1.29,
+          "rssKiB": 902836,
+          "minorFaults": 262708,
+          "majorFaults": 0
+        },
+        {
+          "block": 6,
+          "mode": "native",
+          "ms": 1412.914009,
+          "userSeconds": 5.85,
+          "systemSeconds": 0.8,
+          "rssKiB": 545748,
+          "minorFaults": 109864,
+          "majorFaults": 0
+        },
+        {
+          "block": 6,
+          "mode": "advised",
+          "ms": 2193.196349,
+          "userSeconds": 8.86,
+          "systemSeconds": 1.34,
+          "rssKiB": 908436,
+          "minorFaults": 263045,
+          "majorFaults": 0
+        }
+      ],
+      "medians": {
+        "native": {
+          "ms": 1297.1298769999999,
+          "rssKiB": 545956.0,
+          "userSeconds": 5.23,
+          "systemSeconds": 0.77,
+          "minorFaults": 109604.0,
+          "majorFaults": 0.0
+        },
+        "control": {
+          "ms": 2400.123892,
+          "rssKiB": 910996.0,
+          "userSeconds": 9.84,
+          "systemSeconds": 1.33,
+          "minorFaults": 264726.5,
+          "majorFaults": 0.0
+        },
+        "advised": {
+          "ms": 2342.4898460000004,
+          "rssKiB": 902240.0,
+          "userSeconds": 9.475,
+          "systemSeconds": 1.32,
+          "minorFaults": 261320.5,
+          "majorFaults": 0.0
+        }
+      }
+    },
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "configSha256": "34d1773c4901bce653fc28586ae2243547971c99782af2041fee8b52fc9dc8d0",
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "files": 942,
+      "rows": [
+        {
+          "block": 0,
+          "mode": "advised",
+          "ms": 459.741983,
+          "userSeconds": 1.74,
+          "systemSeconds": 0.37,
+          "rssKiB": 238592,
+          "minorFaults": 67580,
+          "majorFaults": 0
+        },
+        {
+          "block": 0,
+          "mode": "control",
+          "ms": 468.927489,
+          "userSeconds": 1.89,
+          "systemSeconds": 0.37,
+          "rssKiB": 247552,
+          "minorFaults": 70251,
+          "majorFaults": 0
+        },
+        {
+          "block": 0,
+          "mode": "native",
+          "ms": 282.057646,
+          "userSeconds": 1.06,
+          "systemSeconds": 0.26,
+          "rssKiB": 226616,
+          "minorFaults": 52575,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "advised",
+          "ms": 409.963113,
+          "userSeconds": 1.59,
+          "systemSeconds": 0.37,
+          "rssKiB": 249600,
+          "minorFaults": 70492,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "control",
+          "ms": 436.427632,
+          "userSeconds": 1.62,
+          "systemSeconds": 0.38,
+          "rssKiB": 255744,
+          "minorFaults": 71700,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "native",
+          "ms": 297.30369,
+          "userSeconds": 1.13,
+          "systemSeconds": 0.26,
+          "rssKiB": 223920,
+          "minorFaults": 51948,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "control",
+          "ms": 421.844405,
+          "userSeconds": 1.74,
+          "systemSeconds": 0.35,
+          "rssKiB": 245760,
+          "minorFaults": 69140,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "native",
+          "ms": 314.407484,
+          "userSeconds": 1.16,
+          "systemSeconds": 0.26,
+          "rssKiB": 227580,
+          "minorFaults": 52370,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "advised",
+          "ms": 447.739931,
+          "userSeconds": 1.69,
+          "systemSeconds": 0.38,
+          "rssKiB": 255616,
+          "minorFaults": 71869,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "native",
+          "ms": 353.632632,
+          "userSeconds": 1.33,
+          "systemSeconds": 0.27,
+          "rssKiB": 225232,
+          "minorFaults": 52832,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "advised",
+          "ms": 494.946308,
+          "userSeconds": 1.85,
+          "systemSeconds": 0.34,
+          "rssKiB": 238848,
+          "minorFaults": 66978,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "control",
+          "ms": 488.203847,
+          "userSeconds": 1.8,
+          "systemSeconds": 0.43,
+          "rssKiB": 248960,
+          "minorFaults": 70374,
+          "majorFaults": 0
+        },
+        {
+          "block": 4,
+          "mode": "native",
+          "ms": 300.499319,
+          "userSeconds": 1.1,
+          "systemSeconds": 0.26,
+          "rssKiB": 225556,
+          "minorFaults": 51866,
+          "majorFaults": 0
+        },
+        {
+          "block": 4,
+          "mode": "control",
+          "ms": 462.898555,
+          "userSeconds": 1.63,
+          "systemSeconds": 0.37,
+          "rssKiB": 251008,
+          "minorFaults": 70178,
+          "majorFaults": 0
+        },
+        {
+          "block": 4,
+          "mode": "advised",
+          "ms": 453.27215,
+          "userSeconds": 1.7,
+          "systemSeconds": 0.37,
+          "rssKiB": 251008,
+          "minorFaults": 71187,
+          "majorFaults": 0
+        },
+        {
+          "block": 5,
+          "mode": "advised",
+          "ms": 449.229739,
+          "userSeconds": 1.73,
+          "systemSeconds": 0.35,
+          "rssKiB": 248960,
+          "minorFaults": 69533,
+          "majorFaults": 0
+        },
+        {
+          "block": 5,
+          "mode": "native",
+          "ms": 286.579351,
+          "userSeconds": 1.07,
+          "systemSeconds": 0.25,
+          "rssKiB": 216836,
+          "minorFaults": 50621,
+          "majorFaults": 0
+        },
+        {
+          "block": 5,
+          "mode": "control",
+          "ms": 459.712301,
+          "userSeconds": 1.82,
+          "systemSeconds": 0.35,
+          "rssKiB": 241792,
+          "minorFaults": 68431,
+          "majorFaults": 0
+        },
+        {
+          "block": 6,
+          "mode": "control",
+          "ms": 479.557039,
+          "userSeconds": 1.83,
+          "systemSeconds": 0.37,
+          "rssKiB": 248448,
+          "minorFaults": 69964,
+          "majorFaults": 0
+        },
+        {
+          "block": 6,
+          "mode": "advised",
+          "ms": 466.302649,
+          "userSeconds": 1.82,
+          "systemSeconds": 0.38,
+          "rssKiB": 248064,
+          "minorFaults": 70867,
+          "majorFaults": 0
+        },
+        {
+          "block": 6,
+          "mode": "native",
+          "ms": 350.586511,
+          "userSeconds": 1.31,
+          "systemSeconds": 0.27,
+          "rssKiB": 222660,
+          "minorFaults": 52191,
+          "majorFaults": 0
+        }
+      ],
+      "medians": {
+        "native": {
+          "ms": 307.45340150000004,
+          "rssKiB": 224576.0,
+          "userSeconds": 1.145,
+          "systemSeconds": 0.26,
+          "minorFaults": 52069.5,
+          "majorFaults": 0.0
+        },
+        "control": {
+          "ms": 461.305428,
+          "rssKiB": 248704.0,
+          "userSeconds": 1.77,
+          "systemSeconds": 0.37,
+          "minorFaults": 70071.0,
+          "majorFaults": 0.0
+        },
+        "advised": {
+          "ms": 451.2509445,
+          "rssKiB": 249280.0,
+          "userSeconds": 1.7149999999999999,
+          "systemSeconds": 0.37,
+          "minorFaults": 70679.5,
+          "majorFaults": 0.0
+        }
+      }
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "configSha256": "6c35a05a6798601b37cd28c535f4e7258ffdf34e271fbf6a4411d328f1db2332",
+      "args": [
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "files": 11563,
+      "rows": [
+        {
+          "block": 0,
+          "mode": "native",
+          "ms": 19798.064321,
+          "userSeconds": 90.26,
+          "systemSeconds": 6.93,
+          "rssKiB": 6890936,
+          "minorFaults": 545593,
+          "majorFaults": 0
+        },
+        {
+          "block": 0,
+          "mode": "control",
+          "ms": 35163.050396,
+          "userSeconds": 136.59,
+          "systemSeconds": 17.04,
+          "rssKiB": 8045480,
+          "minorFaults": 2623081,
+          "majorFaults": 0
+        },
+        {
+          "block": 0,
+          "mode": "advised",
+          "ms": 30313.988499,
+          "userSeconds": 117.35,
+          "systemSeconds": 16.46,
+          "rssKiB": 7749064,
+          "minorFaults": 893236,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "native",
+          "ms": 21660.371983,
+          "userSeconds": 101.74,
+          "systemSeconds": 6.56,
+          "rssKiB": 6938688,
+          "minorFaults": 549367,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "control",
+          "ms": 32823.137314,
+          "userSeconds": 128.36,
+          "systemSeconds": 16.59,
+          "rssKiB": 7989128,
+          "minorFaults": 2621848,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "advised",
+          "ms": 30906.773578,
+          "userSeconds": 124.9,
+          "systemSeconds": 14.8,
+          "rssKiB": 8187616,
+          "minorFaults": 955100,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "control",
+          "ms": 33576.81619,
+          "userSeconds": 130.29,
+          "systemSeconds": 15.2,
+          "rssKiB": 7886108,
+          "minorFaults": 2584904,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "advised",
+          "ms": 30559.273325,
+          "userSeconds": 118.1,
+          "systemSeconds": 13.99,
+          "rssKiB": 7906832,
+          "minorFaults": 809234,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "native",
+          "ms": 19018.305831,
+          "userSeconds": 88.8,
+          "systemSeconds": 5.86,
+          "rssKiB": 6872076,
+          "minorFaults": 569697,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "advised",
+          "ms": 31103.774983,
+          "userSeconds": 119.82,
+          "systemSeconds": 15.49,
+          "rssKiB": 7907912,
+          "minorFaults": 860500,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "native",
+          "ms": 19891.657533,
+          "userSeconds": 92.53,
+          "systemSeconds": 6.42,
+          "rssKiB": 6845156,
+          "minorFaults": 562868,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "control",
+          "ms": 34374.731258,
+          "userSeconds": 127.13,
+          "systemSeconds": 18.49,
+          "rssKiB": 7862768,
+          "minorFaults": 2576147,
+          "majorFaults": 0
+        }
+      ],
+      "medians": {
+        "native": {
+          "ms": 19891.657533,
+          "rssKiB": 6872076,
+          "userSeconds": 92.53,
+          "systemSeconds": 6.42,
+          "minorFaults": 562868,
+          "majorFaults": 0
+        },
+        "control": {
+          "ms": 33576.81619,
+          "rssKiB": 7886108,
+          "userSeconds": 128.36,
+          "systemSeconds": 16.59,
+          "minorFaults": 2584904,
+          "majorFaults": 0
+        },
+        "advised": {
+          "ms": 30906.773578,
+          "rssKiB": 7907912,
+          "userSeconds": 119.82,
+          "systemSeconds": 14.8,
+          "minorFaults": 860500,
+          "majorFaults": 0
+        }
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "configSha256": "5af98444a087983efb2f50f2d878b7937b8550d86dd00dcf882e5c33afe8eb3c",
+      "args": [
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "files": 13290,
+      "rows": [
+        {
+          "block": 0,
+          "mode": "advised",
+          "ms": 26049.478943,
+          "userSeconds": 101.2,
+          "systemSeconds": 8.95,
+          "rssKiB": 5373616,
+          "minorFaults": 549285,
+          "majorFaults": 0
+        },
+        {
+          "block": 0,
+          "mode": "control",
+          "ms": 26240.566246,
+          "userSeconds": 97.05,
+          "systemSeconds": 9.69,
+          "rssKiB": 5474420,
+          "minorFaults": 1639716,
+          "majorFaults": 0
+        },
+        {
+          "block": 0,
+          "mode": "native",
+          "ms": 12531.555661,
+          "userSeconds": 56.21,
+          "systemSeconds": 4.93,
+          "rssKiB": 4203064,
+          "minorFaults": 507263,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "advised",
+          "ms": 23852.566936,
+          "userSeconds": 89.71,
+          "systemSeconds": 8.38,
+          "rssKiB": 5540252,
+          "minorFaults": 508626,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "control",
+          "ms": 29236.3865,
+          "userSeconds": 113.17,
+          "systemSeconds": 12.15,
+          "rssKiB": 5568280,
+          "minorFaults": 1664301,
+          "majorFaults": 0
+        },
+        {
+          "block": 1,
+          "mode": "native",
+          "ms": 12653.676239,
+          "userSeconds": 56.61,
+          "systemSeconds": 4.88,
+          "rssKiB": 4177592,
+          "minorFaults": 507974,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "control",
+          "ms": 28771.627219,
+          "userSeconds": 112.04,
+          "systemSeconds": 10.9,
+          "rssKiB": 5588984,
+          "minorFaults": 1672337,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "native",
+          "ms": 14136.032203,
+          "userSeconds": 61.93,
+          "systemSeconds": 5.86,
+          "rssKiB": 4225644,
+          "minorFaults": 512677,
+          "majorFaults": 0
+        },
+        {
+          "block": 2,
+          "mode": "advised",
+          "ms": 24526.120407,
+          "userSeconds": 93.29,
+          "systemSeconds": 8.73,
+          "rssKiB": 5567832,
+          "minorFaults": 522406,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "native",
+          "ms": 12612.219133,
+          "userSeconds": 57.46,
+          "systemSeconds": 4.34,
+          "rssKiB": 4205900,
+          "minorFaults": 510713,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "advised",
+          "ms": 28008.548303,
+          "userSeconds": 105.51,
+          "systemSeconds": 11.64,
+          "rssKiB": 5613840,
+          "minorFaults": 496117,
+          "majorFaults": 0
+        },
+        {
+          "block": 3,
+          "mode": "control",
+          "ms": 28480.002069,
+          "userSeconds": 105.6,
+          "systemSeconds": 10.94,
+          "rssKiB": 5528268,
+          "minorFaults": 1662385,
+          "majorFaults": 0
+        }
+      ],
+      "medians": {
+        "native": {
+          "ms": 12653.676239,
+          "rssKiB": 4205900,
+          "userSeconds": 57.46,
+          "systemSeconds": 4.88,
+          "minorFaults": 510713,
+          "majorFaults": 0
+        },
+        "control": {
+          "ms": 28771.627219,
+          "rssKiB": 5568280,
+          "userSeconds": 112.04,
+          "systemSeconds": 10.94,
+          "minorFaults": 1664301,
+          "majorFaults": 0
+        },
+        "advised": {
+          "ms": 24526.120407,
+          "rssKiB": 5567832,
+          "userSeconds": 93.29,
+          "systemSeconds": 8.73,
+          "minorFaults": 508626,
+          "majorFaults": 0
+        }
+      }
+    }
+  },
+  "status": "passed"
+}
