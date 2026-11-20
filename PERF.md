@@ -362,3 +362,7 @@
 | Inline arena reservation | sentry | Production Go | 25931.85 | 25575.76 | 1.014× | 2 | Median peak RSS 5306.7/5369.6 MiB. [Samples](benchmarks/profiles/arena-fast-allocation/large.json.gz) |
 | Static keyword dispatch | typeorm | Production Go | 3163.21 | 3163.28 | 1.000× | 6 | Median peak RSS 890.9/895.2 MiB. [Samples](benchmarks/profiles/keyword-dispatch/small.json.gz) |
 | Static keyword dispatch | trpc | Production Go | 612.64 | 599.24 | 1.022× | 6 | Median peak RSS 241.4/246.2 MiB. [Samples](benchmarks/profiles/keyword-dispatch/small.json.gz) |
+| File discovery only | typeorm | Native tsc-ts | 383.02 | 614.89 | 0.623× | 4 | Identical 3,572 paths. [Samples](benchmarks/profiles/native-go-discovery/report.json) |
+| File discovery only | trpc | Native tsc-ts | 144.62 | 192.11 | 0.753× | 4 | Identical 942 paths. [Samples](benchmarks/profiles/native-go-discovery/report.json) |
+| File discovery only | vscode | Native tsc-ts | 4626.82 | 6132.15 | 0.755× | 4 | Identical 11,563 paths. [Samples](benchmarks/profiles/native-go-discovery/report.json) |
+| File discovery only | sentry | Native tsc-ts | 2192.48 | 3224.82 | 0.680× | 4 | Identical 13,290 paths. [Samples](benchmarks/profiles/native-go-discovery/report.json) |
