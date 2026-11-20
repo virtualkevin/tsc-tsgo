@@ -1,0 +1,62 @@
+{
+  "repositoryCommit": "837d06bf4951d9b07a88f76356da44e1b7bbaaae",
+  "compilerTree": "d9f88079a84afa668cd2c7cb4a915e7210776907",
+  "toolchain": "go1.26.9",
+  "commonFlags": [
+    "-buildvcs=false",
+    "-trimpath",
+    "-gcflags=github.com/microsoft/typescript-go/...=-l=4"
+  ],
+  "linuxRuntimeSourceSha256": {
+    "control": "08cc392d6b540338b966c9593691a700d8ac99ce4081f444f792b994e37b52c7",
+    "advised": "66cde4ee348243e3e4b6807f50fe860f38c69ef7331548d135c3e09c869beac7"
+  },
+  "builds": {
+    "control": {
+      "sha256": "8005349873983b3a165ec37e91f73b54d03afefd3d51ab146cdcf1533f26a3e3",
+      "metadata": [
+        "\tpath\tgithub.com/microsoft/typescript-go/cmd/tsgo",
+        "\tmod\tgithub.com/microsoft/typescript-go\t(devel)\t",
+        "\tdep\tgithub.com/go-json-experiment/json\tv0.0.0-20260623181947-01eb4420fa68\th1:KZaTBSyshWX3MP5jukJcNSuXDQTO+rNpt0J564dX/eg=",
+        "\tdep\tgithub.com/klauspost/cpuid/v2\tv2.2.10\th1:tBs3QSyvjDyFTq3uoc/9xFpCuOsJQFNPiAhYdw2skhE=",
+        "\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.7\th1:TCavZi10wF49bT6iQZ9eT2keGZQpC69MTDfdJej5e94=",
+        "\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=",
+        "\tdep\tgolang.org/x/sync\tv0.21.0\th1:HLII4xRRTtCRkxYp4HNFF0Js/Og6q2i++KXbg0gHCwM=",
+        "\tdep\tgolang.org/x/sys\tv0.46.0\th1:noSf2Fq6F8DBgS+LysIkx7rIExoNHJsxOAtPp4rthXw=",
+        "\tdep\tgolang.org/x/term\tv0.44.0\th1:0rLvDRCtNj0gZkyIXhCyOb2OAzEhLVqc4B+hrsBhrmc=",
+        "\tdep\tgolang.org/x/text\tv0.38.0\th1:sXmwo9DwP3OK9EZ7PqAdaooSGozfl/3a6/xJcbzPRhE=",
+        "\tbuild\t-buildmode=exe",
+        "\tbuild\t-compiler=gc",
+        "\tbuild\t-gcflags=github.com/microsoft/typescript-go/...=-l=4",
+        "\tbuild\t-trimpath=true",
+        "\tbuild\tCGO_ENABLED=1",
+        "\tbuild\tGOARCH=amd64",
+        "\tbuild\tGOOS=linux",
+        "\tbuild\tGOAMD64=v1"
+      ]
+    },
+    "advised": {
+      "sha256": "8307300ae1778e6b0cfab577ac471a1e915d65e436b3e54d3f0f9e46994706af",
+      "metadata": [
+        "\tpath\tgithub.com/microsoft/typescript-go/cmd/tsgo",
+        "\tmod\tgithub.com/microsoft/typescript-go\t(devel)\t",
+        "\tdep\tgithub.com/go-json-experiment/json\tv0.0.0-20260623181947-01eb4420fa68\th1:KZaTBSyshWX3MP5jukJcNSuXDQTO+rNpt0J564dX/eg=",
+        "\tdep\tgithub.com/klauspost/cpuid/v2\tv2.2.10\th1:tBs3QSyvjDyFTq3uoc/9xFpCuOsJQFNPiAhYdw2skhE=",
+        "\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.7\th1:TCavZi10wF49bT6iQZ9eT2keGZQpC69MTDfdJej5e94=",
+        "\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=",
+        "\tdep\tgolang.org/x/sync\tv0.21.0\th1:HLII4xRRTtCRkxYp4HNFF0Js/Og6q2i++KXbg0gHCwM=",
+        "\tdep\tgolang.org/x/sys\tv0.46.0\th1:noSf2Fq6F8DBgS+LysIkx7rIExoNHJsxOAtPp4rthXw=",
+        "\tdep\tgolang.org/x/term\tv0.44.0\th1:0rLvDRCtNj0gZkyIXhCyOb2OAzEhLVqc4B+hrsBhrmc=",
+        "\tdep\tgolang.org/x/text\tv0.38.0\th1:sXmwo9DwP3OK9EZ7PqAdaooSGozfl/3a6/xJcbzPRhE=",
+        "\tbuild\t-buildmode=exe",
+        "\tbuild\t-compiler=gc",
+        "\tbuild\t-gcflags=github.com/microsoft/typescript-go/...=-l=4",
+        "\tbuild\t-trimpath=true",
+        "\tbuild\tCGO_ENABLED=1",
+        "\tbuild\tGOARCH=amd64",
+        "\tbuild\tGOOS=linux",
+        "\tbuild\tGOAMD64=v1"
+      ]
+    }
+  }
+}
