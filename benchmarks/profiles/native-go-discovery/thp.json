@@ -1,0 +1,564 @@
+{
+  "projects": {
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "args": [
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--listFilesOnly"
+      ],
+      "files": 3572,
+      "samples": [
+        {
+          "pair": 0,
+          "mode": "baseline",
+          "ms": 523.500972,
+          "userSeconds": 1.96,
+          "systemSeconds": 0.55,
+          "rssKiB": 329044,
+          "minorFaults": 92144,
+          "majorFaults": 0
+        },
+        {
+          "pair": 0,
+          "mode": "candidate",
+          "ms": 543.023282,
+          "userSeconds": 2.12,
+          "systemSeconds": 0.6,
+          "rssKiB": 326604,
+          "minorFaults": 22901,
+          "majorFaults": 0
+        },
+        {
+          "pair": 1,
+          "mode": "candidate",
+          "ms": 485.455281,
+          "userSeconds": 2.0,
+          "systemSeconds": 0.53,
+          "rssKiB": 333216,
+          "minorFaults": 20058,
+          "majorFaults": 0
+        },
+        {
+          "pair": 1,
+          "mode": "baseline",
+          "ms": 545.191903,
+          "userSeconds": 2.08,
+          "systemSeconds": 0.53,
+          "rssKiB": 317568,
+          "minorFaults": 90284,
+          "majorFaults": 0
+        },
+        {
+          "pair": 2,
+          "mode": "baseline",
+          "ms": 553.819331,
+          "userSeconds": 2.12,
+          "systemSeconds": 0.57,
+          "rssKiB": 327936,
+          "minorFaults": 95180,
+          "majorFaults": 0
+        },
+        {
+          "pair": 2,
+          "mode": "candidate",
+          "ms": 558.435256,
+          "userSeconds": 2.13,
+          "systemSeconds": 0.56,
+          "rssKiB": 337208,
+          "minorFaults": 16313,
+          "majorFaults": 0
+        },
+        {
+          "pair": 3,
+          "mode": "candidate",
+          "ms": 634.585623,
+          "userSeconds": 2.15,
+          "systemSeconds": 0.63,
+          "rssKiB": 336676,
+          "minorFaults": 18373,
+          "majorFaults": 0
+        },
+        {
+          "pair": 3,
+          "mode": "baseline",
+          "ms": 552.507295,
+          "userSeconds": 2.18,
+          "systemSeconds": 0.59,
+          "rssKiB": 316032,
+          "minorFaults": 90067,
+          "majorFaults": 0
+        },
+        {
+          "pair": 4,
+          "mode": "baseline",
+          "ms": 527.073589,
+          "userSeconds": 2.05,
+          "systemSeconds": 0.53,
+          "rssKiB": 325632,
+          "minorFaults": 91130,
+          "majorFaults": 0
+        },
+        {
+          "pair": 4,
+          "mode": "candidate",
+          "ms": 597.276084,
+          "userSeconds": 2.34,
+          "systemSeconds": 0.61,
+          "rssKiB": 349804,
+          "minorFaults": 24229,
+          "majorFaults": 0
+        }
+      ],
+      "medians": {
+        "baseline": {
+          "ms": 548.849599,
+          "userSeconds": 2.1,
+          "systemSeconds": 0.55,
+          "rssKiB": 321600.0,
+          "minorFaults": 90707.0,
+          "majorFaults": 0.0
+        },
+        "candidate": {
+          "ms": 577.8556699999999,
+          "userSeconds": 2.1399999999999997,
+          "systemSeconds": 0.585,
+          "rssKiB": 336942.0,
+          "minorFaults": 19215.5,
+          "majorFaults": 0.0
+        }
+      }
+    },
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--listFilesOnly"
+      ],
+      "files": 942,
+      "samples": [
+        {
+          "pair": 0,
+          "mode": "baseline",
+          "ms": 187.838194,
+          "userSeconds": 0.76,
+          "systemSeconds": 0.23,
+          "rssKiB": 152064,
+          "minorFaults": 42582,
+          "majorFaults": 0
+        },
+        {
+          "pair": 0,
+          "mode": "candidate",
+          "ms": 191.654197,
+          "userSeconds": 0.72,
+          "systemSeconds": 0.29,
+          "rssKiB": 163332,
+          "minorFaults": 13990,
+          "majorFaults": 0
+        },
+        {
+          "pair": 1,
+          "mode": "candidate",
+          "ms": 200.789992,
+          "userSeconds": 0.77,
+          "systemSeconds": 0.31,
+          "rssKiB": 158320,
+          "minorFaults": 13294,
+          "majorFaults": 0
+        },
+        {
+          "pair": 1,
+          "mode": "baseline",
+          "ms": 178.604679,
+          "userSeconds": 0.77,
+          "systemSeconds": 0.23,
+          "rssKiB": 150528,
+          "minorFaults": 41739,
+          "majorFaults": 0
+        },
+        {
+          "pair": 2,
+          "mode": "baseline",
+          "ms": 206.291506,
+          "userSeconds": 0.86,
+          "systemSeconds": 0.26,
+          "rssKiB": 150400,
+          "minorFaults": 41904,
+          "majorFaults": 0
+        },
+        {
+          "pair": 2,
+          "mode": "candidate",
+          "ms": 193.831444,
+          "userSeconds": 0.79,
+          "systemSeconds": 0.25,
+          "rssKiB": 159252,
+          "minorFaults": 10875,
+          "majorFaults": 0
+        },
+        {
+          "pair": 3,
+          "mode": "candidate",
+          "ms": 229.01001,
+          "userSeconds": 0.91,
+          "systemSeconds": 0.34,
+          "rssKiB": 157260,
+          "minorFaults": 16107,
+          "majorFaults": 0
+        },
+        {
+          "pair": 3,
+          "mode": "baseline",
+          "ms": 229.694416,
+          "userSeconds": 0.84,
+          "systemSeconds": 0.31,
+          "rssKiB": 148864,
+          "minorFaults": 40671,
+          "majorFaults": 0
+        },
+        {
+          "pair": 4,
+          "mode": "baseline",
+          "ms": 197.854893,
+          "userSeconds": 0.84,
+          "systemSeconds": 0.24,
+          "rssKiB": 150784,
+          "minorFaults": 41787,
+          "majorFaults": 0
+        },
+        {
+          "pair": 4,
+          "mode": "candidate",
+          "ms": 234.226139,
+          "userSeconds": 0.95,
+          "systemSeconds": 0.32,
+          "rssKiB": 159972,
+          "minorFaults": 16258,
+          "majorFaults": 0
+        }
+      ],
+      "medians": {
+        "baseline": {
+          "ms": 202.0731995,
+          "userSeconds": 0.84,
+          "systemSeconds": 0.25,
+          "rssKiB": 150464.0,
+          "minorFaults": 41763.0,
+          "majorFaults": 0.0
+        },
+        "candidate": {
+          "ms": 214.900001,
+          "userSeconds": 0.8500000000000001,
+          "systemSeconds": 0.315,
+          "rssKiB": 158786.0,
+          "minorFaults": 14700.5,
+          "majorFaults": 0.0
+        }
+      }
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "args": [
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--listFilesOnly"
+      ],
+      "files": 11563,
+      "samples": [
+        {
+          "pair": 0,
+          "mode": "baseline",
+          "ms": 5159.655179,
+          "userSeconds": 20.68,
+          "systemSeconds": 5.32,
+          "rssKiB": 3567812,
+          "minorFaults": 1090527,
+          "majorFaults": 0
+        },
+        {
+          "pair": 0,
+          "mode": "candidate",
+          "ms": 5429.053145,
+          "userSeconds": 19.97,
+          "systemSeconds": 8.06,
+          "rssKiB": 3700564,
+          "minorFaults": 289658,
+          "majorFaults": 0
+        },
+        {
+          "pair": 1,
+          "mode": "candidate",
+          "ms": 5118.745849,
+          "userSeconds": 20.68,
+          "systemSeconds": 6.51,
+          "rssKiB": 3687168,
+          "minorFaults": 227012,
+          "majorFaults": 0
+        },
+        {
+          "pair": 1,
+          "mode": "baseline",
+          "ms": 5696.970022,
+          "userSeconds": 22.19,
+          "systemSeconds": 6.45,
+          "rssKiB": 3572652,
+          "minorFaults": 1127177,
+          "majorFaults": 0
+        },
+        {
+          "pair": 2,
+          "mode": "baseline",
+          "ms": 5367.903503,
+          "userSeconds": 21.48,
+          "systemSeconds": 5.44,
+          "rssKiB": 3548512,
+          "minorFaults": 1109262,
+          "majorFaults": 0
+        },
+        {
+          "pair": 2,
+          "mode": "candidate",
+          "ms": 5723.049911,
+          "userSeconds": 21.53,
+          "systemSeconds": 8.19,
+          "rssKiB": 3703580,
+          "minorFaults": 352569,
+          "majorFaults": 0
+        },
+        {
+          "pair": 3,
+          "mode": "candidate",
+          "ms": 6407.085629,
+          "userSeconds": 25.33,
+          "systemSeconds": 8.14,
+          "rssKiB": 3742696,
+          "minorFaults": 340421,
+          "majorFaults": 0
+        },
+        {
+          "pair": 3,
+          "mode": "baseline",
+          "ms": 4955.380405,
+          "userSeconds": 19.55,
+          "systemSeconds": 5.21,
+          "rssKiB": 3549076,
+          "minorFaults": 1081973,
+          "majorFaults": 0
+        },
+        {
+          "pair": 4,
+          "mode": "baseline",
+          "ms": 5652.106424,
+          "userSeconds": 23.35,
+          "systemSeconds": 5.35,
+          "rssKiB": 3606048,
+          "minorFaults": 1136976,
+          "majorFaults": 0
+        },
+        {
+          "pair": 4,
+          "mode": "candidate",
+          "ms": 5855.868823,
+          "userSeconds": 21.83,
+          "systemSeconds": 8.54,
+          "rssKiB": 3810776,
+          "minorFaults": 303943,
+          "majorFaults": 0
+        }
+      ],
+      "medians": {
+        "baseline": {
+          "ms": 5510.0049635,
+          "userSeconds": 21.835,
+          "systemSeconds": 5.395,
+          "rssKiB": 3560864.0,
+          "minorFaults": 1118219.5,
+          "majorFaults": 0.0
+        },
+        "candidate": {
+          "ms": 5789.4593669999995,
+          "userSeconds": 21.68,
+          "systemSeconds": 8.165,
+          "rssKiB": 3723138.0,
+          "minorFaults": 322182.0,
+          "majorFaults": 0.0
+        }
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "args": [
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false",
+        "--listFilesOnly"
+      ],
+      "files": 13290,
+      "samples": [
+        {
+          "pair": 0,
+          "mode": "baseline",
+          "ms": 3370.670975,
+          "userSeconds": 13.57,
+          "systemSeconds": 3.2,
+          "rssKiB": 1682032,
+          "minorFaults": 515492,
+          "majorFaults": 0
+        },
+        {
+          "pair": 0,
+          "mode": "candidate",
+          "ms": 3172.264592,
+          "userSeconds": 12.19,
+          "systemSeconds": 3.85,
+          "rssKiB": 1731724,
+          "minorFaults": 135711,
+          "majorFaults": 0
+        },
+        {
+          "pair": 1,
+          "mode": "candidate",
+          "ms": 3296.597511,
+          "userSeconds": 13.21,
+          "systemSeconds": 3.74,
+          "rssKiB": 1766852,
+          "minorFaults": 157601,
+          "majorFaults": 0
+        },
+        {
+          "pair": 1,
+          "mode": "baseline",
+          "ms": 2972.38396,
+          "userSeconds": 12.18,
+          "systemSeconds": 2.9,
+          "rssKiB": 1687592,
+          "minorFaults": 509896,
+          "majorFaults": 0
+        },
+        {
+          "pair": 2,
+          "mode": "baseline",
+          "ms": 3152.827487,
+          "userSeconds": 12.62,
+          "systemSeconds": 3.0,
+          "rssKiB": 1724988,
+          "minorFaults": 507411,
+          "majorFaults": 0
+        },
+        {
+          "pair": 2,
+          "mode": "candidate",
+          "ms": 3851.690181,
+          "userSeconds": 14.88,
+          "systemSeconds": 4.8,
+          "rssKiB": 1750936,
+          "minorFaults": 158852,
+          "majorFaults": 0
+        },
+        {
+          "pair": 3,
+          "mode": "candidate",
+          "ms": 3032.458112,
+          "userSeconds": 12.14,
+          "systemSeconds": 3.46,
+          "rssKiB": 1753500,
+          "minorFaults": 136744,
+          "majorFaults": 0
+        },
+        {
+          "pair": 3,
+          "mode": "baseline",
+          "ms": 3075.510462,
+          "userSeconds": 12.07,
+          "systemSeconds": 2.92,
+          "rssKiB": 1683640,
+          "minorFaults": 504353,
+          "majorFaults": 0
+        },
+        {
+          "pair": 4,
+          "mode": "baseline",
+          "ms": 3259.004076,
+          "userSeconds": 12.75,
+          "systemSeconds": 3.3,
+          "rssKiB": 1666844,
+          "minorFaults": 501414,
+          "majorFaults": 0
+        },
+        {
+          "pair": 4,
+          "mode": "candidate",
+          "ms": 3241.119069,
+          "userSeconds": 11.84,
+          "systemSeconds": 4.54,
+          "rssKiB": 1745016,
+          "minorFaults": 132047,
+          "majorFaults": 0
+        }
+      ],
+      "medians": {
+        "baseline": {
+          "ms": 3114.1689745000003,
+          "userSeconds": 12.399999999999999,
+          "systemSeconds": 2.96,
+          "rssKiB": 1685616.0,
+          "minorFaults": 505882.0,
+          "majorFaults": 0.0
+        },
+        "candidate": {
+          "ms": 3268.85829,
+          "userSeconds": 12.675,
+          "systemSeconds": 4.140000000000001,
+          "rssKiB": 1752218.0,
+          "minorFaults": 147172.5,
+          "majorFaults": 0.0
+        }
+      }
+    }
+  },
+  "binaries": {
+    "baseline": "9017fa9abe7add6cadf8cefffca2aea161938b63aeac46ed8d226d7dca916d2a",
+    "candidate": "39519142985af0a4bf0d055269d28240f12a43b79b420fc2de177df82d6fb977"
+  }
+}

@@ -366,3 +366,7 @@
 | File discovery only | trpc | Native tsc-ts | 144.62 | 192.11 | 0.753× | 4 | Identical 942 paths. [Samples](benchmarks/profiles/native-go-discovery/report.json) |
 | File discovery only | vscode | Native tsc-ts | 4626.82 | 6132.15 | 0.755× | 4 | Identical 11,563 paths. [Samples](benchmarks/profiles/native-go-discovery/report.json) |
 | File discovery only | sentry | Native tsc-ts | 2192.48 | 3224.82 | 0.680× | 4 | Identical 13,290 paths. [Samples](benchmarks/profiles/native-go-discovery/report.json) |
+| Go heap huge-page advice, discovery only | typeorm | Production Go | 548.85 | 577.86 | 0.950× | 4 | Median minor faults 90707/19216. [Samples](benchmarks/profiles/native-go-discovery/thp.json) |
+| Go heap huge-page advice, discovery only | trpc | Production Go | 202.07 | 214.90 | 0.940× | 4 | Median minor faults 41763/14700. [Samples](benchmarks/profiles/native-go-discovery/thp.json) |
+| Go heap huge-page advice, discovery only | vscode | Production Go | 5510.00 | 5789.46 | 0.952× | 4 | Median minor faults 1118220/322182. [Samples](benchmarks/profiles/native-go-discovery/thp.json) |
+| Go heap huge-page advice, discovery only | sentry | Production Go | 3114.17 | 3268.86 | 0.953× | 4 | Median minor faults 505882/147172. [Samples](benchmarks/profiles/native-go-discovery/thp.json) |

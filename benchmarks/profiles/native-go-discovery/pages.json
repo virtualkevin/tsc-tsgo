@@ -1,0 +1,516 @@
+{
+  "thpPolicy": "always [madvise] never",
+  "runs": {
+    "native": {
+      "samples": [
+        {
+          "Rss": 304,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 157372,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 249812,
+          "AnonHugePages": 28672
+        },
+        {
+          "Rss": 382656,
+          "AnonHugePages": 71680
+        },
+        {
+          "Rss": 547300,
+          "AnonHugePages": 139264
+        },
+        {
+          "Rss": 693456,
+          "AnonHugePages": 210944
+        },
+        {
+          "Rss": 827292,
+          "AnonHugePages": 303104
+        },
+        {
+          "Rss": 932292,
+          "AnonHugePages": 376832
+        },
+        {
+          "Rss": 1031116,
+          "AnonHugePages": 442368
+        },
+        {
+          "Rss": 1123336,
+          "AnonHugePages": 507904
+        },
+        {
+          "Rss": 1248948,
+          "AnonHugePages": 606208
+        },
+        {
+          "Rss": 1358792,
+          "AnonHugePages": 690176
+        },
+        {
+          "Rss": 1458264,
+          "AnonHugePages": 772096
+        },
+        {
+          "Rss": 1556360,
+          "AnonHugePages": 849920
+        },
+        {
+          "Rss": 1652648,
+          "AnonHugePages": 929792
+        },
+        {
+          "Rss": 1738876,
+          "AnonHugePages": 999424
+        },
+        {
+          "Rss": 1858512,
+          "AnonHugePages": 1099776
+        },
+        {
+          "Rss": 1984480,
+          "AnonHugePages": 1206272
+        },
+        {
+          "Rss": 2082060,
+          "AnonHugePages": 1286144
+        },
+        {
+          "Rss": 2178040,
+          "AnonHugePages": 1361920
+        },
+        {
+          "Rss": 2278360,
+          "AnonHugePages": 1443840
+        },
+        {
+          "Rss": 2381324,
+          "AnonHugePages": 1529856
+        },
+        {
+          "Rss": 2474304,
+          "AnonHugePages": 1607680
+        },
+        {
+          "Rss": 2569388,
+          "AnonHugePages": 1689600
+        },
+        {
+          "Rss": 2676412,
+          "AnonHugePages": 1783808
+        },
+        {
+          "Rss": 2798044,
+          "AnonHugePages": 1892352
+        },
+        {
+          "Rss": 2892040,
+          "AnonHugePages": 1974272
+        },
+        {
+          "Rss": 2976836,
+          "AnonHugePages": 2048000
+        },
+        {
+          "Rss": 3064688,
+          "AnonHugePages": 2125824
+        },
+        {
+          "Rss": 3155388,
+          "AnonHugePages": 2205696
+        },
+        {
+          "Rss": 3245004,
+          "AnonHugePages": 2285568
+        },
+        {
+          "Rss": 3341456,
+          "AnonHugePages": 2369536
+        },
+        {
+          "Rss": 3430520,
+          "AnonHugePages": 2447360
+        },
+        {
+          "Rss": 3508936,
+          "AnonHugePages": 2514944
+        },
+        {
+          "Rss": 3614476,
+          "AnonHugePages": 2594816
+        },
+        {
+          "Rss": 3612236,
+          "AnonHugePages": 2609152
+        }
+      ],
+      "peakObservedHugeKiB": 2609152
+    },
+    "go": {
+      "samples": [
+        {
+          "Rss": 420,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 24372,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 45144,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 181384,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 236516,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 380792,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 447540,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 512128,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 677556,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 809676,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 879568,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 937352,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 1003856,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 1092424,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 1178416,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 1263472,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 1345416,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 1495744,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 1719352,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 1919892,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2168052,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2263924,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2345560,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2408116,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2484988,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2551892,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2640420,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2716556,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2768696,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2826684,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2832576,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2896384,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 2961760,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 3070300,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 3165376,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 3276204,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 3390356,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 3469952,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 3551920,
+          "AnonHugePages": 0
+        }
+      ],
+      "peakObservedHugeKiB": 0
+    },
+    "goHeapAdvice": {
+      "samples": [
+        {
+          "Rss": 464,
+          "AnonHugePages": 0
+        },
+        {
+          "Rss": 26720,
+          "AnonHugePages": 8192
+        },
+        {
+          "Rss": 76140,
+          "AnonHugePages": 40960
+        },
+        {
+          "Rss": 181600,
+          "AnonHugePages": 122880
+        },
+        {
+          "Rss": 238548,
+          "AnonHugePages": 145408
+        },
+        {
+          "Rss": 307840,
+          "AnonHugePages": 161792
+        },
+        {
+          "Rss": 441840,
+          "AnonHugePages": 272384
+        },
+        {
+          "Rss": 554484,
+          "AnonHugePages": 360448
+        },
+        {
+          "Rss": 605904,
+          "AnonHugePages": 372736
+        },
+        {
+          "Rss": 660748,
+          "AnonHugePages": 382976
+        },
+        {
+          "Rss": 758548,
+          "AnonHugePages": 462848
+        },
+        {
+          "Rss": 904408,
+          "AnonHugePages": 606208
+        },
+        {
+          "Rss": 1050348,
+          "AnonHugePages": 749568
+        },
+        {
+          "Rss": 1112136,
+          "AnonHugePages": 768000
+        },
+        {
+          "Rss": 1165944,
+          "AnonHugePages": 776192
+        },
+        {
+          "Rss": 1216824,
+          "AnonHugePages": 782336
+        },
+        {
+          "Rss": 1274256,
+          "AnonHugePages": 790528
+        },
+        {
+          "Rss": 1327668,
+          "AnonHugePages": 792576
+        },
+        {
+          "Rss": 1382768,
+          "AnonHugePages": 802816
+        },
+        {
+          "Rss": 1453124,
+          "AnonHugePages": 815104
+        },
+        {
+          "Rss": 1522824,
+          "AnonHugePages": 819200
+        },
+        {
+          "Rss": 1585952,
+          "AnonHugePages": 831488
+        },
+        {
+          "Rss": 1663980,
+          "AnonHugePages": 837632
+        },
+        {
+          "Rss": 1733284,
+          "AnonHugePages": 843776
+        },
+        {
+          "Rss": 1798100,
+          "AnonHugePages": 847872
+        },
+        {
+          "Rss": 1868436,
+          "AnonHugePages": 849920
+        },
+        {
+          "Rss": 1945568,
+          "AnonHugePages": 858112
+        },
+        {
+          "Rss": 2007992,
+          "AnonHugePages": 862208
+        },
+        {
+          "Rss": 2075096,
+          "AnonHugePages": 870400
+        },
+        {
+          "Rss": 2145376,
+          "AnonHugePages": 878592
+        },
+        {
+          "Rss": 2212512,
+          "AnonHugePages": 882688
+        },
+        {
+          "Rss": 2304176,
+          "AnonHugePages": 962560
+        },
+        {
+          "Rss": 2425912,
+          "AnonHugePages": 1081344
+        },
+        {
+          "Rss": 2551152,
+          "AnonHugePages": 1204224
+        },
+        {
+          "Rss": 2664084,
+          "AnonHugePages": 1314816
+        },
+        {
+          "Rss": 2801512,
+          "AnonHugePages": 1447936
+        },
+        {
+          "Rss": 2922468,
+          "AnonHugePages": 1566720
+        },
+        {
+          "Rss": 2943120,
+          "AnonHugePages": 1587200
+        },
+        {
+          "Rss": 2947496,
+          "AnonHugePages": 1591296
+        },
+        {
+          "Rss": 3006036,
+          "AnonHugePages": 1648640
+        },
+        {
+          "Rss": 3110240,
+          "AnonHugePages": 1751040
+        },
+        {
+          "Rss": 3206032,
+          "AnonHugePages": 1845248
+        },
+        {
+          "Rss": 3306056,
+          "AnonHugePages": 1943552
+        },
+        {
+          "Rss": 3385144,
+          "AnonHugePages": 2021376
+        },
+        {
+          "Rss": 3497424,
+          "AnonHugePages": 2129920
+        },
+        {
+          "Rss": 3601580,
+          "AnonHugePages": 2232320
+        },
+        {
+          "Rss": 3691572,
+          "AnonHugePages": 2308096
+        },
+        {
+          "Rss": 3739864,
+          "AnonHugePages": 2318336
+        },
+        {
+          "Rss": 3767932,
+          "AnonHugePages": 2326528
+        }
+      ],
+      "peakObservedHugeKiB": 2326528
+    }
+  }
+}
