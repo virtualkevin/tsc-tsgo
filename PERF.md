@@ -356,3 +356,7 @@
 | Host-local parser arenas | vscode | Production Go | 33113.33 | 32813.37 | 1.009× | 2 | Median peak RSS 7888.3/7303.5 MiB. [Samples](benchmarks/profiles/host-parser-arenas/large.json.gz) |
 | Host-local parser arenas | sentry | Production Go | 26447.52 | 25284.93 | 1.046× | 2 | Median peak RSS 5338.7/4966.3 MiB. [Samples](benchmarks/profiles/host-parser-arenas/large.json.gz) |
 | Inline arena reservation microbenchmark | 1,024 node records | Production arena | 0.026242 | 0.024518 | 1.070× | 6 | Milliseconds per batch, single CPU, same bytes and allocations. [Samples](benchmarks/profiles/arena-fast-allocation/micro.json) |
+| Inline arena reservation | typeorm | Production Go | 2352.68 | 2393.45 | 0.983× | 4 | Median peak RSS 887.4/889.0 MiB. [Samples](benchmarks/profiles/arena-fast-allocation/small.json.gz) |
+| Inline arena reservation | trpc | Production Go | 461.57 | 444.21 | 1.039× | 4 | Median peak RSS 246.1/244.0 MiB. [Samples](benchmarks/profiles/arena-fast-allocation/small.json.gz) |
+| Inline arena reservation | vscode | Production Go | 32458.29 | 31054.10 | 1.045× | 2 | Median peak RSS 7678.8/7616.6 MiB. [Samples](benchmarks/profiles/arena-fast-allocation/large.json.gz) |
+| Inline arena reservation | sentry | Production Go | 25931.85 | 25575.76 | 1.014× | 2 | Median peak RSS 5306.7/5369.6 MiB. [Samples](benchmarks/profiles/arena-fast-allocation/large.json.gz) |
