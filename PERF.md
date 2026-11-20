@@ -341,3 +341,5 @@
 | Completed import task reuse | sentry | Production Go | 26715.39 | 25899.29 | 1.032× | 2 | Fresh processes, one warmup per binary. [Samples](benchmarks/profiles/completed-imports/large.json.gz) |
 | Byte-bounded typed arenas | typeorm | Production Go | 2419.09 | 2333.45 | 1.037× | 4 | Median peak RSS 891.2/886.5 MiB. [Samples](benchmarks/profiles/arena-byte-budget/small.json.gz) |
 | Byte-bounded typed arenas | trpc | Production Go | 454.31 | 440.02 | 1.032× | 4 | Median peak RSS 236.9/245.6 MiB. [Samples](benchmarks/profiles/arena-byte-budget/small.json.gz) |
+| Byte-bounded typed arenas | vscode | Production Go | 32516.26 | 32388.36 | 1.004× | 2 | Median peak RSS 7808.6/7680.5 MiB. [Samples](benchmarks/profiles/arena-byte-budget/large.json.gz) |
+| Byte-bounded typed arenas | sentry | Production Go | 26564.57 | 27974.69 | 0.950× | 2 | Median peak RSS 5394.7/5375.6 MiB. [Samples](benchmarks/profiles/arena-byte-budget/large.json.gz) |
