@@ -115,6 +115,8 @@ func (p *checkerPool) createCheckers() {
 		p.fileAssociations = make(map[*ast.SourceFile]*checker.Checker, len(p.program.files))
 		var assignments []int
 		switch os.Getenv("TSC_GO_SCHEDULER") {
+		case "contiguous":
+			assignments = contiguousCheckerAssignments(checkerSchedulingWeights(p.program), checkerCount)
 		case "balanced":
 			assignments = balancedCheckerAssignments(checkerSchedulingWeights(p.program), checkerCount)
 		case "dependency":
