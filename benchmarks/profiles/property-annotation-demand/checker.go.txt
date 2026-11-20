@@ -1,0 +1,14 @@
+package checker
+
+import (
+	"sync"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+var annotationRequests sync.Map
+
+func AnnotationRequested(node *ast.Node) bool {
+	_, ok := annotationRequests.Load(node)
+	return ok
+}

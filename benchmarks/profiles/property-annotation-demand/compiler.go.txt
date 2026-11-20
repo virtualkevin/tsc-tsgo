@@ -1,0 +1,61 @@
+package compiler
+
+import (
+	"encoding/json"
+	"os"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/checker"
+)
+
+// Each capture runs a single, fresh-process project check.
+var annotationProgram *Program
+
+type annotationCounts struct {
+	Files, Nodes, SkippedDeclarationFiles, SkippedDeclarationNodes            int
+	OutermostAnnotations, AnnotationNodes, RequestedTrees, RequestedTreeNodes int
+}
+
+func ReportAnnotationRequests() {
+	p := annotationProgram
+	if p == nil {
+		panic("no compiler program")
+	}
+	var counts annotationCounts
+	for _, f := range p.files {
+		counts.Files++
+		eligible := f.IsDeclarationFile && p.SkipTypeChecking(f, false)
+		if eligible {
+			counts.SkippedDeclarationFiles++
+		}
+		var walk func(*ast.Node, bool) (int, bool)
+		walk = func(n *ast.Node, inside bool) (int, bool) {
+			root := eligible && n.Parent != nil && n.Parent.Kind == ast.KindPropertySignature && n.Parent.Type() == n
+			seen := root && checker.AnnotationRequested(n)
+			size := 1
+			n.ForEachChild(func(child *ast.Node) bool {
+				count, hit := walk(child, inside || root)
+				size += count
+				seen = seen || hit
+				return false
+			})
+			if root && !inside {
+				counts.OutermostAnnotations++
+				counts.AnnotationNodes += size
+				if seen {
+					counts.RequestedTrees++
+					counts.RequestedTreeNodes += size
+				}
+			}
+			return size, seen
+		}
+		size, _ := walk(f.AsNode(), false)
+		counts.Nodes += size
+		if eligible {
+			counts.SkippedDeclarationNodes += size
+		}
+	}
+	if err := json.NewEncoder(os.Stderr).Encode(counts); err != nil {
+		panic(err)
+	}
+}
