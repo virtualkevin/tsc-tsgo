@@ -335,3 +335,5 @@
 | Bounded binder worker screen | trpc | Same binary, one goroutine per unbound file | 543.94 | 554.50 | 0.981× | 4 | Extended diagnostics, GNU time. Median bind 42.0/42.0 ms. [Samples](benchmarks/profiles/bounded-bind/small/report.json) |
 | Bounded binder worker screen | vscode | Same binary, one goroutine per unbound file | 37920.51 | 38223.89 | 0.992× | 2 | Extended diagnostics, GNU time. Median bind 1042.5/863.0 ms. [Samples](benchmarks/profiles/bounded-bind/large/report.json) |
 | Bounded binder worker screen | sentry | Same binary, one goroutine per unbound file | 31091.19 | 31414.75 | 0.990× | 2 | Extended diagnostics, GNU time. Median bind 552.0/403.0 ms. [Samples](benchmarks/profiles/bounded-bind/large/report.json) |
+| Completed import task reuse | typeorm | Production Go | 2333.15 | 2227.92 | 1.047× | 4 | Fresh processes, one warmup per binary. [Samples](benchmarks/profiles/completed-imports/small.json.gz) |
+| Completed import task reuse | trpc | Production Go | 436.29 | 465.53 | 0.937× | 4 | Fresh processes, one warmup per binary. [Samples](benchmarks/profiles/completed-imports/small.json.gz) |

@@ -1,0 +1,74 @@
+--- a/packages/tsc-go/internal/compiler/filesparser.go
++++ b/packages/tsc-go/internal/compiler/filesparser.go
+@@ -2,6 +2,7 @@
+ 
+ import (
+ 	"math"
++	"os"
+ 	"slices"
+ 	"strings"
+ 	"sync"
+@@ -203,9 +204,10 @@
+ }
+ 
+ type filesParser struct {
+-	wg             core.WorkGroup
+-	taskDataByPath collections.SyncMap[tspath.Path, *parseTaskData]
+-	maxDepth       int
++	reuseLoadedTasks bool
++	wg               core.WorkGroup
++	taskDataByPath   collections.SyncMap[tspath.Path, *parseTaskData]
++	maxDepth         int
+ }
+ 
+ var parseTaskDataPool = sync.Pool{
+@@ -238,8 +240,28 @@
+ }
+ 
+ func (w *filesParser) parse(loader *fileLoader, tasks []*parseTask) {
++	w.reuseLoadedTasks = os.Getenv("TSC_GO_REUSE_LOADED_TASKS") == "1"
+ 	w.start(loader, tasks, 0)
+ 	w.wg.RunAndWait()
++}
++
++// reuseLoadedTask handles a repeated import whose only remaining effect is
++// linking this edge to the original task. Recursive discovery sometimes
++// revisits a path while holding its lock, so this path must never block.
++func (data *parseTaskData) reuseLoadedTask(task *parseTask, depth int) bool {
++	if !data.mu.TryLock() {
++		return false
++	}
++	defer data.mu.Unlock()
++	existing := data.tasks[task.normalizedFilePath]
++	if len(data.tasks) != 1 || existing == nil || !existing.loaded {
++		return false
++	}
++	if depth < data.lowestDepth || (data.packageId.Name == "" && task.packageId.Name != "") {
++		return false
++	}
++	task.loadedTask = existing
++	return true
+ }
+ 
+ func (w *filesParser) start(loader *fileLoader, tasks []*parseTask, depth int) {
+@@ -247,8 +269,12 @@
+ 		task.path = loader.toPath(task.normalizedFilePath)
+ 		candidate := getParseTaskData(task)
+ 		data, loaded := w.taskDataByPath.LoadOrStore(task.path, candidate)
++		currentDepth := core.IfElse(task.increaseDepth, depth+1, depth)
+ 		if loaded {
+ 			putParseTaskData(candidate)
++			if w.reuseLoadedTasks && data.reuseLoadedTask(task, currentDepth) {
++				continue
++			}
+ 		}
+ 
+ 		w.wg.Queue(func() {
+@@ -271,7 +297,6 @@
+ 				data.packageId = task.packageId
+ 			}
+ 
+-			currentDepth := core.IfElse(task.increaseDepth, depth+1, depth)
+ 			if currentDepth < data.lowestDepth {
+ 				// If we're seeing this task at a lower depth than before,
+ 				// reprocess its subtasks to ensure they are loaded.

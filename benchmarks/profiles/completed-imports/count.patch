@@ -1,0 +1,53 @@
+--- a/packages/tsc-go/internal/compiler/filesparser.go
++++ b/packages/tsc-go/internal/compiler/filesparser.go
+@@ -1,11 +1,13 @@
+ package compiler
+ 
+ import (
++	"fmt"
+ 	"math"
+ 	"os"
+ 	"slices"
+ 	"strings"
+ 	"sync"
++	"sync/atomic"
+ 
+ 	"github.com/microsoft/typescript-go/internal/ast"
+ 	"github.com/microsoft/typescript-go/internal/collections"
+@@ -204,6 +206,8 @@
+ }
+ 
+ type filesParser struct {
++	edges            atomic.Uint64
++	reused           atomic.Uint64
+ 	reuseLoadedTasks bool
+ 	wg               core.WorkGroup
+ 	taskDataByPath   collections.SyncMap[tspath.Path, *parseTaskData]
+@@ -243,6 +247,7 @@
+ 	w.reuseLoadedTasks = os.Getenv("TSC_GO_REUSE_LOADED_TASKS") == "1"
+ 	w.start(loader, tasks, 0)
+ 	w.wg.RunAndWait()
++	fmt.Fprintf(os.Stderr, "parse edges %d reused %d\n", w.edges.Load(), w.reused.Load())
+ }
+ 
+ // reuseLoadedTask handles a repeated import whose only remaining effect is
+@@ -265,6 +270,11 @@
+ }
+ 
+ func (w *filesParser) start(loader *fileLoader, tasks []*parseTask, depth int) {
++	var reused uint64
++	defer func() {
++		w.edges.Add(uint64(len(tasks)))
++		w.reused.Add(reused)
++	}()
+ 	for i, task := range tasks {
+ 		task.path = loader.toPath(task.normalizedFilePath)
+ 		candidate := getParseTaskData(task)
+@@ -273,6 +283,7 @@
+ 		if loaded {
+ 			putParseTaskData(candidate)
+ 			if w.reuseLoadedTasks && data.reuseLoadedTask(task, currentDepth) {
++				reused++
+ 				continue
+ 			}
+ 		}
