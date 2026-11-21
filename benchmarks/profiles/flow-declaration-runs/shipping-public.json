@@ -1,0 +1,116 @@
+{
+  "flags": [
+    "--skipLibCheck",
+    "--strict",
+    "--pretty",
+    "false",
+    "--noEmit",
+    "main.ts"
+  ],
+  "sha256": {
+    "baseline": "4320a609131555b2541dfd308ed764b79ef43f22d27c6f008dd08b8e28ca8aff",
+    "candidate": "99c56ba133bc038d7347b89e634745944b59a89eea161f3e6e710cc6e2c0f632"
+  },
+  "widths": {
+    "1024": {
+      "inputSha256": "46d666eac03689d4446f23a7a16db0dd79fa442d1a0f5321e2f8e823491cfa8a",
+      "pairs": [
+        {
+          "baseline": 171.113574,
+          "candidate": 98.321507
+        },
+        {
+          "candidate": 98.785838,
+          "baseline": 168.632675
+        },
+        {
+          "baseline": 154.162299,
+          "candidate": 98.220128
+        },
+        {
+          "candidate": 99.785631,
+          "baseline": 200.713483
+        }
+      ],
+      "warmup": {
+        "candidate": 92.689173,
+        "baseline": 191.865694
+      }
+    },
+    "4096": {
+      "inputSha256": "5215274850635ce2e9495b22bd2066886ea7f29ca1169ae7b6e7d55ffe7032a6",
+      "pairs": [
+        {
+          "baseline": 485.048069,
+          "candidate": 122.102538
+        },
+        {
+          "candidate": 132.614292,
+          "baseline": 506.764832
+        },
+        {
+          "baseline": 511.675522,
+          "candidate": 127.840603
+        },
+        {
+          "candidate": 120.830552,
+          "baseline": 507.866157
+        }
+      ],
+      "warmup": {
+        "candidate": 135.542867,
+        "baseline": 499.283912
+      }
+    },
+    "8192": {
+      "inputSha256": "3ccdfc2d70a51d8fce6228474d0b6c1cf947a70d1ce31db5eee07affa532b4bc",
+      "pairs": [
+        {
+          "baseline": 1638.628698,
+          "candidate": 187.591221
+        },
+        {
+          "candidate": 189.695212,
+          "baseline": 1598.708393
+        },
+        {
+          "baseline": 1933.519133,
+          "candidate": 247.90068
+        },
+        {
+          "candidate": 189.435996,
+          "baseline": 1667.182116
+        }
+      ],
+      "warmup": {
+        "candidate": 181.302174,
+        "baseline": 1850.245185
+      }
+    },
+    "16384": {
+      "inputSha256": "3f2b41e696741b4dcbb7b182675476e10bbe02d9abed64e1d651efd9f1903269",
+      "pairs": [
+        {
+          "baseline": 9042.197292,
+          "candidate": 348.994919
+        },
+        {
+          "candidate": 364.229198,
+          "baseline": 7925.216806
+        },
+        {
+          "baseline": 9378.050431,
+          "candidate": 338.365562
+        },
+        {
+          "candidate": 397.334428,
+          "baseline": 8049.941538
+        }
+      ],
+      "warmup": {
+        "candidate": 379.604294,
+        "baseline": 11638.143527
+      }
+    }
+  }
+}

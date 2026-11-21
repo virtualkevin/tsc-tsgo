@@ -545,3 +545,11 @@
 | Skip unrelated declaration runs | Generated 1024 handlers | npm tsc-ts@0.0.2 | 156.49 | 95.61 | 1.637× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/public.json) |
 | Skip unrelated declaration runs | Generated 4096 handlers | npm tsc-ts@0.0.2 | 507.19 | 132.52 | 3.827× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/public.json) |
 | Skip unrelated declaration runs | Generated 8192 handlers | npm tsc-ts@0.0.2 | 1675.89 | 202.23 | 8.287× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/public.json) |
+| Shipping declaration-run optimization | vscode | npm tsc-ts@0.0.2 | 21615.63 | 34874.16 | 0.620× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/flow-declaration-runs/release.json.gz) |
+| Shipping declaration-run optimization | sentry | npm tsc-ts@0.0.2 | 14344.93 | 22709.00 | 0.632× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/flow-declaration-runs/release.json.gz) |
+| Shipping declaration-run optimization | typeorm | npm tsc-ts@0.0.2 | 1281.39 | 2369.06 | 0.541× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/flow-declaration-runs/release.json.gz) |
+| Shipping declaration-run optimization | trpc | npm tsc-ts@0.0.2 | 393.09 | 467.49 | 0.841× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/flow-declaration-runs/release.json.gz) |
+| Shipping declaration-run optimization | Generated 1024 handlers | npm tsc-ts@0.0.2 | 169.87 | 98.55 | 1.724× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/shipping-public.json) |
+| Shipping declaration-run optimization | Generated 4096 handlers | npm tsc-ts@0.0.2 | 507.32 | 124.97 | 4.059× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/shipping-public.json) |
+| Shipping declaration-run optimization | Generated 8192 handlers | npm tsc-ts@0.0.2 | 1652.91 | 189.57 | 8.719× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/shipping-public.json) |
+| Shipping declaration-run optimization | Generated 16384 handlers | npm tsc-ts@0.0.2 | 8546.07 | 356.61 | 23.965× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/shipping-public.json) |
