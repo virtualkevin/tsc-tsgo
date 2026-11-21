@@ -1,0 +1,47 @@
+package checker
+
+import "testing"
+
+func TestConditionalRowsPreserveVisitedHistory(t *testing.T) {
+	c := &Checker{}
+	src := &Type{id: 17, flags: TypeFlagsObject}
+	dst := &Type{id: 22, flags: TypeFlagsConditional}
+	key := InferenceKey{s: src.id, t: dst.id}
+	unexpected := func(*Checker, *InferenceState, *Type, *Type) { t.Fatal("replayed an existing pair") }
+	for _, startInRow := range []bool{false, true} {
+		n := c.getInferenceState()
+		row := &conditionalVisitRow{columns: map[TypeId]int{src.id: 0}, status: make([]InferencePriority, 1)}
+		install := func() { n.conditionalRows = map[TypeId]*conditionalVisitRow{dst.id: row} }
+		if startInRow {
+			install()
+		}
+		n.inferencePriority = InferencePriorityMaxValue
+		c.invokeOnce(n, src, dst, func(*Checker, *InferenceState, *Type, *Type) {
+			if !startInRow {
+				install()
+			}
+			c.invokeOnce(n, src, dst, unexpected)
+			if n.inferencePriority != InferencePriorityCircularity {
+				t.Fatal("recursive call lost the active marker")
+			}
+			n.inferencePriority = InferencePriorityNone
+		})
+		if startInRow && row.status[0] != InferencePriorityNone+2 {
+			t.Fatal("row failed to retain a completed zero priority")
+		}
+		if !startInRow {
+			if got, ok := n.visited[key]; !ok || got != InferencePriorityNone {
+				t.Fatal("late row registration lost the generic entry")
+			}
+		}
+		n.inferencePriority = InferencePriorityMaxValue
+		c.invokeOnce(n, src, dst, unexpected)
+		if n.inferencePriority != InferencePriorityNone {
+			t.Fatal("cache hit lost its priority")
+		}
+		c.putInferenceState(n)
+		if n.conditionalRows != nil || len(n.visited) != 0 {
+			t.Fatal("recycled inference state retained pair history")
+		}
+	}
+}
