@@ -1,0 +1,101 @@
+package checker
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type objectHitFixture struct {
+	c              *Checker
+	input          *Type
+	params, middle []*Type
+}
+
+func newObjectHitFixture(n int) objectHitFixture {
+	c := activeMapperTestChecker()
+	decl := &ast.Node{Kind: ast.KindTypeLiteral}
+	symbol := &ast.Symbol{Name: "Handler", Declarations: []*ast.Node{decl}}
+	params := make([]*Type, n)
+	middle := make([]*Type, n)
+	for i := range params {
+		params[i] = c.newTypeParameter(nil)
+		middle[i] = c.newTypeParameter(nil)
+	}
+	target := c.newObjectType(ObjectFlagsAnonymous, symbol)
+	c.typeNodeLinks.Get(decl).outerTypeParameters = params
+	input := c.newObjectType(ObjectFlagsAnonymous|ObjectFlagsInstantiated, symbol)
+	input.AsObjectType().target = target
+	input.AsObjectType().mapper = newTypeMapper(params, middle)
+	input.alias = &TypeAlias{symbol: symbol, typeArguments: middle[:1]}
+	return objectHitFixture{c, input, params, middle}
+}
+
+func (f objectHitFixture) arguments() ([]*Type, *TypeMapper) {
+	args := make([]*Type, len(f.params))
+	for i := range args {
+		args[i] = f.c.newIntrinsicType(TypeFlagsString, "string")
+	}
+	return args, newTypeMapper(f.middle, args)
+}
+
+func TestObjectMissRetainsArgumentAndAlias(t *testing.T) {
+	for _, n := range []int{1, 2, 4, 5, 8} {
+		f := newObjectHitFixture(n)
+		a, ma := f.arguments()
+		b, mb := f.arguments()
+		first := f.c.getObjectTypeInstantiation(f.input, ma, nil)
+		second := f.c.getObjectTypeInstantiation(f.input, mb, nil)
+		if first == second || f.c.getObjectTypeInstantiation(f.input, ma, nil) != first {
+			t.Fatal("distinct argument lists or repeated lookup lost identity", n)
+		}
+		for i, p := range f.params {
+			if first.Mapper().Map(p) != a[i] || second.Mapper().Map(p) != b[i] {
+				t.Fatal("retained mapper changed", n, i)
+			}
+		}
+		if first.alias.typeArguments[0] != a[0] || second.alias.typeArguments[0] != b[0] {
+			t.Fatal("retained alias changed", n)
+		}
+		supplied := &TypeAlias{symbol: &ast.Symbol{Name: "Explicit"}, typeArguments: a}
+		if f.c.getObjectTypeInstantiation(f.input, ma, supplied).alias != supplied {
+			t.Fatal("explicit alias identity changed", n)
+		}
+	}
+}
+
+func BenchmarkObjectInstantiationHit(b *testing.B) {
+	for _, n := range []int{1, 2, 4, 5} {
+		b.Run(fmt.Sprint(n), func(b *testing.B) {
+			f := newObjectHitFixture(n)
+			_, mapper := f.arguments()
+			want := f.c.getObjectTypeInstantiation(f.input, mapper, nil)
+			b.ReportAllocs()
+			for b.Loop() {
+				if f.c.getObjectTypeInstantiation(f.input, mapper, nil) != want {
+					b.Fatal("cache miss")
+				}
+			}
+		})
+	}
+}
+
+func TestObjectMissUsesAliasComputedBeforeLookup(t *testing.T) {
+	f := newObjectHitFixture(1)
+	parameter := f.c.newTypeParameter(nil)
+	args, plain := f.arguments()
+	original := &TypeAlias{symbol: &ast.Symbol{Name: "Original"}, typeArguments: []*Type{parameter}}
+	f.input.alias = original
+	callback := newFunctionTypeMapper(func(input *Type) *Type {
+		if input == parameter {
+			f.input.alias = nil
+			return args[0]
+		}
+		return plain.Map(input)
+	})
+	got := f.c.getObjectTypeInstantiation(f.input, callback, nil)
+	if f.input.alias != nil || got.alias == nil || got.alias.symbol != original.symbol || got.alias.typeArguments[0] != args[0] {
+		t.Fatal("object miss lost the alias resolved before the instantiation table lookup")
+	}
+}
