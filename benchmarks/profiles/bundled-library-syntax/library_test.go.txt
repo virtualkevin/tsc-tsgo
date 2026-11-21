@@ -1,0 +1,106 @@
+package encoder_test
+
+import (
+	"crypto/sha256"
+	"encoding/json"
+	"fmt"
+	"os"
+	"path/filepath"
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/api/encoder"
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/core"
+	"github.com/microsoft/typescript-go/internal/parser"
+	"github.com/microsoft/typescript-go/internal/tspath"
+)
+
+type syntaxInfo struct {
+	Statements      int
+	Nodes           int
+	Identifiers     int
+	ScriptKind      core.ScriptKind
+	DeclarationFile bool
+	LibReferences   int
+}
+
+func inspectLibrary(f *ast.SourceFile) syntaxInfo {
+	return syntaxInfo{len(f.Statements.Nodes), f.NodeCount, f.IdentifierCount,
+		f.ScriptKind, f.IsDeclarationFile, len(f.LibReferenceDirectives)}
+}
+
+func TestLibraryRepresentation(t *testing.T) {
+	type observation struct {
+		SHA256       string
+		SourceBytes  int
+		EncodedBytes int
+		Parsed       syntaxInfo
+		Decoded      syntaxInfo
+	}
+	results := map[string]observation{}
+	for _, name := range []string{"lib.dom.d.ts", "lib.es5.d.ts", "lib.es2024.d.ts"} {
+		path := filepath.Join(os.Getenv("TSC_TS_LIB_DIR"), name)
+		data, err := os.ReadFile(path)
+		if err != nil {
+			t.Fatal(err)
+		}
+		parsed := parser.ParseSourceFile(ast.SourceFileParseOptions{
+			FileName: path, Path: tspath.Path(path),
+		}, string(data), core.ScriptKindTS)
+		buf, _, err := encoder.EncodeSourceFile(parsed)
+		if err != nil {
+			t.Fatal(err)
+		}
+		decoded, err := encoder.DecodeSourceFile(buf)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if parsed.Text() != decoded.Text() || parsed.FileName() != decoded.FileName() {
+			t.Fatalf("%s lost source text or filename", name)
+		}
+		results[name] = observation{fmt.Sprintf("%x", sha256.Sum256(data)), len(data),
+			len(buf), inspectLibrary(parsed), inspectLibrary(decoded)}
+	}
+	output, err := json.MarshalIndent(results, "", "  ")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(os.Getenv("TSC_LIBRARY_RESULT"), append(output, '\n'), 0644); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func BenchmarkLibraryFrontEnd(b *testing.B) {
+	for _, name := range []string{"lib.dom.d.ts", "lib.es5.d.ts"} {
+		path := filepath.Join(os.Getenv("TSC_TS_LIB_DIR"), name)
+		data, err := os.ReadFile(path)
+		if err != nil {
+			b.Fatal(err)
+		}
+		source := string(data)
+		opts := ast.SourceFileParseOptions{FileName: path, Path: tspath.Path(path)}
+		parsed := parser.ParseSourceFile(opts, source, core.ScriptKindTS)
+		buf, _, err := encoder.EncodeSourceFile(parsed)
+		if err != nil {
+			b.Fatal(err)
+		}
+		b.Run(name+"/parse", func(b *testing.B) {
+			b.ReportAllocs()
+			for b.Loop() {
+				result := parser.ParseSourceFile(opts, source, core.ScriptKindTS)
+				if len(result.Statements.Nodes) != len(parsed.Statements.Nodes) {
+					b.Fatal("statement count changed")
+				}
+			}
+		})
+		b.Run(name+"/decode", func(b *testing.B) {
+			b.ReportAllocs()
+			for b.Loop() {
+				result, err := encoder.DecodeSourceFile(buf)
+				if err != nil || len(result.Statements.Nodes) != len(parsed.Statements.Nodes) {
+					b.Fatal("could not reconstruct statements", err)
+				}
+			}
+		})
+	}
+}

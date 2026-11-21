@@ -9,7 +9,14 @@ import sys
 here = Path(__file__).resolve().parent
 data = Path(sys.argv[1]).read_bytes()
 report = json.loads(data)
-ref = json.loads(gzip.decompress((here.parent / "mapped-member-demand/screen.json.gz").read_bytes()))
+public = sys.argv[3:] == ["layout-public"]
+assert public or len(sys.argv) == 3
+reference = "public-npm/0.0.2.json.gz" if public else "mapped-member-demand/screen.json.gz"
+archive = "layout-public.json.gz" if public else "screen.json.gz"
+description = "Declaration-order two-part intersection" if public else "Ordered two-part intersection"
+baseline = "Public npm tsc-ts@0.0.2" if public else "Matched ordinary Go build"
+ref = json.loads(gzip.decompress((here.parent / reference).read_bytes()))
+assert report["environment"]["compilerEnvironment"] == ref["environment"]["compilerEnvironment"]
 frozen = {p["name"]: p for p in ref["projects"]}
 assert report["status"] == "passed" and report["runs"] == 2 and report["warmups"] == 0
 assert report["binaries"]["baseline"]["sha256"] == ref["binaries"]["baseline"]["sha256"]
@@ -27,10 +34,10 @@ for project in report["projects"]:
     assert [p["order"] for p in pairs] == [["baseline", "candidate"], ["candidate", "baseline"]]
     old, new = (statistics.median(p[k] for p in pairs) for k in ("baseline", "candidate"))
     wins = sum(p["candidate"] < p["baseline"] for p in pairs)
-    rows.append(f"| Ordered two-part intersection | {name} | Matched ordinary Go build | {old:.2f} | {new:.2f} | {old/new:.3f}× | 2 | Candidate faster in {wins}/2 pairs. [Samples](benchmarks/profiles/ordered-intersection-pair/screen.json.gz) |")
+    rows.append(f"| {description} | {name} | {baseline} | {old:.2f} | {new:.2f} | {old/new:.3f}× | 2 | Candidate faster in {wins}/2 pairs. [Samples](benchmarks/profiles/ordered-intersection-pair/{archive}) |")
 table = here.parents[2] / "PERF.md"
 assert all(row not in table.read_text() for row in rows)
-(here / "screen.json.gz").write_bytes(gzip.compress(data, mtime=0))
+(here / archive).write_bytes(gzip.compress(data, mtime=0))
 with table.open("a") as f:
     f.write("\n".join(rows) + "\n")
 print(*rows, sep="\n")
