@@ -1,0 +1,346 @@
+{
+  "release": "0.0.2",
+  "nativeSha256": "fb24c9cc43533dc004b9dfc9547d7066cea348b807c3239f8e31c7ba062017b6",
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "files": 942,
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "childCPUSeconds": 2.059269,
+      "sampledCPUSeconds": 1.84,
+      "scriptcFunctionCount": 640,
+      "topScriptcFlat": [
+        [
+          0.03,
+          "sc_bf__x25__x25_m57_Binder_bind"
+        ],
+        [
+          0.03,
+          "sc_bf__x25_m89_getObjectTypeInstantiation"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m27_IdentifierTable_intern.i32"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m27_Scanner_scanIdentifier.i32"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m31_NodeVisitor_visitList"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m37_Parser_parseDelimitedList.i32"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m37_Parser_parseUnionOrIntersectionType.i32"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m43_IntLinkTable_get.i32"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m48_NameResolver_resolve"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m88_Relation_set_nativeNumber.i32"
+        ],
+        [
+          0.02,
+          "sc_bf__x25__x25_m94_PendingInstantiatedMembers_ownMember"
+        ],
+        [
+          0.02,
+          "sc_bf__x25_m130_accumulateStripes.i32"
+        ],
+        [
+          0.01,
+          "sc_bf__x25__x25_m101_DiagnosticCollection_forFile"
+        ],
+        [
+          0.01,
+          "sc_bf__x25__x25_m116_Resolver_getPathPatterns"
+        ],
+        [
+          0.01,
+          "sc_bf__x25__x25_m167_DeclarationTransformer_transformAndReplaceLatePaintedStatements"
+        ]
+      ],
+      "header": "Experiment: <experiment>\nNo errors\n*** Collector Warning: Blocking SIGPROF ignored while in use for collection\n*** Collector Warning: Collection interval timer period was changed (10000 -> 0); profile data may be unreliable\nNo archive command run\n\nTarget command (64-bit): '/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib/tsc-ts -p packages/server/tsconfig.json --noEmit --incremental false --composite false --noCheck false --pretty false'\nProcess pid 431855, ppid 431853, pgrp 431853, sid 431853\nCurrent working directory: /home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc\nCollector version: `2.42'; experiment version 12.4 (64-bit)\nHost `vps0', OS `Linux 6.8.0-151-generic', page size 4096, architecture `x86_64'\n  8 CPUs, clock speed 3092 MHz.\n  Memory: 10268612 pages @  4096 = 40111 MB.\nData collection parameters:\n  Clock-profiling, interval = 10000 microsecs.\n  Periodic sampling, 1 secs.\n  Follow descendant processes from: none\n\nExperiment started Sat Nov 21 17:11:02 2026\n\nExperiment Ended: 0.439707349\nData Collection Duration: 0.439707349\n",
+      "tableSha256": "2e17d5384abe3f6963ea08d9eb52b0a2677ad5be5f883f3e0e14a0884a9f97a4"
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "files": 3572,
+      "args": [
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "childCPUSeconds": 8.527762000000001,
+      "sampledCPUSeconds": 8.12,
+      "scriptcFunctionCount": 1084,
+      "topScriptcFlat": [
+        [
+          0.11,
+          "sc_bf__x25__x25_m43_LinkTable_x25_0_get.i32"
+        ],
+        [
+          0.08,
+          "sc_bf__x25__x25_m31_NodeVisitor_visitList"
+        ],
+        [
+          0.07,
+          "sc_bf__x25_m81_isMatchingReference"
+        ],
+        [
+          0.06,
+          "sc_bf__x25__x25_m27_Scanner_scan.i32"
+        ],
+        [
+          0.06,
+          "sc_bf__x25__x25_m57_Binder_bind"
+        ],
+        [
+          0.06,
+          "sc_bf__x25_m31_getName"
+        ],
+        [
+          0.05,
+          "sc_bf__x25__x25_m48_NameResolver_resolve"
+        ],
+        [
+          0.05,
+          "sc_bf__x25__x25_m59_PotentiallyUnusedCollector_visitNode"
+        ],
+        [
+          0.05,
+          "sc_bf__x25__x25_m88_Relater_isRelatedToEx.i32"
+        ],
+        [
+          0.05,
+          "sc_bf__x25_m31_getLocals"
+        ],
+        [
+          0.05,
+          "sc_bf__x25_m31_getText"
+        ],
+        [
+          0.05,
+          "sc_bf__x25_m81_getTypeAtFlowNode"
+        ],
+        [
+          0.04,
+          "sc_bf__x25__x25_m37_Parser_newModifierList.i32"
+        ],
+        [
+          0.04,
+          "sc_bf__x25__x25_m38_Symbol_constructor.i32"
+        ],
+        [
+          0.04,
+          "sc_bf__x25__x25_m41_StructuredType_get_x3a_properties"
+        ]
+      ],
+      "header": "Experiment: <experiment>\nNo errors\n*** Collector Warning: Blocking SIGPROF ignored while in use for collection\n*** Collector Warning: Collection interval timer period was changed (10000 -> 0); profile data may be unreliable\nNo archive command run\n\nTarget command (64-bit): '/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib/tsc-ts -p packages/typeorm/tsconfig.json --module node20 --moduleResolution node16 --noEmit --incremental false --composite false --noCheck false --pretty false'\nProcess pid 431876, ppid 431853, pgrp 431853, sid 431853\nCurrent working directory: /home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm\nCollector version: `2.42'; experiment version 12.4 (64-bit)\nHost `vps0', OS `Linux 6.8.0-151-generic', page size 4096, architecture `x86_64'\n  8 CPUs, clock speed 3092 MHz.\n  Memory: 10268612 pages @  4096 = 40111 MB.\nData collection parameters:\n  Clock-profiling, interval = 10000 microsecs.\n  Periodic sampling, 1 secs.\n  Follow descendant processes from: none\n\nExperiment started Sat Nov 21 17:11:03 2026\n\nExperiment Ended: 1.793268888\nData Collection Duration: 1.793268888\n",
+      "tableSha256": "6764587a10f2865077038eb8eec3176e8f55d21413454e56b7896a52b13e4676"
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "files": 11563,
+      "args": [
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "childCPUSeconds": 107.250269,
+      "sampledCPUSeconds": 106.32,
+      "scriptcFunctionCount": 1793,
+      "topScriptcFlat": [
+        [
+          1.48,
+          "sc_bf__x25__x25_m43_LinkTable_x25_0_get.i32"
+        ],
+        [
+          1.05,
+          "sc_bf__x25__x25_m88_Relation_get"
+        ],
+        [
+          1.03,
+          "sc_bf__x25__x25_m31_NodeVisitor_visitList"
+        ],
+        [
+          0.97,
+          "sc_bf__x25_m81_getTypeAtFlowNode"
+        ],
+        [
+          0.82,
+          "sc_bf__x25_m31_getText"
+        ],
+        [
+          0.69,
+          "sc_bf__x25__x25_m48_NameResolver_resolve"
+        ],
+        [
+          0.68,
+          "sc_bf__x25_m39_getCombinedNodeFlags.i32"
+        ],
+        [
+          0.63,
+          "sc_bf__x25_m89_couldContainTypeVariables"
+        ],
+        [
+          0.61,
+          "sc_bf__x25__x25_m128_InferenceState_inferFromTypes"
+        ],
+        [
+          0.6,
+          "sc_bf__x25__x25_m27_Scanner_scanIdentifier.i32"
+        ],
+        [
+          0.55,
+          "sc_bf__x25__x25_m57_Binder_bind"
+        ],
+        [
+          0.54,
+          "sc_bf__x25__x25_m27_Scanner_scan.i32"
+        ],
+        [
+          0.53,
+          "sc_bf__x25_m94_getPropertyOfTypeEx"
+        ],
+        [
+          0.5,
+          "sc_bf__x25__x25_m88_Relater_isRelatedToEx.i32"
+        ],
+        [
+          0.5,
+          "sc_bf__x25_m31_getName"
+        ]
+      ],
+      "header": "Experiment: <experiment>\nNo errors\n*** Collector Warning: Blocking SIGPROF ignored while in use for collection\n*** Collector Warning: Collection interval timer period was changed (10000 -> 0); profile data may be unreliable\nNo archive command run\n\nTarget command (64-bit): '/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib/tsc-ts -p src/tsconfig.json --noEmit --incremental false --composite false --noCheck false --pretty false'\nProcess pid 431897, ppid 431853, pgrp 431853, sid 431853\nCurrent working directory: /home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode\nCollector version: `2.42'; experiment version 12.4 (64-bit)\nHost `vps0', OS `Linux 6.8.0-151-generic', page size 4096, architecture `x86_64'\n  8 CPUs, clock speed 3092 MHz.\n  Memory: 10268612 pages @  4096 = 40111 MB.\nData collection parameters:\n  Clock-profiling, interval = 10000 microsecs.\n  Periodic sampling, 1 secs.\n  Follow descendant processes from: none\n\nExperiment started Sat Nov 21 17:11:06 2026\n\nExperiment Ended: 22.106369981\nData Collection Duration: 22.106369981\n",
+      "tableSha256": "749146971586775981471042fb635427c74fc60aa20279d770262f5d16304622"
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "files": 13290,
+      "args": [
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "childCPUSeconds": 72.937388,
+      "sampledCPUSeconds": 72.01,
+      "scriptcFunctionCount": 1776,
+      "topScriptcFlat": [
+        [
+          1.0,
+          "sc_bf__x25_m94_getResolvedMember"
+        ],
+        [
+          0.91,
+          "sc_bf__x25__x25_m43_LinkTable_x25_0_get.i32"
+        ],
+        [
+          0.81,
+          "sc_bf__x25__x25_m88_Relation_get"
+        ],
+        [
+          0.66,
+          "sc_bf__x25_m94_getPropertyOfTypeEx"
+        ],
+        [
+          0.64,
+          "sc_bf__x25_m30_compareCodePoints.i32"
+        ],
+        [
+          0.64,
+          "sc_bf__x25_m89_couldContainTypeVariables"
+        ],
+        [
+          0.53,
+          "sc_bf__x25_m88_isUnmatchedProperty"
+        ],
+        [
+          0.47,
+          "sc_bf__x25_m127_compareNodes"
+        ],
+        [
+          0.46,
+          "sc_bf__x25_m58_maybeTypeOfKind.i32"
+        ],
+        [
+          0.43,
+          "sc_bf__x25_m89_instantiateTypeWithAlias"
+        ],
+        [
+          0.41,
+          "sc_bf__x25_m128_isConstTypeVariable.i32"
+        ],
+        [
+          0.4,
+          "sc_bf__x25__x25_m88_Relater_propertiesRelatedTo.i32"
+        ],
+        [
+          0.39,
+          "sc_bf__x25__x25_m48_NameResolver_resolve"
+        ],
+        [
+          0.39,
+          "sc_bf__x25_m94_resolveStructuredTypeMembers"
+        ],
+        [
+          0.36,
+          "sc_bf__x25_fn436"
+        ]
+      ],
+      "header": "Experiment: <experiment>\nNo errors\n*** Collector Warning: Blocking SIGPROF ignored while in use for collection\n*** Collector Warning: Collection interval timer period was changed (10000 -> 0); profile data may be unreliable\nNo archive command run\n\nTarget command (64-bit): '/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib/tsc-ts -p tsconfig.json --noEmit --incremental false --composite false --noCheck false --pretty false'\nProcess pid 431959, ppid 431853, pgrp 431853, sid 431853\nCurrent working directory: /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry\nCollector version: `2.42'; experiment version 12.4 (64-bit)\nHost `vps0', OS `Linux 6.8.0-151-generic', page size 4096, architecture `x86_64'\n  8 CPUs, clock speed 3092 MHz.\n  Memory: 10268612 pages @  4096 = 40111 MB.\nData collection parameters:\n  Clock-profiling, interval = 10000 microsecs.\n  Periodic sampling, 1 secs.\n  Follow descendant processes from: none\n\nExperiment started Sat Nov 21 17:11:29 2026\n\nExperiment Ended: 15.065361748\nData Collection Duration: 15.065361748\n",
+      "tableSha256": "a8ae776d73b5954ab77b9983c6877fcbcb7eb433d1f801c76801d23523fdc9cc"
+    }
+  }
+}
