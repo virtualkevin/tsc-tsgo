@@ -20,6 +20,20 @@ for (const path of [baseline, candidate, libs]) {
 
 const fixtures = [
   {
+    name: 'template union filtering preserves alternating keys and patterned declarations',
+    diagnostic: 'TS2322',
+    files: {
+      'main.ts': [
+        'type Keys = ' + Array.from({ length: 128 }, (_, i) => JSON.stringify(String(i).padStart(3, '0') + (i % 2 ? 'no' : 'yes'))).join(' | ') + ';',
+        'export type Allowed = Keys | `${string}yes` | `head${number}`;',
+        'export const retained: Allowed = "001no";',
+        'export const matched: Allowed = "000yes";',
+        'export const otherPattern: Allowed = "head123";',
+        'export const invalid: Allowed = "unrelated";',
+      ].join('\n'),
+    },
+  },
+  {
     name: 'symbol reads preserve deferred mapped and accessor types across use sites',
     diagnostic: 'TS2322',
     files: {

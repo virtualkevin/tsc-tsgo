@@ -25850,17 +25850,24 @@ func (c *Checker) removeRedundantLiteralTypes(types []*Type, includes TypeFlags,
 
 func (c *Checker) removeStringLiteralsMatchedByTemplateLiterals(types []*Type) []*Type {
 	templates := core.Filter(types, c.isPatternLiteralType)
-	if len(templates) != 0 {
-		i := len(types)
-		for i > 0 {
-			i--
-			t := types[i]
-			if t.flags&TypeFlagsStringLiteral != 0 && core.Some(templates, func(template *Type) bool {
-				return c.isTypeMatchedByTemplateLiteralOrStringMapping(t, template)
-			}) {
-				types = slices.Delete(types, i, i+1)
-			}
+	if len(templates) == 0 {
+		return types
+	}
+	// Match in the original reverse order. The type set is private to union
+	// construction. A removed string literal cannot belong to the pattern list.
+	firstRemoved := len(types)
+	for i := len(types) - 1; i >= 0; i-- {
+		t := types[i]
+		if t.flags&TypeFlagsStringLiteral != 0 && core.Some(templates, func(template *Type) bool {
+			return c.isTypeMatchedByTemplateLiteralOrStringMapping(t, template)
+		}) {
+			types[i] = nil
+			firstRemoved = i
 		}
+	}
+	if firstRemoved < len(types) {
+		kept := slices.DeleteFunc(types[firstRemoved:], func(t *Type) bool { return t == nil })
+		types = types[:firstRemoved+len(kept)]
 	}
 	return types
 }
