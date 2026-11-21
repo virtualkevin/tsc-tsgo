@@ -1,0 +1,46 @@
+package checker
+
+import (
+	"reflect"
+	"testing"
+)
+
+func TestNeverBranchMatchesConditionalInference(t *testing.T) {
+	c := templateCacheTestChecker()
+	c.couldContainTypeVariables = c.couldContainTypeVariablesWorker
+	param := c.newTypeParameter(nil)
+	for _, branches := range [][2]*Type{
+		{param, c.neverType}, {c.neverType, param}, {c.neverType, c.neverType},
+		{c.neverType, c.stringType}, {param, c.stringType},
+	} {
+		target := c.newType(TypeFlagsConditional, ObjectFlagsNone, &ConditionalType{
+			resolvedTrueType: branches[0], resolvedFalseType: branches[1],
+		})
+		for _, contra := range []bool{false, true} {
+			for _, fixed := range []bool{false, true} {
+				run := func(fast bool) (*InferenceInfo, InferencePriority, InferencePriority) {
+					info := newInferenceInfo(param)
+					info.isFixed = fixed
+					n := &InferenceState{inferences: []*InferenceInfo{info}, originalTarget: param,
+						originalSource: c.stringType, priority: InferencePriorityReturnType,
+						inferencePriority: InferencePriorityMaxValue, contravariant: contra}
+					if fast {
+						c.inferToConditionalType(n, c.stringType, target)
+					} else {
+						var priority InferencePriority
+						if contra {
+							priority = InferencePriorityContravariantConditional
+						}
+						c.inferToMultipleTypesWithPriority(n, c.stringType, branches[:], target.flags, priority)
+					}
+					return info, n.priority, n.inferencePriority
+				}
+				want, oldPriority, oldResult := run(false)
+				got, priority, result := run(true)
+				if !reflect.DeepEqual(want, got) || oldPriority != priority || oldResult != result {
+					t.Fatalf("different candidate state or priority for branches %v, contra=%v, fixed=%v", branches, contra, fixed)
+				}
+			}
+		}
+	}
+}
