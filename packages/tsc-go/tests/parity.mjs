@@ -20,6 +20,22 @@ for (const path of [baseline, candidate, libs]) {
 
 const fixtures = [
   {
+    name: 'bulk string literal unions preserve inferred declarations and diagnostics',
+    diagnostic: 'TS2322',
+    files: {
+      'main.ts': [
+        'type Letter = "d" | "b" | "c" | "a";',
+        'type Digit = 4 | 1 | 3 | 2;',
+        'export type Key = `key_${Letter}${Digit}`;',
+        'export const keys = ["z","y","x","w","v","u","t","s","r","q","p","o","n","m","l","k","j","i","h","g","f","e","d","c","b","a","z"] as const;',
+        'export function pick(i: number) { return keys[i]; }',
+        'export type Tagged = Key | ReturnType<typeof pick> | null;',
+        'export const valid: Tagged = "key_d4";',
+        'export const invalid: Tagged = "independent_invalid_value";',
+      ].join('\n'),
+    },
+  },
+  {
     name: 'generic arity with required, trailing-default and out-of-order parameters',
     diagnostic: 'TS2706',
     files: {

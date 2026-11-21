@@ -25700,6 +25700,15 @@ func (c *Checker) UnionTypes() iter.Seq[*Type] {
 }
 
 func (c *Checker) addTypesToUnion(typeSet []*Type, includes TypeFlags, types []*Type) ([]*Type, TypeFlags) {
+	// Large literal unions (including expanded template literals) can be
+	// collected in bulk. Their ordering depends only on the value and type ID.
+	if len(typeSet) == 0 && len(types) >= 16 && core.Every(types, func(t *Type) bool {
+		return t != nil && t.flags == TypeFlagsStringLiteral && t.alias == nil && t.checker == c
+	}) {
+		typeSet = append(typeSet, types...)
+		slices.SortFunc(typeSet, CompareTypes)
+		return slices.Compact(typeSet), includes | TypeFlagsStringLiteral
+	}
 	var lastType *Type
 	for _, t := range types {
 		if t != lastType {

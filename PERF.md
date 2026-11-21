@@ -390,3 +390,14 @@
 | Grouped pointer-table probes | typeorm | Size-aware Go | 4422.36 | 4552.33 | 0.971× | 4 | Paired median 0.978×. [Samples](benchmarks/profiles/grouped-pointer-probes/screen.json.gz) |
 | Generic arity scans | typeorm | Matched Go control | 2596.40 | 2593.93 | 1.001× | 6 | Paired median 0.989×. [Samples](benchmarks/profiles/generic-arity/screen.json.gz) |
 | Generic arity scans | trpc | Matched Go control | 537.93 | 530.71 | 1.014× | 6 | Paired median 0.990×. [Samples](benchmarks/profiles/generic-arity/screen.json.gz) |
+| Bulk string literal unions | 4,096 keys, descending | Matched Go control | 115.70 | 107.08 | 1.080× | 3 | Generated scaling case. [Samples](benchmarks/profiles/bulk-literal-union/stress.json) |
+| Bulk string literal unions | 32,768 keys, ascending | Matched Go control | 199.37 | 179.77 | 1.109× | 3 | Generated scaling case. [Samples](benchmarks/profiles/bulk-literal-union/stress.json) |
+| Bulk string literal unions | 32,768 keys, descending | Matched Go control | 295.21 | 173.46 | 1.702× | 3 | Generated scaling case. [Samples](benchmarks/profiles/bulk-literal-union/stress.json) |
+| Bulk string literal unions | 131,072 keys, descending | Matched Go control | 2276.06 | 367.06 | 6.201× | 3 | Generated scaling case. [Samples](benchmarks/profiles/bulk-literal-union/stress.json) |
+| Bulk string literal unions | 131,072 keys, descending | Native tsc-ts | 2280.61 | 367.06 | 6.213× | 3 | Generated scaling case. [Samples](benchmarks/profiles/bulk-literal-union/stress.json) |
+| Bulk string literal unions | 32,768 keys, keyof-permuted | Matched Go control | 353.35 | 337.04 | 1.048× | 3 | Generated scaling case. [Samples](benchmarks/profiles/bulk-literal-union/stress.json) |
+| Bulk string literal unions | typeorm | Matched Go control | 2418.95 | 2379.86 | 1.016× | 4 | Paired median 1.034×. [Samples](benchmarks/profiles/bulk-literal-union/small.json.gz) |
+| Bulk string literal unions | trpc | Matched Go control | 438.57 | 515.75 | 0.850× | 4 | Paired median 0.905×. [Samples](benchmarks/profiles/bulk-literal-union/small.json.gz) |
+| Bulk string literal unions | vscode | Matched Go control | 48983.24 | 57795.38 | 0.848× | 2 | Paired median 0.862×. [Samples](benchmarks/profiles/bulk-literal-union/large.json.gz) |
+| Bulk string literal unions | sentry | Matched Go control | 42340.08 | 41667.21 | 1.016× | 2 | Paired median 1.021×. [Samples](benchmarks/profiles/bulk-literal-union/large.json.gz) |
+| Bulk string literal unions, order reversed | trpc | Matched Go control | 718.19 | 745.10 | 0.964× | 12 | Paired median 0.992×, candidate faster in 6/12 pairs. [Samples](benchmarks/profiles/bulk-literal-union/trpc-reverse.json.gz) |
