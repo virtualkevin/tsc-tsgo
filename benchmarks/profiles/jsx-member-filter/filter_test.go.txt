@@ -1,0 +1,39 @@
+package checker
+
+import (
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+func TestJsxFilterRequiresCompletedClassificationAndSameShape(t *testing.T) {
+	c := lazyPropertyTestChecker()
+	prop := lazyProperty(c, "optional", c.stringType, true)
+	props := []*ast.Symbol{prop}
+	target := c.newUnionType(ObjectFlagsNone, []*Type{lazyObject(c, prop)})
+	target.AsUnionType().propertyCache = ast.SymbolTable{prop.Name: prop}
+	factory := ast.NewNodeFactory(ast.NodeFactoryHooks{})
+	node := factory.NewJsxAttributes(nil)
+	node.AsJsxAttributes().Symbol = &ast.Symbol{Members: ast.SymbolTable{"value": prop}}
+	prop.CheckFlags = ast.CheckFlagsSyntheticProperty | ast.CheckFlagsNonUniformAndLiteral
+	for _, flags := range []ast.CheckFlags{0, ast.CheckFlagsIsDiscriminantComputed} {
+		prop.CheckFlags |= flags
+		c.rememberJsxFilter(node, target, props, "children")
+		if c.jsxMemberFilters[target] != nil {
+			t.Fatal("remembered an unresolved or reentrant classification")
+		}
+	}
+	prop.CheckFlags |= ast.CheckFlagsIsDiscriminant
+	c.rememberJsxFilter(node, target, props, "children")
+	p := c.jsxMemberFilters[target]
+	if p == nil || !p.applies(node, props, "children") || len(p.members) != 1 || p.members[0] != prop {
+		t.Fatal("completed optional discriminant was lost")
+	}
+	if p.applies(node, []*ast.Symbol{prop}, "children") || p.applies(node, props, "alternate") {
+		t.Fatal("accepted a different property list or JSX children name")
+	}
+	node.Symbol().Members = ast.SymbolTable{"other": prop}
+	if p.applies(node, props, "children") {
+		t.Fatal("accepted a different explicit attribute")
+	}
+}

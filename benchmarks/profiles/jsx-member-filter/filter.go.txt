@@ -1,0 +1,79 @@
+package checker
+
+import "github.com/microsoft/typescript-go/internal/ast"
+
+// A completed filter contains only properties whose classification the ordinary
+// checker can read without resolving a type. A recursive augmented-cache
+// replacement invalidates it before the replacement becomes visible.
+type jsxMemberFilter struct {
+	properties                 []*ast.Symbol
+	names                      []string
+	childrenName               string
+	checkChildren, hasChildren bool
+	members                    []*ast.Symbol
+}
+
+func semanticChildrenPresent(node *ast.Node) bool {
+	element := node.Parent.Parent
+	return ast.IsJsxElement(element) && len(ast.GetSemanticJsxChildren(element.Children().Nodes)) != 0
+}
+
+func (p *jsxMemberFilter) applies(node *ast.Node, props []*ast.Symbol, childrenName string) bool {
+	if len(props) != len(p.properties) || &props[0] != &p.properties[0] ||
+		childrenName != p.childrenName || len(node.Symbol().Members) != len(p.names) {
+		return false
+	}
+	for _, name := range p.names {
+		if node.Symbol().Members[name] == nil {
+			return false
+		}
+	}
+	return !p.checkChildren || semanticChildrenPresent(node) == p.hasChildren
+}
+
+func (c *Checker) rememberJsxFilter(node *ast.Node, target *Type, props []*ast.Symbol, childrenName string) {
+	names := node.Symbol().Members
+	hasChildren := false
+	cache := target.AsUnionType().propertyCache
+	p := &jsxMemberFilter{properties: props, childrenName: childrenName}
+	for name, symbol := range names {
+		if symbol == nil {
+			return
+		}
+		p.names = append(p.names, name)
+	}
+	for _, member := range props {
+		if member.Flags&ast.SymbolFlagsOptional == 0 || names[member.Name] != nil {
+			continue
+		}
+		if member.Name == childrenName {
+			if !p.checkChildren {
+				hasChildren = semanticChildrenPresent(node)
+				p.checkChildren, p.hasChildren = true, hasChildren
+			}
+			if hasChildren {
+				continue
+			}
+		}
+		prop := cache[member.Name]
+		if prop == nil {
+			return
+		}
+		if prop.CheckFlags&ast.CheckFlagsSyntheticProperty == 0 {
+			continue
+		}
+		if prop.CheckFlags&ast.CheckFlagsIsDiscriminantComputed == 0 {
+			return
+		}
+		if prop.CheckFlags&ast.CheckFlagsIsDiscriminant != 0 {
+			p.members = append(p.members, member)
+		} else if prop.CheckFlags&ast.CheckFlagsNonUniformAndLiteral == ast.CheckFlagsNonUniformAndLiteral {
+			// Classification may be resolving recursively with its computed bit already set.
+			return
+		}
+	}
+	if c.jsxMemberFilters == nil {
+		c.jsxMemberFilters = make(map[*Type]*jsxMemberFilter)
+	}
+	c.jsxMemberFilters[target] = p
+}
