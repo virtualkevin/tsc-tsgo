@@ -1,0 +1,84 @@
+package checker
+
+import (
+	"slices"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+// Each span describes consecutive absent names accepted by every original
+// constituent. Build spans with read-only probes into completed checker state.
+type absentPropertySpan struct {
+	start, end int
+	values     []*Type // Member-major, then in constituent order
+}
+
+type absentPropertyPlan struct {
+	members []*ast.Symbol
+	spans   []absentPropertySpan
+}
+
+func completedMappedValue(c *Checker, t *Type, name string) *Type {
+	if t.flags != TypeFlagsIntersection || t.objectFlags&(ObjectFlagsMapped|ObjectFlagsIsNeverIntersectionComputed|ObjectFlagsIsNeverIntersection) != ObjectFlagsIsNeverIntersectionComputed {
+		return nil
+	}
+	d := t.AsIntersectionType()
+	if d.resolvedApparentType != t {
+		return nil
+	}
+	prop := d.propertyCacheWithoutFunctionPropertyAugment[name]
+	if prop == nil || prop.CheckFlags&(ast.CheckFlagsReadPartial|ast.CheckFlagsDeferredType|ast.CheckFlagsInstantiated|ast.CheckFlagsMapped) != ast.CheckFlagsMapped {
+		return nil
+	}
+	if links := c.valueSymbolLinks.TryGet(prop); links != nil {
+		return links.resolvedType
+	}
+	return nil
+}
+
+func (c *Checker) makeAbsentPropertyPlan(types []*Type, members []*ast.Symbol) *absentPropertyPlan {
+	plan := &absentPropertyPlan{members: slices.Clone(members)}
+	var values []*Type
+	start := 0
+	for i, member := range members {
+		before := len(values)
+		positive := true
+		for _, t := range types {
+			value := completedMappedValue(c, t, member.Name)
+			if value == nil || !(value == c.undefinedType || value.flags&TypeFlagsUnion != 0 && containsType(value.Types(), c.undefinedType)) {
+				positive = false
+				break
+			}
+			values = append(values, value)
+		}
+		if !positive {
+			if i > start {
+				plan.spans = append(plan.spans, absentPropertySpan{start, i, values[:before]})
+			}
+			values = nil
+			start = i + 1
+		}
+	}
+	if start < len(members) {
+		plan.spans = append(plan.spans, absentPropertySpan{start, len(members), values})
+	}
+	return plan
+}
+
+// Validate immediately before skipping a span. Normal discrimination between
+// spans may resolve symbols, update a link or change an apparent type.
+func (c *Checker) validAbsentSpan(span absentPropertySpan, types []*Type, members []*ast.Symbol) bool {
+	if len(span.values) != (span.end-span.start)*len(types) {
+		return false
+	}
+	index := 0
+	for _, member := range members[span.start:span.end] {
+		for _, t := range types {
+			if completedMappedValue(c, t, member.Name) != span.values[index] {
+				return false
+			}
+			index++
+		}
+	}
+	return true
+}

@@ -1,0 +1,51 @@
+package checker
+
+import (
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+func TestAbsentGroupsRecheckLinksAndPreferredProperties(t *testing.T) {
+	c := lazyPropertyTestChecker()
+	members := []*ast.Symbol{c.newProperty("first", c.stringType), c.newProperty("mixed", c.stringType), c.newProperty("last", c.stringType)}
+	accept := c.getUnionType([]*Type{c.undefinedType, c.stringType})
+	branch := func() *Type {
+		obj := lazyObject(c)
+		x := c.newIntersectionType(ObjectFlagsIsNeverIntersectionComputed, []*Type{obj, obj})
+		data := x.AsIntersectionType()
+		data.resolvedApparentType = x
+		data.propertyCacheWithoutFunctionPropertyAugment = ast.SymbolTable{}
+		for _, m := range members {
+			p := lazyProperty(c, m.Name, accept, true)
+			p.CheckFlags |= ast.CheckFlagsMapped
+			data.propertyCacheWithoutFunctionPropertyAugment[m.Name] = p
+		}
+		return x
+	}
+	a, b := branch(), branch()
+	target := c.newUnionType(ObjectFlagsNone, []*Type{a, b})
+	cache := b.AsIntersectionType().propertyCacheWithoutFunctionPropertyAugment
+	c.valueSymbolLinks.Get(cache["mixed"]).resolvedType = c.stringType
+	discriminator := &ObjectLiteralDiscriminator{c: c, members: members}
+	plan := c.makeAbsentPropertyPlan(target.Types(), members)
+	if len(plan.spans) != 2 || plan.spans[0].end != 1 || plan.spans[1].start != 2 {
+		t.Fatal("unexpected spans", plan.spans)
+	}
+	compare := func(want *Type) {
+		t.Helper()
+		control := c.discriminateTypeByDiscriminableItems(target, discriminator)
+		if got := c.discriminateWithAbsentPlan(target, discriminator, plan); got != control || got != want {
+			t.Fatal("narrowing disagreed", got, control, want)
+		}
+	}
+	compare(a)
+	c.valueSymbolLinks.Get(cache["mixed"]).resolvedType = accept
+	compare(target)
+	c.valueSymbolLinks.Get(cache["last"]).resolvedType = c.stringType
+	compare(a)
+	c.valueSymbolLinks.Get(cache["last"]).resolvedType = accept
+	replacement := lazyProperty(c, "first", c.stringType, false)
+	cache["first"] = replacement
+	compare(a)
+}

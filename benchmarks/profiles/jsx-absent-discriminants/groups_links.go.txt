@@ -1,0 +1,103 @@
+package checker
+
+import (
+	"slices"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type mappedPropertyWitness struct {
+	symbol *ast.Symbol
+	links  *ValueSymbolLinks
+	value  *Type
+}
+
+type absentPropertySpan struct {
+	start, end int
+	witnesses  []mappedPropertyWitness
+}
+
+type absentPropertyPlan struct {
+	members []*ast.Symbol
+	types   []*Type
+	spans   []absentPropertySpan
+}
+
+func completedIntersection(t *Type) bool {
+	return t.flags == TypeFlagsIntersection && t.objectFlags&(ObjectFlagsMapped|ObjectFlagsIsNeverIntersectionComputed|ObjectFlagsIsNeverIntersection) == ObjectFlagsIsNeverIntersectionComputed && t.AsIntersectionType().resolvedApparentType == t
+}
+
+func mappedLookupReadsResolvedType(prop *ast.Symbol) bool {
+	return prop != nil && prop.CheckFlags&(ast.CheckFlagsReadPartial|ast.CheckFlagsDeferredType|ast.CheckFlagsInstantiated|ast.CheckFlagsMapped) == ast.CheckFlagsMapped
+}
+
+// A recursive lookup may populate this key while its outer lookup is creating
+// a property. Invalidate outstanding plans before publishing a replacement.
+func (c *Checker) publishLookupProperty(cache ast.SymbolTable, name string, prop *ast.Symbol, nonAugmented bool) {
+	if nonAugmented && len(c.absentPlans) != 0 {
+		if previous := cache[name]; previous != nil && previous != prop {
+			clear(c.absentPlans)
+		}
+	}
+	cache[name] = prop
+}
+
+func (c *Checker) makeAbsentPropertyPlan(types []*Type, members []*ast.Symbol) *absentPropertyPlan {
+	plan := &absentPropertyPlan{members: slices.Clone(members), types: slices.Clone(types)}
+	for _, t := range types {
+		if !completedIntersection(t) {
+			return plan
+		}
+	}
+	var witnesses []mappedPropertyWitness
+	start := 0
+	for i, member := range members {
+		before := len(witnesses)
+		for _, t := range types {
+			prop := t.AsIntersectionType().propertyCacheWithoutFunctionPropertyAugment[member.Name]
+			if !mappedLookupReadsResolvedType(prop) {
+				break
+			}
+			links := c.valueSymbolLinks.TryGet(prop)
+			if links == nil || links.resolvedType == nil {
+				break
+			}
+			value := links.resolvedType
+			if value != c.undefinedType && !(value.flags&TypeFlagsUnion != 0 && containsType(value.Types(), c.undefinedType)) {
+				break
+			}
+			witnesses = append(witnesses, mappedPropertyWitness{prop, links, value})
+		}
+		if len(witnesses)-before != len(types) {
+			if i > start {
+				plan.spans = append(plan.spans, absentPropertySpan{start, i, witnesses[:before]})
+			}
+			witnesses = nil
+			start = i + 1
+		}
+	}
+	if start < len(members) {
+		plan.spans = append(plan.spans, absentPropertySpan{start, len(members), witnesses})
+	}
+	return plan
+}
+
+// The non-augmented table writer invalidates the plan when replacing an entry.
+// ValueSymbolLinks.New is used only for a newly allocated symbol. Existing mapped
+// links have stable addresses. Their resolved types are read again for each span.
+func (c *Checker) validLinkedSpan(target *Type, plan *absentPropertyPlan, span absentPropertySpan) bool {
+	if c.absentPlans[target] != plan || !slices.Equal(target.Types(), plan.types) {
+		return false
+	}
+	for _, t := range plan.types {
+		if !completedIntersection(t) {
+			return false
+		}
+	}
+	for _, w := range span.witnesses {
+		if !mappedLookupReadsResolvedType(w.symbol) || w.links.resolvedType != w.value {
+			return false
+		}
+	}
+	return true
+}

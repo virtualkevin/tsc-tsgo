@@ -578,3 +578,4 @@
 | Current resolved mapped-property check | vscode | Matched ordinary Go build | 49939.52 | 53778.66 | 0.929× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/jsx-absent-discriminants/resolved-projects.json.gz) |
 | Current resolved mapped-property check | typeorm | Matched ordinary Go build | 2486.96 | 2909.90 | 0.855× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/jsx-absent-discriminants/resolved-projects.json.gz) |
 | Current resolved mapped-property check | trpc | Matched ordinary Go build | 476.44 | 489.95 | 0.972× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/jsx-absent-discriminants/resolved-projects.json.gz) |
+| Grouped absent-property map validation | sentry | Matched ordinary Go build | 23121.93 | 23337.32 | 0.991× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/jsx-absent-discriminants/groups-map-validation.json.gz) |
