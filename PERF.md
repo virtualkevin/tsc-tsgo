@@ -504,3 +504,5 @@
 | Template index prefix/suffix guard | sentry | npm tsc-ts@0.0.2 | 20674.21 | 32810.98 | 0.630× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/public.json.gz) |
 | Template index prefix/suffix guard | typeorm | npm tsc-ts@0.0.2 | 1846.51 | 3521.34 | 0.524× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/public.json.gz) |
 | Template index prefix/suffix guard | trpc | npm tsc-ts@0.0.2 | 550.94 | 681.62 | 0.808× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/public.json.gz) |
+| Template index guard with numeric fallback out of line | typeorm | Previous shipping Go (before guard) | 2610.49 | 2696.61 | 0.968× | 5 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-inlining/small.json.gz) |
+| Template index guard with numeric fallback out of line | trpc | Previous shipping Go (before guard) | 491.40 | 511.81 | 0.960× | 5 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-inlining/small.json.gz) |
