@@ -1,0 +1,14 @@
+{
+  "source": "type Again<T> = { [K in keyof T]: T[K] };\ntype Maybe<T> = { [K in keyof T]?: T[K] };\ntype Input = { a: string; b: number };\ndeclare const mapped: Again<Input>, maybe: Maybe<Input>;\nconst s: string = mapped.a;\nconst n: number = mapped.b;\nconst wrong: number = mapped.a;\nconst optional: string = maybe.a;\n",
+  "diagnostics": "index.ts(7,7): error TS2322: Type 'string' is not assignable to type 'number'.\nindex.ts(8,7): error TS2322: Type 'string | undefined' is not assignable to type 'string'.\n  Type 'undefined' is not assignable to type 'string'.\n",
+  "counts": [
+    4,
+    3,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0
+  ]
+}
