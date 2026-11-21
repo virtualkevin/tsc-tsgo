@@ -597,3 +597,4 @@
 | Add grouped JSX reuse to write guards | trpc | Write guards alone | 493.39 | 514.70 | 0.959× | 8 | Candidate faster in 4/8 pairs. [Samples](benchmarks/profiles/jsx-absent-discriminants/add-reuse.json.gz) |
 | Resolved symbol write guards alone | vscode | Matched ordinary Go build | 43415.01 | 44060.48 | 0.985× | 2 | Candidate faster in 1/2 pairs. Offline profile analysis overlapped this screen. [Samples](benchmarks/profiles/jsx-absent-discriminants/write-guards-large.json.gz) |
 | Resolved symbol write guards alone | sentry | Matched ordinary Go build | 30472.16 | 29555.53 | 1.031× | 2 | Candidate faster in 1/2 pairs. Offline profile analysis overlapped this screen. [Samples](benchmarks/profiles/jsx-absent-discriminants/write-guards-large.json.gz) |
+| Reuse completed JSX absence filters | Sentry | Matched ordinary Go build | 34822.47 | 40568.06 | 0.858× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/jsx-member-filter/sentry.json.gz) |

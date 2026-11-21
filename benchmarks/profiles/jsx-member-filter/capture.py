@@ -1,4 +1,4 @@
-"""Measure filter coverage on pinned Sentry and on wide JSX attribute lists."""
+"""Measure filter coverage on the four pinned projects and on wide JSX attribute lists."""
 import hashlib
 import json
 from pathlib import Path
@@ -12,10 +12,12 @@ from frozen_checks import observed_projects
 import scaling
 
 binary = Path(sys.argv[1]).resolve()
-columns = ("eligibleFilters","hits","memberPredicateCallsSkipped","selectedMembersOnHits")
+columns = ("eligibleFilters","hits","memberPredicateCallsSkipped","selectedMembersOnHits",
+           "nilExplicitSymbol","missingCachedProperty","uncomputed","provisionalNegative","publishedFilters")
 def row(values):
-    assert len(values) == 4 and 0 <= values[1] <= values[0] and values[2] >= values[3] >= 0
-    return dict(zip(columns, values))
+    assert len(values) == len(columns) and 0 <= values[1] <= values[0] and values[2] >= values[3] >= 0
+    assert values[1] + sum(values[4:]) == values[0]
+    return dict(zip(columns, values, strict=True))
 report = {"binarySha256":hashlib.sha256(binary.read_bytes()).hexdigest(),"fixture":{}}
 scaling.bins = {"observer":binary}
 with tempfile.TemporaryDirectory() as tmp:
@@ -28,7 +30,7 @@ with tempfile.TemporaryDirectory() as tmp:
         result = row(json.loads(run.stderr))
         assert result["eligibleFilters"] >= width
         report["fixture"][width] = {"sourceSha256":scaling.sha(source), **result}
-for name, commit, values in observed_projects(binary,projects={"sentry"}):
+for name, commit, values in observed_projects(binary):
     report[name] = {"commit":commit, **row(values)}
     print(report[name],flush=True)
 (here/"coverage.json").write_text(json.dumps(report,indent=2)+"\n")

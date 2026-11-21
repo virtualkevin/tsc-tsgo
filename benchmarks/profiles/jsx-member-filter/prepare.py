@@ -52,13 +52,25 @@ if "--observe" in sys.argv:
         jsxFilterCounts[3].Add(uint64(len(p.members)))
         """+site))
     path = out/"checker.go"
-    path.write_text(path.read_text().replace("type Checker struct {", """var jsxFilterCounts [4]atomic.Uint64
-func JsxFilterCounts() [4]uint64 {
-    var counts [4]uint64
+    path.write_text(path.read_text().replace("type Checker struct {", """var jsxFilterCounts [9]atomic.Uint64
+func JsxFilterCounts() [9]uint64 {
+    var counts [9]uint64
     for i := range counts {counts[i] = jsxFilterCounts[i].Load()}
     return counts
 }
 type Checker struct {"""))
+    source = (here/"filter.go.txt").read_text()
+    for site, counter in [
+        ("if symbol == nil {",4), ("if prop == nil {",5),
+        ("if prop.CheckFlags&ast.CheckFlagsIsDiscriminantComputed == 0 {",6),
+        ("} else if prop.CheckFlags&ast.CheckFlagsNonUniformAndLiteral == ast.CheckFlagsNonUniformAndLiteral {",7),
+    ]:
+        assert source.count(site) == 1
+        source = source.replace(site,site+f"\n jsxFilterCounts[{counter}].Add(1)")
+    source = source.replace("c.jsxMemberFilters[target] = p", "jsxFilterCounts[8].Add(1)\n c.jsxMemberFilters[target] = p")
+    dest = out/"filter.go"
+    dest.write_text(source)
+    files[str(root/"internal/checker/jsx_member_filter.go")] = str(dest)
     edit("cmd/tsgo/main.go", [
         ('"context"', '"context"\n "encoding/json"\n "github.com/microsoft/typescript-go/internal/checker"'),
         ("os.Exit(runMain())", "status := runMain(); json.NewEncoder(os.Stderr).Encode(checker.JsxFilterCounts()); os.Exit(status)")])
