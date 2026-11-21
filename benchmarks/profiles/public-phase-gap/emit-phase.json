@@ -1,0 +1,100 @@
+{
+  "binarySha256": {
+    "baseline": "99c56ba133bc038d7347b89e634745944b59a89eea161f3e6e710cc6e2c0f632",
+    "candidate": "b4a7049c4aff44927a24eac2c30b29c815d750ec1aab8be7cb6f3e0434fd175e"
+  },
+  "projects": {
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "files": 3572,
+      "samples": [
+        {
+          "engine": "baseline",
+          "emitSeconds": 0.161,
+          "stdout": "Files:              3572\nLines:            386634\nIdentifiers:      444563\nSymbols:          461595\nTypes:            257912\nInstantiations:   425703\nMemory used:     466465K\nMemory allocs:  11176711\nConfig time:      0.046s\nParse time:       0.611s\nBind time:        0.116s\nCheck time:       1.421s\nEmit time:        0.161s\nTotal time:       2.620s\n"
+        },
+        {
+          "engine": "candidate",
+          "emitSeconds": 0.032,
+          "stdout": "Files:             3572\nLines:           386634\nIdentifiers:     444563\nSymbols:         461595\nTypes:           257912\nInstantiations:  425703\nMemory used:    465844K\nMemory allocs:  7628764\nConfig time:     0.046s\nParse time:      0.396s\nBind time:       0.105s\nCheck time:      1.332s\nEmit time:       0.032s\nTotal time:      2.286s\n"
+        },
+        {
+          "engine": "candidate",
+          "emitSeconds": 0.063,
+          "stdout": "Files:             3572\nLines:           386634\nIdentifiers:     444563\nSymbols:         461595\nTypes:           257912\nInstantiations:  425703\nMemory used:    464737K\nMemory allocs:  7630267\nConfig time:     0.039s\nParse time:      0.405s\nBind time:       0.065s\nCheck time:      1.350s\nEmit time:       0.063s\nTotal time:      2.218s\n"
+        },
+        {
+          "engine": "baseline",
+          "emitSeconds": 0.429,
+          "stdout": "Files:              3572\nLines:            386634\nIdentifiers:      444563\nSymbols:          461597\nTypes:            257912\nInstantiations:   425703\nMemory used:     466334K\nMemory allocs:  11178423\nConfig time:      0.046s\nParse time:       0.409s\nBind time:        0.090s\nCheck time:       1.393s\nEmit time:        0.429s\nTotal time:       2.663s\n"
+        },
+        {
+          "engine": "baseline",
+          "emitSeconds": 0.205,
+          "stdout": "Files:              3572\nLines:            386634\nIdentifiers:      444563\nSymbols:          461593\nTypes:            257912\nInstantiations:   425703\nMemory used:     465579K\nMemory allocs:  11190595\nConfig time:      0.041s\nParse time:       0.362s\nBind time:        0.087s\nCheck time:       1.285s\nEmit time:        0.205s\nTotal time:       2.471s\n"
+        },
+        {
+          "engine": "candidate",
+          "emitSeconds": 0.02,
+          "stdout": "Files:             3572\nLines:           386634\nIdentifiers:     444563\nSymbols:         461593\nTypes:           257912\nInstantiations:  425703\nMemory used:    464688K\nMemory allocs:  7625880\nConfig time:     0.050s\nParse time:      0.425s\nBind time:       0.075s\nCheck time:      1.460s\nEmit time:       0.020s\nTotal time:      2.294s\n"
+        },
+        {
+          "engine": "candidate",
+          "emitSeconds": 0.022,
+          "stdout": "Files:             3572\nLines:           386634\nIdentifiers:     444563\nSymbols:         461593\nTypes:           257912\nInstantiations:  425703\nMemory used:    464606K\nMemory allocs:  7625242\nConfig time:     0.038s\nParse time:      0.416s\nBind time:       0.067s\nCheck time:      1.499s\nEmit time:       0.022s\nTotal time:      2.345s\n"
+        },
+        {
+          "engine": "baseline",
+          "emitSeconds": 0.201,
+          "stdout": "Files:              3572\nLines:            386634\nIdentifiers:      444563\nSymbols:          461593\nTypes:            257912\nInstantiations:   425703\nMemory used:     466538K\nMemory allocs:  11178715\nConfig time:      0.046s\nParse time:       0.410s\nBind time:        0.082s\nCheck time:       1.444s\nEmit time:        0.201s\nTotal time:       2.454s\n"
+        }
+      ]
+    },
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "files": 942,
+      "samples": [
+        {
+          "engine": "baseline",
+          "emitSeconds": 0.009,
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222416\nMemory used:    171542K\nMemory allocs:  1327887\nConfig time:     0.002s\nParse time:      0.147s\nBind time:       0.065s\nCheck time:      0.214s\nEmit time:       0.009s\nTotal time:      0.485s\n"
+        },
+        {
+          "engine": "candidate",
+          "emitSeconds": 0.001,
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222408\nMemory used:    171132K\nMemory allocs:  1160963\nConfig time:     0.001s\nParse time:      0.120s\nBind time:       0.052s\nCheck time:      0.223s\nEmit time:       0.001s\nTotal time:      0.466s\n"
+        },
+        {
+          "engine": "candidate",
+          "emitSeconds": 0.001,
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222408\nMemory used:    171129K\nMemory allocs:  1163987\nConfig time:     0.001s\nParse time:      0.146s\nBind time:       0.037s\nCheck time:      0.222s\nEmit time:       0.001s\nTotal time:      0.482s\n"
+        },
+        {
+          "engine": "baseline",
+          "emitSeconds": 0.033,
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222416\nMemory used:    171541K\nMemory allocs:  1327091\nConfig time:     0.002s\nParse time:      0.155s\nBind time:       0.062s\nCheck time:      0.297s\nEmit time:       0.033s\nTotal time:      0.613s\n"
+        },
+        {
+          "engine": "baseline",
+          "emitSeconds": 0.009,
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222416\nMemory used:    171387K\nMemory allocs:  1328699\nConfig time:     0.002s\nParse time:      0.238s\nBind time:       0.049s\nCheck time:      0.231s\nEmit time:       0.009s\nTotal time:      0.606s\n"
+        },
+        {
+          "engine": "candidate",
+          "emitSeconds": 0.001,
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222408\nMemory used:    171160K\nMemory allocs:  1160982\nConfig time:     0.001s\nParse time:      0.143s\nBind time:       0.068s\nCheck time:      0.238s\nEmit time:       0.001s\nTotal time:      0.534s\n"
+        },
+        {
+          "engine": "candidate",
+          "emitSeconds": 0.001,
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222408\nMemory used:    171271K\nMemory allocs:  1160530\nConfig time:     0.002s\nParse time:      0.176s\nBind time:       0.047s\nCheck time:      0.232s\nEmit time:       0.001s\nTotal time:      0.517s\n"
+        },
+        {
+          "engine": "baseline",
+          "emitSeconds": 0.008,
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222416\nMemory used:    171475K\nMemory allocs:  1327923\nConfig time:     0.001s\nParse time:      0.110s\nBind time:       0.068s\nCheck time:      0.222s\nEmit time:       0.008s\nTotal time:      0.452s\n"
+        }
+      ]
+    }
+  }
+}

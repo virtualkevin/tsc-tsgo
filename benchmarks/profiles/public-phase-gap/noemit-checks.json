@@ -1,0 +1,105 @@
+[
+  {
+    "case": "declarations",
+    "steps": [
+      {
+        "exit": 0,
+        "stdout": "",
+        "files": {}
+      }
+    ]
+  },
+  {
+    "case": "semantic-error",
+    "steps": [
+      {
+        "exit": 1,
+        "stdout": "main.ts(1,14): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+        "files": {}
+      }
+    ]
+  },
+  {
+    "case": "declaration-error",
+    "steps": [
+      {
+        "exit": 1,
+        "stdout": "main.ts(1,38): error TS9013: Expression type can't be inferred with --isolatedDeclarations.\n",
+        "files": {}
+      }
+    ]
+  },
+  {
+    "case": "noEmitOnError",
+    "steps": [
+      {
+        "exit": 1,
+        "stdout": "main.ts(1,14): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+        "files": {}
+      }
+    ]
+  },
+  {
+    "case": "noEmitOnError-clean",
+    "steps": [
+      {
+        "exit": 0,
+        "stdout": "",
+        "files": {}
+      }
+    ]
+  },
+  {
+    "case": "incremental",
+    "steps": [
+      {
+        "exit": 0,
+        "stdout": "TSFILE: <cwd>/out/cache.tsbuildinfo\n",
+        "files": {
+          "out/cache.tsbuildinfo": "0d3fad202de8e216cbe00b0c87f71ea957d3a5e275bf2aed3a4fb2594971f85e"
+        }
+      },
+      {
+        "exit": 0,
+        "stdout": "",
+        "files": {
+          "out/cache.tsbuildinfo": "0d3fad202de8e216cbe00b0c87f71ea957d3a5e275bf2aed3a4fb2594971f85e"
+        }
+      }
+    ]
+  },
+  {
+    "case": "real-emit",
+    "steps": [
+      {
+        "exit": 0,
+        "stdout": "TSFILE: <cwd>/out/main.js\nTSFILE: <cwd>/out/main.d.ts.map\nTSFILE: <cwd>/out/main.d.ts\n",
+        "files": {
+          "out/main.d.ts": "c9db1e0714579471532015d020afc37fa9f69e22e176c3f778ce6c165dbae2a8",
+          "out/main.js": "9754e4d864388036d2417c01bae2da86d04d87b7ddd098a38f5a0f8af24ebc58",
+          "out/main.d.ts.map": "1133d545e39890efae6f198725e3073cc3f8533e9429d8c76f2584d713c2dc56"
+        }
+      }
+    ]
+  },
+  {
+    "case": "declaration-input",
+    "steps": [
+      {
+        "exit": 0,
+        "stdout": "",
+        "files": {}
+      }
+    ]
+  },
+  {
+    "case": "json-input",
+    "steps": [
+      {
+        "exit": 0,
+        "stdout": "",
+        "files": {}
+      }
+    ]
+  }
+]

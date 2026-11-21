@@ -1,0 +1,387 @@
+{
+  "libraryDirectory": "/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib",
+  "executables": {
+    "public": {
+      "path": "/tmp/tsc-public-002/node_modules/.bin/tsc-ts",
+      "sha256": "4320a609131555b2541dfd308ed764b79ef43f22d27c6f008dd08b8e28ca8aff"
+    },
+    "go": {
+      "path": "/tmp/tsc-jsx-bounded-prefix/control",
+      "sha256": "b82f0413e660fab4f01381d594b93dbd606db2fe09823637c5b3f64ef8e3656a"
+    }
+  },
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "files": 942,
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "fileListSha256": "eddf02e93c1e44a22d77d8c24c27af4109579c0073bdaad063378f9f045e9602",
+      "samples": [
+        {
+          "engine": "public",
+          "wall": 0.652379545,
+          "phases": {
+            "Config": 0.007,
+            "Parse": 0.251,
+            "Bind": 0.0,
+            "Check": 0.281,
+            "Emit": 0.0,
+            "Total": 0.547
+          },
+          "stdout": "Files:             942\nLines:          209550\nIdentifiers:    203324\nSymbols:        127787\nTypes:              85\nInstantiations:      0\nMemory used:        0K\nMemory allocs:       0\nConfig time:    0.007s\nParse time:     0.251s\nBind time:      0.000s\nCheck time:     0.281s\nEmit time:      0.000s\nTotal time:     0.547s\n"
+        },
+        {
+          "engine": "go",
+          "wall": 0.976118385,
+          "phases": {
+            "Config": 0.003,
+            "Parse": 0.24,
+            "Bind": 0.056,
+            "Check": 0.33,
+            "Emit": 0.04,
+            "Total": 0.739
+          },
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222416\nMemory used:    171545K\nMemory allocs:  1337564\nConfig time:     0.003s\nParse time:      0.240s\nBind time:       0.056s\nCheck time:      0.330s\nEmit time:       0.040s\nTotal time:      0.739s\n"
+        },
+        {
+          "engine": "go",
+          "wall": 0.99314434,
+          "phases": {
+            "Config": 0.002,
+            "Parse": 0.257,
+            "Bind": 0.073,
+            "Check": 0.36,
+            "Emit": 0.014,
+            "Total": 0.777
+          },
+          "stdout": "Files:              942\nLines:           209550\nIdentifiers:     203324\nSymbols:         186902\nTypes:            79462\nInstantiations:  222416\nMemory used:    171592K\nMemory allocs:  1332043\nConfig time:     0.002s\nParse time:      0.257s\nBind time:       0.073s\nCheck time:      0.360s\nEmit time:       0.014s\nTotal time:      0.777s\n"
+        },
+        {
+          "engine": "public",
+          "wall": 0.688345012,
+          "phases": {
+            "Config": 0.007,
+            "Parse": 0.264,
+            "Bind": 0.0,
+            "Check": 0.306,
+            "Emit": 0.0,
+            "Total": 0.582
+          },
+          "stdout": "Files:             942\nLines:          209550\nIdentifiers:    203324\nSymbols:        127787\nTypes:              85\nInstantiations:      0\nMemory used:        0K\nMemory allocs:       0\nConfig time:    0.007s\nParse time:     0.264s\nBind time:      0.000s\nCheck time:     0.306s\nEmit time:      0.000s\nTotal time:     0.582s\n"
+        }
+      ],
+      "medians": {
+        "public": {
+          "Config": 0.007,
+          "Parse": 0.2575,
+          "Bind": 0.0,
+          "Check": 0.2935,
+          "Emit": 0.0,
+          "Total": 0.5645,
+          "wall": 0.6703622785
+        },
+        "go": {
+          "Config": 0.0025,
+          "Parse": 0.2485,
+          "Bind": 0.0645,
+          "Check": 0.345,
+          "Emit": 0.027,
+          "Total": 0.758,
+          "wall": 0.9846313625
+        }
+      }
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "files": 3572,
+      "args": [
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "fileListSha256": "c498ab9fd961a1223c1fbf7a28f3c4625f0782252cdd6a8cf05b41e93928fde2",
+      "samples": [
+        {
+          "engine": "public",
+          "wall": 2.354194513,
+          "phases": {
+            "Config": 0.121,
+            "Parse": 0.494,
+            "Bind": 0.0,
+            "Check": 1.64,
+            "Emit": 0.0,
+            "Total": 2.26
+          },
+          "stdout": "Files:            3572\nLines:          386634\nIdentifiers:    444563\nSymbols:        186223\nTypes:              89\nInstantiations:      0\nMemory used:        0K\nMemory allocs:       0\nConfig time:    0.121s\nParse time:     0.494s\nBind time:      0.000s\nCheck time:     1.640s\nEmit time:      0.000s\nTotal time:     2.260s\n"
+        },
+        {
+          "engine": "go",
+          "wall": 5.240852595,
+          "phases": {
+            "Config": 0.067,
+            "Parse": 0.844,
+            "Bind": 0.1,
+            "Check": 2.548,
+            "Emit": 0.354,
+            "Total": 4.271
+          },
+          "stdout": "Files:              3572\nLines:            386634\nIdentifiers:      444563\nSymbols:          461595\nTypes:            257912\nInstantiations:   425703\nMemory used:     467934K\nMemory allocs:  11205561\nConfig time:      0.067s\nParse time:       0.844s\nBind time:        0.100s\nCheck time:       2.548s\nEmit time:        0.354s\nTotal time:       4.271s\n"
+        },
+        {
+          "engine": "go",
+          "wall": 6.747678637,
+          "phases": {
+            "Config": 0.07,
+            "Parse": 1.411,
+            "Bind": 0.469,
+            "Check": 2.989,
+            "Emit": 0.376,
+            "Total": 5.966
+          },
+          "stdout": "Files:              3572\nLines:            386634\nIdentifiers:      444563\nSymbols:          461597\nTypes:            257912\nInstantiations:   425703\nMemory used:     466161K\nMemory allocs:  11219227\nConfig time:      0.070s\nParse time:       1.411s\nBind time:        0.469s\nCheck time:       2.989s\nEmit time:        0.376s\nTotal time:       5.966s\n"
+        },
+        {
+          "engine": "public",
+          "wall": 4.161465429,
+          "phases": {
+            "Config": 0.168,
+            "Parse": 1.044,
+            "Bind": 0.0,
+            "Check": 2.844,
+            "Emit": 0.0,
+            "Total": 4.062
+          },
+          "stdout": "Files:            3572\nLines:          386634\nIdentifiers:    444563\nSymbols:        186223\nTypes:              89\nInstantiations:      0\nMemory used:        0K\nMemory allocs:       0\nConfig time:    0.168s\nParse time:     1.044s\nBind time:      0.000s\nCheck time:     2.844s\nEmit time:      0.000s\nTotal time:     4.062s\n"
+        }
+      ],
+      "medians": {
+        "public": {
+          "Config": 0.14450000000000002,
+          "Parse": 0.769,
+          "Bind": 0.0,
+          "Check": 2.242,
+          "Emit": 0.0,
+          "Total": 3.161,
+          "wall": 3.2578299709999996
+        },
+        "go": {
+          "Config": 0.0685,
+          "Parse": 1.1275,
+          "Bind": 0.2845,
+          "Check": 2.7685,
+          "Emit": 0.365,
+          "Total": 5.1185,
+          "wall": 5.994265616
+        }
+      }
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "files": 11563,
+      "args": [
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "fileListSha256": "4c056fd63926356bc4c220bf8f1ed7543f94415daf268369257435017e6b0acb",
+      "samples": [
+        {
+          "engine": "public",
+          "wall": 31.380121276,
+          "phases": {
+            "Config": 0.283,
+            "Parse": 6.068,
+            "Bind": 0.001,
+            "Check": 24.851,
+            "Emit": 0.0,
+            "Total": 31.245
+          },
+          "stdout": "Files:            11563\nLines:          4036783\nIdentifiers:    7444484\nSymbols:        2923596\nTypes:               85\nInstantiations:       0\nMemory used:         0K\nMemory allocs:        0\nConfig time:     0.283s\nParse time:      6.068s\nBind time:       0.001s\nCheck time:     24.851s\nEmit time:       0.000s\nTotal time:     31.245s\n"
+        },
+        {
+          "engine": "go",
+          "wall": 73.266740981,
+          "phases": {
+            "Config": 0.13,
+            "Parse": 10.796,
+            "Bind": 2.36,
+            "Check": 47.583,
+            "Emit": 0.028,
+            "Total": 60.958
+          },
+          "stdout": "Files:             11563\nLines:           4036783\nIdentifiers:     7444484\nSymbols:         6846185\nTypes:           4277160\nInstantiations:  5915965\nMemory used:    6675919K\nMemory allocs:  44577298\nConfig time:      0.130s\nParse time:      10.796s\nBind time:        2.360s\nCheck time:      47.583s\nEmit time:        0.028s\nTotal time:      60.958s\n"
+        },
+        {
+          "engine": "go",
+          "wall": 67.029261586,
+          "phases": {
+            "Config": 0.115,
+            "Parse": 8.14,
+            "Bind": 1.902,
+            "Check": 46.2,
+            "Emit": 0.019,
+            "Total": 56.442
+          },
+          "stdout": "Files:             11563\nLines:           4036783\nIdentifiers:     7444484\nSymbols:         6846185\nTypes:           4277160\nInstantiations:  5915965\nMemory used:    6677998K\nMemory allocs:  44583045\nConfig time:      0.115s\nParse time:       8.140s\nBind time:        1.902s\nCheck time:      46.200s\nEmit time:        0.019s\nTotal time:      56.442s\n"
+        },
+        {
+          "engine": "public",
+          "wall": 30.029773333,
+          "phases": {
+            "Config": 0.221,
+            "Parse": 4.532,
+            "Bind": 0.0,
+            "Check": 25.086,
+            "Emit": 0.0,
+            "Total": 29.875
+          },
+          "stdout": "Files:            11563\nLines:          4036783\nIdentifiers:    7444484\nSymbols:        2923596\nTypes:               85\nInstantiations:       0\nMemory used:         0K\nMemory allocs:        0\nConfig time:     0.221s\nParse time:      4.532s\nBind time:       0.000s\nCheck time:     25.086s\nEmit time:       0.000s\nTotal time:     29.875s\n"
+        }
+      ],
+      "medians": {
+        "public": {
+          "Config": 0.252,
+          "Parse": 5.3,
+          "Bind": 0.0005,
+          "Check": 24.9685,
+          "Emit": 0.0,
+          "Total": 30.560000000000002,
+          "wall": 30.704947304500003
+        },
+        "go": {
+          "Config": 0.1225,
+          "Parse": 9.468,
+          "Bind": 2.131,
+          "Check": 46.8915,
+          "Emit": 0.0235,
+          "Total": 58.7,
+          "wall": 70.14800128350001
+        }
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "files": 13290,
+      "args": [
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "fileListSha256": "cc3185562968b0506051325736bfe0f545d3abeae42f95ec79bbc518d8238d75",
+      "samples": [
+        {
+          "engine": "public",
+          "wall": 27.038399633,
+          "phases": {
+            "Config": 0.592,
+            "Parse": 5.856,
+            "Bind": 0.001,
+            "Check": 20.306,
+            "Emit": 0.0,
+            "Total": 26.786
+          },
+          "stdout": "Files:            13290\nLines:          2130849\nIdentifiers:    2594398\nSymbols:        1454672\nTypes:               83\nInstantiations:       0\nMemory used:         0K\nMemory allocs:        0\nConfig time:     0.592s\nParse time:      5.856s\nBind time:       0.001s\nCheck time:     20.306s\nEmit time:       0.000s\nTotal time:     26.786s\n"
+        },
+        {
+          "engine": "go",
+          "wall": 62.019040753,
+          "phases": {
+            "Config": 0.123,
+            "Parse": 9.41,
+            "Bind": 1.864,
+            "Check": 43.84,
+            "Emit": 0.022,
+            "Total": 55.354
+          },
+          "stdout": "Files:             13290\nLines:           2130849\nIdentifiers:     2594398\nSymbols:         5032829\nTypes:           2725687\nInstantiations:  9159254\nMemory used:    3800883K\nMemory allocs:  44748380\nConfig time:      0.123s\nParse time:       9.410s\nBind time:        1.864s\nCheck time:      43.840s\nEmit time:        0.022s\nTotal time:      55.354s\n"
+        },
+        {
+          "engine": "go",
+          "wall": 49.413351465,
+          "phases": {
+            "Config": 0.106,
+            "Parse": 3.625,
+            "Bind": 1.096,
+            "Check": 37.384,
+            "Emit": 0.017,
+            "Total": 42.423
+          },
+          "stdout": "Files:             13290\nLines:           2130849\nIdentifiers:     2594398\nSymbols:         5032829\nTypes:           2725687\nInstantiations:  9159254\nMemory used:    3800387K\nMemory allocs:  44743362\nConfig time:      0.106s\nParse time:       3.625s\nBind time:        1.096s\nCheck time:      37.384s\nEmit time:        0.017s\nTotal time:      42.423s\n"
+        },
+        {
+          "engine": "public",
+          "wall": 22.304033216,
+          "phases": {
+            "Config": 0.255,
+            "Parse": 4.464,
+            "Bind": 0.0,
+            "Check": 17.424,
+            "Emit": 0.0,
+            "Total": 22.164
+          },
+          "stdout": "Files:            13290\nLines:          2130849\nIdentifiers:    2594398\nSymbols:        1454672\nTypes:               83\nInstantiations:       0\nMemory used:         0K\nMemory allocs:        0\nConfig time:     0.255s\nParse time:      4.464s\nBind time:       0.000s\nCheck time:     17.424s\nEmit time:       0.000s\nTotal time:     22.164s\n"
+        }
+      ],
+      "medians": {
+        "public": {
+          "Config": 0.4235,
+          "Parse": 5.16,
+          "Bind": 0.0005,
+          "Check": 18.865000000000002,
+          "Emit": 0.0,
+          "Total": 24.475,
+          "wall": 24.671216424500003
+        },
+        "go": {
+          "Config": 0.11449999999999999,
+          "Parse": 6.5175,
+          "Bind": 1.48,
+          "Check": 40.612,
+          "Emit": 0.0195,
+          "Total": 48.8885,
+          "wall": 55.716196108999995
+        }
+      }
+    }
+  }
+}

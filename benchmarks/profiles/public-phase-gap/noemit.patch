@@ -1,0 +1,117 @@
+diff --git a/packages/tsc-go/internal/compiler/program.go b/packages/tsc-go/internal/compiler/program.go
+index 74b2504..c982524 100644
+--- a/packages/tsc-go/internal/compiler/program.go
++++ b/packages/tsc-go/internal/compiler/program.go
+@@ -1630,6 +1630,32 @@ type SourceMapEmitResult struct {
+ 	GeneratedFile        string
+ }
+ 
++// NoEmitResultAfterDiagnostics reports which outputs the plain CLI would skip.
++// A cold or nonempty declaration diagnostic entry requires the ordinary emitter.
++func (p *Program) NoEmitResultAfterDiagnostics() *EmitResult {
++	options := p.Options()
++	if !options.NoEmit.IsTrue() || options.NoEmitOnError.IsTrue() || p.opts.Tracing != nil {
++		return nil
++	}
++	result := &EmitResult{}
++	for _, file := range p.getSourceFilesToEmit(nil, false) {
++		paths := outputpaths.GetOutputPathsFor(file, options, p, false)
++		if paths.DeclarationFilePath() != "" {
++			diags, checked := p.declarationDiagnosticCache.Load(file)
++			if !checked || len(diags) != 0 {
++				return nil
++			}
++			result.EmitSkipped = true
++		} else if paths.JsFilePath() != "" {
++			result.EmitSkipped = true
++			if !options.GetEmitDeclarations() {
++				return result
++			}
++		}
++	}
++	return result
++}
++
+ func (p *Program) Emit(ctx context.Context, options EmitOptions) *EmitResult {
+ 	if tr := p.opts.Tracing; tr != nil {
+ 		defer tr.Push(tracing.PhaseEmit, "emit", nil, true)()
+diff --git a/packages/tsc-go/internal/execute/tsc/emit.go b/packages/tsc-go/internal/execute/tsc/emit.go
+index 427115d..3618444 100644
+--- a/packages/tsc-go/internal/execute/tsc/emit.go
++++ b/packages/tsc-go/internal/execute/tsc/emit.go
+@@ -105,9 +105,13 @@ func EmitFilesAndReportErrors(input EmitInput) (result CompileAndEmitResult) {
+ 	emitResult := &compiler.EmitResult{EmitSkipped: true, Diagnostics: []*ast.Diagnostic{}}
+ 	if !input.ProgramLike.Options().ListFilesOnly.IsTrue() {
+ 		emitStart := input.Sys.Now()
+-		emitResult = input.ProgramLike.Emit(ctx, compiler.EmitOptions{
+-			WriteFile: input.WriteFile,
+-		})
++		emitResult = nil
++		if program, ok := input.ProgramLike.(*compiler.Program); ok && len(allDiagnostics) == 0 {
++			emitResult = program.NoEmitResultAfterDiagnostics()
++		}
++		if emitResult == nil {
++			emitResult = input.ProgramLike.Emit(ctx, compiler.EmitOptions{WriteFile: input.WriteFile})
++		}
+ 		result.times.emitTime = input.Sys.Now().Sub(emitStart)
+ 	}
+ 	if emitResult != nil {
+--- /dev/null
++++ b/packages/tsc-go/internal/compiler/noemit_test.go
+@@ -0,0 +1,56 @@
++package compiler_test
++
++import (
++	"reflect"
++	"testing"
++
++	"github.com/microsoft/typescript-go/internal/compiler"
++	"github.com/microsoft/typescript-go/internal/core"
++	"github.com/microsoft/typescript-go/internal/tsoptions"
++	"github.com/microsoft/typescript-go/internal/vfs/vfstest"
++)
++
++func TestNoEmitResultAfterDiagnostics(t *testing.T) {
++	for _, test := range []struct {
++		name, file, source string
++		declarations       bool
++		wantDiagnostic     bool
++		wantSkipped        bool
++	}{
++		{"javascript output", "one.ts", "export const n = 1", false, false, true},
++		{"checked declarations", "one.ts", "export const n: number = 1", true, false, true},
++		{"declaration error", "one.ts", "export function f(x: number) { return x + 1 }", true, true, true},
++		{"no output for declaration input", "one.d.ts", "export declare const n: number", true, false, false},
++	} {
++		t.Run(test.name, func(t *testing.T) {
++			name := "/src/" + test.file
++			fs := vfstest.FromMap(map[string]string{name: test.source}, true)
++			opts := &core.CompilerOptions{NoEmit: core.TSTrue, NoLib: core.TSTrue, Target: core.ScriptTargetES2015}
++			if test.declarations {
++				opts.Declaration = core.TSTrue
++				opts.IsolatedDeclarations = core.TSTrue
++			}
++			host := compiler.NewCompilerHost("/src", fs, "/lib", nil, nil)
++			config := &tsoptions.ParsedCommandLine{ParsedConfig: &core.ParsedOptions{FileNames: []string{name}, CompilerOptions: opts}}
++			p := compiler.NewProgram(compiler.ProgramOptions{Config: config, Host: host})
++			if test.declarations && test.wantSkipped && p.NoEmitResultAfterDiagnostics() != nil {
++				t.Fatal("cold declaration diagnostics must go through emit")
++			}
++			diags := p.GetDeclarationDiagnostics(t.Context(), nil)
++			if (len(diags) > 0) != test.wantDiagnostic {
++				t.Fatalf("unexpected declaration diagnostics: %v", diags)
++			}
++			skipped := p.NoEmitResultAfterDiagnostics()
++			if test.wantDiagnostic {
++				if skipped != nil {
++					t.Fatal("lost declaration diagnostics")
++				}
++				return
++			}
++			ordinary := p.Emit(t.Context(), compiler.EmitOptions{})
++			if skipped == nil || skipped.EmitSkipped != test.wantSkipped || !reflect.DeepEqual(skipped, ordinary) {
++				t.Fatalf("fast result %#v, ordinary result %#v", skipped, ordinary)
++			}
++		})
++	}
++}
