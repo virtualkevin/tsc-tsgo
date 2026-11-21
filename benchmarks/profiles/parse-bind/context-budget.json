@@ -1,0 +1,406 @@
+{
+  "trpc": {
+    "totalCPUSeconds": 2.85,
+    "contextualCPUSeconds": 0.2,
+    "byHandlerCPUSeconds": {
+      "checkObjectLiteral": 0.11,
+      "checkFunctionExpressionOrObjectLiteralMethod": 0.03,
+      "checkIdentifier": 0.02,
+      "other": 0.01,
+      "checkCallExpression": 0.01,
+      "checkArrayLiteral": 0.01,
+      "checkPropertyAccessExpression": 0.01
+    },
+    "nextCheckerMethodCPUSeconds": {
+      "checkFunctionExpressionOrObjectLiteralMethod": {
+        "contextuallyCheckFunctionExpressionOrObjectLiteralMethod": 0.03
+      },
+      "checkIdentifier": {
+        "getFlowTypeOfReferenceEx": 0.02
+      },
+      "checkCallExpression": {
+        "getResolvedSignature": 0.01
+      },
+      "checkObjectLiteral": {
+        "checkPropertyAssignment": 0.07,
+        "getSpreadType": 0.02,
+        "checkShorthandPropertyAssignment": 0.01,
+        "checkObjectLiteralMethod": 0.01
+      },
+      "checkArrayLiteral": {
+        "checkExpressionForMutableLocation": 0.01
+      },
+      "checkPropertyAccessExpression": {
+        "checkNonNullExpression": 0.01
+      }
+    },
+    "detailCPUSeconds": {
+      "checkFunctionExpressionOrObjectLiteralMethod/contextuallyCheckFunctionExpressionOrObjectLiteralMethod": {
+        "assignContextualParameterTypes": 0.01,
+        "getReturnTypeFromBody": 0.01,
+        "getSignaturesOfType": 0.01
+      },
+      "checkCallExpression/getResolvedSignature": {
+        "resolveSignature": 0.01
+      },
+      "checkObjectLiteral/checkPropertyAssignment": {
+        "checkExpressionForMutableLocation": 0.07
+      }
+    }
+  },
+  "typeorm": {
+    "totalCPUSeconds": 16.57,
+    "contextualCPUSeconds": 2.13,
+    "byHandlerCPUSeconds": {
+      "checkObjectLiteral": 0.84,
+      "checkFunctionExpressionOrObjectLiteralMethod": 0.69,
+      "checkCallExpression": 0.2,
+      "checkArrayLiteral": 0.14,
+      "checkIdentifier": 0.11,
+      "checkPropertyAccessExpression": 0.06,
+      "other": 0.04,
+      "checkConditionalExpression": 0.03,
+      "checkBinaryExpression": 0.02
+    },
+    "nextCheckerMethodCPUSeconds": {
+      "checkConditionalExpression": {
+        "checkExpressionEx": 0.03
+      },
+      "checkCallExpression": {
+        "getResolvedSignature": 0.2
+      },
+      "checkFunctionExpressionOrObjectLiteralMethod": {
+        "contextuallyCheckFunctionExpressionOrObjectLiteralMethod": 0.63,
+        "checkGrammarFunctionLikeDeclaration": 0.05,
+        "isContextSensitive": 0.01
+      },
+      "checkObjectLiteral": {
+        "checkPropertyAssignment": 0.45,
+        "getApparentTypeOfContextualType": 0.27,
+        "<handler or non-checker code>": 0.06,
+        "checkObjectLiteral.func1": 0.05,
+        "checkShorthandPropertyAssignment": 0.01
+      },
+      "checkIdentifier": {
+        "getNarrowedTypeOfSymbol": 0.02,
+        "getFlowTypeOfReferenceEx": 0.02,
+        "isDeprecatedSymbol": 0.02,
+        "getOptionalType": 0.02,
+        "getResolvedSymbol": 0.02,
+        "containsUndefinedType": 0.01
+      },
+      "checkBinaryExpression": {
+        "checkBinaryLikeExpression": 0.02
+      },
+      "checkPropertyAccessExpression": {
+        "checkNonNullExpression": 0.04,
+        "checkPropertyAccessExpressionOrQualifiedName": 0.02
+      },
+      "checkArrayLiteral": {
+        "checkExpressionForMutableLocation": 0.07,
+        "checkArrayLiteral.func1": 0.04,
+        "createArrayLiteralType": 0.01,
+        "isConstContext": 0.01,
+        "createArrayTypeEx": 0.01
+      }
+    },
+    "detailCPUSeconds": {
+      "checkCallExpression/getResolvedSignature": {
+        "resolveSignature": 0.2
+      },
+      "checkFunctionExpressionOrObjectLiteralMethod/contextuallyCheckFunctionExpressionOrObjectLiteralMethod": {
+        "getReturnTypeFromBody": 0.52,
+        "instantiateSignature": 0.04,
+        "getSignaturesOfType": 0.03,
+        "inferFromAnnotatedParametersAndReturn": 0.01,
+        "checkSignatureDeclaration": 0.01,
+        "getTypeOfSymbol": 0.01,
+        "getContextualSignature": 0.01
+      },
+      "checkObjectLiteral/checkPropertyAssignment": {
+        "checkExpressionForMutableLocation": 0.44,
+        "<local work>": 0.01
+      }
+    }
+  },
+  "vscode": {
+    "totalCPUSeconds": 203.66,
+    "contextualCPUSeconds": 57.08,
+    "byHandlerCPUSeconds": {
+      "checkFunctionExpressionOrObjectLiteralMethod": 17.75,
+      "checkCallExpression": 14.85,
+      "checkObjectLiteral": 10.09,
+      "checkArrayLiteral": 4.85,
+      "checkIdentifier": 4.25,
+      "checkPropertyAccessExpression": 2.64,
+      "other": 1.67,
+      "checkBinaryExpression": 0.49,
+      "checkConditionalExpression": 0.44,
+      "checkElementAccessExpression": 0.05
+    },
+    "nextCheckerMethodCPUSeconds": {
+      "checkIdentifier": {
+        "getFlowTypeOfReferenceEx": 1.43,
+        "getResolvedSymbol": 1.1,
+        "getNarrowedTypeOfSymbol": 0.95,
+        "getOptionalType": 0.24,
+        "<handler or non-checker code>": 0.13,
+        "isDeprecatedSymbol": 0.09,
+        "getNarrowableTypeForReference": 0.06,
+        "markLinkedReferences": 0.06,
+        "getControlFlowContainer": 0.05,
+        "resolveAliasWithDeprecationCheck": 0.04,
+        "isEvolvingArrayOperationTarget": 0.02,
+        "isPastLastAssignment": 0.02,
+        "isInAmbientOrTypeNode": 0.02,
+        "isSymbolAssignedDefinitely": 0.01,
+        "getExportSymbolOfValueSymbolIfExported": 0.01,
+        "isParameterOrMutableLocalVariable": 0.01,
+        "removeOptionalityFromDeclaredType": 0.01
+      },
+      "checkCallExpression": {
+        "getResolvedSignature": 14.64,
+        "getReturnTypeOfSignature": 0.1,
+        "checkDeprecatedSignature": 0.06,
+        "checkGrammarTypeArguments": 0.03,
+        "<handler or non-checker code>": 0.02
+      },
+      "checkFunctionExpressionOrObjectLiteralMethod": {
+        "contextuallyCheckFunctionExpressionOrObjectLiteralMethod": 17.14,
+        "checkGrammarFunctionLikeDeclaration": 0.41,
+        "checkNodeDeferred": 0.13,
+        "getTypeOfSymbol": 0.04,
+        "<handler or non-checker code>": 0.02,
+        "isContextSensitive": 0.01
+      },
+      "checkPropertyAccessExpression": {
+        "checkNonNullExpression": 1.61,
+        "checkPropertyAccessExpressionOrQualifiedName": 0.91,
+        "checkPropertyAccessChain": 0.1,
+        "<handler or non-checker code>": 0.02
+      },
+      "checkArrayLiteral": {
+        "checkExpressionForMutableLocation": 4.05,
+        "getUnionTypeEx": 0.57,
+        "checkExpressionEx": 0.09,
+        "checkArrayLiteral.func1": 0.04,
+        "<handler or non-checker code>": 0.03,
+        "createTupleTypeEx": 0.03,
+        "createArrayTypeEx": 0.01,
+        "pushCachedContextualType": 0.01,
+        "createArrayLiteralType": 0.01,
+        "isConstContext": 0.01
+      },
+      "checkObjectLiteral": {
+        "checkPropertyAssignment": 7.13,
+        "checkShorthandPropertyAssignment": 0.7,
+        "<handler or non-checker code>": 0.61,
+        "getApparentTypeOfContextualType": 0.54,
+        "checkObjectLiteral.func1": 0.25,
+        "getSpreadType": 0.16,
+        "checkExpressionEx": 0.15,
+        "checkGrammarObjectLiteralExpression": 0.12,
+        "checkObjectLiteralMethod": 0.1,
+        "getSymbolOfDeclaration": 0.09,
+        "isConstContext": 0.09,
+        "newSymbolEx": 0.06,
+        "tryMergeUnionOfObjectTypeAndEmptyObject": 0.03,
+        "isValidSpreadType": 0.02,
+        "checkComputedPropertyName": 0.02,
+        "checkSpreadPropOverrides": 0.01,
+        "pushCachedContextualType": 0.01
+      },
+      "checkConditionalExpression": {
+        "checkExpressionEx": 0.27,
+        "getUnionTypeEx": 0.08,
+        "checkTruthinessExpression": 0.07,
+        "checkTestingKnownTruthyCallableOrAwaitableOrEnumMemberType": 0.02
+      },
+      "checkBinaryExpression": {
+        "checkBinaryLikeExpression": 0.49
+      },
+      "checkElementAccessExpression": {
+        "getFlowTypeOfAccessExpression": 0.04,
+        "getResolvedSymbolOrNil": 0.01
+      }
+    },
+    "detailCPUSeconds": {
+      "checkCallExpression/getResolvedSignature": {
+        "resolveSignature": 14.52,
+        "<local work>": 0.12
+      },
+      "checkFunctionExpressionOrObjectLiteralMethod/contextuallyCheckFunctionExpressionOrObjectLiteralMethod": {
+        "getReturnTypeFromBody": 15.75,
+        "getSignaturesOfType": 0.36,
+        "checkSignatureDeclaration": 0.29,
+        "getTypeOfSymbol": 0.21,
+        "<local work>": 0.15,
+        "getContextualSignature": 0.13,
+        "assignContextualParameterTypes": 0.11,
+        "instantiateSignature": 0.08,
+        "getSymbolOfDeclaration": 0.03,
+        "isContextSensitive": 0.02,
+        "inferFromAnnotatedParametersAndReturn": 0.01
+      },
+      "checkObjectLiteral/checkPropertyAssignment": {
+        "checkExpressionForMutableLocation": 7.1,
+        "<local work>": 0.03
+      }
+    }
+  },
+  "sentry": {
+    "totalCPUSeconds": 201.98,
+    "contextualCPUSeconds": 55.67,
+    "byHandlerCPUSeconds": {
+      "checkJsxAttributes": 29.28,
+      "checkObjectLiteral": 8.06,
+      "checkFunctionExpressionOrObjectLiteralMethod": 7.04,
+      "checkCallExpression": 3.47,
+      "checkArrayLiteral": 3.16,
+      "checkBinaryExpression": 1.85,
+      "checkIdentifier": 1.34,
+      "checkPropertyAccessExpression": 0.64,
+      "other": 0.58,
+      "checkJsxSelfClosingElement": 0.12,
+      "checkConditionalExpression": 0.09,
+      "checkElementAccessExpression": 0.03,
+      "checkJsxElement": 0.01
+    },
+    "nextCheckerMethodCPUSeconds": {
+      "checkFunctionExpressionOrObjectLiteralMethod": {
+        "contextuallyCheckFunctionExpressionOrObjectLiteralMethod": 6.73,
+        "checkGrammarFunctionLikeDeclaration": 0.23,
+        "checkNodeDeferred": 0.06,
+        "isContextSensitive": 0.01,
+        "<handler or non-checker code>": 0.01
+      },
+      "checkObjectLiteral": {
+        "checkPropertyAssignment": 5.17,
+        "checkExpressionEx": 0.73,
+        "<handler or non-checker code>": 0.5,
+        "checkShorthandPropertyAssignment": 0.47,
+        "getApparentTypeOfContextualType": 0.42,
+        "getSpreadType": 0.32,
+        "getReducedType": 0.16,
+        "checkObjectLiteral.func1": 0.07,
+        "checkGrammarObjectLiteralExpression": 0.05,
+        "checkSpreadPropOverrides": 0.05,
+        "checkObjectLiteralMethod": 0.05,
+        "isValidSpreadType": 0.02,
+        "tryMergeUnionOfObjectTypeAndEmptyObject": 0.01,
+        "isContextSensitive": 0.01,
+        "newSymbolEx": 0.01,
+        "popContextualType": 0.01,
+        "isConstContext": 0.01
+      },
+      "checkJsxAttributes": {
+        "createJsxAttributesTypeFromAttributesProperty": 29.28
+      },
+      "checkCallExpression": {
+        "getResolvedSignature": 3.23,
+        "getReturnTypeOfSignature": 0.22,
+        "<handler or non-checker code>": 0.02
+      },
+      "checkArrayLiteral": {
+        "checkExpressionForMutableLocation": 1.91,
+        "getUnionTypeEx": 1.01,
+        "checkArrayLiteral.func1": 0.11,
+        "createArrayTypeEx": 0.03,
+        "checkExpressionEx": 0.02,
+        "getApparentTypeOfContextualType": 0.02,
+        "<handler or non-checker code>": 0.02,
+        "createTupleTypeEx": 0.01,
+        "getIndexedAccessTypeOrUndefined": 0.01,
+        "isConstContext": 0.01,
+        "isMutableArrayLikeType": 0.01
+      },
+      "checkIdentifier": {
+        "getNarrowedTypeOfSymbol": 0.63,
+        "getResolvedSymbol": 0.27,
+        "getFlowTypeOfReferenceEx": 0.22,
+        "isPastLastAssignment": 0.06,
+        "getOptionalType": 0.04,
+        "isDeprecatedSymbol": 0.02,
+        "getNarrowableTypeForReference": 0.02,
+        "<handler or non-checker code>": 0.02,
+        "isEvolvingArrayOperationTarget": 0.02,
+        "getExportSymbolOfValueSymbolIfExported": 0.01,
+        "getControlFlowContainer": 0.01,
+        "isParameterOrMutableLocalVariable": 0.01,
+        "markLinkedReferences": 0.01
+      },
+      "checkPropertyAccessExpression": {
+        "checkNonNullExpression": 0.41,
+        "checkPropertyAccessExpressionOrQualifiedName": 0.17,
+        "checkPropertyAccessChain": 0.06
+      },
+      "checkBinaryExpression": {
+        "checkBinaryLikeExpression": 1.85
+      },
+      "checkConditionalExpression": {
+        "checkExpressionEx": 0.05,
+        "checkTruthinessExpression": 0.02,
+        "getUnionTypeEx": 0.02
+      },
+      "checkElementAccessExpression": {
+        "getIndexedAccessTypeOrUndefined": 0.02,
+        "getFlowTypeOfAccessExpression": 0.01
+      },
+      "checkJsxSelfClosingElement": {
+        "checkNodeDeferred": 0.06,
+        "getJsxElementTypeAt": 0.06
+      },
+      "checkJsxElement": {
+        "getJsxElementTypeAt": 0.01
+      }
+    },
+    "detailCPUSeconds": {
+      "checkFunctionExpressionOrObjectLiteralMethod/contextuallyCheckFunctionExpressionOrObjectLiteralMethod": {
+        "getReturnTypeFromBody": 5.79,
+        "checkSignatureDeclaration": 0.23,
+        "getContextualSignature": 0.19,
+        "getSignaturesOfType": 0.16,
+        "assignContextualParameterTypes": 0.11,
+        "<local work>": 0.1,
+        "getTypeOfSymbol": 0.08,
+        "instantiateSignature": 0.04,
+        "getReturnTypeFromAnnotation": 0.01,
+        "inferFromAnnotatedParametersAndReturn": 0.01,
+        "getSymbolOfDeclaration": 0.01
+      },
+      "checkObjectLiteral/checkPropertyAssignment": {
+        "checkExpressionForMutableLocation": 5.17
+      },
+      "checkJsxAttributes/createJsxAttributesTypeFromAttributesProperty": {
+        "checkJsxAttribute": 18.54,
+        "getSpreadType": 3.25,
+        "checkJsxChildren": 2.28,
+        "getPropertyOfType": 1.47,
+        "getApparentTypeOfContextualType": 0.97,
+        "<local work>": 0.7,
+        "isTupleLikeType": 0.43,
+        "getTypeOfPropertyOfContextualType": 0.42,
+        "createJsxAttributesTypeFromAttributesProperty.func1": 0.25,
+        "checkCallExpression": 0.19,
+        "newSymbol": 0.14,
+        "newAnonymousType": 0.14,
+        "getJsxElementChildrenPropertyName": 0.08,
+        "createJsxAttributesTypeFromAttributesProperty.func2": 0.08,
+        "isDeprecatedSymbol": 0.08,
+        "checkSpreadPropOverrides": 0.06,
+        "isValidSpreadType": 0.04,
+        "checkIdentifier": 0.04,
+        "getUnionType": 0.03,
+        "checkParenthesizedExpression": 0.03,
+        "createArrayType": 0.02,
+        "addDeprecatedSuggestion": 0.02,
+        "checkPropertyAccessExpression": 0.01,
+        "checkObjectLiteral": 0.01
+      },
+      "checkCallExpression/getResolvedSignature": {
+        "resolveSignature": 3.21,
+        "<local work>": 0.02
+      }
+    }
+  }
+}
