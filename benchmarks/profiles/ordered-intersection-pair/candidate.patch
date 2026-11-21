@@ -1,0 +1,45 @@
+--- a/packages/tsc-go/internal/checker/lazy_properties.go
++++ b/packages/tsc-go/internal/checker/lazy_properties.go
+@@ -29 +29,7 @@
+-		for _, prop := range c.getPropertiesOfType(current) {
++		properties := c.getPropertiesOfType(current)
++		if skipped != nil && len(t.Types()) == 2 && len(properties) > 8 {
++			if result, handled := c.reduceOrderedPair(t, skipped, properties); handled {
++				return result
++			}
++		}
++		for _, prop := range properties {
+@@ -64,0 +71,33 @@
++}
++
++// A strictly ordered property list has unique names. Keep the snapshot in
++// enumeration order so recursive lookup observes the ordinary resolution order.
++func (c *Checker) reduceOrderedPair(t, skipped *Type, properties []*ast.Symbol) (result, handled bool) {
++	for i := 1; i < len(properties); i++ {
++		if properties[i-1].Name >= properties[i].Name {
++			return false, false
++		}
++	}
++	type entry struct {
++		name   string
++		symbol *ast.Symbol
++	}
++	entries := make([]entry, len(properties))
++	for i, prop := range properties {
++		entries[i] = entry{prop.Name, prop}
++	}
++	apparent := c.getApparentType(skipped)
++	if c.isErrorType(apparent) || apparent.flags&TypeFlagsNever != 0 {
++		return false, true
++	}
++	for _, e := range entries {
++		other := c.getPropertyOfTypeEx(apparent, e.name, true, false)
++		if other == nil || other == e.symbol || !c.someLiteralOrPrivateProperty([]*ast.Symbol{e.symbol, other}) {
++			continue
++		}
++		combined := c.getPropertyOfUnionOrIntersectionType(t, e.name, true)
++		if combined != nil && c.isNeverReducedProperty(combined) {
++			return true, true
++		}
++	}
++	return false, true

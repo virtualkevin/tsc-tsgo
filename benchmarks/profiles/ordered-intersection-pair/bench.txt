@@ -1,0 +1,23 @@
+goos: linux
+goarch: amd64
+pkg: github.com/microsoft/typescript-go/internal/checker
+cpu: Intel Xeon Processor (Cascadelake)
+BenchmarkOrderedDisjointPair/width=16/reference=true-8         	   38154	      7128 ns/op	    2760 B/op	      24 allocs/op
+BenchmarkOrderedDisjointPair/width=16/reference=true-8         	   38367	     11042 ns/op	    2760 B/op	      24 allocs/op
+BenchmarkOrderedDisjointPair/width=16/reference=true-8         	   38608	      8279 ns/op	    2760 B/op	      24 allocs/op
+BenchmarkOrderedDisjointPair/width=16/reference=false-8        	  171224	      1674 ns/op	     384 B/op	       1 allocs/op
+BenchmarkOrderedDisjointPair/width=16/reference=false-8        	  158120	      1796 ns/op	     384 B/op	       1 allocs/op
+BenchmarkOrderedDisjointPair/width=16/reference=false-8        	  157740	      1917 ns/op	     384 B/op	       1 allocs/op
+BenchmarkOrderedDisjointPair/width=256/reference=true-8        	    2295	    177006 ns/op	   54344 B/op	     276 allocs/op
+BenchmarkOrderedDisjointPair/width=256/reference=true-8        	    1982	    140255 ns/op	   54344 B/op	     276 allocs/op
+BenchmarkOrderedDisjointPair/width=256/reference=true-8        	    2108	    129161 ns/op	   54344 B/op	     276 allocs/op
+BenchmarkOrderedDisjointPair/width=256/reference=false-8       	   16087	     17873 ns/op	    6528 B/op	       1 allocs/op
+BenchmarkOrderedDisjointPair/width=256/reference=false-8       	   15970	     18062 ns/op	    6528 B/op	       1 allocs/op
+BenchmarkOrderedDisjointPair/width=256/reference=false-8       	   17162	     18201 ns/op	    6528 B/op	       1 allocs/op
+BenchmarkOrderedDisjointPair/width=1024/reference=true-8       	     516	    539063 ns/op	  258488 B/op	    1054 allocs/op
+BenchmarkOrderedDisjointPair/width=1024/reference=true-8       	     610	    527413 ns/op	  258488 B/op	    1054 allocs/op
+BenchmarkOrderedDisjointPair/width=1024/reference=true-8       	     526	    539066 ns/op	  258488 B/op	    1054 allocs/op
+BenchmarkOrderedDisjointPair/width=1024/reference=false-8      	    3224	     96313 ns/op	   27264 B/op	       1 allocs/op
+BenchmarkOrderedDisjointPair/width=1024/reference=false-8      	    3669	    130016 ns/op	   27264 B/op	       1 allocs/op
+BenchmarkOrderedDisjointPair/width=1024/reference=false-8      	    1986	    144706 ns/op	   27264 B/op	       1 allocs/op
+PASS

@@ -1,0 +1,29 @@
+
+func BenchmarkOrderedDisjointPair(b *testing.B) {
+	for _, width := range []int{16, 256, 1024} {
+		for _, reference := range []bool{true, false} {
+			b.Run(fmt.Sprintf("width=%d/reference=%t", width, reference), func(b *testing.B) {
+				c := lazyPropertyTestChecker()
+				left := make([]*ast.Symbol, width)
+				right := make([]*ast.Symbol, width+1)
+				for i := range left {
+					left[i] = lazyProperty(c, fmt.Sprintf("a%04d", i), c.numberType, false)
+				}
+				for i := range right {
+					right[i] = lazyProperty(c, fmt.Sprintf("b%04d", i), c.numberType, false)
+				}
+				t := c.newIntersectionType(ObjectFlagsNone, []*Type{lazyObject(c, left...), lazyObject(c, right...)})
+				reduce := c.hasNeverReducedProperty
+				if reference {
+					reduce = c.hasNeverReducedPropertyReference
+				}
+				b.ReportAllocs()
+				for b.Loop() {
+					if reduce(t) {
+						b.Fatal("unexpected empty intersection")
+					}
+				}
+			})
+		}
+	}
+}
