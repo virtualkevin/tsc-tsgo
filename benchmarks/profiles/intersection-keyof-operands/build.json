@@ -1,0 +1,30 @@
+{
+  "sourceCommit": "a261586966563ce0bd89fedb9275f1c55deddf96",
+  "observerBuild": [
+    "go",
+    "build",
+    "-overlay",
+    "<output>/overlay.json",
+    "-o",
+    "<output>/observer",
+    "./cmd/tsgo"
+  ],
+  "capture": [
+    "python3",
+    "benchmarks/profiles/intersection-keyof-reuse/capture.py",
+    "--operand-details",
+    "packages/tsc-go/dist/tsc-go",
+    "<output>/observer",
+    "<results.json>"
+  ],
+  "sources": {
+    "internal/checker/checker.go": {
+      "sourceSha256": "1f654b4099995ab9d9a240e0868f4a162050885930fd31d9743641983bb97ac3",
+      "overlaySha256": "31b767edec62721e1097216226d1c63d067651d0c7c64676b7525737365d5946"
+    },
+    "cmd/tsgo/main.go": {
+      "sourceSha256": "a3d99f615821544b08d6d9f54c674a5c4876dd52b0617649d9bd64d1006df830",
+      "overlaySha256": "872923304db68da66c7e74030010e5627003d36ba7810d37c94c30b0536fa55b"
+    }
+  }
+}

@@ -12,6 +12,7 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument("control", type=Path)
 p.add_argument("observer", type=Path)
 p.add_argument("output", type=Path)
+p.add_argument("--operand-details", action="store_true", help="read counters from the split operand/union observer")
 args = p.parse_args()
 root = Path(__file__).resolve().parents[3]
 compilers = {"control": args.control.resolve(), "observer": args.observer.resolve()}
@@ -19,6 +20,9 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 fields = "calls distinct previouslyCompleted sameAsFirst activeAtEntry repeatInstantiated errorResult".split()
+if args.operand_details:
+    fields += ("operandInstantiated unionInstantiated identicalOperands existingPairCacheShape "
+               "outsidePairCache twoOutsidePairCache changedResultOutside unionInstantiatedOutside").split()
 report = {"binarySha256": {k: sha(v) for k, v in compilers.items()}, "projects": {}}
 # Distinct keyof syntax nodes request the same named intersection. Also check a
 # rejected key so the compiler must resolve the resulting key union.
@@ -74,6 +78,12 @@ for group in ("small", "large"):
                 assert counts["sameAsFirst"] <= counts["previouslyCompleted"] <= counts["calls"]
                 assert counts["distinct"] + counts["previouslyCompleted"] <= counts["calls"]
                 assert counts["repeatInstantiated"] <= counts["previouslyCompleted"]
+                if args.operand_details:
+                    assert counts["identicalOperands"] == counts["existingPairCacheShape"] + counts["outsidePairCache"]
+                    assert counts["identicalOperands"] <= counts["previouslyCompleted"]
+                    assert counts["unionInstantiatedOutside"] <= counts["unionInstantiated"]
+                    assert counts["twoOutsidePairCache"] <= counts["outsidePairCache"]
+                    assert max(counts["operandInstantiated"], counts["unionInstantiated"]) <= counts["repeatInstantiated"]
         report["projects"][project["name"]] = dict(commit=project["commit"], counts=counts, work=work)
         print(project["name"],counts,"matched work",work["control"]==work["observer"],flush=True)
 # TypeORM controls can vary in the symbol count. Keep uninstrumented repeats

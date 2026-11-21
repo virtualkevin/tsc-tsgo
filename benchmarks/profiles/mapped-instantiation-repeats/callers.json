@@ -35,6 +35,14 @@
     "checker.(*Checker).getTypeParametersForMapper.func1 checker/checker.go:19213": 10000000,
     "checker.(*Checker).instantiateInstantiableTypes checker/checker.go:30686": 10000000
   },
+  "intersectionKeyofUnionSitesNs": {
+    "25592 return c.getUnionTypeWorker(types, unionReduction, alias, origin)": 860000000,
+    "25587 t = c.getUnionTypeWorker(types, unionReduction, alias, nil /*origin*/)": 210000000
+  },
+  "allIntersectionKeyofChildrenNs": {
+    "checker.(*Checker).getUnionType": 1070000000,
+    "core.Map[go.shape.*uint8,go.shape.*uint8]": 340000000
+  },
   "nestedKeyofSitesNs": {
     "26602 return c.getUnionType(core.Map(t.Types(), func(t *Type) *Type { return c.getIndexTypeEx(t, indexFlags) }))": 860000000,
     "26614 return c.getLiteralTypeFromProperties(t, include, indexFlags == IndexFlagsNone)": 800000000,

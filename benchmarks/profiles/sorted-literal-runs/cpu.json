@@ -1,0 +1,63 @@
+{
+  "typeorm": {
+    "rawSha256": "ed1e9420181f09a0ae75bdc4cda9d2c84dc28a47627b3a34b0c3195002cbb86d",
+    "totalCpuNs": 44080000000,
+    "workerCpuNs": 540000000,
+    "childrenNs": {
+      "checker.(*Checker).removeSubtypes": 200000000,
+      "checker.(*Checker).getUnionTypeFromSortedList": 170000000,
+      "checker.(*Checker).addTypesToUnion": 120000000,
+      "runtime.makeslice": 40000000,
+      "worker self": 10000000
+    }
+  },
+  "trpc": {
+    "rawSha256": "1d940fea92829681818a9c8070c890bdcd071994e0a26a9824266332eb70327b",
+    "totalCpuNs": 11690000000,
+    "workerCpuNs": 80000000,
+    "childrenNs": {
+      "checker.(*Checker).getUnionTypeFromSortedList": 40000000,
+      "checker.(*Checker).removeSubtypes": 20000000,
+      "checker.(*Checker).newUnionType": 10000000,
+      "runtime.makeslice": 10000000
+    }
+  },
+  "vscode": {
+    "rawSha256": "e940e807962a9790acffb8861ca770e915e8b05f8c8510b61991bdf203e6b5f4",
+    "totalCpuNs": 441610000000,
+    "workerCpuNs": 13630000000,
+    "childrenNs": {
+      "checker.(*Checker).removeSubtypes": 8520000000,
+      "checker.(*Checker).getUnionTypeFromSortedList": 2410000000,
+      "checker.(*Checker).addTypesToUnion": 1820000000,
+      "runtime.makeslice": 540000000,
+      "worker self": 160000000,
+      "core.Some[go.shape.*uint8]": 50000000,
+      "checker.(*Checker).removeRedundantLiteralTypes": 50000000,
+      "checker.(*Checker).newUnionType": 30000000,
+      "checker.insertType": 20000000,
+      "checker.(*Checker).addNamedUnions": 20000000,
+      "runtime.growslice": 10000000
+    }
+  },
+  "sentry": {
+    "rawSha256": "53bbf24cc3d5abe4cf5017ad709966f9f8b2c4280f1c50bca72313d3660cfb4f",
+    "totalCpuNs": 243670000000,
+    "workerCpuNs": 13960000000,
+    "childrenNs": {
+      "checker.(*Checker).addTypesToUnion": 5940000000,
+      "checker.(*Checker).removeSubtypes": 4110000000,
+      "checker.(*Checker).getUnionTypeFromSortedList": 1620000000,
+      "core.Some[go.shape.*uint8]": 970000000,
+      "checker.(*Checker).removeStringLiteralsMatchedByTemplateLiterals": 470000000,
+      "runtime.makeslice": 370000000,
+      "checker.(*Checker).removeRedundantLiteralTypes": 120000000,
+      "worker self": 110000000,
+      "checker.(*Checker).newUnionType": 100000000,
+      "runtime.growslice": 60000000,
+      "checker.(*Checker).addNamedUnions": 50000000,
+      "checker.insertType": 30000000,
+      "runtime.asyncPreempt": 10000000
+    }
+  }
+}

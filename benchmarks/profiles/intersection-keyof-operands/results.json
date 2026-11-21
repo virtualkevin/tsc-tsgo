@@ -1,0 +1,207 @@
+{
+  "binarySha256": {
+    "control": "df8d9e90ab0f2a70c7b029c97133c1d5a439294fc6a0dff8b0db74fa3b0fa62c",
+    "observer": "52984a7496e5ab07dce8ce0d210ee94c084ff3e8f0366fbe8e0b75e952c1d935"
+  },
+  "projects": {
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "counts": {
+        "calls": 159,
+        "distinct": 73,
+        "previouslyCompleted": 86,
+        "sameAsFirst": 86,
+        "activeAtEntry": 0,
+        "repeatInstantiated": 0,
+        "errorResult": 0,
+        "operandInstantiated": 0,
+        "unionInstantiated": 0,
+        "identicalOperands": 86,
+        "existingPairCacheShape": 44,
+        "outsidePairCache": 42,
+        "twoOutsidePairCache": 21,
+        "changedResultOutside": 0,
+        "unionInstantiatedOutside": 0
+      },
+      "work": {
+        "control": {
+          "Files": 3572,
+          "Lines": 386634,
+          "Identifiers": 444563,
+          "Symbols": 461599,
+          "Types": 257912,
+          "Instantiations": 425723
+        },
+        "observer": {
+          "Files": 3572,
+          "Lines": 386634,
+          "Identifiers": 444563,
+          "Symbols": 461593,
+          "Types": 257912,
+          "Instantiations": 425723
+        }
+      }
+    },
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "counts": {
+        "calls": 190,
+        "distinct": 167,
+        "previouslyCompleted": 23,
+        "sameAsFirst": 23,
+        "activeAtEntry": 0,
+        "repeatInstantiated": 0,
+        "errorResult": 0,
+        "operandInstantiated": 0,
+        "unionInstantiated": 0,
+        "identicalOperands": 23,
+        "existingPairCacheShape": 17,
+        "outsidePairCache": 6,
+        "twoOutsidePairCache": 5,
+        "changedResultOutside": 0,
+        "unionInstantiatedOutside": 0
+      },
+      "work": {
+        "control": {
+          "Files": 942,
+          "Lines": 209550,
+          "Identifiers": 203324,
+          "Symbols": 186902,
+          "Types": 79462,
+          "Instantiations": 222416
+        },
+        "observer": {
+          "Files": 942,
+          "Lines": 209550,
+          "Identifiers": 203324,
+          "Symbols": 186902,
+          "Types": 79462,
+          "Instantiations": 222416
+        }
+      }
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "counts": {
+        "calls": 5069,
+        "distinct": 4756,
+        "previouslyCompleted": 313,
+        "sameAsFirst": 313,
+        "activeAtEntry": 0,
+        "repeatInstantiated": 0,
+        "errorResult": 0,
+        "operandInstantiated": 0,
+        "unionInstantiated": 0,
+        "identicalOperands": 313,
+        "existingPairCacheShape": 256,
+        "outsidePairCache": 57,
+        "twoOutsidePairCache": 14,
+        "changedResultOutside": 0,
+        "unionInstantiatedOutside": 0
+      },
+      "work": {
+        "control": {
+          "Files": 11563,
+          "Lines": 4036783,
+          "Identifiers": 7444484,
+          "Symbols": 6846185,
+          "Types": 4277160,
+          "Instantiations": 5915965
+        },
+        "observer": {
+          "Files": 11563,
+          "Lines": 4036783,
+          "Identifiers": 7444484,
+          "Symbols": 6846185,
+          "Types": 4277160,
+          "Instantiations": 5915965
+        }
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "counts": {
+        "calls": 9219,
+        "distinct": 5461,
+        "previouslyCompleted": 3758,
+        "sameAsFirst": 3758,
+        "activeAtEntry": 0,
+        "repeatInstantiated": 16,
+        "errorResult": 0,
+        "operandInstantiated": 16,
+        "unionInstantiated": 0,
+        "identicalOperands": 3758,
+        "existingPairCacheShape": 1693,
+        "outsidePairCache": 2065,
+        "twoOutsidePairCache": 37,
+        "changedResultOutside": 0,
+        "unionInstantiatedOutside": 0
+      },
+      "work": {
+        "control": {
+          "Files": 13290,
+          "Lines": 2130849,
+          "Identifiers": 2594398,
+          "Symbols": 5032829,
+          "Types": 2725687,
+          "Instantiations": 11722854
+        },
+        "observer": {
+          "Files": 13290,
+          "Lines": 2130849,
+          "Identifiers": 2594398,
+          "Symbols": 5032829,
+          "Types": 2725687,
+          "Instantiations": 11722854
+        }
+      }
+    }
+  },
+  "fixture": {
+    "source": "type Combined = { left: 1 } & { right: 2 };\ndeclare let a: keyof Combined;\ndeclare let b: keyof Combined;\na = \"left\";\nb = \"right\";\na = \"absent\";\n",
+    "diagnostics": "input.ts(6,1): error TS2322: Type '\"absent\"' is not assignable to type '\"left\" | \"right\"'.\n",
+    "counts": {
+      "calls": 2,
+      "distinct": 1,
+      "previouslyCompleted": 1,
+      "sameAsFirst": 1,
+      "activeAtEntry": 0,
+      "repeatInstantiated": 0,
+      "errorResult": 0,
+      "operandInstantiated": 0,
+      "unionInstantiated": 0,
+      "identicalOperands": 1,
+      "existingPairCacheShape": 0,
+      "outsidePairCache": 1,
+      "twoOutsidePairCache": 1,
+      "changedResultOutside": 0,
+      "unionInstantiatedOutside": 0
+    }
+  },
+  "typeormControlRepeats": [
+    {
+      "Files": 3572,
+      "Lines": 386634,
+      "Identifiers": 444563,
+      "Symbols": 461595,
+      "Types": 257912,
+      "Instantiations": 425723
+    },
+    {
+      "Files": 3572,
+      "Lines": 386634,
+      "Identifiers": 444563,
+      "Symbols": 461597,
+      "Types": 257912,
+      "Instantiations": 425723
+    },
+    {
+      "Files": 3572,
+      "Lines": 386634,
+      "Identifiers": 444563,
+      "Symbols": 461595,
+      "Types": 257912,
+      "Instantiations": 425723
+    }
+  ]
+}

@@ -48,6 +48,11 @@ nested_conditional_sites=Counter()
 nested_direct_evaluation=Counter()
 extends_worker_sites=Counter()
 keyof_sites=Counter()
+intersection_children=Counter()
+intersection_union_sites=Counter()
+intersection_site=next(i for i,line in enumerate(source,1)
+                       if "return c.getUnionType(core.Map(t.Types(), func(t *Type) *Type { return c.getIndexTypeEx(t, indexFlags) }))" in line)
+
 counts=Counter()
 total=0
 def first_callee(stack, end, name):
@@ -86,6 +91,17 @@ for line in samples.splitlines():
     if not m: continue
     ns=int(m[1]); total+=ns
     stack=[f for a in map(int,m[2].split()) for f in frames[a]]
+    # An operand may recursively evaluate another intersection. Charge the
+    # sample only to the outermost intersection site in the captured stack.
+    for i in range(len(stack)-1,-1,-1):
+        name,_,lineno=stack[i]
+        if name==prefix+"checker.(*Checker).getIndexTypeEx" and lineno==intersection_site:
+            label=stack[i-1][0].removeprefix(prefix) if i else "at call site"
+            intersection_children[label]+=ns
+            if label=="checker.(*Checker).getUnionType":
+                union=first_callee(stack,i,"getUnionTypeEx")
+                intersection_union_sites[site_at(stack,union,"outside getUnionTypeEx")]+=ns
+            break
     evaluation=first_callee(stack,len(stack),"getConditionalType")
     if evaluation is not None:
         n=stack[evaluation][2]
@@ -128,6 +144,8 @@ assert sum(by_branch.values())==sum(ns for caller,ns in counts.items()
 assert sum(conditional_lines.values())==by_branch["flags&TypeFlagsConditional != 0"]
 expected=sum(ns for site,ns in true_union_sites.items() if site.endswith("newTypes := c.instantiateTypes(types, m)"))
 assert sum(constituent_sites.values())==sum(constituent_leaves.values())==expected
+report["intersectionKeyofUnionSitesNs"]=dict(intersection_union_sites.most_common())
+report["allIntersectionKeyofChildrenNs"]=dict(intersection_children.most_common())
 report["nestedKeyofSitesNs"]=dict(keyof_sites.most_common())
 report["nestedExtendsWorkerSitesNs"]=dict(extends_worker_sites.most_common())
 report["nestedDirectEvaluationSitesNs"]=dict(nested_direct_evaluation.most_common())
