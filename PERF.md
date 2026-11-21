@@ -602,3 +602,5 @@
 | Skip apparent-type reduction for plain objects | sentry | Matched ordinary Go build | 28642.90 | 28183.64 | 1.016× | 2 | Candidate faster in 1/2 pairs. [Samples](benchmarks/profiles/union-property-construction/screen.json.gz) |
 | Skip apparent-type reduction for plain objects | typeorm | Matched ordinary Go build | 3788.58 | 4984.50 | 0.760× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/union-property-construction/screen.json.gz) |
 | Skip apparent-type reduction for plain objects | trpc | Matched ordinary Go build | 692.47 | 639.35 | 1.083× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/union-property-construction/screen.json.gz) |
+| Skip apparent-type reduction for plain objects | typeorm | Matched ordinary Go build | 2790.49 | 2713.65 | 1.028× | 8 | Candidate faster in 5/8 pairs. [Samples](benchmarks/profiles/union-property-construction/small-repeat.json.gz) |
+| Skip apparent-type reduction for plain objects | trpc | Matched ordinary Go build | 525.14 | 573.49 | 0.916× | 8 | Candidate faster in 6/8 pairs. [Samples](benchmarks/profiles/union-property-construction/small-repeat.json.gz) |
