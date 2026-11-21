@@ -1,14 +1,21 @@
 """Profile the compared Go builds on the same pinned Sentry project."""
+import argparse
 import gzip
 import hashlib
 import json
 import os
 from pathlib import Path
 import subprocess
-import sys
 import tempfile
 
 here = Path(__file__).resolve().parent
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("control", type=Path)
+parser.add_argument("candidate", type=Path)
+parser.add_argument("--output-dir", type=Path, default=here)
+args = parser.parse_args()
+dest = args.output_dir.resolve()
+dest.mkdir(parents=True, exist_ok=True)
 ref = json.loads(gzip.decompress((here.parent/"flow-declaration-runs/release.json.gz").read_bytes()))
 p = next(p for p in ref["projects"] if p["name"]=="sentry")
 cwd = Path(p["cwd"])
@@ -22,16 +29,16 @@ for f in inputs:
 env={k:v for k,v in os.environ.items() if not k.startswith(("TSC_","TS_GO_","SCRIPTC_"))}
 env.update(ref["environment"]["compilerEnvironment"])
 report={"commit":p["commit"],"inputs":len(inputs),"args":p["compilerArgs"]["candidate"],"binaries":{}}
-for name,binary in zip(("control","candidate"),(Path(x).resolve() for x in sys.argv[1:]),strict=True):
+for name,binary in (("control", args.control.resolve()), ("candidate", args.candidate.resolve())):
     entry={"sha256":sha(binary)}
     with tempfile.TemporaryDirectory() as tmp:
         r=subprocess.run([binary,*report["args"],"--pprofDir",tmp],cwd=cwd,env=env,capture_output=True,text=True,check=True,timeout=480)
         assert not r.stderr and len(r.stdout.splitlines())==2 and all(l.startswith(("CPU profile: ","Memory profile: ")) for l in r.stdout.splitlines())
         for kind in ("cpu","mem"):
             f,=Path(tmp).glob(f"*-{kind}profile.pb.gz")
-            out=here/f"sentry-{name}-{kind}.pb.gz"
+            out=dest/f"sentry-{name}-{kind}.pb.gz"
             out.write_bytes(f.read_bytes())
             entry[kind]=sha(out)
     report["binaries"][name]=entry
     print(name,entry,flush=True)
-(here/"profiles.json").write_text(json.dumps(report,indent=2)+"\n")
+(dest/"profiles.json").write_text(json.dumps(report,indent=2)+"\n")
