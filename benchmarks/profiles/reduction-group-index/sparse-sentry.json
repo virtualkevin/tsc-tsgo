@@ -1,0 +1,67 @@
+{
+  "libraryDirectory": "/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib",
+  "executables": {
+    "public": {
+      "path": "/tmp/tsc-public-002/node_modules/.bin/tsc-ts",
+      "sha256": "4320a609131555b2541dfd308ed764b79ef43f22d27c6f008dd08b8e28ca8aff"
+    },
+    "go": {
+      "path": "/tmp/tsc-jsx-bounded-prefix/control",
+      "sha256": "b82f0413e660fab4f01381d594b93dbd606db2fe09823637c5b3f64ef8e3656a"
+    },
+    "candidate": {
+      "path": "/tmp/tsc-sparse-group-index/tsgo",
+      "sha256": "e4b00aa196be14b95f130c476be2218dab5071cb0882bd6c90533783eab1f6fb"
+    }
+  },
+  "projects": {
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "files": 13290,
+      "args": [
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "samples": [
+        {
+          "engine": "public",
+          "wallMs": 15382.166517
+        },
+        {
+          "engine": "go",
+          "wallMs": 24278.314633
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 28805.020791
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 25717.01071
+        },
+        {
+          "engine": "go",
+          "wallMs": 26965.706327
+        },
+        {
+          "engine": "public",
+          "wallMs": 15153.692397
+        }
+      ],
+      "medianMs": {
+        "public": 15267.929457,
+        "go": 25622.01048,
+        "candidate": 27261.0157505
+      }
+    }
+  }
+}
