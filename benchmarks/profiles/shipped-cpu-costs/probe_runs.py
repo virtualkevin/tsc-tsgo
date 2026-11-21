@@ -33,4 +33,4 @@ for p in sorted(ref["projects"],key=lambda p:len(p["preflight"]["candidate"]["in
         blocks.append(block)
         print(p["name"], [(k,round(v["meanProbes"],2),round(v["firstSlotFraction"],3)) for k,v in block.items()],flush=True)
     report["projects"][p["name"]] = dict(commit=p["commit"],blocks=blocks)
-(here/"probe-counts.json").write_text(json.dumps(report,indent=2)+"\n")
+(Path(sys.argv[2]) if len(sys.argv)>2 else here/"probe-counts.json").write_text(json.dumps(report,indent=2)+"\n")

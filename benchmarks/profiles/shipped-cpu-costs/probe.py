@@ -6,6 +6,9 @@ import sys
 
 here = Path(__file__).resolve().parent
 root = here.parents[2] / 'packages/tsc-go'
+mode = sys.argv[2] if len(sys.argv) > 2 else "linear"
+if mode not in ("linear","triangular","triangular-clean"):
+    raise ValueError(mode)
 out = Path(sys.argv[1]).resolve()
 out.mkdir(parents=True,exist_ok=True)
 overlay = {}
@@ -41,7 +44,17 @@ func PointerProbeCounts() (result [3][17]uint64) {
     return result
 }
 '''
+if mode == "triangular-clean":
+    s = read(path).replace("for range len(s.entries)", "for probes := range len(s.entries)")
+if mode.startswith("triangular"):
+    # Triangular offsets enumerate every slot modulo a power of two.
+    step = "index = (index + 1) & mask"
+    assert s.count(step) == 1
+    s = s.replace(step, "index = (index + probes + 1) & mask")
 save(path,s)
+if mode == "triangular-clean":
+    (out/'overlay.json').write_text(json.dumps({'Replace':overlay}))
+    sys.exit(0)
 path = 'cmd/tsgo/main.go'
 s = read(path)
 if 'typescript-go/internal/core"' not in s:

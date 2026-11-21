@@ -30,7 +30,7 @@ for name,p in manifest["projects"].items():
         f = re.fullmatch(r"\s*(.+?) (\S+):(\d+):\d+(?: s=\d+.*)?",line)
         if f:
             frames[key].append((f[1],f[2],int(f[3])))
-    cum,only,leaf = Counter(),Counter(),Counter()
+    cum,only,leaf,callers = Counter(),Counter(),Counter(),Counter()
     for ns,stack in re.findall(r"^\s*\d+\s+(\d+):\s*([\d ]+)$",samples,re.M):
         weight = int(ns)
         entries = [frame for i in stack.split() for frame in frames[int(i)]]
@@ -40,11 +40,18 @@ for name,p in manifest["projects"].items():
         only["+".join(hit) or "other"] += weight
         for cat in hit:
             cum[cat] += weight
+        if "goMap" in hit:
+            # Innermost sampled map operation, then the nearest compiler caller.
+            start = next(i for i,(f,_,_) in enumerate(entries) if any(t in f for t in categories["goMap"]))
+            source = next(((file,line) for _,file,line in entries[start+1:]
+                           if "typescript-go/" in file), None)
+            key = ("%s:%d" % source).split("typescript-go/")[-1] if source else "<runtime or other>"
+            callers[key] += weight
         _,file,line = entries[0]
         if file.endswith("/pointerlinkstore.go"):
             leaf[line] += weight
     total = only.total()
-    assert total > 0
-    report["projects"][name] = dict(totalCpuNs=total,inclusiveNs=cum,exclusiveNs=only,pointerLinkLeafLineNs=leaf)
+    assert total > 0 and callers.total() == cum["goMap"]
+    report["projects"][name] = dict(totalCpuNs=total,inclusiveNs=cum,exclusiveNs=only,pointerLinkLeafLineNs=leaf,goMapCallerNs=dict(callers.most_common()))
     print(name, {k: round(v*100/total,2) for k,v in cum.items()}, leaf.most_common(4))
 (here/"costs.json").write_text(json.dumps(report,indent=2)+"\n")
