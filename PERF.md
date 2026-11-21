@@ -538,3 +538,10 @@
 | Skip unrelated declaration runs | Generated 1024 handlers | Matched ordinary Go build | 191.09 | 101.96 | 1.874× | 4 | Alternating fresh checks on the same program. [Samples](benchmarks/profiles/flow-declaration-runs/scale.json) |
 | Skip unrelated declaration runs | Generated 4096 handlers | Matched ordinary Go build | 1156.67 | 139.30 | 8.303× | 4 | Alternating fresh checks on the same program. [Samples](benchmarks/profiles/flow-declaration-runs/scale.json) |
 | Skip unrelated declaration runs | Generated 8192 handlers | Matched ordinary Go build | 4637.02 | 219.59 | 21.117× | 4 | Alternating fresh checks on the same program. [Samples](benchmarks/profiles/flow-declaration-runs/scale.json) |
+| Skip unrelated declaration runs | vscode | Matched ordinary Go build | 32930.05 | 33230.44 | 0.991× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/flow-declaration-runs/screen.json.gz) |
+| Skip unrelated declaration runs | sentry | Matched ordinary Go build | 23507.30 | 23160.52 | 1.015× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/flow-declaration-runs/screen.json.gz) |
+| Skip unrelated declaration runs | typeorm | Matched ordinary Go build | 2817.48 | 2773.85 | 1.016× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/flow-declaration-runs/screen.json.gz) |
+| Skip unrelated declaration runs | trpc | Matched ordinary Go build | 515.61 | 518.93 | 0.994× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/flow-declaration-runs/screen.json.gz) |
+| Skip unrelated declaration runs | Generated 1024 handlers | npm tsc-ts@0.0.2 | 156.49 | 95.61 | 1.637× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/public.json) |
+| Skip unrelated declaration runs | Generated 4096 handlers | npm tsc-ts@0.0.2 | 507.19 | 132.52 | 3.827× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/public.json) |
+| Skip unrelated declaration runs | Generated 8192 handlers | npm tsc-ts@0.0.2 | 1675.89 | 202.23 | 8.287× | 4 | Alternating fresh checks. [Samples](benchmarks/profiles/flow-declaration-runs/public.json) |

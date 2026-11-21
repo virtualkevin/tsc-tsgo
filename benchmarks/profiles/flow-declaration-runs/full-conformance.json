@@ -1,0 +1,76 @@
+{
+  "test_records": {
+    "pass": 113970,
+    "skip": 2126
+  },
+  "top_level_records": {
+    "pass": 1
+  },
+  "passing_top_level_tests": [
+    "TestSubmodule"
+  ],
+  "package_status": {
+    "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+  },
+  "cached_packages": [],
+  "source_configuration_cases": {
+    "total": 14915,
+    "fully_checked": 12789,
+    "partially_checked": 8,
+    "unsupported_skipped": 2118,
+    "failed": 0
+  },
+  "skip_categories": {
+    "unsupported target ES5": 1244,
+    "unsupported module kind AMD": 321,
+    "unsupported outFile": 87,
+    "unsupported module kind System": 222,
+    "alwaysStrict=false is unsupported": 52,
+    "esModuleInterop=false is unsupported": 24,
+    "unsupported baseUrl": 31,
+    "unsupported module resolution kind 1": 57,
+    "unsupported module resolution kind 2": 23,
+    "unsupported module kind UMD": 57
+  },
+  "partial_output_skips": [
+    {
+      "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+      "reason": "cls.d.ts is missing statements when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+      "reason": "Nondeterministic contents when run concurrently."
+    },
+    {
+      "test": "TestSubmodule/grammarErrors.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+      "reason": "No files are emitted."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    },
+    {
+      "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+      "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+    }
+  ],
+  "failed_tests": [],
+  "integrity_errors": [],
+  "rawLogSha256": "ca7d24bc14c9a8cd673276b8a96e76c1ff588a1cd544ebff5a5a57dd33c9e9be",
+  "testedFiles": {
+    "flow.go": "f6d03c85c83f0d6ac401e04b7a320541f57b26997cb6ad676466f716c144ceff",
+    "checker.go": "3a1445bb4033d7fb2a2e5b692fcbf551a7c755a7e3297a7b4b179eb607218e33"
+  }
+}

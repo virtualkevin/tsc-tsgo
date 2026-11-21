@@ -797,6 +797,7 @@ type Checker struct {
 	lastGetCombinedModifierFlagsResult          ast.ModifierFlags
 	freeinferenceState                          *InferenceState
 	freeFlowState                               *FlowState
+	declarationRun                              declarationRun
 	flowLoopCache                               map[FlowLoopKey]*Type
 	flowLoopStack                               []FlowLoopInfo
 	sharedFlows                                 []SharedFlow
@@ -14299,6 +14300,7 @@ func (c *Checker) getParentOfSymbol(symbol *ast.Symbol) *ast.Symbol {
 }
 
 func (c *Checker) recordMergedSymbol(target *ast.Symbol, source *ast.Symbol) {
+	c.declarationRun = declarationRun{}
 	c.mergedSymbols[source] = target
 }
 

@@ -22,6 +22,28 @@ const literalSet = (step) => Array.from({ length: 80 }, (_, i) => JSON.stringify
 
 const fixtures = [
   {
+    name: 'declaration runs preserve matching roots and shadowed references',
+    diagnostic: 'TS2322',
+    files: {
+      'main.ts': [
+        'declare const condition: boolean;',
+        'export function read() {',
+        '  let value: { prop: number | string } = { prop: 0 };',
+        "  value.prop = 'first';",
+        ...Array.from({ length: 40 }, (_, i) => '  const a' + i + ' = value.prop;'),
+        '  if (condition) {',
+        '    const value = { prop: 1 };',
+        ...Array.from({ length: 40 }, (_, i) => '    const b' + i + ' = value.prop;'),
+        '    const invalid: string = b39;',
+        '    return value.prop;',
+        '  }',
+        '  value = { prop: 2 };',
+        '  return [a39, value.prop] as const;',
+        '}',
+      ].join('\n'),
+    },
+  },
+  {
     name: 'wide generic unions preserve inference across distinct and shared alias symbols',
     diagnostic: 'TS2322',
     files: {

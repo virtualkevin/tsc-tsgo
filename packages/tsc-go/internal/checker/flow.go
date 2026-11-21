@@ -144,6 +144,12 @@ func (c *Checker) getTypeAtFlowNode(f *FlowState, flow *ast.FlowNode) FlowType {
 		var t FlowType
 		switch {
 		case flags&ast.FlowFlagsAssignment != 0:
+			if flow.Antecedent != nil && flow.Antecedent.Flags&ast.FlowFlagsAssignment != 0 && isPlainDeclarationFlow(flow) {
+				if next := c.skipDeclarationRun(f.reference, flow); next != flow {
+					flow = next
+					continue
+				}
+			}
 			t = c.getTypeAtFlowAssignment(f, flow)
 			if t.isNil() {
 				flow = flow.Antecedent
@@ -215,6 +221,53 @@ func getBranchLabelAntecedents(flow *ast.FlowNode, reduceLabels []*ast.FlowReduc
 		}
 	}
 	return flow.Antecedents
+}
+
+type declarationRun struct {
+	base        *ast.Symbol
+	first, next *ast.FlowNode
+}
+
+func isPlainDeclarationFlow(flow *ast.FlowNode) bool {
+	if flow == nil || flow.Flags & ^ast.FlowFlagsReferenced != ast.FlowFlagsAssignment {
+		return false
+	}
+	n := flow.Node
+	return ast.IsVariableDeclaration(n) && ast.IsIdentifier(n.Name()) &&
+		n.Parent != nil && n.Parent.Parent != nil && ast.IsVariableStatement(n.Parent.Parent) &&
+		n.Symbol() != nil && n.Symbol().Name != ast.InternalSymbolNameComputed
+}
+
+// Only the root identifier of a plain dotted reference can match a variable
+// declaration. Each intervening declaration must compare unequal under the
+// normal export/merge rules. Stop before every shared node and other flow kind.
+func (c *Checker) skipDeclarationRun(ref *ast.Node, first *ast.FlowNode) *ast.FlowNode {
+	for ast.IsPropertyAccessExpression(ref) {
+		ref = ref.Expression()
+	}
+	if !ast.IsIdentifier(ref) || ast.IsThisInTypeQuery(ref) {
+		return first
+	}
+	base := c.getExportSymbolOfValueSymbolIfExported(c.getResolvedSymbol(ref))
+	if base == nil {
+		return first
+	}
+	previous := c.declarationRun
+	next := first
+	for isPlainDeclarationFlow(next) {
+		if next == previous.first && base == previous.base {
+			next = previous.next
+			break
+		}
+		if c.getSymbolOfDeclaration(next.Node) == base {
+			break
+		}
+		next = next.Antecedent
+	}
+	if next != first {
+		c.declarationRun = declarationRun{base: base, first: first, next: next}
+	}
+	return next
 }
 
 func (c *Checker) getTypeAtFlowAssignment(f *FlowState, flow *ast.FlowNode) FlowType {

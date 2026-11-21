@@ -33,4 +33,5 @@ with tempfile.TemporaryDirectory() as tmp:
                 row["warmup"] = pair
         report["widths"][width] = row
         print(width, {k:statistics.median(p[k] for p in row["pairs"]) for k in bins}, flush=True)
-(here/"scale.json").write_text(json.dumps(report, indent=2)+"\n")
+output = "public.json" if sys.argv[3:] == ["--public"] else "scale.json"
+(here/output).write_text(json.dumps(report, indent=2)+"\n")
