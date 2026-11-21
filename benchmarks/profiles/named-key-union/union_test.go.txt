@@ -1,0 +1,34 @@
+package checker
+
+import "testing"
+
+func TestNamedPrimitiveCoverage(t *testing.T) {
+	c := templateCacheTestChecker()
+	a := c.getStringLiteralType("a")
+	b := c.getStringLiteralType("b")
+	d := c.getStringLiteralType("d")
+	e := c.getStringLiteralType("e")
+	origin := c.newIndexType(c.stringType, IndexFlagsNone)
+	named := func(types ...*Type) *Type {
+		return c.getUnionTypeEx(types, UnionReductionLiteral, nil, origin)
+	}
+	left, right, overlapping := named(a, b), named(d, e), named(b, d)
+	withFresh := named(c.getFreshTypeOfLiteralType(b), d)
+	anonymous := c.getUnionType([]*Type{b, e})
+	denormalized := c.getUnionType([]*Type{left, right})
+	if !isNamedPrimitiveUnion(left) || isNamedPrimitiveUnion(denormalized) || isNamedPrimitiveUnion(anonymous) || isNamedPrimitiveUnion(a) {
+		t.Fatal("unexpected origin classification")
+	}
+	for _, input := range [][]*Type{
+		{left, right}, {left, overlapping, right}, {right, left, left}, {left, withFresh},
+		{denormalized, right}, {left, anonymous}, {left, e}, {left, c.stringType},
+	} {
+		for _, reduction := range []UnionReduction{UnionReductionNone, UnionReductionLiteral} {
+			expected := c.ordinaryUnionWorker(input, reduction, nil, nil)
+			actual := c.getUnionTypeWorker(input, reduction, nil, nil)
+			if expected != actual {
+				t.Fatalf("canonical type or origin differs for %v", reduction)
+			}
+		}
+	}
+}

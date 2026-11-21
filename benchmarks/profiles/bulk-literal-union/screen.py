@@ -14,6 +14,7 @@ for name in ("native", "control", "candidate", "output"):
     parser.add_argument("--" + name, type=Path, required=True)
 parser.add_argument("--grouped", action="store_true", help="measure merging sorted constituent unions")
 parser.add_argument("--class-keys", action="store_true", help="measure keyof with a private member among public string keys")
+parser.add_argument("--named-keys", action="store_true", help="measure combining named keyof sets")
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[3]
 binaries = {name: getattr(args, name).resolve() for name in ("native", "control", "candidate")}
@@ -41,6 +42,9 @@ with tempfile.TemporaryDirectory() as tmp:
     if args.class_keys:
         assert not args.grouped
         cases = [(4096, "private-key"), (32768, "private-key"), (131072, "private-key")]
+    if args.named_keys:
+        assert not args.grouped and not args.class_keys
+        cases = [(2048, "named-keys"), (8192, "named-keys"), (32768, "named-keys")]
     for count, order_name in cases:
         members = [f'"k{i:06d}"' for i in range(count)]
         if order_name == "descending":
@@ -53,6 +57,10 @@ with tempfile.TemporaryDirectory() as tmp:
         if order_name == "private-key":
             fields = [f"{name}: number;" for name in reversed(members)]
             source = "declare class Model {\nprivate hidden: number;\n" + "\n".join(fields) + '\n}\ntype Key = keyof Model;\nconst valid: Key = "k000000";\n'
+        if order_name == "named-keys":
+            groups = [members[i:i+64] for i in range(0, count, 64)]
+            models = ["interface M%d { %s }" % (i, " ".join(f"{name}: number;" for name in group)) for i, group in enumerate(groups)]
+            source = "\n".join(models) + "\ntype Key = " + " | ".join(f"keyof M{i}" for i in range(len(groups))) + ';\nconst valid: Key = "k000000";\n'
         if args.grouped:
             if order_name == "interleaved":
                 left, right = members[::2], members[1::2]
