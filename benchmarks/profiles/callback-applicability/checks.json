@@ -1,0 +1,14 @@
+{
+  "true": {
+    "code": 2,
+    "stdout": "input.ts(10,25): error TS2783: 'a' is specified more than once, so this usage will be overwritten.\ninput.ts(12,27): error TS2783: 'a' is specified more than once, so this usage will be overwritten.\n",
+    "stderr": "",
+    "emit": "declare const key: string, index: number, sym: symbol;\nexport declare function checked(x: unknown): {\n    n: number;\n    data: number[];\n    m(s: string): string;\n};\nexport declare const plain: {\n    a: number;\n    readonly b: number;\n    method(): number;\n};\nexport declare const spread: {\n    a: string | number;\n    c: number;\n};\nexport declare const indexed: {\n    [key]: number;\n    [index]: number;\n    [index]: number;\n    [sym]: string;\n    z: boolean;\n};\nexport declare const segments: {\n    a: string | number;\n};\nexport declare function destructure(obj: {\n    a: number;\n}): number;\nexport {};\n"
+  },
+  "false": {
+    "code": 0,
+    "stdout": "",
+    "stderr": "",
+    "emit": "declare const key: string, index: number, sym: symbol;\nexport declare function checked(x: unknown): {\n    n: number;\n    data: number[];\n    m(s: string): string;\n};\nexport declare const plain: {\n    a: number;\n    readonly b: any;\n    method(): any;\n};\nexport declare const spread: {\n    a: string | number;\n    c: number;\n};\nexport declare const indexed: {\n    [key]: number;\n    [index]: number;\n    [index]: number;\n    [sym]: string;\n    z: boolean;\n};\nexport declare const segments: {\n    a: string | number;\n};\nexport declare function destructure(obj: {\n    a: number;\n}): number;\nexport {};\n"
+  }
+}

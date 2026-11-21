@@ -1,0 +1,116 @@
+package checker
+
+import (
+	"sync"
+	"time"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type reachCalls struct {
+	Calls, Cached, Resolving, Cold, Instantiations, Types               uint64
+	ColdResultCached, LaterDemand, LaterSame                            uint64
+	SelectedPredicate, SelectedAssertion, SelectedNever, Unknown, Other uint64
+	ElapsedNs, ExclusiveNs                                              uint64
+}
+
+type pendingReachCall struct {
+	sig   *Signature
+	stats *reachCalls
+}
+
+type reachObserver struct {
+	names   map[string]*reachCalls
+	pending map[*ast.Node]pendingReachCall
+	nested  time.Duration
+}
+
+var reachRegistry struct {
+	sync.Mutex
+	rows []map[string]*reachCalls
+}
+
+func (c *Checker) observeReachResolution(node *ast.Node, existing *Signature) *Signature {
+	p := &c.reachObserver
+	if p.names == nil {
+		p.names = make(map[string]*reachCalls)
+		p.pending = make(map[*ast.Node]pendingReachCall)
+		reachRegistry.Lock()
+		reachRegistry.rows = append(reachRegistry.rows, p.names)
+		reachRegistry.Unlock()
+	}
+	name := "(other)"
+	expr := node.Expression()
+	if ast.IsIdentifier(expr) {
+		name = expr.Text()
+	} else if ast.IsPropertyAccessExpression(expr) {
+		name = "." + expr.Name().Text()
+	}
+	s := p.names[name]
+	if s == nil {
+		s = &reachCalls{}
+		p.names[name] = s
+	}
+	s.Calls++
+	switch existing {
+	case nil:
+		s.Cold++
+	case c.resolvingSignature:
+		s.Resolving++
+	default:
+		s.Cached++
+	}
+	parent := p.nested
+	p.nested = 0
+	types, inst := c.TypeCount, c.TotalInstantiationCount
+	start := time.Now()
+	sig := c.getResolvedSignature(node, nil, CheckModeNormal)
+	elapsed := time.Since(start)
+	s.ElapsedNs += uint64(elapsed)
+	s.ExclusiveNs += uint64(elapsed - p.nested)
+	p.nested = parent + elapsed
+	s.Types += uint64(c.TypeCount - types)
+	s.Instantiations += uint64(c.TotalInstantiationCount - inst)
+	if existing == nil && c.signatureLinks.Get(node).resolvedSignature == sig {
+		s.ColdResultCached++
+		p.pending[node] = pendingReachCall{sig, s}
+	}
+	return sig
+}
+
+func (c *Checker) observeLaterResolution(node *ast.Node, cached *Signature) {
+	if prev, ok := c.reachObserver.pending[node]; ok {
+		prev.stats.LaterDemand++
+		if cached == prev.sig {
+			prev.stats.LaterSame++
+		}
+		delete(c.reachObserver.pending, node)
+	}
+}
+
+func (c *Checker) observeReachEffect(node *ast.Node, sig *Signature) {
+	expr := node.Expression()
+	name := "(other)"
+	if ast.IsIdentifier(expr) {
+		name = expr.Text()
+	} else if ast.IsPropertyAccessExpression(expr) {
+		name = "." + expr.Name().Text()
+	}
+	s := c.reachObserver.names[name]
+	switch {
+	case sig == c.unknownSignature:
+		s.Unknown++
+	case sig.resolvedTypePredicate != nil && sig.resolvedTypePredicate != c.noTypePredicate:
+		if sig.resolvedTypePredicate.kind == TypePredicateKindAssertsIdentifier || sig.resolvedTypePredicate.kind == TypePredicateKindAssertsThis {
+			s.SelectedAssertion++
+		} else {
+			s.SelectedPredicate++
+		}
+	case sig.resolvedReturnType != nil && sig.resolvedReturnType.flags&TypeFlagsNever != 0:
+		s.SelectedNever++
+	default:
+		s.Other++
+	}
+}
+
+func ReachCallCounts() []map[string]*reachCalls { return reachRegistry.rows }

@@ -1,0 +1,108 @@
+package checker
+
+import (
+	"strconv"
+	"sync"
+	"time"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type reachArgumentStats struct {
+	Calls, Types, Instantiations, ElapsedNs    uint64
+	SeenInInference, SameType, SameAsParameter uint64
+}
+
+type reachArgumentScope struct {
+	node     *ast.Node
+	inferred map[*ast.Node]*Type
+}
+type reachArgumentProbe struct {
+	scope *reachArgumentScope
+	rows  map[string]*reachArgumentStats
+}
+
+var argRegistry struct {
+	sync.Mutex
+	rows []map[string]*reachArgumentStats
+}
+
+func (c *Checker) scopedReachResolution(node *ast.Node, existing *Signature) *Signature {
+	p := &c.reachArgumentProbe
+	before := p.scope
+	p.scope = &reachArgumentScope{node: node}
+	result := c.observeReachResolution(node, existing)
+	p.scope = before
+	return result
+}
+
+func closedReachLiteral(node *ast.Node) bool {
+	switch node.Kind {
+	case ast.KindTrueKeyword, ast.KindFalseKeyword, ast.KindNullKeyword, ast.KindNumericLiteral, ast.KindStringLiteral, ast.KindBigIntLiteral, ast.KindNoSubstitutionTemplateLiteral:
+		return true
+	case ast.KindParenthesizedExpression:
+		return closedReachLiteral(node.Expression())
+	case ast.KindArrayLiteralExpression:
+		for _, e := range node.AsArrayLiteralExpression().Elements.Nodes {
+			if !closedReachLiteral(e) {
+				return false
+			}
+		}
+		return true
+	case ast.KindObjectLiteralExpression:
+		for _, p := range node.Properties() {
+			if !ast.IsPropertyAssignment(p) || ast.IsComputedPropertyName(p.Name()) || !closedReachLiteral(p.Initializer()) {
+				return false
+			}
+		}
+		return true
+	}
+	return false
+}
+
+func (c *Checker) observeReachArgument(node, arg *ast.Node, index int, param *Type, context *InferenceContext, mode CheckMode, phase string) *Type {
+	p := &c.reachArgumentProbe
+	scope := p.scope
+	if scope == nil || scope.node != node {
+		return c.checkExpressionWithContextualType(arg, param, context, mode)
+	}
+	if p.rows == nil {
+		p.rows = make(map[string]*reachArgumentStats)
+		argRegistry.Lock()
+		argRegistry.rows = append(argRegistry.rows, p.rows)
+		argRegistry.Unlock()
+	}
+	key := phase + "/" + strconv.Itoa(index) + "/" + arg.Kind.String()
+	if closedReachLiteral(arg) {
+		key += "/closed"
+	}
+	s := p.rows[key]
+	if s == nil {
+		s = &reachArgumentStats{}
+		p.rows[key] = s
+	}
+	s.Calls++
+	types, inst := c.TypeCount, c.TotalInstantiationCount
+	start := time.Now()
+	t := c.checkExpressionWithContextualType(arg, param, context, mode)
+	s.ElapsedNs += uint64(time.Since(start))
+	s.Types += uint64(c.TypeCount - types)
+	s.Instantiations += uint64(c.TotalInstantiationCount - inst)
+	if phase == "infer" {
+		if scope.inferred == nil {
+			scope.inferred = make(map[*ast.Node]*Type)
+		}
+		scope.inferred[arg] = t
+	} else if prev := scope.inferred[arg]; prev != nil {
+		s.SeenInInference++
+		if prev == t {
+			s.SameType++
+		}
+		if prev == param {
+			s.SameAsParameter++
+		}
+	}
+	return t
+}
+
+func ReachArgumentCounts() []map[string]*reachArgumentStats { return argRegistry.rows }
