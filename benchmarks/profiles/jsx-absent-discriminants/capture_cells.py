@@ -26,5 +26,13 @@ for name, commit, rows in observed_projects(binary, projects={"sentry"}):
     assert sum(map(sum,rows["cells"])) == queries
     report["priorInclusiveQueries"] = expected[1]
     report[name] = {"commit":commit, **rows}
-(here/"cells.json").write_text(json.dumps(report,indent=2)+"\n")
+filename = "cells.json"
+if "columns" in report["sentry"]:
+    filename = "columns.json"
+    columns = report["sentry"]["columns"]
+    assert sum(row[1] for row in columns) == sum(map(sum, report["sentry"]["cells"]))
+    assert sum(row[2] for row in columns) == sum(report["sentry"]["cells"][7][1:3])
+    report["columnRows"] = ["nonePositiveMapped","somePositiveMapped","allPositiveMapped"]
+    report["columnMetrics"] = ["columns","eligibleConstituents","positiveMapped","distinctMappedSymbolsSummedAcrossColumns","positiveRuns"]
+(here/filename).write_text(json.dumps(report,indent=2)+"\n")
 print(report,flush=True)

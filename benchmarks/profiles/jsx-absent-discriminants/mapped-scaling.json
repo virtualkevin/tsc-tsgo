@@ -1,0 +1,113 @@
+{
+  "flags": [
+    "--strict",
+    "--skipLibCheck",
+    "--jsx",
+    "preserve",
+    "--pretty",
+    "false"
+  ],
+  "binaries": {
+    "public": "4320a609131555b2541dfd308ed764b79ef43f22d27c6f008dd08b8e28ca8aff",
+    "control": "b82f0413e660fab4f01381d594b93dbd606db2fe09823637c5b3f64ef8e3656a",
+    "candidate": "a61cd699213162186a63da3e102f0ec101b2a9a14fb854f8b0b7250b2f073c66"
+  },
+  "widths": {
+    "16": {
+      "sourceSha256": "1277f58bb017d7f42775c1dee4df4a8f51a00a7570437f6007a166955f0ad2fa",
+      "rounds": [
+        {
+          "public": 246.941257,
+          "control": 124.292457,
+          "candidate": 132.834177
+        },
+        {
+          "control": 117.16864,
+          "candidate": 119.523762,
+          "public": 167.424978
+        },
+        {
+          "candidate": 101.97191,
+          "public": 217.094501,
+          "control": 129.756462
+        }
+      ],
+      "correctness": {
+        "False": {
+          "exit": 0,
+          "diagnosticsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "declarationSha256": "45de8ee5dd560ec66e0ea6d6717b1fd679029b4f316771ff6199727c458fc658"
+        },
+        "True": {
+          "exit": 2,
+          "diagnosticsSha256": "e4f985dc71d23160c29a9515ee1a7d1064d69860c3585fbb9d04f3e02da0c0f5",
+          "declarationSha256": "45de8ee5dd560ec66e0ea6d6717b1fd679029b4f316771ff6199727c458fc658"
+        }
+      }
+    },
+    "256": {
+      "sourceSha256": "ca06f3d095cd8493c3d76994f7a7717bd0ee2429a0b6bfe00aa701251f07e66e",
+      "rounds": [
+        {
+          "public": 265.621554,
+          "control": 158.724391,
+          "candidate": 160.221844
+        },
+        {
+          "control": 182.368301,
+          "candidate": 178.211514,
+          "public": 247.450783
+        },
+        {
+          "candidate": 170.842842,
+          "public": 299.778452,
+          "control": 182.117763
+        }
+      ],
+      "correctness": {
+        "False": {
+          "exit": 0,
+          "diagnosticsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "declarationSha256": "45de8ee5dd560ec66e0ea6d6717b1fd679029b4f316771ff6199727c458fc658"
+        },
+        "True": {
+          "exit": 2,
+          "diagnosticsSha256": "905be6b58a2b8ef1d4369e129a3cde95c786d56dacb4f67c30affec96b4a45f5",
+          "declarationSha256": "45de8ee5dd560ec66e0ea6d6717b1fd679029b4f316771ff6199727c458fc658"
+        }
+      }
+    },
+    "1024": {
+      "sourceSha256": "7084f07beff4c346fe131b431fde4b3f9ed9895b2665777ecf193f5076430838",
+      "rounds": [
+        {
+          "public": 310.569737,
+          "control": 317.103956,
+          "candidate": 267.989628
+        },
+        {
+          "control": 358.431027,
+          "candidate": 228.317468,
+          "public": 361.258102
+        },
+        {
+          "candidate": 281.190674,
+          "public": 371.337908,
+          "control": 352.931506
+        }
+      ],
+      "correctness": {
+        "False": {
+          "exit": 0,
+          "diagnosticsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "declarationSha256": "45de8ee5dd560ec66e0ea6d6717b1fd679029b4f316771ff6199727c458fc658"
+        },
+        "True": {
+          "exit": 2,
+          "diagnosticsSha256": "1f34f478c74b609846e5a82c05d65307eccf8e15ba65ea50eb3c13a0a5783ea6",
+          "declarationSha256": "45de8ee5dd560ec66e0ea6d6717b1fd679029b4f316771ff6199727c458fc658"
+        }
+      }
+    }
+  }
+}

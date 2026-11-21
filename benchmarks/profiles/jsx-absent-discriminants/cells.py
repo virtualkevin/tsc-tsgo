@@ -88,4 +88,40 @@ s = s.replace('"context"', '"context"\n    "encoding/json"\n    "github.com/micr
 dest = out/"main.go"
 dest.write_text(s)
 files[str(root/path)] = str(dest)
+if "--columns" in sys.argv[2:]:
+    checker = out/"checker.go"
+    s = checker.read_text().replace("var jsxPassCounts", "var jsxColumns [3][5]atomic.Uint64\nvar jsxPassCounts")
+    s = s.replace('return map[string][][]uint64{"cells":cells, "passes":passes}', """columns := make([][]uint64,len(jsxColumns))
+    for i := range columns {
+        for j := range jsxColumns[i] { columns[i] = append(columns[i], jsxColumns[i][j].Load()) }
+    }
+    return map[string][][]uint64{"cells":cells, "passes":passes, "columns":columns}""")
+    checker.write_text(s)
+    relater = out/"relater.go"
+    s = relater.read_text()
+    start = s.index("func (c *Checker) discriminateTypeByDiscriminableItems(")
+    end = s.index("func (c *Checker) filterPrimitivesIfContainsNonPrimitive",start)
+    body = s[start:end].replace("matched := false", """matched := false
+        var unique map[*ast.Symbol]struct{}
+        var activeCells, positive, runs int
+        previousPositive := false""")
+    body = body.replace("var prior *Type", "var resolvedSymbol *ast.Symbol\n                var prior *Type")
+    body = body.replace("prior = links.resolvedType", "prior = links.resolvedType\n                                    resolvedSymbol = prop")
+    body = body.replace("d.cells++", """d.cells++
+                    activeCells++
+                    currentPositive := group == 7 && prior == targetType && (kind == 1 || kind == 2)
+                    if currentPositive {
+                        positive++
+                        if unique == nil { unique = make(map[*ast.Symbol]struct{}) }
+                        unique[resolvedSymbol] = struct{}{}
+                        if !previousPositive { runs++ }
+                    }
+                    previousPositive = currentPositive""")
+    body = body.replace("// Turn each Ternary.Maybe", """if activeCells != 0 {
+            row := 1
+            if positive == 0 { row = 0 } else if positive == activeCells { row = 2 }
+            for i,v := range [5]int{1, activeCells, positive, len(unique), runs} { jsxColumns[row][i].Add(uint64(v)) }
+        }
+        // Turn each Ternary.Maybe""")
+    relater.write_text(s[:start]+body+s[end:])
 (out/"overlay.json").write_text(json.dumps({"Replace":files}))
