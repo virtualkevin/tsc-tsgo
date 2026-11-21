@@ -1,0 +1,50 @@
+package checker
+
+import "github.com/microsoft/typescript-go/internal/ast"
+
+// Split the ordinary expression resolveStructuredTypeMembers(t).Properties()
+// at the boundary between resolving the reference and enumerating its symbols.
+func (c *Checker) observeReferenceProperties(t *Type, q *keyOperandRequest) []*ast.Symbol {
+	beforeTypes, beforeSymbols, beforeInst := c.TypeCount, c.SymbolCount, c.TotalInstantiationCount
+	resolved := c.resolveStructuredTypeMembers(t)
+	atTypes, atSymbols, atInst := c.TypeCount, c.SymbolCount, c.TotalInstantiationCount
+	layout := "eager"
+	if p := resolved.pendingMembers; p != nil {
+		switch {
+		case p.memberNames != nil:
+			layout = "materialized"
+		case p.resolving:
+			layout = "provisional"
+		case p.hasBases:
+			layout = "pending inherited"
+		default:
+			layout = "pending own"
+		}
+	}
+	props := resolved.Properties()
+	endTypes, endSymbols, endInst := c.TypeCount, c.SymbolCount, c.TotalInstantiationCount
+	cohort := "other"
+	if q.text == "className" {
+		cohort = "className"
+	}
+	name := "(anonymous)"
+	if t.Target().symbol != nil {
+		name = t.Target().symbol.Name
+	}
+	base := "reference:" + cohort + ":" + name + ":" + layout
+	record := func(stage string, types, syms, inst uint32) {
+		key := base + ":" + stage
+		stats := (*c.keyOperandProbe)[key]
+		if stats == nil {
+			stats = new(keyOperandStats)
+			(*c.keyOperandProbe)[key] = stats
+		}
+		stats.Calls++
+		stats.TypesCreated += uint64(types)
+		stats.SymbolsCreated += uint64(syms)
+		stats.Instantiations += uint64(inst)
+	}
+	record("resolve", atTypes-beforeTypes, atSymbols-beforeSymbols, atInst-beforeInst)
+	record("enumerate", endTypes-atTypes, endSymbols-atSymbols, endInst-atInst)
+	return props
+}

@@ -12,7 +12,8 @@ from frozen_checks import observed_projects
 root = here.parents[2] / "packages/tsc-go"
 out = Path(sys.argv[1]).resolve()
 out.mkdir(parents=True, exist_ok=True)
-shapes = sys.argv[3:] == ["--shapes"]
+references = sys.argv[3:] == ["--references"]
+shapes = references or sys.argv[3:] == ["--shapes"]
 predict = shapes or sys.argv[3:] == ["--predict"]
 assert predict or len(sys.argv) == 3
 checker = root / "internal/checker/checker.go"
@@ -54,6 +55,16 @@ if predict:
         probe = probe.replace("q.predict(c, object)", "q.predict(c, object)\n q.shape = indexObjectShape(object)")
         probe = probe.replace("request.compare(c, result)", "request.compare(c, result)\n c.observeKeyShape(request, cohort, result, types, syms, inst)")
         mod["Replace"][str(checker.parent / "key_shape.go")] = str(here / "shape.go.txt")
+    if references:
+        probe = probe.replace("type keyOperandRequest struct {", "type keyOperandRequest struct {\n reference *Type")
+        probe = probe.replace("q.shape = indexObjectShape(object)", "q.shape = indexObjectShape(object)\n if q.shape == \"unresolved reference\" { q.reference = object }")
+        site = "return c.resolveStructuredTypeMembers(t).Properties()"
+        assert source.count(site) == 1
+        dest.write_text(source.replace(site, """if q := c.keyRequest; q != nil && q.reference == t {
+            return c.observeReferenceProperties(t, q)
+        }
+        """ + site))
+        mod["Replace"][str(checker.parent / "reference_stages.go")] = str(here / "reference_stages.go.txt")
     dest_probe = out / "key_operand_probe.go"
     dest_probe.write_text(probe)
     mod["Replace"][str(checker.parent / "key_operand_probe.go")] = str(dest_probe)
@@ -78,4 +89,4 @@ for project, commit, workers in observed_projects(binary, projects={"sentry"} if
         assert stats["CachedOrdinaryKeys"] <= stats["ResolvedOrdinaryObject"] <= stats["ObjectQueries"] <= stats["Calls"]
     report["projects"][project] = {"commit": commit, "byLiteral": result}
     print(project, result, flush=True)
-(here / ("shapes.json" if shapes else "predictions.json" if predict else "counts.json")).write_text(json.dumps(report, indent=2) + "\n")
+(here / ("references.json" if references else "shapes.json" if shapes else "predictions.json" if predict else "counts.json")).write_text(json.dumps(report, indent=2) + "\n")
