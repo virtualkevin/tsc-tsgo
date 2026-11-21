@@ -1,0 +1,101 @@
+{
+  "binarySha256": "338bdc8cb2ccae7ab428ac3272f9995797f5f9f2fb9cc38f4eab21478c3bc35c",
+  "rows": [
+    "no enumerated mapped symbol",
+    "contains enumerated mapped symbol"
+  ],
+  "columns": [
+    "no skipped side",
+    "miss",
+    "same symbol",
+    "distinct symbol",
+    "singleton on miss (subset of miss)",
+    "requested combined symbol (all outcomes)"
+  ],
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "counts": [
+        [
+          308,
+          2651,
+          2,
+          958,
+          2639,
+          7
+        ],
+        [
+          0,
+          283,
+          0,
+          20,
+          277,
+          0
+        ]
+      ]
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "counts": [
+        [
+          36,
+          1469,
+          4763,
+          2942,
+          1468,
+          92
+        ],
+        [
+          0,
+          525,
+          0,
+          59,
+          525,
+          2
+        ]
+      ]
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "counts": [
+        [
+          16361,
+          38087,
+          25134,
+          33225,
+          38051,
+          8278
+        ],
+        [
+          0,
+          5577,
+          0,
+          1209,
+          5561,
+          346
+        ]
+      ]
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "counts": [
+        [
+          144,
+          684973,
+          43095,
+          134147,
+          612064,
+          26488
+        ],
+        [
+          0,
+          971747,
+          133,
+          29122,
+          960968,
+          11387
+        ]
+      ]
+    }
+  }
+}
