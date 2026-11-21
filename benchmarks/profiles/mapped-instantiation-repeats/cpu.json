@@ -1,0 +1,172 @@
+{
+  "typeorm": {
+    "totalCpuNs": 44080000000,
+    "outermostMappedCpuNs": 280000000,
+    "lines": [
+      {
+        "line": 20882,
+        "source": "links := c.valueSymbolLinks.Get(symbol)",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20890,
+        "source": "mapper := appendTypeMapping(mappedType.AsMappedType().mapper, c.getTypeParameterFromMappedType(mappedType), c.mappedSymbolLinks.Get(symbol).keyType)",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20891,
+        "source": "propType := c.instantiateType(templateType, mapper)",
+        "cpuNs": 260000000
+      }
+    ]
+  },
+  "trpc": {
+    "totalCpuNs": 11690000000,
+    "outermostMappedCpuNs": 20000000,
+    "lines": [
+      {
+        "line": 20891,
+        "source": "propType := c.instantiateType(templateType, mapper)",
+        "cpuNs": 20000000
+      }
+    ]
+  },
+  "vscode": {
+    "totalCpuNs": 441610000000,
+    "outermostMappedCpuNs": 1670000000,
+    "lines": [
+      {
+        "line": 20881,
+        "source": "func (c *Checker) getTypeOfMappedSymbol(symbol *ast.Symbol) *Type {",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20882,
+        "source": "links := c.valueSymbolLinks.Get(symbol)",
+        "cpuNs": 60000000
+      },
+      {
+        "line": 20883,
+        "source": "if links.resolvedType == nil {",
+        "cpuNs": 20000000
+      },
+      {
+        "line": 20890,
+        "source": "mapper := appendTypeMapping(mappedType.AsMappedType().mapper, c.getTypeParameterFromMappedType(mappedType), c.mappedSymbolLinks.Get(symbol).keyType)",
+        "cpuNs": 140000000
+      },
+      {
+        "line": 20891,
+        "source": "propType := c.instantiateType(templateType, mapper)",
+        "cpuNs": 1440000000
+      }
+    ]
+  },
+  "sentry": {
+    "totalCpuNs": 243670000000,
+    "outermostMappedCpuNs": 7390000000,
+    "lines": [
+      {
+        "line": 20881,
+        "source": "func (c *Checker) getTypeOfMappedSymbol(symbol *ast.Symbol) *Type {",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20882,
+        "source": "links := c.valueSymbolLinks.Get(symbol)",
+        "cpuNs": 1860000000
+      },
+      {
+        "line": 20883,
+        "source": "if links.resolvedType == nil {",
+        "cpuNs": 760000000
+      },
+      {
+        "line": 20884,
+        "source": "mappedType := links.containingType",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20885,
+        "source": "if !c.pushTypeResolution(symbol, TypeSystemPropertyNameType) {",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20889,
+        "source": "templateType := c.getTemplateTypeFromMappedType(core.OrElse(mappedType.AsMappedType().target, mappedType))",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20890,
+        "source": "mapper := appendTypeMapping(mappedType.AsMappedType().mapper, c.getTypeParameterFromMappedType(mappedType), c.mappedSymbolLinks.Get(symbol).keyType)",
+        "cpuNs": 370000000
+      },
+      {
+        "line": 20891,
+        "source": "propType := c.instantiateType(templateType, mapper)",
+        "cpuNs": 4290000000
+      },
+      {
+        "line": 20896,
+        "source": "case c.strictNullChecks && symbol.Flags&ast.SymbolFlagsOptional != 0 && !c.maybeTypeOfKind(propType, TypeFlagsUndefined|TypeFlagsVoid):",
+        "cpuNs": 40000000
+      },
+      {
+        "line": 20901,
+        "source": "if c.popTypeResolution() {",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20912,
+        "source": "return links.resolvedType",
+        "cpuNs": 20000000
+      }
+    ]
+  },
+  "sentry-size-aware": {
+    "totalCpuNs": 119040000000,
+    "outermostMappedCpuNs": 5030000000,
+    "lines": [
+      {
+        "line": 20881,
+        "source": "func (c *Checker) getTypeOfMappedSymbol(symbol *ast.Symbol) *Type {",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20882,
+        "source": "links := c.valueSymbolLinks.Get(symbol)",
+        "cpuNs": 1100000000
+      },
+      {
+        "line": 20883,
+        "source": "if links.resolvedType == nil {",
+        "cpuNs": 570000000
+      },
+      {
+        "line": 20884,
+        "source": "mappedType := links.containingType",
+        "cpuNs": 10000000
+      },
+      {
+        "line": 20890,
+        "source": "mapper := appendTypeMapping(mappedType.AsMappedType().mapper, c.getTypeParameterFromMappedType(mappedType), c.mappedSymbolLinks.Get(symbol).keyType)",
+        "cpuNs": 170000000
+      },
+      {
+        "line": 20891,
+        "source": "propType := c.instantiateType(templateType, mapper)",
+        "cpuNs": 3120000000
+      },
+      {
+        "line": 20896,
+        "source": "case c.strictNullChecks && symbol.Flags&ast.SymbolFlagsOptional != 0 && !c.maybeTypeOfKind(propType, TypeFlagsUndefined|TypeFlagsVoid):",
+        "cpuNs": 40000000
+      },
+      {
+        "line": 20912,
+        "source": "return links.resolvedType",
+        "cpuNs": 10000000
+      }
+    ]
+  }
+}
