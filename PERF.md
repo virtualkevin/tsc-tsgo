@@ -486,3 +486,7 @@
 | Shipped Go vs original public npm CLI | sentry | npm tsc-ts@0.0.2 | 14181.73 | 27663.66 | 0.513× | 2 | Released launcher, all input bytes match original workload. [Samples](benchmarks/profiles/public-npm/0.0.2.json.gz) |
 | Shipped Go vs original public npm CLI | typeorm | npm tsc-ts@0.0.2 | 1449.23 | 2601.72 | 0.557× | 2 | Released launcher, all input bytes match original workload. [Samples](benchmarks/profiles/public-npm/0.0.2.json.gz) |
 | Shipped Go vs original public npm CLI | trpc | npm tsc-ts@0.0.2 | 396.76 | 465.97 | 0.851× | 2 | Released launcher, all input bytes match original workload. [Samples](benchmarks/profiles/public-npm/0.0.2.json.gz) |
+| Bounded scalar union pairs | typeorm | Matched ordinary Go build | 2472.11 | 2784.68 | 0.888× | 4 | Clean cold checks. [Samples](benchmarks/profiles/union-input-reuse/small.json.gz) |
+| Bounded scalar union pairs | trpc | Matched ordinary Go build | 467.89 | 463.79 | 1.009× | 4 | Clean cold checks. [Samples](benchmarks/profiles/union-input-reuse/small.json.gz) |
+| Bounded scalar union pairs | vscode | Matched ordinary Go build | 34254.70 | 33414.09 | 1.025× | 2 | Clean cold checks. [Samples](benchmarks/profiles/union-input-reuse/large.json.gz) |
+| Bounded scalar union pairs | sentry | Matched ordinary Go build | 27846.31 | 30540.01 | 0.912× | 2 | Clean cold checks. [Samples](benchmarks/profiles/union-input-reuse/large.json.gz) |
