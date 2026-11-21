@@ -115,7 +115,7 @@ func (c *Checker) inferFromTypes(n *InferenceState, source *Type, target *Type) 
 		// Next, infer between closely matching source and target constituents and remove
 		// the matching types. Types closely match when they are instantiations of the same
 		// object type or instantiations of the same type alias.
-		sources, targets := c.inferFromMatchingTypes(n, tempSources, tempTargets, (*Checker).isTypeCloselyMatchedBy)
+		sources, targets := c.inferFromCloselyMatchingTypes(n, tempSources, tempTargets)
 		if len(targets) == 0 {
 			return
 		}
@@ -1200,6 +1200,42 @@ func (c *Checker) isTypeOrBaseIdenticalTo(s *Type, t *Type) bool {
 	return c.isTypeIdenticalTo(s, t) ||
 		t.flags&TypeFlagsString != 0 && s.flags&TypeFlagsStringLiteral != 0 ||
 		t.flags&TypeFlagsNumber != 0 && s.flags&TypeFlagsNumberLiteral != 0
+}
+
+// Wide unions frequently share no object or alias symbols. In that case the
+// close-match pass cannot infer from any pair and both lists pass through.
+func (c *Checker) inferFromCloselyMatchingTypes(n *InferenceState, sources, targets []*Type) ([]*Type, []*Type) {
+	if len(sources) >= 32 && len(targets) >= 8 && !mayHaveCloseMatch(sources, targets) {
+		return sources, targets
+	}
+	return c.inferFromMatchingTypes(n, sources, targets, (*Checker).isTypeCloselyMatchedBy)
+}
+
+func mayHaveCloseMatch(sources, targets []*Type) bool {
+	// Sharing one set can admit a false positive across the two symbol roles.
+	// Every positive goes through the original pair checks in their original order.
+	symbols := make(map[*ast.Symbol]struct{})
+	for _, s := range sources {
+		if s.flags&TypeFlagsObject != 0 && s.symbol != nil {
+			symbols[s.symbol] = struct{}{}
+		}
+		if s.alias != nil && len(s.alias.typeArguments) != 0 {
+			symbols[s.alias.symbol] = struct{}{}
+		}
+	}
+	for _, t := range targets {
+		if t.flags&TypeFlagsObject != 0 && t.symbol != nil {
+			if _, ok := symbols[t.symbol]; ok {
+				return true
+			}
+		}
+		if t.alias != nil {
+			if _, ok := symbols[t.alias.symbol]; ok {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func (c *Checker) isTypeCloselyMatchedBy(s *Type, t *Type) bool {

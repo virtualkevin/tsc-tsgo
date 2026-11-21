@@ -22,6 +22,24 @@ const literalSet = (step) => Array.from({ length: 80 }, (_, i) => JSON.stringify
 
 const fixtures = [
   {
+    name: 'wide generic unions preserve inference across distinct and shared alias symbols',
+    diagnostic: 'TS2322',
+    files: {
+      'main.ts': [
+        'type Box<K, V> = { key: K; value: V };',
+        'type Input = ' + Array.from({ length: 64 }, (_, i) => `{ key: "k${i}"; value: ${i}; extra: true }`).join(' | ') + ';',
+        'type Output<T> = ' + Array.from({ length: 64 }, (_, i) => `{ key: "k${i}"; value: T }`).join(' | ') + ';',
+        'declare function read<T>(v: Output<T>): T;',
+        'declare function mixed<T>(v: Output<T> | Box<"shared", T>): T;',
+        'declare const input: Input;',
+        'declare const withShared: Input | Box<"shared", 123>;',
+        'export const disjoint = read(input);',
+        'export const shared = mixed(withShared);',
+        'export const invalid: string = shared;',
+      ].join('\n'),
+    },
+  },
+  {
     name: 'template index signatures preserve overlapping keys and generic lookups',
     diagnostic: 'TS2322',
     files: {
