@@ -1,0 +1,691 @@
+{
+  "scope": "Typed arena backings for observed per-file factory New calls only. Bytes use element size times actual capacity. Excludes allocator rounding after capacity selection, GC retention after file release and other parser allocations. No CPU or wall-time prediction.",
+  "configurations": {
+    "first pages": {
+      "Identifier": 2,
+      "NodeList": 2,
+      "Token": 2,
+      "StringLiteral": 2,
+      "PropertyAccessExpression": 2
+    },
+    "larger first pages": {
+      "Identifier": 16,
+      "NodeList": 8,
+      "Token": 4,
+      "StringLiteral": 4,
+      "PropertyAccessExpression": 4
+    },
+    "common syntax": {
+      "Identifier": 2,
+      "NodeList": 2,
+      "Token": 2,
+      "StringLiteral": 2,
+      "PropertyAccessExpression": 2,
+      "ModifierList": 2,
+      "VariableDeclaration": 2,
+      "VariableDeclarationList": 2,
+      "VariableStatement": 2,
+      "CallExpression": 2,
+      "ParameterDeclaration": 2,
+      "Block": 2,
+      "TypeReferenceNode": 2,
+      "PropertyAssignment": 2,
+      "BinaryExpression": 2,
+      "ExpressionStatement": 2
+    },
+    "all typed arenas": {
+      "ArrayTypeNode": 2,
+      "BinaryExpression": 2,
+      "Block": 2,
+      "CallExpression": 2,
+      "ConditionalExpression": 2,
+      "ConstructSignatureDeclaration": 2,
+      "ElementAccessExpression": 2,
+      "ExpressionStatement": 2,
+      "ExpressionWithTypeArguments": 2,
+      "FunctionDeclaration": 2,
+      "FunctionTypeNode": 2,
+      "HeritageClause": 2,
+      "Identifier": 2,
+      "IfStatement": 2,
+      "ImportSpecifier": 2,
+      "IndexedAccessTypeNode": 2,
+      "InterfaceDeclaration": 2,
+      "IntersectionTypeNode": 2,
+      "JSDoc": 2,
+      "JSDocDeprecatedTag": 2,
+      "JSDocText": 2,
+      "JSDocUnknownTag": 2,
+      "KeywordExpression": 2,
+      "KeywordTypeNode": 2,
+      "LiteralTypeNode": 2,
+      "MethodSignatureDeclaration": 2,
+      "ModifierList": 2,
+      "NodeList": 2,
+      "NumericLiteral": 2,
+      "ParameterDeclaration": 2,
+      "ParenthesizedExpression": 2,
+      "ParenthesizedTypeNode": 2,
+      "PrefixUnaryExpression": 2,
+      "PropertyAccessExpression": 2,
+      "PropertyAssignment": 2,
+      "PropertySignatureDeclaration": 2,
+      "ReturnStatement": 2,
+      "StringLiteral": 2,
+      "Token": 2,
+      "TypeAliasDeclaration": 2,
+      "TypeLiteralNode": 2,
+      "TypeOperatorNode": 2,
+      "TypeParameterDeclaration": 2,
+      "TypeReferenceNode": 2,
+      "UnionTypeNode": 2,
+      "VariableDeclaration": 2,
+      "VariableDeclarationList": 2,
+      "VariableStatement": 2
+    },
+    "weighted common syntax": {
+      "Identifier": 16,
+      "NodeList": 8,
+      "Token": 4,
+      "StringLiteral": 4,
+      "PropertyAccessExpression": 4,
+      "ModifierList": 2,
+      "VariableDeclaration": 2,
+      "VariableDeclarationList": 2,
+      "VariableStatement": 2,
+      "CallExpression": 2,
+      "ParameterDeclaration": 2,
+      "Block": 2,
+      "TypeReferenceNode": 2,
+      "PropertyAssignment": 2,
+      "BinaryExpression": 2,
+      "ExpressionStatement": 2
+    }
+  },
+  "projects": {
+    "vscode": {
+      "baselineAllocations": 1039707,
+      "baselineBytes": 2063567168,
+      "models": [
+        {
+          "config": "first pages",
+          "minFileBytes": 0,
+          "eligibleFiles": 11585,
+          "allocationDelta": -43138,
+          "payloadByteDelta": 541408
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9931,
+          "allocationDelta": -38520,
+          "payloadByteDelta": 206432
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 4096,
+          "eligibleFiles": 6850,
+          "allocationDelta": -26974,
+          "payloadByteDelta": 73312
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 16384,
+          "eligibleFiles": 2498,
+          "allocationDelta": -9901,
+          "payloadByteDelta": 15760
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 0,
+          "eligibleFiles": 11585,
+          "allocationDelta": -119417,
+          "payloadByteDelta": 7313416
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9931,
+          "allocationDelta": -110526,
+          "payloadByteDelta": 5248792
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 4096,
+          "eligibleFiles": 6850,
+          "allocationDelta": -79193,
+          "payloadByteDelta": 2343224
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 16384,
+          "eligibleFiles": 2498,
+          "allocationDelta": -29389,
+          "payloadByteDelta": 389152
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 0,
+          "eligibleFiles": 11585,
+          "allocationDelta": -141329,
+          "payloadByteDelta": 5723376
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9931,
+          "allocationDelta": -132997,
+          "payloadByteDelta": 2794608
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 4096,
+          "eligibleFiles": 6850,
+          "allocationDelta": -97029,
+          "payloadByteDelta": 986864
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 16384,
+          "eligibleFiles": 2498,
+          "allocationDelta": -36314,
+          "payloadByteDelta": 199296
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 0,
+          "eligibleFiles": 11585,
+          "allocationDelta": -282087,
+          "payloadByteDelta": 47531632
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9931,
+          "allocationDelta": -266900,
+          "payloadByteDelta": 36458752
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 4096,
+          "eligibleFiles": 6850,
+          "allocationDelta": -204353,
+          "payloadByteDelta": 21672944
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 16384,
+          "eligibleFiles": 2498,
+          "allocationDelta": -84474,
+          "payloadByteDelta": 6118912
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 0,
+          "eligibleFiles": 11585,
+          "allocationDelta": -217608,
+          "payloadByteDelta": 12495384
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9931,
+          "allocationDelta": -205003,
+          "payloadByteDelta": 7836968
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 4096,
+          "eligibleFiles": 6850,
+          "allocationDelta": -149248,
+          "payloadByteDelta": 3256776
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 16384,
+          "eligibleFiles": 2498,
+          "allocationDelta": -55802,
+          "payloadByteDelta": 572688
+        }
+      ]
+    },
+    "sentry": {
+      "baselineAllocations": 719024,
+      "baselineBytes": 750686128,
+      "models": [
+        {
+          "config": "first pages",
+          "minFileBytes": 0,
+          "eligibleFiles": 13295,
+          "allocationDelta": -47747,
+          "payloadByteDelta": 933040
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9173,
+          "allocationDelta": -34789,
+          "payloadByteDelta": 329424
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 4096,
+          "eligibleFiles": 4138,
+          "allocationDelta": -15992,
+          "payloadByteDelta": 97760
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 16384,
+          "eligibleFiles": 672,
+          "allocationDelta": -2559,
+          "payloadByteDelta": 22544
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 0,
+          "eligibleFiles": 13295,
+          "allocationDelta": -128044,
+          "payloadByteDelta": 11234432
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9173,
+          "allocationDelta": -98545,
+          "payloadByteDelta": 6897984
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 4096,
+          "eligibleFiles": 4138,
+          "allocationDelta": -46857,
+          "payloadByteDelta": 2256520
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 16384,
+          "eligibleFiles": 672,
+          "allocationDelta": -7619,
+          "payloadByteDelta": 339768
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 0,
+          "eligibleFiles": 13295,
+          "allocationDelta": -142764,
+          "payloadByteDelta": 9915712
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9173,
+          "allocationDelta": -112513,
+          "payloadByteDelta": 4368096
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 4096,
+          "eligibleFiles": 4138,
+          "allocationDelta": -54372,
+          "payloadByteDelta": 1341136
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 16384,
+          "eligibleFiles": 672,
+          "allocationDelta": -8587,
+          "payloadByteDelta": 264992
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 0,
+          "eligibleFiles": 13295,
+          "allocationDelta": -256228,
+          "payloadByteDelta": 64918720
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9173,
+          "allocationDelta": -207931,
+          "payloadByteDelta": 39443744
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 4096,
+          "eligibleFiles": 4138,
+          "allocationDelta": -106430,
+          "payloadByteDelta": 15657312
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 16384,
+          "eligibleFiles": 672,
+          "allocationDelta": -18678,
+          "payloadByteDelta": 2296464
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 0,
+          "eligibleFiles": 13295,
+          "allocationDelta": -223061,
+          "payloadByteDelta": 20217104
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 1024,
+          "eligibleFiles": 9173,
+          "allocationDelta": -176269,
+          "payloadByteDelta": 10936656
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 4096,
+          "eligibleFiles": 4138,
+          "allocationDelta": -85237,
+          "payloadByteDelta": 3499896
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 16384,
+          "eligibleFiles": 672,
+          "allocationDelta": -13647,
+          "payloadByteDelta": 582216
+        }
+      ]
+    },
+    "typeorm": {
+      "baselineAllocations": 138896,
+      "baselineBytes": 135061248,
+      "models": [
+        {
+          "config": "first pages",
+          "minFileBytes": 0,
+          "eligibleFiles": 3574,
+          "allocationDelta": -12440,
+          "payloadByteDelta": 320224
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 1024,
+          "eligibleFiles": 1465,
+          "allocationDelta": -5558,
+          "payloadByteDelta": 50848
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 4096,
+          "eligibleFiles": 558,
+          "allocationDelta": -2151,
+          "payloadByteDelta": 13968
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 16384,
+          "eligibleFiles": 169,
+          "allocationDelta": -647,
+          "payloadByteDelta": 4976
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 0,
+          "eligibleFiles": 3574,
+          "allocationDelta": -31668,
+          "payloadByteDelta": 3426136
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 1024,
+          "eligibleFiles": 1465,
+          "allocationDelta": -15734,
+          "payloadByteDelta": 973136
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 4096,
+          "eligibleFiles": 558,
+          "allocationDelta": -6301,
+          "payloadByteDelta": 326480
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 16384,
+          "eligibleFiles": 169,
+          "allocationDelta": -1921,
+          "payloadByteDelta": 51448
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 0,
+          "eligibleFiles": 3574,
+          "allocationDelta": -33758,
+          "payloadByteDelta": 3509872
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 1024,
+          "eligibleFiles": 1465,
+          "allocationDelta": -18981,
+          "payloadByteDelta": 530880
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 4096,
+          "eligibleFiles": 558,
+          "allocationDelta": -7456,
+          "payloadByteDelta": 164448
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 16384,
+          "eligibleFiles": 169,
+          "allocationDelta": -2181,
+          "payloadByteDelta": 64160
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 0,
+          "eligibleFiles": 3574,
+          "allocationDelta": -50461,
+          "payloadByteDelta": 21148864
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 1024,
+          "eligibleFiles": 1465,
+          "allocationDelta": -28756,
+          "payloadByteDelta": 7263840
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 4096,
+          "eligibleFiles": 558,
+          "allocationDelta": -12714,
+          "payloadByteDelta": 2470224
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 16384,
+          "eligibleFiles": 169,
+          "allocationDelta": -4480,
+          "payloadByteDelta": 637280
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 0,
+          "eligibleFiles": 3574,
+          "allocationDelta": -52986,
+          "payloadByteDelta": 6615784
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 1024,
+          "eligibleFiles": 1465,
+          "allocationDelta": -29157,
+          "payloadByteDelta": 1453168
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 4096,
+          "eligibleFiles": 558,
+          "allocationDelta": -11606,
+          "payloadByteDelta": 476960
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 16384,
+          "eligibleFiles": 169,
+          "allocationDelta": -3455,
+          "payloadByteDelta": 110632
+        }
+      ]
+    },
+    "trpc": {
+      "baselineAllocations": 42835,
+      "baselineBytes": 60129752,
+      "models": [
+        {
+          "config": "first pages",
+          "minFileBytes": 0,
+          "eligibleFiles": 945,
+          "allocationDelta": -2833,
+          "payloadByteDelta": 160944
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 1024,
+          "eligibleFiles": 530,
+          "allocationDelta": -1676,
+          "payloadByteDelta": 75744
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 4096,
+          "eligibleFiles": 221,
+          "allocationDelta": -740,
+          "payloadByteDelta": 24928
+        },
+        {
+          "config": "first pages",
+          "minFileBytes": 16384,
+          "eligibleFiles": 72,
+          "allocationDelta": -262,
+          "payloadByteDelta": 4512
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 0,
+          "eligibleFiles": 945,
+          "allocationDelta": -7476,
+          "payloadByteDelta": 865296
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 1024,
+          "eligibleFiles": 530,
+          "allocationDelta": -4890,
+          "payloadByteDelta": 391136
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 4096,
+          "eligibleFiles": 221,
+          "allocationDelta": -2203,
+          "payloadByteDelta": 128680
+        },
+        {
+          "config": "larger first pages",
+          "minFileBytes": 16384,
+          "eligibleFiles": 72,
+          "allocationDelta": -767,
+          "payloadByteDelta": -12744
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 0,
+          "eligibleFiles": 945,
+          "allocationDelta": -6486,
+          "payloadByteDelta": 1371552
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 1024,
+          "eligibleFiles": 530,
+          "allocationDelta": -4159,
+          "payloadByteDelta": 677552
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 4096,
+          "eligibleFiles": 221,
+          "allocationDelta": -1883,
+          "payloadByteDelta": 257728
+        },
+        {
+          "config": "common syntax",
+          "minFileBytes": 16384,
+          "eligibleFiles": 72,
+          "allocationDelta": -665,
+          "payloadByteDelta": 75504
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 0,
+          "eligibleFiles": 945,
+          "allocationDelta": -14932,
+          "payloadByteDelta": 5147040
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 1024,
+          "eligibleFiles": 530,
+          "allocationDelta": -10723,
+          "payloadByteDelta": 2470240
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 4096,
+          "eligibleFiles": 221,
+          "allocationDelta": -5383,
+          "payloadByteDelta": 870112
+        },
+        {
+          "config": "all typed arenas",
+          "minFileBytes": 16384,
+          "eligibleFiles": 72,
+          "allocationDelta": -2043,
+          "payloadByteDelta": 231728
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 0,
+          "eligibleFiles": 945,
+          "allocationDelta": -11129,
+          "payloadByteDelta": 2075904
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 1024,
+          "eligibleFiles": 530,
+          "allocationDelta": -7373,
+          "payloadByteDelta": 992944
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 4096,
+          "eligibleFiles": 221,
+          "allocationDelta": -3346,
+          "payloadByteDelta": 361480
+        },
+        {
+          "config": "weighted common syntax",
+          "minFileBytes": 16384,
+          "eligibleFiles": 72,
+          "allocationDelta": -1170,
+          "payloadByteDelta": 58248
+        }
+      ]
+    }
+  }
+}

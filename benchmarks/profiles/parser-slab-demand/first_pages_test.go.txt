@@ -1,0 +1,37 @@
+package ast
+
+import (
+	"fmt"
+	"runtime"
+	"testing"
+)
+
+// Return only the public nodes; their factory and backing-page pointers go out of scope.
+func buildParserSlabNodes(prefix string) []*Node {
+	f := NodeFactory{}
+	f.StartParserArenas()
+	var roots []*Node
+	for i := range 600 {
+		name := f.NewIdentifier(fmt.Sprintf("%s%d", prefix, i))
+		child := f.NewIdentifier("value")
+		node := f.NewPropertyAccessExpression(name, nil, child, NodeFlagsNone)
+		name.Parent, child.Parent = node, node
+		roots = append(roots, node)
+	}
+	return roots
+}
+
+func TestParserFirstPagesSurviveGrowthAndFactoryRelease(t *testing.T) {
+	first, second := buildParserSlabNodes("first"), buildParserSlabNodes("second")
+	runtime.GC()
+	runtime.GC()
+	for i := range first {
+		a, b := first[i], second[i]
+		if a == b || a.Expression().Parent != a || b.Expression().Parent != b ||
+			a.Name().Parent != a || b.Name().Parent != b ||
+			a.Expression().AsIdentifier().Text != fmt.Sprintf("first%d", i) ||
+			b.Expression().AsIdentifier().Text != fmt.Sprintf("second%d", i) {
+			t.Fatalf("pointer or payload changed for node %d", i)
+		}
+	}
+}
