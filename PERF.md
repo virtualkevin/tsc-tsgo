@@ -651,3 +651,8 @@
 | Skip redundant named union coverage search | sentry | Public npm tsc-ts@0.0.2 | 13443.38 | 24205.72 | 0.555× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/named-key-union/public.json.gz) |
 | Skip redundant named union coverage search | typeorm | Public npm tsc-ts@0.0.2 | 1339.21 | 2364.57 | 0.566× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/named-key-union/public.json.gz) |
 | Skip redundant named union coverage search | trpc | Public npm tsc-ts@0.0.2 | 397.05 | 474.75 | 0.836× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/named-key-union/public.json.gz) |
+| Constituent survivor mask | sentry | Ordinary Go | 42829.73 | 41116.22 | 1.042× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/constituent-mask/sentry.json.gz) |
+| Constituent survivor mask | vscode | Ordinary Go | 44655.09 | 42717.77 | 1.045× | 2 | Candidate faster in 1/2 pairs. [Samples](benchmarks/profiles/constituent-mask/other.json.gz) |
+| Constituent survivor mask | typeorm | Ordinary Go | 2748.45 | 2690.08 | 1.022× | 2 | Candidate faster in 1/2 pairs. [Samples](benchmarks/profiles/constituent-mask/other.json.gz) |
+| Constituent survivor mask | trpc | Ordinary Go | 505.43 | 557.55 | 0.907× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/constituent-mask/other.json.gz) |
+| Constituent survivor mask | sentry | Public npm tsc-ts@0.0.2 | 23109.82 | 43879.35 | 0.527× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/constituent-mask/public.json.gz) |

@@ -1,0 +1,45 @@
+package checker
+
+import "math/bits"
+
+// Keep a bit for each surviving constituent. A missing property is neutral,
+// and a discriminator with no matches leaves the entire survivor set intact.
+func (c *Checker) discriminateWithMask(target *Type, discriminator Discriminator) *Type {
+	types := target.Types()
+	var live uint64
+	for i, t := range types {
+		if t.flags&TypeFlagsPrimitive == 0 && c.getReducedType(t).flags&TypeFlagsNever == 0 {
+			live |= uint64(1) << i
+		}
+	}
+	for n := range discriminator.len() {
+		var rejected uint64
+		matched := false
+		for remaining := live; remaining != 0; remaining &= remaining - 1 {
+			i := bits.TrailingZeros64(remaining)
+			t := c.getTypeOfPropertyOrIndexSignatureOfType(types[i], discriminator.name(n))
+			if t != nil {
+				if discriminator.matches(n, t) {
+					matched = true
+				} else {
+					rejected |= uint64(1) << i
+				}
+			}
+		}
+		if matched {
+			live &^= rejected
+		}
+	}
+	if bits.OnesCount64(live) == len(types) {
+		return target
+	}
+	filtered := make([]*Type, 0, bits.OnesCount64(live))
+	for live != 0 {
+		filtered = append(filtered, types[bits.TrailingZeros64(live)])
+		live &= live - 1
+	}
+	if result := c.getUnionTypeEx(filtered, UnionReductionNone, nil, nil); result.flags&TypeFlagsNever == 0 {
+		return result
+	}
+	return target
+}
