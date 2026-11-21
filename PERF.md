@@ -656,3 +656,5 @@
 | Constituent survivor mask | typeorm | Ordinary Go | 2748.45 | 2690.08 | 1.022× | 2 | Candidate faster in 1/2 pairs. [Samples](benchmarks/profiles/constituent-mask/other.json.gz) |
 | Constituent survivor mask | trpc | Ordinary Go | 505.43 | 557.55 | 0.907× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/constituent-mask/other.json.gz) |
 | Constituent survivor mask | sentry | Public npm tsc-ts@0.0.2 | 23109.82 | 43879.35 | 0.527× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/constituent-mask/public.json.gz) |
+| Bounded JSX absent-property scan (draft, misses classification update) | sentry | Ordinary Go | 43246.87 | 40977.71 | 1.055× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/jsx-neutral-prefix/sentry.json.gz) |
+| Bounded JSX absent-property scan (draft, misses classification update) | sentry | Public npm tsc-ts@0.0.2 | 13682.13 | 25464.97 | 0.537× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/jsx-neutral-prefix/public.json.gz) |

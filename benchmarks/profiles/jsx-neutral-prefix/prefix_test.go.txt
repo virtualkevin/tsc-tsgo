@@ -1,0 +1,52 @@
+package checker
+
+import (
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+func TestNeutralPrefixTracksLiveBranchesAndCurrentProperties(t *testing.T) {
+	c := lazyPropertyTestChecker()
+	accept := c.getUnionType([]*Type{c.stringType, c.undefinedType})
+	members := []*ast.Symbol{c.newProperty("first", accept), c.newProperty("middle", accept), c.newProperty("last", accept)}
+	branch := func() *Type {
+		obj := lazyObject(c)
+		t := c.newIntersectionType(ObjectFlagsIsNeverIntersectionComputed, []*Type{obj, obj})
+		d := t.AsIntersectionType()
+		d.resolvedApparentType = t
+		d.propertyCacheWithoutFunctionPropertyAugment = ast.SymbolTable{}
+		for _, m := range members {
+			prop := lazyProperty(c, m.Name, accept, true)
+			prop.CheckFlags |= ast.CheckFlagsMapped
+			d.propertyCacheWithoutFunctionPropertyAugment[m.Name] = prop
+		}
+		return t
+	}
+	a, b := branch(), branch()
+	types := []*Type{a, b}
+	live := []Ternary{TernaryTrue, TernaryTrue}
+	check := func(want int) {
+		t.Helper()
+		if got := c.neutralAbsentPrefix(types, live, members); got != want {
+			t.Fatalf("neutral prefix = %d, want %d", got, want)
+		}
+	}
+	check(3)
+	cache := b.AsIntersectionType().propertyCacheWithoutFunctionPropertyAugment
+	links := c.valueSymbolLinks.Get(cache["middle"])
+	links.resolvedType = c.stringType
+	check(1)
+	target := c.newUnionType(ObjectFlagsNone, types)
+	d := &ObjectLiteralDiscriminator{c: c, members: members}
+	if got := c.discriminateAbsentMembers(target, d); got != a || got != c.discriminateTypeByDiscriminableItems(target, d) {
+		t.Fatal("mixed property should eliminate the second branch")
+	}
+	live[1] = TernaryFalse
+	check(3)
+	live[1] = TernaryTrue
+	links.resolvedType = accept
+	check(3)
+	cache["first"] = lazyProperty(c, "first", c.stringType, false)
+	check(0)
+}

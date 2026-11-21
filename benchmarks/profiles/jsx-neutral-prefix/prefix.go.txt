@@ -1,0 +1,46 @@
+package checker
+
+import "github.com/microsoft/typescript-go/internal/ast"
+
+// An absent property which accepts undefined in every surviving branch cannot
+// narrow the union. Inspect only completed lookups, one branch at a time. A
+// miss ends the prefix before any further checker work can change the caches.
+func (c *Checker) neutralAbsentPrefix(types []*Type, live []Ternary, members []*ast.Symbol) int {
+	end := len(members)
+	for i, t := range types {
+		if live[i] == TernaryFalse {
+			continue
+		}
+		if t.flags != TypeFlagsIntersection || t.objectFlags&(ObjectFlagsMapped|ObjectFlagsIsNeverIntersectionComputed|ObjectFlagsIsNeverIntersection) != ObjectFlagsIsNeverIntersectionComputed {
+			return 0
+		}
+		data := t.AsIntersectionType()
+		if data.resolvedApparentType != t {
+			return 0
+		}
+		table := data.propertyCacheWithoutFunctionPropertyAugment
+		var previous *Type
+		for j, member := range members[:end] {
+			prop := table[member.Name]
+			if prop == nil || prop.CheckFlags&(ast.CheckFlagsReadPartial|ast.CheckFlagsDeferredType|ast.CheckFlagsInstantiated|ast.CheckFlagsMapped) != ast.CheckFlagsMapped {
+				end = j
+				break
+			}
+			links := c.valueSymbolLinks.TryGet(prop)
+			if links == nil {
+				end = j
+				break
+			}
+			value := links.resolvedType
+			if value != c.undefinedType && (value == nil || value != previous && !(value.flags&TypeFlagsUnion != 0 && containsType(value.Types(), c.undefinedType))) {
+				end = j
+				break
+			}
+			previous = value
+		}
+		if end == 0 {
+			break
+		}
+	}
+	return end
+}
