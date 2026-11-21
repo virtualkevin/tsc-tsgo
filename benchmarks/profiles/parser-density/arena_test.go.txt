@@ -1,0 +1,44 @@
+package core
+
+import "testing"
+
+func TestSourceDensityPages(t *testing.T) {
+	type entry struct {
+		index int
+		prev  *entry
+	}
+	for _, mode := range []string{"transform", "before-token", "late", "early", "rewind"} {
+		t.Run(mode, func(t *testing.T) {
+			var arena Arena[entry]
+			var progress func() (int, int)
+			i := 0
+			switch mode {
+			case "before-token":
+				progress = func() (int, int) { return 0, 4096 }
+			case "late":
+				progress = func() (int, int) { return 4095, 4096 }
+			case "early":
+				progress = func() (int, int) { return 1, 4096 }
+			case "rewind":
+				progress = func() (int, int) { return i % 127, 4096 }
+			}
+			retained := make([]*entry, 4096)
+			for i = range retained {
+				n := arena.NewForSource(progress)
+				if *n != (entry{}) {
+					t.Fatal("reused a live entry", i)
+				}
+				n.index = i
+				if i > 0 {
+					n.prev = retained[i-1]
+				}
+				retained[i] = n
+			}
+			for i, n := range retained {
+				if n.index != i || i > 0 && n.prev != retained[i-1] {
+					t.Fatal("entry moved or changed", i)
+				}
+			}
+		})
+	}
+}

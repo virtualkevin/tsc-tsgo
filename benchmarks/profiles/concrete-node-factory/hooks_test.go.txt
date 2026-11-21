@@ -1,0 +1,39 @@
+package ast
+
+import (
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/core"
+)
+
+func TestConcreteFactoryPublication(t *testing.T) {
+	var seen []*Node
+	f := NewNodeFactory(NodeFactoryHooks{OnCreate: func(n *Node) {
+		if n.data.AsNode() != n || n.Loc != core.UndefinedTextRange() {
+			t.Fatal("incomplete node in creation hook")
+		}
+		switch n.Kind {
+		case KindIdentifier:
+			if n.AsIdentifier().Text == "" {
+				t.Fatal("missing identifier text")
+			}
+		case KindPropertyAccessExpression:
+			if n.AsPropertyAccessExpression().Expression != seen[0] || n.Name() != seen[1] {
+				t.Fatal("children unavailable during construction")
+			}
+			if n.Flags&NodeFlagsOptionalChain != 0 {
+				t.Fatal("constructor flags set before creation hook")
+			}
+		}
+		seen = append(seen, n)
+	}})
+	receiver, name := f.NewIdentifier("x"), f.NewIdentifier("p")
+	n := f.NewPropertyAccessExpression(receiver, nil, name, NodeFlagsOptionalChain)
+	if len(seen) != 3 || n != seen[2] || f.NodeCount() != 3 || n.Flags&NodeFlagsOptionalChain == 0 {
+		t.Fatal("unexpected factory result")
+	}
+	clone := n.Clone(f)
+	if len(seen) != 4 || clone != seen[3] || clone.Name() != name || clone == n || clone.Flags != n.Flags {
+		t.Fatal("unexpected clone")
+	}
+}

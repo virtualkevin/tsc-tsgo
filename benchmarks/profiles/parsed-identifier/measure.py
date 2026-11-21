@@ -13,6 +13,7 @@ here = Path(__file__).resolve().parent
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("control", type=Path)
 parser.add_argument("candidate", type=Path)
+parser.add_argument("--output-dir", type=Path, default=here)
 args = parser.parse_args()
 binaries = {"control": args.control.resolve(), "candidate": args.candidate.resolve()}
 env = dict(os.environ, IDENTIFIER_ROOT=str(here.parents[2]/"upstream/benchmarks"),
@@ -25,7 +26,7 @@ trees = {}
 for engine in binaries:
     trees[engine] = [s for s in run(engine,"-test.run=^TestIdentifierTreeFingerprint$","-test.v").splitlines() if s.startswith("TREE ")]
 assert len(trees["control"]) == 67 and trees["control"] == trees["candidate"]
-(here/"trees.txt.gz").write_bytes(gzip.compress(("\n".join(trees["control"])+"\n").encode(),mtime=0))
+(args.output_dir/"trees.txt.gz").write_bytes(gzip.compress(("\n".join(trees["control"])+"\n").encode(),mtime=0))
 
 pattern = re.compile(r"^BenchmarkIdentifierProjectParsing/(\w+)-\d+\s+(\d+)\s+([\d.]+) ns/op\s+(\d+) B/op\s+(\d+) allocs/op$", re.M)
 projects = {"sentry","trpc","vscode","typeorm"}
@@ -42,4 +43,4 @@ report = dict(inputsSha256=digest(here/"inputs.json"), executables={e:digest(p) 
 for project in sorted(projects):
     report["medians"][project] = {e:statistics.median(r["ns"] for r in rows if r["project"]==project and r["engine"]==e) for e in binaries}
 print(report["medians"],flush=True)
-(here/"parser.json").write_text(json.dumps(report,indent=2)+"\n")
+(args.output_dir/"parser.json").write_text(json.dumps(report,indent=2)+"\n")

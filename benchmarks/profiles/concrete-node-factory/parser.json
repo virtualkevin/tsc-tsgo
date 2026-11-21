@@ -1,0 +1,465 @@
+{
+  "inputsSha256": "eb64cc03bd5716c4b174dfc96e12c192517ac2d21b43be2a93d5b1b3a8d0082a",
+  "executables": {
+    "control": "e0770fccae19ad84b933600aeea3d1114100f2a13daf5a8fcad7542e034b2656",
+    "candidate": "39ae149f16a1a5d98c0ff4f230c2403ccc6e0594c31b64c6d08e4c7770ec9b8c"
+  },
+  "trees": 67,
+  "flags": [
+    "-test.run=^$",
+    "-test.bench=^BenchmarkIdentifierProjectParsing$",
+    "-test.benchtime=300ms"
+  ],
+  "samples": [
+    {
+      "project": "vscode",
+      "engine": "control",
+      "trial": 0,
+      "iterations": 37,
+      "ns": 9694321.0,
+      "bytes": 3248574,
+      "allocations": 5453
+    },
+    {
+      "project": "sentry",
+      "engine": "control",
+      "trial": 0,
+      "iterations": 100,
+      "ns": 4306827.0,
+      "bytes": 1378880,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "control",
+      "trial": 0,
+      "iterations": 243,
+      "ns": 1477516.0,
+      "bytes": 604902,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "control",
+      "trial": 0,
+      "iterations": 128,
+      "ns": 2803258.0,
+      "bytes": 1029996,
+      "allocations": 2152
+    },
+    {
+      "project": "vscode",
+      "engine": "candidate",
+      "trial": 0,
+      "iterations": 36,
+      "ns": 8995006.0,
+      "bytes": 3249193,
+      "allocations": 5454
+    },
+    {
+      "project": "sentry",
+      "engine": "candidate",
+      "trial": 0,
+      "iterations": 100,
+      "ns": 3484878.0,
+      "bytes": 1378837,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "candidate",
+      "trial": 0,
+      "iterations": 274,
+      "ns": 1387571.0,
+      "bytes": 604920,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "candidate",
+      "trial": 0,
+      "iterations": 144,
+      "ns": 2542853.0,
+      "bytes": 1030003,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "candidate",
+      "trial": 1,
+      "iterations": 43,
+      "ns": 8319377.0,
+      "bytes": 3248729,
+      "allocations": 5453
+    },
+    {
+      "project": "sentry",
+      "engine": "candidate",
+      "trial": 1,
+      "iterations": 100,
+      "ns": 3780965.0,
+      "bytes": 1379154,
+      "allocations": 3642
+    },
+    {
+      "project": "typeorm",
+      "engine": "candidate",
+      "trial": 1,
+      "iterations": 196,
+      "ns": 1726128.0,
+      "bytes": 604921,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "candidate",
+      "trial": 1,
+      "iterations": 100,
+      "ns": 3542263.0,
+      "bytes": 1030039,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "control",
+      "trial": 1,
+      "iterations": 36,
+      "ns": 9920950.0,
+      "bytes": 3248743,
+      "allocations": 5453
+    },
+    {
+      "project": "sentry",
+      "engine": "control",
+      "trial": 1,
+      "iterations": 82,
+      "ns": 3943355.0,
+      "bytes": 1378986,
+      "allocations": 3642
+    },
+    {
+      "project": "typeorm",
+      "engine": "control",
+      "trial": 1,
+      "iterations": 244,
+      "ns": 1482779.0,
+      "bytes": 604872,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "control",
+      "trial": 1,
+      "iterations": 150,
+      "ns": 2433419.0,
+      "bytes": 1029993,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "control",
+      "trial": 2,
+      "iterations": 38,
+      "ns": 8485754.0,
+      "bytes": 3248735,
+      "allocations": 5453
+    },
+    {
+      "project": "sentry",
+      "engine": "control",
+      "trial": 2,
+      "iterations": 100,
+      "ns": 3505847.0,
+      "bytes": 1378979,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "control",
+      "trial": 2,
+      "iterations": 266,
+      "ns": 1380968.0,
+      "bytes": 604856,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "control",
+      "trial": 2,
+      "iterations": 139,
+      "ns": 2584153.0,
+      "bytes": 1030022,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "candidate",
+      "trial": 2,
+      "iterations": 42,
+      "ns": 8259793.0,
+      "bytes": 3248486,
+      "allocations": 5453
+    },
+    {
+      "project": "sentry",
+      "engine": "candidate",
+      "trial": 2,
+      "iterations": 100,
+      "ns": 3565964.0,
+      "bytes": 1378888,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "candidate",
+      "trial": 2,
+      "iterations": 264,
+      "ns": 1305827.0,
+      "bytes": 604894,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "candidate",
+      "trial": 2,
+      "iterations": 124,
+      "ns": 2848769.0,
+      "bytes": 1030021,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "candidate",
+      "trial": 3,
+      "iterations": 42,
+      "ns": 8328883.0,
+      "bytes": 3248634,
+      "allocations": 5453
+    },
+    {
+      "project": "sentry",
+      "engine": "candidate",
+      "trial": 3,
+      "iterations": 106,
+      "ns": 3514376.0,
+      "bytes": 1379037,
+      "allocations": 3642
+    },
+    {
+      "project": "typeorm",
+      "engine": "candidate",
+      "trial": 3,
+      "iterations": 246,
+      "ns": 1413067.0,
+      "bytes": 604894,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "candidate",
+      "trial": 3,
+      "iterations": 135,
+      "ns": 2498101.0,
+      "bytes": 1029997,
+      "allocations": 2152
+    },
+    {
+      "project": "vscode",
+      "engine": "control",
+      "trial": 3,
+      "iterations": 37,
+      "ns": 9064243.0,
+      "bytes": 3248970,
+      "allocations": 5454
+    },
+    {
+      "project": "sentry",
+      "engine": "control",
+      "trial": 3,
+      "iterations": 100,
+      "ns": 3447035.0,
+      "bytes": 1378866,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "control",
+      "trial": 3,
+      "iterations": 268,
+      "ns": 1319097.0,
+      "bytes": 604871,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "control",
+      "trial": 3,
+      "iterations": 141,
+      "ns": 2532188.0,
+      "bytes": 1030055,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "control",
+      "trial": 4,
+      "iterations": 39,
+      "ns": 8857376.0,
+      "bytes": 3248517,
+      "allocations": 5453
+    },
+    {
+      "project": "sentry",
+      "engine": "control",
+      "trial": 4,
+      "iterations": 91,
+      "ns": 3849807.0,
+      "bytes": 1378849,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "control",
+      "trial": 4,
+      "iterations": 181,
+      "ns": 2053400.0,
+      "bytes": 604929,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "control",
+      "trial": 4,
+      "iterations": 91,
+      "ns": 3307958.0,
+      "bytes": 1029992,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "candidate",
+      "trial": 4,
+      "iterations": 38,
+      "ns": 9032703.0,
+      "bytes": 3249114,
+      "allocations": 5454
+    },
+    {
+      "project": "sentry",
+      "engine": "candidate",
+      "trial": 4,
+      "iterations": 103,
+      "ns": 3472119.0,
+      "bytes": 1378890,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "candidate",
+      "trial": 4,
+      "iterations": 259,
+      "ns": 1345536.0,
+      "bytes": 604905,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "candidate",
+      "trial": 4,
+      "iterations": 135,
+      "ns": 2608698.0,
+      "bytes": 1030005,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "candidate",
+      "trial": 5,
+      "iterations": 36,
+      "ns": 8817248.0,
+      "bytes": 3249307,
+      "allocations": 5454
+    },
+    {
+      "project": "sentry",
+      "engine": "candidate",
+      "trial": 5,
+      "iterations": 100,
+      "ns": 3153212.0,
+      "bytes": 1378825,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "candidate",
+      "trial": 5,
+      "iterations": 262,
+      "ns": 1318443.0,
+      "bytes": 604901,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "candidate",
+      "trial": 5,
+      "iterations": 130,
+      "ns": 2767067.0,
+      "bytes": 1030008,
+      "allocations": 2153
+    },
+    {
+      "project": "vscode",
+      "engine": "control",
+      "trial": 5,
+      "iterations": 37,
+      "ns": 9652893.0,
+      "bytes": 3248652,
+      "allocations": 5453
+    },
+    {
+      "project": "sentry",
+      "engine": "control",
+      "trial": 5,
+      "iterations": 76,
+      "ns": 4003435.0,
+      "bytes": 1378858,
+      "allocations": 3641
+    },
+    {
+      "project": "typeorm",
+      "engine": "control",
+      "trial": 5,
+      "iterations": 229,
+      "ns": 1494391.0,
+      "bytes": 604877,
+      "allocations": 1454
+    },
+    {
+      "project": "trpc",
+      "engine": "control",
+      "trial": 5,
+      "iterations": 123,
+      "ns": 2832092.0,
+      "bytes": 1030023,
+      "allocations": 2153
+    }
+  ],
+  "medians": {
+    "sentry": {
+      "control": 3896581.0,
+      "candidate": 3499627.0
+    },
+    "trpc": {
+      "control": 2693705.5,
+      "candidate": 2687882.5
+    },
+    "typeorm": {
+      "control": 1480147.5,
+      "candidate": 1366553.5
+    },
+    "vscode": {
+      "control": 9358568.0,
+      "candidate": 8573065.5
+    }
+  }
+}

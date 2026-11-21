@@ -1,0 +1,215 @@
+{
+  "libraryDirectory": "/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib",
+  "executables": {
+    "public": {
+      "path": "/tmp/tsc-public-002/node_modules/.bin/tsc-ts",
+      "sha256": "4320a609131555b2541dfd308ed764b79ef43f22d27c6f008dd08b8e28ca8aff"
+    },
+    "go": {
+      "path": "/tmp/tsc-literal-tables/final/tsgo",
+      "sha256": "b444563166b5bb56361d5d5879c9bf89f205b83b58c56fa1ec88f52c22ed1adf"
+    },
+    "candidate": {
+      "path": "/tmp/tsc-parser-density/tsgo",
+      "sha256": "770514642cc4900a4a618b79c5e18a021bb5a577230b19074d1b2dd99d051c1c"
+    }
+  },
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "files": 942,
+      "args": [
+        "-p",
+        "packages/server/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "samples": [
+        {
+          "engine": "public",
+          "wallMs": 439.92572
+        },
+        {
+          "engine": "go",
+          "wallMs": 594.474633
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 571.256454
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 478.594933
+        },
+        {
+          "engine": "go",
+          "wallMs": 471.25244
+        },
+        {
+          "engine": "public",
+          "wallMs": 394.983877
+        }
+      ],
+      "medianMs": {
+        "public": 417.45479850000004,
+        "go": 532.8635365,
+        "candidate": 524.9256935
+      }
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "files": 3572,
+      "args": [
+        "-p",
+        "packages/typeorm/tsconfig.json",
+        "--module",
+        "node20",
+        "--moduleResolution",
+        "node16",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "samples": [
+        {
+          "engine": "go",
+          "wallMs": 2798.555156
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 2773.33619
+        },
+        {
+          "engine": "public",
+          "wallMs": 1604.274469
+        },
+        {
+          "engine": "public",
+          "wallMs": 1451.453633
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 2543.417621
+        },
+        {
+          "engine": "go",
+          "wallMs": 3627.883832
+        }
+      ],
+      "medianMs": {
+        "go": 3213.219494,
+        "candidate": 2658.3769055000002,
+        "public": 1527.864051
+      }
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "files": 11563,
+      "args": [
+        "-p",
+        "src/tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "samples": [
+        {
+          "engine": "candidate",
+          "wallMs": 37909.194177
+        },
+        {
+          "engine": "public",
+          "wallMs": 19657.183421
+        },
+        {
+          "engine": "go",
+          "wallMs": 39075.352591
+        },
+        {
+          "engine": "go",
+          "wallMs": 37703.183571
+        },
+        {
+          "engine": "public",
+          "wallMs": 19089.592844
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 36114.816504
+        }
+      ],
+      "medianMs": {
+        "candidate": 37012.0053405,
+        "public": 19373.3881325,
+        "go": 38389.268081
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "files": 13290,
+      "args": [
+        "-p",
+        "tsconfig.json",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--composite",
+        "false",
+        "--noCheck",
+        "false",
+        "--pretty",
+        "false"
+      ],
+      "samples": [
+        {
+          "engine": "public",
+          "wallMs": 14043.086434
+        },
+        {
+          "engine": "go",
+          "wallMs": 29422.396784
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 25236.55967
+        },
+        {
+          "engine": "candidate",
+          "wallMs": 24696.08784
+        },
+        {
+          "engine": "go",
+          "wallMs": 23756.021095
+        },
+        {
+          "engine": "public",
+          "wallMs": 14843.851762
+        }
+      ],
+      "medianMs": {
+        "public": 14443.469098000001,
+        "go": 26589.2089395,
+        "candidate": 24966.323754999998
+      }
+    }
+  }
+}
