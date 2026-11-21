@@ -386,3 +386,5 @@
 | Size-aware heap page advice | vscode | Native tsc-ts | 19891.66 | 30906.77 | 0.644× | 3 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
 | Size-aware heap page advice | sentry | Matched Go control | 28771.63 | 24526.12 | 1.173× | 3 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
 | Size-aware heap page advice | sentry | Native tsc-ts | 12653.68 | 24526.12 | 0.516× | 3 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
+| Grouped pointer-table probes | sentry | Size-aware Go | 36018.03 | 34977.97 | 1.030× | 4 | Paired median 1.035×. [Samples](benchmarks/profiles/grouped-pointer-probes/screen.json.gz) |
+| Grouped pointer-table probes | typeorm | Size-aware Go | 4422.36 | 4552.33 | 0.971× | 4 | Paired median 0.978×. [Samples](benchmarks/profiles/grouped-pointer-probes/screen.json.gz) |
