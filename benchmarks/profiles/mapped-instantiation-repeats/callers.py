@@ -39,6 +39,9 @@ for lineno,line in enumerate(source,1):
         branch_at[lineno]=branch
 by_branch=Counter()
 conditional_lines=Counter()
+evaluation_lines=Counter()
+true_branch_kinds=Counter()
+true_union_sites=Counter()
 counts=Counter()
 total=0
 for line in samples.splitlines():
@@ -46,6 +49,21 @@ for line in samples.splitlines():
     if not m: continue
     ns=int(m[1]); total+=ns
     stack=[f for a in map(int,m[2].split()) for f in frames[a]]
+    evaluation=next((f for f in reversed(stack) if f[0]==prefix+"checker.(*Checker).getConditionalType"),None)
+    if evaluation:
+        n=evaluation[2]
+        evaluation_lines[f"{n} {source[n-1].strip()}"]+=ns
+        if source[n-1].strip()=="result = c.instantiateType(trueType, trueMapper)":
+            for frame in reversed(stack[:max(i for i,f in enumerate(stack) if f==evaluation)]):
+                if frame[0]==prefix+"checker.(*Checker).instantiateTypeWorker":
+                    line=frame[2]
+                    kind=branch_at[line]
+                    true_branch_kinds[kind]+=ns
+                    if kind=="flags&TypeFlagsUnionOrIntersection != 0":
+                        true_union_sites[f"{line} {source[line-1].strip()}"]+=ns
+                    break
+            else:
+                true_branch_kinds["outside worker"]+=ns
     outer=next((i for i in range(len(stack)-1,-1,-1) if stack[i][0] in entries),None)
     if outer is not None:
         if outer+1==len(stack):
@@ -69,6 +87,9 @@ report=dict(totalCpuNs=total,instantiationCpuNs=sum(counts.values()),callersNs=d
 assert sum(by_branch.values())==sum(ns for caller,ns in counts.items()
                                     if caller.startswith("checker.(*Checker).getTypeAliasInstantiation "))
 assert sum(conditional_lines.values())==by_branch["flags&TypeFlagsConditional != 0"]
+report["selectedTrueUnionOrIntersectionSiteNs"]=dict(true_union_sites.most_common())
+report["selectedTrueBranchWorkerNs"]=dict(true_branch_kinds.most_common())
+report["outerConditionalEvaluationSiteNs"]=dict(evaluation_lines.most_common())
 report["aliasMissConditionalSiteNs"]=dict(conditional_lines.most_common())
 report["aliasMissWorkerBranchNs"]=dict(by_branch.most_common())
 (here/"callers.json").write_text(json.dumps(report,indent=2)+"\n")

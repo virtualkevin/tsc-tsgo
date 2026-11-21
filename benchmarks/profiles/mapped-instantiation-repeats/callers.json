@@ -35,6 +35,40 @@
     "checker.(*Checker).getTypeParametersForMapper.func1 checker/checker.go:19213": 10000000,
     "checker.(*Checker).instantiateInstantiableTypes checker/checker.go:30686": 10000000
   },
+  "selectedTrueUnionOrIntersectionSiteNs": {
+    "22148 newTypes := c.instantiateTypes(types, m)": 5170000000,
+    "22158 return c.getUnionTypeEx(newTypes, UnionReductionLiteral, alias, nil /*origin*/)": 90000000,
+    "22156 return c.getIntersectionTypeEx(newTypes, IntersectionFlagsNone, alias)": 40000000
+  },
+  "selectedTrueBranchWorkerNs": {
+    "flags&TypeFlagsUnionOrIntersection != 0": 5300000000,
+    "flags&TypeFlagsIndexedAccess != 0": 240000000,
+    "flags&TypeFlagsObject != 0": 110000000,
+    "flags&TypeFlagsConditional != 0": 30000000,
+    "outside worker": 20000000,
+    "flags&TypeFlagsTypeParameter != 0": 10000000
+  },
+  "outerConditionalEvaluationSiteNs": {
+    "24368 result = c.instantiateType(trueType, trueMapper)": 5710000000,
+    "24318 if inferredExtendsType.flags&TypeFlagsAnyOrUnknown == 0 && (checkType.flags&TypeFlagsAny != 0 || !c.isTypeAssignableTo(c.getPermissiveInstantiation(checkType), c.getPermissiveInstantiation(inferredExtendsType))) {": 1320000000,
+    "24294 c.inferTypes(context.inferences, checkType, extendsType, InferencePriorityNoConstraints|InferencePriorityAlwaysStrict, false)": 850000000,
+    "24255 checkType := c.instantiateType(c.getActualTypeVariable(root.checkType), mapper)": 340000000,
+    "24348 result = c.instantiateType(falseType, mapper)": 290000000,
+    "24308 inferredExtendsType = c.instantiateType(root.extendsType, combinedMapper)": 170000000,
+    "24356 if inferredExtendsType.flags&TypeFlagsAnyOrUnknown != 0 || c.isTypeAssignableTo(c.getRestrictiveInstantiation(checkType), c.getRestrictiveInstantiation(inferredExtendsType)) {": 170000000,
+    "24256 extendsType := c.instantiateType(root.extendsType, mapper)": 150000000,
+    "24269 checkTypeDeferred := c.isDeferredType(checkType, checkTuples)": 70000000,
+    "24357 trueType := c.getTypeFromTypeNode(root.node.TrueType)": 50000000,
+    "24373 result = c.newConditionalType(root, mapper, combinedMapper)": 50000000,
+    "24331 falseType := c.getTypeFromTypeNode(root.node.FalseType)": 30000000,
+    "24327 extraTypes = append(extraTypes, c.instantiateType(c.getTypeFromTypeNode(root.node.TrueType), core.OrElse(combinedMapper, mapper)))": 20000000,
+    "24286 context := c.newInferenceContext(root.inferTypeParameters, nil /*signature*/, InferenceFlagsNone, nil)": 20000000,
+    "24257 if checkType == c.errorType || extendsType == c.errorType {": 10000000,
+    "24251 if tailCount == 1000 {": 10000000,
+    "24313 if !checkTypeDeferred && !c.isDeferredType(inferredExtendsType, checkTuples) {": 10000000,
+    "24359 if newRoot, newRootMapper := c.getTailRecursionRoot(trueType, trueMapper); newRoot != nil {": 10000000,
+    "24382 return c.getUnionType(append(extraTypes, result))": 10000000
+  },
   "aliasMissConditionalSiteNs": {
     "22407 result = c.getConditionalType(root, newMapper, forConstraint, alias)": 4390000000,
     "22403 result = c.mapTypeWithAlias(distributionType, func(t *Type) *Type {": 1120000000,
