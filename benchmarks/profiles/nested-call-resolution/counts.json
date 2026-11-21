@@ -1,0 +1,121 @@
+{
+  "observerSha256": "a0ee99089d9ec5d6edd13d52be646dd58803f7d9396d924ff2048b51fcecf565",
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "counts": {
+        "other": {
+          "requests": 4111,
+          "hits": 1039,
+          "firstResolution": 3025,
+          "activeReentry": 7,
+          "candidateListRecheck": 0,
+          "deferredMarkerRecheck": 40,
+          "otherRepeat": 0,
+          "usedInnerResult": 14,
+          "restoredForFlow": 0,
+          "returnedMarker": 40
+        },
+        "callUnderInitializerArgumentInference": {
+          "requests": 326,
+          "hits": 70,
+          "firstResolution": 218,
+          "activeReentry": 0,
+          "candidateListRecheck": 0,
+          "deferredMarkerRecheck": 38,
+          "otherRepeat": 0,
+          "usedInnerResult": 1,
+          "restoredForFlow": 0,
+          "returnedMarker": 38
+        }
+      }
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "counts": {
+        "other": {
+          "requests": 102730,
+          "hits": 14417,
+          "firstResolution": 88311,
+          "activeReentry": 0,
+          "candidateListRecheck": 0,
+          "deferredMarkerRecheck": 0,
+          "otherRepeat": 2,
+          "usedInnerResult": 36,
+          "restoredForFlow": 2,
+          "returnedMarker": 0
+        },
+        "callUnderInitializerArgumentInference": {
+          "requests": 880,
+          "hits": 135,
+          "firstResolution": 745,
+          "activeReentry": 0,
+          "candidateListRecheck": 0,
+          "deferredMarkerRecheck": 0,
+          "otherRepeat": 0,
+          "usedInnerResult": 0,
+          "restoredForFlow": 0,
+          "returnedMarker": 0
+        }
+      }
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "counts": {
+        "other": {
+          "requests": 1721641,
+          "hits": 373415,
+          "firstResolution": 1345530,
+          "activeReentry": 92,
+          "candidateListRecheck": 0,
+          "deferredMarkerRecheck": 1237,
+          "otherRepeat": 1367,
+          "usedInnerResult": 86,
+          "restoredForFlow": 1393,
+          "returnedMarker": 1237
+        },
+        "callUnderInitializerArgumentInference": {
+          "requests": 47665,
+          "hits": 5092,
+          "firstResolution": 41679,
+          "activeReentry": 4,
+          "candidateListRecheck": 0,
+          "deferredMarkerRecheck": 884,
+          "otherRepeat": 6,
+          "usedInnerResult": 4,
+          "restoredForFlow": 21,
+          "returnedMarker": 884
+        }
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "counts": {
+        "other": {
+          "requests": 558452,
+          "hits": 107135,
+          "firstResolution": 450732,
+          "activeReentry": 53,
+          "candidateListRecheck": 0,
+          "deferredMarkerRecheck": 516,
+          "otherRepeat": 16,
+          "usedInnerResult": 168,
+          "restoredForFlow": 18,
+          "returnedMarker": 516
+        },
+        "callUnderInitializerArgumentInference": {
+          "requests": 19361,
+          "hits": 3356,
+          "firstResolution": 15906,
+          "activeReentry": 17,
+          "candidateListRecheck": 0,
+          "deferredMarkerRecheck": 82,
+          "otherRepeat": 0,
+          "usedInnerResult": 14,
+          "restoredForFlow": 0,
+          "returnedMarker": 82
+        }
+      }
+    }
+  }
+}
