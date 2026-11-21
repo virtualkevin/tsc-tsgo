@@ -1,0 +1,82 @@
+package checker
+
+import (
+	"sync"
+	"time"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type propsKey struct {
+	node      *ast.Node
+	signature *Signature
+}
+
+type propsCounts struct {
+	Calls, Repeat, Changed, Active       int64
+	TotalNs, RepeatNs, ChangedNs         int64
+	Instantiations, RepeatInstantiations int64
+}
+
+type propsProbe struct {
+	last               map[propsKey]*Type
+	active             map[propsKey]int
+	totals             propsCounts
+	childNs, childInst int64
+}
+
+var propsWorkers struct {
+	sync.Mutex
+	list []*propsProbe
+}
+
+func (c *Checker) getEffectiveFirstArgumentForJsxSignature(sig *Signature, node *ast.Node) *Type {
+	p := &c.propsProbe
+	if p.last == nil {
+		p.last = make(map[propsKey]*Type)
+		p.active = make(map[propsKey]int)
+		propsWorkers.Lock()
+		propsWorkers.list = append(propsWorkers.list, p)
+		propsWorkers.Unlock()
+	}
+	key := propsKey{node, sig}
+	prev, repeat := p.last[key]
+	active := p.active[key] != 0
+	p.active[key]++
+	outerNs, outerInst := p.childNs, p.childInst
+	p.childNs, p.childInst = 0, 0
+	startInst := int64(c.TotalInstantiationCount)
+	start := time.Now()
+	result := c.computeEffectiveJsxProps(sig, node)
+	elapsed := time.Since(start).Nanoseconds()
+	inst := int64(c.TotalInstantiationCount) - startInst
+	selfNs, selfInst := elapsed-p.childNs, inst-p.childInst
+	p.childNs, p.childInst = outerNs+elapsed, outerInst+inst
+	p.active[key]--
+	p.last[key] = result
+	p.totals.Calls++
+	p.totals.TotalNs += selfNs
+	p.totals.Instantiations += selfInst
+	if active {
+		p.totals.Active++
+	} else if repeat {
+		p.totals.Repeat++
+		p.totals.RepeatNs += selfNs
+		p.totals.RepeatInstantiations += selfInst
+		if result != prev {
+			p.totals.Changed++
+			p.totals.ChangedNs += selfNs
+		}
+	}
+	return result
+}
+
+func PropsReport() []propsCounts {
+	propsWorkers.Lock()
+	defer propsWorkers.Unlock()
+	var result []propsCounts
+	for _, p := range propsWorkers.list {
+		result = append(result, p.totals)
+	}
+	return result
+}

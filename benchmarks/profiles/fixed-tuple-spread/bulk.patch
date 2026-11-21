@@ -1,0 +1,19 @@
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -23318,8 +23318,14 @@
+ 				}
+ 				// Spread variadic elements with tuple types into the resulting tuple.
+ 				spreadInfos := t.TargetTupleType().elementInfos
+-				for j, s := range spreadTypes {
+-					n.add(s, spreadInfos[j])
++				if len(spreadTypes) != 0 && t.TargetTupleType().combinedFlags == ElementFlagsRequired {
++					n.types = append(n.types, spreadTypes...)
++					n.infos = append(n.infos, spreadInfos[:len(spreadTypes)]...)
++					n.lastRequiredIndex = len(n.types) - 1
++				} else {
++					for j, s := range spreadTypes {
++						n.add(s, spreadInfos[j])
++					}
+ 				}
+ 			} else {
+ 				// Treat everything else as an array type and create a rest element.

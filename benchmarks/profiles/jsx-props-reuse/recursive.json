@@ -1,0 +1,33 @@
+{
+  "args": [
+    "--ignoreConfig",
+    "--noEmit",
+    "--strict",
+    "--pretty",
+    "false",
+    "--target",
+    "es2022",
+    "--jsx",
+    "preserve",
+    "--noLib",
+    "/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib/lib.es5.d.ts",
+    "/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib/lib.decorators.d.ts",
+    "/tmp/tsc-public-002/node_modules/@tsc-ts/linux-x64-gnu/lib/lib.decorators.legacy.d.ts",
+    "benchmarks/validation/jsx-constructor-diagnostics/recursive-managed-attributes.tsx"
+  ],
+  "exit": 1,
+  "diagnostics": "benchmarks/validation/jsx-constructor-diagnostics/recursive-managed-attributes.tsx(7,15): error TS2589: Type instantiation is excessively deep and possibly infinite.\nbenchmarks/validation/jsx-constructor-diagnostics/recursive-managed-attributes.tsx(8,16): error TS2589: Type instantiation is excessively deep and possibly infinite.\n",
+  "workers": [
+    {
+      "Calls": 2,
+      "Repeat": 0,
+      "Changed": 0,
+      "Active": 0,
+      "TotalNs": 4112872,
+      "RepeatNs": 0,
+      "ChangedNs": 0,
+      "Instantiations": 10008,
+      "RepeatInstantiations": 0
+    }
+  ]
+}
