@@ -35,6 +35,20 @@ def program(width, error, mapped):
             " | ".join(variants) + " } } }\nexport const values = [\n" +
             ",\n".join(values) + "\n];\n")
 
+def grouped_program(width, error):
+    keys = " | ".join(f'"k{j}"' for j in range(256))
+    branches = []
+    for i in range(4):
+        mode = 'mode?: "text"; value: string' if i % 2 == 0 else 'mode: "number"; value: number'
+        branches.append(f"({{ [P in Keys]?: {i} }} & {{ {mode} }})")
+    values = ['<box value="ok" />'] * width
+    if error:
+        values.append('<box value={17} />')
+    return ("type Keys = " + keys + ";\n" +
+            "declare global { namespace JSX { interface Element {} interface IntrinsicElements { box: " +
+            " | ".join(branches) + " } } }\nexport const values = [\n" +
+            ",\n".join(values) + "\n];\n")
+
 def invoke(engine, args, cwd):
     start = time.perf_counter_ns()
     run = subprocess.run([bins[engine], *flags, *args, "case.tsx"], cwd=cwd, env=env, capture_output=True, timeout=180)
@@ -42,13 +56,15 @@ def invoke(engine, args, cwd):
 
 if __name__ == "__main__":
     mapped = "--mapped" in sys.argv[1:]
-    bins = dict(zip(names, (Path(x).absolute() for x in sys.argv[1:] if x != "--mapped"), strict=True))
+    bins = dict(zip(names, (Path(x).absolute() for x in sys.argv[1:] if not x.startswith("--")), strict=True))
+    grouped = "--groups" in sys.argv[1:]
+    generate = grouped_program if grouped else lambda width, error: program(width, error, mapped)
     report = {"flags": flags, "binaries": {k: sha(v.read_bytes()) for k,v in bins.items()}, "widths": {}}
     with tempfile.TemporaryDirectory() as work:
         work = Path(work)
         for width in (16, 256, 1024):
             case = work / "case.tsx"
-            case.write_text(program(width, False, mapped))
+            case.write_text(generate(width, False))
             row = {"sourceSha256": sha(case.read_bytes()), "rounds": [], "correctness": {}}
             for order in (names, names[1:] + names[:1], names[2:] + names[:2]):
                 times = {}
@@ -57,7 +73,7 @@ if __name__ == "__main__":
                     assert (r.returncode, r.stdout, r.stderr) == (0,b"",b""), (engine,r.stdout,r.stderr)
                 row["rounds"].append(times)
             for error in (False, True):
-                case.write_text(program(width, error, mapped))
+                case.write_text(generate(width, error))
                 reference = None
                 for engine in names:
                     dest = work / (engine + str(width) + str(error))
@@ -71,4 +87,5 @@ if __name__ == "__main__":
                                                  "declarationSha256": sha(reference[3])}
             report["widths"][width] = row
             print(width, row, flush=True)
-    (here / ("mapped-scaling.json" if mapped else "scaling.json")).write_text(json.dumps(report, indent=2) + "\n")
+    filename = "groups-scaling.json" if grouped else "mapped-scaling.json" if mapped else "scaling.json"
+    (here / filename).write_text(json.dumps(report, indent=2) + "\n")
