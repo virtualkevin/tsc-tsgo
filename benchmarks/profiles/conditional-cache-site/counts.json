@@ -1,0 +1,43 @@
+{
+  "binarySha256": "a8223fdeb3cb3ac7cad9afd941d8efd870adf7eb7a337c95b01b36de0c5c0dd1",
+  "bits": [
+    "fixedInference",
+    "lowerQuality",
+    "equalQualityAfterReset",
+    "cachedNonMaxPriority",
+    "cachedOriginalSourceAndBranch",
+    "immediateBranchGuard"
+  ],
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "trueFalseMasks": {},
+      "resolvedRowsByDeclaration": {}
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "trueFalseMasks": {},
+      "resolvedRowsByDeclaration": {}
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "trueFalseMasks": {
+        "4,32": 35136,
+        "8,32": 5059584
+      },
+      "resolvedRowsByDeclaration": {
+        "/home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@74451 true=10000000 false=40000": 35380
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "trueFalseMasks": {
+        "32,1": 1,
+        "32,2": 1
+      },
+      "resolvedRowsByDeclaration": {
+        "static/app/components/core/form/field/selectField.tsx@1804 true=40000 false=80000": 2
+      }
+    }
+  }
+}

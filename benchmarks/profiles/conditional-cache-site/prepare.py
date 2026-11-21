@@ -30,7 +30,7 @@ change(site,site+"""
                     ct:=t.AsConditionalType()
                     node:=ct.root.node
                     if a,b:=ct.resolvedTrueType,ct.resolvedFalseType;a!=nil && b!=nil {
-                        loc:=ast.GetSourceFileOfNode(node).FileName()+"@"+strconv.Itoa(node.Pos())+" true="+strconv.FormatUint(uint64(a.flags),16)+" false="+strconv.FormatUint(uint64(b.flags),16)
+                        loc:=ast.GetSourceFileOfNode(node.AsNode()).FileName()+"@"+strconv.Itoa(node.Pos())+" true="+strconv.FormatUint(uint64(a.flags),16)+" false="+strconv.FormatUint(uint64(b.flags),16)
                         declMu.Lock(); declCounts[loc]++;declMu.Unlock()
                     }
                 }""")
