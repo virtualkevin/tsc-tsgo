@@ -500,3 +500,7 @@
 | Template index text guard | Generated 1536 template keys | Previous shipping Go | 6873.92 | 376.52 | 18.256× | 5 | Cold processes, rotating order, clean checks. [Samples](benchmarks/profiles/template-index-ranges/scale.json) |
 | Template index text guard | Generated 1536 template keys | npm tsc-ts@0.0.2 | 474.47 | 376.52 | 1.260× | 5 | Cold processes, rotating order, clean checks. [Samples](benchmarks/profiles/template-index-ranges/scale.json) |
 | Wide template index ranges | Generated 1536 template keys | Matched ordinary Go with text guard | 363.14 | 326.53 | 1.112× | 5 | Cold processes, rotating order, clean checks. [Samples](benchmarks/profiles/template-index-ranges/scale.json) |
+| Template index prefix/suffix guard | vscode | npm tsc-ts@0.0.2 | 28502.81 | 47912.19 | 0.595× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/public.json.gz) |
+| Template index prefix/suffix guard | sentry | npm tsc-ts@0.0.2 | 20674.21 | 32810.98 | 0.630× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/public.json.gz) |
+| Template index prefix/suffix guard | typeorm | npm tsc-ts@0.0.2 | 1846.51 | 3521.34 | 0.524× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/public.json.gz) |
+| Template index prefix/suffix guard | trpc | npm tsc-ts@0.0.2 | 550.94 | 681.62 | 0.808× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/public.json.gz) |
