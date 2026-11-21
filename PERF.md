@@ -561,3 +561,10 @@
 | Delay object instantiation allocations | sentry | Matched ordinary Go build | 25215.99 | 24719.50 | 1.020× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/object-instantiation-hits/screen.json.gz) |
 | Delay object instantiation allocations | typeorm | Matched ordinary Go build | 2546.55 | 2581.76 | 0.986× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/object-instantiation-hits/screen.json.gz) |
 | Delay object instantiation allocations | trpc | Matched ordinary Go build | 597.79 | 588.29 | 1.016× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/object-instantiation-hits/screen.json.gz) |
+| JSX absent-member replay prototype | sentry | Matched ordinary Go build | 22330.08 | 20911.46 | 1.068× | 4 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/replay-sentry.json.gz) |
+| JSX absent-member replay prototype | 16 generated JSX elements | Matched ordinary Go build | 91.78 | 87.58 | 1.048× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
+| JSX absent-member replay prototype | 16 generated JSX elements | Public npm tsc-ts@0.0.2 | 148.01 | 87.58 | 1.690× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
+| JSX absent-member replay prototype | 256 generated JSX elements | Matched ordinary Go build | 125.08 | 114.29 | 1.094× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
+| JSX absent-member replay prototype | 256 generated JSX elements | Public npm tsc-ts@0.0.2 | 172.01 | 114.29 | 1.505× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
+| JSX absent-member replay prototype | 1024 generated JSX elements | Matched ordinary Go build | 197.28 | 110.67 | 1.783× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
+| JSX absent-member replay prototype | 1024 generated JSX elements | Public npm tsc-ts@0.0.2 | 241.49 | 110.67 | 2.182× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
