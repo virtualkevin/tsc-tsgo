@@ -480,3 +480,5 @@
 | Triangular pointer probes | sentry | Matched ordinary Go build | 38337.84 | 39015.62 | 0.983× | 2 | Counter-free cold checks. [Samples](benchmarks/profiles/shipped-cpu-costs/triangular-screen.json.gz) |
 | Triangular pointer probes | typeorm | Matched ordinary Go build | 3483.87 | 3601.56 | 0.967× | 2 | Counter-free cold checks. [Samples](benchmarks/profiles/shipped-cpu-costs/triangular-screen.json.gz) |
 | Triangular pointer probes | trpc | Matched ordinary Go build | 686.10 | 707.32 | 0.970× | 2 | Counter-free cold checks. [Samples](benchmarks/profiles/shipped-cpu-costs/triangular-screen.json.gz) |
+| Shipped Go vs public npm CLI | typeorm | npm tsc-ts@0.1.5 | 1422.38 | 4005.86 | 0.355× | 2 | Published launcher and release libraries. [Samples](benchmarks/profiles/public-npm/0.1.5-typeorm.json.gz) |
+| Shipped Go vs public npm CLI | trpc | npm tsc-ts@0.1.5 | 416.67 | 822.42 | 0.507× | 2 | Published launcher and release libraries. [Samples](benchmarks/profiles/public-npm/0.1.5-trpc.json.gz) |
