@@ -54,7 +54,7 @@ s = replace(s, site, """row := &matchingWork[kind][inferenceWidth(len(sources))]
 	""" + site)
 s = replace(s, "if matches(c, s, t) {", "if matches(c, s, t) {\n hits++")
 # Measure the candidate condition without skipping any comparisons.
-candidate = (root/path).read_text()
+candidate = subprocess.check_output(["git", "show", f"8d9a8c3:packages/tsc-go/{path}"], cwd=root, text=True)
 start = candidate.index("func mayHaveCloseMatch")
 end = candidate.index("func (c *Checker) isTypeCloselyMatchedBy", start)
 s += "\n" + candidate[start:end]

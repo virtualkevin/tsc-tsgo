@@ -506,3 +506,7 @@
 | Template index prefix/suffix guard | trpc | npm tsc-ts@0.0.2 | 550.94 | 681.62 | 0.808× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/public.json.gz) |
 | Template index guard with numeric fallback out of line | typeorm | Previous shipping Go (before guard) | 2610.49 | 2696.61 | 0.968× | 5 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-inlining/small.json.gz) |
 | Template index guard with numeric fallback out of line | trpc | Previous shipping Go (before guard) | 491.40 | 511.81 | 0.960× | 5 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-inlining/small.json.gz) |
+| Wide union close-match prefilter | vscode | Matched ordinary Go build | 49480.51 | 49949.81 | 0.991× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/union-inference-work/screen.json.gz) |
+| Wide union close-match prefilter | sentry | Matched ordinary Go build | 35070.88 | 33197.96 | 1.056× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/union-inference-work/screen.json.gz) |
+| Wide union close-match prefilter | typeorm | Matched ordinary Go build | 3652.04 | 3470.09 | 1.052× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/union-inference-work/screen.json.gz) |
+| Wide union close-match prefilter | trpc | Matched ordinary Go build | 851.85 | 712.78 | 1.195× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/union-inference-work/screen.json.gz) |
