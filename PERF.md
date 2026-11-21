@@ -525,3 +525,7 @@
 | Conditional inference with one never branch | sentry | Matched ordinary Go build | 25372.48 | 23829.39 | 1.065× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/conditional-never/screen.json.gz) |
 | Conditional inference with one never branch | typeorm | Matched ordinary Go build | 2628.57 | 2539.46 | 1.035× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/conditional-never/screen.json.gz) |
 | Conditional inference with one never branch | trpc | Matched ordinary Go build | 519.21 | 485.02 | 1.070× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/conditional-never/screen.json.gz) |
+| Direct simple parameter substitution | vscode | Matched ordinary Go build | 47701.13 | 46260.12 | 1.031× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/direct-parameter-substitution/screen.json.gz) |
+| Direct simple parameter substitution | sentry | Matched ordinary Go build | 32640.84 | 32979.89 | 0.990× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/direct-parameter-substitution/screen.json.gz) |
+| Direct simple parameter substitution | typeorm | Matched ordinary Go build | 3226.23 | 3530.24 | 0.914× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/direct-parameter-substitution/screen.json.gz) |
+| Direct simple parameter substitution | trpc | Matched ordinary Go build | 614.20 | 669.83 | 0.917× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/direct-parameter-substitution/screen.json.gz) |

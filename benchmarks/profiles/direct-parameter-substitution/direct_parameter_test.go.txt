@@ -1,0 +1,26 @@
+package checker
+
+import "testing"
+
+func TestDirectParameterSubstitutionLimitsAndCache(t *testing.T) {
+	c := activeMapperTestChecker()
+	param, other := c.newTypeParameter(nil), c.newTypeParameter(nil)
+	target := c.newIntrinsicType(TypeFlagsString, "string")
+	m := newSimpleTypeMapper(param, target)
+	if c.instantiateType(param, m) != target || c.instantiateType(other, m) != other {
+		t.Fatal("incorrect substitution")
+	}
+	if c.TotalInstantiationCount != 2 || c.instantiationCount != 2 || c.instantiationDepth != 0 || len(c.activeMappers) != 0 {
+		t.Fatal("incorrect state after direct substitution")
+	}
+	c.pushActiveMapper(m)
+	defer c.popActiveMapper()
+	for range 2 {
+		if c.instantiateType(param, m) != target {
+			t.Fatal("incorrect active substitution")
+		}
+	}
+	if c.TotalInstantiationCount != 3 || c.instantiationCount != 3 {
+		t.Fatal("active mapper failed to reuse the result")
+	}
+}
