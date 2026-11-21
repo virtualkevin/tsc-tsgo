@@ -15,16 +15,27 @@ out = Path(sys.argv[1]).resolve()
 overlay = json.loads((out / "overlay.json").read_text())
 path = out / "lazy_properties.go"
 source = path.read_text().replace('"slices"', '"slices"\n "sync/atomic"')
-source = source.replace("type entry struct {", """acceptedPairs.Add(1)
-    acceptedNames.Add(uint64(len(properties)))
-    type entry struct {""")
-source = source.replace("if properties[i-1].Name >= properties[i].Name {", """if properties[i-1].Name >= properties[i].Name {
-        rejectedPairs.Add(1)
-        rejectedNames.Add(uint64(len(properties)))""")
+layout = len(sys.argv) > 3 and sys.argv[3] == "layout"
+if layout:
+    assert source.count("seen := make(map[string]struct{}, len(properties))") == 1
+    assert source.count("return false, false") == 1
+    assert source.count("symbols := slices.Clone(properties)") == 1
+    source = source.replace("seen := make(map[string]struct{}, len(properties))",
+                            "rebuiltPairs.Add(1); rebuiltNames.Add(uint64(len(properties)))\n seen := make(map[string]struct{}, len(properties))")
+    source = source.replace("return false, false", "rejectedPairs.Add(1); rejectedNames.Add(uint64(len(properties))); return false, false")
+    source = source.replace("symbols := slices.Clone(properties)",
+                            "acceptedPairs.Add(1); acceptedNames.Add(uint64(len(properties))); symbols := slices.Clone(properties)")
+else:
+    source = source.replace("type entry struct {", """acceptedPairs.Add(1)
+        acceptedNames.Add(uint64(len(properties)))
+        type entry struct {""")
+    source = source.replace("if properties[i-1].Name >= properties[i].Name {", """if properties[i-1].Name >= properties[i].Name {
+            rejectedPairs.Add(1)
+            rejectedNames.Add(uint64(len(properties)))""")
 source += """
-var acceptedPairs, acceptedNames, rejectedPairs, rejectedNames atomic.Uint64
-func OrderedPairCounts() [4]uint64 {
-    return [4]uint64{acceptedPairs.Load(), acceptedNames.Load(), rejectedPairs.Load(), rejectedNames.Load()}
+var acceptedPairs, acceptedNames, rejectedPairs, rejectedNames, rebuiltPairs, rebuiltNames atomic.Uint64
+func OrderedPairCounts() []uint64 {
+    return []uint64{acceptedPairs.Load(), acceptedNames.Load(), rejectedPairs.Load(), rejectedNames.Load(), rebuiltPairs.Load(), rebuiltNames.Load()}
 }
 """
 observed = out / "observed.go"
@@ -43,7 +54,13 @@ subprocess.run([sys.argv[2], "build", "-buildvcs=false", "-overlay=" + str(confi
 report = {"binarySha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
           "columns": ["acceptedPairs", "acceptedNames", "unorderedPairs", "unorderedNames"], "projects": {}}
 for name, commit, counts in observed_projects(binary):
-    assert len(counts) == 4 and counts[1] >= 9 * counts[0] and counts[3] >= 9 * counts[2]
+    assert len(counts) == 6 and counts[1] >= 9 * counts[0] and counts[3] >= 9 * counts[2]
+    if layout:
+        report["columns"] = ["acceptedPairs", "acceptedNames", "duplicatePairs", "duplicateNames", "planMissesIncludingDuplicates", "namesOnPlanMisses"]
+        assert counts[2] <= counts[4] <= counts[0] + counts[2]
+    else:
+        assert counts[4:] == [0, 0]
+        counts = counts[:4]
     report["projects"][name] = {"commit": commit, "counts": counts}
     print(name, counts, flush=True)
-(here / "coverage.json").write_text(json.dumps(report, indent=2) + "\n")
+(here / ("layout-coverage.json" if layout else "coverage.json")).write_text(json.dumps(report, indent=2) + "\n")

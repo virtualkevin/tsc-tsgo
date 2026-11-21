@@ -1,0 +1,34 @@
+
+func TestReductionPlanUsesCurrentSymbols(t *testing.T) {
+	c := lazyPropertyTestChecker()
+	// Declaration order is arbitrary, and the conflict is last.
+	names := []string{"q", "h", "k", "p", "f", "x", "m", "d", "tag"}
+	a := c.newLiteralType(TypeFlagsStringLiteral, "a", nil)
+	b := c.newLiteralType(TypeFlagsStringLiteral, "b", nil)
+	check := func(last *Type, duplicate bool) (bool, bool) {
+		props := make([]*ast.Symbol, len(names))
+		for i, name := range names {
+			props[i] = lazyProperty(c, name, c.numberType, false)
+		}
+		props[len(props)-1] = lazyProperty(c, "tag", last, false)
+		if duplicate {
+			props[1] = lazyProperty(c, props[0].Name, c.numberType, false)
+		}
+		left := lazyObject(c, props...)
+		right := lazyObject(c, lazyProperty(c, "tag", a, false))
+		t := c.newIntersectionType(ObjectFlagsNone, []*Type{left, right})
+		return c.reduceOrderedPair(t, right, props)
+	}
+	if empty, handled := check(a, false); empty || !handled {
+		t.Fatal("initial layout failed to accept identical tags")
+	}
+	if empty, handled := check(b, false); !empty || !handled {
+		t.Fatal("reused layout missed the new symbol's conflicting tag")
+	}
+	if _, handled := check(b, true); handled {
+		t.Fatal("duplicate names were accepted after a layout hit")
+	}
+	if empty, handled := check(a, false); empty || !handled {
+		t.Fatal("duplicate-name fallback corrupted the previous layout")
+	}
+}

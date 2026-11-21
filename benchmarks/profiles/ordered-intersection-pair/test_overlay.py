@@ -15,6 +15,9 @@ source = source.replace('"p0"', '"p000"').replace('8, 9, 16}', '8, 9, 16, 256}')
 source = source.replace('lazyProperty(c, "p000", b, optional)',
                         'lazyProperty(c, fmt.Sprintf("p%03d", width-1), b, optional)')
 dest = out / "ordered_pair_test.go"
-dest.write_text(source + (here / "bench.go.txt").read_text())
+source += (here / "bench.go.txt").read_text()
+if len(sys.argv) > 2 and sys.argv[2] == "layout":
+    source += (here / "layout_test.go.txt").read_text()
+dest.write_text(source)
 config["Replace"][str(root / "internal/checker/ordered_pair_test.go")] = str(dest)
 (out / "test-overlay.json").write_text(json.dumps(config))
