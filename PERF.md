@@ -568,3 +568,4 @@
 | JSX absent-member replay prototype | 256 generated JSX elements | Public npm tsc-ts@0.0.2 | 172.01 | 114.29 | 1.505× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
 | JSX absent-member replay prototype | 1024 generated JSX elements | Matched ordinary Go build | 197.28 | 110.67 | 1.783× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
 | JSX absent-member replay prototype | 1024 generated JSX elements | Public npm tsc-ts@0.0.2 | 241.49 | 110.67 | 2.182× | 3 | Fresh checks. [Samples](benchmarks/profiles/jsx-absent-discriminants/scaling.json) |
+| Current resolved mapped-property check | sentry | Matched ordinary Go build | 31198.46 | 31190.62 | 1.000× | 4 | Fresh checks, alternating order. [Samples](benchmarks/profiles/jsx-absent-discriminants/resolved-sentry.json.gz) |
