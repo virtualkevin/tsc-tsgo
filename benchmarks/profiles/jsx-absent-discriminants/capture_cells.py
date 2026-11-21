@@ -34,5 +34,11 @@ if "columns" in report["sentry"]:
     assert sum(row[2] for row in columns) == sum(report["sentry"]["cells"][7][1:3])
     report["columnRows"] = ["nonePositiveMapped","somePositiveMapped","allPositiveMapped"]
     report["columnMetrics"] = ["columns","eligibleConstituents","positiveMapped","distinctMappedSymbolsSummedAcrossColumns","positiveRuns"]
+if "neutral" in report["sentry"]:
+    filename = "neutral.json"
+    neutral = report["sentry"]["neutral"]
+    assert sum(row[1] for row in neutral) == sum(row[1] for row in columns)
+    report["neutralRows"] = ["noPriorFullCoverage","predictedAndAllPositive","predictedWithExceptions","firstFullCoverage"]
+    report["neutralMetrics"] = ["columns","eligibleConstituents","positiveMapped"]
 (here/filename).write_text(json.dumps(report,indent=2)+"\n")
 print(report,flush=True)

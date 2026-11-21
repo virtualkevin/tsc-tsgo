@@ -124,4 +124,46 @@ if "--columns" in sys.argv[2:]:
         }
         // Turn each Ternary.Maybe""")
     relater.write_text(s[:start]+body+s[end:])
+if "--neutral" in sys.argv[2:]:
+    assert "--columns" in sys.argv[2:]
+    checker = out/"checker.go"
+    s = checker.read_text().replace("type Checker struct {", """type neutralJsxKey struct {
+        target *Type
+        member *ast.Symbol
+    }
+    type Checker struct {
+        neutralJsxSeen map[neutralJsxKey]bool""")
+    s = s.replace("var jsxColumns", "var jsxNeutral [4][3]atomic.Uint64\nvar jsxColumns")
+    s = s.replace('return map[string][][]uint64{"cells":cells, "passes":passes, "columns":columns}', """neutral := make([][]uint64, len(jsxNeutral))
+    for i := range neutral {
+        for j := range jsxNeutral[i] { neutral[i] = append(neutral[i], jsxNeutral[i][j].Load()) }
+    }
+    return map[string][][]uint64{"cells":cells,"passes":passes,"columns":columns,"neutral":neutral}""")
+    checker.write_text(s)
+    relater = out/"relater.go"
+    s = relater.read_text()
+    site = "if activeCells != 0 {"
+    assert s.count(site) == 1
+    s = s.replace(site, site + """
+            // Retain only observations that covered all original union constituents.
+            d := discriminator.(*ObjectLiteralDiscriminator)
+            key := neutralJsxKey{target, d.members[n]}
+            prior := c.neutralJsxSeen[key]
+            all := positive == activeCells
+            complete := all && activeCells == len(types)
+            bucket := 0
+            switch {
+            case prior && all: bucket = 1
+            case prior: bucket = 2
+            case complete: bucket = 3
+            }
+            if complete && !prior {
+                if c.neutralJsxSeen == nil { c.neutralJsxSeen = make(map[neutralJsxKey]bool) }
+                c.neutralJsxSeen[key] = true
+            }
+            jsxNeutral[bucket][0].Add(1)
+            jsxNeutral[bucket][1].Add(uint64(activeCells))
+            jsxNeutral[bucket][2].Add(uint64(positive))
+""")
+    relater.write_text(s)
 (out/"overlay.json").write_text(json.dumps({"Replace":files}))
