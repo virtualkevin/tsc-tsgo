@@ -1,0 +1,34 @@
+{
+  "release": {
+    "binarySha256": "6f4ec3a967faaf6ea9b1e4e5ec8c6a12776719741b657f192a8f7f4a5d2d1244",
+    "settings": [
+      "build\t-buildmode=exe",
+      "build\t-compiler=gc",
+      "build\t-gcflags=github.com/microsoft/typescript-go/...=-l=4",
+      "build\t-trimpath=true",
+      "build\tCGO_ENABLED=1",
+      "build\tGOARCH=amd64",
+      "build\tGOOS=linux",
+      "build\tGOAMD64=v1"
+    ]
+  },
+  "releaseCandidate": {
+    "binarySha256": "61df26d86c12a0fb755c5535e98e45a9a077916ce2cbca21cb6da8963babe0e6",
+    "settings": [
+      "build\t-buildmode=exe",
+      "build\t-compiler=gc",
+      "build\t-gcflags=github.com/microsoft/typescript-go/...=-l=4",
+      "build\t-trimpath=true",
+      "build\tCGO_ENABLED=1",
+      "build\tGOARCH=amd64",
+      "build\tGOOS=linux",
+      "build\tGOAMD64=v1"
+    ]
+  },
+  "overlay": {
+    "packages/tsc-go/internal/ast/ast_generated.go": "a4409e0b95f764340554225284650ac814a2b1aa9ac4086882464706cbf214ad",
+    "packages/tsc-go/internal/ast/ast.go": "9393a3cf385bd8b777f8ede2c3e0028dd1f49ee31038d38af8d805007763069a",
+    "packages/tsc-go/internal/parser/parser.go": "1e43454bfe26fdcaa385517bb80c4a1cfba36f7a7ecb66082b29da4c2b3fb941",
+    "packages/tsc-go/internal/core/arena.go": "a536d85e932a5211a360482ffe1bf90ac023478b697651de6874fb44cb56cad7"
+  }
+}

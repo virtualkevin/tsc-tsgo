@@ -16,8 +16,12 @@ for engine in ("public", "go", "candidate"):
     parser.add_argument(engine)
 parser.add_argument("--output", type=Path, default=here/"timings.json")
 parser.add_argument("--projects", nargs="+", choices=("vscode","sentry","typeorm","trpc"))
+parser.add_argument("--release-pair", nargs=2, metavar=("RELEASE", "RELEASE_CANDIDATE"),
+                    help="Include a matched shipping build pair in the same forward/reverse rounds")
 options = parser.parse_args()
 binaries = {engine:getattr(options,engine) for engine in ("public", "go", "candidate")}
+if options.release_pair:
+    binaries.update(zip(("release", "releaseCandidate"), options.release_pair))
 env = {k:v for k,v in os.environ.items() if not k.startswith(("TSC_", "SCRIPTC_", "TS_GO_", "GODEBUG", "GOGC", "GOMAXPROCS", "GOMEMLIMIT"))}
 env.update(ref["environment"]["compilerEnvironment"])
 def digest(path):
@@ -44,7 +48,7 @@ for i,project in enumerate(projects):
         listed = subprocess.run([binary,*args,"--listFilesOnly"],cwd=cwd,env=env,text=True,capture_output=True,check=True,timeout=480)
         assert not listed.stderr and sorted(os.path.relpath(cwd/path,cwd) for path in listed.stdout.splitlines()) == expected
     order = list(binaries)
-    order = order[i%3:] + order[:i%3]
+    order = order[i%len(order):] + order[:i%len(order)]
     rows = []
     for engine in (*order,*reversed(order)):
         start = time.monotonic_ns()
