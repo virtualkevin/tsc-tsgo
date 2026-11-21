@@ -1,0 +1,91 @@
+{
+  "flags": [
+    "--skipLibCheck",
+    "--strict",
+    "--pretty",
+    "false",
+    "--noEmit",
+    "main.ts"
+  ],
+  "sha256": {
+    "baseline": "b653e5a8ee4a6e2a0f8cee038a180fa67d3dcaa89079ebdb866226786970a996",
+    "candidate": "0ff2877276484d161a98f41e83dda2c134dc3874a8d5e4e053f68a4a66563b3a"
+  },
+  "widths": {
+    "1024": {
+      "inputSha256": "46d666eac03689d4446f23a7a16db0dd79fa442d1a0f5321e2f8e823491cfa8a",
+      "pairs": [
+        {
+          "baseline": 178.198938,
+          "candidate": 97.163696
+        },
+        {
+          "candidate": 101.6604,
+          "baseline": 170.427498
+        },
+        {
+          "baseline": 203.977967,
+          "candidate": 102.268777
+        },
+        {
+          "candidate": 113.147778,
+          "baseline": 209.749841
+        }
+      ],
+      "warmup": {
+        "candidate": 103.415078,
+        "baseline": 192.691511
+      }
+    },
+    "4096": {
+      "inputSha256": "5215274850635ce2e9495b22bd2066886ea7f29ca1169ae7b6e7d55ffe7032a6",
+      "pairs": [
+        {
+          "baseline": 1086.22043,
+          "candidate": 140.344367
+        },
+        {
+          "candidate": 159.670299,
+          "baseline": 1342.866484
+        },
+        {
+          "baseline": 1078.376418,
+          "candidate": 126.513536
+        },
+        {
+          "candidate": 138.258284,
+          "baseline": 1227.1248
+        }
+      ],
+      "warmup": {
+        "candidate": 158.140034,
+        "baseline": 1148.821818
+      }
+    },
+    "8192": {
+      "inputSha256": "3ccdfc2d70a51d8fce6228474d0b6c1cf947a70d1ce31db5eee07affa532b4bc",
+      "pairs": [
+        {
+          "baseline": 4456.046943,
+          "candidate": 221.88618
+        },
+        {
+          "candidate": 179.546884,
+          "baseline": 4615.273403
+        },
+        {
+          "baseline": 4658.769121,
+          "candidate": 220.607044
+        },
+        {
+          "candidate": 218.567359,
+          "baseline": 5515.944253
+        }
+      ],
+      "warmup": {
+        "candidate": 190.516573,
+        "baseline": 4794.294491
+      }
+    }
+  }
+}

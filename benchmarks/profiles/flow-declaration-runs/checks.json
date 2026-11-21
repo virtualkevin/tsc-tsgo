@@ -1,0 +1,19 @@
+{
+  "sha256": {
+    "baseline": "b653e5a8ee4a6e2a0f8cee038a180fa67d3dcaa89079ebdb866226786970a996",
+    "candidate": "0ff2877276484d161a98f41e83dda2c134dc3874a8d5e4e053f68a4a66563b3a",
+    "public": "4320a609131555b2541dfd308ed764b79ef43f22d27c6f008dd08b8e28ca8aff"
+  },
+  "variants": {
+    "False": {
+      "exitCode": 0,
+      "stdout": "",
+      "declarationSha256": "0009e7091b607097640a1665dd1a16de72b0977b101cdfa09c47fb810809e744"
+    },
+    "True": {
+      "exitCode": 2,
+      "stdout": "main.ts(13,22): error TS2551: Property 'toFixed' does not exist on type 'string'. Did you mean 'fixed'?\n",
+      "declarationSha256": "a6a817871c0c9513d297d90601101e519496579d348cab981657a61e4cceef4a"
+    }
+  }
+}
