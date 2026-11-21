@@ -1,0 +1,108 @@
+{
+  "binarySha256": "c6231e4d74f0aa965fce3e26499c81a61ca47a53fb10cc2fa095fcee52ac061b",
+  "rows": [
+    "no resident match",
+    "repeated object/index and identical result",
+    "repeated object/index and different result"
+  ],
+  "columns": [
+    "outer calls",
+    "descendant instantiations",
+    "calls with instantiation",
+    "calls changing current instantiation budget"
+  ],
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "counts": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "counts": [
+        [
+          211,
+          4217,
+          195,
+          195
+        ],
+        [
+          1560,
+          7543,
+          1488,
+          1488
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "counts": [
+        [
+          2013,
+          16262,
+          1784,
+          1787
+        ],
+        [
+          12204,
+          247872,
+          11036,
+          11036
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "counts": [
+        [
+          1339,
+          2701,
+          1277,
+          1277
+        ],
+        [
+          2030,
+          5641,
+          2030,
+          2030
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  }
+}
