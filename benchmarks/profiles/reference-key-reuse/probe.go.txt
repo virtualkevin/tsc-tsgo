@@ -1,0 +1,120 @@
+package checker
+
+import (
+	"sync"
+)
+
+type referenceKeyRequest struct {
+	target  *Type
+	include TypeFlags
+	origin  bool
+}
+
+type previousReferenceKeys struct {
+	object, keys *Type
+}
+
+type referenceKeyStats struct {
+	Misses, NoPredecessor, NonFinite, SameObject, Equal, Changed             uint64
+	EqualSymbols, ChangedSymbols, EqualInstantiations, ChangedInstantiations uint64
+}
+
+type referenceKeyProbe struct {
+	previous map[referenceKeyRequest]previousReferenceKeys
+	Stats    map[string]*referenceKeyStats
+}
+
+var keyReuseRegistry struct {
+	sync.Mutex
+	all []*referenceKeyProbe
+}
+
+func finiteStringKeys(t *Type) bool {
+	if t.flags == TypeFlagsStringLiteral || t.flags == TypeFlagsNever {
+		return true
+	}
+	if t.flags != TypeFlagsUnion {
+		return false
+	}
+	for _, k := range t.Types() {
+		if k.flags != TypeFlagsStringLiteral {
+			return false
+		}
+	}
+	return true
+}
+
+// Compare key text independently of the origin and the identity of the union.
+func equalStringKeys(a, b *Type) bool {
+	if a == b {
+		return true
+	}
+	if a.flags != b.flags {
+		return false
+	}
+	switch a.flags {
+	case TypeFlagsNever:
+		return true
+	case TypeFlagsStringLiteral:
+		return getStringLiteralValue(a) == getStringLiteralValue(b)
+	}
+	as, bs := a.Types(), b.Types()
+	if len(as) != len(bs) {
+		return false
+	}
+	for i, k := range as {
+		if k != bs[i] && getStringLiteralValue(k) != getStringLiteralValue(bs[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+func (c *Checker) observeReferenceKeys(t, keys *Type, include TypeFlags, origin bool, symbols, inst uint32) {
+	if t.flags != TypeFlagsObject || t.objectFlags&ObjectFlagsReference == 0 || t.Target() == t {
+		return
+	}
+	if c.referenceKeyProbe == nil {
+		p := &referenceKeyProbe{previous: make(map[referenceKeyRequest]previousReferenceKeys), Stats: make(map[string]*referenceKeyStats)}
+		keyReuseRegistry.Lock()
+		keyReuseRegistry.all = append(keyReuseRegistry.all, p)
+		keyReuseRegistry.Unlock()
+		c.referenceKeyProbe = p
+	}
+	p := c.referenceKeyProbe
+	target := t.Target()
+	key := referenceKeyRequest{target, include, origin}
+	label := "(anonymous)"
+	if target.symbol != nil {
+		label = target.symbol.Name
+	}
+	r := p.Stats[label]
+	if r == nil {
+		r = new(referenceKeyStats)
+		p.Stats[label] = r
+	}
+	r.Misses++
+	prev, ok := p.previous[key]
+	if !finiteStringKeys(keys) {
+		delete(p.previous, key)
+		r.NonFinite++
+		return
+	}
+	p.previous[key] = previousReferenceKeys{t, keys}
+	switch {
+	case !ok:
+		r.NoPredecessor++
+	case prev.object == t:
+		r.SameObject++
+	case equalStringKeys(keys, prev.keys):
+		r.Equal++
+		r.EqualSymbols += uint64(c.SymbolCount - symbols)
+		r.EqualInstantiations += uint64(c.TotalInstantiationCount - inst)
+	default:
+		r.Changed++
+		r.ChangedSymbols += uint64(c.SymbolCount - symbols)
+		r.ChangedInstantiations += uint64(c.TotalInstantiationCount - inst)
+	}
+}
+
+func ReferenceKeyResults() []*referenceKeyProbe { return keyReuseRegistry.all }

@@ -1,0 +1,153 @@
+{
+  "profileSha256": "4af6a596044f37bf68af8f6393c58d27cb6ae724c038f81204b7c154c27d9b4e",
+  "totalCpuNs": 116830000000,
+  "operations": {
+    "getLiteralTypeFromProperties": {
+      "inclusiveCpuNs": 1740000000,
+      "percent": 1.4893434905418128,
+      "topChildrenCpuNs": {
+        "getPropertiesOfType": 1010000000,
+        "getLiteralTypeFromProperty": 330000000,
+        "getUnionTypeEx": 260000000,
+        "runtime.mapaccess2": 50000000,
+        "newIndexType": 30000000
+      }
+    },
+    "resolvePendingObjectTypeMembers": {
+      "inclusiveCpuNs": 2260000000,
+      "percent": 1.9344346486347685,
+      "topChildrenCpuNs": {
+        "getPropertiesOfType": 880000000,
+        "instantiateType": 570000000,
+        "resolveStructuredTypeMembers": 560000000,
+        "getTypeWithThisArgument": 150000000,
+        "setPendingStructuredTypeMembers": 40000000
+      }
+    },
+    "isSignatureApplicable": {
+      "inclusiveCpuNs": 34270000000,
+      "percent": 29.33321920739536,
+      "topChildrenCpuNs": {
+        "checkApplicableSignatureForJsxCallLikeElement": 21440000000,
+        "checkExpressionWithContextualType": 7670000000,
+        "checkTypeRelatedToAndOptionallyElaborate": 4550000000,
+        "getTypeAtPosition": 540000000,
+        "getNonArrayRestType": 30000000
+      }
+    },
+    "inferTypeArguments": {
+      "inclusiveCpuNs": 20970000000,
+      "percent": 17.949156894633226,
+      "topChildrenCpuNs": {
+        "inferJsxTypeArguments": 8250000000,
+        "checkExpressionWithContextualType": 6980000000,
+        "inferTypes": 2900000000,
+        "getInferredTypes": 2080000000,
+        "getSpreadArgumentType": 150000000
+      }
+    },
+    "checkApplicableSignatureForJsxCallLikeElement": {
+      "inclusiveCpuNs": 21670000000,
+      "percent": 18.54831806898913,
+      "topChildrenCpuNs": {
+        "checkExpressionWithContextualType": 11040000000,
+        "checkTypeRelatedToAndOptionallyElaborate": 6350000000,
+        "getEffectiveFirstArgumentForJsxSignature": 4240000000,
+        "getRegularTypeOfObjectLiteral": 20000000,
+        "checkApplicableSignatureForJsxCallLikeElement.func1": 20000000
+      }
+    },
+    "inferJsxTypeArguments": {
+      "inclusiveCpuNs": 8520000000,
+      "percent": 7.292647436446118,
+      "topChildrenCpuNs": {
+        "checkExpressionWithContextualType": 5780000000,
+        "inferTypes": 2030000000,
+        "getEffectiveFirstArgumentForJsxSignature": 590000000,
+        "getInferredTypes": 120000000
+      }
+    },
+    "createJsxAttributesTypeFromAttributesProperty": {
+      "inclusiveCpuNs": 17300000000,
+      "percent": 14.807840451938715,
+      "topChildrenCpuNs": {
+        "checkJsxAttribute": 11450000000,
+        "checkJsxChildren": 1540000000,
+        "getSpreadType": 1500000000,
+        "getPropertyOfType": 910000000,
+        "getApparentTypeOfContextualType": 540000000
+      }
+    },
+    "checkJsxAttribute": {
+      "inclusiveCpuNs": 11450000000,
+      "percent": 9.800564923392963,
+      "topChildrenCpuNs": {
+        "checkExpressionForMutableLocation": 11440000000,
+        "(self)": 10000000
+      }
+    },
+    "getApparentTypeOfContextualType": {
+      "inclusiveCpuNs": 9310000000,
+      "percent": 7.9688436189334935,
+      "topChildrenCpuNs": {
+        "discriminateContextualTypeByJSXAttributes": 7340000000,
+        "discriminateContextualTypeByObjectMembers": 990000000,
+        "mapTypeEx": 610000000,
+        "getContextualType": 160000000,
+        "instantiateContextualType": 160000000
+      }
+    },
+    "discriminateContextualTypeByJSXAttributes": {
+      "inclusiveCpuNs": 7340000000,
+      "percent": 6.2826328853890265,
+      "topChildrenCpuNs": {
+        "discriminateTypeByDiscriminableItems": 4200000000,
+        "getPropertiesOfType": 1520000000,
+        "github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8]": 1480000000,
+        "runtime.mapaccess1": 50000000,
+        "getJsxNamespaceAt": 30000000
+      }
+    },
+    "getContextualTypeForJsxAttribute": {
+      "inclusiveCpuNs": 8450000000,
+      "percent": 7.2327313190105285,
+      "topChildrenCpuNs": {
+        "getApparentTypeOfContextualType": 7140000000,
+        "getTypeOfPropertyOfContextualType": 1290000000,
+        "(self)": 10000000,
+        "github.com/microsoft/typescript-go/internal/ast.(*Node).Name": 10000000
+      }
+    },
+    "getEffectiveFirstArgumentForJsxSignature": {
+      "inclusiveCpuNs": 5550000000,
+      "percent": 4.750492168107507,
+      "topChildrenCpuNs": {
+        "getJsxPropsTypeFromCallSignature": 5240000000,
+        "getJsxReferenceKind": 200000000,
+        "getJsxPropsTypeFromClassType": 110000000
+      }
+    },
+    "getTypeOfSymbol": {
+      "inclusiveCpuNs": 24710000000,
+      "percent": 21.15038945476333,
+      "topChildrenCpuNs": {
+        "getTypeOfVariableOrParameterOrProperty": 15260000000,
+        "getTypeOfInstantiatedSymbol": 3920000000,
+        "getTypeOfMappedSymbol": 3860000000,
+        "getTypeOfAlias": 860000000,
+        "getTypeOfFuncClassEnumModule": 620000000
+      }
+    },
+    "instantiateTypeWithAlias": {
+      "inclusiveCpuNs": 16490000000,
+      "percent": 14.114525378755456,
+      "topChildrenCpuNs": {
+        "instantiateTypeWorker": 14610000000,
+        "popActiveMapper": 630000000,
+        "runtime.mapassign": 420000000,
+        "(self)": 200000000,
+        "couldContainTypeVariablesWorker": 170000000
+      }
+    }
+  }
+}

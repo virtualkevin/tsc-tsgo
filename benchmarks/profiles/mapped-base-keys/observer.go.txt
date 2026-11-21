@@ -1,0 +1,80 @@
+package checker
+
+import (
+	"sync/atomic"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+var baseKeyCounts [12]atomic.Uint64
+
+func (c *Checker) observeMappedBaseProperties(t *Type) []*ast.Symbol {
+	if t.flags != TypeFlagsObject || t.objectFlags&ObjectFlagsMapped == 0 || t.objectFlags&ObjectFlagsMembersResolved != 0 {
+		return c.getPropertiesOfType(t)
+	}
+	baseKeyCounts[0].Add(1)
+	m := t.AsMappedType()
+	if m.declaration.NameType != nil || c.isMappedTypeWithKeyofConstraintDeclaration(t) {
+		return c.getPropertiesOfType(t)
+	}
+	baseKeyCounts[1].Add(1)
+	beforeConstraint := m.constraintType
+	beforeSymbols, beforeInst := c.SymbolCount, c.TotalInstantiationCount
+	props := c.getPropertiesOfType(t)
+	if m.constraintType == nil {
+		return props
+	}
+	keys := m.constraintType
+	var terms []*Type
+	if keys.flags == TypeFlagsUnion {
+		terms = keys.Types()
+	} else {
+		terms = []*Type{keys}
+	}
+	for _, term := range terms {
+		if term.flags != TypeFlagsStringLiteral || term.alias != nil || isFreshLiteralType(term) {
+			return props
+		}
+	}
+	baseKeyCounts[2].Add(1)
+	if beforeConstraint == m.constraintType {
+		baseKeyCounts[3].Add(1)
+	}
+	names := make(map[string]bool, len(terms))
+	for _, term := range terms {
+		names[getStringLiteralValue(term)] = true
+	}
+	agree := len(names) == len(props)
+	for _, prop := range props {
+		if !names[prop.Name] {
+			agree = false
+		} else {
+			delete(names, prop.Name)
+		}
+	}
+	if !agree || len(names) != 0 {
+		baseKeyCounts[4].Add(1)
+	}
+	baseKeyCounts[5].Add(uint64(len(props)))
+	baseKeyCounts[6].Add(uint64(c.SymbolCount - beforeSymbols))
+	baseKeyCounts[7].Add(uint64(c.TotalInstantiationCount - beforeInst))
+	if beforeConstraint != nil {
+		baseKeyCounts[8].Add(uint64(c.SymbolCount - beforeSymbols))
+		baseKeyCounts[9].Add(uint64(c.TotalInstantiationCount - beforeInst))
+	}
+	if t.objectFlags&ObjectFlagsMembersResolved == 0 || len(t.AsStructuredType().indexInfos) != 0 {
+		baseKeyCounts[10].Add(1)
+	}
+	if len(terms) >= 32 {
+		baseKeyCounts[11].Add(1)
+	}
+	return props
+}
+
+func MappedBaseKeyCounts() []uint64 {
+	r := make([]uint64, len(baseKeyCounts))
+	for i := range r {
+		r[i] = baseKeyCounts[i].Load()
+	}
+	return r
+}
