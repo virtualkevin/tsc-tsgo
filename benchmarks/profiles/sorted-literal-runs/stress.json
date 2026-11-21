@@ -1,0 +1,149 @@
+{
+  "binarySha256": {
+    "native": "525c0fe92b231e13ce225687929a606b1d7d47851216cc10d4e2b91dfdcd0bb4",
+    "control": "2281575296c0d1f66bdad3e529cc52146182b710f865a7f94f1c7e169bc06cdc",
+    "candidate": "ecb93464056f28edefdb073847a740fc0359e7fffe096c9098c81848dc8a3f15"
+  },
+  "projects": [
+    {
+      "members": 4096,
+      "order": "interleaved",
+      "sourceSha256": "c8f937e38d282a315cbfd2b97a2a827a6636bdcc6d5c05eef9b7f6ce5b049629",
+      "diagnosticsSha256": "e2c41b03f202360ea17eabcec0c4a0a92d0b0b0c889ea1606c2592234cc1fec6",
+      "blocksMs": [
+        {
+          "native": 92.194559,
+          "control": 84.877188,
+          "candidate": 90.713792
+        },
+        {
+          "control": 85.453428,
+          "candidate": 84.107278,
+          "native": 91.659302
+        },
+        {
+          "candidate": 85.652806,
+          "native": 94.106393,
+          "control": 94.406133
+        }
+      ],
+      "medianMs": {
+        "native": 92.194559,
+        "control": 85.453428,
+        "candidate": 85.652806
+      }
+    },
+    {
+      "members": 32768,
+      "order": "interleaved",
+      "sourceSha256": "7e4e09d610f4d308af594ccfd560bcd8a0e798fd5077cc4714ba5310eb358dcf",
+      "diagnosticsSha256": "e2c41b03f202360ea17eabcec0c4a0a92d0b0b0c889ea1606c2592234cc1fec6",
+      "blocksMs": [
+        {
+          "native": 125.291436,
+          "control": 165.368855,
+          "candidate": 128.765273
+        },
+        {
+          "control": 161.025961,
+          "candidate": 137.900407,
+          "native": 130.219619
+        },
+        {
+          "candidate": 152.424025,
+          "native": 162.502338,
+          "control": 163.616224
+        }
+      ],
+      "medianMs": {
+        "native": 130.219619,
+        "control": 163.616224,
+        "candidate": 137.900407
+      }
+    },
+    {
+      "members": 131072,
+      "order": "interleaved",
+      "sourceSha256": "6e1f49affaa0e88a61d522331d57c817fdccb58320991a051f22aa980f8fe856",
+      "diagnosticsSha256": "e2c41b03f202360ea17eabcec0c4a0a92d0b0b0c889ea1606c2592234cc1fec6",
+      "blocksMs": [
+        {
+          "native": 579.438436,
+          "control": 746.099186,
+          "candidate": 382.652232
+        },
+        {
+          "control": 671.610199,
+          "candidate": 372.613972,
+          "native": 544.839919
+        },
+        {
+          "candidate": 401.47567,
+          "native": 534.674278,
+          "control": 661.037205
+        }
+      ],
+      "medianMs": {
+        "native": 544.839919,
+        "control": 671.610199,
+        "candidate": 382.652232
+      }
+    },
+    {
+      "members": 32768,
+      "order": "overlapping",
+      "sourceSha256": "6674610513afd3282fe22946b145ce09a7bc34697abf5acc65412224ada8023e",
+      "diagnosticsSha256": "e2c41b03f202360ea17eabcec0c4a0a92d0b0b0c889ea1606c2592234cc1fec6",
+      "blocksMs": [
+        {
+          "native": 113.184644,
+          "control": 151.14422,
+          "candidate": 137.406242
+        },
+        {
+          "control": 164.322308,
+          "candidate": 184.08621,
+          "native": 116.822642
+        },
+        {
+          "candidate": 142.548728,
+          "native": 143.572993,
+          "control": 144.667464
+        }
+      ],
+      "medianMs": {
+        "native": 116.822642,
+        "control": 151.14422,
+        "candidate": 142.548728
+      }
+    },
+    {
+      "members": 32768,
+      "order": "disjoint",
+      "sourceSha256": "6ee97e21e365c236b94115ef3dbc6b6d02217294c3a20265b1230e3bd1acc848",
+      "diagnosticsSha256": "e2c41b03f202360ea17eabcec0c4a0a92d0b0b0c889ea1606c2592234cc1fec6",
+      "blocksMs": [
+        {
+          "native": 195.232083,
+          "control": 191.729355,
+          "candidate": 151.394072
+        },
+        {
+          "control": 178.38349,
+          "candidate": 157.046711,
+          "native": 183.847528
+        },
+        {
+          "candidate": 141.691852,
+          "native": 157.245258,
+          "control": 177.3457
+        }
+      ],
+      "medianMs": {
+        "native": 183.847528,
+        "control": 178.38349,
+        "candidate": 151.394072
+      }
+    }
+  ]
+}

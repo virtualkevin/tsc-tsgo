@@ -20,6 +20,21 @@ for (const path of [baseline, candidate, libs]) {
 
 const fixtures = [
   {
+    name: 'overlapping named literal unions preserve member identities and declaration origins',
+    diagnostic: 'TS2322',
+    files: {
+      'main.ts': [
+        'type Left = ' + Array.from({ length: 64 }, (_, i) => JSON.stringify('key' + 2 * i)).join(' | ') + ';',
+        'type Right = ' + Array.from({ length: 64 }, (_, i) => JSON.stringify('key' + (32 + i))).join(' | ') + ';',
+        'export function keys(a: Left, b: Right, select: boolean) { return select ? a : b; }',
+        'export type Key = Left | Right | null;',
+        'export const shared: Key = "key40";',
+        'export const onlyRight: Key = "key33";',
+        'export const invalid: Key = "entirely_absent_value";',
+      ].join('\n'),
+    },
+  },
+  {
     name: 'bulk string literal unions preserve inferred declarations and diagnostics',
     diagnostic: 'TS2322',
     files: {

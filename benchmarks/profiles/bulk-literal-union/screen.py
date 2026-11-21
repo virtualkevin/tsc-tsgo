@@ -12,6 +12,7 @@ import time
 parser = argparse.ArgumentParser(description=__doc__)
 for name in ("native", "control", "candidate", "output"):
     parser.add_argument("--" + name, type=Path, required=True)
+parser.add_argument("--grouped", action="store_true", help="measure merging sorted constituent unions")
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[3]
 binaries = {name: getattr(args, name).resolve() for name in ("native", "control", "candidate")}
@@ -33,6 +34,9 @@ with tempfile.TemporaryDirectory() as tmp:
         "incremental": False}, "files": ["main.ts"]}))
     cases = [(4096, "descending"), (32768, "ascending"), (32768, "descending"),
              (131072, "descending"), (32768, "keyof-permuted")]
+    if args.grouped:
+        cases = [(4096, "interleaved"), (32768, "interleaved"), (131072, "interleaved"),
+                 (32768, "overlapping"), (32768, "disjoint")]
     for count, order_name in cases:
         members = [f'"k{i:06d}"' for i in range(count)]
         if order_name == "descending":
@@ -42,6 +46,16 @@ with tempfile.TemporaryDirectory() as tmp:
             # The odd stride visits each key exactly once at this power-of-two size.
             fields = [f"{members[i * 8191 % count]}: number;" for i in range(count)]
             source = "interface Model {\n" + "\n".join(fields) + '\n}\ntype Key = keyof Model;\nconst valid: Key = "k000000";\n'
+        if args.grouped:
+            if order_name == "interleaved":
+                left, right = members[::2], members[1::2]
+            elif order_name == "overlapping":
+                left, right = members[:3*count//4], members[count//4:]
+            else:
+                left, right = members[count//2:], members[:count//2]
+            source = ("type Left = " + " | ".join(left) + ";\n"
+                      + "type Right = " + " | ".join(right) + ";\n"
+                      + 'type Key = Left | Right;\nconst valid: Key = "k000000";\n')
         path = cwd / "main.ts"
         path.write_text(source + 'const invalid: Key = "absent";\n')
         outputs = []

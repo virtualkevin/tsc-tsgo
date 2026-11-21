@@ -401,3 +401,13 @@
 | Bulk string literal unions | vscode | Matched Go control | 48983.24 | 57795.38 | 0.848× | 2 | Paired median 0.862×. [Samples](benchmarks/profiles/bulk-literal-union/large.json.gz) |
 | Bulk string literal unions | sentry | Matched Go control | 42340.08 | 41667.21 | 1.016× | 2 | Paired median 1.021×. [Samples](benchmarks/profiles/bulk-literal-union/large.json.gz) |
 | Bulk string literal unions, order reversed | trpc | Matched Go control | 718.19 | 745.10 | 0.964× | 12 | Paired median 0.992×, candidate faster in 6/12 pairs. [Samples](benchmarks/profiles/bulk-literal-union/trpc-reverse.json.gz) |
+| Merge sorted string literal unions | 4,096 keys, interleaved | Matched Go control | 85.45 | 85.65 | 0.998× | 3 | Generated scaling case. [Samples](benchmarks/profiles/sorted-literal-runs/stress.json) |
+| Merge sorted string literal unions | 32,768 keys, interleaved | Matched Go control | 163.62 | 137.90 | 1.186× | 3 | Generated scaling case. [Samples](benchmarks/profiles/sorted-literal-runs/stress.json) |
+| Merge sorted string literal unions | 131,072 keys, interleaved | Matched Go control | 671.61 | 382.65 | 1.755× | 3 | Generated scaling case. [Samples](benchmarks/profiles/sorted-literal-runs/stress.json) |
+| Merge sorted string literal unions | 131,072 keys, interleaved | Native tsc-ts | 544.84 | 382.65 | 1.424× | 3 | Generated scaling case. [Samples](benchmarks/profiles/sorted-literal-runs/stress.json) |
+| Merge sorted string literal unions | 32,768 keys, overlapping | Matched Go control | 151.14 | 142.55 | 1.060× | 3 | Generated scaling case. [Samples](benchmarks/profiles/sorted-literal-runs/stress.json) |
+| Merge sorted string literal unions | 32,768 keys, disjoint | Matched Go control | 178.38 | 151.39 | 1.178× | 3 | Generated scaling case. [Samples](benchmarks/profiles/sorted-literal-runs/stress.json) |
+| Merge sorted string literal unions | typeorm | Matched Go control | 2475.00 | 2551.35 | 0.970× | 4 | Paired median 0.953×. [Samples](benchmarks/profiles/sorted-literal-runs/small.json.gz) |
+| Merge sorted string literal unions | trpc | Matched Go control | 484.18 | 479.03 | 1.011× | 4 | Paired median 0.981×. [Samples](benchmarks/profiles/sorted-literal-runs/small.json.gz) |
+| Merge sorted string literal unions | vscode | Matched Go control | 32339.63 | 32373.23 | 0.999× | 2 | Paired median 0.999×. [Samples](benchmarks/profiles/sorted-literal-runs/large.json.gz) |
+| Merge sorted string literal unions | sentry | Matched Go control | 36205.55 | 35571.97 | 1.018× | 2 | Paired median 1.018×. [Samples](benchmarks/profiles/sorted-literal-runs/large.json.gz) |

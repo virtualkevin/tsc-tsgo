@@ -25717,7 +25717,12 @@ func (c *Checker) addTypesToUnion(typeSet []*Type, includes TypeFlags, types []*
 				if t.alias != nil || u.origin != nil {
 					includes |= TypeFlagsUnion
 				}
-				typeSet, includes = c.addTypesToUnion(typeSet, includes, u.types)
+				if len(typeSet) >= 32 && len(u.types) >= 32 && c.isSortedStringLiteralRun(u.types) {
+					typeSet = mergeStringLiteralRun(typeSet, u.types)
+					includes |= TypeFlagsStringLiteral
+				} else {
+					typeSet, includes = c.addTypesToUnion(typeSet, includes, u.types)
+				}
 			} else {
 				typeSet, includes = c.addTypeToUnion(typeSet, includes, t)
 			}
@@ -25725,6 +25730,59 @@ func (c *Checker) addTypesToUnion(typeSet []*Type, includes TypeFlags, types []*
 		}
 	}
 	return typeSet, includes
+}
+
+// Origin unions can contain other unions and need not be in canonical order.
+func (c *Checker) isSortedStringLiteralRun(types []*Type) bool {
+	for i, t := range types {
+		if t == nil || t.checker != c || t.flags != TypeFlagsStringLiteral || t.alias != nil {
+			return false
+		}
+		if i != 0 && CompareTypes(types[i-1], t) >= 0 {
+			return false
+		}
+	}
+	return true
+}
+
+// Merge a strictly increasing run into the existing sorted, unique set.
+// Only the overlapping range needs a merge; disjoint ranges need one insertion.
+func mergeStringLiteralRun(set, run []*Type) []*Type {
+	start, _ := slices.BinarySearchFunc(set, run[0], CompareTypes)
+	if start == len(set) {
+		return append(set, run...)
+	}
+	end, found := slices.BinarySearchFunc(set[start:], run[len(run)-1], CompareTypes)
+	end += start
+	if found {
+		end++
+	}
+	if start == end {
+		return slices.Insert(set, start, run...)
+	}
+	existing := set[start:end]
+	if slices.Equal(existing, run) {
+		return set
+	}
+	merged := make([]*Type, 0, len(existing)+len(run))
+	for len(existing) != 0 && len(run) != 0 {
+		order := CompareTypes(existing[0], run[0])
+		switch {
+		case order < 0:
+			merged = append(merged, existing[0])
+			existing = existing[1:]
+		case order == 0:
+			merged = append(merged, existing[0])
+			existing = existing[1:]
+			run = run[1:]
+		default:
+			merged = append(merged, run[0])
+			run = run[1:]
+		}
+	}
+	merged = append(merged, existing...)
+	merged = append(merged, run...)
+	return slices.Replace(set, start, end, merged...)
 }
 
 func (c *Checker) addTypeToUnion(typeSet []*Type, includes TypeFlags, t *Type) ([]*Type, TypeFlags) {
