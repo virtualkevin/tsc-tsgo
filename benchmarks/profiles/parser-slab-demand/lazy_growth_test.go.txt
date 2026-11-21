@@ -1,0 +1,46 @@
+package core
+
+import (
+	"runtime"
+	"slices"
+	"testing"
+)
+
+func TestArenaLazyGrowthSizesAndStableElements(t *testing.T) {
+	type entry struct {
+		pointer *int
+		pad     [5]uintptr
+	}
+	for _, limits := range [][2]int{{2, 256}, {4, 32}, {4, 64}, {4, 128}, {8, 32}, {8, 64}, {16, 64}, {16, 128}} {
+		var arena Arena[entry]
+		var retained []*entry
+		for i := range 1100 {
+			capacity := cap(arena.data)
+			full := len(arena.data) == capacity
+			element := arena.NewWithGrowth(limits[0], limits[1])
+			if full {
+				request := limits[0]
+				if capacity != 0 {
+					request = min(capacity*2, limits[1])
+				}
+				want := cap(slices.Grow([]entry(nil), request))
+				if len(arena.data) != 1 || cap(arena.data) != want {
+					t.Fatalf("growth %v index %d: got %d/%d want 1/%d", limits, i, len(arena.data), cap(arena.data), want)
+				}
+			}
+			if element.pointer != nil {
+				t.Fatalf("growth %v index %d: element reused", limits, i)
+			}
+			element.pointer = new(int)
+			*element.pointer = i
+			retained = append(retained, element)
+		}
+		arena = Arena[entry]{}
+		runtime.GC()
+		for i, e := range retained {
+			if e.pointer == nil || *e.pointer != i {
+				t.Fatalf("growth %v index %d: lost element", limits, i)
+			}
+		}
+	}
+}

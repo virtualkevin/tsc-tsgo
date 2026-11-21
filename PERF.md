@@ -430,3 +430,11 @@
 | Mark and compact template unions | trpc | Native tsc-ts | 323.48 | 469.27 | 0.689× | 2 | Cold full check. [Samples](benchmarks/profiles/template-union-compaction/native.json.gz) |
 | Mark and compact template unions, confirmation | 4,096 alternating literals | Previous shipped Go | 30.40 | 32.36 | 0.939× | 12 | Candidate faster in 6/12 blocks. [Samples](benchmarks/profiles/template-union-compaction/small-confirmation.json) |
 | Mark and compact template unions, confirmation | 4,096 alternating literals | Native tsc-ts | 22.73 | 32.36 | 0.702× | 12 | Candidate faster in 0/12 blocks. [Samples](benchmarks/profiles/template-union-compaction/small-confirmation.json) |
+| Coallocated parser first pages, file discovery | trpc | Matched Go control | 178.72 | 186.28 | 0.959× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/parser-slab-demand/discovery.json) |
+| Coallocated parser first pages, file discovery | typeorm | Matched Go control | 515.57 | 499.40 | 1.032× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/parser-slab-demand/discovery.json) |
+| Coallocated parser first pages, file discovery | vscode | Matched Go control | 5117.02 | 5179.95 | 0.988× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/parser-slab-demand/discovery.json) |
+| Coallocated parser first pages, file discovery | sentry | Matched Go control | 2777.77 | 2868.35 | 0.968× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/parser-slab-demand/discovery.json) |
+| Coallocated parser first pages | typeorm | Matched Go control | 2405.10 | 2242.87 | 1.072× | 4 | Paired median 1.083×. [Samples](benchmarks/profiles/parser-slab-demand/small.json.gz) |
+| Coallocated parser first pages | trpc | Matched Go control | 427.54 | 445.65 | 0.959× | 4 | Paired median 0.962×. [Samples](benchmarks/profiles/parser-slab-demand/small.json.gz) |
+| Coallocated parser first pages | vscode | Matched Go control | 31808.74 | 31671.78 | 1.004× | 2 | Paired median 1.004×. [Samples](benchmarks/profiles/parser-slab-demand/large.json.gz) |
+| Coallocated parser first pages | sentry | Matched Go control | 27355.09 | 26801.77 | 1.021× | 2 | Paired median 1.021×. [Samples](benchmarks/profiles/parser-slab-demand/large.json.gz) |
