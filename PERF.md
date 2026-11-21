@@ -482,3 +482,7 @@
 | Triangular pointer probes | trpc | Matched ordinary Go build | 686.10 | 707.32 | 0.970× | 2 | Counter-free cold checks. [Samples](benchmarks/profiles/shipped-cpu-costs/triangular-screen.json.gz) |
 | Shipped Go vs public npm CLI | typeorm | npm tsc-ts@0.1.5 | 1422.38 | 4005.86 | 0.355× | 2 | Published launcher and release libraries. [Samples](benchmarks/profiles/public-npm/0.1.5-typeorm.json.gz) |
 | Shipped Go vs public npm CLI | trpc | npm tsc-ts@0.1.5 | 416.67 | 822.42 | 0.507× | 2 | Published launcher and release libraries. [Samples](benchmarks/profiles/public-npm/0.1.5-trpc.json.gz) |
+| Shipped Go vs original public npm CLI | vscode | npm tsc-ts@0.0.2 | 31873.82 | 48691.72 | 0.655× | 2 | Released launcher, all input bytes match original workload. [Samples](benchmarks/profiles/public-npm/0.0.2.json.gz) |
+| Shipped Go vs original public npm CLI | sentry | npm tsc-ts@0.0.2 | 14181.73 | 27663.66 | 0.513× | 2 | Released launcher, all input bytes match original workload. [Samples](benchmarks/profiles/public-npm/0.0.2.json.gz) |
+| Shipped Go vs original public npm CLI | typeorm | npm tsc-ts@0.0.2 | 1449.23 | 2601.72 | 0.557× | 2 | Released launcher, all input bytes match original workload. [Samples](benchmarks/profiles/public-npm/0.0.2.json.gz) |
+| Shipped Go vs original public npm CLI | trpc | npm tsc-ts@0.0.2 | 396.76 | 465.97 | 0.851× | 2 | Released launcher, all input bytes match original workload. [Samples](benchmarks/profiles/public-npm/0.0.2.json.gz) |
