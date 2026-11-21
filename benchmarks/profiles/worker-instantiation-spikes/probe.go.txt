@@ -1,0 +1,134 @@
+package checker
+
+import (
+	"fmt"
+	"runtime"
+	"strings"
+	"sync"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type instantiationSpikeCounter struct {
+	active  bool
+	start   uint32
+	next    uint32
+	random  uint32
+	root    *Type
+	alias   *TypeAlias
+	node    *ast.Node
+	samples int
+	origins map[string]int
+	sites   map[string]int
+	callers map[string]int
+}
+
+type spikeCallback struct {
+	Worker         int
+	File           string
+	Instantiations uint32
+	Samples        int
+	Origins        map[string]int
+	Sites          map[string]int
+	Callers        map[string]int
+}
+
+var spikeRegistry struct {
+	sync.Mutex
+	rows []spikeCallback
+}
+
+func (c *Checker) BeginSpikeCallback() {
+	s := &c.spikeCounter
+	s.active = true
+	s.start = c.TotalInstantiationCount
+	if s.next == 0 {
+		s.next = 719
+	}
+}
+
+func (c *Checker) EndSpikeCallback(worker int, file string) {
+	s := &c.spikeCounter
+	n := c.TotalInstantiationCount - s.start
+	if n >= 70000 {
+		row := spikeCallback{worker, file, n, s.samples, s.origins, s.sites, s.callers}
+		spikeRegistry.Lock()
+		spikeRegistry.rows = append(spikeRegistry.rows, row)
+		spikeRegistry.Unlock()
+		s.origins, s.sites, s.callers = nil, nil, nil
+	} else {
+		clear(s.origins)
+		clear(s.sites)
+		clear(s.callers)
+	}
+	s.root, s.alias, s.node = nil, nil, nil
+	s.active = false
+	s.samples = 0
+}
+
+func SpikeCallbacks() []spikeCallback {
+	spikeRegistry.Lock()
+	defer spikeRegistry.Unlock()
+	return append([]spikeCallback(nil), spikeRegistry.rows...)
+}
+
+func spikeNode(n *ast.Node) string {
+	if n == nil {
+		return "(none)"
+	}
+	for p, depth := n, 0; p != nil && depth < 4096; p, depth = p.Parent, depth+1 {
+		if p.Kind == ast.KindSourceFile {
+			return fmt.Sprintf("%s@%d %s", p.AsSourceFile().FileName(), n.Pos(), n.Kind.String())
+		}
+	}
+	return "(detached) " + n.Kind.String()
+}
+
+func (s *instantiationSpikeCounter) sample() {
+	s.random = 1664525*s.random + 1013904223
+	s.next = 512 + (s.random >> 22)
+	if s.origins == nil {
+		s.origins, s.sites, s.callers = make(map[string]int), make(map[string]int), make(map[string]int)
+	}
+	origin := "(no outer type)"
+	if t := s.root; t != nil {
+		symbol := s.alias.Symbol()
+		if symbol == nil {
+			symbol = t.alias.Symbol()
+		}
+		if symbol == nil {
+			symbol = t.symbol
+		}
+		if symbol == nil {
+			origin = fmt.Sprintf("(anonymous flags=%x)", uint64(t.flags))
+		} else {
+			origin = symbol.Name
+			if len(symbol.Declarations) != 0 {
+				origin += " " + spikeNode(symbol.Declarations[0])
+			}
+		}
+	}
+	s.origins[origin]++
+	s.sites[spikeNode(s.node)]++
+	var pcs [128]uintptr
+	n := runtime.Callers(2, pcs[:])
+	frames := runtime.CallersFrames(pcs[:n])
+	var path []string
+	for {
+		f, more := frames.Next()
+		name := strings.TrimPrefix(f.Function, "github.com/microsoft/typescript-go/internal/checker.")
+		if name == "(*Checker).instantiateTypeWithAlias" {
+			path = []string{"instantiateTypeWithAlias"}
+		} else if len(path) > 0 && len(path) <= 4 {
+			path = append(path, fmt.Sprintf("%s@%d", name, f.Line))
+		}
+		if !more {
+			break
+		}
+	}
+	if n == len(pcs) {
+		path = append(path, "(stack truncated)")
+	}
+	s.callers[strings.Join(path, " / ")]++
+	s.samples++
+}

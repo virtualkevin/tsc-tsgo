@@ -624,3 +624,4 @@
 | Declaration-order two-part intersection | trpc | Public npm tsc-ts@0.0.2 | 738.05 | 794.99 | 0.928× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/ordered-intersection-pair/layout-public.json.gz) |
 | Decode bundled library API syntax (in memory) | lib.dom.d.ts | Go parser | 79.442 | 59.882 | 1.327× | 3 | 11,670,162 vs 22,691,953 B/op. Decoder omits parser metadata. [Samples](benchmarks/profiles/bundled-library-syntax/bench.txt) |
 | Decode bundled library API syntax (in memory) | lib.es5.d.ts | Go parser | 10.084 | 6.429 | 1.569× | 3 | 1,217,668 vs 2,755,214 B/op. Decoder omits parser metadata. [Samples](benchmarks/profiles/bundled-library-syntax/bench.txt) |
+| Declaration-order two-part intersection | sentry | Matched ordinary Go build | 31610.48 | 30805.77 | 1.026× | 2 | Candidate faster in 1/2 pairs. [Samples](benchmarks/profiles/ordered-intersection-pair/layout-go-sentry.json.gz) |

@@ -22,3 +22,6 @@ out.mkdir(parents=True, exist_ok=True)
 dest = out / "pending_members.go"
 dest.write_text(source)
 (out / "overlay.json").write_text(json.dumps({"Replace": {str(repo / file): str(dest)}}))
+tests = {str(repo / file): str(dest), str(repo / "packages/tsc-go/internal/checker/inherited_capacity_test.go"):
+         str(here / "observe_sizes.go.txt")}
+(out / "test-overlay.json").write_text(json.dumps({"Replace": tests}))

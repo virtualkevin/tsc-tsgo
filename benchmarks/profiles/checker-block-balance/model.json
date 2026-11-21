@@ -1,0 +1,618 @@
+{
+  "typeorm": {
+    "default": {
+      "observed": {
+        "maxWorkerNS": 1251560542,
+        "sumWorkerNS": 4711809838,
+        "adjacentSame": 6,
+        "adjacentCheckedPairs": 3279
+      },
+      "blockAssignments": {
+        "2": {
+          "maxWorkerNS": 1371125542,
+          "sumWorkerNS": 4711809838,
+          "adjacentSame": 3275,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 9
+        },
+        "4": {
+          "maxWorkerNS": 1330300753,
+          "sumWorkerNS": 4711809838,
+          "adjacentSame": 3266,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 17
+        },
+        "8": {
+          "maxWorkerNS": 1331621603,
+          "sumWorkerNS": 4711809838,
+          "adjacentSame": 3256,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 34
+        },
+        "16": {
+          "maxWorkerNS": 1236365321,
+          "sumWorkerNS": 4711809838,
+          "adjacentSame": 3217,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 70
+        },
+        "32": {
+          "maxWorkerNS": 1231646136,
+          "sumWorkerNS": 4711809838,
+          "adjacentSame": 3175,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 135
+        }
+      },
+      "totalInstantiations": 422353,
+      "highestInstantiationCallbackPerWorker": [
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/src/repository/MongoRepository.ts",
+          "worker": 0,
+          "checkedFileIndex": 25,
+          "instantiations": 7605,
+          "elapsedNS": 28768546
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/src/commands/MigrationCreateCommand.ts",
+          "worker": 1,
+          "checkedFileIndex": 100,
+          "instantiations": 6219,
+          "elapsedNS": 11357096
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/src/driver/mongodb/typings.ts",
+          "worker": 2,
+          "checkedFileIndex": 4,
+          "instantiations": 14125,
+          "elapsedNS": 74050763
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/functional/database-schema/column-types/sap/column-types-sap.test.ts",
+          "worker": 3,
+          "checkedFileIndex": 184,
+          "instantiations": 6576,
+          "elapsedNS": 15094399
+        }
+      ]
+    },
+    "contiguous": {
+      "observed": {
+        "maxWorkerNS": 1337724109,
+        "sumWorkerNS": 3937880132,
+        "adjacentSame": 3276,
+        "adjacentCheckedPairs": 3279
+      },
+      "blockAssignments": {
+        "2": {
+          "maxWorkerNS": 1158338250,
+          "sumWorkerNS": 3937880132,
+          "adjacentSame": 3275,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 9
+        },
+        "4": {
+          "maxWorkerNS": 1228763726,
+          "sumWorkerNS": 3937880132,
+          "adjacentSame": 3266,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 17
+        },
+        "8": {
+          "maxWorkerNS": 1123745994,
+          "sumWorkerNS": 3937880132,
+          "adjacentSame": 3256,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 34
+        },
+        "16": {
+          "maxWorkerNS": 1072185061,
+          "sumWorkerNS": 3937880132,
+          "adjacentSame": 3217,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 70
+        },
+        "32": {
+          "maxWorkerNS": 1027648090,
+          "sumWorkerNS": 3937880132,
+          "adjacentSame": 3175,
+          "adjacentCheckedPairs": 3279,
+          "blocks": 135
+        }
+      },
+      "totalInstantiations": 376697,
+      "highestInstantiationCallbackPerWorker": [
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/src/driver/mongodb/typings.ts",
+          "worker": 0,
+          "checkedFileIndex": 20,
+          "instantiations": 13792,
+          "elapsedNS": 56718076
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/src/entity-manager/MongoEntityManager.ts",
+          "worker": 1,
+          "checkedFileIndex": 0,
+          "instantiations": 9881,
+          "elapsedNS": 48790062
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/functional/null-undefined-handling/parameter-types.test.ts",
+          "worker": 2,
+          "checkedFileIndex": 372,
+          "instantiations": 5529,
+          "elapsedNS": 8146569
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/typeorm/packages/typeorm/test/functional/schema-builder/view/view-schema-oracle/entity/FooView.ts",
+          "worker": 3,
+          "checkedFileIndex": 288,
+          "instantiations": 3369,
+          "elapsedNS": 38258722
+        }
+      ]
+    }
+  },
+  "trpc": {
+    "default": {
+      "observed": {
+        "maxWorkerNS": 187340407,
+        "sumWorkerNS": 662148048,
+        "adjacentSame": 5,
+        "adjacentCheckedPairs": 107
+      },
+      "blockAssignments": {
+        "2": {
+          "maxWorkerNS": 236659504,
+          "sumWorkerNS": 662148048,
+          "adjacentSame": 99,
+          "adjacentCheckedPairs": 107,
+          "blocks": 9
+        },
+        "4": {
+          "maxWorkerNS": 186342822,
+          "sumWorkerNS": 662148048,
+          "adjacentSame": 95,
+          "adjacentCheckedPairs": 107,
+          "blocks": 19
+        },
+        "8": {
+          "maxWorkerNS": 203947910,
+          "sumWorkerNS": 662148048,
+          "adjacentSame": 79,
+          "adjacentCheckedPairs": 107,
+          "blocks": 37
+        },
+        "16": {
+          "maxWorkerNS": 209221463,
+          "sumWorkerNS": 662148048,
+          "adjacentSame": 60,
+          "adjacentCheckedPairs": 107,
+          "blocks": 59
+        },
+        "32": {
+          "maxWorkerNS": 186946367,
+          "sumWorkerNS": 662148048,
+          "adjacentSame": 49,
+          "adjacentCheckedPairs": 107,
+          "blocks": 80
+        }
+      },
+      "totalInstantiations": 222377,
+      "highestInstantiationCallbackPerWorker": [
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/initTRPC.ts",
+          "worker": 0,
+          "checkedFileIndex": 12,
+          "instantiations": 16175,
+          "elapsedNS": 23424886
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/clientish/serialize.test.ts",
+          "worker": 1,
+          "checkedFileIndex": 24,
+          "instantiations": 31817,
+          "elapsedNS": 50152997
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/procedureBuilder.test.ts",
+          "worker": 2,
+          "checkedFileIndex": 24,
+          "instantiations": 32895,
+          "elapsedNS": 50932550
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/adapters/fastify/fastifyTRPCPlugin.ts",
+          "worker": 3,
+          "checkedFileIndex": 22,
+          "instantiations": 11938,
+          "elapsedNS": 22927818
+        }
+      ]
+    },
+    "contiguous": {
+      "observed": {
+        "maxWorkerNS": 237370700,
+        "sumWorkerNS": 578036877,
+        "adjacentSame": 104,
+        "adjacentCheckedPairs": 107
+      },
+      "blockAssignments": {
+        "2": {
+          "maxWorkerNS": 202151545,
+          "sumWorkerNS": 578036877,
+          "adjacentSame": 99,
+          "adjacentCheckedPairs": 107,
+          "blocks": 9
+        },
+        "4": {
+          "maxWorkerNS": 190447101,
+          "sumWorkerNS": 578036877,
+          "adjacentSame": 95,
+          "adjacentCheckedPairs": 107,
+          "blocks": 19
+        },
+        "8": {
+          "maxWorkerNS": 223754848,
+          "sumWorkerNS": 578036877,
+          "adjacentSame": 79,
+          "adjacentCheckedPairs": 107,
+          "blocks": 37
+        },
+        "16": {
+          "maxWorkerNS": 190338970,
+          "sumWorkerNS": 578036877,
+          "adjacentSame": 60,
+          "adjacentCheckedPairs": 107,
+          "blocks": 59
+        },
+        "32": {
+          "maxWorkerNS": 190508899,
+          "sumWorkerNS": 578036877,
+          "adjacentSame": 49,
+          "adjacentCheckedPairs": 107,
+          "blocks": 80
+        }
+      },
+      "totalInstantiations": 201409,
+      "highestInstantiationCallbackPerWorker": [
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/vendor/unpromise/unpromise.ts",
+          "worker": 0,
+          "checkedFileIndex": 15,
+          "instantiations": 3816,
+          "elapsedNS": 10909434
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/procedureBuilder.ts",
+          "worker": 1,
+          "checkedFileIndex": 9,
+          "instantiations": 17094,
+          "elapsedNS": 22531488
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/initTRPC.ts",
+          "worker": 2,
+          "checkedFileIndex": 0,
+          "instantiations": 20831,
+          "elapsedNS": 33669542
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/trpc/packages/server/src/unstable-core-do-not-import/clientish/serialize.test.ts",
+          "worker": 3,
+          "checkedFileIndex": 15,
+          "instantiations": 30285,
+          "elapsedNS": 38618911
+        }
+      ]
+    }
+  },
+  "vscode": {
+    "default": {
+      "observed": {
+        "maxWorkerNS": 26603998304,
+        "sumWorkerNS": 98411570486,
+        "adjacentSame": 7,
+        "adjacentCheckedPairs": 10407
+      },
+      "blockAssignments": {
+        "2": {
+          "maxWorkerNS": 31870689969,
+          "sumWorkerNS": 98411570486,
+          "adjacentSame": 10400,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 9
+        },
+        "4": {
+          "maxWorkerNS": 31961798604,
+          "sumWorkerNS": 98411570486,
+          "adjacentSame": 10397,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 17
+        },
+        "8": {
+          "maxWorkerNS": 29903830458,
+          "sumWorkerNS": 98411570486,
+          "adjacentSame": 10379,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 33
+        },
+        "16": {
+          "maxWorkerNS": 28307033325,
+          "sumWorkerNS": 98411570486,
+          "adjacentSame": 10357,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 67
+        },
+        "32": {
+          "maxWorkerNS": 27100008788,
+          "sumWorkerNS": 98411570486,
+          "adjacentSame": 10310,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 133
+        }
+      },
+      "totalInstantiations": 5915965,
+      "highestInstantiationCallbackPerWorker": [
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/platform/agentHost/test/node/copilotAgentSession.test.ts",
+          "worker": 0,
+          "checkedFileIndex": 1767,
+          "instantiations": 207265,
+          "elapsedNS": 2710383854
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/editor/browser/config/editorConfiguration.ts",
+          "worker": 1,
+          "checkedFileIndex": 371,
+          "instantiations": 113082,
+          "elapsedNS": 154797578
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/editor/common/config/fontInfo.ts",
+          "worker": 2,
+          "checkedFileIndex": 159,
+          "instantiations": 91919,
+          "elapsedNS": 126450096
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/editor/browser/controller/editContext/clipboardUtils.ts",
+          "worker": 3,
+          "checkedFileIndex": 378,
+          "instantiations": 94339,
+          "elapsedNS": 134513230
+        }
+      ]
+    },
+    "contiguous": {
+      "observed": {
+        "maxWorkerNS": 25792992653,
+        "sumWorkerNS": 88933589920,
+        "adjacentSame": 10404,
+        "adjacentCheckedPairs": 10407
+      },
+      "blockAssignments": {
+        "2": {
+          "maxWorkerNS": 23804625244,
+          "sumWorkerNS": 88933589920,
+          "adjacentSame": 10400,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 9
+        },
+        "4": {
+          "maxWorkerNS": 23840306569,
+          "sumWorkerNS": 88933589920,
+          "adjacentSame": 10397,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 17
+        },
+        "8": {
+          "maxWorkerNS": 27444707505,
+          "sumWorkerNS": 88933589920,
+          "adjacentSame": 10379,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 33
+        },
+        "16": {
+          "maxWorkerNS": 27081662219,
+          "sumWorkerNS": 88933589920,
+          "adjacentSame": 10357,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 67
+        },
+        "32": {
+          "maxWorkerNS": 25728558635,
+          "sumWorkerNS": 88933589920,
+          "adjacentSame": 10310,
+          "adjacentCheckedPairs": 10407,
+          "blocks": 133
+        }
+      },
+      "totalInstantiations": 5406981,
+      "highestInstantiationCallbackPerWorker": [
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/editor/common/config/fontInfo.ts",
+          "worker": 0,
+          "checkedFileIndex": 633,
+          "instantiations": 91898,
+          "elapsedNS": 134604081
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/workbench/browser/parts/editor/textCodeEditor.ts",
+          "worker": 1,
+          "checkedFileIndex": 8,
+          "instantiations": 105795,
+          "elapsedNS": 379598370
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/platform/agentHost/test/node/copilotAgentSession.test.ts",
+          "worker": 2,
+          "checkedFileIndex": 740,
+          "instantiations": 219819,
+          "elapsedNS": 1469328792
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/vscode/src/vs/workbench/contrib/chat/test/browser/widget/input/editor/chatInputCompletions.test.ts",
+          "worker": 3,
+          "checkedFileIndex": 937,
+          "instantiations": 86772,
+          "elapsedNS": 133417208
+        }
+      ]
+    }
+  },
+  "sentry": {
+    "default": {
+      "observed": {
+        "maxWorkerNS": 23143269814,
+        "sumWorkerNS": 84090390142,
+        "adjacentSame": 24,
+        "adjacentCheckedPairs": 9633
+      },
+      "blockAssignments": {
+        "2": {
+          "maxWorkerNS": 26452222308,
+          "sumWorkerNS": 84090390142,
+          "adjacentSame": 9625,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 9
+        },
+        "4": {
+          "maxWorkerNS": 34652677714,
+          "sumWorkerNS": 84090390142,
+          "adjacentSame": 9618,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 17
+        },
+        "8": {
+          "maxWorkerNS": 27107902791,
+          "sumWorkerNS": 84090390142,
+          "adjacentSame": 9606,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 33
+        },
+        "16": {
+          "maxWorkerNS": 27051680694,
+          "sumWorkerNS": 84090390142,
+          "adjacentSame": 9583,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 65
+        },
+        "32": {
+          "maxWorkerNS": 29334745142,
+          "sumWorkerNS": 84090390142,
+          "adjacentSame": 9532,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 132
+        }
+      },
+      "totalInstantiations": 11722854,
+      "highestInstantiationCallbackPerWorker": [
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/common/components/fullSpanDescription.tsx",
+          "worker": 0,
+          "checkedFileIndex": 189,
+          "instantiations": 655664,
+          "elapsedNS": 920833713
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/browser/webVitals/settings.ts",
+          "worker": 1,
+          "checkedFileIndex": 109,
+          "instantiations": 651215,
+          "elapsedNS": 749987976
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/performance/traceDetails/traceDrawer/details/highlightedAttributes.tsx",
+          "worker": 2,
+          "checkedFileIndex": 372,
+          "instantiations": 667366,
+          "elapsedNS": 906211477
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/settings.ts",
+          "worker": 3,
+          "checkedFileIndex": 146,
+          "instantiations": 648584,
+          "elapsedNS": 807738642
+        }
+      ]
+    },
+    "contiguous": {
+      "observed": {
+        "maxWorkerNS": 23155776118,
+        "sumWorkerNS": 73878672803,
+        "adjacentSame": 9630,
+        "adjacentCheckedPairs": 9633
+      },
+      "blockAssignments": {
+        "2": {
+          "maxWorkerNS": 20873677938,
+          "sumWorkerNS": 73878672803,
+          "adjacentSame": 9625,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 9
+        },
+        "4": {
+          "maxWorkerNS": 26942797319,
+          "sumWorkerNS": 73878672803,
+          "adjacentSame": 9618,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 17
+        },
+        "8": {
+          "maxWorkerNS": 23362590153,
+          "sumWorkerNS": 73878672803,
+          "adjacentSame": 9606,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 33
+        },
+        "16": {
+          "maxWorkerNS": 20264413718,
+          "sumWorkerNS": 73878672803,
+          "adjacentSame": 9583,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 65
+        },
+        "32": {
+          "maxWorkerNS": 29036037731,
+          "sumWorkerNS": 73878672803,
+          "adjacentSame": 9532,
+          "adjacentCheckedPairs": 9633,
+          "blocks": 132
+        }
+      },
+      "totalInstantiations": 10567870,
+      "highestInstantiationCallbackPerWorker": [
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/browser/webVitals/settings.ts",
+          "worker": 0,
+          "checkedFileIndex": 436,
+          "instantiations": 648431,
+          "elapsedNS": 1290787872
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/detectors/components/uptime/uptimeChecksGrid.tsx",
+          "worker": 1,
+          "checkedFileIndex": 273,
+          "instantiations": 673997,
+          "elapsedNS": 951438361
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/profiling/profileHeader.spec.tsx",
+          "worker": 2,
+          "checkedFileIndex": 1204,
+          "instantiations": 660264,
+          "elapsedNS": 2168191037
+        },
+        {
+          "file": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/dashboards/widgets/detailsWidget/detailsWidgetVisualization.spec.tsx",
+          "worker": 3,
+          "checkedFileIndex": 107,
+          "instantiations": 660245,
+          "elapsedNS": 1538093911
+        }
+      ]
+    }
+  }
+}

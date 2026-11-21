@@ -1,0 +1,43 @@
+package checker
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+// The prior layout is just a sizing hint. Bases can change across instances,
+// and own values continue to override base properties carrying the same name.
+func TestInheritedCapacityShapeChange(t *testing.T) {
+	c := pendingTestChecker()
+	source := &InterfaceType{declaredMembers: make(ast.SymbolTable)}
+	own := c.newSymbol(ast.SymbolFlagsProperty, "own")
+	source.declaredMembers[own.Name] = own
+	c.valueSymbolLinks.Get(own).resolvedType = &Type{flags: TypeFlagsNumber}
+	for _, width := range []int{5000, 2, 512, 1} {
+		base := make([]*ast.Symbol, width)
+		base[0] = c.newSymbol(ast.SymbolFlagsProperty, own.Name)
+		for i := 1; i < width; i++ {
+			base[i] = c.newSymbol(ast.SymbolFlagsProperty, fmt.Sprintf("k%04d", i))
+		}
+		p := c.pendingInstantiatedTable(source, nil)
+		p.hasBases = true
+		p.bases = []inheritedPendingMembers{{properties: base}}
+		typ := c.newObjectType(ObjectFlagsAnonymous, nil)
+		c.setPendingStructuredTypeMembers(typ, p, nil, nil, nil)
+		st := typ.AsStructuredType()
+		if got := len(st.Properties()); got != width {
+			t.Fatalf("width %d produced %d properties", width, got)
+		}
+		actual := st.Members()
+		if len(actual) != width || actual[own.Name] != own {
+			t.Fatalf("wrong inherited member count or own symbol at width %d", width)
+		}
+		for _, prop := range base[1:] {
+			if actual[prop.Name] != prop {
+				t.Fatalf("lost current inherited symbol %s", prop.Name)
+			}
+		}
+	}
+}
