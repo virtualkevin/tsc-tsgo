@@ -1,0 +1,30 @@
+package checker
+
+import (
+	"fmt"
+	"testing"
+)
+
+// Exercise already seen pairs, the dominant case in the Sentry observer.
+func BenchmarkWarmFiniteTemplateMismatch(b *testing.B) {
+	c := templateEntryGuardChecker()
+	target := c.newTemplateLiteralType([]string{"pre-", "-post"}, []*Type{c.stringType})
+	var sources [1024]*Type
+	for i := range sources {
+		format := "wrong-%d-post"
+		if i%2 != 0 {
+			format = "pre-%d-wrong"
+		}
+		sources[i] = c.getStringLiteralType(fmt.Sprintf(format, i))
+		if c.isTypeRelatedTo(sources[i], target, c.assignableRelation) {
+			b.Fatal("unexpected match")
+		}
+	}
+	b.ReportAllocs()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		if c.isTypeRelatedTo(sources[i%len(sources)], target, c.assignableRelation) {
+			b.Fatal("unexpected match")
+		}
+	}
+}

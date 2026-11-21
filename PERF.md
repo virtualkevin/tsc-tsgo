@@ -629,3 +629,4 @@
 | Size inherited member tables from previous layout | sentry | Matched ordinary Go build | 38603.93 | 39616.39 | 0.974× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/inherited-member-capacity/screen.json.gz) |
 | Size inherited member tables from previous layout | typeorm | Matched ordinary Go build | 4620.57 | 5213.82 | 0.886× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/inherited-member-capacity/screen.json.gz) |
 | Size inherited member tables from previous layout | trpc | Matched ordinary Go build | 883.14 | 1083.60 | 0.815× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/inherited-member-capacity/screen.json.gz) |
+| Reject finite-string template mismatches at relation entry | Sentry | Matched ordinary Go build | 27321.86 | 25776.93 | 1.060× | 4 | Candidate faster in 3/4 pairs. [Samples](benchmarks/profiles/finite-template-relation/sentry.json.gz) |
