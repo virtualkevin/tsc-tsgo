@@ -17,16 +17,18 @@ def check(row):
     assert len(row)==len(columns) and all(isinstance(v,int) and v>=0 for v in row)
     assert row[3] >= row[4] and row[5] >= row[4]
     return dict(zip(columns,row,strict=True))
-with tempfile.TemporaryDirectory() as tmp:
-    cwd = Path(tmp)
-    scaling.bins={"observer":binary}
-    for n in (1,16,256,1024):
-        src=scaling.grouped_program(n,False).encode()
-        (cwd/"case.tsx").write_bytes(src)
-        r,_=scaling.invoke("observer",["--noEmit"],cwd)
-        assert r.returncode==0 and not r.stdout
-        report["widths"][n]={"inputSha256":scaling.sha(src),**check(json.loads(r.stderr))}
-for name,commit,row in observed_projects(binary, projects={"sentry"}):
+other = "--other-projects" in sys.argv[2:]
+if not other:
+    with tempfile.TemporaryDirectory() as tmp:
+        cwd = Path(tmp)
+        scaling.bins={"observer":binary}
+        for n in (1,16,256,1024):
+            src=scaling.grouped_program(n,False).encode()
+            (cwd/"case.tsx").write_bytes(src)
+            r,_=scaling.invoke("observer",["--noEmit"],cwd)
+            assert r.returncode==0 and not r.stdout
+            report["widths"][n]={"inputSha256":scaling.sha(src),**check(json.loads(r.stderr))}
+for name,commit,row in observed_projects(binary, projects=({"vscode","typeorm","trpc"} if other else {"sentry"})):
     report[name]={"commit":commit,**check(row)}
 print(report)
-(here/"group-counts.json").write_text(json.dumps(report,indent=2)+"\n")
+(here/("group-counts-other.json" if other else "group-counts.json")).write_text(json.dumps(report,indent=2)+"\n")
