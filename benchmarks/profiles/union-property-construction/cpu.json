@@ -1,0 +1,183 @@
+{
+  "sentry": {
+    "apparentDescendantsNs": {
+      "getApparentTypeOfIntersectionType": 100000000,
+      "getApparentTypeOfMappedType": 40000000,
+      "getBaseConstraintOfType": 60000000,
+      "getReducedUnionType": 620000000,
+      "getTypeWithThisArgument": 10000000,
+      "github.com/microsoft/typescript-go/internal/checker.NewChecker..getGlobalTypeResolver.Memoize[go.shape.*uint8].func56": 20000000,
+      "hasNeverReducedProperty": 3620000000,
+      "runtime.asyncPreempt": 10000000
+    },
+    "byCallerNs": {
+      "(root)": 110000000,
+      "getPropertiesOfUnionOrIntersectionType": 3280000000,
+      "getPropertyOfTypeEx": 1450000000,
+      "hasNeverReducedProperty": 220000000,
+      "hasUnmatchedProperty": 100000000,
+      "isDiscriminantProperty": 2150000000
+    },
+    "byChildNs": {
+      "(self)": 300000000,
+      "compareProperties": 170000000,
+      "createSymbolWithType": 30000000,
+      "createUnionOrIntersectionProperty.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol]).Values.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Keys.func1": 2200000000,
+      "gcWriteBarrier": 20000000,
+      "getApparentType": 150000000,
+      "getApplicableIndexInfoForName": 190000000,
+      "getIntersectionType": 470000000,
+      "getLocalTypeParametersOfClassOrInterfaceOrTypeAlias": 30000000,
+      "getPropertyOfTypeEx": 2420000000,
+      "getTargetSymbol": 30000000,
+      "getUnionType": 170000000,
+      "github.com/microsoft/typescript-go/internal/checker.getDeclarationModifierFlagsFromSymbol": 110000000,
+      "github.com/microsoft/typescript-go/internal/collections.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol]).Add": 360000000,
+      "github.com/microsoft/typescript-go/internal/collections.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol]).Size": 10000000,
+      "github.com/microsoft/typescript-go/internal/core.(*LinkStore[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct { github.com/microsoft/typescript-go/internal/checker.parent *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.constituents []*github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.writeConstituents []*github.com/microsoft/typescript-go/internal/checker.Type }]).Get": 10000000,
+      "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get": 310000000,
+      "isReadonlySymbol": 220000000,
+      "newSymbolEx": 80000000,
+      "runtime.growslice": 10000000,
+      "runtime.typedslicecopy": 20000000
+    },
+    "constituentPropertyChildrenNs": {
+      "(self)": 70000000,
+      "getPropertyOfObjectType": 70000000,
+      "getPropertyOfUnionOrIntersectionType": 280000000,
+      "getReducedApparentType": 720000000,
+      "github.com/microsoft/typescript-go/internal/checker.(*StructuredType).CallSignatures": 20000000,
+      "github.com/microsoft/typescript-go/internal/checker.getResolvedMember": 820000000,
+      "resolveStructuredTypeMembers": 440000000
+    },
+    "constructNs": 7310000000,
+    "directApparentCallerNs": {
+      "getIndexInfosOfType": 70000000,
+      "getIndexedAccessTypeOrUndefined": 40000000,
+      "getPropertiesOfType": 120000000,
+      "getPropertyOfTypeEx": 990000000,
+      "getSignaturesOfType": 140000000,
+      "hasPropertiesOfType": 20000000,
+      "hasUnmatchedProperty": 70000000
+    },
+    "profileSha256": "34a2872f0285bb47b3d42be7b668473d8f5ad9095fe04cb93335d2112bac98a2",
+    "reducedApparentNs": {
+      "deeperCallees": 4480000000,
+      "selfOrDirectHelperLeaf": 1450000000
+    },
+    "totalCpuNs": 201980000000
+  },
+  "trpc": {
+    "apparentDescendantsNs": {
+      "getBaseConstraintOfType": 20000000,
+      "getReducedUnionType": 10000000,
+      "hasNeverReducedProperty": 30000000
+    },
+    "byCallerNs": {
+      "isDiscriminantProperty": 10000000
+    },
+    "byChildNs": {
+      "createUnionOrIntersectionProperty.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol]).Values.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Keys.func1": 10000000
+    },
+    "constituentPropertyChildrenNs": {},
+    "constructNs": 10000000,
+    "directApparentCallerNs": {},
+    "profileSha256": "addb657c7ce7d849d5cd00bf6fd12540fc5ede82072b61a3d30ea13c969659a0",
+    "reducedApparentNs": {
+      "deeperCallees": 60000000
+    },
+    "totalCpuNs": 2850000000
+  },
+  "typeorm": {
+    "apparentDescendantsNs": {
+      "hasNeverReducedProperty": 10000000
+    },
+    "byCallerNs": {
+      "getPropertiesOfUnionOrIntersectionType": 170000000,
+      "getPropertyOfTypeEx": 20000000,
+      "isDiscriminantProperty": 100000000
+    },
+    "byChildNs": {
+      "createUnionOrIntersectionProperty.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol]).Values.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Keys.func1": 140000000,
+      "getApparentType": 10000000,
+      "getPropertyOfTypeEx": 90000000,
+      "getUnionType": 10000000,
+      "github.com/microsoft/typescript-go/internal/ast.(*Node).Symbol": 10000000,
+      "github.com/microsoft/typescript-go/internal/collections.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol]).Add": 10000000,
+      "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get": 10000000,
+      "newSymbolEx": 10000000
+    },
+    "constituentPropertyChildrenNs": {
+      "(self)": 10000000,
+      "github.com/microsoft/typescript-go/internal/checker.getResolvedMember": 10000000,
+      "resolveStructuredTypeMembers": 70000000
+    },
+    "constructNs": 290000000,
+    "directApparentCallerNs": {
+      "getPropertyOfTypeEx": 10000000,
+      "getSignaturesOfType": 10000000,
+      "hasPropertiesOfType": 10000000
+    },
+    "profileSha256": "f36edb87883c0bd053cf9196a57d804bf2b720cee159ea05536a2adaa1f43915",
+    "reducedApparentNs": {
+      "deeperCallees": 10000000,
+      "selfOrDirectHelperLeaf": 30000000
+    },
+    "totalCpuNs": 16570000000
+  },
+  "vscode": {
+    "apparentDescendantsNs": {
+      "getApparentTypeOfIntersectionType": 10000000,
+      "getApparentTypeOfMappedType": 20000000,
+      "getBaseConstraintOfType": 130000000,
+      "getTypeWithThisArgument": 60000000,
+      "hasNeverReducedProperty": 250000000
+    },
+    "byCallerNs": {
+      "getPropertiesOfUnionOrIntersectionType": 290000000,
+      "getPropertyOfTypeEx": 480000000,
+      "hasNeverReducedProperty": 80000000,
+      "hasUnmatchedProperty": 50000000,
+      "isDiscriminantProperty": 800000000
+    },
+    "byChildNs": {
+      "(self)": 100000000,
+      "compareProperties": 80000000,
+      "createUnionOrIntersectionProperty.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol]).Values.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Keys.func1": 210000000,
+      "getApparentType": 60000000,
+      "getApplicableIndexInfoForName": 150000000,
+      "getIntersectionType": 30000000,
+      "getPropertyOfTypeEx": 510000000,
+      "getTargetSymbol": 10000000,
+      "getUnionType": 20000000,
+      "github.com/microsoft/typescript-go/internal/checker.getDeclarationModifierFlagsFromSymbol": 90000000,
+      "github.com/microsoft/typescript-go/internal/collections.(*OrderedSet[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol]).Add": 200000000,
+      "github.com/microsoft/typescript-go/internal/core.(*LinkStore[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct { github.com/microsoft/typescript-go/internal/checker.parent *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.constituents []*github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.writeConstituents []*github.com/microsoft/typescript-go/internal/checker.Type }]).Get": 50000000,
+      "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get": 130000000,
+      "isReadonlySymbol": 30000000,
+      "newSymbolEx": 30000000
+    },
+    "constituentPropertyChildrenNs": {
+      "getReducedApparentType": 30000000,
+      "github.com/microsoft/typescript-go/internal/checker.(*StructuredType).CallSignatures": 20000000,
+      "github.com/microsoft/typescript-go/internal/checker.getResolvedMember": 170000000,
+      "resolveStructuredTypeMembers": 290000000
+    },
+    "constructNs": 1700000000,
+    "directApparentCallerNs": {
+      "getIndexInfosOfType": 30000000,
+      "getIndexedAccessTypeOrUndefined": 20000000,
+      "getPropertiesOfType": 100000000,
+      "getPropertyOfTypeEx": 310000000,
+      "getSignaturesOfType": 180000000,
+      "hasPropertiesOfType": 10000000,
+      "hasUnmatchedProperty": 40000000
+    },
+    "profileSha256": "6e592c975ee390f4b37142b129691706ef08ac676d23c8cb180a8739e73f8bd6",
+    "reducedApparentNs": {
+      "deeperCallees": 470000000,
+      "selfOrDirectHelperLeaf": 690000000
+    },
+    "totalCpuNs": 203660000000
+  }
+}
