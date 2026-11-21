@@ -43,16 +43,27 @@ edit("cmd/tsgo/main.go", [
     ('"context"', '"context"\n "encoding/json"\n "github.com/microsoft/typescript-go/internal/checker"'),
     ("os.Exit(runMain())", "status := runMain(); json.NewEncoder(os.Stderr).Encode(checker.SpikeCallbacks()); os.Exit(status)")
 ])
+without_guard = sys.argv[3:] == ["--without-template-guard"]
+assert without_guard or len(sys.argv) == 3
+if without_guard:
+    dest = out / "checker.go"
+    src = dest.read_text()
+    guard = """if target.flags&TypeFlagsTemplateLiteral != 0 && unmatchedTemplateIndexKey(source, target.AsTemplateLiteralType()) {
+		return false
+	}"""
+    assert src.count(guard) == 1
+    dest.write_text(src.replace(guard, ""))
 config = out / "overlay.json"
 config.write_text(json.dumps({"Replace": replacement}))
 binary = out / "tsgo"
 subprocess.run([sys.argv[2], "build", "-buildvcs=false", "-overlay=" + str(config), "-o", binary, "./cmd/tsgo"], cwd=root, check=True)
 report = {"binarySha256": hashlib.sha256(binary.read_bytes()).hexdigest(), "minimumCallbackInstantiations": 70000, "projects": {}}
-for name, commit, rows in observed_projects(binary, projects={"sentry", "vscode"}):
+projects = {"sentry"} if without_guard else {"sentry", "vscode"}
+for name, commit, rows in observed_projects(binary, projects=projects):
     assert rows
     for row in rows:
         assert row["Samples"] > 0
         assert all(sum(row[key].values()) == row["Samples"] for key in ("Sites", "Origins", "Callers"))
     report["projects"][name] = {"commit": commit, "callbacks": sorted(rows, key=lambda r: -r["Instantiations"])}
     print(name, len(rows), [(r["Worker"], r["Instantiations"], max(r["Origins"],key=r["Origins"].get)) for r in report["projects"][name]["callbacks"][:4]], flush=True)
-(here / "results.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+(here / ("sentry-without-guard.json" if without_guard else "results.json")).write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")

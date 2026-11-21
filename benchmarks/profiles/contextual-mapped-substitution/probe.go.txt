@@ -1,0 +1,71 @@
+package checker
+
+import "sync"
+
+type substitutionObservation struct {
+	object, index, result *Type
+}
+
+type substitutionDemand struct {
+	active  bool
+	entries [4096]substitutionObservation
+	rows    [3][4]uint64
+}
+
+var substitutionStores struct {
+	sync.Mutex
+	items []*substitutionDemand
+}
+
+func (c *Checker) observeContextualMappedSubstitution(object, index *Type) *Type {
+	s := c.substitutionDemand
+	if s == nil {
+		s = new(substitutionDemand)
+		c.substitutionDemand = s
+		substitutionStores.Lock()
+		substitutionStores.items = append(substitutionStores.items, s)
+		substitutionStores.Unlock()
+	}
+	if s.active {
+		return c.substituteIndexedMappedType(object, index)
+	}
+	slot := (uint32(object.id)*2654435761 ^ uint32(index.id)*2246822519) % uint32(len(s.entries))
+	old := s.entries[slot]
+	before := c.TotalInstantiationCount
+	budget := c.instantiationCount
+	s.active = true
+	result := c.substituteIndexedMappedType(object, index)
+	s.active = false
+	bucket := 0
+	if old.object == object && old.index == index {
+		bucket = 1
+		if old.result != result {
+			bucket = 2
+		}
+	}
+	row := &s.rows[bucket]
+	row[0]++
+	row[1] += uint64(c.TotalInstantiationCount - before)
+	if before != c.TotalInstantiationCount {
+		row[2]++
+	}
+	if budget != c.instantiationCount {
+		row[3]++
+	}
+	s.entries[slot] = substitutionObservation{object, index, result}
+	return result
+}
+
+func SubstitutionDemand() [3][4]uint64 {
+	substitutionStores.Lock()
+	defer substitutionStores.Unlock()
+	var total [3][4]uint64
+	for _, store := range substitutionStores.items {
+		for i := range total {
+			for j := range total[i] {
+				total[i][j] += store.rows[i][j]
+			}
+		}
+	}
+	return total
+}
