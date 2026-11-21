@@ -1,0 +1,54 @@
+package parser
+
+import (
+	"fmt"
+	"runtime"
+	"strings"
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/core"
+)
+
+func importPairSource(n int) string {
+	var b strings.Builder
+	for i := range n {
+		fmt.Fprintf(&b, "import { a as a%d } from 'm%d';\n", i, i)
+	}
+	return b.String()
+}
+
+func parseImportPairSource(s string) *ast.SourceFile {
+	return ParseSourceFile(ast.SourceFileParseOptions{FileName: "/imports.ts", Path: "/imports.ts"}, s, core.ScriptKindTS)
+}
+
+func TestImportPairIdentityAndLifetime(t *testing.T) {
+	s := importPairSource(400) + "import 'side-effect';\nimport x = require('x');\n"
+	f := parseImportPairSource(s)
+	saved := f.Statements.Nodes[200].AsImportDeclaration().ImportClause
+	second := parseImportPairSource(s)
+	if saved == second.Statements.Nodes[200].AsImportDeclaration().ImportClause {
+		t.Fatal("independent parses shared a node")
+	}
+	if f.Statements.Nodes[400].AsImportDeclaration().ImportClause != nil || f.Statements.Nodes[401].Kind != ast.KindImportEqualsDeclaration {
+		t.Fatal("side-effect or equals import changed")
+	}
+	f = nil
+	runtime.GC()
+	parent := saved.Parent
+	if parent.Kind != ast.KindImportDeclaration || parent.AsImportDeclaration().ImportClause != saved ||
+		parent.AsImportDeclaration().ModuleSpecifier.AsStringLiteral().Text != "m200" || saved.Parent == saved || saved.Pos() < parent.Pos() || saved.End() >= parent.End() {
+		t.Fatal("escaped clause lost its declaration, payload or source range")
+	}
+}
+
+var importPairResult *ast.SourceFile
+
+func BenchmarkImportPairParse(b *testing.B) {
+	s := importPairSource(1000)
+	b.ReportAllocs()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		importPairResult = parseImportPairSource(s)
+	}
+}
