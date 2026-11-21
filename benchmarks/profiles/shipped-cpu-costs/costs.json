@@ -43,6 +43,13 @@
   },
   "projects": {
     "trpc": {
+      "initializerOperationNs": {
+        "resolveCallExpression": 120000000,
+        "chooseOverload": 110000000,
+        "inferTypeArguments": 80000000,
+        "getResolvedSignature": 120000000,
+        "getReturnTypeOfSignature": 10000000
+      },
       "semanticPathsNs": {
         "symbolResolution": {
           "getTypeOfVariableOrParameterOrProperty": 140000000,
@@ -84,6 +91,12 @@
         "initializerExpression": {
           "checkCallExpression": 110000000,
           "checkPropertyAccessExpression": 20000000
+        },
+        "initializerOverloadLine": {
+          "9035": 80000000,
+          "9020": 10000000,
+          "9054": 10000000,
+          "9034": 10000000
         }
       },
       "totalCpuNs": 2850000000,
@@ -190,6 +203,14 @@
       }
     },
     "typeorm": {
+      "initializerOperationNs": {
+        "resolveCallExpression": 860000000,
+        "chooseOverload": 780000000,
+        "inferTypeArguments": 390000000,
+        "getResolvedSignature": 900000000,
+        "resolveCallCalleeExpression": 120000000,
+        "getReturnTypeOfSignature": 20000000
+      },
       "semanticPathsNs": {
         "symbolResolution": {
           "getTypeOfVariableOrParameterOrProperty": 1490000000,
@@ -256,6 +277,15 @@
           "checkFunctionExpressionOrObjectLiteralMethod": 10000000,
           "checkObjectLiteral": 10000000,
           "checkIdentifier": 10000000
+        },
+        "initializerOverloadLine": {
+          "9035": 290000000,
+          "9054": 260000000,
+          "9065": 100000000,
+          "9013": 100000000,
+          "9074": 10000000,
+          "9020": 10000000,
+          "9010": 10000000
         }
       },
       "totalCpuNs": 16570000000,
@@ -449,6 +479,14 @@
       }
     },
     "vscode": {
+      "initializerOperationNs": {
+        "resolveCallExpression": 14100000000,
+        "getResolvedSignature": 15080000000,
+        "resolveCallCalleeExpression": 2000000000,
+        "getReturnTypeOfSignature": 1350000000,
+        "chooseOverload": 13080000000,
+        "inferTypeArguments": 9020000000
+      },
       "semanticPathsNs": {
         "symbolResolution": {
           "getTypeOfVariableOrParameterOrProperty": 28810000000,
@@ -560,6 +598,22 @@
           "checkArrayLiteral": 500000000,
           "checkFunctionExpressionOrObjectLiteralMethod": 210000000,
           "checkElementAccessExpression": 90000000
+        },
+        "initializerOverloadLine": {
+          "9035": 7270000000,
+          "9054": 2020000000,
+          "9065": 1530000000,
+          "9013": 760000000,
+          "9047": 570000000,
+          "9074": 240000000,
+          "9020": 220000000,
+          "9044": 160000000,
+          "9028": 140000000,
+          "9010": 80000000,
+          "9034": 60000000,
+          "9036": 10000000,
+          "9066": 10000000,
+          "9069": 10000000
         }
       },
       "totalCpuNs": 203660000000,
@@ -936,6 +990,14 @@
       }
     },
     "sentry": {
+      "initializerOperationNs": {
+        "resolveCallExpression": 18070000000,
+        "chooseOverload": 19200000000,
+        "inferTypeArguments": 10920000000,
+        "getResolvedSignature": 21290000000,
+        "getReturnTypeOfSignature": 3790000000,
+        "resolveCallCalleeExpression": 2310000000
+      },
       "semanticPathsNs": {
         "symbolResolution": {
           "getTypeOfVariableOrParameterOrProperty": 28830000000,
@@ -1041,6 +1103,20 @@
           "<other>": 620000000,
           "checkFunctionExpressionOrObjectLiteralMethod": 330000000,
           "checkArrayLiteral": 270000000
+        },
+        "initializerOverloadLine": {
+          "9035": 8090000000,
+          "9054": 6050000000,
+          "9065": 2640000000,
+          "9074": 1370000000,
+          "9013": 400000000,
+          "9044": 200000000,
+          "9020": 180000000,
+          "9028": 100000000,
+          "9034": 90000000,
+          "9010": 50000000,
+          "9066": 20000000,
+          "9047": 10000000
         }
       },
       "totalCpuNs": 201980000000,

@@ -1,0 +1,49 @@
+{
+  "observerSha256": "5c460d8d645b832d3fa493a8fd593f2754f9af27d5a4799a59f4f61db1abe3b1",
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "counts": {
+        "quickCallee": 524,
+        "quickFellBack": 292,
+        "repeatCalleeChecks": 258,
+        "fallbacksWithRepeat": 258,
+        "differentTypeOnRepeat": 0,
+        "instantiatedOnRepeat": 3
+      }
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "counts": {
+        "quickCallee": 6038,
+        "quickFellBack": 2431,
+        "repeatCalleeChecks": 2329,
+        "fallbacksWithRepeat": 2329,
+        "differentTypeOnRepeat": 0,
+        "instantiatedOnRepeat": 0
+      }
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "counts": {
+        "quickCallee": 277732,
+        "quickFellBack": 68118,
+        "repeatCalleeChecks": 65202,
+        "fallbacksWithRepeat": 65202,
+        "differentTypeOnRepeat": 34,
+        "instantiatedOnRepeat": 38
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "counts": {
+        "quickCallee": 138785,
+        "quickFellBack": 67956,
+        "repeatCalleeChecks": 24600,
+        "fallbacksWithRepeat": 24600,
+        "differentTypeOnRepeat": 8,
+        "instantiatedOnRepeat": 8
+      }
+    }
+  }
+}

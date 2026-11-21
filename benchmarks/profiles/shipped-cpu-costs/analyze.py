@@ -39,7 +39,8 @@ for pname,p in manifest["projects"].items():
         if f:
             frames[key].append((f[1],f[2],int(f[3])))
     cum,only,leaf,callers = Counter(),Counter(),Counter(),Counter()
-    semanticPaths = {family:Counter() for family in ("symbolResolution","relationBranch","instantiateCaller","variableResolution","variableRequest","initializerPath","initializerExpression")}
+    initializerCallees = Counter()
+    semanticPaths = {family:Counter() for family in ("symbolResolution","relationBranch","instantiateCaller","variableResolution","variableRequest","initializerPath","initializerExpression","initializerOverloadLine")}
     for ns,stack in re.findall(r"^\s*\d+\s+(\d+):\s*([\d ]+)$",samples,re.M):
         weight = int(ns)
         entries = [frame for i in stack.split() for frame in frames[int(i)]]
@@ -71,6 +72,14 @@ for pname,p in manifest["projects"].items():
         init = next((i for i in range(len(entries)-1,-1,-1) if entries[i][0].endswith(".(*Checker).checkDeclarationInitializer")),None)
         if init is not None:
             inner = entries[:init]
+            overload = next((line for f,_,line in reversed(inner) if f.endswith(".(*Checker).chooseOverload")),None)
+            if overload is not None:
+                semanticPaths["initializerOverloadLine"][overload] += weight
+            for opname in ("resolveCallExpression","chooseOverload","inferTypeArguments","getSignatureApplicabilityError","getResolvedSignature","getReturnTypeOfSignature"):
+                if any(f.endswith("."+opname) for f,_,_ in inner):
+                    initializerCallees[opname] += weight
+            if any(f.endswith(".resolveCallExpression") and line == 8475 for f,_,line in inner):
+                initializerCallees["resolveCallCalleeExpression"] += weight
             name = inner[-1][0].split("internal/checker.")[-1] if inner else "<dispatch>"
             semanticPaths["initializerPath"][name] += weight
             handlers = {"checkObjectLiteral","checkArrayLiteral","checkFunctionExpressionOrObjectLiteralMethod",
@@ -110,6 +119,6 @@ for pname,p in manifest["projects"].items():
     total = only.total()
     assert phases.total() == total
     assert total > 0 and callers.total() == cum["goMap"]
-    report["projects"][pname] = dict(semanticPathsNs={k:dict(v.most_common()) for k,v in semanticPaths.items()},totalCpuNs=total,exclusivePhasesNs=phases,inclusiveNs=cum,exclusiveNs=only,pointerLinkLeafLineNs=leaf,goMapCallerNs=dict(callers.most_common()))
+    report["projects"][pname] = dict(initializerOperationNs=initializerCallees,semanticPathsNs={k:dict(v.most_common()) for k,v in semanticPaths.items()},totalCpuNs=total,exclusivePhasesNs=phases,inclusiveNs=cum,exclusiveNs=only,pointerLinkLeafLineNs=leaf,goMapCallerNs=dict(callers.most_common()))
     print(pname, {k: round(v*100/total,2) for k,v in cum.items()}, leaf.most_common(4))
 (here/"costs.json").write_text(json.dumps(report,indent=2)+"\n")
