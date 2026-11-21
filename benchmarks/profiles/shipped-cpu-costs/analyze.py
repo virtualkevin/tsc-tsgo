@@ -23,8 +23,8 @@ categories = {
     "pointerLinks": ("internal/core.(*PointerLinkStore[", "internal/core.pointerLinkHash["),
 }
 report = {"families":categories,"projects":{}}
-for name,p in manifest["projects"].items():
-    path = here / f"{name}-cpu.pb.gz"
+for pname,p in manifest["projects"].items():
+    path = here / f"{pname}-cpu.pb.gz"
     assert hashlib.sha256(path.read_bytes()).hexdigest() == p["profiles"]["cpu"]
     raw = subprocess.check_output([sys.argv[1],"tool","pprof","-raw",path],text=True)
     samples,locations = raw.split("Locations\n",1)
@@ -39,12 +39,56 @@ for name,p in manifest["projects"].items():
         if f:
             frames[key].append((f[1],f[2],int(f[3])))
     cum,only,leaf,callers = Counter(),Counter(),Counter(),Counter()
+    semanticPaths = {family:Counter() for family in ("symbolResolution","relationBranch","instantiateCaller","variableResolution","variableRequest","initializerPath","initializerExpression")}
     for ns,stack in re.findall(r"^\s*\d+\s+(\d+):\s*([\d ]+)$",samples,re.M):
         weight = int(ns)
         entries = [frame for i in stack.split() for frame in frames[int(i)]]
         if not stack.split() or not frames[int(stack.split()[0])]:
             entries.insert(0, ("<unsymbolized>", "", 0))
         hit = [cat for cat,terms in categories.items() if any(any(t in func for t in terms) for func,_,_ in entries)]
+        if "symbolType" in hit:
+            # Outermost symbol dispatch assigns each sample to one resolver branch.
+            indexes = [i for i,(f,_,_) in enumerate(entries) if f.endswith(".(*Checker).getTypeOfSymbol")]
+            name = "<other symbol entry>"
+            if indexes:
+                i = indexes[-1]
+                name = entries[i-1][0].split(".")[-1] if i else "<dispatch>"
+            semanticPaths["symbolResolution"][name] += weight
+        vi = next((i for i in range(len(entries)-1,-1,-1) if entries[i][0].endswith(".(*Checker).getTypeOfVariableOrParameterOrProperty")),None)
+        if vi is not None:
+            inner = entries[:vi]
+            worker = next((i for i in range(len(inner)-1,-1,-1) if inner[i][0].endswith(".getTypeOfVariableOrParameterOrPropertyWorker")),None)
+            if worker is None:
+                name = "<links or outer resolver>"
+            elif worker == 0:
+                name = "<worker dispatch>"
+            else:
+                name = inner[worker-1][0].split(".")[-1]
+            semanticPaths["variableResolution"][name] += weight
+            caller = next((f.split("internal/checker.")[-1] for f,_,_ in entries[vi+1:]
+                           if "internal/checker." in f and not f.endswith(".getTypeOfSymbol")), "<outside checker>")
+            semanticPaths["variableRequest"][caller] += weight
+        init = next((i for i in range(len(entries)-1,-1,-1) if entries[i][0].endswith(".(*Checker).checkDeclarationInitializer")),None)
+        if init is not None:
+            inner = entries[:init]
+            name = inner[-1][0].split("internal/checker.")[-1] if inner else "<dispatch>"
+            semanticPaths["initializerPath"][name] += weight
+            handlers = {"checkObjectLiteral","checkArrayLiteral","checkFunctionExpressionOrObjectLiteralMethod",
+                        "checkArrowFunction","checkCallExpression","checkNewExpression","checkTaggedTemplateExpression",
+                        "checkIdentifier","checkPropertyAccessExpression","checkElementAccessExpression",
+                        "checkBinaryExpression","checkConditionalExpression","checkJsxElement","checkJsxSelfClosingElement"}
+            expr = next((f.rsplit(".",1)[-1] for f,_,_ in reversed(inner) if "(*Checker)." in f and f.rsplit(".",1)[-1] in handlers),"<other>")
+            semanticPaths["initializerExpression"][expr] += weight
+        if "relations" in hit:
+            branches = {"propertiesRelatedTo","propertyRelatedTo","signaturesRelatedTo","signatureRelatedTo",
+                        "indexSignaturesRelatedTo","typeRelatedToSomeType","eachTypeRelatedToType",
+                        "typeRelatedToEachType","unionOrIntersectionRelatedTo","structuredTypeRelatedTo"}
+            branch = next((f.rsplit(".",1)[-1] for f,_,_ in entries if "(*Relater)." in f and f.rsplit(".",1)[-1] in branches), "<other relation work>")
+            semanticPaths["relationBranch"][branch] += weight
+        if "instantiation" in hit:
+            i = max(i for i,(f,_,_) in enumerate(entries) if "internal/checker.(*Checker).instantiateTypeWithAlias" in f)
+            name = next((f.split("internal/checker.")[-1] for f,_,_ in entries[i+1:] if "internal/checker." in f and not f.endswith(".instantiateType")), "<outside checker>")
+            semanticPaths["instantiateCaller"][name] += weight
         only["+".join(hit) or "other"] += weight
         for cat in hit:
             cum[cat] += weight
@@ -66,6 +110,6 @@ for name,p in manifest["projects"].items():
     total = only.total()
     assert phases.total() == total
     assert total > 0 and callers.total() == cum["goMap"]
-    report["projects"][name] = dict(totalCpuNs=total,exclusivePhasesNs=phases,inclusiveNs=cum,exclusiveNs=only,pointerLinkLeafLineNs=leaf,goMapCallerNs=dict(callers.most_common()))
-    print(name, {k: round(v*100/total,2) for k,v in cum.items()}, leaf.most_common(4))
+    report["projects"][pname] = dict(semanticPathsNs={k:dict(v.most_common()) for k,v in semanticPaths.items()},totalCpuNs=total,exclusivePhasesNs=phases,inclusiveNs=cum,exclusiveNs=only,pointerLinkLeafLineNs=leaf,goMapCallerNs=dict(callers.most_common()))
+    print(pname, {k: round(v*100/total,2) for k,v in cum.items()}, leaf.most_common(4))
 (here/"costs.json").write_text(json.dumps(report,indent=2)+"\n")

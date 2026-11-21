@@ -43,6 +43,49 @@
   },
   "projects": {
     "trpc": {
+      "semanticPathsNs": {
+        "symbolResolution": {
+          "getTypeOfVariableOrParameterOrProperty": 140000000,
+          "getTypeOfInstantiatedSymbol": 120000000,
+          "getTypeOfMappedSymbol": 20000000
+        },
+        "relationBranch": {
+          "signatureRelatedTo": 100000000,
+          "structuredTypeRelatedTo": 60000000,
+          "propertiesRelatedTo": 50000000,
+          "propertyRelatedTo": 30000000,
+          "<other relation work>": 20000000,
+          "typeRelatedToSomeType": 10000000,
+          "indexSignaturesRelatedTo": 10000000
+        },
+        "instantiateCaller": {
+          "(*Checker).getTypeOfInstantiatedSymbol": 120000000,
+          "(*Checker).getTypeAliasInstantiation": 60000000,
+          "(*Checker).getReturnTypeOfSignature": 20000000,
+          "(*Checker).getInferredTrueTypeFromConditionalType": 10000000,
+          "(*Checker).getConditionalType": 10000000,
+          "(*Checker).getTrueTypeFromConditionalType": 10000000,
+          "(*Checker).getConstraintFromTypeParameter": 10000000,
+          "(*Checker).getFalseTypeFromConditionalType": 10000000,
+          "Type]": 10000000,
+          "(*Checker).getTypeOfMappedSymbol": 10000000
+        },
+        "variableResolution": {
+          "getWidenedTypeForVariableLikeDeclaration": 170000000
+        },
+        "variableRequest": {
+          "(*Checker).checkVariableLikeDeclaration": 140000000,
+          "(*Checker).getTypeOfInstantiatedSymbol": 30000000
+        },
+        "initializerPath": {
+          "(*Checker).checkExpressionCachedEx": 110000000,
+          "(*Checker).getQuickTypeOfExpression": 20000000
+        },
+        "initializerExpression": {
+          "checkCallExpression": 110000000,
+          "checkPropertyAccessExpression": 20000000
+        }
+      },
       "totalCpuNs": 2850000000,
       "exclusivePhasesNs": {
         "other": 440000000,
@@ -147,6 +190,74 @@
       }
     },
     "typeorm": {
+      "semanticPathsNs": {
+        "symbolResolution": {
+          "getTypeOfVariableOrParameterOrProperty": 1490000000,
+          "getTypeOfInstantiatedSymbol": 230000000,
+          "getTypeOfAlias": 130000000,
+          "getTypeOfMappedSymbol": 90000000,
+          "<dispatch>": 30000000,
+          "getTypeOfFuncClassEnumModule": 20000000
+        },
+        "relationBranch": {
+          "propertiesRelatedTo": 290000000,
+          "signatureRelatedTo": 240000000,
+          "<other relation work>": 240000000,
+          "propertyRelatedTo": 190000000,
+          "typeRelatedToSomeType": 90000000,
+          "signaturesRelatedTo": 90000000,
+          "structuredTypeRelatedTo": 80000000,
+          "eachTypeRelatedToType": 20000000,
+          "unionOrIntersectionRelatedTo": 10000000
+        },
+        "instantiateCaller": {
+          "(*Checker).getTypeOfInstantiatedSymbol": 260000000,
+          "(*Checker).getTypeOfMappedSymbol": 140000000,
+          "(*Checker).getReturnTypeOfSignature": 80000000,
+          "(*Checker).getConstraintFromTypeParameter": 50000000,
+          "(*Checker).getTypeAliasInstantiation": 30000000,
+          "(*Checker).getInferredType": 30000000,
+          "(*Checker).resolvePendingObjectTypeMembers": 20000000,
+          "(*Checker).getConditionalType": 10000000,
+          "(*Checker).getInferredTrueTypeFromConditionalType": 10000000,
+          "<outside checker>": 10000000,
+          "(*Checker).substituteIndexedMappedType": 10000000
+        },
+        "variableResolution": {
+          "getWidenedTypeForVariableLikeDeclaration": 1420000000,
+          "<links or outer resolver>": 150000000,
+          "<worker dispatch>": 10000000
+        },
+        "variableRequest": {
+          "(*Checker).checkVariableLikeDeclaration": 1180000000,
+          "(*Checker).getTypeOfParameter": 100000000,
+          "(*Checker).getNarrowedTypeOfSymbol": 100000000,
+          "(*Checker).getTypeOfInstantiatedSymbol": 40000000,
+          "(*Checker).getNonMissingTypeOfSymbol": 40000000,
+          "(*Checker).getTypeOfAlias": 30000000,
+          "(*Checker).checkPropertyAccessExpressionOrQualifiedName": 30000000,
+          "<outside checker>": 20000000,
+          "(*Checker).getTypeOfConcretePropertyOfContextualType": 10000000,
+          "(*Checker).getSpreadSymbol": 10000000,
+          "(*Checker).getPropertyTypeForIndexType": 10000000,
+          "(*Checker).getWriteTypeOfSymbol": 10000000
+        },
+        "initializerPath": {
+          "(*Checker).checkExpressionCachedEx": 820000000,
+          "(*Checker).getQuickTypeOfExpression": 360000000,
+          "<dispatch>": 10000000
+        },
+        "initializerExpression": {
+          "checkCallExpression": 640000000,
+          "checkPropertyAccessExpression": 340000000,
+          "checkConditionalExpression": 70000000,
+          "<other>": 60000000,
+          "checkBinaryExpression": 50000000,
+          "checkFunctionExpressionOrObjectLiteralMethod": 10000000,
+          "checkObjectLiteral": 10000000,
+          "checkIdentifier": 10000000
+        }
+      },
       "totalCpuNs": 16570000000,
       "exclusivePhasesNs": {
         "other": 3460000000,
@@ -338,6 +449,119 @@
       }
     },
     "vscode": {
+      "semanticPathsNs": {
+        "symbolResolution": {
+          "getTypeOfVariableOrParameterOrProperty": 28810000000,
+          "getTypeOfInstantiatedSymbol": 5730000000,
+          "getTypeOfAlias": 1890000000,
+          "getTypeOfFuncClassEnumModule": 1340000000,
+          "getTypeOfMappedSymbol": 840000000,
+          "getTypeOfAccessors": 150000000,
+          "<dispatch>": 110000000,
+          "getTypeOfSymbolWithDeferredType": 40000000,
+          "getTypeOfEnumMember": 20000000,
+          "getTypeOfReverseMappedSymbol": 10000000
+        },
+        "relationBranch": {
+          "propertiesRelatedTo": 4970000000,
+          "<other relation work>": 4780000000,
+          "propertyRelatedTo": 4510000000,
+          "signatureRelatedTo": 4140000000,
+          "structuredTypeRelatedTo": 2350000000,
+          "typeRelatedToSomeType": 750000000,
+          "signaturesRelatedTo": 740000000,
+          "unionOrIntersectionRelatedTo": 620000000,
+          "eachTypeRelatedToType": 580000000,
+          "indexSignaturesRelatedTo": 150000000,
+          "typeRelatedToEachType": 20000000
+        },
+        "instantiateCaller": {
+          "(*Checker).getTypeOfInstantiatedSymbol": 5920000000,
+          "(*Checker).getReturnTypeOfSignature": 1550000000,
+          "(*Checker).getTypeAliasInstantiation": 810000000,
+          "(*Checker).getTypeOfMappedSymbol": 720000000,
+          "(*Checker).getInferredType": 680000000,
+          "(*Checker).instantiateInstantiableTypes": 600000000,
+          "(*Checker).resolvePendingObjectTypeMembers": 310000000,
+          "(*Checker).getConstraintFromTypeParameter": 250000000,
+          "(*Checker).inferTypeArguments": 180000000,
+          "(*Checker).instantiateTypePredicate": 150000000,
+          "(*Checker).substituteIndexedMappedType": 150000000,
+          "(*Checker).getTrueTypeFromConditionalType": 110000000,
+          "(*Checker).checkTypeArguments": 90000000,
+          "(*Checker).fillMissingTypeArguments": 60000000,
+          "Type]": 60000000,
+          "<outside checker>": 40000000,
+          "(*Checker).resolveMappedTypeMembers.func1": 40000000,
+          "(*Checker).instantiateIndexInfo": 40000000,
+          "(*Checker).instantiateMappedTypeTemplate": 40000000,
+          "(*Checker).getConditionalType": 40000000,
+          "(*Checker).newConditionalType": 10000000,
+          "(*Checker).getModifiersTypeFromMappedType": 10000000,
+          "(*Checker).resolveMappedTypeMembers.func2": 10000000,
+          "(*Checker).checkTypeArgumentConstraints": 10000000,
+          "(*Checker).getTypeParametersForMapper.func1": 10000000
+        },
+        "variableResolution": {
+          "getWidenedTypeForVariableLikeDeclaration": 27130000000,
+          "<links or outer resolver>": 3110000000,
+          "<worker dispatch>": 20000000,
+          "checkExpression": 20000000,
+          "getWidenedType": 10000000,
+          "popTypeResolution": 10000000
+        },
+        "variableRequest": {
+          "(*Checker).checkVariableLikeDeclaration": 17000000000,
+          "(*Checker).getNarrowedTypeOfSymbol": 6420000000,
+          "(*Checker).getTypeOfParameter": 2280000000,
+          "(*Checker).getTypeOfInstantiatedSymbol": 910000000,
+          "(*Checker).checkPropertyAccessExpressionOrQualifiedName": 690000000,
+          "(*Checker).getNonMissingTypeOfSymbol": 680000000,
+          "(*Checker).getTypeOfAlias": 460000000,
+          "(*Checker).getTypeOfConcretePropertyOfContextualType": 370000000,
+          "<outside checker>": 330000000,
+          "(*Checker).checkPropertyInitialization": 240000000,
+          "(*Checker).removeSubtypes.func3": 160000000,
+          "(*Checker).isUnmatchedProperty": 100000000,
+          "(*Checker).getSpreadSymbol": 100000000,
+          "(*Checker).getPropertyTypeForIndexType": 80000000,
+          "(*Checker).getTypeOfPropertyOfType": 80000000,
+          "(*Checker).getMinArgumentCountEx": 80000000,
+          "(*Checker).getExplicitTypeOfSymbol": 40000000,
+          "(*Relater).hasExcessProperties": 30000000,
+          "(*Checker).createUnionOrIntersectionProperty-range1": 30000000,
+          "(*Checker).inferFromProperties": 30000000,
+          "(*Checker).resolveExportByName": 30000000,
+          "(*Checker).getWidenedProperty": 30000000,
+          "(*Checker).hasUnmatchedProperty": 20000000,
+          "(*Checker).getWriteTypeOfSymbol": 20000000,
+          "(*Checker).getKeyPropertyCandidateName": 20000000,
+          "(*Checker).getEffectiveRestType": 10000000,
+          "(*Checker).someLiteralOrPrivateProperty": 10000000,
+          "(*Checker).getTypeOfPropertyInType": 10000000,
+          "(*Checker).tryMergeUnionOfObjectTypeAndEmptyObject": 10000000,
+          "(*Checker).inferFromIndexTypes": 10000000,
+          "(*Checker).tryGetTypeAtPosition": 10000000,
+          "(*Checker).getParameterCount": 10000000
+        },
+        "initializerPath": {
+          "(*Checker).checkExpressionCachedEx": 17090000000,
+          "(*Checker).getQuickTypeOfExpression": 6230000000,
+          "<dispatch>": 10000000
+        },
+        "initializerExpression": {
+          "checkCallExpression": 11380000000,
+          "checkPropertyAccessExpression": 4420000000,
+          "<other>": 1730000000,
+          "checkConditionalExpression": 1400000000,
+          "checkObjectLiteral": 1390000000,
+          "checkBinaryExpression": 1120000000,
+          "checkIdentifier": 1090000000,
+          "checkArrayLiteral": 500000000,
+          "checkFunctionExpressionOrObjectLiteralMethod": 210000000,
+          "checkElementAccessExpression": 90000000
+        }
+      },
       "totalCpuNs": 203660000000,
       "exclusivePhasesNs": {
         "other": 7350000000,
@@ -712,6 +936,113 @@
       }
     },
     "sentry": {
+      "semanticPathsNs": {
+        "symbolResolution": {
+          "getTypeOfVariableOrParameterOrProperty": 28830000000,
+          "getTypeOfMappedSymbol": 5910000000,
+          "getTypeOfInstantiatedSymbol": 5750000000,
+          "getTypeOfAlias": 3680000000,
+          "getTypeOfFuncClassEnumModule": 220000000,
+          "<dispatch>": 100000000,
+          "getTypeOfSymbolWithDeferredType": 80000000
+        },
+        "relationBranch": {
+          "<other relation work>": 14890000000,
+          "propertiesRelatedTo": 11590000000,
+          "structuredTypeRelatedTo": 4530000000,
+          "signatureRelatedTo": 4420000000,
+          "propertyRelatedTo": 4290000000,
+          "indexSignaturesRelatedTo": 2670000000,
+          "typeRelatedToSomeType": 1610000000,
+          "typeRelatedToEachType": 1020000000,
+          "eachTypeRelatedToType": 960000000,
+          "unionOrIntersectionRelatedTo": 680000000,
+          "signaturesRelatedTo": 620000000
+        },
+        "instantiateCaller": {
+          "(*Checker).getTypeAliasInstantiation": 12420000000,
+          "(*Checker).resolveMappedTypeMembers.func1": 8390000000,
+          "(*Checker).getTypeOfInstantiatedSymbol": 4940000000,
+          "(*Checker).getTypeOfMappedSymbol": 3390000000,
+          "(*Checker).getInferredType": 2060000000,
+          "(*Checker).getReturnTypeOfSignature": 1500000000,
+          "Type]": 910000000,
+          "(*Checker).getConstraintFromTypeParameter": 620000000,
+          "(*Checker).resolvePendingObjectTypeMembers": 510000000,
+          "(*Checker).getConditionalType": 310000000,
+          "(*Checker).inferTypeArguments": 230000000,
+          "<outside checker>": 200000000,
+          "(*Checker).getTrueTypeFromConditionalType": 160000000,
+          "(*Checker).getFalseTypeFromConditionalType": 70000000,
+          "(*Checker).fillMissingTypeArguments": 60000000,
+          "(*Checker).checkTypeArgumentConstraints": 60000000,
+          "(*Checker).resolveMappedTypeMembers.func2": 40000000,
+          "(*Relater).structuredTypeRelatedToWorker": 40000000,
+          "(*Checker).instantiateInstantiableTypes": 40000000,
+          "(*CompositeTypeMapper).Map": 30000000,
+          "(*Checker).getRestrictiveInstantiation": 20000000,
+          "(*Checker).checkTypeArguments": 20000000,
+          "(*Relater).typeArgumentsRelatedTo": 20000000,
+          "(*Checker).instantiateTypeWorker": 10000000,
+          "(*Checker).getModifiersTypeFromMappedType": 10000000,
+          "(*Checker).isReducibleIntersection": 10000000,
+          "(*Checker).instantiateTypePredicate": 10000000,
+          "(*Checker).getTypeParametersForMapper.func1": 10000000
+        },
+        "variableResolution": {
+          "getWidenedTypeForVariableLikeDeclaration": 31490000000,
+          "<links or outer resolver>": 1270000000,
+          "checkExpressionCached": 90000000,
+          "getWidenedTypeForAssignmentDeclaration": 40000000,
+          "pushTypeResolution": 40000000,
+          "<worker dispatch>": 20000000,
+          "popTypeResolution": 10000000
+        },
+        "variableRequest": {
+          "(*Checker).checkVariableLikeDeclaration": 21210000000,
+          "(*Checker).getNarrowedTypeOfSymbol": 3370000000,
+          "(*Checker).getTypeOfAlias": 2580000000,
+          "(*Checker).getTypeOfParameter": 2160000000,
+          "(*Checker).getPropertyTypeForIndexType": 770000000,
+          "<outside checker>": 660000000,
+          "(*Checker).getTypeOfInstantiatedSymbol": 640000000,
+          "(*Checker).getTypeOfConcretePropertyOfContextualType": 390000000,
+          "(*Checker).getNonMissingTypeOfSymbol": 340000000,
+          "(*Checker).checkPropertyAccessExpressionOrQualifiedName": 180000000,
+          "(*Checker).createUnionOrIntersectionProperty-range1": 140000000,
+          "(*Checker).removeSubtypes.func3": 140000000,
+          "(*Checker).getParameterCount": 80000000,
+          "(*Checker).getTypeOfPropertyOfType": 80000000,
+          "(*Checker).hasUnmatchedProperty": 50000000,
+          "(*Checker).isUnmatchedProperty": 50000000,
+          "(*Checker).inferFromProperties": 40000000,
+          "(*Checker).getWriteTypeOfSymbol": 30000000,
+          "(*Checker).getTypeOfPropertyInType": 10000000,
+          "(*Checker).getThisTypeOfSignature": 10000000,
+          "(*Checker).getSpreadType": 10000000,
+          "(*Checker).getExplicitTypeOfSymbol": 10000000,
+          "(*Checker).getWidenedProperty": 10000000
+        },
+        "initializerPath": {
+          "(*Checker).checkExpressionCachedEx": 27350000000,
+          "(*Checker).getQuickTypeOfExpression": 3750000000,
+          "<dispatch>": 20000000,
+          "github.com/microsoft/typescript-go/internal/ast.(*Node).Initializer": 10000000
+        },
+        "initializerExpression": {
+          "checkCallExpression": 14110000000,
+          "checkTaggedTemplateExpression": 4050000000,
+          "checkObjectLiteral": 3730000000,
+          "checkElementAccessExpression": 2510000000,
+          "checkConditionalExpression": 2080000000,
+          "checkPropertyAccessExpression": 1410000000,
+          "checkIdentifier": 1290000000,
+          "checkBinaryExpression": 730000000,
+          "<other>": 620000000,
+          "checkFunctionExpressionOrObjectLiteralMethod": 330000000,
+          "checkArrayLiteral": 270000000
+        }
+      },
       "totalCpuNs": 201980000000,
       "exclusivePhasesNs": {
         "other": 9680000000,
