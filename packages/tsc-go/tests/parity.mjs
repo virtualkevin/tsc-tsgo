@@ -22,6 +22,26 @@ const literalSet = (step) => Array.from({ length: 80 }, (_, i) => JSON.stringify
 
 const fixtures = [
   {
+    name: 'template index signatures preserve overlapping keys and generic lookups',
+    diagnostic: 'TS2322',
+    files: {
+      'main.ts': [
+        'export interface Rows {',
+        '  [key: `prefix-${string}`]: { prefix: true };',
+        '  [key: `${string}-suffix`]: { suffix: true };',
+        '  [key: `数字-${number}`]: number;',
+        '}',
+        'declare const rows: Rows;',
+        'declare const prefixed: `prefix-${bigint}`;',
+        'export const byPattern = rows[prefixed];',
+        'export const both = rows["prefix-and-suffix"];',
+        'export const unicode = rows["数字-123"];',
+        'export function generic<K extends keyof Rows>(k: K) { return rows[k]; }',
+        'export const invalid: string = rows["数字-123"];',
+      ].join('\n'),
+    },
+  },
+  {
     name: 'large literal intersections preserve common members, diagnostics and declaration output',
     diagnostic: 'TS2322',
     files: {

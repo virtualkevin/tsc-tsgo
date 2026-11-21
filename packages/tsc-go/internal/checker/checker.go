@@ -18919,7 +18919,30 @@ func (c *Checker) findApplicableIndexInfo(indexInfos []*IndexInfo, keyType *Type
 	}
 }
 
+// A concrete string key must fit both fixed ends of the target template.
+// Templates containing type variables still need the relation's variance reporting.
+func unmatchedTemplateIndexKey(source *Type, target *TemplateLiteralType) bool {
+	start, end := target.texts[0], target.texts[len(target.texts)-1]
+	switch {
+	case source.flags&TypeFlagsStringLiteral != 0:
+		text := getStringLiteralValue(source)
+		return len(text) < len(start)+len(end) || !strings.HasPrefix(text, start) || !strings.HasSuffix(text, end)
+	case source.flags&TypeFlagsTemplateLiteral != 0:
+		t := source.AsTemplateLiteralType()
+		for _, placeholder := range t.types {
+			if placeholder.flags&(TypeFlagsString|TypeFlagsNumber|TypeFlagsBigInt) == 0 {
+				return false
+			}
+		}
+		return !strings.HasPrefix(t.texts[0], start) || !strings.HasSuffix(t.texts[len(t.texts)-1], end)
+	}
+	return false
+}
+
 func (c *Checker) isApplicableIndexType(source *Type, target *Type) bool {
+	if target.flags&TypeFlagsTemplateLiteral != 0 && unmatchedTemplateIndexKey(source, target.AsTemplateLiteralType()) {
+		return false
+	}
 	// A 'string' index signature applies to types assignable to 'string' or 'number', and a 'number' index
 	// signature applies to types assignable to 'number', `${number}` and numeric string literal types.
 	return c.isTypeAssignableTo(source, target) ||

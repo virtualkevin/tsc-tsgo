@@ -1,0 +1,40 @@
+package checker
+
+import "testing"
+
+func TestCompletedTemplateIndexEntry(t *testing.T) {
+	c := templateCacheTestChecker()
+	c.assignableRelation = &Relation{}
+	source := c.newTemplateLiteralType([]string{"from-", ""}, []*Type{c.stringType})
+	target := c.newTemplateLiteralType([]string{"to-", ""}, []*Type{c.stringType})
+	id, _ := getRelationKey(source, target, IntersectionStateNone, false, false)
+	for _, outcome := range []RelationComparisonResult{RelationComparisonResultFailed, RelationComparisonResultSucceeded,
+		RelationComparisonResultFailed | RelationComparisonResultComplexityOverflow} {
+		for _, flags := range []RelationComparisonResult{0, RelationComparisonResultReportsUnmeasurable,
+			RelationComparisonResultReportsUnreliable, RelationComparisonResultReportsUnmeasurable | RelationComparisonResultReportsUnreliable} {
+			c.assignableRelation.set(id, outcome|flags)
+			c.reliabilityFlags = 0
+			want := c.isTypeAssignableTo(source, target)
+			wantFlags := c.reliabilityFlags
+			c.reliabilityFlags = 0
+			got := c.isApplicableIndexType(source, target)
+			if got != want || c.reliabilityFlags != wantFlags || c.assignableRelation.get(id) != outcome|flags {
+				t.Fatalf("entry %v: got (%v,%v), want (%v,%v)", outcome|flags, got, c.reliabilityFlags, want, wantFlags)
+			}
+		}
+	}
+}
+
+func BenchmarkCompletedTemplateIndexEntry(b *testing.B) {
+	c := templateCacheTestChecker()
+	c.assignableRelation = &Relation{}
+	source := c.newTemplateLiteralType([]string{"from-", ""}, []*Type{c.stringType})
+	target := c.newTemplateLiteralType([]string{"to-", ""}, []*Type{c.stringType})
+	id, _ := getRelationKey(source, target, IntersectionStateNone, false, false)
+	c.assignableRelation.set(id, RelationComparisonResultFailed)
+	for b.Loop() {
+		if c.isApplicableIndexType(source, target) {
+			b.Fatal("disjoint keys matched")
+		}
+	}
+}
