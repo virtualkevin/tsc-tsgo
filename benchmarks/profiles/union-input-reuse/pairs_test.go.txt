@@ -1,0 +1,29 @@
+package checker
+
+import (
+    "strconv"
+    "testing"
+)
+
+func TestScalarUnionPairs(t *testing.T) {
+    c := templateCacheTestChecker()
+    c.strictNullChecks = true
+    inputs := make([]*Type, 2100)
+    for i := range inputs {
+        inputs[i] = c.getStringLiteralType(strconv.Itoa(i))
+    }
+    for pass := range 2 {
+        for i := range inputs {
+            j := (i + 1 + pass) % len(inputs)
+            for _, pair := range [][]*Type{{inputs[i], inputs[j]}, {inputs[j], inputs[i]}, {c.stringType, inputs[i]}, {inputs[i], inputs[i]}} {
+                expected := c.getUnionTypeWorker(pair, UnionReductionLiteral, nil, nil)
+                for range 2 {
+                    if got := c.getUnionTypeEx(pair, UnionReductionLiteral, nil, nil); got != expected {
+                        t.Fatalf("pair %d/%d returned a different union identity", i, j)
+                    }
+                }
+            }
+        }
+    }
+    if c.scalarUnionPairs == nil { t.Fatal("cache was never initialized") }
+}
