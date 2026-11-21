@@ -388,3 +388,5 @@
 | Size-aware heap page advice | sentry | Native tsc-ts | 12653.68 | 24526.12 | 0.516× | 3 | Three-compiler blocks, equal position counts. [Samples](benchmarks/profiles/large-heap-page-advice/three-way.json) |
 | Grouped pointer-table probes | sentry | Size-aware Go | 36018.03 | 34977.97 | 1.030× | 4 | Paired median 1.035×. [Samples](benchmarks/profiles/grouped-pointer-probes/screen.json.gz) |
 | Grouped pointer-table probes | typeorm | Size-aware Go | 4422.36 | 4552.33 | 0.971× | 4 | Paired median 0.978×. [Samples](benchmarks/profiles/grouped-pointer-probes/screen.json.gz) |
+| Generic arity scans | typeorm | Matched Go control | 2596.40 | 2593.93 | 1.001× | 6 | Paired median 0.989×. [Samples](benchmarks/profiles/generic-arity/screen.json.gz) |
+| Generic arity scans | trpc | Matched Go control | 537.93 | 530.71 | 1.014× | 6 | Paired median 0.990×. [Samples](benchmarks/profiles/generic-arity/screen.json.gz) |

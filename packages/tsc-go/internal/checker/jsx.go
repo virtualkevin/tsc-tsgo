@@ -976,7 +976,7 @@ func (c *Checker) getJsxPropsTypeFromClassType(sig *Signature, context *ast.Node
 		var libraryManagedAttributeType *Type
 		if typeParams != nil {
 			// apply JSX.IntrinsicClassAttributes<hostClassType, ...>
-			inferredArgs := c.fillMissingTypeArguments([]*Type{hostClassType}, typeParams, c.getMinTypeArgumentCount(typeParams), ast.IsInJSFile(context))
+			inferredArgs := c.fillMissingTypeArguments([]*Type{hostClassType}, typeParams, ast.IsInJSFile(context))
 			libraryManagedAttributeType = c.instantiateType(intrinsicClassAttribs, newTypeMapper(typeParams, inferredArgs))
 		} else {
 			libraryManagedAttributeType = intrinsicClassAttribs
@@ -1037,7 +1037,7 @@ func (c *Checker) instantiateAliasOrInterfaceWithDefaults(managedSym *ast.Symbol
 	if managedSym.Flags&ast.SymbolFlagsTypeAlias != 0 {
 		params := c.typeAliasLinks.Get(managedSym).typeParameters
 		if len(params) >= len(typeArguments) {
-			args := c.fillMissingTypeArguments(typeArguments, params, len(typeArguments), inJavaScript)
+			args := c.fillMissingTypeArguments(typeArguments, params, inJavaScript)
 			if len(args) == 0 {
 				return declaredManagedType
 			}
@@ -1045,7 +1045,7 @@ func (c *Checker) instantiateAliasOrInterfaceWithDefaults(managedSym *ast.Symbol
 		}
 	}
 	if declaredManagedType.objectFlags&ObjectFlagsClassOrInterface != 0 && len(declaredManagedType.AsInterfaceType().TypeParameters()) >= len(typeArguments) {
-		args := c.fillMissingTypeArguments(typeArguments, declaredManagedType.AsInterfaceType().TypeParameters(), len(typeArguments), inJavaScript)
+		args := c.fillMissingTypeArguments(typeArguments, declaredManagedType.AsInterfaceType().TypeParameters(), inJavaScript)
 		return c.createTypeReference(declaredManagedType, args)
 	}
 	return nil

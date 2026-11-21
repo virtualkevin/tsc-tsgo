@@ -20,6 +20,23 @@ for (const path of [baseline, candidate, libs]) {
 
 const fixtures = [
   {
+    name: 'generic arity with required, trailing-default and out-of-order parameters',
+    diagnostic: 'TS2706',
+    files: {
+      'main.ts': `export type Pair<A, B = A> = [A, B];
+export type Defaults<A = string, B = A[]> = [A, B];
+export type Invalid<A = string, B, C = B> = [A, B, C];
+export type Good = [Pair<number>, Defaults, Invalid<string, number>];
+export type Missing = Pair;
+export type MissingAfterDefault = Invalid<boolean>;
+export type Extra = Pair<number, number, number>;
+export function pair<A, B = A>(a: A, b: B): Pair<A, B> { return [a, b]; }
+export const inferred = pair(1, 's');
+export const explicit = pair<string>('a', 'b');
+`,
+    },
+  },
+  {
     name: 'template instantiation and distribution preserve inputs and repeated errors',
     files: {
       'main.ts': `export type Join<T extends string, U extends string> = \`\${T}/\${U}\`;

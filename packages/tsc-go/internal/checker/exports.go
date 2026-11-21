@@ -311,7 +311,7 @@ func (c *Checker) IsContextSensitive(node *ast.Node) bool {
 }
 
 func (c *Checker) FillMissingTypeArguments(typeArguments []*Type, typeParameters []*Type, minTypeArgumentCount int, isJavaScriptImplicitAny bool) []*Type {
-	return c.fillMissingTypeArguments(typeArguments, typeParameters, minTypeArgumentCount, isJavaScriptImplicitAny)
+	return c.fillMissingTypeArguments(typeArguments, typeParameters, isJavaScriptImplicitAny)
 }
 
 func (c *Checker) GetMinTypeArgumentCount(typeParameters []*Type) int {

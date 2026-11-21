@@ -82,10 +82,9 @@ func (c *Checker) inferFromTypes(n *InferenceState, source *Type, target *Type) 
 			// Source and target are types originating in the same generic type alias declaration.
 			// Simply infer from source type arguments to target type arguments, with defaults applied.
 			params := c.typeAliasLinks.Get(source.alias.symbol).typeParameters
-			minParams := c.getMinTypeArgumentCount(params)
 			nodeIsInJsFile := ast.IsInJSFile(source.alias.symbol.ValueDeclaration)
-			sourceTypes := c.fillMissingTypeArguments(source.alias.typeArguments, params, minParams, nodeIsInJsFile)
-			targetTypes := c.fillMissingTypeArguments(target.alias.typeArguments, params, minParams, nodeIsInJsFile)
+			sourceTypes := c.fillMissingTypeArguments(source.alias.typeArguments, params, nodeIsInJsFile)
+			targetTypes := c.fillMissingTypeArguments(target.alias.typeArguments, params, nodeIsInJsFile)
 			var variances []VarianceFlags
 			if c.someTypeCouldHoldInference(targetTypes) {
 				variances = c.getAliasVariances(source.alias.symbol)
