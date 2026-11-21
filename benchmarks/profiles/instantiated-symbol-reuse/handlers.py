@@ -13,5 +13,10 @@ lines = [
 ]
 lines.extend(f"    onEvent{i}?: ReactEventHandler<T>;" for i in range(width))
 lines.extend(["}", "declare const props: Props<HTMLDivElement, string>;"])
-lines.extend(f"export const callback{i} = props.onEvent{i};" for i in range(width))
+if sys.argv[3:] == ["--array"]:
+    lines.append("export const callbacks = [")
+    lines.extend(f"    props.onEvent{i}," for i in range(width))
+    lines.append("];")
+else:
+    lines.extend(f"export const callback{i} = props.onEvent{i};" for i in range(width))
 Path(sys.argv[1]).write_text("\n".join(lines)+"\n")

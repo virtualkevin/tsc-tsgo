@@ -10,7 +10,8 @@ import time
 
 here = Path(__file__).resolve().parent
 observer, go, public = [Path(x).resolve() for x in sys.argv[1:4]]
-handlers = sys.argv[4:] == ["--handlers"]
+array = sys.argv[4:] == ["--handlers-array"]
+handlers = array or sys.argv[4:] == ["--handlers"]
 env = {k:v for k,v in os.environ.items() if not k.startswith(("TSC_", "TS_GO_", "SCRIPTC_"))}
 env["TSC_TS_LIB_DIR"] = str(here.parents[2]/"upstream/typescript-go/internal/bundled/libs")
 flags = ["--strict","--skipLibCheck","--pretty","false"]
@@ -20,7 +21,7 @@ with tempfile.TemporaryDirectory() as tmp:
     d = Path(tmp)
     for n in ((256,1024,4096) if handlers else (64,256,1024)):
         source = d/"main.ts"
-        subprocess.run([sys.executable,here/("handlers.py" if handlers else "generate.py"),source,str(n)],check=True)
+        subprocess.run([sys.executable,here/("handlers.py" if handlers else "generate.py"),source,str(n),*(["--array"] if array else [])],check=True)
         traced = subprocess.run([observer,*flags,"--noEmit",source.name],cwd=d,env=env,capture_output=True,check=True)
         assert not traced.stdout
         counts = json.loads(traced.stderr)
@@ -51,4 +52,4 @@ with tempfile.TemporaryDirectory() as tmp:
                 else:
                     report["widths"][n]["warmup"] = pair
             report["widths"][n]["pairs"] = pairs
-(here/("handlers.json" if handlers else "reduced.json")).write_text(json.dumps(report,indent=2)+"\n")
+(here/("handlers_array.json" if array else "handlers.json" if handlers else "reduced.json")).write_text(json.dumps(report,indent=2)+"\n")
