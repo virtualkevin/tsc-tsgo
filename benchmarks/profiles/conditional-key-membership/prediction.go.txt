@@ -1,0 +1,101 @@
+package checker
+
+import "github.com/microsoft/typescript-go/internal/ast"
+
+type keyPredictionStats struct {
+	Present, Absent, UnclassifiedResult, Disagreed, UncachedPrediction             uint64
+	NewWidePredicted, PredictionTypes, PredictionSymbols, PredictionInstantiations uint64
+}
+
+type keyPrediction struct {
+	text                 string
+	known, present       bool
+	types, symbols, inst uint32
+}
+
+func ordinaryIdentifier(s string) bool {
+	if len(s) == 0 {
+		return false
+	}
+	for i := 0; i < len(s); i++ {
+		b := s[i]
+		if !(b >= 'A' && b <= 'Z' || b >= 'a' && b <= 'z' || i > 0 && b >= '0' && b <= '9') {
+			return false
+		}
+	}
+	return true
+}
+
+// Read the existing table before the ordinary index operation materializes keys.
+// A table miss is a prediction to check against enumeration, including cases
+// where the published member names and their key types might differ.
+func (q *keyOperandRequest) predict(c *Checker, object *Type) {
+	if object.flags != TypeFlagsObject || object.objectFlags&(ObjectFlagsMembersResolved|ObjectFlagsMapped|ObjectFlagsUnresolvedMembers|ObjectFlagsTuple) != ObjectFlagsMembersResolved || !ordinaryIdentifier(q.text) {
+		return
+	}
+	s := object.AsStructuredType()
+	if s.pendingMembers != nil || len(s.indexInfos) != 0 || s.members == nil {
+		return
+	}
+	prop := s.members[q.text]
+	if prop != nil {
+		if prop.Flags&ast.SymbolFlagsProperty == 0 || prop.Name != q.text || prop.ValueDeclaration == nil {
+			return
+		}
+		name := ast.GetNameOfDeclaration(prop.ValueDeclaration)
+		if name == nil || !ast.IsIdentifier(name) || name.Text() != q.text || getDeclarationModifierFlagsFromSymbol(prop)&ast.ModifierFlagsNonPublicAccessibilityModifier != 0 {
+			return
+		}
+		if links := c.valueSymbolLinks.TryGet(prop); links != nil && links.nameType != nil {
+			return
+		}
+		q.present = true
+	}
+	q.known = true
+	q.types, q.symbols, q.inst = c.TypeCount, c.SymbolCount, c.TotalInstantiationCount
+	key := PropertiesTypesKey{typeId: object.id, include: TypeFlagsStringLike | TypeFlagsNumberLike | TypeFlagsESSymbolLike, includeOrigin: true}
+	if c.propertiesTypes[key] == nil {
+		q.stats.UncachedPrediction++
+	}
+}
+
+func (q *keyOperandRequest) compare(c *Checker, result *Type) {
+	if !q.known {
+		return
+	}
+	r := q.stats
+	if q.present {
+		r.Present++
+	} else {
+		r.Absent++
+	}
+	r.PredictionTypes += uint64(c.TypeCount - q.types)
+	r.PredictionSymbols += uint64(c.SymbolCount - q.symbols)
+	r.PredictionInstantiations += uint64(c.TotalInstantiationCount - q.inst)
+	var terms []*Type
+	if result.flags&TypeFlagsUnion != 0 {
+		terms = result.Types()
+		if len(terms) >= 32 && result.checker == c && result.id > TypeId(q.types) {
+			r.NewWidePredicted++
+		}
+	} else {
+		terms = []*Type{result}
+	}
+	present, uncertain := false, false
+	for _, t := range terms {
+		switch t.flags {
+		case TypeFlagsStringLiteral:
+			present = present || getStringLiteralValue(t) == q.text
+		case TypeFlagsString:
+			present = true
+		case TypeFlagsNever, TypeFlagsNumberLiteral, TypeFlagsNumber, TypeFlagsUniqueESSymbol, TypeFlagsESSymbol:
+		default:
+			uncertain = true
+		}
+	}
+	if !present && uncertain {
+		r.UnclassifiedResult++
+	} else if q.present != present {
+		r.Disagreed++
+	}
+}

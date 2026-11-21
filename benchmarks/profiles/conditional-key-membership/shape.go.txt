@@ -1,0 +1,55 @@
+package checker
+
+func indexObjectShape(t *Type) string {
+	switch {
+	case t.flags&TypeFlagsIntersection != 0:
+		return "intersection"
+	case t.flags&TypeFlagsUnion != 0:
+		return "union"
+	case t.flags&TypeFlagsObject == 0:
+		return "non-object"
+	case t.objectFlags&ObjectFlagsMapped != 0:
+		return "mapped"
+	}
+	if t.objectFlags&ObjectFlagsMembersResolved == 0 {
+		switch {
+		case t.objectFlags&ObjectFlagsReference != 0:
+			return "unresolved reference"
+		case t.objectFlags&ObjectFlagsAnonymous != 0:
+			return "unresolved anonymous"
+		default:
+			return "other unresolved object"
+		}
+	}
+	if t.AsStructuredType().pendingMembers != nil {
+		return "resolved with pending member representation"
+	}
+	return "other resolved object"
+}
+
+func (c *Checker) observeKeyShape(q *keyOperandRequest, cohort string, result *Type, types, symbols, inst uint32) {
+	if q.shape == "" {
+		q.shape = "no direct index query"
+	}
+	key := cohort + "/" + q.shape
+	stats := (*c.keyOperandProbe)[key]
+	if stats == nil {
+		stats = new(keyOperandStats)
+		(*c.keyOperandProbe)[key] = stats
+	}
+	stats.Calls++
+	stats.TypesCreated += uint64(c.TypeCount - types)
+	stats.SymbolsCreated += uint64(c.SymbolCount - symbols)
+	stats.Instantiations += uint64(c.TotalInstantiationCount - inst)
+	if result.flags&TypeFlagsUnion != 0 {
+		width := uint64(len(result.Types()))
+		stats.Union++
+		stats.MaxWidth = max(stats.MaxWidth, width)
+		if width >= 32 {
+			stats.WideUnion++
+			if result.checker == c && result.id > TypeId(types) {
+				stats.NewWideUnion++
+			}
+		}
+	}
+}
