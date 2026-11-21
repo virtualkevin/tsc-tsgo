@@ -1,0 +1,68 @@
+package checker
+
+import (
+	"sync"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type deferredCost struct {
+	Calls, Changed, Instantiations, DiagnosticAdds uint64
+}
+
+type deferredRows struct {
+	groups map[string]*deferredCost
+	adds   uint64
+}
+
+var deferredRegistry struct {
+	sync.Mutex
+	workers []*deferredRows
+}
+
+func (c *Checker) observeDeferredBody(body *ast.Node) *Type {
+	rows := &c.deferredProbe
+	if rows.groups == nil {
+		rows.groups = make(map[string]*deferredCost)
+		deferredRegistry.Lock()
+		deferredRegistry.workers = append(deferredRegistry.workers, rows)
+		deferredRegistry.Unlock()
+	}
+	var cached *Type
+	if links := c.typeNodeLinks.TryGet(body); links != nil {
+		cached = links.resolvedType
+	}
+	key := "uncached"
+	if cached != nil {
+		key = "cached"
+	}
+	group := rows.groups[key]
+	if group == nil {
+		group = new(deferredCost)
+		rows.groups[key] = group
+	}
+	start, adds := c.TotalInstantiationCount, rows.adds
+	result := c.checkExpression(body)
+	group.Calls++
+	if cached != nil && cached != result {
+		group.Changed++
+	}
+	group.Instantiations += uint64(c.TotalInstantiationCount - start)
+	group.DiagnosticAdds += rows.adds - adds
+	return result
+}
+
+func DeferredReport() map[string]deferredCost {
+	total := make(map[string]deferredCost)
+	for _, rows := range deferredRegistry.workers {
+		for key, cost := range rows.groups {
+			t := total[key]
+			t.Calls += cost.Calls
+			t.Changed += cost.Changed
+			t.Instantiations += cost.Instantiations
+			t.DiagnosticAdds += cost.DiagnosticAdds
+			total[key] = t
+		}
+	}
+	return total
+}

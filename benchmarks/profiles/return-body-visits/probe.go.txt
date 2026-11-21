@@ -1,0 +1,98 @@
+package checker
+
+import (
+	"sync"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type bodyVisit struct {
+	context    *Signature
+	result     *Type
+	mode       CheckMode
+	contextual bool
+}
+
+type bodyCounts struct {
+	Calls, First, Repeat, Reentrant                 uint64
+	SameModeAndContext, SameResult, DifferentResult uint64
+	Instantiations, RepeatInstantiations            uint64
+}
+
+type bodyProbe struct {
+	last            map[*ast.Node]bodyVisit
+	active          map[*ast.Node]bool
+	all, contextual bodyCounts
+}
+
+var bodyRegistry struct {
+	sync.Mutex
+	workers []*bodyProbe
+}
+
+func (c *Checker) observedBody(fn *ast.Node, mode CheckMode, context *Signature) *Type {
+	p := &c.bodyProbe
+	if p.last == nil {
+		p.last = make(map[*ast.Node]bodyVisit)
+		p.active = make(map[*ast.Node]bool)
+		bodyRegistry.Lock()
+		bodyRegistry.workers = append(bodyRegistry.workers, p)
+		bodyRegistry.Unlock()
+	}
+	prev, seen := p.last[fn]
+	active := p.active[fn]
+	p.active[fn] = true
+	start := c.TotalInstantiationCount
+	result := c.computeObservedBody(fn, mode)
+	work := uint64(c.TotalInstantiationCount - start)
+	if !active {
+		delete(p.active, fn)
+	}
+	record := func(count *bodyCounts) {
+		count.Calls++
+		count.Instantiations += work
+		switch {
+		case active:
+			count.Reentrant++
+		case !seen:
+			count.First++
+		default:
+			count.Repeat++
+			count.RepeatInstantiations += work
+			if prev.result == result {
+				count.SameResult++
+			} else {
+				count.DifferentResult++
+			}
+			if prev.mode == mode && prev.contextual == (context != nil) && prev.context == context {
+				count.SameModeAndContext++
+			}
+		}
+	}
+	record(&p.all)
+	if context != nil {
+		record(&p.contextual)
+	}
+	p.last[fn] = bodyVisit{context, result, mode, context != nil}
+	return result
+}
+
+func BodyVisitReport() any {
+	seen := make(map[*ast.Node]int)
+	var all, contextual []bodyCounts
+	for _, p := range bodyRegistry.workers {
+		for node := range p.last {
+			seen[node]++
+		}
+		all = append(all, p.all)
+		contextual = append(contextual, p.contextual)
+	}
+	owners := make(map[int]int)
+	for _, n := range seen {
+		owners[n]++
+	}
+	return struct {
+		All, Contextual     []bodyCounts
+		CheckerCountPerBody map[int]int
+	}{all, contextual, owners}
+}

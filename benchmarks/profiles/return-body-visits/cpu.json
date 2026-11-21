@@ -1,0 +1,1940 @@
+{
+  "trpc": {
+    "totalCPUSeconds": 2.85,
+    "statementCallPaths": [
+      {
+        "child": "getResolvedSignature",
+        "descendant": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.09
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "getTypeOfSymbol",
+        "cpuSeconds": 0.03
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "inferTypeArguments",
+        "cpuSeconds": 0.02
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "isSignatureApplicable",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "applicabilityPaths": [
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "deferredBlockPaths": [
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.15
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.06
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "<other>",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "deferredBranchesCPUSeconds": {
+      "checkSourceElement": 0.28,
+      "checkAllCodePathsInNonVoidFunctionReturnOrThrow": 0.01
+    },
+    "paths": [
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.01
+      }
+    ]
+  },
+  "typeorm": {
+    "totalCPUSeconds": 16.57,
+    "statementCallPaths": [
+      {
+        "child": "getResolvedSignature",
+        "descendant": "isSignatureApplicable",
+        "cpuSeconds": 0.57
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.27
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "inferTypeArguments",
+        "cpuSeconds": 0.12
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "<other>",
+        "cpuSeconds": 0.06
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "checkIdentifier",
+        "cpuSeconds": 0.02
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "getSignaturesOfType",
+        "cpuSeconds": 0.01
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "getTypeOfSymbol",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "applicabilityPaths": [
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkFunctionExpressionOrObjectLiteralMethod",
+        "cpuSeconds": 0.32
+      },
+      {
+        "child": "checkTypeRelatedToAndOptionallyElaborate",
+        "expression": "<other>",
+        "cpuSeconds": 0.07
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.05
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.04
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.03
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "child": "getTypeAtPosition",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "deferredBlockPaths": [
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 1.06
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.6
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.39
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.21
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.15
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.07
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.07
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.07
+      },
+      {
+        "statement": "<other>",
+        "expression": "<other>",
+        "cpuSeconds": 0.06
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.04
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkForStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "deferredBranchesCPUSeconds": {
+      "checkSourceElement": 3.02,
+      "checkExpression": 0.02,
+      "checkAllCodePathsInNonVoidFunctionReturnOrThrow": 0.01,
+      "getReturnTypeOfSignature": 0.01,
+      "getSignatureFromDeclaration": 0.01,
+      "<local>": 0.01
+    },
+    "paths": [
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.35
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getTypeOfAccessors",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      }
+    ]
+  },
+  "vscode": {
+    "totalCPUSeconds": 203.66,
+    "statementCallPaths": [
+      {
+        "child": "getResolvedSignature",
+        "descendant": "isSignatureApplicable",
+        "cpuSeconds": 14.66
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "inferTypeArguments",
+        "cpuSeconds": 2.65
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "checkPropertyAccessExpression",
+        "cpuSeconds": 1.29
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "<other>",
+        "cpuSeconds": 0.98
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "checkIdentifier",
+        "cpuSeconds": 0.38
+      },
+      {
+        "child": "getReturnTypeOfSignature",
+        "descendant": "getReturnTypeOfSignature",
+        "cpuSeconds": 0.09
+      },
+      {
+        "child": "<local>",
+        "descendant": "<other>",
+        "cpuSeconds": 0.07
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "getSignaturesOfType",
+        "cpuSeconds": 0.04
+      },
+      {
+        "child": "checkDeprecatedSignature",
+        "descendant": "<other>",
+        "cpuSeconds": 0.04
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "getTypeOfSymbol",
+        "cpuSeconds": 0.03
+      }
+    ],
+    "applicabilityPaths": [
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkFunctionExpressionOrObjectLiteralMethod",
+        "cpuSeconds": 8.92
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 1.6
+      },
+      {
+        "child": "checkTypeRelatedToAndOptionallyElaborate",
+        "expression": "<other>",
+        "cpuSeconds": 1.26
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.83
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.67
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.53
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "<other>",
+        "cpuSeconds": 0.33
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.21
+      },
+      {
+        "child": "getTypeAtPosition",
+        "expression": "<other>",
+        "cpuSeconds": 0.19
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.09
+      },
+      {
+        "child": "<local>",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "child": "checkTypeRelatedToEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "deferredBlockPaths": [
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 20.23
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 8.23
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "<other>",
+        "cpuSeconds": 1.95
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 1.85
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 1.65
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 1.48
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 1.47
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 1.09
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 1.01
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.82
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.79
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.63
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "<other>",
+        "cpuSeconds": 0.56
+      },
+      {
+        "statement": "<other>",
+        "expression": "<other>",
+        "cpuSeconds": 0.42
+      },
+      {
+        "statement": "checkClassDeclaration",
+        "expression": "<other>",
+        "cpuSeconds": 0.39
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.38
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.38
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.29
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.27
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.22
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.22
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.17
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.16
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.16
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.15
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.15
+      },
+      {
+        "statement": "checkForStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.13
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.09
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.08
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.08
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.08
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.07
+      },
+      {
+        "statement": "checkClassDeclaration",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.06
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.05
+      },
+      {
+        "statement": "checkWhileStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkForStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkClassDeclaration",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkForStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkWhileStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkForStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkClassDeclaration",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkClassDeclaration",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkForStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkThrowStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkClassDeclaration",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkDoStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkVariableLikeDeclaration",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkClassDeclaration",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "deferredBranchesCPUSeconds": {
+      "checkSourceElement": 46.4,
+      "checkExpression": 1.13,
+      "checkAllCodePathsInNonVoidFunctionReturnOrThrow": 0.28,
+      "getReturnTypeOfSignature": 0.15,
+      "getSignatureFromDeclaration": 0.1,
+      "<local>": 0.03,
+      "checkReturnExpression": 0.03,
+      "getReturnTypeFromAnnotation": 0.02
+    },
+    "paths": [
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 6.36
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "<other>",
+        "cpuSeconds": 2.41
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 2.04
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 1.9
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 1.81
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.98
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.91
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.58
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.5
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.47
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.37
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.25
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.23
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "<other>",
+        "cpuSeconds": 0.19
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.15
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getUnionTypeEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.14
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.13
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.12
+      },
+      {
+        "caller": "getTypeOfAccessors",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.11
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.1
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.1
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getContextualReturnType",
+        "expression": "<other>",
+        "cpuSeconds": 0.08
+      },
+      {
+        "caller": "getTypeOfAccessors",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.07
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.07
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAwaitedType",
+        "expression": "<other>",
+        "cpuSeconds": 0.06
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getWidenedType",
+        "expression": "<other>",
+        "cpuSeconds": 0.05
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.05
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkAwaitExpression",
+        "cpuSeconds": 0.05
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "getTypeOfAccessors",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "createPromiseReturnType",
+        "expression": "<other>",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "createPromiseType",
+        "expression": "<other>",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "<local>",
+        "expression": "<other>",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getUnionTypeEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "isConstContext",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getContextualSignatureForFunctionLikeDeclaration",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "unwrapReturnType",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "getUnionTypeEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getTypeOfAccessors",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "reportErrorsFromWidening",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "<local>",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkElementAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "isConstContext",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "getWidenedLiteralLikeTypeForContextualReturnTypeIfNeeded",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      }
+    ]
+  },
+  "sentry": {
+    "totalCPUSeconds": 201.98,
+    "statementCallPaths": [
+      {
+        "child": "getResolvedSignature",
+        "descendant": "isSignatureApplicable",
+        "cpuSeconds": 3.96
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "checkPropertyAccessExpression",
+        "cpuSeconds": 3.37
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "inferTypeArguments",
+        "cpuSeconds": 1.68
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "<other>",
+        "cpuSeconds": 0.43
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "checkIdentifier",
+        "cpuSeconds": 0.2
+      },
+      {
+        "child": "checkDeprecatedSignature",
+        "descendant": "<other>",
+        "cpuSeconds": 0.09
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "getTypeOfSymbol",
+        "cpuSeconds": 0.08
+      },
+      {
+        "child": "getReturnTypeOfSignature",
+        "descendant": "getReturnTypeOfSignature",
+        "cpuSeconds": 0.05
+      },
+      {
+        "child": "getResolvedSignature",
+        "descendant": "getSignaturesOfType",
+        "cpuSeconds": 0.03
+      },
+      {
+        "child": "<local>",
+        "descendant": "<other>",
+        "cpuSeconds": 0.02
+      }
+    ],
+    "applicabilityPaths": [
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 1.06
+      },
+      {
+        "child": "checkTypeRelatedToAndOptionallyElaborate",
+        "expression": "<other>",
+        "cpuSeconds": 1.01
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.57
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkFunctionExpressionOrObjectLiteralMethod",
+        "cpuSeconds": 0.41
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.37
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "<other>",
+        "cpuSeconds": 0.25
+      },
+      {
+        "child": "getTypeAtPosition",
+        "expression": "<other>",
+        "cpuSeconds": 0.16
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.06
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.05
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "child": "checkExpressionWithContextualType",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "deferredBlockPaths": [
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 9.91
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "<other>",
+        "cpuSeconds": 2.85
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "<other>",
+        "cpuSeconds": 2.25
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 2.14
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 1.4
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.68
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.46
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.42
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.4
+      },
+      {
+        "statement": "<other>",
+        "expression": "<other>",
+        "cpuSeconds": 0.19
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.19
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.18
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.18
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.15
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.15
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.11
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.1
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.09
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.08
+      },
+      {
+        "statement": "checkVariableStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.07
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.07
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.05
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "<other>",
+        "cpuSeconds": 0.05
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "statement": "checkExpressionStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.03
+      },
+      {
+        "statement": "checkIfStatement",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkSwitchStatement",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkWhileStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "statement": "checkTryStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkReturnStatement",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkForOfStatement",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkForStatement",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "statement": "checkFunctionDeclaration",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      }
+    ],
+    "deferredBranchesCPUSeconds": {
+      "checkSourceElement": 22.52,
+      "checkExpression": 1.09,
+      "getReturnTypeOfSignature": 0.28,
+      "checkAllCodePathsInNonVoidFunctionReturnOrThrow": 0.08,
+      "checkReturnExpression": 0.05,
+      "getSignatureFromDeclaration": 0.03,
+      "<local>": 0.02
+    },
+    "paths": [
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 2.63
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 2.29
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 1.92
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 1.61
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.63
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.55
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "<other>",
+        "cpuSeconds": 0.46
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getWidenedType",
+        "expression": "<other>",
+        "cpuSeconds": 0.45
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.36
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.35
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.33
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.3
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.3
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.29
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.21
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "<other>",
+        "cpuSeconds": 0.18
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkJsxElement",
+        "cpuSeconds": 0.16
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.13
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.1
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getUnionTypeEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.1
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.09
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.08
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.07
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getContextualSignatureForFunctionLikeDeclaration",
+        "expression": "<other>",
+        "cpuSeconds": 0.07
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.06
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.05
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.05
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkFunctionExpressionOrObjectLiteralMethod",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkJsxSelfClosingElement",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "isConstContext",
+        "expression": "<other>",
+        "cpuSeconds": 0.04
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "getWidenedType",
+        "expression": "<other>",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "getUnionTypeEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "getContextualReturnType",
+        "expression": "<other>",
+        "cpuSeconds": 0.03
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkElementAccessExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkJsxSelfClosingElement",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkElementAccessExpression",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "createPromiseReturnType",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "getContextualReturnType",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "<local>",
+        "expression": "<other>",
+        "cpuSeconds": 0.02
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkFunctionExpressionOrObjectLiteralMethod",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkBinaryExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkPropertyAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "getUnionTypeEx",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkIdentifier",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkElementAccessExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "createPromiseType",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "unwrapReturnType",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "<local>",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "<other>",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkArrayLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "contextuallyCheckFunctionExpressionOrObjectLiteralMethod",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkJsxElement",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getTypeOfAccessors",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkObjectLiteral",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "getContextualSignatureForFunctionLikeDeclaration",
+        "expression": "<other>",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getReturnTypeOfSignature",
+        "branch": "checkExpressionCachedEx",
+        "expression": "checkConditionalExpression",
+        "cpuSeconds": 0.01
+      },
+      {
+        "caller": "getTypeOfAccessors",
+        "branch": "checkAndAggregateReturnExpressionTypes",
+        "expression": "checkCallExpression",
+        "cpuSeconds": 0.01
+      }
+    ]
+  }
+}

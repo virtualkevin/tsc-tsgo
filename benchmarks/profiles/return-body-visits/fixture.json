@@ -1,0 +1,65 @@
+{
+  "public": {
+    "status": 1,
+    "diagnostics": "callbacks.ts(5,46): error TS2339: Property 'unknownProperty' does not exist on type '{ text: string; }'.\ncallbacks.ts(7,7): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+    "instrumentation": ""
+  },
+  "control": {
+    "status": 1,
+    "diagnostics": "callbacks.ts(5,46): error TS2339: Property 'unknownProperty' does not exist on type '{ text: string; }'.\ncallbacks.ts(7,7): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+    "instrumentation": ""
+  },
+  "visits": {
+    "status": 1,
+    "diagnostics": "callbacks.ts(5,46): error TS2339: Property 'unknownProperty' does not exist on type '{ text: string; }'.\ncallbacks.ts(7,7): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+    "instrumentation": {
+      "All": [
+        {
+          "Calls": 4,
+          "First": 4,
+          "Repeat": 0,
+          "Reentrant": 0,
+          "SameModeAndContext": 0,
+          "SameResult": 0,
+          "DifferentResult": 0,
+          "Instantiations": 1,
+          "RepeatInstantiations": 0
+        }
+      ],
+      "Contextual": [
+        {
+          "Calls": 2,
+          "First": 2,
+          "Repeat": 0,
+          "Reentrant": 0,
+          "SameModeAndContext": 0,
+          "SameResult": 0,
+          "DifferentResult": 0,
+          "Instantiations": 0,
+          "RepeatInstantiations": 0
+        }
+      ],
+      "CheckerCountPerBody": {
+        "1": 4
+      }
+    }
+  },
+  "deferred": {
+    "status": 1,
+    "diagnostics": "callbacks.ts(5,46): error TS2339: Property 'unknownProperty' does not exist on type '{ text: string; }'.\ncallbacks.ts(7,7): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+    "instrumentation": {
+      "cached": {
+        "Calls": 2,
+        "Changed": 2,
+        "Instantiations": 0,
+        "DiagnosticAdds": 0
+      },
+      "uncached": {
+        "Calls": 2,
+        "Changed": 0,
+        "Instantiations": 0,
+        "DiagnosticAdds": 0
+      }
+    }
+  }
+}
