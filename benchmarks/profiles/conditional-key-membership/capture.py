@@ -68,6 +68,11 @@ for project, commit, workers in observed_projects(binary, projects={"sentry"} if
             total = result.setdefault(name, dict.fromkeys(stats, 0))
             for key, count in stats.items():
                 total[key] = max(total[key], count) if key == "MaxWidth" else total[key] + count
+    if shapes:
+        for name in ("className", "other"):
+            branches = [stats for label, stats in result.items() if label.startswith(name + "/")]
+            for metric in ("Calls", "Union", "WideUnion", "NewWideUnion", "TypesCreated", "SymbolsCreated", "Instantiations"):
+                assert sum(b[metric] for b in branches) == result[name][metric]
     for stats in result.values():
         assert stats["NewWideUnion"] <= stats["WideUnion"] <= stats["Union"] <= stats["Calls"]
         assert stats["CachedOrdinaryKeys"] <= stats["ResolvedOrdinaryObject"] <= stats["ObjectQueries"] <= stats["Calls"]
