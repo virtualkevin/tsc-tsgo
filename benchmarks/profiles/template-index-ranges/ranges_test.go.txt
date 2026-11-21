@@ -1,0 +1,48 @@
+package checker
+
+import (
+	"strconv"
+	"testing"
+)
+
+func TestTemplateIndexRangesRetainEveryPotentialMatch(t *testing.T) {
+	c := templateCacheTestChecker()
+	infos := make([]*IndexInfo, 90)
+	for i := range infos {
+		start := "bucket" + strconv.Itoa(i%23) + "/"
+		key := c.newTemplateLiteralType([]string{start, ""}, []*Type{c.stringType})
+		infos[i] = &IndexInfo{keyType: key}
+	}
+	for i := range 30 {
+		prefix := "bucket" + strconv.Itoa(i) + "/x"
+		for _, source := range []*Type{
+			c.getStringLiteralType(prefix),
+			c.getStringLiteralType("x"),
+			c.newTemplateLiteralType([]string{prefix, ""}, []*Type{c.stringType}),
+			c.newTemplateLiteralType([]string{prefix, ""}, []*Type{c.wildcardType}),
+		} {
+			got := c.narrowTemplateIndexRange(infos, source)
+			at := 0
+			for _, info := range infos {
+				if !unmatchedTemplateIndexKey(source, info.keyType.AsTemplateLiteralType()) {
+					for at < len(got) && got[at] != info {
+						at++
+					}
+					if at == len(got) {
+						t.Fatalf("lost or reordered an applicable index for %s", prefix)
+					}
+					at++
+				}
+			}
+		}
+	}
+	updated := &IndexInfo{keyType: infos[17].keyType, isReadonly: true}
+	infos[17] = updated
+	selected := c.narrowTemplateIndexRange(infos, c.getStringLiteralType("bucket17/x"))
+	for _, info := range selected {
+		if info == updated {
+			return
+		}
+	}
+	t.Fatal("returned stale index after value replacement")
+}
