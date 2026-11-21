@@ -1,0 +1,44 @@
+package checker
+
+import (
+	"fmt"
+	"slices"
+	"testing"
+)
+
+func TestOwnedKeysAgreeWithCanonicalUnion(t *testing.T) {
+	c := templateCacheTestChecker()
+	origin := c.newIndexType(c.stringType, IndexFlagsNone)
+	common := c.getStringLiteralType("x")
+	for _, special := range []*Type{c.neverType, c.getFreshTypeOfLiteralType(common), c.newLiteralType(TypeFlagsStringLiteral, "x", nil), c.stringType} {
+		for _, width := range []int{1, 15, 16, 541} {
+			keys := make([]*Type, width)
+			for i := range keys {
+				switch i % 5 {
+				case 0:
+					keys[i] = special
+				case 1:
+					keys[i] = common
+				case 2:
+					keys[i] = c.neverType
+				default:
+					keys[i] = c.getStringLiteralType(fmt.Sprint(width-i, "猫"))
+				}
+			}
+			for _, o := range []*Type{nil, origin} {
+				want := c.getUnionTypeEx(keys, UnionReductionLiteral, nil, o)
+				got := c.unionOfPropertyKeys(slices.Clone(keys), o)
+				if got != want {
+					t.Fatalf("width %d flags %v origin %p", width, special.flags, o)
+				}
+			}
+		}
+	}
+	keys := make([]*Type, 80)
+	for i := range keys {
+		keys[i] = c.neverType
+	}
+	if c.unionOfPropertyKeys(keys, origin) != c.neverType {
+		t.Fatal("all inaccessible keys")
+	}
+}

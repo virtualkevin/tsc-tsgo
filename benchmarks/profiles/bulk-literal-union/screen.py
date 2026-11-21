@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 for name in ("native", "control", "candidate", "output"):
     parser.add_argument("--" + name, type=Path, required=True)
 parser.add_argument("--grouped", action="store_true", help="measure merging sorted constituent unions")
+parser.add_argument("--class-keys", action="store_true", help="measure keyof with a private member among public string keys")
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[3]
 binaries = {name: getattr(args, name).resolve() for name in ("native", "control", "candidate")}
@@ -37,6 +38,9 @@ with tempfile.TemporaryDirectory() as tmp:
     if args.grouped:
         cases = [(4096, "interleaved"), (32768, "interleaved"), (131072, "interleaved"),
                  (32768, "overlapping"), (32768, "disjoint")]
+    if args.class_keys:
+        assert not args.grouped
+        cases = [(4096, "private-key"), (32768, "private-key"), (131072, "private-key")]
     for count, order_name in cases:
         members = [f'"k{i:06d}"' for i in range(count)]
         if order_name == "descending":
@@ -46,6 +50,9 @@ with tempfile.TemporaryDirectory() as tmp:
             # The odd stride visits each key exactly once at this power-of-two size.
             fields = [f"{members[i * 8191 % count]}: number;" for i in range(count)]
             source = "interface Model {\n" + "\n".join(fields) + '\n}\ntype Key = keyof Model;\nconst valid: Key = "k000000";\n'
+        if order_name == "private-key":
+            fields = [f"{name}: number;" for name in reversed(members)]
+            source = "declare class Model {\nprivate hidden: number;\n" + "\n".join(fields) + '\n}\ntype Key = keyof Model;\nconst valid: Key = "k000000";\n'
         if args.grouped:
             if order_name == "interleaved":
                 left, right = members[::2], members[1::2]
@@ -57,7 +64,8 @@ with tempfile.TemporaryDirectory() as tmp:
                       + "type Right = " + " | ".join(right) + ";\n"
                       + 'type Key = Left | Right;\nconst valid: Key = "k000000";\n')
         path = cwd / "main.ts"
-        path.write_text(source + 'const invalid: Key = "absent";\n')
+        invalid = "hidden" if order_name == "private-key" else "absent"
+        path.write_text(source + f'const invalid: Key = "{invalid}";\n')
         outputs = []
         for name in binaries:
             _, proc = check(name, cwd)

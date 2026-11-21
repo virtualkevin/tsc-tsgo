@@ -1,0 +1,26 @@
+package checker
+
+import (
+	"slices"
+	"strings"
+)
+
+// The caller owns keys. Keep the checker order for distinct types with equal text.
+func (c *Checker) unionOfPropertyKeys(keys []*Type, origin *Type) *Type {
+	if len(keys) < 16 {
+		return c.getUnionTypeEx(keys, UnionReductionLiteral, nil, origin)
+	}
+	for _, key := range keys {
+		if key != c.neverType && (key.flags != TypeFlagsStringLiteral || key.alias != nil || key.checker != c || isFreshLiteralType(key)) {
+			return c.getUnionTypeEx(keys, UnionReductionLiteral, nil, origin)
+		}
+	}
+	keys = slices.DeleteFunc(keys, func(key *Type) bool { return key == c.neverType })
+	slices.SortFunc(keys, func(a, b *Type) int {
+		if order := strings.Compare(getStringLiteralValue(a), getStringLiteralValue(b)); order != 0 {
+			return order
+		}
+		return int(a.id) - int(b.id)
+	})
+	return c.getUnionTypeFromSortedList(slices.Compact(keys), ObjectFlagsPrimitiveUnion, nil, origin)
+}
