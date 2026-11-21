@@ -446,3 +446,6 @@
 | Lazy per-kind AST pages | trpc | Matched Go control | 449.03 | 416.85 | 1.077× | 4 | Paired median 1.051×. [Samples](benchmarks/profiles/parser-slab-demand/lazy-small.json.gz) |
 | Lazy per-kind AST pages | vscode | Matched Go control | 34434.15 | 33611.67 | 1.024× | 2 | Paired median 1.025×. [Samples](benchmarks/profiles/parser-slab-demand/lazy-large.json.gz) |
 | Lazy per-kind AST pages | sentry | Matched Go control | 27443.70 | 29233.33 | 0.939× | 2 | Paired median 0.939×. [Samples](benchmarks/profiles/parser-slab-demand/lazy-large.json.gz) |
+| Lazy per-kind AST pages, order reversed | typeorm | Matched Go control | 2677.40 | 2696.46 | 0.993× | 8 | Paired median 0.976×, candidate faster in 3/8. [Samples](benchmarks/profiles/parser-slab-demand/lazy-reverse.json.gz) |
+| Lazy per-kind AST pages, order reversed | trpc | Matched Go control | 476.01 | 513.00 | 0.928× | 8 | Paired median 0.941×, candidate faster in 0/8. [Samples](benchmarks/profiles/parser-slab-demand/lazy-reverse.json.gz) |
+| Lazy per-kind AST pages, order reversed | sentry | Matched Go control | 35739.98 | 37165.51 | 0.962× | 4 | Paired median 0.952×, candidate faster in 1/4. [Samples](benchmarks/profiles/parser-slab-demand/lazy-reverse-sentry.json.gz) |

@@ -1,0 +1,227 @@
+{
+  "scope": "Historical full-check sampled heap data. Only samples with a generated factory constructor at the leaf and a direct concrete allocation in that constructor are included. Includes parsing and other factory users. Weighted object/byte estimates, not exact counts or timing.",
+  "factorySourceSha256": "622af8e7017a8927b4909aadd91ea700cc69c875fd160966bd76766e45a566b3",
+  "projects": {
+    "sentry": {
+      "rawSha256": "10a63d50ab9c22f583b007ac1c2acdd34eb1d5b2ddc6defbacbc90bb923ae422",
+      "totalObjects": 23225216,
+      "totalBytes": 4817441419,
+      "sampledDirectObjects": 1494295,
+      "sampledDirectBytes": 134230336,
+      "topByObjects": [
+        {
+          "kind": "ObjectLiteralExpression",
+          "objects": 183512,
+          "bytes": 14681184
+        },
+        {
+          "kind": "ImportDeclaration",
+          "objects": 112358,
+          "bytes": 12584256
+        },
+        {
+          "kind": "JsxAttributes",
+          "objects": 98310,
+          "bytes": 7864920
+        },
+        {
+          "kind": "JsxText",
+          "objects": 98310,
+          "bytes": 7864920
+        },
+        {
+          "kind": "ArrowFunction",
+          "objects": 95332,
+          "bytes": 16780032
+        },
+        {
+          "kind": "JsxExpression",
+          "objects": 90112,
+          "bytes": 5767520
+        },
+        {
+          "kind": "ImportClause",
+          "objects": 81926,
+          "bytes": 7865040
+        },
+        {
+          "kind": "QualifiedName",
+          "objects": 58986,
+          "bytes": 4718952
+        },
+        {
+          "kind": "JsxAttribute",
+          "objects": 58986,
+          "bytes": 4718952
+        },
+        {
+          "kind": "NamedImports",
+          "objects": 57347,
+          "bytes": 3670240
+        }
+      ]
+    },
+    "trpc": {
+      "rawSha256": "471d301923e23fb46f802ac40703bac5a31f0d79e5d3741dd2b765d07b9e9001",
+      "totalObjects": 331970,
+      "totalBytes": 106773821,
+      "sampledDirectObjects": 36136,
+      "sampledDirectBytes": 3670400,
+      "topByObjects": [
+        {
+          "kind": "AwaitExpression",
+          "objects": 8192,
+          "bytes": 524320
+        },
+        {
+          "kind": "ExportSpecifier",
+          "objects": 5461,
+          "bytes": 524336
+        },
+        {
+          "kind": "ImportClause",
+          "objects": 5461,
+          "bytes": 524336
+        },
+        {
+          "kind": "BindingElement",
+          "objects": 4681,
+          "bytes": 524344
+        },
+        {
+          "kind": "ExportDeclaration",
+          "objects": 4681,
+          "bytes": 524344
+        },
+        {
+          "kind": "ImportDeclaration",
+          "objects": 4681,
+          "bytes": 524344
+        },
+        {
+          "kind": "ArrowFunction",
+          "objects": 2979,
+          "bytes": 524376
+        }
+      ]
+    },
+    "typeorm": {
+      "rawSha256": "b624d2d7dad57b51575a7624fb1d366b7a94912d301c8f5dae83f9e63fb022d6",
+      "totalObjects": 3200134,
+      "totalBytes": 561957302,
+      "sampledDirectObjects": 175009,
+      "sampledDirectBytes": 16254560,
+      "topByObjects": [
+        {
+          "kind": "NamedImports",
+          "objects": 24577,
+          "bytes": 1572960
+        },
+        {
+          "kind": "AwaitExpression",
+          "objects": 24576,
+          "bytes": 1572960
+        },
+        {
+          "kind": "NewExpression",
+          "objects": 19662,
+          "bytes": 1572984
+        },
+        {
+          "kind": "PropertyDeclaration",
+          "objects": 18726,
+          "bytes": 2097376
+        },
+        {
+          "kind": "ObjectLiteralExpression",
+          "objects": 13108,
+          "bytes": 1048656
+        },
+        {
+          "kind": "MethodDeclaration",
+          "objects": 11916,
+          "bytes": 2097504
+        },
+        {
+          "kind": "ImportDeclaration",
+          "objects": 9363,
+          "bytes": 1048688
+        },
+        {
+          "kind": "Decorator",
+          "objects": 8192,
+          "bytes": 524320
+        },
+        {
+          "kind": "ThisTypeNode",
+          "objects": 8192,
+          "bytes": 524320
+        },
+        {
+          "kind": "SyntheticExpression",
+          "objects": 6554,
+          "bytes": 524328
+        }
+      ]
+    },
+    "vscode": {
+      "rawSha256": "f0400e7e1f143210cb7289825e4135d568ade9a18e8bb6b173e497ba2e906487",
+      "totalObjects": 17402575,
+      "totalBytes": 5084070463,
+      "sampledDirectObjects": 2276653,
+      "sampledDirectBytes": 213931280,
+      "topByObjects": [
+        {
+          "kind": "ObjectLiteralExpression",
+          "objects": 399794,
+          "bytes": 31984008
+        },
+        {
+          "kind": "ArrayLiteralExpression",
+          "objects": 216282,
+          "bytes": 17302824
+        },
+        {
+          "kind": "NamedImports",
+          "objects": 172042,
+          "bytes": 11010720
+        },
+        {
+          "kind": "ArrowFunction",
+          "objects": 151935,
+          "bytes": 26743176
+        },
+        {
+          "kind": "AwaitExpression",
+          "objects": 139269,
+          "bytes": 8913440
+        },
+        {
+          "kind": "ImportDeclaration",
+          "objects": 117041,
+          "bytes": 13108600
+        },
+        {
+          "kind": "MethodDeclaration",
+          "objects": 95338,
+          "bytes": 16780032
+        },
+        {
+          "kind": "NewExpression",
+          "objects": 91756,
+          "bytes": 7340592
+        },
+        {
+          "kind": "ImportClause",
+          "objects": 87389,
+          "bytes": 8389376
+        },
+        {
+          "kind": "BindingElement",
+          "objects": 70218,
+          "bytes": 7865160
+        }
+      ]
+    }
+  }
+}
