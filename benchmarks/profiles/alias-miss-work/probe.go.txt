@@ -1,0 +1,59 @@
+package checker
+
+import (
+	"sync"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type aliasMissRow struct {
+	Name, File                            string
+	Pos                                   int
+	Misses, Exclusive, Inclusive, Largest uint64
+}
+
+type aliasMissProbe struct {
+	bySymbol           map[*ast.Symbol]*aliasMissRow
+	active             *aliasMissRow
+	Outside, Outermost uint64
+	Rows               []*aliasMissRow
+}
+
+var aliasMissRegistry struct {
+	sync.Mutex
+	probes []*aliasMissProbe
+}
+
+func (c *Checker) aliasWork() *aliasMissProbe {
+	if c.aliasMissProbe == nil {
+		p := &aliasMissProbe{bySymbol: make(map[*ast.Symbol]*aliasMissRow)}
+		aliasMissRegistry.Lock()
+		aliasMissRegistry.probes = append(aliasMissRegistry.probes, p)
+		aliasMissRegistry.Unlock()
+		c.aliasMissProbe = p
+	}
+	return c.aliasMissProbe
+}
+
+func (p *aliasMissProbe) enter(sym *ast.Symbol) *aliasMissRow {
+	r := p.bySymbol[sym]
+	if r == nil {
+		r = &aliasMissRow{Name: sym.Name, Pos: -1}
+		if len(sym.Declarations) > 0 {
+			d := sym.Declarations[0]
+			r.Pos = d.Pos()
+			if f := ast.GetSourceFileOfNode(d); f != nil {
+				r.File = f.FileName()
+			}
+		}
+		p.bySymbol[sym] = r
+		p.Rows = append(p.Rows, r)
+	}
+	r.Misses++
+	p.active = r
+	return r
+}
+
+func AliasMissProfiles() []*aliasMissProbe {
+	return aliasMissRegistry.probes
+}
