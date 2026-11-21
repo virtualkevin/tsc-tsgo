@@ -39,7 +39,8 @@ for project in report["projects"]:
     assert [p["order"] for p in pairs]==[["baseline","candidate"],["candidate","baseline"]]*(runs//2)
     a,b=(statistics.median(pair[k] for pair in pairs) for k in ("baseline","candidate"))
     wins=sum(pair["candidate"]<pair["baseline"] for pair in pairs)
-    rows.append(f"| {stage} | {project['name']} | {baseline} | {a:.2f} | {b:.2f} | {a/b:.3f}× | {runs} | Candidate faster in {wins}/{runs} pairs. [Samples](benchmarks/profiles/jsx-absent-discriminants/{archive}.json.gz) |")
+    interference = " Offline profile analysis overlapped this screen." if archive == "write-guards-large" else ""
+    rows.append(f"| {stage} | {project['name']} | {baseline} | {a:.2f} | {b:.2f} | {a/b:.3f}× | {runs} | Candidate faster in {wins}/{runs} pairs.{interference} [Samples](benchmarks/profiles/jsx-absent-discriminants/{archive}.json.gz) |")
 assert rows and not any(row in (repo/"PERF.md").read_text() for row in rows)
 (here/f"{archive}.json.gz").write_bytes(gzip.compress(raw,mtime=0))
 with (repo/"PERF.md").open("a") as f:

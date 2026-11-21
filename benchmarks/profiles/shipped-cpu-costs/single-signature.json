@@ -1,0 +1,191 @@
+{
+  "trpc": {
+    "totalCpuNs": 2850000000,
+    "singleSignatureApplicabilityNs": 10000000,
+    "phasesNs": {
+      "checkExpressionWithContextualType": 10000000
+    },
+    "expressionHandlersNs": {
+      "checkIdentifier": 10000000
+    },
+    "objectLiteralChildrenNs": {},
+    "allMutableLocationChildrenNs": {
+      "checkExpressionEx": 100000000
+    }
+  },
+  "typeorm": {
+    "totalCpuNs": 16570000000,
+    "singleSignatureApplicabilityNs": 1030000000,
+    "phasesNs": {
+      "checkExpressionWithContextualType": 760000000,
+      "checkTypeRelatedToAndOptionallyElaborate": 240000000,
+      "getTypeAtPosition": 20000000,
+      "(self)": 10000000
+    },
+    "expressionHandlersNs": {
+      "checkObjectLiteral": 480000000,
+      "checkIdentifier": 110000000,
+      "checkArrayLiteral": 70000000,
+      "checkPropertyAccessExpression": 50000000,
+      "checkConditionalExpression": 20000000,
+      "(outside expression dispatch)": 20000000,
+      "checkAssertion": 10000000
+    },
+    "objectLiteralChildrenNs": {
+      "checkPropertyAssignment": 240000000,
+      "getApparentTypeOfContextualType": 180000000,
+      "checkObjectLiteral.func1": 20000000,
+      "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get": 20000000,
+      "checkShorthandPropertyAssignment": 10000000,
+      "(self)": 10000000
+    },
+    "allMutableLocationChildrenNs": {
+      "checkExpressionEx": 530000000,
+      "isConstContext": 80000000,
+      "getContextualType": 30000000,
+      "getWidenedLiteralLikeTypeForContextualType": 10000000,
+      "instantiateContextualType": 10000000
+    }
+  },
+  "vscode": {
+    "totalCpuNs": 203660000000,
+    "singleSignatureApplicabilityNs": 21390000000,
+    "phasesNs": {
+      "checkExpressionWithContextualType": 15510000000,
+      "checkTypeRelatedToAndOptionallyElaborate": 4600000000,
+      "getTypeAtPosition": 1150000000,
+      "getNonArrayRestType": 40000000,
+      "(self)": 40000000,
+      "getEffectiveCheckNode": 20000000,
+      "getThisTypeOfSignature": 20000000,
+      "(call site without applicability frame)": 10000000
+    },
+    "expressionHandlersNs": {
+      "checkObjectLiteral": 5970000000,
+      "checkIdentifier": 3230000000,
+      "checkPropertyAccessExpression": 1880000000,
+      "checkFunctionExpressionOrObjectLiteralMethod": 1220000000,
+      "checkArrayLiteral": 980000000,
+      "(outside expression dispatch)": 360000000,
+      "checkTemplateExpression": 350000000,
+      "checkBinaryExpression": 340000000,
+      "checkCallExpression": 230000000,
+      "getStringLiteralType": 220000000,
+      "checkAssertion": 220000000,
+      "checkConditionalExpression": 160000000,
+      "checkClassExpression": 80000000,
+      "checkIndexedAccess": 50000000,
+      "checkSatisfiesExpression": 40000000,
+      "getNumberLiteralType": 30000000,
+      "github.com/microsoft/typescript-go/internal/ast.(*Node).Text": 30000000,
+      "getFreshTypeOfLiteralType": 30000000,
+      "checkPrefixUnaryExpression": 30000000,
+      "checkNonNullAssertion": 30000000,
+      "checkGrammarNumericLiteral": 20000000,
+      "checkAwaitExpression": 10000000
+    },
+    "objectLiteralChildrenNs": {
+      "checkPropertyAssignment": 3650000000,
+      "getApparentTypeOfContextualType": 390000000,
+      "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get": 360000000,
+      "checkShorthandPropertyAssignment": 290000000,
+      "checkObjectLiteral.func1": 230000000,
+      "(self)": 180000000,
+      "getSpreadType": 160000000,
+      "checkGrammarObjectLiteralExpression": 140000000,
+      "checkExpressionEx": 110000000,
+      "getSymbolOfDeclaration": 70000000,
+      "runtime.mapassign_faststr": 70000000,
+      "newSymbolEx": 70000000,
+      "runtime.growslice": 60000000,
+      "tryMergeUnionOfObjectTypeAndEmptyObject": 30000000,
+      "runtime.mapaccess1_fast64": 30000000,
+      "runtime.makemap_small": 20000000,
+      "isValidSpreadType": 20000000,
+      "checkObjectLiteralMethod": 20000000,
+      "checkComputedPropertyName": 20000000,
+      "isConstContext": 10000000,
+      "checkSpreadPropOverrides": 10000000,
+      "github.com/microsoft/typescript-go/internal/ast.(*Node).Properties": 10000000,
+      "runtime.rand": 10000000,
+      "gcWriteBarrier": 10000000
+    },
+    "allMutableLocationChildrenNs": {
+      "checkExpressionEx": 23220000000,
+      "isConstContext": 2050000000,
+      "getContextualType": 1830000000,
+      "getWidenedLiteralLikeTypeForContextualType": 200000000,
+      "instantiateContextualType": 90000000,
+      "(self)": 70000000,
+      "github.com/microsoft/typescript-go/internal/checker.isTypeAssertion": 10000000
+    }
+  },
+  "sentry": {
+    "totalCpuNs": 201980000000,
+    "singleSignatureApplicabilityNs": 29500000000,
+    "phasesNs": {
+      "checkApplicableSignatureForJsxCallLikeElement": 20950000000,
+      "checkExpressionWithContextualType": 5780000000,
+      "checkTypeRelatedToAndOptionallyElaborate": 2330000000,
+      "getTypeAtPosition": 390000000,
+      "(self)": 20000000,
+      "getNonArrayRestType": 10000000,
+      "github.com/microsoft/typescript-go/internal/ast.IsOmittedExpression": 10000000,
+      "(call site without applicability frame)": 10000000
+    },
+    "expressionHandlersNs": {
+      "checkObjectLiteral": 2900000000,
+      "checkFunctionExpressionOrObjectLiteralMethod": 660000000,
+      "checkIdentifier": 630000000,
+      "checkArrayLiteral": 460000000,
+      "checkPropertyAccessExpression": 350000000,
+      "checkBinaryExpression": 180000000,
+      "getStringLiteralType": 170000000,
+      "checkJsxSelfClosingElement": 120000000,
+      "checkConditionalExpression": 60000000,
+      "(outside expression dispatch)": 40000000,
+      "checkAssertion": 30000000,
+      "checkCallExpression": 30000000,
+      "getFreshTypeOfLiteralType": 30000000,
+      "checkTemplateExpression": 20000000,
+      "github.com/microsoft/typescript-go/internal/ast.(*Node).Text": 20000000,
+      "checkIndexedAccess": 20000000,
+      "checkRegularExpressionLiteral": 20000000,
+      "checkNonNullAssertion": 10000000,
+      "checkTypeOfExpression": 10000000,
+      "isSkipDirectInferenceNode": 10000000,
+      "checkJsxElement": 10000000
+    },
+    "objectLiteralChildrenNs": {
+      "checkPropertyAssignment": 1620000000,
+      "checkShorthandPropertyAssignment": 330000000,
+      "getApparentTypeOfContextualType": 230000000,
+      "(self)": 130000000,
+      "getSpreadType": 120000000,
+      "runtime.mapassign_faststr": 100000000,
+      "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).Get": 90000000,
+      "checkGrammarObjectLiteralExpression": 60000000,
+      "checkObjectLiteral.func1": 50000000,
+      "checkObjectLiteralMethod": 40000000,
+      "github.com/microsoft/typescript-go/internal/ast.(*Node).Properties": 20000000,
+      "runtime.growslice": 20000000,
+      "newSymbolEx": 20000000,
+      "runtime.makemap_small": 10000000,
+      "runtime.mapaccess1_fast64": 10000000,
+      "checkExpressionEx": 10000000,
+      "gcWriteBarrier": 10000000,
+      "checkSpreadPropOverrides": 10000000,
+      "popContextualType": 10000000,
+      "isConstContext": 10000000
+    },
+    "allMutableLocationChildrenNs": {
+      "checkExpressionEx": 18250000000,
+      "isConstContext": 12950000000,
+      "getContextualType": 6660000000,
+      "instantiateContextualType": 520000000,
+      "getWidenedLiteralLikeTypeForContextualType": 280000000,
+      "(self)": 60000000,
+      "github.com/microsoft/typescript-go/internal/checker.isTypeAssertion": 10000000
+    }
+  }
+}
