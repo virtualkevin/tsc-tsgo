@@ -510,3 +510,7 @@
 | Wide union close-match prefilter | sentry | Matched ordinary Go build | 35070.88 | 33197.96 | 1.056× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/union-inference-work/screen.json.gz) |
 | Wide union close-match prefilter | typeorm | Matched ordinary Go build | 3652.04 | 3470.09 | 1.052× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/union-inference-work/screen.json.gz) |
 | Wide union close-match prefilter | trpc | Matched ordinary Go build | 851.85 | 712.78 | 1.195× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/union-inference-work/screen.json.gz) |
+| Conditional inference visited rows | vscode | Matched ordinary Go build | 31181.26 | 33185.41 | 0.940× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/conditional-visited-rows/screen.json.gz) |
+| Conditional inference visited rows | sentry | Matched ordinary Go build | 29029.57 | 32302.63 | 0.899× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/conditional-visited-rows/screen.json.gz) |
+| Conditional inference visited rows | typeorm | Matched ordinary Go build | 3419.97 | 3583.35 | 0.954× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/conditional-visited-rows/screen.json.gz) |
+| Conditional inference visited rows | trpc | Matched ordinary Go build | 677.17 | 663.12 | 1.021× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/conditional-visited-rows/screen.json.gz) |
