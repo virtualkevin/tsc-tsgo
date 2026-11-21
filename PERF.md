@@ -608,3 +608,6 @@
 | Reuse identical mapped key and name links | sentry | Matched ordinary Go build | 54078.00 | 44244.37 | 1.222× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/mapped-member-demand/screen.json.gz) |
 | Reuse identical mapped key and name links | typeorm | Matched ordinary Go build | 6900.01 | 4543.35 | 1.519× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/mapped-member-demand/screen.json.gz) |
 | Reuse identical mapped key and name links | trpc | Matched ordinary Go build | 1374.94 | 1930.74 | 0.712× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/mapped-member-demand/screen.json.gz) |
+| Reuse identical mapped key and name links | Sentry | Public npm tsc-ts@0.0.2 | 15840.98 | 26180.42 | 0.605× | 2 | Launcher and native binary verified before and after comparison. [Samples](benchmarks/profiles/mapped-member-demand/public.json.gz) |
+| Reuse identical mapped key and name links | typeorm | Matched ordinary Go build | 2859.25 | 2956.25 | 0.967× | 8 | Candidate faster in 3/8 pairs. [Samples](benchmarks/profiles/mapped-member-demand/reversed-small.json.gz) |
+| Reuse identical mapped key and name links | trpc | Matched ordinary Go build | 500.74 | 524.75 | 0.954× | 8 | Candidate faster in 4/8 pairs. [Samples](benchmarks/profiles/mapped-member-demand/reversed-small.json.gz) |
