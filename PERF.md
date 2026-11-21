@@ -415,3 +415,4 @@
 | Live symbol slot hints | trpc | Matched Go control | 515.07 | 478.01 | 1.078× | 6 | Paired median 1.098×. [Samples](benchmarks/profiles/live-symbol-slots/small.json.gz) |
 | Live symbol slot hints | vscode | Matched Go control | 47503.45 | 48019.72 | 0.989× | 2 | Paired median 0.990×. [Samples](benchmarks/profiles/live-symbol-slots/large.json.gz) |
 | Live symbol slot hints | sentry | Matched Go control | 38561.44 | 39951.94 | 0.965× | 2 | Paired median 0.965×. [Samples](benchmarks/profiles/live-symbol-slots/large.json.gz) |
+| Live symbol slot hints, order reversed | trpc | Matched Go control | 486.60 | 493.55 | 0.986× | 12 | Paired median 1.016×, candidate faster in 7/12 pairs. [Samples](benchmarks/profiles/live-symbol-slots/trpc-reverse.json.gz) |
