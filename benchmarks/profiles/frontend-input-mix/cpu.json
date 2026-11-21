@@ -1,0 +1,103 @@
+{
+  "observerSha256": "81cb62fa2989b3e0084ac8a56e4350bc4bc7637f0dd0cb397841adfd80b7df17",
+  "projects": {
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "inputCount": 3572,
+      "trials": [
+        {
+          "totalCpuNs": 3860000000,
+          "sourceLoadingNs": {
+            "project or workspace / other input": 1330000000,
+            "node_modules / declaration": 260000000,
+            "compiler library": 20000000
+          },
+          "profileSha256": "68b96cceb3890367f00deba8c97ae0d6942b4f6add3b31c1d827b41671edba7b"
+        },
+        {
+          "totalCpuNs": 3750000000,
+          "sourceLoadingNs": {
+            "project or workspace / other input": 1470000000,
+            "node_modules / declaration": 270000000,
+            "compiler library": 30000000
+          },
+          "profileSha256": "962d48fa8d90b47878a47084be9f206773b8003ba993d5dc2ed80f685a415314"
+        },
+        {
+          "totalCpuNs": 3680000000,
+          "sourceLoadingNs": {
+            "project or workspace / other input": 1300000000,
+            "node_modules / declaration": 240000000,
+            "compiler library": 10000000
+          },
+          "profileSha256": "c93e8cd6966e941c2092e458f884bbe99834de2d3cf41d368c74836af2e4d771"
+        }
+      ]
+    },
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "inputCount": 942,
+      "trials": [
+        {
+          "totalCpuNs": 1380000000,
+          "sourceLoadingNs": {
+            "project or workspace / other input": 70000000,
+            "compiler library": 90000000,
+            "node_modules / declaration": 410000000
+          },
+          "profileSha256": "8fcf1fbb780898ae154d2f238d2d85dfd3ff5e72d31c58d2f046135364588fa5"
+        },
+        {
+          "totalCpuNs": 1360000000,
+          "sourceLoadingNs": {
+            "project or workspace / other input": 80000000,
+            "node_modules / declaration": 480000000,
+            "compiler library": 80000000
+          },
+          "profileSha256": "5d33801836686cf2335cb38ea5b2461f310c2d9d898f55ca20cce3825eeed73b"
+        },
+        {
+          "totalCpuNs": 1360000000,
+          "sourceLoadingNs": {
+            "project or workspace / other input": 70000000,
+            "node_modules / declaration": 430000000,
+            "compiler library": 110000000
+          },
+          "profileSha256": "04dc1ba7a98a2e4b6fa7e9d9f2ad2719413c5894e1681e27ce611e95dbd5dbe1"
+        }
+      ]
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "inputCount": 11563,
+      "trials": [
+        {
+          "totalCpuNs": 57640000000,
+          "sourceLoadingNs": {
+            "project or workspace / other input": 35720000000,
+            "project or workspace / declaration": 190000000,
+            "node_modules / declaration": 1040000000,
+            "compiler library": 180000000
+          },
+          "profileSha256": "ad893122fcf9d5221601b88dbba19832379ce59791767d64cc870febef189cb7"
+        }
+      ]
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "inputCount": 13290,
+      "trials": [
+        {
+          "totalCpuNs": 25410000000,
+          "sourceLoadingNs": {
+            "project or workspace / other input": 9840000000,
+            "project or workspace / declaration": 70000000,
+            "node_modules / declaration": 2260000000,
+            "compiler library": 260000000
+          },
+          "profileSha256": "e3dd0d42c1b7cc2a35d24ee70ba6231bed2a2065a47e115653e72f1b2a7aa9d9"
+        }
+      ]
+    }
+  }
+}
