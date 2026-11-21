@@ -1,0 +1,86 @@
+package checker
+
+import "sync"
+
+type keyOperandStats struct {
+	ObjectQueries, ResolvedOrdinaryObject, CachedOrdinaryKeys, IntersectionObject, UnionObject uint64
+	Calls, Union, WideUnion, NewWideUnion, MaxWidth                                            uint64
+	TypesCreated, SymbolsCreated, Instantiations                                               uint64
+}
+
+type keyOperandRequest struct {
+	target *Type
+	mapper *TypeMapper
+	stats  *keyOperandStats
+	seen   bool
+}
+
+func (q *keyOperandRequest) record(c *Checker, object *Type) {
+	q.seen = true
+	r := q.stats
+	r.ObjectQueries++
+	switch {
+	case object.flags&TypeFlagsIntersection != 0:
+		r.IntersectionObject++
+	case object.flags&TypeFlagsUnion != 0:
+		r.UnionObject++
+	case object.flags&TypeFlagsObject != 0 && object.objectFlags&(ObjectFlagsMembersResolved|ObjectFlagsMapped|ObjectFlagsUnresolvedMembers) == ObjectFlagsMembersResolved:
+		r.ResolvedOrdinaryObject++
+		key := PropertiesTypesKey{typeId: object.id, include: TypeFlagsStringLike | TypeFlagsNumberLike | TypeFlagsESSymbolLike, includeOrigin: true}
+		if c.propertiesTypes[key] != nil {
+			r.CachedOrdinaryKeys++
+		}
+	}
+}
+
+type keyOperandProbe map[string]*keyOperandStats
+
+var keyOperandRegistry struct {
+	sync.Mutex
+	all []*keyOperandProbe
+}
+
+func (c *Checker) observeKeyOperand(root *ConditionalRoot, mapper *TypeMapper, checkType *Type) *Type {
+	if checkType.flags&TypeFlagsStringLiteral == 0 || root.extendsType.flags&TypeFlagsIndex == 0 {
+		return c.instantiateType(root.extendsType, mapper)
+	}
+	if c.keyOperandProbe == nil {
+		p := make(keyOperandProbe)
+		c.keyOperandProbe = &p
+		keyOperandRegistry.Lock()
+		keyOperandRegistry.all = append(keyOperandRegistry.all, &p)
+		keyOperandRegistry.Unlock()
+	}
+	cohort := "other"
+	if getStringLiteralValue(checkType) == "className" {
+		cohort = "className"
+	}
+	r := (*c.keyOperandProbe)[cohort]
+	if r == nil {
+		r = new(keyOperandStats)
+		(*c.keyOperandProbe)[cohort] = r
+	}
+	types, syms, inst := c.TypeCount, c.SymbolCount, c.TotalInstantiationCount
+	previous := c.keyRequest
+	c.keyRequest = &keyOperandRequest{target: root.extendsType, mapper: mapper, stats: r}
+	result := c.instantiateType(root.extendsType, mapper)
+	c.keyRequest = previous
+	r.Calls++
+	r.TypesCreated += uint64(c.TypeCount - types)
+	r.SymbolsCreated += uint64(c.SymbolCount - syms)
+	r.Instantiations += uint64(c.TotalInstantiationCount - inst)
+	if result.flags&TypeFlagsUnion != 0 {
+		r.Union++
+		width := uint64(len(result.Types()))
+		r.MaxWidth = max(r.MaxWidth, width)
+		if width >= 32 {
+			r.WideUnion++
+			if result.checker == c && result.id > TypeId(types) {
+				r.NewWideUnion++
+			}
+		}
+	}
+	return result
+}
+
+func KeyOperandResults() []*keyOperandProbe { return keyOperandRegistry.all }
