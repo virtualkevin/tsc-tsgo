@@ -1,0 +1,37 @@
+package checker
+
+import "testing"
+
+func TestInferenceMapperOwnership(t *testing.T) {
+	c := &Checker{}
+	param, answer := &Type{}, &Type{}
+	n := c.newInferenceContext([]*Type{param}, nil, InferenceFlagsNone, nil)
+	n.inferences[0].inferredType = answer
+	n.inferences[0].isFixed = true
+	copy := c.cloneInferenceContext(n, InferenceFlagsNone)
+	for _, ctx := range []*InferenceContext{n, copy} {
+		if ctx.mapper == ctx.nonFixingMapper || ctx.mapper.Map(param) != answer || ctx.nonFixingMapper.Map(param) != answer {
+			t.Fatal("invalid mapper pair")
+		}
+	}
+	if n.mapper == copy.mapper || n.nonFixingMapper == copy.nonFixingMapper {
+		t.Fatal("shared mapper across clones")
+	}
+	old := n.nonFixingMapper
+	n.nonFixingMapper = newSimpleTypeMapper(param, param)
+	if n.nonFixingMapper.Map(param) != param || old.Map(param) != answer || copy.nonFixingMapper.Map(param) != answer {
+		t.Fatal("replaced mapper changed its source or clone")
+	}
+}
+
+func BenchmarkInferenceMapperPair(b *testing.B) {
+	c := &Checker{}
+	params := []*Type{{}}
+	b.ReportAllocs()
+	for b.Loop() {
+		ctx := c.newInferenceContext(params, nil, InferenceFlagsNone, nil)
+		if ctx.mapper == ctx.nonFixingMapper {
+			b.Fatal("identity")
+		}
+	}
+}

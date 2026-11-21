@@ -1,0 +1,38 @@
+--- a/packages/tsc-go/internal/checker/inference.go
++++ b/packages/tsc-go/internal/checker/inference.go
+@@ -1289,14 +1289,19 @@
+ }
+ 
+ func (c *Checker) newInferenceContextWorker(inferences []*InferenceInfo, signature *Signature, flags InferenceFlags, compareTypes TypeComparer) *InferenceContext {
+-	n := &InferenceContext{
++	// Both mappers refer back to this context and have distinct identities.
++	storage := &struct {
++		context           InferenceContext
++		fixing, nonFixing InferenceTypeMapper
++	}{context: InferenceContext{
+ 		inferences:   inferences,
+ 		signature:    signature,
+ 		flags:        flags,
+ 		compareTypes: compareTypes,
+-	}
+-	n.mapper = c.newInferenceTypeMapper(n, true /*fixing*/)
+-	n.nonFixingMapper = c.newInferenceTypeMapper(n, false /*fixing*/)
++	}}
++	n := &storage.context
++	n.mapper = storage.fixing.init(c, n, true)
++	n.nonFixingMapper = storage.nonFixing.init(c, n, false)
+ 	return n
+ }
+ 
+--- a/packages/tsc-go/internal/checker/mapper.go
++++ b/packages/tsc-go/internal/checker/mapper.go
+@@ -289,8 +289,7 @@
+ 	fixing bool
+ }
+ 
+-func (c *Checker) newInferenceTypeMapper(n *InferenceContext, fixing bool) *TypeMapper {
+-	m := &InferenceTypeMapper{}
++func (m *InferenceTypeMapper) init(c *Checker, n *InferenceContext, fixing bool) *TypeMapper {
+ 	m.data = m
+ 	m.c = c
+ 	m.n = n

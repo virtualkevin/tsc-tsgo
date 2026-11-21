@@ -1,0 +1,140 @@
+package checker
+
+import (
+	"fmt"
+	"sync"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type conditionalCost struct{ Types, Instantiations, Iterations uint64 }
+
+func (w *conditionalCost) add(v conditionalCost) {
+	w.Types += v.Types
+	w.Instantiations += v.Instantiations
+	w.Iterations += v.Iterations
+}
+
+type activeResolution struct {
+	current               *conditionalCost
+	rows                  map[*ConditionalRoot]*conditionalCost
+	childTypes, childInst uint64
+}
+type workerResolutionProbe struct {
+	active        *activeResolution
+	byDeclaration map[*ast.Node]map[*ConditionalRoot]conditionalCost
+}
+
+var conditionalWorkers struct {
+	sync.Mutex
+	list []*workerResolutionProbe
+}
+
+func trackConditionalCall(n *ast.Node) bool {
+	if !ast.IsCallExpression(n) {
+		return false
+	}
+	e := n.Expression()
+	if ast.IsPropertyAccessExpression(e) {
+		e = e.Name()
+	}
+	if !ast.IsIdentifier(e) {
+		return false
+	}
+	switch e.Text() {
+	case "createInstance", "map", "spyOn", "save", "findOneBy", "createBuilder":
+		return true
+	}
+	return false
+}
+func (c *Checker) observedResolution(n *ast.Node, out *[]*Signature, mode CheckMode) *Signature {
+	p := &c.workerResolutionProbe
+	prev := p.active
+	p.active = nil
+	if trackConditionalCall(n) {
+		outside := &conditionalCost{}
+		p.active = &activeResolution{current: outside, rows: map[*ConditionalRoot]*conditionalCost{nil: outside}}
+	}
+	types, inst := c.TypeCount, c.TotalInstantiationCount
+	sig := c.resolveSignature(n, out, mode)
+	dt, di := uint64(c.TypeCount-types), uint64(c.TotalInstantiationCount-inst)
+	if active := p.active; active != nil {
+		if p.byDeclaration == nil {
+			p.byDeclaration = make(map[*ast.Node]map[*ConditionalRoot]conditionalCost)
+			conditionalWorkers.Lock()
+			conditionalWorkers.list = append(conditionalWorkers.list, p)
+			conditionalWorkers.Unlock()
+		}
+		rows := p.byDeclaration[sig.declaration]
+		if rows == nil {
+			rows = make(map[*ConditionalRoot]conditionalCost)
+			p.byDeclaration[sig.declaration] = rows
+		}
+		var sum conditionalCost
+		for root, w := range active.rows {
+			sum.add(*w)
+			v := rows[root]
+			v.add(*w)
+			rows[root] = v
+		}
+		if sum.Types+active.childTypes != dt || sum.Instantiations+active.childInst != di {
+			panic("unaccounted conditional events")
+		}
+	}
+	p.active = prev
+	if prev != nil {
+		prev.childTypes += dt
+		prev.childInst += di
+	}
+	return sig
+}
+func (s *activeResolution) enter(root *ConditionalRoot) {
+	row := s.rows[root]
+	if row == nil {
+		row = &conditionalCost{}
+		s.rows[root] = row
+	}
+	row.Iterations++
+	s.current = row
+}
+
+func describeResolutionNode(n *ast.Node) string {
+	if n == nil {
+		return "(no declaration)"
+	}
+	file := "(synthetic)"
+	if f := ast.GetSourceFileOfNode(n); f != nil {
+		file = f.FileName()
+	}
+	name := n.Kind.String()
+	if x := n.Name(); x != nil && ast.IsIdentifier(x) {
+		name = x.Text()
+	}
+	return fmt.Sprintf("%s:%d %s", file, n.Pos(), name)
+}
+func ResolutionWorkReport() map[string]map[string]conditionalCost {
+	report := make(map[string]map[string]conditionalCost)
+	for _, p := range conditionalWorkers.list {
+		for declaration, counts := range p.byDeclaration {
+			key := describeResolutionNode(declaration)
+			rows := report[key]
+			if rows == nil {
+				rows = make(map[string]conditionalCost)
+				report[key] = rows
+			}
+			for root, w := range counts {
+				label := "(outside conditional evaluation)"
+				if root != nil {
+					label = describeResolutionNode(root.node.AsNode())
+					if root.alias != nil {
+						label += " " + root.alias.symbol.Name
+					}
+				}
+				v := rows[label]
+				v.add(w)
+				rows[label] = v
+			}
+		}
+	}
+	return report
+}

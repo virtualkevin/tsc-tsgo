@@ -1,0 +1,229 @@
+package checker
+
+import (
+	"sort"
+	"sync"
+	"time"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type resolutionWork struct{ Calls, Types, Instantiations, WorkerNs uint64 }
+
+func (w *resolutionWork) add(o resolutionWork) {
+	w.Calls += o.Calls
+	w.Types += o.Types
+	w.Instantiations += o.Instantiations
+	w.WorkerNs += o.WorkerNs
+}
+
+type visitShape struct {
+	mode        CheckMode
+	candidates  bool
+	declaration *ast.Node
+	deferred    bool
+}
+type resolutionVisit struct {
+	work   resolutionWork
+	shape  visitShape
+	varied bool
+}
+type workerResolutionProbe struct {
+	declarations map[*ast.Node]resolutionWork
+	nodes        map[*ast.Node]*resolutionVisit
+	children     resolutionWork
+	depth        int
+	outer        resolutionWork
+}
+
+var resolutionRegistry struct {
+	sync.Mutex
+	workers []*workerResolutionProbe
+}
+
+func (c *Checker) observedResolution(node *ast.Node, out *[]*Signature, mode CheckMode) *Signature {
+	p := &c.workerResolutionProbe
+	if p.nodes == nil {
+		p.nodes = make(map[*ast.Node]*resolutionVisit)
+		p.declarations = make(map[*ast.Node]resolutionWork)
+		resolutionRegistry.Lock()
+		resolutionRegistry.workers = append(resolutionRegistry.workers, p)
+		resolutionRegistry.Unlock()
+	}
+	before := p.children
+	p.children = resolutionWork{}
+	p.depth++
+	types, inst := c.TypeCount, c.TotalInstantiationCount
+	start := time.Now()
+	sig := c.resolveSignature(node, out, mode)
+	w := resolutionWork{1, uint64(c.TypeCount - types), uint64(c.TotalInstantiationCount - inst), uint64(time.Since(start))}
+	child := p.children
+	p.children = before
+	p.depth--
+	if p.depth == 0 {
+		p.outer.add(w)
+	} else {
+		p.children.add(w)
+	}
+	v := p.nodes[node]
+	shape := visitShape{mode, out != nil, sig.declaration, sig == c.resolvingSignature}
+	if v == nil {
+		v = &resolutionVisit{shape: shape}
+		p.nodes[node] = v
+	} else if v.shape != shape {
+		v.varied = true
+	}
+	if w.Types < child.Types || w.Instantiations < child.Instantiations || w.WorkerNs < child.WorkerNs {
+		panic("resolution child budget")
+	}
+	exclusive := resolutionWork{1, w.Types - child.Types, w.Instantiations - child.Instantiations, w.WorkerNs - child.WorkerNs}
+	v.work.add(exclusive)
+	if ast.IsCallExpression(node) {
+		d := p.declarations[sig.declaration]
+		d.add(exclusive)
+		p.declarations[sig.declaration] = d
+	}
+	return sig
+}
+
+type resolutionGroup struct {
+	Nodes, WorkerVisits, VariedShapeNodes uint64
+	Work, ExtraBeyondCheapestWorker       resolutionWork
+}
+type resolutionSample struct {
+	File string
+	Pos  int
+	Name string
+	Work resolutionWork
+}
+type resolutionReport struct {
+	CallExpressionWork                                     resolutionWork
+	TopDeclarationsByTime, TopDeclarationsByInstantiations []resolutionSample
+	Workers                                                int
+	Groups                                                 map[string]*resolutionGroup
+	InitializerCallees                                     map[string]resolutionWork
+	TopInitializerSites                                    []resolutionSample
+}
+
+func resolutionName(n *ast.Node) string {
+	expr := n.Expression()
+	if ast.IsIdentifier(expr) {
+		return expr.Text()
+	}
+	if ast.IsPropertyAccessExpression(expr) {
+		return "." + expr.Name().Text()
+	}
+	return expr.Kind.String()
+}
+func ResolutionWorkReport() resolutionReport {
+	all := make(map[*ast.Node][]*resolutionVisit)
+	for _, p := range resolutionRegistry.workers {
+		var sum resolutionWork
+		for n, v := range p.nodes {
+			all[n] = append(all[n], v)
+			sum.add(v.work)
+		}
+		if sum.Types != p.outer.Types || sum.Instantiations != p.outer.Instantiations || sum.WorkerNs != p.outer.WorkerNs {
+			panic("exclusive budget")
+		}
+	}
+	r := resolutionReport{Workers: len(resolutionRegistry.workers), Groups: make(map[string]*resolutionGroup), InitializerCallees: make(map[string]resolutionWork)}
+	decls := make(map[*ast.Node]resolutionWork)
+	for _, p := range resolutionRegistry.workers {
+		for decl, w := range p.declarations {
+			r.CallExpressionWork.add(w)
+			sum := decls[decl]
+			sum.add(w)
+			decls[decl] = sum
+		}
+	}
+	samples := make([]resolutionSample, 0, len(decls))
+	for decl, w := range decls {
+		entry := resolutionSample{Name: "(no declaration)", Work: w}
+		if decl != nil {
+			entry.Name = decl.Kind.String()
+			if name := decl.Name(); name != nil && ast.IsIdentifier(name) {
+				entry.Name = name.Text()
+			}
+			entry.Pos = decl.Pos()
+			if file := ast.GetSourceFileOfNode(decl); file != nil {
+				entry.File = file.FileName()
+			}
+		}
+		samples = append(samples, entry)
+	}
+	for _, byTime := range []bool{true, false} {
+		sort.Slice(samples, func(i, j int) bool {
+			a, b := samples[i], samples[j]
+			av, bv := a.Work.Instantiations, b.Work.Instantiations
+			if byTime {
+				av, bv = a.Work.WorkerNs, b.Work.WorkerNs
+			}
+			if av != bv {
+				return av > bv
+			}
+			if a.File != b.File {
+				return a.File < b.File
+			}
+			return a.Pos < b.Pos
+		})
+		top := append([]resolutionSample(nil), samples[:min(len(samples), 40)]...)
+		if byTime {
+			r.TopDeclarationsByTime = top
+		} else {
+			r.TopDeclarationsByInstantiations = top
+		}
+	}
+	for n, visits := range all {
+		var w resolutionWork
+		minimum := visits[0].work
+		varied := false
+		for _, v := range visits {
+			w.add(v.work)
+			minimum.Calls = min(minimum.Calls, v.work.Calls)
+			minimum.Types = min(minimum.Types, v.work.Types)
+			minimum.Instantiations = min(minimum.Instantiations, v.work.Instantiations)
+			minimum.WorkerNs = min(minimum.WorkerNs, v.work.WorkerNs)
+			varied = varied || v.varied || v.shape != visits[0].shape
+		}
+		group := "one worker, once"
+		if len(visits) > 1 {
+			group = "multiple workers"
+		} else if w.Calls > 1 {
+			group = "one worker, repeated"
+		}
+		g := r.Groups[group]
+		if g == nil {
+			g = &resolutionGroup{}
+			r.Groups[group] = g
+		}
+		g.Nodes++
+		g.WorkerVisits += uint64(len(visits))
+		g.Work.add(w)
+		if varied {
+			g.VariedShapeNodes++
+		}
+		g.ExtraBeyondCheapestWorker.add(resolutionWork{w.Calls - minimum.Calls, w.Types - minimum.Types, w.Instantiations - minimum.Instantiations, w.WorkerNs - minimum.WorkerNs})
+		if ast.IsCallExpression(n) && n.Parent != nil && ast.IsPropertyAssignment(n.Parent) && n.Parent.Initializer() == n {
+			name := resolutionName(n)
+			sum := r.InitializerCallees[name]
+			sum.add(w)
+			r.InitializerCallees[name] = sum
+			if file := ast.GetSourceFileOfNode(n); file != nil {
+				r.TopInitializerSites = append(r.TopInitializerSites, resolutionSample{file.FileName(), n.Pos(), name, w})
+			}
+		}
+	}
+	sort.Slice(r.TopInitializerSites, func(i, j int) bool {
+		a, b := r.TopInitializerSites[i], r.TopInitializerSites[j]
+		if a.Work.Instantiations != b.Work.Instantiations {
+			return a.Work.Instantiations > b.Work.Instantiations
+		}
+		if a.File != b.File {
+			return a.File < b.File
+		}
+		return a.Pos < b.Pos
+	})
+	r.TopInitializerSites = r.TopInitializerSites[:min(len(r.TopInitializerSites), 25)]
+	return r
+}

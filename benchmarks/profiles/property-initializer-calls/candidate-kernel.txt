@@ -1,0 +1,9 @@
+goos: linux
+goarch: amd64
+pkg: github.com/microsoft/typescript-go/internal/checker
+cpu: Intel Xeon Processor (Cascadelake)
+BenchmarkInferenceMapperPair-8   	  776227	       600.5 ns/op	     328 B/op	       3 allocs/op
+BenchmarkInferenceMapperPair-8   	 1000000	       754.7 ns/op	     328 B/op	       3 allocs/op
+BenchmarkInferenceMapperPair-8   	  405764	      1031 ns/op	     328 B/op	       3 allocs/op
+PASS
+ok  	github.com/microsoft/typescript-go/internal/checker	1.695s
