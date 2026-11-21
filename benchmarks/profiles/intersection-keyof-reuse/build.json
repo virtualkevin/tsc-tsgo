@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "7367ef4dc018a29a5b20ac77f1a07d789b6f3e8e",
+  "buildArgs": [
+    "build",
+    "-overlay",
+    "<output>/overlay.json",
+    "-o",
+    "<output>/observer",
+    "./cmd/tsgo"
+  ],
+  "buildWorkingDirectory": "packages/tsc-go",
+  "observerGoVersion": "go version go1.26.9 linux/amd64",
+  "sources": {
+    "internal/checker/checker.go": {
+      "inputSha256": "1f654b4099995ab9d9a240e0868f4a162050885930fd31d9743641983bb97ac3",
+      "overlaySha256": "e066a2ba0bec223156c775fae05c5a2937018011c9037ef95d41b5ca21f20b5e"
+    },
+    "cmd/tsgo/main.go": {
+      "inputSha256": "a3d99f615821544b08d6d9f54c674a5c4876dd52b0617649d9bd64d1006df830",
+      "overlaySha256": "872923304db68da66c7e74030010e5627003d36ba7810d37c94c30b0536fa55b"
+    }
+  }
+}
