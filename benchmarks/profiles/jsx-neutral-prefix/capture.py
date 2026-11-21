@@ -71,4 +71,5 @@ for name,commit,counts in observed_projects(binary, projects={"sentry"} if bound
     report["projects"][name] = dict(commit=commit, propertyTableReads=probes, prefixAttempts=passes,
                                     skippedNames=names, bypassedOrdinaryLookups=skipped, ordinaryLookups=ordinary)
     print(name,counts,flush=True)
-(here/("bounded-counts.json" if bounded else "object-counts.json" if objects else "counts.json")).write_text(json.dumps(report,indent=2)+"\n")
+name = "classified-counts.json" if bounded else "classified-object-counts.json" if objects else "classified-unbounded-counts.json"
+(here/name).write_text(json.dumps(report,indent=2)+"\n")

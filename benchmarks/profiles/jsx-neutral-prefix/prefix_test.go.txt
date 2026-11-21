@@ -32,6 +32,14 @@ func TestNeutralPrefixTracksLiveBranchesAndCurrentProperties(t *testing.T) {
 			t.Fatalf("neutral prefix = %d, want %d", got, want)
 		}
 	}
+	accept.objectFlags &^= ObjectFlagsIsUnknownLikeUnionComputed | ObjectFlagsIsUnknownLikeUnion
+	check(0)
+	if accept.objectFlags&ObjectFlagsIsUnknownLikeUnionComputed != 0 {
+		t.Fatal("speculative scan classified an unvisited union")
+	}
+	if !c.isTypeAssignableTo(c.undefinedType, accept) || accept.objectFlags&ObjectFlagsIsUnknownLikeUnionComputed == 0 {
+		t.Fatal("ordinary assignability must classify the target union")
+	}
 	check(3)
 	cache := b.AsIntersectionType().propertyCacheWithoutFunctionPropertyAugment
 	links := c.valueSymbolLinks.Get(cache["middle"])

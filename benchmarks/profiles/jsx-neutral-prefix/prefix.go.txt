@@ -32,9 +32,19 @@ func (c *Checker) neutralAbsentPrefix(types []*Type, live []Ternary, members []*
 				break
 			}
 			value := links.resolvedType
-			if value != c.undefinedType && (value == nil || value != previous && !(value.flags&TypeFlagsUnion != 0 && containsType(value.Types(), c.undefinedType))) {
+			if value == nil {
 				end = j
 				break
+			}
+			if value != c.undefinedType && value != previous {
+				// Ordinary assignability computes the unknown-like classification
+				// before its direct union-membership check in strict mode.
+				if value.flags&TypeFlagsUnion == 0 ||
+					c.strictNullChecks && value.objectFlags&ObjectFlagsIsUnknownLikeUnionComputed == 0 ||
+					!containsType(value.Types(), c.undefinedType) {
+					end = j
+					break
+				}
 			}
 			previous = value
 		}
