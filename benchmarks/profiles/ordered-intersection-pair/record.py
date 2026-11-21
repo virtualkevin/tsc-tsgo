@@ -10,10 +10,11 @@ here = Path(__file__).resolve().parent
 data = Path(sys.argv[1]).read_bytes()
 report = json.loads(data)
 public = sys.argv[3:] == ["layout-public"]
-assert public or len(sys.argv) == 3
+layout_go = sys.argv[3:] == ["layout-go-sentry"]
+assert public or layout_go or len(sys.argv) == 3
 reference = "public-npm/0.0.2.json.gz" if public else "mapped-member-demand/screen.json.gz"
-archive = "layout-public.json.gz" if public else "screen.json.gz"
-description = "Declaration-order two-part intersection" if public else "Ordered two-part intersection"
+archive = "layout-public.json.gz" if public else "layout-go-sentry.json.gz" if layout_go else "screen.json.gz"
+description = "Declaration-order two-part intersection" if public or layout_go else "Ordered two-part intersection"
 baseline = "Public npm tsc-ts@0.0.2" if public else "Matched ordinary Go build"
 ref = json.loads(gzip.decompress((here.parent / reference).read_bytes()))
 assert report["environment"]["compilerEnvironment"] == ref["environment"]["compilerEnvironment"]
@@ -21,7 +22,10 @@ frozen = {p["name"]: p for p in ref["projects"]}
 assert report["status"] == "passed" and report["runs"] == 2 and report["warmups"] == 0
 assert report["binaries"]["baseline"]["sha256"] == ref["binaries"]["baseline"]["sha256"]
 assert report["binaries"]["candidate"]["sha256"] == hashlib.sha256(Path(sys.argv[2]).read_bytes()).hexdigest()
-assert {p["name"] for p in report["projects"]} == {"sentry", "trpc", "typeorm", "vscode"}
+expected = {"sentry"} if layout_go else {"sentry", "trpc", "typeorm", "vscode"}
+assert {p["name"] for p in report["projects"]} == expected
+if public or layout_go:
+    assert report["binaries"]["candidate"]["sha256"] == json.loads((here / "layout-parity.json").read_text())["candidateSha256"]
 rows = []
 for project in report["projects"]:
     name = project["name"]

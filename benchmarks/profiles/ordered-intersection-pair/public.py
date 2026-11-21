@@ -26,6 +26,7 @@ def verify_release():
 
 
 verify_release()
+assert hashlib.sha256(candidate.read_bytes()).hexdigest() == json.loads((here / "layout-parity.json").read_text())["candidateSha256"]
 env = {k: v for k, v in os.environ.items() if not k.startswith(("SCRIPTC_", "TSC_", "TS_GO_"))}
 env.update(reference["environment"]["compilerEnvironment"])
 assert env["TSC_TS_LIB_DIR"] == str(Path(identity["@tsc-ts/linux-x64-gnu"]["executable"]).parent)
