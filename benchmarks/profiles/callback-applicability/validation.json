@@ -1,0 +1,88 @@
+{
+  "conformance": {
+    "test_records": {
+      "pass": 113970,
+      "skip": 2126
+    },
+    "top_level_records": {
+      "pass": 1
+    },
+    "passing_top_level_tests": [
+      "TestSubmodule"
+    ],
+    "package_status": {
+      "github.com/microsoft/typescript-go/internal/testrunner": "pass"
+    },
+    "cached_packages": [],
+    "source_configuration_cases": {
+      "total": 14915,
+      "fully_checked": 12789,
+      "partially_checked": 8,
+      "unsupported_skipped": 2118,
+      "failed": 0
+    },
+    "skip_categories": {
+      "unsupported target ES5": 1244,
+      "unsupported module kind AMD": 321,
+      "unsupported module kind System": 222,
+      "alwaysStrict=false is unsupported": 52,
+      "unsupported outFile": 87,
+      "esModuleInterop=false is unsupported": 24,
+      "unsupported baseUrl": 31,
+      "unsupported module resolution kind 1": 57,
+      "unsupported module resolution kind 2": 23,
+      "unsupported module kind UMD": 57
+    },
+    "partial_output_skips": [
+      {
+        "test": "TestSubmodule/jsDeclarationsReexportAliasesEsModuleInterop.ts_target=es2015/output",
+        "reason": "cls.d.ts is missing statements when run concurrently."
+      },
+      {
+        "test": "TestSubmodule/typeOnlyMerge3.ts/output",
+        "reason": "Nondeterministic contents when run concurrently."
+      },
+      {
+        "test": "TestSubmodule/typeOnlyMerge2.ts/output",
+        "reason": "Nondeterministic contents when run concurrently."
+      },
+      {
+        "test": "TestSubmodule/grammarErrors.ts/output",
+        "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+      },
+      {
+        "test": "TestSubmodule/jsFileCompilationWithoutJsExtensions.ts/output",
+        "reason": "No files are emitted."
+      },
+      {
+        "test": "TestSubmodule/jsFileCompilationWithJsEmitPathSameAsInput.ts/output",
+        "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+      },
+      {
+        "test": "TestSubmodule/jsFileCompilationEmitBlockedCorrectly.ts/output",
+        "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+      },
+      {
+        "test": "TestSubmodule/filesEmittingIntoSameOutput.ts/output",
+        "reason": "Output order nondeterministic due to collision on filename during parallel emit."
+      }
+    ],
+    "failed_tests": [],
+    "integrity_errors": []
+  },
+  "logSha256": "a2379357378c0fc28def1ac2a13ece13daa7f7b3fd838118c9b3c7e05765166f",
+  "typescriptCommit": "4d4f005c8541e0255a9d8791205fdce326e462bc",
+  "checkerGoSha256": "933237905376d090461e6f504abf24d9db77107880cdd59d50757fa67bc99e23",
+  "units": [
+    "ok  \tgithub.com/microsoft/typescript-go/internal/core\t(cached)",
+    "ok  \tgithub.com/microsoft/typescript-go/internal/ast\t(cached)",
+    "ok  \tgithub.com/microsoft/typescript-go/internal/bundled\t(cached)",
+    "ok  \tgithub.com/microsoft/typescript-go/internal/scanner\t(cached)",
+    "ok  \tgithub.com/microsoft/typescript-go/internal/compiler\t0.134s",
+    "ok  \tgithub.com/microsoft/typescript-go/internal/checker\t2.237s",
+    "ok  \tgithub.com/microsoft/typescript-go/cmd/tsgo\t2.180s",
+    "ok  \tgithub.com/microsoft/typescript-go/internal/execute\t0.014s",
+    "ok  \tgithub.com/microsoft/typescript-go/internal/execute/build\t0.028s",
+    "ok  \tgithub.com/microsoft/typescript-go/internal/execute/watchmanager\t(cached)"
+  ]
+}

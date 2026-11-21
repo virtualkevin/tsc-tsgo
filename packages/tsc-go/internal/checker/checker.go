@@ -13107,10 +13107,6 @@ func (c *Checker) checkObjectLiteral(node *ast.Node, checkMode CheckMode) *Type 
 	inDestructuringPattern := ast.IsAssignmentTarget(node)
 	// Grammar checking
 	c.checkGrammarObjectLiteralExpression(node.AsObjectLiteralExpression(), inDestructuringPattern)
-	var allPropertiesTable ast.SymbolTable
-	if c.strictNullChecks {
-		allPropertiesTable = make(ast.SymbolTable)
-	}
 	propertiesTable := make(ast.SymbolTable)
 	var propertiesArray []*ast.Symbol
 	spread := c.emptyObjectType
@@ -13135,10 +13131,20 @@ func (c *Checker) checkObjectLiteral(node *ast.Node, checkMode CheckMode) *Type 
 	// Spreads may cause an early bail; ensure computed names are always checked (this is cached)
 	// As otherwise they may not be checked until exports for the type at this position are retrieved,
 	// which may never occur.
+	var hasSpread, hasComputedName bool
 	for _, elem := range node.Properties() {
+		if elem.Kind == ast.KindSpreadAssignment {
+			hasSpread = true
+		}
 		if elem.Name() != nil && ast.IsComputedPropertyName(elem.Name()) {
+			hasComputedName = true
 			c.checkComputedPropertyName(elem.Name())
 		}
+	}
+	// Only spread overwrite checks consume the cross-segment property table.
+	var allPropertiesTable ast.SymbolTable
+	if hasSpread && c.strictNullChecks {
+		allPropertiesTable = make(ast.SymbolTable)
 	}
 	offset := 0
 	createObjectLiteralType := func() *Type {
@@ -13279,7 +13285,10 @@ func (c *Checker) checkObjectLiteral(node *ast.Node, checkMode CheckMode) *Type 
 		} else {
 			propertiesTable[member.Name] = member
 		}
-		propertiesArray = append(propertiesArray, member)
+		// Only spread segments and computed index signatures need ordered members.
+		if hasSpread || hasComputedName {
+			propertiesArray = append(propertiesArray, member)
+		}
 	}
 	c.popContextualType()
 	if c.isErrorType(spread) {
