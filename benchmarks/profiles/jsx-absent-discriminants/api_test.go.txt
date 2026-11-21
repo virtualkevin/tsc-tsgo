@@ -1,0 +1,85 @@
+package checker_test
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"strings"
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/bundled"
+	"github.com/microsoft/typescript-go/internal/checker"
+	"github.com/microsoft/typescript-go/internal/compiler"
+	"github.com/microsoft/typescript-go/internal/core"
+	"github.com/microsoft/typescript-go/internal/tsoptions"
+	"github.com/microsoft/typescript-go/internal/vfs/vfstest"
+)
+
+func TestAbsentGroupsServiceHistory(t *testing.T) {
+	var keys []string
+	for i := 0; i < 32; i++ {
+		keys = append(keys, fmt.Sprintf("%q", fmt.Sprintf("k%d", i)))
+	}
+	source := "type Keys = " + strings.Join(keys, " | ") + ";\n" + `
+type A = { [P in Keys]?: 1 } & { mode?: "a"; value: string };
+type B = { [P in Keys]?: 2 } & { mode: "b"; value: number };
+declare namespace JSX { interface Element {} interface IntrinsicElements { box: A | B } }
+declare function verify<T>(a: T): T;
+const rows = [<box value="a"/>, <box value={verify("b")}/>, <box value="c"/>, <box value={14}/>, <box mode="b" value={5}/>];`
+	fs := bundled.WrapFS(vfstest.FromMap(map[string]string{
+		"/case.tsx": source, "/tsconfig.json": `{"compilerOptions":{"strict":true,"jsx":"preserve","target":"es2022","noEmit":true},"files":["case.tsx"]}`,
+	}, false))
+	host := compiler.NewCompilerHost("/", fs, bundled.LibPath(), nil, nil)
+	config, ds := tsoptions.GetParsedCommandLineOfConfigFile("/tsconfig.json", &core.CompilerOptions{}, nil, host, nil)
+	if len(ds) != 0 {
+		t.Fatal(ds)
+	}
+	p := compiler.NewProgram(compiler.ProgramOptions{Config: config, Host: host})
+	p.BindSourceFiles()
+	c, release := p.GetTypeChecker(t.Context())
+	defer release()
+	file := p.GetSourceFile("/case.tsx")
+	var attrs []*ast.Node
+	var call *ast.Node
+	var visit ast.Visitor
+	visit = func(n *ast.Node) bool {
+		if ast.IsJsxAttribute(n) && n.Name().Text() == "value" {
+			attrs = append(attrs, n)
+		}
+		if ast.IsCallExpression(n) {
+			call = n
+		}
+		return n.ForEachChild(visit)
+	}
+	for _, s := range file.Statements.Nodes {
+		visit(s)
+	}
+	if len(attrs) != 5 || call == nil {
+		t.Fatal("fixture nodes missing")
+	}
+	var results []string
+	for _, i := range []int{0, 2, 1, 4, 3, 2, 0} {
+		typ := c.GetContextualTypeForJsxAttribute(attrs[i])
+		results = append(results, c.TypeToString(typ))
+		signature, candidates := checker.GetResolvedSignatureForSignatureHelp(call, 1, c)
+		if signature == nil {
+			t.Fatal("missing signature")
+		}
+		results = append(results, fmt.Sprintf("candidates=%d", len(candidates)))
+		ds := c.GetDiagnostics(t.Context(), file)
+		if len(ds) == 0 {
+			t.Fatal("expected invalid JSX diagnostic")
+		}
+		for _, d := range ds {
+			results = append(results, fmt.Sprintf("%d@%d", d.Code(), d.Pos()))
+		}
+	}
+	data, err := json.MarshalIndent(results, "", "  ")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err = os.WriteFile(os.Getenv("TSC_GO_API_RECORD"), data, 0600); err != nil {
+		t.Fatal(err)
+	}
+}
