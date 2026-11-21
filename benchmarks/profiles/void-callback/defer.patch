@@ -1,0 +1,11 @@
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -10172,7 +10172,7 @@
+ 					c.inferFromAnnotatedParametersAndReturn(signature, contextualSignature, inferenceContext)
+ 				}
+ 			}
+-			if contextualSignature != nil && c.getReturnTypeFromAnnotation(node) == nil && signature.resolvedReturnType == nil {
++			if contextualSignature != nil && c.getReturnTypeFromAnnotation(node) == nil && signature.resolvedReturnType == nil && contextualSignature.resolvedReturnType != c.voidType {
+ 				returnType := c.getReturnTypeFromBody(node, checkMode)
+ 				if signature.resolvedReturnType == nil {
+ 					signature.resolvedReturnType = returnType

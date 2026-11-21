@@ -1,0 +1,72 @@
+{
+  "constrained-generics": {
+    "public": {
+      "status": 0,
+      "diagnostics": "",
+      "declaration": "export declare const captured: (text: string) => {\n    tag: \"value\";\n    size: number;\n};\nexport declare const size: number;\nexport declare const same: <T extends string>(text: T) => {\n    text: T;\n};\n"
+    },
+    "goMatchesPublic": true,
+    "candidateMatchesGo": true,
+    "deferrals": 1
+  },
+  "satisfies-and-overloads": {
+    "public": {
+      "status": 0,
+      "diagnostics": "",
+      "declaration": "export declare const handler: (value: string) => number;\nexport declare const n: 1;\nexport declare const callbacks: {\n    done(value: string): {\n        value: string;\n    };\n};\nexport declare const v: string;\n"
+    },
+    "goMatchesPublic": true,
+    "candidateMatchesGo": true,
+    "deferrals": 1
+  },
+  "contextual-async-and-generator": {
+    "public": {
+      "status": 0,
+      "diagnostics": "",
+      "declaration": "export declare const asyncCallback: (v: number) => Promise<{\n    v: number;\n}>;\nexport declare const generator: (v: number) => Generator<number, readonly [number], unknown>;\nexport declare const promised: Promise<{\n    v: number;\n}>;\n"
+    },
+    "goMatchesPublic": true,
+    "candidateMatchesGo": true,
+    "deferrals": 1
+  },
+  "recursive-and-conditional": {
+    "public": {
+      "status": 2,
+      "diagnostics": "input.ts(3,10): error TS7024: Function implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.\n",
+      "declaration": "export declare const handlers: {\n    walk: (n: number) => any;\n    mixed: (v: number) => {\n        value: number;\n    } | undefined;\n};\nexport declare const result: {\n    value: number;\n} | undefined;\n"
+    },
+    "goMatchesPublic": true,
+    "candidateMatchesGo": true,
+    "deferrals": 1
+  },
+  "diagnostic-inside-context": {
+    "public": {
+      "status": 2,
+      "diagnostics": "input.ts(2,27): error TS2339: Property 'missing' does not exist on type '{ name: string; }'.\ninput.ts(3,23): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+      "declaration": "declare function listen(callback: (row: {\n    name: string;\n}) => void): void;\n"
+    },
+    "goMatchesPublic": true,
+    "candidateMatchesGo": true,
+    "deferrals": 1
+  },
+  "discarded-and-retained": {
+    "public": {
+      "status": 2,
+      "diagnostics": "input.ts(4,14): error TS2322: Type 'number' is not assignable to type 'string'.\n",
+      "declaration": "export declare const tuple: (v: number) => readonly [number, 1];\nexport declare const value: number;\nexport declare const impossible: string;\n"
+    },
+    "goMatchesPublic": true,
+    "candidateMatchesGo": true,
+    "deferrals": 0
+  },
+  "flow-and-generic-inference": {
+    "public": {
+      "status": 0,
+      "diagnostics": "",
+      "declaration": "export declare function run<T extends {\n    id: string;\n}>(arg: T | undefined): T | undefined;\nexport declare function runAgain(): string | undefined;\n"
+    },
+    "goMatchesPublic": true,
+    "candidateMatchesGo": true,
+    "deferrals": 0
+  }
+}

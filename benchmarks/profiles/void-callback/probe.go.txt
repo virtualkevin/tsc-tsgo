@@ -1,0 +1,59 @@
+package checker
+
+import "sync"
+
+type voidCallbackProbe struct {
+	pending                                      map[*Signature]bool
+	deferred                                     *Signature
+	New, DeferredCheck, OtherDemand, Outstanding uint64
+}
+
+var voidRegistry struct {
+	sync.Mutex
+	rows []*voidCallbackProbe
+}
+
+func (c *Checker) recordVoidDeferral(contextual, actual *Signature) bool {
+	if contextual.resolvedReturnType != c.voidType {
+		return false
+	}
+	p := &c.voidProbe
+	if p.pending == nil {
+		p.pending = make(map[*Signature]bool)
+		voidRegistry.Lock()
+		voidRegistry.rows = append(voidRegistry.rows, p)
+		voidRegistry.Unlock()
+	}
+	if !p.pending[actual] {
+		p.pending[actual] = true
+		p.New++
+	}
+	return true
+}
+
+func (c *Checker) observeDeferredCheck(sig *Signature) {
+	prev := c.voidProbe.deferred
+	c.voidProbe.deferred = sig
+	c.getReturnTypeOfSignature(sig)
+	c.voidProbe.deferred = prev
+}
+
+func (c *Checker) observeReturnDemand(sig *Signature) *Type {
+	p := &c.voidProbe
+	if p.pending[sig] {
+		delete(p.pending, sig)
+		if sig == p.deferred {
+			p.DeferredCheck++
+		} else {
+			p.OtherDemand++
+		}
+	}
+	return c.getReturnTypeFromBody(sig.declaration, CheckModeNormal)
+}
+
+func VoidDeferrals() []*voidCallbackProbe {
+	for _, row := range voidRegistry.rows {
+		row.Outstanding = uint64(len(row.pending))
+	}
+	return voidRegistry.rows
+}
