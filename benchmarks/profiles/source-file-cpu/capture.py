@@ -58,4 +58,4 @@ for p in sorted(ref["projects"],key=lambda p:len(p["preflight"]["candidate"]["in
     top=sorted(rows.items(),key=lambda kv:kv[1]['cpuNs'],reverse=True)
     report['projects'][p['name']]=dict(commit=p['commit'],profileSha256=sha(dest),totalCpuNs=total,labelledCpuNs=tagged,sampledFiles=len(rows),files=dict(top))
     print(p['name'],total,tagged,top[:3],flush=True)
-(here/'results.json').write_text(json.dumps(report,indent=2)+'\n')
+(here/'results.json.gz').write_bytes(gzip.compress((json.dumps(report,indent=2)+'\n').encode(), mtime=0))
