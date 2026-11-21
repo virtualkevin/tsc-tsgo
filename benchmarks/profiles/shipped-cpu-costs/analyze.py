@@ -40,7 +40,7 @@ for pname,p in manifest["projects"].items():
             frames[key].append((f[1],f[2],int(f[3])))
     cum,only,leaf,callers = Counter(),Counter(),Counter(),Counter()
     initializerCallees = Counter()
-    semanticPaths = {family:Counter() for family in ("symbolResolution","relationBranch","instantiateCaller","variableResolution","variableRequest","initializerPath","initializerExpression","initializerOverloadLine")}
+    semanticPaths = {family:Counter() for family in ("symbolResolution","relationBranch","instantiateCaller","variableResolution","variableRequest","initializerPath","initializerExpression","initializerOverloadLine","initializerInferenceLine","inferredArgumentHandler")}
     for ns,stack in re.findall(r"^\s*\d+\s+(\d+):\s*([\d ]+)$",samples,re.M):
         weight = int(ns)
         entries = [frame for i in stack.split() for frame in frames[int(i)]]
@@ -75,6 +75,9 @@ for pname,p in manifest["projects"].items():
             overload = next((line for f,_,line in reversed(inner) if f.endswith(".(*Checker).chooseOverload")),None)
             if overload is not None:
                 semanticPaths["initializerOverloadLine"][overload] += weight
+            inference = next((line for f,_,line in reversed(inner) if f.endswith(".(*Checker).inferTypeArguments")),None)
+            if inference is not None:
+                semanticPaths["initializerInferenceLine"][inference] += weight
             for opname in ("resolveCallExpression","chooseOverload","inferTypeArguments","getSignatureApplicabilityError","getResolvedSignature","getReturnTypeOfSignature"):
                 if any(f.endswith("."+opname) for f,_,_ in inner):
                     initializerCallees[opname] += weight
@@ -88,6 +91,10 @@ for pname,p in manifest["projects"].items():
                         "checkBinaryExpression","checkConditionalExpression","checkJsxElement","checkJsxSelfClosingElement"}
             expr = next((f.rsplit(".",1)[-1] for f,_,_ in reversed(inner) if "(*Checker)." in f and f.rsplit(".",1)[-1] in handlers),"<other>")
             semanticPaths["initializerExpression"][expr] += weight
+            if inference == 9464:
+                outer = max(i for i,(f,_,_) in enumerate(inner) if f.endswith(".(*Checker).inferTypeArguments"))
+                handler = next((f.rsplit(".",1)[-1] for f,_,_ in reversed(inner[:outer]) if "(*Checker)." in f and f.rsplit(".",1)[-1] in handlers),"<other>")
+                semanticPaths["inferredArgumentHandler"][handler] += weight
         if "relations" in hit:
             branches = {"propertiesRelatedTo","propertyRelatedTo","signaturesRelatedTo","signatureRelatedTo",
                         "indexSignaturesRelatedTo","typeRelatedToSomeType","eachTypeRelatedToType",
