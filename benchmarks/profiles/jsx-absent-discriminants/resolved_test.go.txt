@@ -1,0 +1,52 @@
+package checker
+
+import (
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+func TestResolvedMappedPropertyAcceptsUndefined(t *testing.T) {
+	c := lazyPropertyTestChecker()
+	p := lazyProperty(c, "tag", c.undefinedType, true)
+	p.CheckFlags |= ast.CheckFlagsMapped
+	obj := lazyObject(c, p)
+	typ := c.newIntersectionType(ObjectFlagsIsNeverIntersectionComputed, []*Type{obj, obj})
+	d := typ.AsIntersectionType()
+	d.resolvedApparentType = typ
+	d.propertyCacheWithoutFunctionPropertyAugment = ast.SymbolTable{"tag": p}
+	check := func(want bool) {
+		t.Helper()
+		if c.resolvedMappedPropertyAcceptsUndefined(typ, "tag") != want {
+			t.Fatalf("expected fast path %v", want)
+		}
+		if want {
+			value := c.getTypeOfPropertyOrIndexSignatureOfType(typ, "tag")
+			if !c.isTypeAssignableTo(c.undefinedType, value) {
+				t.Fatal("ordinary lookup rejected undefined")
+			}
+		}
+	}
+	check(true)
+	links := c.valueSymbolLinks.Get(p)
+	links.resolvedType = c.stringType
+	check(false)
+	links.resolvedType = c.getUnionType([]*Type{c.undefinedType, c.stringType})
+	check(true)
+	links.resolvedType = nil
+	check(false)
+	links.resolvedType = c.undefinedType
+	for _, flag := range []ast.CheckFlags{ast.CheckFlagsDeferredType, ast.CheckFlagsInstantiated, ast.CheckFlagsReadPartial} {
+		p.CheckFlags |= flag
+		check(false)
+		p.CheckFlags &^= flag
+	}
+	d.resolvedApparentType = obj
+	check(false)
+	d.resolvedApparentType = typ
+	typ.objectFlags |= ObjectFlagsIsNeverIntersection
+	check(false)
+	typ.objectFlags &^= ObjectFlagsIsNeverIntersection
+	d.propertyCacheWithoutFunctionPropertyAugment["tag"] = lazyProperty(c, "tag", c.numberType, false)
+	check(false)
+}

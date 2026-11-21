@@ -1,0 +1,30 @@
+package checker
+
+import (
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+// A narrowing key that describes only the union and absent members cannot
+// distinguish changes in the resolved types of constituent properties.
+func TestAbsentDiscriminantHistory(t *testing.T) {
+	c := lazyPropertyTestChecker()
+	leftTag := lazyProperty(c, "kind", c.undefinedType, true)
+	rightTag := lazyProperty(c, "kind", c.stringType, false)
+	left := lazyObject(c, leftTag)
+	right := lazyObject(c, rightTag)
+	target := c.newUnionType(ObjectFlagsNone, []*Type{left, right})
+	member := c.newSymbol(ast.SymbolFlagsProperty|ast.SymbolFlagsOptional, "kind")
+	discriminator := &ObjectLiteralDiscriminator{c: c, members: []*ast.Symbol{member}}
+
+	first := c.discriminateTypeByDiscriminableItems(target, discriminator)
+	if first != left {
+		t.Fatal("expected the branch accepting an absent kind")
+	}
+	c.valueSymbolLinks.Get(rightTag).resolvedType = c.undefinedType
+	second := c.discriminateTypeByDiscriminableItems(target, discriminator)
+	if second != target {
+		t.Fatal("expected both branches to accept an absent kind after the change")
+	}
+}
