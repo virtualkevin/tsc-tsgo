@@ -1,0 +1,54 @@
+package checker_test
+
+import "testing"
+
+func TestMappedKeyOriginAfterTypeAccess(t *testing.T) {
+	c, file := pendingAPIChecker(t, `
+interface Original { first: string; second: number }
+type Copy<T> = { [K in keyof T]: T[K] };
+declare const original: Original;
+declare const copy: Copy<Original>;
+declare const plain: { [K in "first" | "second"]: K };
+declare const remap: { [K in "first" | "second" as "both"]: K };
+`)
+	original := c.GetPropertyOfType(pendingVariableType(c, file, 2), "first")
+	for _, spec := range []struct {
+		index int
+		name  string
+	}{{3, "first"}, {4, "first"}, {5, "both"}} {
+		typ := pendingVariableType(c, file, spec.index)
+		prop := c.GetPropertyOfType(typ, spec.name)
+		if prop == nil {
+			t.Fatal(spec)
+		}
+		root := prop
+		if spec.index == 3 {
+			root = original
+		}
+		for range 2 {
+			roots := c.GetRootSymbols(prop)
+			if len(roots) != 1 || roots[0] != root {
+				t.Fatalf("unexpected origin for %v", spec)
+			}
+			value := c.GetTypeOfSymbol(prop)
+			switch spec.index {
+			case 3:
+				if value != c.GetStringType() {
+					t.Fatal("copied property lost source type")
+				}
+			case 4:
+				if c.TypeToString(value) != "\"first\"" {
+					t.Fatal(c.TypeToString(value))
+				}
+			case 5:
+				if len(value.Distributed()) != 2 {
+					t.Fatal(c.TypeToString(value))
+				}
+			}
+			c.GetPropertiesOfType(typ)
+			if c.GetPropertyOfType(typ, spec.name) != prop {
+				t.Fatal("changed property identity")
+			}
+		}
+	}
+}
