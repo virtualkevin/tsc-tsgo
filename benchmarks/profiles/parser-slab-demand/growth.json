@@ -1,0 +1,470 @@
+{
+  "vscode": {
+    "training": [
+      "sentry",
+      "typeorm",
+      "trpc"
+    ],
+    "policy": {
+      "Block": [
+        4,
+        16
+      ],
+      "CallExpression": [
+        8,
+        64
+      ],
+      "ConditionalExpression": [
+        2,
+        64
+      ],
+      "ExpressionStatement": [
+        8,
+        32
+      ],
+      "Identifier": [
+        16,
+        128
+      ],
+      "IfStatement": [
+        2,
+        128
+      ],
+      "JSDocText": [
+        8,
+        32
+      ],
+      "KeywordExpression": [
+        4,
+        16
+      ],
+      "KeywordTypeNode": [
+        4,
+        64
+      ],
+      "MethodSignatureDeclaration": [
+        8,
+        64
+      ],
+      "NodeList": [
+        16,
+        64
+      ],
+      "NumericLiteral": [
+        4,
+        32
+      ],
+      "ParenthesizedExpression": [
+        2,
+        32
+      ],
+      "PrefixUnaryExpression": [
+        2,
+        32
+      ],
+      "PropertyAssignment": [
+        4,
+        64
+      ],
+      "PropertySignatureDeclaration": [
+        4,
+        64
+      ],
+      "ReturnStatement": [
+        2,
+        64
+      ],
+      "StringLiteral": [
+        4,
+        64
+      ],
+      "Token": [
+        4,
+        128
+      ],
+      "TypeParameterDeclaration": [
+        4,
+        32
+      ],
+      "TypeReferenceNode": [
+        4,
+        64
+      ],
+      "VariableDeclaration": [
+        4,
+        16
+      ],
+      "VariableDeclarationList": [
+        4,
+        16
+      ],
+      "VariableStatement": [
+        4,
+        16
+      ]
+    },
+    "projects": {
+      "vscode": {
+        "allocationDelta": -34284,
+        "payloadByteDelta": -141359176
+      },
+      "sentry": {
+        "allocationDelta": -128298,
+        "payloadByteDelta": -27345536
+      },
+      "typeorm": {
+        "allocationDelta": -29689,
+        "payloadByteDelta": -2779224
+      },
+      "trpc": {
+        "allocationDelta": -5219,
+        "payloadByteDelta": -1718088
+      }
+    }
+  },
+  "sentry": {
+    "training": [
+      "vscode",
+      "typeorm",
+      "trpc"
+    ],
+    "policy": {
+      "Block": [
+        4,
+        32
+      ],
+      "CallExpression": [
+        8,
+        64
+      ],
+      "ExpressionStatement": [
+        8,
+        32
+      ],
+      "Identifier": [
+        16,
+        128
+      ],
+      "JSDocText": [
+        4,
+        64
+      ],
+      "KeywordTypeNode": [
+        4,
+        128
+      ],
+      "NodeList": [
+        16,
+        64
+      ],
+      "NumericLiteral": [
+        4,
+        32
+      ],
+      "ParameterDeclaration": [
+        4,
+        128
+      ],
+      "PropertyAssignment": [
+        4,
+        64
+      ],
+      "PropertySignatureDeclaration": [
+        8,
+        32
+      ],
+      "ReturnStatement": [
+        4,
+        16
+      ],
+      "StringLiteral": [
+        4,
+        64
+      ],
+      "Token": [
+        4,
+        128
+      ],
+      "TypeReferenceNode": [
+        4,
+        64
+      ],
+      "VariableDeclaration": [
+        4,
+        32
+      ],
+      "VariableDeclarationList": [
+        4,
+        32
+      ],
+      "VariableStatement": [
+        4,
+        64
+      ]
+    },
+    "projects": {
+      "vscode": {
+        "allocationDelta": -82833,
+        "payloadByteDelta": -119595360
+      },
+      "sentry": {
+        "allocationDelta": -136692,
+        "payloadByteDelta": -21069768
+      },
+      "typeorm": {
+        "allocationDelta": -31000,
+        "payloadByteDelta": -1914824
+      },
+      "trpc": {
+        "allocationDelta": -5678,
+        "payloadByteDelta": -1436912
+      }
+    }
+  },
+  "typeorm": {
+    "training": [
+      "vscode",
+      "sentry",
+      "trpc"
+    ],
+    "policy": {
+      "CallExpression": [
+        8,
+        64
+      ],
+      "ExpressionStatement": [
+        8,
+        32
+      ],
+      "Identifier": [
+        16,
+        128
+      ],
+      "JSDocText": [
+        4,
+        64
+      ],
+      "KeywordTypeNode": [
+        4,
+        64
+      ],
+      "NodeList": [
+        8,
+        128
+      ],
+      "NumericLiteral": [
+        4,
+        32
+      ],
+      "PropertyAssignment": [
+        4,
+        64
+      ],
+      "PropertySignatureDeclaration": [
+        4,
+        64
+      ],
+      "StringLiteral": [
+        4,
+        64
+      ],
+      "Token": [
+        8,
+        32
+      ],
+      "TypeReferenceNode": [
+        4,
+        64
+      ]
+    },
+    "projects": {
+      "vscode": {
+        "allocationDelta": -62519,
+        "payloadByteDelta": -96330512
+      },
+      "sentry": {
+        "allocationDelta": -108950,
+        "payloadByteDelta": -22600504
+      },
+      "typeorm": {
+        "allocationDelta": -26209,
+        "payloadByteDelta": -1136672
+      },
+      "trpc": {
+        "allocationDelta": -4783,
+        "payloadByteDelta": -1396312
+      }
+    }
+  },
+  "trpc": {
+    "training": [
+      "vscode",
+      "sentry",
+      "typeorm"
+    ],
+    "policy": {
+      "BinaryExpression": [
+        4,
+        32
+      ],
+      "CallExpression": [
+        8,
+        64
+      ],
+      "ExpressionStatement": [
+        8,
+        32
+      ],
+      "Identifier": [
+        16,
+        128
+      ],
+      "JSDocText": [
+        4,
+        64
+      ],
+      "KeywordTypeNode": [
+        4,
+        64
+      ],
+      "LiteralTypeNode": [
+        4,
+        32
+      ],
+      "MethodSignatureDeclaration": [
+        4,
+        32
+      ],
+      "NodeList": [
+        16,
+        64
+      ],
+      "NumericLiteral": [
+        4,
+        32
+      ],
+      "PropertyAccessExpression": [
+        8,
+        64
+      ],
+      "PropertyAssignment": [
+        4,
+        64
+      ],
+      "PropertySignatureDeclaration": [
+        4,
+        64
+      ],
+      "StringLiteral": [
+        4,
+        64
+      ],
+      "Token": [
+        4,
+        128
+      ],
+      "TypeReferenceNode": [
+        4,
+        64
+      ],
+      "UnionTypeNode": [
+        4,
+        16
+      ]
+    },
+    "projects": {
+      "vscode": {
+        "allocationDelta": -66430,
+        "payloadByteDelta": -127266408
+      },
+      "sentry": {
+        "allocationDelta": -124428,
+        "payloadByteDelta": -27664136
+      },
+      "typeorm": {
+        "allocationDelta": -29325,
+        "payloadByteDelta": -3535248
+      },
+      "trpc": {
+        "allocationDelta": -4659,
+        "payloadByteDelta": -1812648
+      }
+    }
+  },
+  "all projects": {
+    "training": [
+      "vscode",
+      "sentry",
+      "typeorm",
+      "trpc"
+    ],
+    "policy": {
+      "CallExpression": [
+        8,
+        64
+      ],
+      "ExpressionStatement": [
+        8,
+        32
+      ],
+      "Identifier": [
+        16,
+        128
+      ],
+      "JSDocText": [
+        4,
+        64
+      ],
+      "KeywordTypeNode": [
+        4,
+        64
+      ],
+      "NodeList": [
+        16,
+        64
+      ],
+      "NumericLiteral": [
+        4,
+        32
+      ],
+      "PropertyAssignment": [
+        4,
+        64
+      ],
+      "PropertySignatureDeclaration": [
+        4,
+        64
+      ],
+      "StringLiteral": [
+        4,
+        64
+      ],
+      "Token": [
+        4,
+        128
+      ],
+      "TypeReferenceNode": [
+        4,
+        64
+      ]
+    },
+    "projects": {
+      "vscode": {
+        "allocationDelta": -55666,
+        "payloadByteDelta": -96053056
+      },
+      "sentry": {
+        "allocationDelta": -107777,
+        "payloadByteDelta": -25032504
+      },
+      "typeorm": {
+        "allocationDelta": -26951,
+        "payloadByteDelta": -1591904
+      },
+      "trpc": {
+        "allocationDelta": -4728,
+        "payloadByteDelta": -1402632
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ import time
 
 here=Path(__file__).resolve().parent
 ref=json.loads(gzip.decompress((here.parent/"template-union-compaction/native.json.gz").read_bytes()))
-bins={k:Path(v).resolve() for k,v in zip(("control","candidate"),sys.argv[1:],strict=True)}
+bins={k:Path(v).resolve() for k,v in zip(("control","candidate"),sys.argv[1:3],strict=True)}
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 env={k:v for k,v in os.environ.items() if not k.startswith(("TSC_","TS_GO_","SCRIPTC_"))}
@@ -50,4 +50,5 @@ for project in sorted(ref["projects"],key=lambda p:len(p["preflight"]["candidate
     report["projects"][name]=dict(commit=project["commit"],files=len(expected),extendedDiagnostics=counters,
                                   blocksMs=samples,medianMs=medians)
     print(name,medians,counters,flush=True)
-(here/"discovery.json").write_text(json.dumps(report,indent=2)+"\n")
+output=Path(sys.argv[3]) if len(sys.argv)>3 else here/"discovery.json"
+output.write_text(json.dumps(report,indent=2)+"\n")
