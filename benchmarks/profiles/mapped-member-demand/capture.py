@@ -41,6 +41,7 @@ with tempfile.TemporaryDirectory() as tmp:
             row=summarize(json.loads(result.stderr))
             assert row["tracked"]==width and not row["dropped"]
             if case!="spread": assert row["typeAccessor"]=={"unrelated":0,"one":1,"all":width}[case]
+            assert row["noneOfFour"] == {"unrelated":width,"one":width-1,"all":0,"spread":0}[case]
             report["fixture"][width][case]={**row,"sourceSha256":scaling.sha(text.encode())}
 for name,commit,data in observed_projects(binary):
     row=summarize(data)

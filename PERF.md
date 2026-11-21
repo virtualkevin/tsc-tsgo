@@ -604,3 +604,7 @@
 | Skip apparent-type reduction for plain objects | trpc | Matched ordinary Go build | 692.47 | 639.35 | 1.083× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/union-property-construction/screen.json.gz) |
 | Skip apparent-type reduction for plain objects | typeorm | Matched ordinary Go build | 2790.49 | 2713.65 | 1.028× | 8 | Candidate faster in 5/8 pairs. [Samples](benchmarks/profiles/union-property-construction/small-repeat.json.gz) |
 | Skip apparent-type reduction for plain objects | trpc | Matched ordinary Go build | 525.14 | 573.49 | 0.916× | 8 | Candidate faster in 6/8 pairs. [Samples](benchmarks/profiles/union-property-construction/small-repeat.json.gz) |
+| Reuse identical mapped key and name links | vscode | Matched ordinary Go build | 71414.44 | 62327.93 | 1.146× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/mapped-member-demand/screen.json.gz) |
+| Reuse identical mapped key and name links | sentry | Matched ordinary Go build | 54078.00 | 44244.37 | 1.222× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/mapped-member-demand/screen.json.gz) |
+| Reuse identical mapped key and name links | typeorm | Matched ordinary Go build | 6900.01 | 4543.35 | 1.519× | 2 | Candidate faster in 2/2 pairs. [Samples](benchmarks/profiles/mapped-member-demand/screen.json.gz) |
+| Reuse identical mapped key and name links | trpc | Matched ordinary Go build | 1374.94 | 1930.74 | 0.712× | 2 | Candidate faster in 0/2 pairs. [Samples](benchmarks/profiles/mapped-member-demand/screen.json.gz) |
