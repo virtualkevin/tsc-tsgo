@@ -1,0 +1,135 @@
+{
+  "flags": [
+    "--noEmit",
+    "--strict",
+    "--skipLibCheck",
+    "--pretty",
+    "false",
+    "--target",
+    "es2022",
+    "matrix.ts"
+  ],
+  "binaries": {
+    "oldGo": {
+      "path": "/tmp/tsc-template-text/shipped-before",
+      "version": "Version 7.0.2",
+      "sha256": "03ba54148cf5fe731f5d6fccda571b0ef8bb943af667db0f7ff71964bcd6cc29"
+    },
+    "newGo": {
+      "path": "/home/dev/tssss/tsc-tsgo/packages/tsc-go/dist/tsc-go",
+      "version": "Version 7.0.2",
+      "sha256": "c2c2bdaea6af9ce96cf69d89c2825f2dfe464e265a70ce7a18582afefc18b4a6"
+    },
+    "originalPublic": {
+      "path": "/tmp/tsc-public-002/node_modules/.bin/tsc-ts",
+      "version": "Version 7.0.2",
+      "sha256": "4320a609131555b2541dfd308ed764b79ef43f22d27c6f008dd08b8e28ca8aff"
+    },
+    "plainGo": {
+      "path": "/tmp/tsc-template-text/tsgo",
+      "version": "Version 7.0.2",
+      "sha256": "592efe8908427839c84e3f0868774a6090c7552b06a887b04554ee0d0d8e1187"
+    },
+    "ranges": {
+      "path": "/tmp/tsc-template-index-ranges/tsgo",
+      "version": "Version 7.0.2",
+      "sha256": "c48f639ae011f9cb474d1d42933777abc2abc32746505f3453d5bf73bce8aa2e"
+    }
+  },
+  "widths": {
+    "512": {
+      "inputSha256": "deef9e95e2c603ca120d6f4b119aa8de7498177fb3c4d7077cd5ab65f4c78086",
+      "samplesMs": [
+        {
+          "newGo": 189.528748,
+          "originalPublic": 249.413557,
+          "plainGo": 206.570573,
+          "ranges": 320.814536,
+          "oldGo": 898.942055
+        },
+        {
+          "originalPublic": 245.529323,
+          "plainGo": 173.669138,
+          "ranges": 151.569204,
+          "oldGo": 885.275147,
+          "newGo": 157.450282
+        },
+        {
+          "plainGo": 149.305501,
+          "ranges": 154.676616,
+          "oldGo": 849.395464,
+          "newGo": 191.092928,
+          "originalPublic": 215.065439
+        },
+        {
+          "ranges": 144.393539,
+          "oldGo": 744.666703,
+          "newGo": 147.825612,
+          "originalPublic": 247.998145,
+          "plainGo": 181.82332
+        },
+        {
+          "oldGo": 859.631801,
+          "newGo": 163.039758,
+          "originalPublic": 269.010807,
+          "plainGo": 162.298316,
+          "ranges": 146.230087
+        }
+      ],
+      "warmupMs": {
+        "oldGo": 956.673688,
+        "newGo": 159.757354,
+        "originalPublic": 286.98264,
+        "plainGo": 181.419243,
+        "ranges": 172.480523
+      }
+    },
+    "1536": {
+      "inputSha256": "96bd85b28cb85dae5bb8ccb79bdeb581c738bea17a5de228391a33d059995742",
+      "samplesMs": [
+        {
+          "newGo": 386.777505,
+          "originalPublic": 441.60162,
+          "plainGo": 307.332446,
+          "ranges": 283.87753,
+          "oldGo": 6873.919186
+        },
+        {
+          "originalPublic": 482.899095,
+          "plainGo": 443.099866,
+          "ranges": 326.529001,
+          "oldGo": 7230.646636,
+          "newGo": 371.14929
+        },
+        {
+          "plainGo": 363.141305,
+          "ranges": 366.099379,
+          "oldGo": 6351.320261,
+          "newGo": 376.519405,
+          "originalPublic": 474.470897
+        },
+        {
+          "ranges": 300.751171,
+          "oldGo": 6629.119951,
+          "newGo": 324.276674,
+          "originalPublic": 375.589041,
+          "plainGo": 352.291143
+        },
+        {
+          "oldGo": 7534.513359,
+          "newGo": 485.951083,
+          "originalPublic": 598.75089,
+          "plainGo": 617.997367,
+          "ranges": 634.962325
+        }
+      ],
+      "warmupMs": {
+        "oldGo": 8048.180116,
+        "newGo": 368.490085,
+        "originalPublic": 533.756986,
+        "plainGo": 367.04117,
+        "ranges": 301.626994
+      }
+    }
+  }
+}
