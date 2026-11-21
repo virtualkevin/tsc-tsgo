@@ -35,6 +35,61 @@
     "checker.(*Checker).getTypeParametersForMapper.func1 checker/checker.go:19213": 10000000,
     "checker.(*Checker).instantiateInstantiableTypes checker/checker.go:30686": 10000000
   },
+  "nestedKeyofSitesNs": {
+    "26602 return c.getUnionType(core.Map(t.Types(), func(t *Type) *Type { return c.getIndexTypeEx(t, indexFlags) }))": 860000000,
+    "26614 return c.getLiteralTypeFromProperties(t, include, indexFlags == IndexFlagsNone)": 800000000,
+    "before or outside getIndexTypeEx": 30000000
+  },
+  "nestedExtendsWorkerSitesNs": {
+    "22160 return c.getIndexType(c.instantiateType(t.Target(), m))": 1690000000,
+    "22166 return c.getIndexedAccessTypeEx(c.instantiateType(d.objectType, m), c.instantiateType(d.indexType, m), d.accessFlags, nil /*accessNode*/, alias)": 680000000,
+    "22148 newTypes := c.instantiateTypes(types, m)": 170000000,
+    "outside extends worker": 70000000,
+    "22136 return c.getObjectTypeInstantiation(t, m, alias)": 20000000
+  },
+  "nestedDirectEvaluationSitesNs": {
+    "24256 extendsType := c.instantiateType(root.extendsType, mapper)": 2630000000,
+    "24294 c.inferTypes(context.inferences, checkType, extendsType, InferencePriorityNoConstraints|InferencePriorityAlwaysStrict, false)": 1180000000,
+    "24318 if inferredExtendsType.flags&TypeFlagsAnyOrUnknown == 0 && (checkType.flags&TypeFlagsAny != 0 || !c.isTypeAssignableTo(c.getPermissiveInstantiation(checkType), c.getPermissiveInstantiation(inferredExtendsType))) {": 500000000,
+    "24308 inferredExtendsType = c.instantiateType(root.extendsType, combinedMapper)": 230000000,
+    "24313 if !checkTypeDeferred && !c.isDeferredType(inferredExtendsType, checkTuples) {": 30000000,
+    "24348 result = c.instantiateType(falseType, mapper)": 30000000,
+    "24255 checkType := c.instantiateType(c.getActualTypeVariable(root.checkType), mapper)": 20000000,
+    "24288 context.nonFixingMapper = c.combineTypeMappers(context.nonFixingMapper, mapper)": 20000000,
+    "24338 if newRoot, newRootMapper := c.getTailRecursionRoot(falseType, mapper); newRoot != nil {": 20000000,
+    "24271 if len(root.inferTypeParameters) != 0 && !c.hasInferenceIndependentTagMismatch(root, checkType, extendsType, checkTypeDeferred, forConstraint) {": 20000000,
+    "24300 combinedMapper = c.combineTypeMappers(context.mapper, mapper)": 20000000,
+    "24286 context := c.newInferenceContext(root.inferTypeParameters, nil /*signature*/, InferenceFlagsNone, nil)": 20000000,
+    "24357 trueType := c.getTypeFromTypeNode(root.node.TrueType)": 10000000,
+    "24269 checkTypeDeferred := c.isDeferredType(checkType, checkTuples)": 10000000,
+    "24331 falseType := c.getTypeFromTypeNode(root.node.FalseType)": 10000000
+  },
+  "nestedConstituentConditionalSitesNs": {
+    "22407 result = c.getConditionalType(root, newMapper, forConstraint, alias)": 4750000000,
+    "22403 result = c.mapTypeWithAlias(distributionType, func(t *Type) *Type {": 50000000,
+    "22391 result := root.instantiations[key]": 40000000,
+    "22389 typeArguments := core.Map(root.outerTypeParameters, mapper.Map)": 20000000,
+    "22385 if len(root.outerTypeParameters) != 0 {": 10000000
+  },
+  "constituentWorkerSitesNs": {
+    "22172 return c.getConditionalTypeInstantiation(t, c.combineTypeMappers(t.AsConditionalType().mapper, m), false /*forConstraint*/, alias)": 4870000000,
+    "22168 return c.instantiateTemplateLiteralType(t, c.instantiateTypes(t.AsTemplateLiteralType().types, m))": 240000000,
+    "22136 return c.getObjectTypeInstantiation(t, m, alias)": 30000000,
+    "outside nested worker": 20000000,
+    "22166 return c.getIndexedAccessTypeEx(c.instantiateType(d.objectType, m), c.instantiateType(d.indexType, m), d.accessFlags, nil /*accessNode*/, alias)": 10000000
+  },
+  "topConstituentLeafFunctionsNs": {
+    "internal/runtime/maps.ctrlGroup.matchH2": 330000000,
+    "checker.compareTypesWithOrder": 320000000,
+    "cmpbody": 210000000,
+    "runtime.heapSetTypeSmallHeader": 200000000,
+    "runtime.memclrNoHeapPointers": 200000000,
+    "core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot": 180000000,
+    "slices.BinarySearchFunc[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8,go.shape.*uint8]": 100000000,
+    "ast.GetSourceFileOfNode": 100000000,
+    "aeshashbody": 100000000,
+    "runtime.mapaccess1": 100000000
+  },
   "selectedTrueUnionOrIntersectionSiteNs": {
     "22148 newTypes := c.instantiateTypes(types, m)": 5170000000,
     "22158 return c.getUnionTypeEx(newTypes, UnionReductionLiteral, alias, nil /*origin*/)": 90000000,

@@ -42,28 +42,67 @@ conditional_lines=Counter()
 evaluation_lines=Counter()
 true_branch_kinds=Counter()
 true_union_sites=Counter()
+constituent_sites=Counter()
+constituent_leaves=Counter()
+nested_conditional_sites=Counter()
+nested_direct_evaluation=Counter()
+extends_worker_sites=Counter()
+keyof_sites=Counter()
 counts=Counter()
 total=0
+def first_callee(stack, end, name):
+    """Find the first matching function entered below the exclusive end frame."""
+    full_name=prefix+"checker.(*Checker)."+name
+    return next((i for i in range(end-1,-1,-1) if stack[i][0]==full_name),None)
+
+def site_at(stack, index, missing):
+    if index is None:
+        return missing
+    line=stack[index][2]
+    return f"{line} {source[line-1].strip()}"
+
+def attribute_constituents(stack, union_index, ns):
+    child=first_callee(stack,union_index,"instantiateTypeWorker")
+    site=site_at(stack,child,"outside nested worker")
+    constituent_sites[site]+=ns
+    constituent_leaves[stack[0][0].removeprefix(prefix)]+=ns
+    if child is None or branch_at[stack[child][2]]!="flags&TypeFlagsConditional != 0":
+        return
+    inst=first_callee(stack,child,"getConditionalTypeInstantiation")
+    site=site_at(stack,inst,"outside nested conditional instantiation")
+    nested_conditional_sites[site]+=ns
+    if inst is not None and source[stack[inst][2]-1].strip()=="result = c.getConditionalType(root, newMapper, forConstraint, alias)":
+        nested=first_callee(stack,inst,"getConditionalType")
+        nested_direct_evaluation[site_at(stack,nested,"outside nested evaluation")]+=ns
+        if nested is not None and source[stack[nested][2]-1].strip()=="extendsType := c.instantiateType(root.extendsType, mapper)":
+            worker=first_callee(stack,nested,"instantiateTypeWorker")
+            extends_worker_sites[site_at(stack,worker,"outside extends worker")]+=ns
+            if worker is not None and source[stack[worker][2]-1].strip()=="return c.getIndexType(c.instantiateType(t.Target(), m))":
+                index_call=first_callee(stack,worker,"getIndexTypeEx")
+                keyof_sites[site_at(stack,index_call,"before or outside getIndexTypeEx")]+=ns
+
 for line in samples.splitlines():
     m=re.match(r"^\s+\d+\s+(\d+):\s*(.*)$",line)
     if not m: continue
     ns=int(m[1]); total+=ns
     stack=[f for a in map(int,m[2].split()) for f in frames[a]]
-    evaluation=next((f for f in reversed(stack) if f[0]==prefix+"checker.(*Checker).getConditionalType"),None)
-    if evaluation:
-        n=evaluation[2]
+    evaluation=first_callee(stack,len(stack),"getConditionalType")
+    if evaluation is not None:
+        n=stack[evaluation][2]
         evaluation_lines[f"{n} {source[n-1].strip()}"]+=ns
         if source[n-1].strip()=="result = c.instantiateType(trueType, trueMapper)":
-            for frame in reversed(stack[:max(i for i,f in enumerate(stack) if f==evaluation)]):
-                if frame[0]==prefix+"checker.(*Checker).instantiateTypeWorker":
-                    line=frame[2]
-                    kind=branch_at[line]
-                    true_branch_kinds[kind]+=ns
-                    if kind=="flags&TypeFlagsUnionOrIntersection != 0":
-                        true_union_sites[f"{line} {source[line-1].strip()}"]+=ns
-                    break
-            else:
+            index=first_callee(stack,evaluation,"instantiateTypeWorker")
+            if index is None:
                 true_branch_kinds["outside worker"]+=ns
+            else:
+                line=stack[index][2]
+                kind=branch_at[line]
+                true_branch_kinds[kind]+=ns
+                if kind=="flags&TypeFlagsUnionOrIntersection != 0":
+                    statement=source[line-1].strip()
+                    true_union_sites[f"{line} {statement}"]+=ns
+                    if statement=="newTypes := c.instantiateTypes(types, m)":
+                        attribute_constituents(stack,index,ns)
     outer=next((i for i in range(len(stack)-1,-1,-1) if stack[i][0] in entries),None)
     if outer is not None:
         if outer+1==len(stack):
@@ -87,6 +126,14 @@ report=dict(totalCpuNs=total,instantiationCpuNs=sum(counts.values()),callersNs=d
 assert sum(by_branch.values())==sum(ns for caller,ns in counts.items()
                                     if caller.startswith("checker.(*Checker).getTypeAliasInstantiation "))
 assert sum(conditional_lines.values())==by_branch["flags&TypeFlagsConditional != 0"]
+expected=sum(ns for site,ns in true_union_sites.items() if site.endswith("newTypes := c.instantiateTypes(types, m)"))
+assert sum(constituent_sites.values())==sum(constituent_leaves.values())==expected
+report["nestedKeyofSitesNs"]=dict(keyof_sites.most_common())
+report["nestedExtendsWorkerSitesNs"]=dict(extends_worker_sites.most_common())
+report["nestedDirectEvaluationSitesNs"]=dict(nested_direct_evaluation.most_common())
+report["nestedConstituentConditionalSitesNs"]=dict(nested_conditional_sites.most_common())
+report["constituentWorkerSitesNs"]=dict(constituent_sites.most_common())
+report["topConstituentLeafFunctionsNs"]=dict(constituent_leaves.most_common(10))
 report["selectedTrueUnionOrIntersectionSiteNs"]=dict(true_union_sites.most_common())
 report["selectedTrueBranchWorkerNs"]=dict(true_branch_kinds.most_common())
 report["outerConditionalEvaluationSiteNs"]=dict(evaluation_lines.most_common())
