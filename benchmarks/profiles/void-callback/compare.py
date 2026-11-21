@@ -1,4 +1,5 @@
 """Compare fresh full checks with identical released libraries and verified inputs."""
+import argparse
 import gzip
 import hashlib
 import json
@@ -6,12 +7,17 @@ import os
 from pathlib import Path
 import statistics
 import subprocess
-import sys
 import time
 
 here = Path(__file__).resolve().parent
 ref = json.loads(gzip.decompress((here.parent/"named-key-union/public.json.gz").read_bytes()))
-binaries = dict(zip(("public", "go", "candidate"), sys.argv[1:], strict=True))
+parser = argparse.ArgumentParser(description=__doc__)
+for engine in ("public", "go", "candidate"):
+    parser.add_argument(engine)
+parser.add_argument("--output", type=Path, default=here/"timings.json")
+parser.add_argument("--projects", nargs="+", choices=("vscode","sentry","typeorm","trpc"))
+options = parser.parse_args()
+binaries = {engine:getattr(options,engine) for engine in ("public", "go", "candidate")}
 env = {k:v for k,v in os.environ.items() if not k.startswith(("TSC_", "SCRIPTC_", "TS_GO_", "GODEBUG", "GOGC", "GOMAXPROCS", "GOMEMLIMIT"))}
 env.update(ref["environment"]["compilerEnvironment"])
 def digest(path):
@@ -22,6 +28,8 @@ report = {"libraryDirectory":env["TSC_TS_LIB_DIR"], "executables":{
 }, "projects":{}}
 projects = sorted(ref["projects"], key=lambda p:len(p["preflight"]["candidate"]["inputs"]))
 for i,project in enumerate(projects):
+    if options.projects and project["name"] not in options.projects:
+        continue
     cwd = Path(project["cwd"])
     assert subprocess.check_output(["git","rev-parse","HEAD"],cwd=cwd,text=True).strip() == project["commit"]
     args = project["compilerArgs"]["candidate"]
@@ -48,5 +56,5 @@ for i,project in enumerate(projects):
     medians = {e:statistics.median(row["wallMs"] for row in rows if row["engine"]==e) for e in order}
     report["projects"][project["name"]] = dict(commit=project["commit"],files=len(expected),args=args,samples=rows,medianMs=medians)
     print(project["name"], medians, flush=True)
-    (here/"timings.json").write_text(json.dumps(report,indent=2)+"\n")
+    options.output.write_text(json.dumps(report,indent=2)+"\n")
 assert all(digest(row["path"])==row["sha256"] for row in report["executables"].values())

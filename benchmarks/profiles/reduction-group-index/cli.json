@@ -1,0 +1,28 @@
+{
+  "binaries": [
+    "/tmp/tsc-public-002/node_modules/.bin/tsc-ts",
+    "/tmp/tsc-jsx-bounded-prefix/control",
+    "/tmp/tsc-reduction-group-index/tsgo"
+  ],
+  "args": [
+    "cases.tsx",
+    "--ignoreConfig",
+    "--strict",
+    "--jsx",
+    "preserve",
+    "--module",
+    "esnext",
+    "--target",
+    "es2022",
+    "--declaration",
+    "--emitDeclarationOnly",
+    "--pretty",
+    "false"
+  ],
+  "result": {
+    "status": 2,
+    "out": "cases.tsx(17,28): error TS2322: Type '\"label\"' is not assignable to type '\"button\"'.\n",
+    "err": "",
+    "declaration": "declare global {\n    namespace JSX {\n        type Element = {};\n        interface IntrinsicElements {\n            box: {\n                value: string;\n            };\n        }\n    }\n}\ntype Optional = {\n    mode?: \"a\";\n} & {\n    mode?: \"b\";\n};\nexport declare const tag: \"button\";\nexport declare const noValue: never;\nexport declare const optional: Optional;\nexport declare const element: JSX.Element;\nexport declare const bad: JSX.Element;\nexport declare const unreachable: never;\nexport {};\n"
+  }
+}
