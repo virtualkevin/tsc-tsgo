@@ -26363,6 +26363,16 @@ func (c *Checker) intersectUnionsOfPrimitiveTypes(types []*Type) ([]*Type, bool)
 	if len(unionTypes) == 1 {
 		return types, false
 	}
+	// Pure string literal sets have exact membership and are already sorted.
+	// Interleaved inputs would repeatedly shift the checked set in insertType.
+	if len(unionTypes) == 2 {
+		left, right := unionTypes[0].Types(), unionTypes[1].Types()
+		if len(left)+len(right) >= 64 && allPlainStringLiterals(left) && allPlainStringLiterals(right) {
+			result := intersectSortedTypeLists(left, right)
+			types[index] = c.getUnionTypeFromSortedList(result, ObjectFlagsPrimitiveUnion, nil, nil)
+			return types, true
+		}
+	}
 	// We have more than one union of primitive types, now intersect them. For each
 	// type in each union we check if the type is matched in every union and if so
 	// we include it in the result.
@@ -26389,6 +26399,31 @@ func (c *Checker) intersectUnionsOfPrimitiveTypes(types []*Type) ([]*Type, bool)
 	// Finally replace the first union with the result
 	types[index] = c.getUnionTypeFromSortedList(result, ObjectFlagsPrimitiveUnion, nil /*alias*/, nil /*origin*/)
 	return types, true
+}
+
+func allPlainStringLiterals(types []*Type) bool {
+	for _, t := range types {
+		if t.flags != TypeFlagsStringLiteral {
+			return false
+		}
+	}
+	return true
+}
+
+func intersectSortedTypeLists(left, right []*Type) []*Type {
+	var result []*Type
+	for len(left) > 0 && len(right) > 0 {
+		switch order := CompareTypes(left[0], right[0]); {
+		case order < 0:
+			left = left[1:]
+		case order > 0:
+			right = right[1:]
+		default:
+			result = append(result, left[0])
+			left, right = left[1:], right[1:]
+		}
+	}
+	return result
 }
 
 // Check that the given type has a match in every union. A given type is matched by

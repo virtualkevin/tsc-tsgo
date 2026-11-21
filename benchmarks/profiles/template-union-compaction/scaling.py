@@ -44,7 +44,7 @@ with TemporaryDirectory() as folder:
             right = " | ".join(f'"k{i:06}"' for i in range(0, size, 3))
             source = (f'type A = {left};\ntype B = {right};\ntype Allowed = A & B;\n'
                       'const retained: Allowed = "k000006";\n')
-            invalid = 'const invalid: Allowed = "k000002";\n'
+            invalid = 'const invalid: Allowed = "outside-both";\n'
         else:
             keys = " | ".join(f'"k{i:06}{"yes" if i%2==0 else "no"}"' for i in range(size))
             source = ('type Keys = '+keys+';\ntype Allowed = Keys | `${string}yes`;\n'

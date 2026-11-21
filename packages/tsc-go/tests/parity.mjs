@@ -18,7 +18,22 @@ for (const path of [baseline, candidate, libs]) {
   assert.ok(existsSync(path), `Required parity input is missing: ${path}`);
 }
 
+const literalSet = (step) => Array.from({ length: 80 }, (_, i) => JSON.stringify('key' + i * step)).join(' | ');
+
 const fixtures = [
+  {
+    name: 'large literal intersections preserve common members, diagnostics and declaration output',
+    diagnostic: 'TS2322',
+    files: {
+      'main.ts': [
+        'type A = ' + literalSet(2) + ';',
+        'type B = ' + literalSet(3) + ';',
+        'export type Common = A & B;',
+        'export const valid: Common = "key6";',
+        'export const invalid: Common = "outside-both";',
+      ].join('\n'),
+    },
+  },
   {
     name: 'template union filtering preserves alternating keys and patterned declarations',
     diagnostic: 'TS2322',
