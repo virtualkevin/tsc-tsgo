@@ -1,0 +1,124 @@
+{
+  "binaries": {
+    "control": "793c3312b3a7b5be6a023d879f7f74e03d9602ee81022a451b35716f70f3601d",
+    "candidate": "36535968aab9c8a9a9095ea44772554a32e6794a88241ca498346adfb8dc023e"
+  },
+  "projects": {
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "runs": [
+        {
+          "role": "control",
+          "TotalAlloc": 7583904792,
+          "Mallocs": 44745624,
+          "NumGC": 19
+        },
+        {
+          "role": "candidate",
+          "TotalAlloc": 7470085536,
+          "Mallocs": 44619981,
+          "NumGC": 18
+        },
+        {
+          "role": "candidate",
+          "TotalAlloc": 7470353368,
+          "Mallocs": 44617125,
+          "NumGC": 19
+        },
+        {
+          "role": "control",
+          "TotalAlloc": 7585272024,
+          "Mallocs": 44798797,
+          "NumGC": 18
+        }
+      ]
+    },
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "runs": [
+        {
+          "role": "control",
+          "TotalAlloc": 248965256,
+          "Mallocs": 1332354,
+          "NumGC": 8
+        },
+        {
+          "role": "candidate",
+          "TotalAlloc": 248453656,
+          "Mallocs": 1330110,
+          "NumGC": 8
+        },
+        {
+          "role": "candidate",
+          "TotalAlloc": 248478896,
+          "Mallocs": 1329409,
+          "NumGC": 9
+        },
+        {
+          "role": "control",
+          "TotalAlloc": 248975032,
+          "Mallocs": 1333142,
+          "NumGC": 8
+        }
+      ]
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "runs": [
+        {
+          "role": "control",
+          "TotalAlloc": 1032317760,
+          "Mallocs": 11212621,
+          "NumGC": 13
+        },
+        {
+          "role": "candidate",
+          "TotalAlloc": 1034590480,
+          "Mallocs": 11226343,
+          "NumGC": 13
+        },
+        {
+          "role": "candidate",
+          "TotalAlloc": 1034708968,
+          "Mallocs": 11238052,
+          "NumGC": 12
+        },
+        {
+          "role": "control",
+          "TotalAlloc": 1032207072,
+          "Mallocs": 11212939,
+          "NumGC": 12
+        }
+      ]
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "runs": [
+        {
+          "role": "control",
+          "TotalAlloc": 9363441808,
+          "Mallocs": 44626194,
+          "NumGC": 18
+        },
+        {
+          "role": "candidate",
+          "TotalAlloc": 9332274032,
+          "Mallocs": 44522225,
+          "NumGC": 19
+        },
+        {
+          "role": "candidate",
+          "TotalAlloc": 9333805016,
+          "Mallocs": 44526937,
+          "NumGC": 19
+        },
+        {
+          "role": "control",
+          "TotalAlloc": 9358218224,
+          "Mallocs": 44575108,
+          "NumGC": 19
+        }
+      ]
+    }
+  }
+}

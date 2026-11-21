@@ -1,0 +1,726 @@
+{
+  "binarySha256": "7985bed41bb3b7282785073e61824921c005dfe906d68907884d787319f7941c",
+  "minimumCallbackInstantiations": 70000,
+  "projects": {
+    "sentry": {
+      "callbacks": [
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).checkTypeArguments@9222 / (*Checker).chooseOverload@9030 / (*Checker).resolveCall@8908": 9,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredType@1398 / (*Checker).getInferredTypes@1427 / (*Checker).inferTypeArguments@9475": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolveMappedTypeMembers.func1@20880 / (*Checker).resolveMappedTypeMembers.func2.1@20893 / forEachType@26596": 634
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/performance/traceDetails/traceDrawer/details/highlightedAttributes.tsx",
+          "Instantiations": 667366,
+          "Origins": {
+            "(anonymous flags=2000000)": 634,
+            "Array /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@57618 KindInterfaceDeclaration": 10,
+            "Omit /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@74476 KindTypeAliasDeclaration": 1,
+            "Query /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@tanstack+query-core@5.101.4/node_modules/@tanstack/query-core/build/modern/_tsup-dts-rollup.d.ts@52284 KindClassDeclaration": 1
+          },
+          "Samples": 646,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/utils/discover/discoverQuery.tsx@2328 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/utils/discover/genericDiscoverQuery.tsx@9345 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/common/queries/useDiscover.ts@1809 KindCallExpression": 9,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/performance/traceDetails/traceDrawer/details/highlightedAttributes.tsx@10918 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/performance/traceDetails/traceDrawer/details/highlightedAttributes.tsx@11281 KindElementAccessExpression": 634
+          },
+          "Worker": 2
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredType@1398 / (*Checker).getInferredTypes@1427 / (*Checker).inferTypeArguments@9475": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolveMappedTypeMembers.func1@20880 / (*Checker).resolveMappedTypeMembers.func2.1@20893 / forEachType@26596": 636
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/common/components/fullSpanDescription.tsx",
+          "Instantiations": 655664,
+          "Origins": {
+            "(anonymous flags=2000000)": 636,
+            "Array /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@57618 KindInterfaceDeclaration": 1
+          },
+          "Samples": 637,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/common/components/fullSpanDescription.tsx@1233 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/common/components/fullSpanDescription.tsx@1673 KindBinaryExpression": 636
+          },
+          "Worker": 0
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConstraintFromTypeParameter@16999 / (*Checker).computeBaseConstraint@27533 / (*Checker).getResolvedBaseConstraint@27507": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolveMappedTypeMembers.func1@20880 / (*Checker).resolveMappedTypeMembers.func2.1@20893 / forEachType@26596": 632
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/browser/webVitals/settings.ts",
+          "Instantiations": 651215,
+          "Origins": {
+            "(anonymous flags=200000)": 3,
+            "(anonymous flags=8000000)": 632,
+            "SpanResponse /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/types.tsx@21495 KindTypeAliasDeclaration": 3
+          },
+          "Samples": 638,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/browser/webVitals/settings.ts@1022 KindTypeReference": 6,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/browser/webVitals/settings.ts@685 KindObjectLiteralExpression": 632
+          },
+          "Worker": 1
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConstraintFromTypeParameter@16999 / (*Checker).computeBaseConstraint@27533 / (*Checker).getResolvedBaseConstraint@27507": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolveMappedTypeMembers.func1@20880 / (*Checker).resolveMappedTypeMembers.func2.1@20893 / forEachType@26596": 632
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/settings.ts",
+          "Instantiations": 648584,
+          "Origins": {
+            "(anonymous flags=200000)": 4,
+            "(anonymous flags=8000000)": 631,
+            "T /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@74229 KindTypeParameter": 1
+          },
+          "Samples": 636,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/settings.ts@11651 KindTypeReference": 4,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/insights/settings.ts@11675 KindObjectLiteralExpression": 632
+          },
+          "Worker": 3
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940": 7,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940 / (stack truncated)": 37,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (stack truncated)": 3,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (stack truncated)": 7,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (stack truncated)": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24376 / (*Checker).getConditionalTypeInstantiation@22435 / (*Checker).instantiateTypeWorker@22200 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24396 / (*Checker).getConditionalTypeInstantiation@22435 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24396 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConstraintFromTypeParameter@16999 / (*Checker).computeBaseConstraint@27533 / (*Checker).getResolvedBaseConstraint@27507": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getPropertyTypeForIndexType@27090 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolveMappedTypeMembers.func2@20890 / (*Checker).forEachMappedTypePropertyKeyTypeAndIndexSignatureKeyType@22655 / (*Checker).resolveMappedTypeMembers@20898 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995 / (stack truncated)": 8,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*CompositeTypeMapper).Map@278 / (*TypeMapper).Map@26 / (*Checker).getObjectTypeInstantiation@22284 / (stack truncated)": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*CompositeTypeMapper).Map@278 / (*TypeMapper).Map@26 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*CompositeTypeMapper).Map@278 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (stack truncated)": 9,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (stack truncated)": 3,
+            "instantiateTypeWithAlias / (stack truncated)": 10
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/knip.config.ts",
+          "Instantiations": 119444,
+          "Origins": {
+            "(anonymous flags=200000)": 5,
+            "(anonymous flags=2000000)": 3,
+            "RawConfiguration /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/knip@6.41.0/node_modules/knip/dist/types/config.d.ts@1622 KindTypeAliasDeclaration": 110
+          },
+          "Samples": 118,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/knip.config.ts@1820 KindTypeReference": 110,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/knip.config.ts@1833 KindObjectLiteralExpression": 5,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/knip.config.ts@2109 KindObjectLiteralExpression": 3
+          },
+          "Worker": 0
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940": 2,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938": 6,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).someLiteralOrPrivateProperty@72": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 91,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getWidenedProperty@18317": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995": 1
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx",
+          "Instantiations": 113781,
+          "Origins": {
+            "(anonymous flags=2000000)": 16,
+            "(anonymous flags=8000000)": 82,
+            "ButtonElementProps /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/types.tsx@1197 KindTypeAliasDeclaration": 1,
+            "IteratorObject /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es2015.iterable.d.ts@2002 KindInterfaceDeclaration": 1,
+            "LibraryManagedAttributes /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/jsx-namespace.d.ts@2691 KindTypeAliasDeclaration": 7,
+            "LinkElementProps /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/types.tsx@1795 KindTypeAliasDeclaration": 1,
+            "Omit /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@74476 KindTypeAliasDeclaration": 1,
+            "ReturnType /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@75077 KindTypeAliasDeclaration": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es2025.iterator.d.ts@6890 KindFunctionType": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es2025.iterator.d.ts@7324 KindFunctionType": 1
+          },
+          "Samples": 112,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@1031 KindVariableDeclaration": 3,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@1292 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@1598 KindJsxElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@1910 KindJsxElement": 5,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@1915 KindJsxAttributes": 10,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@2449 KindJsxElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@2668 KindJsxAttributes": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@3021 KindTaggedTemplateExpression": 84,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@3039 KindTypeReference": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@3153 KindCallExpression": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/button.tsx@755 KindBindingElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/useButtonFunctionality.tsx@557 KindPropertyAccessExpression": 1
+          },
+          "Worker": 1
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940": 3,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938": 3,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).checkTypeArgumentConstraints@3020 / (*Checker).checkTypeReferenceOrImport@2997 / (*Checker).checkTypeReferenceNode@2988": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getNonMissingTypeOfSymbol@16444": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 93,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).createUnionOrIntersectionProperty-range1@21524 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getWidenedProperty@18317": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).someLiteralOrPrivateProperty@72": 2
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx",
+          "Instantiations": 109304,
+          "Origins": {
+            "(anonymous flags=200000)": 1,
+            "(anonymous flags=2000000)": 15,
+            "(anonymous flags=8000000)": 84,
+            "DistributedOmit /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/type-fest@5.8.0/node_modules/type-fest/source/distributed-omit.d.ts@54 KindTypeAliasDeclaration": 1,
+            "LibraryManagedAttributes /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/jsx-namespace.d.ts@2691 KindTypeAliasDeclaration": 4,
+            "PropsOf /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/types.d.ts@46 KindTypeAliasDeclaration": 1,
+            "StandardLonghandPropertiesFallback /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/csstype@3.2.3/node_modules/csstype/index.d.ts@796096 KindTypeAliasDeclaration": 1,
+            "\ufffd@iterator@289 /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es2015.iterable.d.ts@1709 KindMethodSignature": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@57308 KindFunctionType": 1
+          },
+          "Samples": 109,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx@1288 KindObjectLiteralExpression": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx@2398 KindJsxElement": 4,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx@2403 KindJsxAttributes": 10,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx@3123 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx@3123 KindTaggedTemplateExpression": 83,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx@3945 KindJsxSelfClosingElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx@5026 KindCallExpression": 5,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/linkButton.tsx@926 KindTypeReference": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/button/useButtonFunctionality.tsx@578 KindPropertyAccessExpression": 1
+          },
+          "Worker": 3
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredTrueTypeFromConditionalType@24528 / (*Checker).getDefaultConstraintOfConditionalType@17189 / (*Checker).getConstraintFromConditionalType@17179": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getNonMissingTypeOfSymbol@16444": 10,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444": 6,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).inferFromProperties@815": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).removeSubtypes.func3@26008": 74,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).removeSubtypes.func3@26008 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995 / (stack truncated)": 1
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx",
+          "Instantiations": 102881,
+          "Origins": {
+            "(anonymous flags=2000000)": 6,
+            "(anonymous flags=8000000)": 85,
+            "Array /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@57618 KindInterfaceDeclaration": 1,
+            "ComponentProps /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@52731 KindTypeAliasDeclaration": 1,
+            "FlatArray /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es2019.array.d.ts@0 KindTypeAliasDeclaration": 1,
+            "K /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.dom.d.ts@642985 KindTypeParameter": 1,
+            "Omit /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@74476 KindTypeAliasDeclaration": 3,
+            "ReactNode /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@13373 KindTypeAliasDeclaration": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@53521 KindFunctionType": 1
+          },
+          "Samples": 100,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/styles.tsx@381 KindTaggedTemplateExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/styles.tsx@531 KindCallExpression": 78,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@11007 KindJsxElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@11208 KindJsxSelfClosingElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@3409 KindInterfaceDeclaration": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@7536 KindJsxElement": 3,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@7959 KindJsxSelfClosingElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@8070 KindJsxSelfClosingElement": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@8179 KindJsxSelfClosingElement": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@8239 KindTypeReference": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@8284 KindJsxSelfClosingElement": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@8324 KindInterfaceDeclaration": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/table/table.tsx@9601 KindJsxElement": 5
+          },
+          "Worker": 2
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940": 2,
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24283 / (*Checker).getConditionalTypeInstantiation.func1@22432 / (*Checker).mapTypeEx@25554": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24336 / (*Checker).getConditionalTypeInstantiation.func1@22432 / (*Checker).mapTypeEx@25554": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24396 / (*Checker).getConditionalTypeInstantiation.func1@22432 / (*Checker).mapTypeEx@25554": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).checkCallExpression@8328 / (*Checker).checkExpressionWorker@7758": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getNonMissingTypeOfSymbol@16444": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444": 6,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837 / (stack truncated)": 81
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx",
+          "Instantiations": 102373,
+          "Origins": {
+            "(anonymous flags=2000000)": 1,
+            "(anonymous flags=8000000)": 8,
+            "CreateStyledComponent /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+styled@11.14.0_@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_support_3fed804f900732a6fbf818e1649b22d8/node_modules/@emotion/styled/dist/declarations/src/types.d.ts@1552 KindInterfaceDeclaration": 1,
+            "CustomComponentPropsWithRef /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@55096 KindTypeAliasDeclaration": 82,
+            "ElementType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@2276 KindTypeAliasDeclaration": 1,
+            "FormSize /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/packages/scraps/.types/src/theme/types.d.ts@1900 KindTypeAliasDeclaration": 1,
+            "JSXElementConstructor /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@4083 KindTypeAliasDeclaration": 2,
+            "K /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.dom.d.ts@642579 KindTypeParameter": 1,
+            "LibraryManagedAttributes /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/jsx-namespace.d.ts@2691 KindTypeAliasDeclaration": 1,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@53743 KindTypeParameter": 1
+          },
+          "Samples": 99,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@10686 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@1379 KindTypeReference": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@5642 KindTypeReference": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@6061 KindIndexedAccessType": 4,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@7103 KindJsxElement": 3,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@7880 KindJsxElement": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@8127 KindJsxElement": 4,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@9238 KindAsExpression": 82,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/menuListItem/menuListItem.tsx@9851 KindCallExpression": 1
+          },
+          "Worker": 3
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24284 / (*Checker).getConditionalTypeInstantiation.func1@22432 / (*Checker).mapTypeEx@25554": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24396 / (*Checker).getConditionalTypeInstantiation.func1@22432 / (*Checker).mapTypeEx@25554": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConstraintFromTypeParameter@16999 / (*Checker).computeBaseConstraint@27533 / (*Checker).getResolvedBaseConstraint@27507": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getModifiersTypeFromMappedType@28137 / (*Checker).getResolvedApparentTypeOfMappedType@21703 / (*Checker).getApparentTypeOfMappedType@21688": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getResolvedApparentTypeOfMappedType@21711 / (*Checker).getApparentTypeOfMappedType@21688 / (*Checker).getApparentType@21660 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1646": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1646 / (stack truncated)": 8,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1650": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1650 / (stack truncated)": 6,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / github.com/microsoft/typescript-go/internal/core.Map[...]@86 / (*Checker).getReturnTypeOfSignature@19913": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getMinArgumentCountEx@1767": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getMinArgumentCountEx@1767 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getNonMissingTypeOfSymbol@16444": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getNonMissingTypeOfSymbol@16444 / (stack truncated)": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getParameterCount@1749 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963 / (stack truncated)": 8,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).someLiteralOrPrivateProperty@72": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).someLiteralOrPrivateProperty@72 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getKeyPropertyCandidateName@1216": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444 / (stack truncated)": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).instantiateInstantiableTypes@30823 / (*Checker).instantiateInstantiableTypes.func1@30827 / github.com/microsoft/typescript-go/internal/core.Map[...]@86": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995 / (stack truncated)": 16,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).createMarkerType@1476 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837 / (stack truncated)": 12,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22717 / (*Checker).instantiateTypes@22694 / (*Checker).createMarkerType@1476 / (stack truncated)": 1
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/utils.tsx",
+          "Instantiations": 101685,
+          "Origins": {
+            "$ZodFormattedError /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/errors.d.cts@6994 KindTypeAliasDeclaration": 1,
+            "$ZodObject /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@23870 KindInterfaceDeclaration": 1,
+            "$ZodPipe /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@41546 KindInterfaceDeclaration": 1,
+            "$ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@4774 KindInterfaceDeclaration": 3,
+            "$replace /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/registries.d.cts@250 KindTypeAliasDeclaration": 5,
+            "(anonymous flags=1000000)": 1,
+            "(anonymous flags=200000)": 1,
+            "(anonymous flags=2000000)": 5,
+            "(anonymous flags=4000000)": 7,
+            "(anonymous flags=8000000)": 5,
+            "Array /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@57618 KindInterfaceDeclaration": 2,
+            "B /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@30303 KindTypeParameter": 1,
+            "CheckStringFormatParams /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/api.d.cts@1565 KindTypeAliasDeclaration": 1,
+            "NoUndefined /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/util.d.cts@2505 KindTypeAliasDeclaration": 1,
+            "Promise /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@71845 KindInterfaceDeclaration": 1,
+            "Props /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/standard-schema.d.cts@243 KindInterfaceDeclaration": 2,
+            "Props /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/standard-schema.d.cts@3737 KindInterfaceDeclaration": 1,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@27995 KindTypeParameter": 1,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4309 KindTypeParameter": 1,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@37882 KindTypeParameter": 1,
+            "ZodArray /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@24323 KindInterfaceDeclaration": 1,
+            "ZodExactOptional /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@37163 KindInterfaceDeclaration": 1,
+            "ZodIntersection /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@30229 KindInterfaceDeclaration": 3,
+            "ZodOptional /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@36797 KindInterfaceDeclaration": 1,
+            "ZodPrefault /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@38554 KindInterfaceDeclaration": 1,
+            "ZodReadonly /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@41802 KindInterfaceDeclaration": 1,
+            "ZodSafeParseResult /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/parse.d.cts@88 KindTypeAliasDeclaration": 3,
+            "ZodStandardSchemaWithJSON /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@202 KindTypeAliasDeclaration": 1,
+            "ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@305 KindInterfaceDeclaration": 3,
+            "ZodUnion /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@28455 KindInterfaceDeclaration": 2,
+            "_ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@5951 KindInterfaceDeclaration": 7,
+            "brand /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@1568 KindMethodSignature": 1,
+            "check /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@1055 KindMethodSignature": 2,
+            "describe /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4864 KindMethodSignature": 1,
+            "input /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1506 KindTypeAliasDeclaration": 18,
+            "output /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1614 KindTypeAliasDeclaration": 2,
+            "parse /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@1734 KindMethodSignature": 2,
+            "pipe /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4701 KindMethodSignature": 1,
+            "safeEncode /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@2728 KindMethodSignature": 2,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4406 KindFunctionType": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1648 KindTypeLiteral": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/errors.d.cts@6769 KindMappedType": 2,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/registries.d.cts@564 KindMappedType": 1
+          },
+          "Samples": 100,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts@17282 KindObjectLiteralExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts@42956 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/utils.tsx@2545 KindIdentifier": 3,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/utils.tsx@2950 KindCallExpression": 7,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/utils.tsx@3427 KindCallExpression": 87,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/utils.tsx@3559 KindAsExpression": 1
+          },
+          "Worker": 3
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredType@1398 / (*Checker).getInferredTypes@1427 / (*Checker).inferTypeArguments@9475": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredType@1398 / (*Checker).getInferredTypes@1427 / (*Checker).inferTypeArguments@9475 / (stack truncated)": 81,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredType@1398 / (*Checker).getInferredTypes@1427 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getReturnTypeFromBody@20114 / (*Checker).contextuallyCheckFunctionExpressionOrObjectLiteralMethod@10177": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getSpreadSymbol@13533": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444": 1
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/listBox/option.tsx",
+          "Instantiations": 89984,
+          "Origins": {
+            "(anonymous flags=8000000)": 2,
+            "ComponentClass /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@38300 KindInterfaceDeclaration": 84,
+            "Interpolation /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+serialize@1.3.3/node_modules/@emotion/serialize/dist/declarations/src/index.d.ts@1320 KindTypeAliasDeclaration": 1,
+            "LibraryManagedAttributes /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/jsx-namespace.d.ts@2691 KindTypeAliasDeclaration": 1
+          },
+          "Samples": 88,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/listBox/option.tsx@2237 KindObjectLiteralExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/listBox/option.tsx@2868 KindJsxSelfClosingElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/listBox/option.tsx@3344 KindJsxSelfClosingElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/listBox/option.tsx@4074 KindCallExpression": 84,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/listBox/option.tsx@4136 KindArrowFunction": 1
+          },
+          "Worker": 0
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredType@1398 / (*Checker).getInferredTypes@1427 / (*Checker).inferTypeArguments@9475": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 81,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getTypeOfConcretePropertyOfContextualType@30609": 1
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/input/otpInput.tsx",
+          "Instantiations": 89343,
+          "Origins": {
+            "(anonymous flags=2000000)": 2,
+            "(anonymous flags=8000000)": 82,
+            "ComponentClass /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@38300 KindInterfaceDeclaration": 2,
+            "OTPInputBaseProps /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/input-otp@1.5.0_react-dom@19.3.0_react@19.3.0__react@19.3.0/node_modules/input-otp/dist/index.d.ts@317 KindTypeAliasDeclaration": 1
+          },
+          "Samples": 87,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/input/otpInput.tsx@2704 KindIdentifier": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/input/otpInput.tsx@2721 KindJsxAttributes": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/input/otpInput.tsx@4637 KindJsxAttributes": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/input/otpInput.tsx@5090 KindCallExpression": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/input/otpInput.tsx@5090 KindTaggedTemplateExpression": 82
+          },
+          "Worker": 0
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConditionalType@24283 / (*Checker).getConditionalTypeInstantiation.func1@22432 / (*Checker).mapTypeEx@25554 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConstraintFromTypeParameter@16999 / (*Checker).computeBaseConstraint@27533 / (*Checker).getResolvedBaseConstraint@27507": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getModifiersTypeFromMappedType@28137 / (*Checker).getMappedTargetWithSymbol@857 / (*Checker).isDeeplyNestedType@821 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getResolvedApparentTypeOfMappedType@21711 / (*Checker).getApparentTypeOfMappedType@21688 / (*Checker).getApparentType@21660 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1646": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1646 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1650 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTrueTypeFromConditionalType@24511 / (*Checker).getSimplifiedConditionalType@28012 / (*Checker).getSimplifiedType@27910 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTrueTypeFromConditionalType@24511 / (*Checker).inferToConditionalType@543 / (*Checker).invokeOnce@398": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getMinArgumentCountEx@1767 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getNonMissingTypeOfSymbol@16444 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getParameterCount@1749 / (stack truncated)": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963 / (stack truncated)": 8,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).removeSubtypes.func3@26008": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).someLiteralOrPrivateProperty@72": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).someLiteralOrPrivateProperty@72 / (stack truncated)": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995 / (stack truncated)": 9,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Relater).typeArgumentsRelatedTo@3964 / (*Relater).structuredTypeRelatedToWorker.func1@3297 / (*Relater).structuredTypeRelatedToWorker@3432 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Relater).typeArgumentsRelatedTo@3964 / (*Relater).structuredTypeRelatedToWorker.func1@3297 / (*Relater).structuredTypeRelatedToWorker@3866": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Relater).typeArgumentsRelatedTo@3964 / (*Relater).structuredTypeRelatedToWorker.func1@3297 / (*Relater).structuredTypeRelatedToWorker@3866 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).createMarkerType@1476 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837 / (stack truncated)": 10,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22717 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837": 1
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx",
+          "Instantiations": 87781,
+          "Origins": {
+            "$ZodCatch /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@40196 KindInterfaceDeclaration": 2,
+            "$ZodDefault /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@37452 KindInterfaceDeclaration": 1,
+            "$ZodIntersection /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@27225 KindInterfaceDeclaration": 1,
+            "$ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@4774 KindInterfaceDeclaration": 2,
+            "$replace /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/registries.d.cts@250 KindTypeAliasDeclaration": 4,
+            "(anonymous flags=1000000)": 1,
+            "(anonymous flags=200000)": 1,
+            "(anonymous flags=2000000)": 11,
+            "(anonymous flags=4000000)": 6,
+            "(anonymous flags=8000000)": 1,
+            "Array /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@57618 KindInterfaceDeclaration": 3,
+            "FieldComponentBoundProps /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@tanstack+react-form@1.28.6_react-dom@19.3.0_react@19.3.0__react@19.3.0/node_modules/@tanstack/react-form/dist/esm/useField.d.ts@8731 KindInterfaceDeclaration": 1,
+            "FieldOptions /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@tanstack+form-core@1.28.6/node_modules/@tanstack/form-core/dist/esm/FieldApi.d.ts@9264 KindInterfaceDeclaration": 1,
+            "I /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@36455 KindTypeParameter": 1,
+            "LibraryManagedAttributes /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/jsx-namespace.d.ts@2691 KindTypeAliasDeclaration": 5,
+            "Promise /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@71845 KindInterfaceDeclaration": 1,
+            "Props /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/standard-schema.d.cts@243 KindInterfaceDeclaration": 1,
+            "Record /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@74130 KindTypeAliasDeclaration": 1,
+            "Store /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@tanstack+store@0.9.3/node_modules/@tanstack/store/dist/esm/store.d.ts@52 KindClassDeclaration": 1,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4243 KindTypeParameter": 2,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/errors.d.cts@6725 KindTypeParameter": 1,
+            "ZodArray /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@24323 KindInterfaceDeclaration": 1,
+            "ZodPipe /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@40540 KindInterfaceDeclaration": 1,
+            "ZodPrefault /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@38554 KindInterfaceDeclaration": 2,
+            "ZodSafeParseResult /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/parse.d.cts@88 KindTypeAliasDeclaration": 1,
+            "ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@305 KindInterfaceDeclaration": 1,
+            "_ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@5951 KindInterfaceDeclaration": 3,
+            "input /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1506 KindTypeAliasDeclaration": 11,
+            "nullish /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@3889 KindMethodSignature": 2,
+            "output /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1614 KindTypeAliasDeclaration": 6,
+            "register /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@1340 KindMethodSignature": 1,
+            "safeDecodeAsync /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@3129 KindMethodSignature": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@5924 KindFunctionType": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/errors.d.cts@6769 KindMappedType": 2
+          },
+          "Samples": 81,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@11706 KindJsxElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@11724 KindTemplateExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@14778 KindJsxElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@15962 KindJsxElement": 64,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@16463 KindJsxAttributes": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@17812 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@4136 KindCallExpression": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@4390 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@6645 KindArrayLiteralExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@7641 KindJsxAttributes": 4,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/projectAddRepoModal/projectAddRepoModal.tsx@9556 KindJsxElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/utils/repositories/useRepositoriesById.ts@659 KindNewExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/utils/seer/preferredAgent.ts@5223 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/utils/seer/preferredAgent.ts@5748 KindCallExpression": 1
+          },
+          "Worker": 0
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredType@1398 / (*Checker).getInferredTypes@1427 / (*Checker).inferTypeArguments@9475": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getInferredType@1398 / (*Checker).getInferredTypes@1427 / (*Checker).inferTypeArguments@9475 / (stack truncated)": 80,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444": 2
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/gridList/option.tsx",
+          "Instantiations": 86384,
+          "Origins": {
+            "(anonymous flags=8000000)": 2,
+            "ComponentClass /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@types+react@19.3.0/node_modules/@types/react/index.d.ts@38300 KindInterfaceDeclaration": 81,
+            "LibraryManagedAttributes /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/jsx-namespace.d.ts@2691 KindTypeAliasDeclaration": 2
+          },
+          "Samples": 85,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/gridList/option.tsx@3452 KindJsxSelfClosingElement": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/gridList/option.tsx@4041 KindJsxSelfClosingElement": 2,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/core/compactSelect/gridList/option.tsx@4655 KindCallExpression": 81
+          },
+          "Worker": 1
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Relater).structuredTypeRelatedToWorker@3611 / (*Relater).structuredTypeRelatedTo@3224 / (*Relater).recursiveTypeRelatedTo@3165": 73
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/events/highlights/editHighlightsModal.tsx",
+          "Instantiations": 79339,
+          "Origins": {
+            "(anonymous flags=400000)": 73,
+            "LibraryManagedAttributes /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/jsx-namespace.d.ts@2691 KindTypeAliasDeclaration": 1
+          },
+          "Samples": 74,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/events/highlights/editHighlightsModal.tsx@13892 KindJsxElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/events/highlights/editHighlightsModal.tsx@16070 KindJsxAttributes": 73
+          },
+          "Worker": 1
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).instantiateAliasOrInterfaceWithDefaults@1044 / (*Checker).getJsxManagedAttributesFromLocatedAttributes@1026 / (*Checker).getJsxPropsTypeFromCallSignature@938": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConstraintFromTypeParameter@16999 / (*Checker).computeBaseConstraint@27533 / (*Checker).getResolvedBaseConstraint@27507": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getConstraintFromTypeParameter@16999 / (*Checker).computeBaseConstraint@27533 / (*Checker).getResolvedBaseConstraint@27507 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getModifiersTypeFromMappedType@28137 / (*Checker).getMappedTargetWithSymbol@857 / (*Checker).isDeeplyNestedType@821 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).checkCallExpression@8328 / (*Checker).checkExpressionWorker@7758": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1646 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1650 / (stack truncated)": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTemplateTypeFromMappedType@22627 / (*Relater).mappedTypeRelatedTo@4011 / (*Relater).structuredTypeRelatedToWorker@3836 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getMinArgumentCountEx@1767 / (stack truncated)": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getNonMissingTypeOfSymbol@16444 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getParameterCount@1749 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963 / (stack truncated)": 8,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).someLiteralOrPrivateProperty@72 / (stack truncated)": 8,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444 / (stack truncated)": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolveMappedTypeMembers.func1@20880 / (*Checker).resolveMappedTypeMembers.func2.1@20893 / forEachType@26596 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995 / (stack truncated)": 8,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837 / (stack truncated)": 9
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx",
+          "Instantiations": 75804,
+          "Origins": {
+            "$ZodNonOptional /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@38807 KindInterfaceDeclaration": 1,
+            "$ZodPipe /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@41546 KindInterfaceDeclaration": 2,
+            "$ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@4774 KindInterfaceDeclaration": 4,
+            "$replace /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/registries.d.cts@250 KindTypeAliasDeclaration": 5,
+            "(anonymous flags=1000000)": 1,
+            "(anonymous flags=10000000)": 1,
+            "(anonymous flags=200000)": 1,
+            "(anonymous flags=2000000)": 4,
+            "(anonymous flags=4000000)": 7,
+            "(anonymous flags=8000000)": 1,
+            "Array /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@57618 KindInterfaceDeclaration": 5,
+            "DeepKeys /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@tanstack+form-core@1.28.6/node_modules/@tanstack/form-core/dist/esm/util-types.d.ts@3989 KindTypeAliasDeclaration": 1,
+            "LibraryManagedAttributes /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.3.0_react@19.3.0_supports-color@8.1.1/node_modules/@emotion/react/dist/declarations/src/jsx-namespace.d.ts@2691 KindTypeAliasDeclaration": 2,
+            "NoUndefined /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/util.d.cts@2505 KindTypeAliasDeclaration": 1,
+            "Promise /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@71845 KindInterfaceDeclaration": 3,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4243 KindTypeParameter": 1,
+            "ZodOptional /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@36797 KindInterfaceDeclaration": 1,
+            "ZodPrefault /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@38554 KindInterfaceDeclaration": 1,
+            "ZodStandardSchemaWithJSON /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@202 KindTypeAliasDeclaration": 1,
+            "ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@305 KindInterfaceDeclaration": 1,
+            "ZodUnion /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@28455 KindInterfaceDeclaration": 2,
+            "_ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@5951 KindInterfaceDeclaration": 1,
+            "check /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@1055 KindMethodSignature": 1,
+            "clone /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@1256 KindMethodSignature": 2,
+            "describe /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4864 KindMethodSignature": 1,
+            "input /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1506 KindTypeAliasDeclaration": 11,
+            "output /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1614 KindTypeAliasDeclaration": 2,
+            "safeDecode /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@2857 KindMethodSignature": 2,
+            "safeParse /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@1823 KindMethodSignature": 1,
+            "safeParseAsync /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@2045 KindMethodSignature": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4106 KindFunctionType": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@4406 KindFunctionType": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@5924 KindFunctionType": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/errors.d.cts@6454 KindMappedType": 1,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/registries.d.cts@564 KindMappedType": 1
+          },
+          "Samples": 73,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@17848 KindObjectLiteralExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@19489 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@19817 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@20802 KindJsxElement": 65,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@20845 KindArrowFunction": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@21553 KindJsxSelfClosingElement": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@22096 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@24917 KindJsxAttributes": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/views/settings/project/projectFilters/customFilterModal.tsx@9872 KindCallExpression": 1
+          },
+          "Worker": 1
+        },
+        {
+          "Callers": {
+            "instantiateTypeWithAlias / (*Checker).getTypeAliasInstantiation@23587 / (*Checker).getTypeFromTypeAliasReference@23561 / (*Checker).getTypeReferenceType@23082 / (*Checker).getTypeFromTypeReference@22940 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getFalseTypeFromConditionalType@24519 / (*Checker).getSimplifiedConditionalType@28013 / (*Checker).getSimplifiedType@27910 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getModifiersTypeFromMappedType@28137 / (*Checker).getResolvedApparentTypeOfMappedType@21703 / (*Checker).getApparentTypeOfMappedType@21688 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getModifiersTypeFromMappedType@28137 / (*Checker).resolveMappedTypeMembers@20828 / (*Checker).resolveStructuredTypeMembers@18968": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1646 / (stack truncated)": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (*Checker).compareSignaturesRelated@1650 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getReturnTypeOfSignature@19911 / (*Checker).getNonCircularReturnTypeOfSignature@19955 / (stack truncated)": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTrueTypeFromConditionalType@24511 / (*Checker).getSimplifiedConditionalType@28012 / (*Checker).getSimplifiedType@27910 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getMinArgumentCountEx@1767 / (stack truncated)": 2,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getNonMissingTypeOfSymbol@16444 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getParameterCount@1749 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).getTypeOfParameter@16963 / (stack truncated)": 4,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).someLiteralOrPrivateProperty@72": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfInstantiatedSymbol@16450 / (*Checker).getTypeOfSymbol@16417 / (*Checker).someLiteralOrPrivateProperty@72 / (stack truncated)": 7,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).createUnionOrIntersectionProperty-range1@21524": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).getTypeOfMappedSymbol@20915 / (*Checker).getTypeOfSymbol@16420 / (*Checker).getNonMissingTypeOfSymbol@16444 / (stack truncated)": 5,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).instantiateInstantiableTypes@30823 / (*Checker).instantiateInstantiableTypes.func1@30827 / github.com/microsoft/typescript-go/internal/core.Map[...]@86": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolveMappedTypeMembers.func1@20880 / (*Checker).resolveMappedTypeMembers.func2.1@20893 / forEachType@26596 / (stack truncated)": 1,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995": 3,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / (*Checker).resolvePendingObjectTypeMembers@371 / (*Checker).resolveObjectTypeMembers@19025 / (*Checker).resolveTypeReferenceMembers@18995 / (stack truncated)": 9,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22711 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837 / (stack truncated)": 9,
+            "instantiateTypeWithAlias / (*Checker).instantiateType@22021 / instantiateList[...]@22717 / (*Checker).instantiateTypes@22694 / (*Checker).getTypeArguments@21837 / (stack truncated)": 1
+          },
+          "File": "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts",
+          "Instantiations": 70978,
+          "Origins": {
+            "$ZodPipe /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@41546 KindInterfaceDeclaration": 2,
+            "$ZodPrefault /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@38142 KindInterfaceDeclaration": 1,
+            "$ZodRawIssue /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/errors.d.cts@5678 KindTypeAliasDeclaration": 1,
+            "$ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@4774 KindInterfaceDeclaration": 3,
+            "$ZodTypeInternals /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@4388 KindInterfaceDeclaration": 1,
+            "$replace /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/registries.d.cts@250 KindTypeAliasDeclaration": 6,
+            "(anonymous flags=1000000)": 1,
+            "(anonymous flags=10000000)": 1,
+            "(anonymous flags=2000000)": 6,
+            "(anonymous flags=4000000)": 8,
+            "(anonymous flags=8000000)": 1,
+            "Array /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@57618 KindInterfaceDeclaration": 1,
+            "NoUndefined /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/util.d.cts@2505 KindTypeAliasDeclaration": 1,
+            "ParsePayload /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/schemas.d.cts@995 KindInterfaceDeclaration": 1,
+            "Promise /home/dev/tssss/tsc-tsgo/upstream/typescript-go/internal/bundled/libs/lib.es5.d.ts@71845 KindInterfaceDeclaration": 1,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@27995 KindTypeParameter": 1,
+            "T /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/util.d.cts@3545 KindTypeParameter": 1,
+            "ZodArray /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@24323 KindInterfaceDeclaration": 1,
+            "ZodPipe /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@40540 KindInterfaceDeclaration": 3,
+            "ZodPrefault /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@38554 KindInterfaceDeclaration": 1,
+            "ZodStandardSchemaWithJSON /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@202 KindTypeAliasDeclaration": 2,
+            "ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@305 KindInterfaceDeclaration": 4,
+            "ZodUnion /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@28455 KindInterfaceDeclaration": 1,
+            "_ZodType /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@5951 KindInterfaceDeclaration": 2,
+            "clone /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@1256 KindMethodSignature": 1,
+            "decodeAsync /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/classic/schemas.d.cts@2615 KindMethodSignature": 1,
+            "input /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1506 KindTypeAliasDeclaration": 10,
+            "output /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/core.d.cts@1614 KindTypeAliasDeclaration": 3,
+            "\ufffdtype /home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/node_modules/.pnpm/zod@4.3.5_patch_hash=2bb6d33b2c713a7a2c559c18ad0aa6cfb261f01d935ee1288dfec6c84411aa76/node_modules/zod/v4/core/errors.d.cts@6843 KindTypeLiteral": 1
+          },
+          "Samples": 67,
+          "Sites": {
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts@11170 KindPropertyAccessExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts@31718 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts@42997 KindCallExpression": 1,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts@43641 KindCallExpression": 63,
+            "/home/dev/tssss/tsc-tsgo/upstream/benchmarks/sentry/static/app/components/seer/markdown/embeds/schemas.ts@5788 KindObjectLiteralExpression": 1
+          },
+          "Worker": 2
+        }
+      ],
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739"
+    }
+  }
+}
