@@ -21,6 +21,24 @@ for line in locations.split("Mappings\n")[0].splitlines():
         frames[addr].append((m[1],m[2],int(m[3])))
 prefix="github.com/microsoft/typescript-go/internal/"
 entries={prefix+"checker.(*Checker)."+n for n in ("instantiateType","instantiateTypeWithAlias","instantiateTypeWorker")}
+# Inline stacks are leaf-first. Attribute each sample to the first worker
+# reached from the outer entry, including time in that worker's callees.
+source=subprocess.check_output(
+    ["git","show","395df1a:packages/tsc-go/internal/checker/checker.go"],
+    cwd=here.parents[2],text=True,
+).splitlines()
+branch_at={}
+in_worker=False
+branch="worker entry"
+for lineno,line in enumerate(source,1):
+    if line.startswith("func "):
+        in_worker="func (c *Checker) instantiateTypeWorker(" in line
+    if in_worker:
+        if line.startswith("\tcase "):
+            branch=line.strip().removeprefix("case ").removesuffix(":")
+        branch_at[lineno]=branch
+by_branch=Counter()
+conditional_lines=Counter()
 counts=Counter()
 total=0
 for line in samples.splitlines():
@@ -36,7 +54,22 @@ for line in samples.splitlines():
             name,path,lineno=stack[outer+1]
             caller=f"{name.removeprefix(prefix)} {path.removeprefix(prefix)}:{lineno}"
         counts[caller]+=ns
+        if caller.startswith("checker.(*Checker).getTypeAliasInstantiation "):
+            worker=next((f for f in reversed(stack[:outer+1])
+                         if f[0]==prefix+"checker.(*Checker).instantiateTypeWorker"),None)
+            branch=branch_at[worker[2]] if worker else "outside worker"
+            by_branch[branch]+=ns
+            if branch=="flags&TypeFlagsConditional != 0":
+                frame=next((f for f in reversed(stack[:outer+1])
+                            if f[0]==prefix+"checker.(*Checker).getConditionalTypeInstantiation"),None)
+                site=f"{frame[2]} {source[frame[2]-1].strip()}" if frame else "outside conditional instantiation"
+                conditional_lines[site]+=ns
 assert total==json.loads((here/"cpu.json").read_text())["sentry-size-aware"]["totalCpuNs"]
 report=dict(totalCpuNs=total,instantiationCpuNs=sum(counts.values()),callersNs=dict(counts.most_common()))
+assert sum(by_branch.values())==sum(ns for caller,ns in counts.items()
+                                    if caller.startswith("checker.(*Checker).getTypeAliasInstantiation "))
+assert sum(conditional_lines.values())==by_branch["flags&TypeFlagsConditional != 0"]
+report["aliasMissConditionalSiteNs"]=dict(conditional_lines.most_common())
+report["aliasMissWorkerBranchNs"]=dict(by_branch.most_common())
 (here/"callers.json").write_text(json.dumps(report,indent=2)+"\n")
 print(round(100*sum(counts.values())/total,2),counts.most_common(6))

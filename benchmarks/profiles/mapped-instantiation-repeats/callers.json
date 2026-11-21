@@ -34,5 +34,20 @@
     "checker.(*Checker).getConditionalType checker/checker.go:24255": 10000000,
     "checker.(*Checker).getTypeParametersForMapper.func1 checker/checker.go:19213": 10000000,
     "checker.(*Checker).instantiateInstantiableTypes checker/checker.go:30686": 10000000
+  },
+  "aliasMissConditionalSiteNs": {
+    "22407 result = c.getConditionalType(root, newMapper, forConstraint, alias)": 4390000000,
+    "22403 result = c.mapTypeWithAlias(distributionType, func(t *Type) *Type {": 1120000000,
+    "22397 distributionType = c.getReducedType(newMapper.Map(checkType))": 430000000,
+    "22396 if root.isDistributive {": 20000000,
+    "22389 typeArguments := core.Map(root.outerTypeParameters, mapper.Map)": 10000000,
+    "22391 result := root.instantiations[key]": 10000000
+  },
+  "aliasMissWorkerBranchNs": {
+    "flags&TypeFlagsConditional != 0": 5980000000,
+    "flags&TypeFlagsObject != 0": 1430000000,
+    "flags&TypeFlagsUnionOrIntersection != 0": 150000000,
+    "flags&TypeFlagsIndexedAccess != 0": 10000000,
+    "outside worker": 10000000
   }
 }

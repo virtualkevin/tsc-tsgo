@@ -10,7 +10,10 @@ import sys
 
 here = Path(__file__).resolve().parent
 archive = here.parent/"avx-opportunity-audit"
-source = (here.parents[2]/"packages/tsc-go/internal/checker/checker.go").read_text().splitlines()
+source = subprocess.check_output(
+    ["git", "show", "395df1a:packages/tsc-go/internal/checker/checker.go"],
+    cwd=here.parents[2], text=True,
+).splitlines()
 assert "getTypeOfMappedSymbol(symbol" in source[20880]
 assert "c.instantiateType(templateType, mapper)" in source[20890]
 
