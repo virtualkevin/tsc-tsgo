@@ -1,0 +1,17 @@
+goos: linux
+goarch: amd64
+pkg: github.com/microsoft/typescript-go/internal/api/encoder
+cpu: Intel Xeon Processor (Cascadelake)
+BenchmarkLibraryFrontEnd/lib.dom.d.ts/parse-8         	       6	  58560495 ns/op	11684600 B/op	    2874 allocs/op
+BenchmarkLibraryFrontEnd/lib.dom.d.ts/parse-8         	       6	  81063427 ns/op	11657250 B/op	    2872 allocs/op
+BenchmarkLibraryFrontEnd/lib.dom.d.ts/parse-8         	       4	  79442173 ns/op	11670162 B/op	    2876 allocs/op
+BenchmarkLibraryFrontEnd/lib.dom.d.ts/decode-8        	       7	  62281728 ns/op	22691933 B/op	    7339 allocs/op
+BenchmarkLibraryFrontEnd/lib.dom.d.ts/decode-8        	      10	  59882163 ns/op	22691953 B/op	    7339 allocs/op
+BenchmarkLibraryFrontEnd/lib.dom.d.ts/decode-8        	       9	  51222604 ns/op	22691959 B/op	    7339 allocs/op
+BenchmarkLibraryFrontEnd/lib.es5.d.ts/parse-8         	      43	  10516900 ns/op	 1217668 B/op	     565 allocs/op
+BenchmarkLibraryFrontEnd/lib.es5.d.ts/parse-8         	      33	  10084239 ns/op	 1217585 B/op	     565 allocs/op
+BenchmarkLibraryFrontEnd/lib.es5.d.ts/parse-8         	      60	   9128035 ns/op	 1217713 B/op	     565 allocs/op
+BenchmarkLibraryFrontEnd/lib.es5.d.ts/decode-8        	      39	  10048364 ns/op	 2755218 B/op	    2531 allocs/op
+BenchmarkLibraryFrontEnd/lib.es5.d.ts/decode-8        	      55	   6418622 ns/op	 2755208 B/op	    2531 allocs/op
+BenchmarkLibraryFrontEnd/lib.es5.d.ts/decode-8        	      48	   6428634 ns/op	 2755214 B/op	    2531 allocs/op
+PASS
