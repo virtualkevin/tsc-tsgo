@@ -87,6 +87,11 @@ for project, commit, workers in observed_projects(binary, projects={"sentry"} if
     for stats in result.values():
         assert stats["NewWideUnion"] <= stats["WideUnion"] <= stats["Union"] <= stats["Calls"]
         assert stats["CachedOrdinaryKeys"] <= stats["ResolvedOrdinaryObject"] <= stats["ObjectQueries"] <= stats["Calls"]
+    if references:
+        metrics = ("Calls", "SymbolsCreated", "TypesCreated", "Instantiations")
+        for label, stats in result.items():
+            if label.startswith("reference:"):
+                result[label] = {metric: stats[metric] for metric in metrics}
     report["projects"][project] = {"commit": commit, "byLiteral": result}
     print(project, result, flush=True)
 (here / ("references.json" if references else "shapes.json" if shapes else "predictions.json" if predict else "counts.json")).write_text(json.dumps(report, indent=2) + "\n")
