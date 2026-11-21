@@ -490,3 +490,7 @@
 | Bounded scalar union pairs | trpc | Matched ordinary Go build | 467.89 | 463.79 | 1.009× | 4 | Clean cold checks. [Samples](benchmarks/profiles/union-input-reuse/small.json.gz) |
 | Bounded scalar union pairs | vscode | Matched ordinary Go build | 34254.70 | 33414.09 | 1.025× | 2 | Clean cold checks. [Samples](benchmarks/profiles/union-input-reuse/large.json.gz) |
 | Bounded scalar union pairs | sentry | Matched ordinary Go build | 27846.31 | 30540.01 | 0.912× | 2 | Clean cold checks. [Samples](benchmarks/profiles/union-input-reuse/large.json.gz) |
+| Template index prefix/suffix guard | vscode | Previous shipping Go | 41599.35 | 43216.08 | 0.963× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/screen.json.gz) |
+| Template index prefix/suffix guard | sentry | Previous shipping Go | 33703.35 | 30895.84 | 1.091× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/screen.json.gz) |
+| Template index prefix/suffix guard | typeorm | Previous shipping Go | 3235.43 | 3628.48 | 0.892× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/screen.json.gz) |
+| Template index prefix/suffix guard | trpc | Previous shipping Go | 639.49 | 726.38 | 0.880× | 2 | Fresh checks, alternating order. [Samples](benchmarks/profiles/template-index-text/screen.json.gz) |
