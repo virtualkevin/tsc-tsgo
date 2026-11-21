@@ -16,6 +16,7 @@ parser.add_argument("native", type=Path)
 parser.add_argument("control", type=Path)
 parser.add_argument("candidate", type=Path)
 parser.add_argument("sizes", nargs="*", type=int, default=[4096, 32768, 131072])
+parser.add_argument("--case", choices=("template", "intersection"), default="template")
 parser.add_argument("--blocks", type=int, default=3)
 parser.add_argument("--output", type=Path, default=here/"scaling.json")
 args = parser.parse_args()
@@ -37,10 +38,19 @@ with TemporaryDirectory() as folder:
                              cwd=folder, env=env, capture_output=True, timeout=180)
         return (time.perf_counter_ns()-start)/1e6, run
     for size in sizes:
-        keys = " | ".join(f'"k{i:06}{"yes" if i%2==0 else "no"}"' for i in range(size))
-        source = ('type Keys = '+keys+';\ntype Allowed = Keys | `${string}yes`;\n'
-                  'const retained: Allowed = "k000001no";\nconst pattern: Allowed = "outsideyes";\n')
-        path.write_text(source+'const invalid: Allowed = "outsideno";\n')
+        if args.case == "intersection":
+            # Sorted inputs interleave. Multiples of six belong to both unions.
+            left = " | ".join(f'"k{i:06}"' for i in range(0, size, 2))
+            right = " | ".join(f'"k{i:06}"' for i in range(0, size, 3))
+            source = (f'type A = {left};\ntype B = {right};\ntype Allowed = A & B;\n'
+                      'const retained: Allowed = "k000006";\n')
+            invalid = 'const invalid: Allowed = "k000002";\n'
+        else:
+            keys = " | ".join(f'"k{i:06}{"yes" if i%2==0 else "no"}"' for i in range(size))
+            source = ('type Keys = '+keys+';\ntype Allowed = Keys | `${string}yes`;\n'
+                      'const retained: Allowed = "k000001no";\nconst pattern: Allowed = "outsideyes";\n')
+            invalid = 'const invalid: Allowed = "outsideno";\n'
+        path.write_text(source + invalid)
         messages=[]
         for role in binaries:
             _, run = check(role)
