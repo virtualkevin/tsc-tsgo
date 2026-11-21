@@ -1,0 +1,101 @@
+package parser_test
+
+import (
+	"crypto/sha256"
+	"encoding/json"
+	"fmt"
+	"maps"
+	"os"
+	"path/filepath"
+	"slices"
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+	"github.com/microsoft/typescript-go/internal/core"
+	"github.com/microsoft/typescript-go/internal/parser"
+	"github.com/microsoft/typescript-go/internal/tspath"
+)
+
+type identifierInput struct {
+	Project, File, SHA256 string
+	text                  string
+}
+
+func identifierInputs(tb testing.TB) []identifierInput {
+	tb.Helper()
+	data, err := os.ReadFile(os.Getenv("IDENTIFIER_INPUTS"))
+	if err != nil {
+		tb.Fatal(err)
+	}
+	var inputs []identifierInput
+	if err := json.Unmarshal(data, &inputs); err != nil {
+		tb.Fatal(err)
+	}
+	for i := range inputs {
+		in := &inputs[i]
+		data, err := os.ReadFile(filepath.Join(os.Getenv("IDENTIFIER_ROOT"), in.Project, in.File))
+		if err != nil {
+			tb.Fatal(err)
+		}
+		if fmt.Sprintf("%x", sha256.Sum256(data)) != in.SHA256 {
+			tb.Fatalf("hash mismatch for %s", in.File)
+		}
+		in.text = string(data)
+	}
+	return inputs
+}
+
+func (in identifierInput) parse() *ast.SourceFile {
+	name := "/" + in.File
+	return parser.ParseSourceFile(ast.SourceFileParseOptions{FileName: name, Path: tspath.Path(name)}, in.text, core.GetScriptKindFromFileName(name))
+}
+
+func TestIdentifierTreeFingerprint(t *testing.T) {
+	inputs := append(identifierInputs(t),
+		identifierInput{Project: "fixture", File: "error.ts", text: "export async function f(,) { const = await x; let \\u0061 = ; }"},
+		identifierInput{Project: "fixture", File: "doc.js", text: "/** @param {{prop:string}} obj */\nfunction read(obj) { return obj.prop }"},
+		identifierInput{Project: "fixture", File: "view.tsx", text: "const View = (p: P) => <UI.Box title={p.\\u006eame}/>;"})
+	for _, in := range inputs {
+		file := in.parse()
+		h := sha256.New()
+		fmt.Fprintln(h, file.NodeCount, file.TextCount, file.IdentifierCount, slices.Sorted(maps.Keys(file.Identifiers)))
+		var visit func(*ast.Node, *ast.Node)
+		visit = func(n, parent *ast.Node) {
+			fmt.Fprint(h, n.Kind, " ", n.Pos(), " ", n.End(), " ", n.Flags, " ", n.Parent == parent, " ")
+			if n.Kind == ast.KindIdentifier {
+				fmt.Fprintf(h, "%q", n.AsIdentifier().Text)
+			}
+			fmt.Fprintln(h)
+			n.ForEachChild(func(child *ast.Node) bool { visit(child, n); return false })
+			fmt.Fprintln(h, "end")
+		}
+		visit(file.AsNode(), nil)
+		for _, set := range [][]*ast.Diagnostic{file.Diagnostics(), file.JSDiagnostics(), file.JSDocDiagnostics()} {
+			for _, d := range set {
+				fmt.Fprintln(h, d.Code(), d.Pos(), d.Len(), d.MessageArgs())
+			}
+			fmt.Fprintln(h, "end")
+		}
+		fmt.Printf("TREE %s %s %x\n", in.Project, in.File, h.Sum(nil))
+	}
+}
+
+func BenchmarkIdentifierProjectParsing(b *testing.B) {
+	inputs := identifierInputs(b)
+	for _, project := range []string{"vscode", "sentry", "typeorm", "trpc"} {
+		b.Run(project, func(b *testing.B) {
+			var files []identifierInput
+			for _, in := range inputs {
+				if in.Project == project {
+					files = append(files, in)
+				}
+			}
+			b.ReportAllocs()
+			for b.Loop() {
+				for _, in := range files {
+					in.parse()
+				}
+			}
+		})
+	}
+}

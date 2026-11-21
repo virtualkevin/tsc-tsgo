@@ -1,0 +1,50 @@
+--- a/packages/tsc-go/internal/ast/ast.go
++++ b/packages/tsc-go/internal/ast/ast.go
+@@ -85,6 +85,26 @@
+ func (f *NodeFactory) newNode(kind Kind, data nodeData) *Node {
+ 	f.nodeCount++
+ 	return newNode(kind, data, f.hooks)
++}
++
++// NewParsedIdentifier initializes a leaf with its final source location.
++func (f *NodeFactory) NewParsedIdentifier(text string, loc core.TextRange, flags NodeFlags) *Node {
++	if f.hooks.OnCreate != nil {
++		n := f.NewIdentifier(text)
++		n.Loc = loc
++		n.Flags |= flags
++		return n
++	}
++	data := f.identifierArena.New()
++	data.Text = text
++	n := data.AsNode()
++	n.Kind = KindIdentifier
++	n.Loc = loc
++	n.Flags = flags
++	n.data = data
++	f.textCount++
++	f.nodeCount++
++	return n
+ }
+ 
+ func (f *NodeFactory) NodeCount() int {
+--- a/packages/tsc-go/internal/parser/parser.go
++++ b/packages/tsc-go/internal/parser/parser.go
+@@ -5866,7 +5866,17 @@
+ 		}
+ 		text := p.scanner.TokenValue()
+ 		p.nextTokenWithoutCheck()
+-		return p.finishNode(p.newIdentifier(p.internIdentifier(text)), pos)
++		text = p.internIdentifier(text)
++		p.identifierCount++
++		if text == "await" {
++			p.statementHasAwaitIdentifier = true
++		}
++		flags := p.contextFlags
++		if p.hasParseError {
++			flags |= ast.NodeFlagsThisNodeHasError
++			p.hasParseError = false
++		}
++		return p.factory.NewParsedIdentifier(text, core.NewTextRange(pos, p.nodePos()), flags)
+ 	}
+ 	if p.token == ast.KindPrivateIdentifier {
+ 		if privateIdentifierDiagnosticMessage != nil {
