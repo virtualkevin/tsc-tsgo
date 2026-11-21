@@ -37,12 +37,12 @@ src = src.replace(site, """memFile.Close()
         if _, err := SaveAllocProfile(filepath.Dir(p.memFilePath)); err != nil { panic(err) }
         runtime.ReadMemStats(&stats)
         fmt.Fprintf(p.logWriter, "TotalAlloc after profiling: %d\\n", stats.TotalAlloc)""")
-dest = out / "terminal_pprof.go"
-dest.write_text(src)
+profiler_source = out / "terminal_pprof.go"
+profiler_source.write_text(src)
 report = {"projectCommit": p["commit"], "args": p["compilerArgs"]["candidate"], "binaries": {}}
 for role in ("control", "candidate"):
     files = json.loads((out / "overlay.json").read_text())["Replace"] if role == "candidate" else {}
-    files[str(profiler)] = str(dest)
+    files[str(profiler)] = str(profiler_source)
     overlay = out / (role + "-terminal.json")
     overlay.write_text(json.dumps({"Replace": files}))
     binary = out / (role + "-terminal")
