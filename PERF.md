@@ -438,3 +438,11 @@
 | Coallocated parser first pages | trpc | Matched Go control | 427.54 | 445.65 | 0.959× | 4 | Paired median 0.962×. [Samples](benchmarks/profiles/parser-slab-demand/small.json.gz) |
 | Coallocated parser first pages | vscode | Matched Go control | 31808.74 | 31671.78 | 1.004× | 2 | Paired median 1.004×. [Samples](benchmarks/profiles/parser-slab-demand/large.json.gz) |
 | Coallocated parser first pages | sentry | Matched Go control | 27355.09 | 26801.77 | 1.021× | 2 | Paired median 1.021×. [Samples](benchmarks/profiles/parser-slab-demand/large.json.gz) |
+| Lazy per-kind AST pages, file discovery | trpc | Matched Go control | 190.24 | 200.45 | 0.949× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/parser-slab-demand/lazy-discovery.json) |
+| Lazy per-kind AST pages, file discovery | typeorm | Matched Go control | 611.99 | 574.19 | 1.066× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/parser-slab-demand/lazy-discovery.json) |
+| Lazy per-kind AST pages, file discovery | vscode | Matched Go control | 5500.90 | 5547.95 | 0.992× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/parser-slab-demand/lazy-discovery.json) |
+| Lazy per-kind AST pages, file discovery | sentry | Matched Go control | 2959.84 | 2913.71 | 1.016× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/parser-slab-demand/lazy-discovery.json) |
+| Lazy per-kind AST pages | typeorm | Matched Go control | 2458.64 | 2368.48 | 1.038× | 4 | Paired median 1.061×. [Samples](benchmarks/profiles/parser-slab-demand/lazy-small.json.gz) |
+| Lazy per-kind AST pages | trpc | Matched Go control | 449.03 | 416.85 | 1.077× | 4 | Paired median 1.051×. [Samples](benchmarks/profiles/parser-slab-demand/lazy-small.json.gz) |
+| Lazy per-kind AST pages | vscode | Matched Go control | 34434.15 | 33611.67 | 1.024× | 2 | Paired median 1.025×. [Samples](benchmarks/profiles/parser-slab-demand/lazy-large.json.gz) |
+| Lazy per-kind AST pages | sentry | Matched Go control | 27443.70 | 29233.33 | 0.939× | 2 | Paired median 0.939×. [Samples](benchmarks/profiles/parser-slab-demand/lazy-large.json.gz) |

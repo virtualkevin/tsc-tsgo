@@ -1,0 +1,200 @@
+{
+  "binarySha256": {
+    "control": "c7dac6474a23feb85b8f0b1cd1bb6a8309d35a35e7b2574e51f1b0f65d24f7f7",
+    "candidate": "70575c0b3855d59f3838e3bd810e10fb365fbd5b83a53e262b2e60c76226c297"
+  },
+  "projects": {
+    "trpc": {
+      "commit": "10e2ef98f7842b94eb3026e4f9bcfe62cc39b088",
+      "files": 942,
+      "extendedDiagnostics": {
+        "control": {
+          "Files": 942,
+          "Lines": 209550,
+          "Identifiers": 203324,
+          "Symbols": 129987,
+          "Types": 340,
+          "Instantiations": 0,
+          "Memory used": 115099,
+          "Memory allocs": 377594
+        },
+        "candidate": {
+          "Files": 942,
+          "Lines": 209550,
+          "Identifiers": 203324,
+          "Symbols": 129987,
+          "Types": 340,
+          "Instantiations": 0,
+          "Memory used": 113871,
+          "Memory allocs": 374751
+        }
+      },
+      "blocksMs": [
+        {
+          "control": 197.760527,
+          "candidate": 167.3379
+        },
+        {
+          "candidate": 185.391064,
+          "control": 185.948315
+        },
+        {
+          "control": 194.142157,
+          "candidate": 215.508087
+        },
+        {
+          "candidate": 223.515966,
+          "control": 186.347037
+        }
+      ],
+      "medianMs": {
+        "control": 190.244597,
+        "candidate": 200.44957549999998
+      }
+    },
+    "typeorm": {
+      "commit": "fe92394287516feeada6e9c308ebe22deca2458e",
+      "files": 3572,
+      "extendedDiagnostics": {
+        "control": {
+          "Files": 3572,
+          "Lines": 386634,
+          "Identifiers": 444563,
+          "Symbols": 187203,
+          "Types": 356,
+          "Instantiations": 0,
+          "Memory used": 246332,
+          "Memory allocs": 1345478
+        },
+        "candidate": {
+          "Files": 3572,
+          "Lines": 386634,
+          "Identifiers": 444563,
+          "Symbols": 187203,
+          "Types": 356,
+          "Instantiations": 0,
+          "Memory used": 244660,
+          "Memory allocs": 1316637
+        }
+      },
+      "blocksMs": [
+        {
+          "control": 581.439259,
+          "candidate": 555.967005
+        },
+        {
+          "candidate": 558.915375,
+          "control": 689.052225
+        },
+        {
+          "control": 578.555501,
+          "candidate": 633.572366
+        },
+        {
+          "candidate": 589.471394,
+          "control": 642.531153
+        }
+      ],
+      "medianMs": {
+        "control": 611.9852060000001,
+        "candidate": 574.1933845000001
+      }
+    },
+    "vscode": {
+      "commit": "51266f6f4a66a9519a8b4974fe60365cd9b49eac",
+      "files": 11563,
+      "extendedDiagnostics": {
+        "control": {
+          "Files": 11563,
+          "Lines": 4036783,
+          "Identifiers": 7444484,
+          "Symbols": 2927632,
+          "Types": 340,
+          "Instantiations": 0,
+          "Memory used": 3390676,
+          "Memory allocs": 8929222
+        },
+        "candidate": {
+          "Files": 11563,
+          "Lines": 4036783,
+          "Identifiers": 7444484,
+          "Symbols": 2927632,
+          "Types": 340,
+          "Instantiations": 0,
+          "Memory used": 3299074,
+          "Memory allocs": 8880150
+        }
+      },
+      "blocksMs": [
+        {
+          "control": 5493.647337,
+          "candidate": 5621.427517
+        },
+        {
+          "candidate": 5674.860141,
+          "control": 5508.143174
+        },
+        {
+          "control": 5450.681485,
+          "candidate": 5235.662629
+        },
+        {
+          "candidate": 5474.46394,
+          "control": 5931.9824
+        }
+      ],
+      "medianMs": {
+        "control": 5500.8952555,
+        "candidate": 5547.9457285
+      }
+    },
+    "sentry": {
+      "commit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+      "files": 13290,
+      "extendedDiagnostics": {
+        "control": {
+          "Files": 13290,
+          "Lines": 2130849,
+          "Identifiers": 2594398,
+          "Symbols": 1472208,
+          "Types": 332,
+          "Instantiations": 0,
+          "Memory used": 1468124,
+          "Memory allocs": 6972941
+        },
+        "candidate": {
+          "Files": 13290,
+          "Lines": 2130849,
+          "Identifiers": 2594398,
+          "Symbols": 1472208,
+          "Types": 332,
+          "Instantiations": 0,
+          "Memory used": 1445193,
+          "Memory allocs": 6874605
+        }
+      },
+      "blocksMs": [
+        {
+          "control": 2997.133963,
+          "candidate": 2906.282568
+        },
+        {
+          "candidate": 2921.14101,
+          "control": 2848.496334
+        },
+        {
+          "control": 3033.348727,
+          "candidate": 3046.633088
+        },
+        {
+          "candidate": 2857.457971,
+          "control": 2922.553519
+        }
+      ],
+      "medianMs": {
+        "control": 2959.843741,
+        "candidate": 2913.711789
+      }
+    }
+  }
+}
