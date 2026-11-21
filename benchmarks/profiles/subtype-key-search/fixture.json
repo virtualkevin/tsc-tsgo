@@ -1,0 +1,17 @@
+{
+  "source": "type A = { kind: \"a\"; value: number };\ntype B = { kind: \"b\"; value: string };\ntype C = { kind: \"c\"; value: boolean };\ndeclare const a: A, b: B, c: C, cond: boolean;\nexport const pair = cond ? a : b;\nexport const other = cond ? a : c;\nexport const many = [a, b, c];\nconst invalid: number = other.value;\n",
+  "diagnostics": "main.ts(8,7): error TS2322: Type 'number | boolean' is not assignable to type 'number'.\n  Type 'boolean' is not assignable to type 'number'.\n",
+  "counts": [
+    7,
+    7,
+    4,
+    4,
+    4,
+    0,
+    0,
+    7,
+    0,
+    0,
+    10
+  ]
+}

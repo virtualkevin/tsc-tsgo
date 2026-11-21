@@ -26,6 +26,7 @@ for project in json.loads((archive / "report.json").read_text())["projects"]:
             frames[addr].append(match[1])
     total = 0
     buckets = Counter()
+    subtype_children = Counter()
     worker = "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker"
     for line in samples.splitlines():
         match = re.match(r"^\s+\d+\s+(\d+):\s*(.*)$", line)
@@ -37,9 +38,14 @@ for project in json.loads((archive / "report.json").read_text())["projects"]:
         for i in range(len(stack)-1, -1, -1):
             if stack[i] == worker:
                 callee = stack[i-1] if i else "worker self"
-                buckets[callee.removeprefix("github.com/microsoft/typescript-go/internal/")] += ns
+                child = callee.removeprefix("github.com/microsoft/typescript-go/internal/")
+                buckets[child] += ns
+                if child == "checker.(*Checker).removeSubtypes":
+                    nested = stack[i-2] if i >= 2 else "removeSubtypes self"
+                    subtype_children[nested.removeprefix("github.com/microsoft/typescript-go/internal/")] += ns
                 break
     assert total == project["totalCpuNs"] and buckets
     report[name] = dict(rawSha256=project["rawSha256"], totalCpuNs=total,
-                        workerCpuNs=sum(buckets.values()), childrenNs=dict(buckets.most_common()))
+                        workerCpuNs=sum(buckets.values()), childrenNs=dict(buckets.most_common()),
+                        subtypeChildrenNs=dict(subtype_children.most_common()))
 (here / "cpu.json").write_text(json.dumps(report,indent=2) + "\n")

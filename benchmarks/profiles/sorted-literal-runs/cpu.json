@@ -9,6 +9,12 @@
       "checker.(*Checker).addTypesToUnion": 120000000,
       "runtime.makeslice": 40000000,
       "worker self": 10000000
+    },
+    "subtypeChildrenNs": {
+      "core.Find[go.shape.*uint8]": 80000000,
+      "checker.(*Checker).isTypeRelatedTo": 70000000,
+      "checker.(*Checker).getPropertiesOfType": 40000000,
+      "removeSubtypes self": 10000000
     }
   },
   "trpc": {
@@ -20,6 +26,10 @@
       "checker.(*Checker).removeSubtypes": 20000000,
       "checker.(*Checker).newUnionType": 10000000,
       "runtime.makeslice": 10000000
+    },
+    "subtypeChildrenNs": {
+      "core.Find[go.shape.*uint8]": 10000000,
+      "checker.(*Checker).isTypeRelatedTo": 10000000
     }
   },
   "vscode": {
@@ -38,6 +48,17 @@
       "checker.insertType": 20000000,
       "checker.(*Checker).addNamedUnions": 20000000,
       "runtime.growslice": 10000000
+    },
+    "subtypeChildrenNs": {
+      "core.Find[go.shape.*uint8]": 3780000000,
+      "checker.(*Checker).getPropertiesOfType": 2870000000,
+      "checker.(*Checker).isTypeRelatedTo": 1230000000,
+      "core.Some[go.shape.*uint8]": 390000000,
+      "runtime.mapaccess1": 100000000,
+      "removeSubtypes self": 70000000,
+      "checker.(*Checker).getTypeOfPropertyOfType": 40000000,
+      "checker.getTypeListKey": 30000000,
+      "runtime.mapassign": 10000000
     }
   },
   "sentry": {
@@ -58,6 +79,18 @@
       "checker.(*Checker).addNamedUnions": 50000000,
       "checker.insertType": 30000000,
       "runtime.asyncPreempt": 10000000
+    },
+    "subtypeChildrenNs": {
+      "core.Find[go.shape.*uint8]": 1580000000,
+      "checker.(*Checker).isTypeRelatedTo": 1480000000,
+      "checker.(*Checker).getPropertiesOfType": 860000000,
+      "core.Some[go.shape.*uint8]": 40000000,
+      "checker.(*Checker).getTypeOfPropertyOfType": 40000000,
+      "runtime.mapaccess1": 30000000,
+      "removeSubtypes self": 30000000,
+      "checker.getTypeListKey": 20000000,
+      "slices.Delete[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]": 20000000,
+      "runtime.mapassign": 10000000
     }
   }
 }
