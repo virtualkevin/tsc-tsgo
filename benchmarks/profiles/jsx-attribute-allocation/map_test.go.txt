@@ -1,0 +1,119 @@
+package checker
+
+import (
+	"fmt"
+	"slices"
+	"testing"
+)
+
+// Retain the eager traversal as a differential oracle for this experiment.
+func eagerMap(c *Checker, t *Type, f func(*Type) *Type, noReductions bool) *Type {
+	if t.flags&TypeFlagsNever != 0 {
+		return t
+	}
+	if t.flags&TypeFlagsUnion == 0 {
+		return f(t)
+	}
+	u := t.AsUnionType()
+	types := u.types
+	if u.origin != nil && u.origin.flags&TypeFlagsUnion != 0 {
+		types = u.origin.Types()
+	}
+	list := make([]*Type, 0, 16)
+	changed := false
+	for _, s := range types {
+		var m *Type
+		if s.flags&TypeFlagsUnion != 0 {
+			m = eagerMap(c, s, f, noReductions)
+		} else {
+			m = f(s)
+		}
+		changed = changed || m != s
+		if m != nil {
+			list = append(list, m)
+		}
+	}
+	if !changed {
+		return t
+	}
+	if len(list) == 0 {
+		return nil
+	}
+	reduction := UnionReductionLiteral
+	if noReductions {
+		reduction = UnionReductionNone
+	}
+	return c.getUnionTypeEx(slices.Clone(list), reduction, nil, nil)
+}
+
+func TestMapUnionFirstChange(t *testing.T) {
+	c := templateCacheTestChecker()
+	items := make([]*Type, 65)
+	for i := range items {
+		items[i] = c.getStringLiteralType(fmt.Sprint(i))
+	}
+	union := c.newUnionType(ObjectFlagsPrimitiveUnion, slices.Clone(items))
+	nested := c.newUnionType(ObjectFlagsNone, []*Type{items[3], union, items[2]})
+	origin := c.newUnionType(ObjectFlagsNone, []*Type{items[0], items[1]})
+	origin.AsUnionType().origin = nested
+	for _, input := range []*Type{c.neverType, items[0], union, nested, origin} {
+		for _, pos := range []int{-1, 0, 1, 16, 64} {
+			for _, mode := range []string{"identity", "drop", "replace", "dropPrefix", "dropAll"} {
+				for _, noReductions := range []bool{true, false} {
+					run := func(mapper func(*Checker, *Type, func(*Type) *Type, bool) *Type) (*Type, []*Type) {
+						var visited []*Type
+						got := mapper(c, input, func(v *Type) *Type {
+							index := len(visited)
+							visited = append(visited, v)
+							if mode == "dropAll" || mode == "dropPrefix" && index < pos || mode == "drop" && index == pos {
+								return nil
+							}
+							if mode == "replace" && index == pos {
+								return items[5]
+							}
+							return v
+						}, noReductions)
+						return got, visited
+					}
+					want, a := run(eagerMap)
+					got, b := run((*Checker).mapTypeEx)
+					if got != want || !slices.Equal(a, b) || !slices.Equal(union.Types(), items) {
+						t.Fatalf("mode %s index %d noReductions %v", mode, pos, noReductions)
+					}
+				}
+			}
+		}
+	}
+}
+
+func BenchmarkMapUnionChange(b *testing.B) {
+	c := templateCacheTestChecker()
+	items := make([]*Type, 512)
+	for i := range items {
+		items[i] = c.getStringLiteralType(fmt.Sprint(i))
+	}
+	union := c.newUnionType(ObjectFlagsPrimitiveUnion, items)
+	for _, size := range []int{4, 16, 512} {
+		union.AsUnionType().types = items[:size]
+		for _, change := range []int{-1, 0, size - 1} {
+			f := func(t *Type) *Type {
+				if change >= 0 && t == items[change] {
+					return nil
+				}
+				return t
+			}
+			for _, candidate := range []bool{false, true} {
+				b.Run(fmt.Sprintf("size=%d/change=%d/lazy=%v", size, change, candidate), func(b *testing.B) {
+					b.ReportAllocs()
+					for b.Loop() {
+						if candidate {
+							c.mapTypeEx(union, f, false)
+						} else {
+							eagerMap(c, union, f, false)
+						}
+					}
+				})
+			}
+		}
+	}
+}

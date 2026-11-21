@@ -1,0 +1,2354 @@
+{
+  "controlBytes": {
+    "total": 4986044768,
+    "attribute": 429891543,
+    "branches": {
+      "isConstContext": 166019113,
+      "checkExpressionEx": 145793772,
+      "getContextualType": 114272259,
+      "getWidenedLiteralLikeTypeForContextualType": 3806399
+    },
+    "stages": [
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 154448170
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "weight": 121407384
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 97917640
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "weight": 13265634
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 10584083
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 10559359
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 9459125
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "weight": 5795260
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "weight": 3806399
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "weight": 2111818
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 536671
+      }
+    ],
+    "consumers": [
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 118121125
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 85220970
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 74364543
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 35795944
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getUnionTypeWorker",
+        "weight": 15576496
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 12208792
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getResolvedSignature",
+        "weight": 11114222
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 10044058
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getTypeOfSymbol",
+        "weight": 8707409
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 6355166
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 5273988
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 4239064
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 4222300
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 3806399
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getSpreadType",
+        "weight": 3707710
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getTypeOfSymbol",
+        "weight": 3547754
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getUnionTypeWorker",
+        "weight": 3266796
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 3168070
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getTypeOfSymbol",
+        "weight": 2647121
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "instantiateTypeWithAlias",
+        "weight": 2635582
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 2111770
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 1595987
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 1587522
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "<other>",
+        "weight": 1572976
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "consumer": "instantiateTypeWithAlias",
+        "weight": 1572960
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getUnionTypeWorker",
+        "weight": 1065274
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 1062358
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "<other>",
+        "weight": 1048588
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 540842
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getUnionTypeWorker",
+        "weight": 536671
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "consumer": "getResolvedSignature",
+        "weight": 532522
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getResolvedSignature",
+        "weight": 531101
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 531101
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 529746
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "consumer": "<other>",
+        "weight": 524320
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "consumer": "getUnionTypeWorker",
+        "weight": 524296
+      }
+    ],
+    "topSites": [
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).mapTypeEx:25556",
+        "weight": 45795453
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow:55",
+        "weight": 25165824
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8]:43",
+        "weight": 24152868
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21362",
+        "weight": 17430515
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "slices.Clone[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:360",
+        "weight": 16290469
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25620",
+        "weight": 11206345
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21362",
+        "weight": 11113812
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21367",
+        "weight": 10570742
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).addInheritedMembers:19506",
+        "weight": 10058288
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:35",
+        "weight": 9015442
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21367",
+        "weight": 7413786
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:35",
+        "weight": 7405464
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*Set[go.shape.string]).Add:28",
+        "weight": 7400410
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getStringLiteralType:25275",
+        "weight": 6456456
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newUnionType:25155",
+        "weight": 6293184
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:144",
+        "weight": 5980454
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Set:68",
+        "weight": 5767960
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "slices.Grow[go.shape.[]go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0]:426",
+        "weight": 5380380
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newLiteralType:25009",
+        "weight": 5243360
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "site": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:144",
+        "weight": 4911460
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Grow[go.shape.[]go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0]:426",
+        "weight": 4304304
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*Set[go.shape.string]).Add:28",
+        "weight": 4228272
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Set:68",
+        "weight": 4194880
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Clone[go.shape.[]go.shape.*uint8,go.shape.*uint8]:360",
+        "weight": 4194432
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).mapTypeEx:25556",
+        "weight": 3806399
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.mergeStringLiteralRun:25778",
+        "weight": 3756255
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:32",
+        "weight": 3684631
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.newMergedTypeMapper:242",
+        "weight": 3670128
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow:55",
+        "weight": 3348975
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25677",
+        "weight": 3274907
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:144",
+        "weight": 3234881
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*LinkStore[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct { github.com/microsoft/typescript-go/internal/checker.keyType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.syntheticOrigin *github.com/microsoft/typescript-go/internal/ast.Symbol }]).Get:19",
+        "weight": 3201343
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).createUnionOrIntersectionProperty-range1:21546",
+        "weight": 3145832
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*LinkStore[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct { github.com/microsoft/typescript-go/internal/checker.keyType *github.com/microsoft/typescript-go/internal/checker.Type; github.com/microsoft/typescript-go/internal/checker.syntheticOrigin *github.com/microsoft/typescript-go/internal/ast.Symbol }]).Get:19",
+        "weight": 2667786
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "slices.Grow[go.shape.[]go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]:426",
+        "weight": 2662610
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21362",
+        "weight": 2644504
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:32",
+        "weight": 2635103
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newUnionType:25155",
+        "weight": 2622160
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newLiteralType:25009",
+        "weight": 2621680
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.newSimpleTypeMapper:104",
+        "weight": 2621520
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "strings.(*Builder).WriteString:114",
+        "weight": 2621480
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).createUnionOrIntersectionProperty-range1:21546",
+        "weight": 2621476
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Grow[go.shape.[]go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0]:426",
+        "weight": 2152152
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getStringLiteralType:25275",
+        "weight": 2152152
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeFromSortedList:25718",
+        "weight": 2152152
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:144",
+        "weight": 2139945
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Grow[go.shape.[]go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]:426",
+        "weight": 2130089
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Grow[go.shape.[]go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]:426",
+        "weight": 2130089
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "site": "slices.Grow[go.shape.[]go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]:426",
+        "weight": 2130088
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getSpreadType:13387",
+        "weight": 2125204
+      }
+    ],
+    "mappingCallers": [
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25550,
+        "weight": 130401351
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25536,
+        "weight": 58758442
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25556,
+        "weight": 45202677
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25563,
+        "weight": 35361798
+      },
+      {
+        "caller": "getTemplateLiteralType",
+        "line": 25550,
+        "weight": 29624151
+      },
+      {
+        "caller": "getSpreadType",
+        "line": 25550,
+        "weight": 25898584
+      },
+      {
+        "caller": "getRegularTypeOfLiteralType",
+        "line": 25556,
+        "weight": 17479779
+      },
+      {
+        "caller": "getTemplateLiteralType",
+        "line": 25563,
+        "weight": 15899033
+      },
+      {
+        "caller": "getRestType",
+        "line": 25550,
+        "weight": 13192303
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25563,
+        "weight": 9452856
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25536,
+        "weight": 7879054
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25563,
+        "weight": 7872874
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25563,
+        "weight": 5917469
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25556,
+        "weight": 5252036
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25550,
+        "weight": 5071970
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25536,
+        "weight": 4732986
+      },
+      {
+        "caller": "getLowerBoundOfKeyType",
+        "line": 25556,
+        "weight": 4727171
+      },
+      {
+        "caller": "getWidenedUniqueESSymbolType",
+        "line": 25556,
+        "weight": 4198592
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25556,
+        "weight": 3673408
+      },
+      {
+        "caller": "getAdjustedTypeWithFacts",
+        "line": 25556,
+        "weight": 2168072
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25550,
+        "weight": 2125660
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25550,
+        "weight": 1614114
+      },
+      {
+        "caller": "extractDefinitelyFalsyTypes",
+        "line": 25563,
+        "weight": 1574192
+      },
+      {
+        "caller": "getSpreadType",
+        "line": 25563,
+        "weight": 1062470
+      },
+      {
+        "caller": "narrowTypeByTypeFacts",
+        "line": 25536,
+        "weight": 1062454
+      },
+      {
+        "caller": "getAwaitedTypeNoAliasEx",
+        "line": 25550,
+        "weight": 538038
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25536,
+        "weight": 526017
+      },
+      {
+        "caller": "getContextualTypeForElementExpression",
+        "line": 25563,
+        "weight": 525825
+      },
+      {
+        "caller": "getInferredType",
+        "line": 25550,
+        "weight": 525184
+      },
+      {
+        "caller": "getTemplateLiteralType",
+        "line": 25556,
+        "weight": 524864
+      },
+      {
+        "caller": "getWidenedLiteralType",
+        "line": 25556,
+        "weight": 524416
+      },
+      {
+        "caller": "getBaseTypeOfLiteralTypeUnion",
+        "line": 25563,
+        "weight": 524328
+      }
+    ]
+  },
+  "sparse-controlBytes": {
+    "total": 5066636318,
+    "attribute": 423634864,
+    "branches": {
+      "isConstContext": 171467754,
+      "checkExpressionEx": 137112300,
+      "getContextualType": 111875177,
+      "getWidenedLiteralLikeTypeForContextualType": 3179633
+    },
+    "stages": [
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 160819019
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "weight": 113228197
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 96614939
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "weight": 12290851
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 10018927
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 8537585
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 7891806
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "weight": 7368432
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "weight": 3179633
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "weight": 2111150
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 1574325
+      }
+    ],
+    "consumers": [
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 110816042
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 77825711
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 61707667
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 47887433
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getUnionTypeWorker",
+        "weight": 19318066
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 13728533
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 12290851
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getResolvedSignature",
+        "weight": 12127939
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getSpreadType",
+        "weight": 6349441
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getTypeOfSymbol",
+        "weight": 6312091
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 5795504
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 5794823
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 4231284
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getTypeOfSymbol",
+        "weight": 4218827
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 3720585
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getUnionTypeWorker",
+        "weight": 3226043
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 3179633
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 2638204
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 2625764
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 2624251
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getTypeOfSymbol",
+        "weight": 2161386
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 2115544
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 1594920
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 1573112
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "instantiateTypeWithAlias",
+        "weight": 1573096
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "consumer": "instantiateTypeWithAlias",
+        "weight": 1572928
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 1059883
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getTypeOfSymbol",
+        "weight": 829411
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "consumer": "instantiateTypeWithAlias",
+        "weight": 538038
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getResolvedSignature",
+        "weight": 526017
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getTypeOfSymbol",
+        "weight": 525633
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getUnionTypeWorker",
+        "weight": 524432
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 524400
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "<other>",
+        "weight": 524392
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 524392
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "<other>",
+        "weight": 524296
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "<other>",
+        "weight": 524292
+      }
+    ],
+    "topSites": [
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).mapTypeEx:25556",
+        "weight": 40465145
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8]:43",
+        "weight": 31504863
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow:55",
+        "weight": 25165824
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25620",
+        "weight": 13941550
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21362",
+        "weight": 13200225
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21367",
+        "weight": 12687615
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "slices.Clone[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:360",
+        "weight": 11160033
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:35",
+        "weight": 11148827
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*Set[go.shape.string]).Add:28",
+        "weight": 11091216
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21367",
+        "weight": 10575120
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).addInheritedMembers:19506",
+        "weight": 8973161
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:35",
+        "weight": 8484841
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*Set[go.shape.string]).Add:28",
+        "weight": 7402280
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21362",
+        "weight": 6868027
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Set:68",
+        "weight": 6816680
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:144",
+        "weight": 6011488
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Grow[go.shape.[]go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0]:426",
+        "weight": 5380381
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getStringLiteralType:25275",
+        "weight": 5380380
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newUnionType:25155",
+        "weight": 4719888
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "site": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:144",
+        "weight": 3800775
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "slices.Grow[go.shape.[]go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]:426",
+        "weight": 3727654
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "slices.Grow[go.shape.[]go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0]:426",
+        "weight": 3228228
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:144",
+        "weight": 3205921
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Set:68",
+        "weight": 3146160
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newLiteralType:25009",
+        "weight": 3146016
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Clone[go.shape.[]go.shape.*uint8,go.shape.*uint8]:360",
+        "weight": 3145816
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25677",
+        "weight": 2772199
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.mergeStringLiteralRun:25778",
+        "weight": 2685114
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Grow[go.shape.[]go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]:426",
+        "weight": 2662611
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getSpreadType:13387",
+        "weight": 2650492
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21362",
+        "weight": 2635189
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertiesOfUnionOrIntersectionType:18742",
+        "weight": 2633616
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:32",
+        "weight": 2627011
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newObjectType:25036",
+        "weight": 2622000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Insert[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:144",
+        "weight": 2143091
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow:55",
+        "weight": 2136279
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).mapTypeEx:25556",
+        "weight": 2130969
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).resolveMappedTypeMembers.func1:20871",
+        "weight": 2127798
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.mergeStringLiteralRun:25778",
+        "weight": 2126915
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).addInheritedMembers:19506",
+        "weight": 2118039
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).hasNeverReducedProperty:32",
+        "weight": 2110239
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newUnionType:25155",
+        "weight": 2097728
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newObjectType:25046",
+        "weight": 2097536
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).newLiteralType:25009",
+        "weight": 2097344
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Set:62",
+        "weight": 2097248
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/collections.(*OrderedMap[go.shape.*github.com/microsoft/typescript-go/internal/ast.Symbol,go.shape.struct {}]).Set:62",
+        "weight": 2097248
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "strings.(*Builder).WriteString:114",
+        "weight": 2097184
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.Replace[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8]:267",
+        "weight": 1699006
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionTypeWorker:25677",
+        "weight": 1627966
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).addInheritedMembers:19506",
+        "weight": 1614114
+      }
+    ],
+    "mappingCallers": [
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25550,
+        "weight": 137462104
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25536,
+        "weight": 82980577
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25556,
+        "weight": 41505181
+      },
+      {
+        "caller": "getSpreadType",
+        "line": 25550,
+        "weight": 30135294
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25563,
+        "weight": 29297572
+      },
+      {
+        "caller": "getTemplateLiteralType",
+        "line": 25550,
+        "weight": 22766629
+      },
+      {
+        "caller": "getRegularTypeOfLiteralType",
+        "line": 25556,
+        "weight": 16324477
+      },
+      {
+        "caller": "getTemplateLiteralType",
+        "line": 25563,
+        "weight": 15348263
+      },
+      {
+        "caller": "getRestType",
+        "line": 25550,
+        "weight": 10551870
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25536,
+        "weight": 8955702
+      },
+      {
+        "caller": "getLowerBoundOfKeyType",
+        "line": 25556,
+        "weight": 8935378
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25536,
+        "weight": 8417124
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25563,
+        "weight": 6827001
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25563,
+        "weight": 6371987
+      },
+      {
+        "caller": "getWidenedUniqueESSymbolType",
+        "line": 25556,
+        "weight": 6298432
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25556,
+        "weight": 5257036
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25563,
+        "weight": 4200835
+      },
+      {
+        "caller": "getAdjustedTypeWithFacts",
+        "line": 25556,
+        "weight": 3743944
+      },
+      {
+        "caller": "getWidenedLiteralType",
+        "line": 25556,
+        "weight": 3677891
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25556,
+        "weight": 2624128
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25550,
+        "weight": 1607177
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25550,
+        "weight": 1062438
+      },
+      {
+        "caller": "getContextualTypeForElementExpression",
+        "line": 25556,
+        "weight": 1053447
+      },
+      {
+        "caller": "getContextualTypeForElementExpression",
+        "line": 25563,
+        "weight": 1051650
+      },
+      {
+        "caller": "extractDefinitelyFalsyTypes",
+        "line": 25563,
+        "weight": 1048592
+      },
+      {
+        "caller": "getInferredType",
+        "line": 25550,
+        "weight": 532522
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25550,
+        "weight": 532522
+      },
+      {
+        "caller": "narrowTypeByTypeFacts",
+        "line": 25550,
+        "weight": 525184
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25556,
+        "weight": 524416
+      },
+      {
+        "caller": "narrowTypeByTypeFacts",
+        "line": 25563,
+        "weight": 524328
+      },
+      {
+        "caller": "getWidenedLiteralType",
+        "line": 25563,
+        "weight": 524296
+      },
+      {
+        "caller": "getNarrowedTypeOfSymbol",
+        "line": 25563,
+        "weight": 524296
+      }
+    ]
+  },
+  "controlCPUNanoseconds": {
+    "total": 132690000000,
+    "attribute": 11050000000,
+    "branches": {
+      "isConstContext": 5920000000,
+      "checkExpressionEx": 2660000000,
+      "getContextualType": 2180000000,
+      "instantiateContextualType": 180000000,
+      "getWidenedLiteralLikeTypeForContextualType": 90000000,
+      "<outside mutable location>": 20000000
+    },
+    "stages": [
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 4780000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "weight": 2040000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 1240000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 720000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "weight": 670000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 470000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "weight": 350000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "weight": 220000000
+      },
+      {
+        "branch": "instantiateContextualType",
+        "stage": "<other>",
+        "weight": 180000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "weight": 150000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "weight": 120000000
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "weight": 90000000
+      },
+      {
+        "branch": "<outside mutable location>",
+        "stage": "<other>",
+        "weight": 20000000
+      }
+    ],
+    "consumers": [
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 1860000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 1680000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 1280000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getTypeOfSymbol",
+        "weight": 1210000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 830000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 600000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getResolvedSignature",
+        "weight": 420000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getTypeOfSymbol",
+        "weight": 380000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 270000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "<other>",
+        "weight": 240000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "<other>",
+        "weight": 210000000
+      },
+      {
+        "branch": "instantiateContextualType",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 180000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getTypeOfSymbol",
+        "weight": 170000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 160000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getTypeOfSymbol",
+        "weight": 140000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 130000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getTypeOfSymbol",
+        "weight": 130000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "<other>",
+        "weight": 110000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "consumer": "getUnionOrIntersectionProperty",
+        "weight": 100000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getUnionTypeWorker",
+        "weight": 100000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 90000000
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 90000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "consumer": "getUnionTypeWorker",
+        "weight": 90000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getTypeOfSymbol",
+        "weight": 80000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getUnionTypeWorker",
+        "weight": 80000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "consumer": "getUnionTypeWorker",
+        "weight": 70000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getTypeOfSymbol",
+        "weight": 70000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 50000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "consumer": "<other>",
+        "weight": 40000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "resolveStructuredTypeMembers",
+        "weight": 20000000
+      },
+      {
+        "branch": "<outside mutable location>",
+        "stage": "<other>",
+        "consumer": "<other>",
+        "weight": 20000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "instantiateTypeWithAlias",
+        "weight": 20000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "<other>",
+        "weight": 20000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getUnionTypeWorker",
+        "weight": 20000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 10000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 10000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getUnionTypeWorker",
+        "weight": 10000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getUnionTypeWorker",
+        "weight": 10000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "consumer": "getResolvedSignature",
+        "weight": 10000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "getSpreadType",
+        "weight": 10000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByObjectMembers",
+        "consumer": "getResolvedSignature",
+        "weight": 10000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "consumer": "hasNeverReducedProperty",
+        "weight": 10000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "consumer": "getResolvedSignature",
+        "weight": 10000000
+      }
+    ],
+    "topSites": [
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot:36",
+        "weight": 760000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).isConstTypeVariable:13586",
+        "weight": 480000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol:20908",
+        "weight": 430000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfUnionOrIntersectionType:21339",
+        "weight": 410000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "internal/runtime/maps.ctrlGroup.matchH2:153",
+        "weight": 340000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "runtime.mapaccess1_faststr:144",
+        "weight": 250000000
+      },
+      {
+        "branch": "instantiateContextualType",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).maybeTypeOfKind:27643",
+        "weight": 160000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "internal/runtime/maps.ctrlGroup.matchH2:153",
+        "weight": 140000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.compareTypesWithOrder:416",
+        "weight": 130000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "slices.BinarySearchFunc[go.shape.[]*github.com/microsoft/typescript-go/internal/checker.Type,go.shape.*uint8,go.shape.*uint8]:160",
+        "weight": 130000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "internal/runtime/maps.ctrlGroup.matchH2:153",
+        "weight": 130000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot:36",
+        "weight": 120000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.Filter[go.shape.*uint8]:43",
+        "weight": 100000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getUnionOrIntersectionProperty:21357",
+        "weight": 100000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.isFreshLiteralType:25268",
+        "weight": 80000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByJSXAttributes.func2:278",
+        "weight": 70000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*ObjectLiteralDiscriminator).name:30689",
+        "weight": 70000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "internal/runtime/maps.h1:184",
+        "weight": 70000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "aeshashbody:1340",
+        "weight": 70000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.isLiteralType:25377",
+        "weight": 60000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "runtime.heapSetTypeSmallHeader:737",
+        "weight": 60000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).grow:58",
+        "weight": 60000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol:20908",
+        "weight": 60000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "site": "internal/runtime/maps.ctrlGroup.matchH2:153",
+        "weight": 50000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "memeqbody:155",
+        "weight": 50000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot:36",
+        "weight": 50000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getPropertyOfUnionOrIntersectionType:21339",
+        "weight": 50000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot:36",
+        "weight": 50000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.compareTypesWithOrder:507",
+        "weight": 40000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "getTypeOfPropertyOfContextualType",
+        "site": "github.com/microsoft/typescript-go/internal/checker.compareTypesWithOrder:507",
+        "weight": 40000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "aeshashbody:1344",
+        "weight": 40000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.7ef79b8109ca7a73e057574e4a0af0be1984d8606fab799593577d67d88dffe0,go.shape.d6cbdb9886be08dc6c9eab4296483119612961cb9874c1cd84b71bcfe563e7bf]).slot:36",
+        "weight": 40000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Type).Types:764",
+        "weight": 40000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "internal/runtime/maps.h1:184",
+        "weight": 40000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "runtime.mapaccess1_faststr:133",
+        "weight": 40000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).mapTypeEx:25556",
+        "weight": 40000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/core.(*PointerLinkStore[go.shape.struct { Kind github.com/microsoft/typescript-go/internal/ast.Kind; Flags github.com/microsoft/typescript-go/internal/ast.NodeFlags; Loc github.com/microsoft/typescript-go/internal/core.TextRange; github.com/microsoft/typescript-go/internal/ast.id sync/atomic.Uint64; Parent *github.com/microsoft/typescript-go/internal/ast.Node; github.com/microsoft/typescript-go/internal/ast.data github.com/microsoft/typescript-go/internal/ast.nodeData },go.shape.struct { github.com/microsoft/typescript-go/internal/checker.resolvedSymbol *github.com/microsoft/typescript-go/internal/ast.Symbol }]).slot:36",
+        "weight": 40000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.compareTypesWithOrder:406",
+        "weight": 30000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.isLiteralType:25377",
+        "weight": 30000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).maybeTypeOfKind:27643",
+        "weight": 30000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "runtime.memmove:390",
+        "weight": 30000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Type).Types:764",
+        "weight": 30000000
+      },
+      {
+        "branch": "getWidenedLiteralLikeTypeForContextualType",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getRegularTypeOfLiteralType:25239",
+        "weight": 30000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).discriminateContextualTypeByJSXAttributes.func2:278",
+        "weight": 30000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "runtime.memclrNoHeapPointers:192",
+        "weight": 30000000
+      },
+      {
+        "branch": "isConstContext",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getReducedApparentType:21787",
+        "weight": 30000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "<other>",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).isConstTypeVariable:13586",
+        "weight": 30000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "github.com/microsoft/typescript-go/internal/checker.(*Checker).getTypeOfMappedSymbol:20908",
+        "weight": 30000000
+      },
+      {
+        "branch": "getContextualType",
+        "stage": "<other>",
+        "site": "internal/runtime/maps.(*Map).directoryAt:346",
+        "weight": 30000000
+      },
+      {
+        "branch": "checkExpressionEx",
+        "stage": "discriminateContextualTypeByJSXAttributes",
+        "site": "internal/runtime/maps.ctrlGroup.matchH2:153",
+        "weight": 30000000
+      }
+    ],
+    "mappingCallers": [
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25536,
+        "weight": 2070000000
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25550,
+        "weight": 1920000000
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25563,
+        "weight": 450000000
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25550,
+        "weight": 420000000
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25563,
+        "weight": 310000000
+      },
+      {
+        "caller": "getSpreadType",
+        "line": 25550,
+        "weight": 290000000
+      },
+      {
+        "caller": "getTypeOfPropertyOfContextualTypeEx",
+        "line": 25563,
+        "weight": 210000000
+      },
+      {
+        "caller": "getTemplateLiteralType",
+        "line": 25563,
+        "weight": 140000000
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25536,
+        "weight": 120000000
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25536,
+        "weight": 110000000
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25563,
+        "weight": 110000000
+      },
+      {
+        "caller": "getTemplateLiteralType",
+        "line": 25550,
+        "weight": 100000000
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25550,
+        "weight": 90000000
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25556,
+        "weight": 80000000
+      },
+      {
+        "caller": "getContextualTypeForElementExpression",
+        "line": 25563,
+        "weight": 70000000
+      },
+      {
+        "caller": "getRestType",
+        "line": 25550,
+        "weight": 70000000
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25550,
+        "weight": 30000000
+      },
+      {
+        "caller": "narrowTypeByTypeFacts",
+        "line": 25550,
+        "weight": 30000000
+      },
+      {
+        "caller": "getLowerBoundOfKeyType",
+        "line": 25556,
+        "weight": 30000000
+      },
+      {
+        "caller": "getRegularTypeOfLiteralType",
+        "line": 25545,
+        "weight": 20000000
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25547,
+        "weight": 20000000
+      },
+      {
+        "caller": "getContextualTypeForChildJsxExpression",
+        "line": 25550,
+        "weight": 20000000
+      },
+      {
+        "caller": "getAdjustedTypeWithFacts",
+        "line": 25536,
+        "weight": 20000000
+      },
+      {
+        "caller": "getRegularTypeOfLiteralType",
+        "line": 25556,
+        "weight": 20000000
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25545,
+        "weight": 20000000
+      },
+      {
+        "caller": "mapTypeWithAlias",
+        "line": 25556,
+        "weight": 10000000
+      },
+      {
+        "caller": "getRegularTypeOfLiteralType",
+        "line": 25547,
+        "weight": 10000000
+      },
+      {
+        "caller": "getWidenedLiteralType",
+        "line": 25535,
+        "weight": 10000000
+      },
+      {
+        "caller": "getSpreadType",
+        "line": 25563,
+        "weight": 10000000
+      },
+      {
+        "caller": "getNarrowedTypeWorker.func3",
+        "line": 25556,
+        "weight": 10000000
+      },
+      {
+        "caller": "getWidenedLiteralType",
+        "line": 25556,
+        "weight": 10000000
+      },
+      {
+        "caller": "getAdjustedTypeWithFacts",
+        "line": 25556,
+        "weight": 10000000
+      },
+      {
+        "caller": "<other>",
+        "line": 25550,
+        "weight": 10000000
+      },
+      {
+        "caller": "getApparentTypeOfContextualType",
+        "line": 25548,
+        "weight": 10000000
+      },
+      {
+        "caller": "narrowTypeByTypeFacts",
+        "line": 25563,
+        "weight": 10000000
+      },
+      {
+        "caller": "getContextualTypeForElementExpression",
+        "line": 25550,
+        "weight": 10000000
+      },
+      {
+        "caller": "getRegularTypeOfLiteralType",
+        "line": 25563,
+        "weight": 10000000
+      },
+      {
+        "caller": "getNarrowedTypeOfSymbol",
+        "line": 25536,
+        "weight": 10000000
+      },
+      {
+        "caller": "getBaseTypeOfLiteralTypeUnion",
+        "line": 25540,
+        "weight": 10000000
+      },
+      {
+        "caller": "getContextualTypeForElementExpression",
+        "line": 25536,
+        "weight": 10000000
+      }
+    ]
+  },
+  "publicInclusiveCPUSeconds": {
+    "sc_bf__x25_m85_checkExpressionForMutableLocationEx": 11.83,
+    "sc_bf__x25_m92_getContextualTypeForJsxAttribute": 2.86,
+    "sc_bf__x25_m95_discriminateContextualTypeByJSXAttributes": 2.26
+  }
+}

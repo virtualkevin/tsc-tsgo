@@ -1,0 +1,40 @@
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -25540,16 +25540,25 @@
+ 	if u.origin != nil && u.origin.flags&TypeFlagsUnion != 0 {
+ 		types = u.origin.Types()
+ 	}
+-	mappedTypes := make([]*Type, 0, 16)
++	var mappedTypes []*Type
+ 	var changed bool
+-	for _, s := range types {
++	for i, s := range types {
+ 		var mapped *Type
+ 		if s.flags&TypeFlagsUnion != 0 {
+ 			mapped = c.mapTypeEx(s, f, noReductions)
+ 		} else {
+ 			mapped = f(s)
+ 		}
+-		if mapped != s {
++		if !changed {
++			if mapped == s {
++				continue
++			}
++			// All earlier constituents mapped to themselves. Copy them only
++			// when the result first diverges from the original union.
++			if i != 0 || mapped != nil {
++				mappedTypes = make([]*Type, i, len(types))
++				copy(mappedTypes, types[:i])
++			}
+ 			changed = true
+ 		}
+ 		if mapped != nil {
+@@ -25560,7 +25569,7 @@
+ 		if len(mappedTypes) == 0 {
+ 			return nil
+ 		}
+-		return c.getUnionTypeEx(slices.Clone(mappedTypes), core.IfElse(noReductions, UnionReductionNone, UnionReductionLiteral), nil /*alias*/, nil /*origin*/)
++		return c.getUnionTypeEx(mappedTypes, core.IfElse(noReductions, UnionReductionNone, UnionReductionLiteral), nil /*alias*/, nil /*origin*/)
+ 	}
+ 	return t
+ }

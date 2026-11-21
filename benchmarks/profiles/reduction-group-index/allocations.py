@@ -17,6 +17,7 @@ parser.add_argument("control")
 parser.add_argument("candidate")
 parser.add_argument("--sparse", action="store_true")
 parser.add_argument("--readback", action="store_true")
+parser.add_argument("--output-dir", type=Path, default=here)
 options = parser.parse_args()
 go = options.go
 public = json.loads(gzip.decompress((here.parent/"named-key-union/public.json.gz").read_bytes()))
@@ -55,6 +56,9 @@ def costs(profile):
         ids = stack.split()
         entries = [f for i in ids for f in frames[int(i)]]
         total["all"] += amount
+        mapper = next((i for i,(name,_) in enumerate(entries) if name.endswith(".mapTypeEx")),None)
+        if mapper is not None and all(name.startswith("slices.Clone") for name,_ in entries[:mapper]):
+            total["directMapperBuffer"] += amount
         jsx = next((i for i,(name,_) in enumerate(entries) if name.endswith(".createJsxAttributesTypeFromAttributesProperty")),None)
         reduction = any(name.endswith(".hasNeverReducedProperty") for name,_ in entries)
         if reduction: total["reductionInclusive"] += amount
@@ -73,11 +77,11 @@ def costs(profile):
     return dict(bytes=total,jsxLinesBytes=dict(by_line.most_common()),jsxChildrenBytes=dict(by_child.most_common()),jsxFlatReductionLines=dict(grouping_lines.most_common()),
                 jsxFlatReductionAllocObjects=dict(grouping_objects.most_common()))
 
-manifest = here/("sparse-allocations.json" if options.sparse else "allocations.json")
+manifest = options.output_dir/("sparse-allocations.json" if options.sparse else "allocations.json")
 report = {"args": args, "commit": sentry["commit"], "files": len(inputs), "samples": {}}
 for engine, binary in [("control", options.control), ("candidate", options.candidate)]:
     label = ("sparse-" if options.sparse else "") + engine
-    profile = here/(label+"-mem.pb.gz")
+    profile = options.output_dir/(label+"-mem.pb.gz")
     if options.readback:
         prior = json.loads(manifest.read_text())["samples"][engine]
         assert prior["binarySha256"] == digest(binary) and prior["profileSha256"] == digest(profile)

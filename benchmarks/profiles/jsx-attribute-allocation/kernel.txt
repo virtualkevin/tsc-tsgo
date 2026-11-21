@@ -1,0 +1,24 @@
+goos: linux
+goarch: amd64
+pkg: github.com/microsoft/typescript-go/internal/checker
+cpu: Intel Xeon Processor (Cascadelake)
+BenchmarkMapUnionChange/size=4/change=-1/lazy=false-8         	 3711459	        31.61 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapUnionChange/size=4/change=-1/lazy=true-8          	 6282156	        24.45 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapUnionChange/size=4/change=0/lazy=false-8          	  407748	       347.8 ns/op	      48 B/op	       2 allocs/op
+BenchmarkMapUnionChange/size=4/change=0/lazy=true-8           	  330976	       338.3 ns/op	      24 B/op	       1 allocs/op
+BenchmarkMapUnionChange/size=4/change=3/lazy=false-8          	  427557	       415.4 ns/op	      48 B/op	       2 allocs/op
+BenchmarkMapUnionChange/size=4/change=3/lazy=true-8           	  349201	       313.6 ns/op	      56 B/op	       2 allocs/op
+BenchmarkMapUnionChange/size=16/change=-1/lazy=false-8        	 1000000	       118.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapUnionChange/size=16/change=-1/lazy=true-8         	 1757620	        71.82 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapUnionChange/size=16/change=0/lazy=false-8         	   55318	      2197 ns/op	     256 B/op	       2 allocs/op
+BenchmarkMapUnionChange/size=16/change=0/lazy=true-8          	   45231	      2297 ns/op	     320 B/op	       3 allocs/op
+BenchmarkMapUnionChange/size=16/change=15/lazy=false-8        	   48312	      2453 ns/op	     256 B/op	       2 allocs/op
+BenchmarkMapUnionChange/size=16/change=15/lazy=true-8         	   63358	      1800 ns/op	     256 B/op	       2 allocs/op
+BenchmarkMapUnionChange/size=512/change=-1/lazy=false-8       	   12981	      9365 ns/op	    9088 B/op	       5 allocs/op
+BenchmarkMapUnionChange/size=512/change=-1/lazy=true-8        	   34951	      3483 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMapUnionChange/size=512/change=0/lazy=false-8        	     586	    172265 ns/op	   18560 B/op	       8 allocs/op
+BenchmarkMapUnionChange/size=512/change=0/lazy=true-8         	     626	    195658 ns/op	   14656 B/op	       9 allocs/op
+BenchmarkMapUnionChange/size=512/change=511/lazy=false-8      	     817	    142268 ns/op	   18560 B/op	       8 allocs/op
+BenchmarkMapUnionChange/size=512/change=511/lazy=true-8       	    1023	    113997 ns/op	   10240 B/op	       3 allocs/op
+PASS
+ok  	github.com/microsoft/typescript-go/internal/checker	2.260s
