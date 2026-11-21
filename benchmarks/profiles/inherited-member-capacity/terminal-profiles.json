@@ -1,0 +1,64 @@
+{
+  "projectCommit": "624fb343cb8e0f9c1b852e6860c426fb7804b739",
+  "args": [
+    "-p",
+    "tsconfig.json",
+    "--noEmit",
+    "--incremental",
+    "false",
+    "--composite",
+    "false",
+    "--noCheck",
+    "false",
+    "--pretty",
+    "false"
+  ],
+  "binaries": {
+    "control": {
+      "sha256": "ba3a2e29e0a1607d3b656b16d8b14dfab31582ce4981f31d52ea14427dc163db",
+      "beforeTotalAlloc": 7605435800,
+      "afterTotalAlloc": 7626689248,
+      "before": {
+        "profileSha256": "c5ae8e9000b4b2e7d47c325f37d0f51b38a86ac2a64d1e54ce5b4ac4453d9ef7",
+        "sampledAllocatedBytes": 4081271723,
+        "flatAllocatedBytes": {
+          "(*Checker).addInheritedMembers": 148788231,
+          "(*pendingInstantiatedMembers).ownTable": 34226801
+        },
+        "combinedFlatBytes": 183015032
+      },
+      "after": {
+        "profileSha256": "0145eccfa2272edfb8e10ef324e04f75c12006dfba93f04563d6767397965bcb",
+        "sampledAllocatedBytes": 7710263242,
+        "flatAllocatedBytes": {
+          "(*Checker).addInheritedMembers": 290573444,
+          "(*pendingInstantiatedMembers).ownTable": 79395023
+        },
+        "combinedFlatBytes": 369968467
+      }
+    },
+    "candidate": {
+      "sha256": "1741f7328cb9322ab45e2755011b397325822243735fb1f3d9d29e3f3704b268",
+      "beforeTotalAlloc": 7495407208,
+      "afterTotalAlloc": 7516454832,
+      "before": {
+        "profileSha256": "d57317114dcd2eba455bcfc4acff23164079395f01096928debfe7316017cd58",
+        "sampledAllocatedBytes": 4814114376,
+        "flatAllocatedBytes": {
+          "(*Checker).addInheritedMembers": 40756175,
+          "(*pendingInstantiatedMembers).ownTable": 122418636
+        },
+        "combinedFlatBytes": 163174811
+      },
+      "after": {
+        "profileSha256": "7025acf9c0ae4adddf8f559caaf168ed66e67e45cfdc31abcc9c76f0da7c0605",
+        "sampledAllocatedBytes": 7499526795,
+        "flatAllocatedBytes": {
+          "(*Checker).addInheritedMembers": 55004297,
+          "(*pendingInstantiatedMembers).ownTable": 205893128
+        },
+        "combinedFlatBytes": 260897425
+      }
+    }
+  }
+}
