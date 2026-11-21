@@ -449,3 +449,12 @@
 | Lazy per-kind AST pages, order reversed | typeorm | Matched Go control | 2677.40 | 2696.46 | 0.993× | 8 | Paired median 0.976×, candidate faster in 3/8. [Samples](benchmarks/profiles/parser-slab-demand/lazy-reverse.json.gz) |
 | Lazy per-kind AST pages, order reversed | trpc | Matched Go control | 476.01 | 513.00 | 0.928× | 8 | Paired median 0.941×, candidate faster in 0/8. [Samples](benchmarks/profiles/parser-slab-demand/lazy-reverse.json.gz) |
 | Lazy per-kind AST pages, order reversed | sentry | Matched Go control | 35739.98 | 37165.51 | 0.962× | 4 | Paired median 0.952×, candidate faster in 1/4. [Samples](benchmarks/profiles/parser-slab-demand/lazy-reverse-sentry.json.gz) |
+| Paired import declarations, file discovery | trpc | Matched Go control | 208.38 | 224.24 | 0.929× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/direct-ast-nodes/discovery.json) |
+| Paired import declarations, file discovery | typeorm | Matched Go control | 642.48 | 591.81 | 1.086× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/direct-ast-nodes/discovery.json) |
+| Paired import declarations, file discovery | vscode | Matched Go control | 5651.28 | 5649.41 | 1.000× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/direct-ast-nodes/discovery.json) |
+| Paired import declarations, file discovery | sentry | Matched Go control | 3003.51 | 3108.45 | 0.966× | 4 | Fresh process, no checking. [Samples](benchmarks/profiles/direct-ast-nodes/discovery.json) |
+| Paired import declarations | typeorm | Matched Go control | 2369.30 | 2261.81 | 1.048× | 4 | Paired median 1.048×. [Samples](benchmarks/profiles/direct-ast-nodes/small.json.gz) |
+| Paired import declarations | trpc | Matched Go control | 468.21 | 477.48 | 0.981× | 4 | Paired median 0.970×. [Samples](benchmarks/profiles/direct-ast-nodes/small.json.gz) |
+| Paired import declarations | vscode | Matched Go control | 31523.85 | 33114.92 | 0.952× | 2 | Paired median 0.952×. [Samples](benchmarks/profiles/direct-ast-nodes/large.json.gz) |
+| Paired import declarations | sentry | Matched Go control | 27190.09 | 25912.81 | 1.049× | 2 | Paired median 1.049×. [Samples](benchmarks/profiles/direct-ast-nodes/large.json.gz) |
+| Paired import declarations, parser only | 1,000 named imports | Matched Go test binary | 1.972 | 2.051 | 0.962× | 6 | 15 parses per process. Median allocations per parse fell from 3,108 to 2,108. [Samples](benchmarks/profiles/direct-ast-nodes/parse.json) |

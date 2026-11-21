@@ -1,0 +1,100 @@
+{
+  "binarySha256": {
+    "control": "c52e4545fb8ce52ff0bc22220fc09b7e06b0c6686b5eca7b47eb17a54302b529",
+    "candidate": "f00ea4d87657569882117123acf9561d0e0cffdf6558618a4eb9ea3969557fc1"
+  },
+  "imports": 1000,
+  "args": [
+    "-test.run=^$",
+    "-test.bench=^BenchmarkImportPairParse$",
+    "-test.benchtime=15x",
+    "-test.count=1"
+  ],
+  "excludedWarmups": 1,
+  "blocks": [
+    {
+      "control": {
+        "ns": 2380149,
+        "bytes": 1019956,
+        "allocations": 3108
+      },
+      "candidate": {
+        "ns": 2440117,
+        "bytes": 1003948,
+        "allocations": 2108
+      }
+    },
+    {
+      "candidate": {
+        "ns": 2049265,
+        "bytes": 1003949,
+        "allocations": 2108
+      },
+      "control": {
+        "ns": 1961977,
+        "bytes": 1019601,
+        "allocations": 3107
+      }
+    },
+    {
+      "control": {
+        "ns": 2002936,
+        "bytes": 1019870,
+        "allocations": 3108
+      },
+      "candidate": {
+        "ns": 2052123,
+        "bytes": 1003949,
+        "allocations": 2108
+      }
+    },
+    {
+      "candidate": {
+        "ns": 2122647,
+        "bytes": 1003608,
+        "allocations": 2107
+      },
+      "control": {
+        "ns": 1762082,
+        "bytes": 1019957,
+        "allocations": 3108
+      }
+    },
+    {
+      "control": {
+        "ns": 1958518,
+        "bytes": 1020026,
+        "allocations": 3108
+      },
+      "candidate": {
+        "ns": 1924246,
+        "bytes": 1003593,
+        "allocations": 2107
+      }
+    },
+    {
+      "candidate": {
+        "ns": 1982093,
+        "bytes": 1003964,
+        "allocations": 2108
+      },
+      "control": {
+        "ns": 1982814,
+        "bytes": 1019602,
+        "allocations": 3107
+      }
+    }
+  ],
+  "median": {
+    "control": {
+      "ns": 1972395.5,
+      "bytes": 1019913.0,
+      "allocations": 3108.0
+    },
+    "candidate": {
+      "ns": 2050694.0,
+      "bytes": 1003948.5,
+      "allocations": 2108.0
+    }
+  }
+}
