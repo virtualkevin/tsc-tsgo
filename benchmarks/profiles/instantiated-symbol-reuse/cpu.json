@@ -1,0 +1,82 @@
+{
+  "sentry": {
+    "profileSha256": "f27e81d588cb56e1ff79ca1d23615aa96ee7f466cbe1a4a197136dc8b798a843",
+    "totalCpuNs": 130850000000,
+    "resolverCpuNs": 5790000000,
+    "childrenNs": {
+      "instantiateType": 4540000000,
+      "getTypeOfSymbol": 740000000,
+      "Get": 340000000,
+      "self": 160000000,
+      "gcWriteBarrier": 10000000
+    },
+    "instantiationWorkerChildrenNs": {
+      "instantiateTypes": 1820000000,
+      "getObjectTypeInstantiation": 1020000000,
+      "getConditionalTypeInstantiation": 870000000,
+      "outsideWorker": 310000000,
+      "getUnionTypeEx": 300000000,
+      "getIndexedAccessTypeEx": 60000000,
+      "createNormalizedTypeReference": 50000000,
+      "getIntersectionTypeEx": 50000000,
+      "instantiateType": 30000000,
+      "Types": 10000000,
+      "self": 10000000,
+      "Map": 10000000
+    }
+  },
+  "vscode": {
+    "profileSha256": "6e592c975ee390f4b37142b129691706ef08ac676d23c8cb180a8739e73f8bd6",
+    "totalCpuNs": 203660000000,
+    "resolverCpuNs": 8210000000,
+    "childrenNs": {
+      "instantiateType": 6150000000,
+      "getTypeOfSymbol": 1270000000,
+      "Get": 550000000,
+      "self": 230000000,
+      "gcWriteBarrier": 10000000
+    },
+    "instantiationWorkerChildrenNs": {
+      "getConditionalTypeInstantiation": 2750000000,
+      "getObjectTypeInstantiation": 2060000000,
+      "instantiateTypes": 690000000,
+      "outsideWorker": 330000000,
+      "getUnionTypeEx": 210000000,
+      "createNormalizedTypeReference": 60000000,
+      "Map": 30000000,
+      "getIndexedAccessTypeEx": 10000000,
+      "self": 10000000
+    }
+  },
+  "typeorm": {
+    "profileSha256": "f36edb87883c0bd053cf9196a57d804bf2b720cee159ea05536a2adaa1f43915",
+    "totalCpuNs": 16570000000,
+    "resolverCpuNs": 330000000,
+    "childrenNs": {
+      "instantiateType": 270000000,
+      "getTypeOfSymbol": 60000000
+    },
+    "instantiationWorkerChildrenNs": {
+      "getObjectTypeInstantiation": 130000000,
+      "instantiateTypes": 120000000,
+      "createNormalizedTypeReference": 10000000,
+      "outsideWorker": 10000000
+    }
+  },
+  "trpc": {
+    "profileSha256": "addb657c7ce7d849d5cd00bf6fd12540fc5ede82072b61a3d30ea13c969659a0",
+    "totalCpuNs": 2850000000,
+    "resolverCpuNs": 160000000,
+    "childrenNs": {
+      "instantiateType": 130000000,
+      "getTypeOfSymbol": 30000000
+    },
+    "instantiationWorkerChildrenNs": {
+      "getObjectTypeInstantiation": 50000000,
+      "instantiateTypes": 30000000,
+      "getIntersectionTypeEx": 20000000,
+      "getConditionalTypeInstantiation": 20000000,
+      "outsideWorker": 10000000
+    }
+  }
+}

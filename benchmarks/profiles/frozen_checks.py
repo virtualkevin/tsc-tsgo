@@ -6,11 +6,13 @@ import json
 import os
 import subprocess
 
-def observed_projects(binary):
+def observed_projects(binary, *, projects=None):
     ref = json.loads(gzip.decompress((Path(__file__).resolve().parent/"literal-union-intersection/native.json.gz").read_bytes()))
     env = {k:v for k,v in os.environ.items() if not k.startswith(("TSC_", "TS_GO_", "SCRIPTC_"))}
     env.update(ref["environment"]["compilerEnvironment"])
     for p in sorted(ref["projects"],key=lambda p:len(p["preflight"]["candidate"]["inputs"])):
+        if projects is not None and p["name"] not in projects:
+            continue
         cwd = Path(p["cwd"])
         assert subprocess.check_output(["git","rev-parse","HEAD"],cwd=cwd,text=True).strip() == p["commit"]
         for f in p["preflight"]["candidate"]["inputs"]:
