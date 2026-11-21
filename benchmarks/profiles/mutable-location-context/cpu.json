@@ -1,0 +1,53 @@
+{
+  "jsxApparentTypeImmediateChildNs": {
+    "checkExpressionEx": {
+      "discriminateContextualTypeByJSXAttributes": 190000000,
+      "instantiateContextualType": 20000000
+    },
+    "getContextualType": {
+      "discriminateContextualTypeByJSXAttributes": 1390000000,
+      "getContextualType": 10000000,
+      "instantiateContextualType": 30000000,
+      "mapTypeEx": 170000000
+    },
+    "isConstContext": {
+      "discriminateContextualTypeByJSXAttributes": 5830000000,
+      "instantiateContextualType": 30000000,
+      "mapTypeEx": 80000000
+    }
+  },
+  "jsxAttributeImmediateChildNs": {
+    "checkExpressionEx": {
+      "getApparentTypeOfContextualType": 210000000,
+      "getTypeOfPropertyOfContextualType": 80000000
+    },
+    "getContextualType": {
+      "getApparentTypeOfContextualType": 1600000000,
+      "getTypeOfPropertyOfContextualType": 1050000000,
+      "github.com/microsoft/typescript-go/internal/ast.(*Node).Name": 10000000
+    },
+    "isConstContext": {
+      "(self)": 10000000,
+      "getApparentTypeOfContextualType": 5940000000,
+      "getTypeOfPropertyOfContextualType": 580000000,
+      "github.com/microsoft/typescript-go/internal/ast.(*Node).Name": 20000000,
+      "github.com/microsoft/typescript-go/internal/ast.(*Node).Text": 10000000
+    }
+  },
+  "mutableByImmediateChildNs": {
+    "(self)": 10000000,
+    "checkExpressionEx": 12930000000,
+    "getContextualType": 3870000000,
+    "getWidenedLiteralLikeTypeForContextualType": 160000000,
+    "github.com/microsoft/typescript-go/internal/checker.isTypeAssertion": 30000000,
+    "instantiateContextualType": 330000000,
+    "isConstContext": 8180000000
+  },
+  "profileSha256": "1e9c50e1ff23e10cb86e2e36fff5c4f58d5bfb0ea1ef8caeb0784c233d546c71",
+  "totalCpuNs": 158720000000,
+  "withJsxAttributeLookupBelowMutableNs": {
+    "checkExpressionEx": 290000000,
+    "getContextualType": 2660000000,
+    "isConstContext": 6560000000
+  }
+}
