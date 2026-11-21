@@ -2,17 +2,27 @@
 from pathlib import Path
 from statistics import median
 from tempfile import TemporaryDirectory
+import argparse
 import hashlib
 import json
 import os
 import subprocess
-import sys
 import time
 
 here = Path(__file__).resolve().parent
 root = here.parents[2]
-binaries = {name: Path(arg).resolve() for name,arg in zip(("native","control","candidate"), sys.argv[1:4], strict=True)}
-sizes = list(map(int,sys.argv[4:])) or [4096,32768,131072]
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("native", type=Path)
+parser.add_argument("control", type=Path)
+parser.add_argument("candidate", type=Path)
+parser.add_argument("sizes", nargs="*", type=int, default=[4096, 32768, 131072])
+parser.add_argument("--blocks", type=int, default=3)
+parser.add_argument("--output", type=Path, default=here/"scaling.json")
+args = parser.parse_args()
+if args.blocks <= 0 or args.blocks % 3:
+    parser.error("Choose a positive multiple of three blocks to balance compiler order.")
+binaries = {role:getattr(args,role).resolve() for role in ("native","control","candidate")}
+sizes = args.sizes
 env = {k:v for k,v in os.environ.items() if not k.startswith(("TSC_", "TS_GO_", "SCRIPTC_"))}
 env["TSC_TS_LIB_DIR"] = str(root/"upstream/typescript-go/internal/bundled/libs")
 def sha(data):
@@ -41,8 +51,9 @@ with TemporaryDirectory() as folder:
         path.write_text(source)
         blocks=[]
         roles=list(binaries)
-        for i in range(-1,3):
-            order=roles if i<0 else roles[i:]+roles[:i]
+        for i in range(-1,args.blocks):
+            start = max(i,0) % len(roles)
+            order = roles[start:]+roles[:start]
             block={}
             for role in order:
                 elapsed, run = check(role)
@@ -52,4 +63,4 @@ with TemporaryDirectory() as folder:
         medians = {k:median(row[k] for row in blocks) for k in roles}
         report["projects"].append(dict(members=size,sourceSha256=sha(source.encode()),diagnosticSha256=sha(messages[0]),blocksMs=blocks,medianMs=medians))
         print(size, medians, flush=True)
-(here/"scaling.json").write_text(json.dumps(report,indent=2)+"\n")
+args.output.write_text(json.dumps(report,indent=2)+"\n")

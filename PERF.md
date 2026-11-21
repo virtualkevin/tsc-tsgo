@@ -416,3 +416,17 @@
 | Live symbol slot hints | vscode | Matched Go control | 47503.45 | 48019.72 | 0.989× | 2 | Paired median 0.990×. [Samples](benchmarks/profiles/live-symbol-slots/large.json.gz) |
 | Live symbol slot hints | sentry | Matched Go control | 38561.44 | 39951.94 | 0.965× | 2 | Paired median 0.965×. [Samples](benchmarks/profiles/live-symbol-slots/large.json.gz) |
 | Live symbol slot hints, order reversed | trpc | Matched Go control | 486.60 | 493.55 | 0.986× | 12 | Paired median 1.016×, candidate faster in 7/12 pairs. [Samples](benchmarks/profiles/live-symbol-slots/trpc-reverse.json.gz) |
+| Mark and compact template unions | 4,096 alternating literals | Previous shipped Go | 39.86 | 50.32 | 0.792× | 3 | Generated full check. [Samples](benchmarks/profiles/template-union-compaction/scaling.json) |
+| Mark and compact template unions | 4,096 alternating literals | Native tsc-ts | 33.19 | 50.32 | 0.660× | 3 | Generated full check. [Samples](benchmarks/profiles/template-union-compaction/scaling.json) |
+| Mark and compact template unions | 32,768 alternating literals | Previous shipped Go | 153.45 | 138.53 | 1.108× | 3 | Generated full check. [Samples](benchmarks/profiles/template-union-compaction/scaling.json) |
+| Mark and compact template unions | 32,768 alternating literals | Native tsc-ts | 106.22 | 138.53 | 0.767× | 3 | Generated full check. [Samples](benchmarks/profiles/template-union-compaction/scaling.json) |
+| Mark and compact template unions | 131,072 alternating literals | Previous shipped Go | 800.39 | 469.43 | 1.705× | 3 | Generated full check. [Samples](benchmarks/profiles/template-union-compaction/scaling.json) |
+| Mark and compact template unions | 131,072 alternating literals | Native tsc-ts | 765.73 | 469.43 | 1.631× | 3 | Generated full check. [Samples](benchmarks/profiles/template-union-compaction/scaling.json) |
+| Mark and compact template unions | 262,144 alternating literals | Previous shipped Go | 3049.76 | 1124.98 | 2.711× | 3 | Generated full check. [Samples](benchmarks/profiles/template-union-compaction/scaling.json) |
+| Mark and compact template unions | 262,144 alternating literals | Native tsc-ts | 3326.48 | 1124.98 | 2.957× | 3 | Generated full check. [Samples](benchmarks/profiles/template-union-compaction/scaling.json) |
+| Mark and compact template unions | vscode | Native tsc-ts | 22948.06 | 41284.89 | 0.556× | 2 | Cold full check. [Samples](benchmarks/profiles/template-union-compaction/native.json.gz) |
+| Mark and compact template unions | sentry | Native tsc-ts | 14059.05 | 27450.73 | 0.512× | 2 | Cold full check. [Samples](benchmarks/profiles/template-union-compaction/native.json.gz) |
+| Mark and compact template unions | typeorm | Native tsc-ts | 1297.58 | 2662.57 | 0.487× | 2 | Cold full check. [Samples](benchmarks/profiles/template-union-compaction/native.json.gz) |
+| Mark and compact template unions | trpc | Native tsc-ts | 323.48 | 469.27 | 0.689× | 2 | Cold full check. [Samples](benchmarks/profiles/template-union-compaction/native.json.gz) |
+| Mark and compact template unions, confirmation | 4,096 alternating literals | Previous shipped Go | 30.40 | 32.36 | 0.939× | 12 | Candidate faster in 6/12 blocks. [Samples](benchmarks/profiles/template-union-compaction/small-confirmation.json) |
+| Mark and compact template unions, confirmation | 4,096 alternating literals | Native tsc-ts | 22.73 | 32.36 | 0.702× | 12 | Candidate faster in 0/12 blocks. [Samples](benchmarks/profiles/template-union-compaction/small-confirmation.json) |
