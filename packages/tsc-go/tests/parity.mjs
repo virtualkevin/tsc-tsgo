@@ -20,6 +20,27 @@ for (const path of [baseline, candidate, libs]) {
 
 const fixtures = [
   {
+    name: 'symbol reads preserve deferred mapped and accessor types across use sites',
+    diagnostic: 'TS2322',
+    files: {
+      'library.ts': `export interface Box<T> { item: T; get value(): T; method(): T }
+export type Wrapped<T> = { [K in keyof T]: { value: T[K] } };
+export declare function unwrap<T>(box: Wrapped<T>): T;
+export const sample = { text: "s", count: 1 };
+`,
+      'main.ts': `import { sample as input, unwrap, type Box, type Wrapped } from "./library.js";
+declare const mixed: Box<string> | Box<number>;
+export const viaMethod = mixed.method();
+export const viaAccessor = mixed.value;
+export const viaProperty = mixed.item;
+declare const wrapped: Wrapped<typeof input>;
+export const original = unwrap(wrapped);
+export const readAgain = wrapped.text.value;
+export const invalid: number = readAgain;
+`,
+    },
+  },
+  {
     name: 'overlapping named literal unions preserve member identities and declaration origins',
     diagnostic: 'TS2322',
     files: {

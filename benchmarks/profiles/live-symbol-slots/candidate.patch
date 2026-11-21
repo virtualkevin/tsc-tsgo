@@ -1,0 +1,142 @@
+diff --git a/packages/tsc-go/internal/checker/checker.go b/packages/tsc-go/internal/checker/checker.go
+index 0fa43dd..9804b0f 100644
+--- a/packages/tsc-go/internal/checker/checker.go
++++ b/packages/tsc-go/internal/checker/checker.go
+@@ -578,6 +578,7 @@ type Host interface {
+ var nextCheckerID atomic.Uint32
+ 
+ type Checker struct {
++	symbolReadHints                             core.PointerSlotHints
+ 	instantiatedMemberLists                     map[instantiatedMemberListKey]*instantiatedMemberSource
+ 	id                                          uint32
+ 	program                                     Program
+@@ -16407,6 +16408,15 @@ func (c *Checker) GetTypeOfSymbolAtLocation(symbol *ast.Symbol, location *ast.No
+ }
+ 
+ func (c *Checker) getTypeOfSymbol(symbol *ast.Symbol) *Type {
++	// Each of these dispatch branches immediately returns an already resolved
++	// value link. Preserve the ordinary resolver for cold and contextual reads.
++	const linkedChecks = ast.CheckFlagsDeferredType | ast.CheckFlagsInstantiated | ast.CheckFlagsMapped | ast.CheckFlagsReverseMapped
++	const linkedKinds = ast.SymbolFlagsAccessor | ast.SymbolFlagsVariable | ast.SymbolFlagsProperty | ast.SymbolFlagsFunction | ast.SymbolFlagsMethod | ast.SymbolFlagsClass | ast.SymbolFlagsEnum | ast.SymbolFlagsValueModule
++	if symbol.CheckFlags&linkedChecks != 0 || symbol.Flags&linkedKinds != 0 {
++		if links := c.valueSymbolLinks.TryGetWithHints(symbol, &c.symbolReadHints); links != nil && links.resolvedType != nil {
++			return links.resolvedType
++		}
++	}
+ 	if symbol.CheckFlags&ast.CheckFlagsDeferredType != 0 {
+ 		return c.getTypeOfSymbolWithDeferredType(symbol)
+ 	}
+diff --git a/packages/tsc-go/internal/checker/value_symbol_links_lifetime_test.go b/packages/tsc-go/internal/checker/value_symbol_links_lifetime_test.go
+index 29ebfe9..def10f7 100644
+--- a/packages/tsc-go/internal/checker/value_symbol_links_lifetime_test.go
++++ b/packages/tsc-go/internal/checker/value_symbol_links_lifetime_test.go
+@@ -117,3 +117,28 @@ func TestValueSymbolLinksReplacementKeepsPublishedPointers(t *testing.T) {
+ 	runtime.KeepAlive(c)
+ 	runtime.KeepAlive(oldLinks)
+ }
++
++func TestSymbolReadHintsUseCurrentValueAndDispatch(t *testing.T) {
++	c := &Checker{}
++	c.errorType = c.newIntrinsicType(TypeFlagsAny, "error")
++	first := c.newLiteralType(TypeFlagsStringLiteral, "first", nil)
++	second := c.newLiteralType(TypeFlagsStringLiteral, "second", nil)
++	symbol := c.newSymbol(ast.SymbolFlagsProperty, "key")
++	links := c.valueSymbolLinks.Get(symbol)
++	links.resolvedType = first
++	if c.getTypeOfSymbol(symbol) != first || c.getTypeOfSymbol(symbol) != first {
++		t.Fatal("warm property read returned a different type")
++	}
++	links.resolvedType = second
++	if c.getTypeOfSymbol(symbol) != second {
++		t.Fatal("property read ignored the current resolved type")
++	}
++	c.valueSymbolLinks.New(symbol).resolvedType = first
++	if c.getTypeOfSymbol(symbol) != first {
++		t.Fatal("property read followed a replaced links entry")
++	}
++	symbol.Flags = ast.SymbolFlagsTypeAlias
++	if c.getTypeOfSymbol(symbol) != c.errorType {
++		t.Fatal("a value link bypassed type-only symbol dispatch")
++	}
++}
+diff --git a/packages/tsc-go/internal/core/pointerlinkstore.go b/packages/tsc-go/internal/core/pointerlinkstore.go
+index 948b99e..f24f254 100644
+--- a/packages/tsc-go/internal/core/pointerlinkstore.go
++++ b/packages/tsc-go/internal/core/pointerlinkstore.go
+@@ -1,6 +1,9 @@
+ package core
+ 
+-import "unsafe"
++import (
++	"sync/atomic"
++	"unsafe"
++)
+ 
+ // PointerLinkStore is an experimental pointer-key links table. Keys and values
+ // remain typed GC roots, and values retain their arena allocation across growth.
+@@ -108,3 +111,26 @@ func (s *PointerLinkStore[K, V]) TryGet(key *K) *V {
+ func (s *PointerLinkStore[K, V]) Has(key *K) bool {
+ 	return s.TryGet(key) != nil
+ }
++
++// PointerSlotHints holds speculative indices for read-heavy sequences of
++// pointer lookups. Slots are validated against the current table on every hit.
++type PointerSlotHints [1024]atomic.Uint32
++
++func (s *PointerLinkStore[K, V]) TryGetWithHints(key *K, hints *PointerSlotHints) *V {
++	if len(s.entries) == 0 {
++		return nil
++	}
++	address := uintptr(unsafe.Pointer(key))
++	hint := &hints[((address>>4)^(address>>14))%uintptr(len(hints))]
++	index := int(hint.Load()) & (len(s.entries) - 1)
++	entry := &s.entries[index]
++	if entry.key == key && entry.value != nil {
++		return entry.value
++	}
++	index = s.slot(key)
++	value := s.entries[index].value
++	if value != nil {
++		hint.Store(uint32(index))
++	}
++	return value
++}
+diff --git a/packages/tsc-go/internal/core/pointerlinkstore_test.go b/packages/tsc-go/internal/core/pointerlinkstore_test.go
+index de853ac..ef3df65 100644
+--- a/packages/tsc-go/internal/core/pointerlinkstore_test.go
++++ b/packages/tsc-go/internal/core/pointerlinkstore_test.go
+@@ -19,6 +19,7 @@ type pointerLinkValue struct {
+ 
+ func TestPointerLinkStoreDifferential(t *testing.T) {
+ 	var got PointerLinkStore[pointerLinkKey, pointerLinkValue]
++	var hints PointerSlotHints
+ 	var want LinkStore[*pointerLinkKey, pointerLinkValue]
+ 	keys := make([]*pointerLinkKey, 1025)
+ 	for i := 1; i < len(keys); i++ {
+@@ -57,6 +58,9 @@ func TestPointerLinkStoreDifferential(t *testing.T) {
+ 				t.Fatal("lookup mismatch")
+ 			}
+ 		}
++		if got.TryGetWithHints(key, &hints) != gotPointers[key] {
++			t.Fatalf("hinted lookup returned a stale entry at step %d", step)
++		}
+ 	}
+ 	if got.count != len(gotPointers) {
+ 		t.Fatal("replacement changed the number of keys")
+@@ -179,6 +183,7 @@ func TestPointerLinkStoreConcurrentReadOnlyCopies(t *testing.T) {
+ 		}
+ 	}
+ 	missing := &pointerLinkKey{}
++	var hints PointerSlotHints
+ 	var workers sync.WaitGroup
+ 	for worker := range 8 {
+ 		workers.Go(func() {
+@@ -189,7 +194,7 @@ func TestPointerLinkStoreConcurrentReadOnlyCopies(t *testing.T) {
+ 			for i := range 1024 {
+ 				key := keys[(i*17+worker)%len(keys)]
+ 				value := current.Get(key)
+-				if value != current.TryGet(key) || !current.Has(key) || value.count != key.tail || current.Has(missing) || current.TryGet(missing) != nil {
++				if value != current.TryGetWithHints(key, &hints) || current.TryGetWithHints(missing, &hints) != nil || value != current.TryGet(key) || !current.Has(key) || value.count != key.tail || current.Has(missing) || current.TryGet(missing) != nil {
+ 					t.Error("read-only lookup changed identity or membership")
+ 					return
+ 				}

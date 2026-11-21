@@ -1,0 +1,84 @@
+{
+  "typeorm": {
+    "rawSha256": "ed1e9420181f09a0ae75bdc4cda9d2c84dc28a47627b3a34b0c3195002cbb86d",
+    "cpuNs": {
+      "all": 44080000000,
+      "underSymbolRead": 4480000000,
+      "allPointerTableSlots": 640000000,
+      "getterSelf": 260000000,
+      "directTableProbe": 160000000
+    },
+    "topSlotCallersNs": {
+      "checker.(*Checker).getResolvedSymbol": 80000000,
+      "checker.(*Checker).getTypeOfVariableOrParameterOrProperty": 70000000,
+      "checker.(*Checker).getResolvedSignature": 50000000,
+      "checker.(*Checker).getTypeFromTypeReference": 40000000,
+      "checker.(*Checker).keepsSymbolUnderInstantiation": 40000000,
+      "checker.(*Checker).newInstantiatedSymbolWithLinks": 30000000,
+      "checker.(*Checker).checkPropertyAccessExpressionOrQualifiedName": 30000000,
+      "checker.(*Checker).getSymbolFromTypeReference": 30000000,
+      "checker.(*Checker).getTypeOfInstantiatedSymbol": 30000000,
+      "checker.(*Checker).getTypeOfFuncClassEnumModule": 30000000
+    }
+  },
+  "trpc": {
+    "rawSha256": "1d940fea92829681818a9c8070c890bdcd071994e0a26a9824266332eb70327b",
+    "cpuNs": {
+      "all": 11690000000,
+      "underSymbolRead": 750000000,
+      "allPointerTableSlots": 70000000
+    },
+    "topSlotCallersNs": {
+      "checker.(*Checker).newInstantiatedSymbolWithLinks": 30000000,
+      "checker.(*Checker).getSymbolFromTypeReference": 20000000,
+      "checker.(*Checker).getTypeFromUnionTypeNode": 10000000,
+      "checker.(*Checker).getTypeFromTypeReference": 10000000
+    }
+  },
+  "vscode": {
+    "rawSha256": "e940e807962a9790acffb8861ca770e915e8b05f8c8510b61991bdf203e6b5f4",
+    "cpuNs": {
+      "all": 441610000000,
+      "underSymbolRead": 69860000000,
+      "allPointerTableSlots": 13640000000,
+      "directTableProbe": 3620000000,
+      "getterSelf": 3550000000,
+      "dispatchSelf": 230000000
+    },
+    "topSlotCallersNs": {
+      "checker.(*Checker).getTypeOfVariableOrParameterOrProperty": 2330000000,
+      "checker.(*Checker).getResolvedSymbol": 2240000000,
+      "checker.(*Checker).keepsSymbolUnderInstantiation": 850000000,
+      "checker.(*Checker).getResolvedSignature": 730000000,
+      "checker.(*Checker).checkPropertyAccessExpressionOrQualifiedName": 700000000,
+      "checker.(*Checker).newInstantiatedSymbolWithLinks": 660000000,
+      "checker.(*Checker).getTypeOfInstantiatedSymbol": 570000000,
+      "checker.(*Checker).getTypeOfFuncClassEnumModule": 560000000,
+      "checker.(*Checker).getEffectsSignature": 540000000,
+      "checker.(*Checker).getContextualTypeForObjectLiteralElement": 510000000
+    }
+  },
+  "sentry": {
+    "rawSha256": "53bbf24cc3d5abe4cf5017ad709966f9f8b2c4280f1c50bca72313d3660cfb4f",
+    "cpuNs": {
+      "all": 243670000000,
+      "underSymbolRead": 43520000000,
+      "getterSelf": 2060000000,
+      "allPointerTableSlots": 7660000000,
+      "directTableProbe": 3410000000,
+      "dispatchSelf": 230000000
+    },
+    "topSlotCallersNs": {
+      "checker.(*Checker).getTypeOfMappedSymbol": 1840000000,
+      "checker.(*Checker).getTypeOfVariableOrParameterOrProperty": 800000000,
+      "checker.(*Checker).getResolvedSymbol": 550000000,
+      "checker.(*Checker).getTypeOfInstantiatedSymbol": 530000000,
+      "checker.(*Checker).newInstantiatedSymbolWithLinks": 530000000,
+      "checker.(*Checker).keepsSymbolUnderInstantiation": 510000000,
+      "checker.(*Checker).getLiteralTypeFromProperty": 420000000,
+      "checker.(*Checker).checkObjectLiteral": 230000000,
+      "checker.(*Checker).resolveMappedTypeMembers.func1": 210000000,
+      "checker.(*Checker).checkPropertyAccessExpressionOrQualifiedName": 170000000
+    }
+  }
+}

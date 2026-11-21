@@ -411,3 +411,7 @@
 | Merge sorted string literal unions | trpc | Matched Go control | 484.18 | 479.03 | 1.011× | 4 | Paired median 0.981×. [Samples](benchmarks/profiles/sorted-literal-runs/small.json.gz) |
 | Merge sorted string literal unions | vscode | Matched Go control | 32339.63 | 32373.23 | 0.999× | 2 | Paired median 0.999×. [Samples](benchmarks/profiles/sorted-literal-runs/large.json.gz) |
 | Merge sorted string literal unions | sentry | Matched Go control | 36205.55 | 35571.97 | 1.018× | 2 | Paired median 1.018×. [Samples](benchmarks/profiles/sorted-literal-runs/large.json.gz) |
+| Live symbol slot hints | typeorm | Matched Go control | 2862.33 | 2767.93 | 1.034× | 6 | Paired median 1.003×. [Samples](benchmarks/profiles/live-symbol-slots/small.json.gz) |
+| Live symbol slot hints | trpc | Matched Go control | 515.07 | 478.01 | 1.078× | 6 | Paired median 1.098×. [Samples](benchmarks/profiles/live-symbol-slots/small.json.gz) |
+| Live symbol slot hints | vscode | Matched Go control | 47503.45 | 48019.72 | 0.989× | 2 | Paired median 0.990×. [Samples](benchmarks/profiles/live-symbol-slots/large.json.gz) |
+| Live symbol slot hints | sentry | Matched Go control | 38561.44 | 39951.94 | 0.965× | 2 | Paired median 0.965×. [Samples](benchmarks/profiles/live-symbol-slots/large.json.gz) |
