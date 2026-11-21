@@ -1,0 +1,58 @@
+package checker
+
+import (
+    "sync"
+    "sync/atomic"
+    "github.com/microsoft/typescript-go/internal/ast"
+)
+
+type mappedDemandOwner struct {
+    flags atomic.Uint32
+    entries map[*ast.Symbol]*mappedDemandEntry
+}
+type mappedDemandEntry struct {
+    owner *mappedDemandOwner
+    flags atomic.Uint32
+    cohort int
+}
+type mappedDemandStore struct {
+    entries map[*ast.Symbol]*mappedDemandEntry
+    dropped uint64
+}
+var mappedStores struct {
+    sync.Mutex
+    stores []*mappedDemandStore
+}
+
+func (c *Checker) recordHeuristicMember(owner **mappedDemandOwner, symbol *ast.Symbol, cohort int) {
+    if c.mappedDemand == nil {
+        c.mappedDemand = &mappedDemandStore{entries:make(map[*ast.Symbol]*mappedDemandEntry)}
+        mappedStores.Lock()
+        mappedStores.stores = append(mappedStores.stores,c.mappedDemand)
+        mappedStores.Unlock()
+    }
+    if len(c.mappedDemand.entries)>=250000 {c.mappedDemand.dropped++; return}
+    if *owner==nil {*owner=&mappedDemandOwner{entries:make(map[*ast.Symbol]*mappedDemandEntry)}}
+    entry:=&mappedDemandEntry{owner:*owner,cohort:cohort}
+    (*owner).entries[symbol]=entry
+    c.mappedDemand.entries[symbol]=entry
+}
+
+type MappedDemandReport struct {
+    Cohorts [3][16]uint64
+    Dropped uint64
+}
+
+func MappedDemand() MappedDemandReport {
+    var out MappedDemandReport
+    mappedStores.Lock()
+    defer mappedStores.Unlock()
+    for _,store:=range mappedStores.stores {
+        out.Dropped+=store.dropped
+        for _,entry:=range store.entries {
+            mask:=entry.flags.Load()|entry.owner.flags.Load()
+            out.Cohorts[entry.cohort][mask]++
+        }
+    }
+    return out
+}
