@@ -57,8 +57,8 @@ if mode == "candidate":
 		newAlias = c.instantiateTypeAlias(t.alias, m)
 	}""", """var mappedAlias TypeAlias
 	keyAlias := alias
-	if keyAlias == nil && t.alias != nil {
-		mappedAlias = TypeAlias{symbol: t.alias.symbol, typeArguments: c.instantiateTypes(t.alias.typeArguments, m)}
+	if original := t.alias; keyAlias == nil && original != nil {
+		mappedAlias = TypeAlias{symbol: original.symbol, typeArguments: c.instantiateTypes(original.typeArguments, m)}
 		keyAlias = &mappedAlias
 	}""")
     body = replace(body, "getTypeInstantiationKey(typeArguments, newAlias,", "getTypeInstantiationKey(typeArguments, keyAlias,")
