@@ -1,0 +1,83 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"go/ast"
+	"go/token"
+	"go/types"
+	"os"
+	"path/filepath"
+
+	"golang.org/x/tools/go/packages"
+)
+
+type write struct {
+	File                     string
+	Start, End               int
+	Receiver, Value, Checker string
+}
+
+func main() {
+	cfg := &packages.Config{Mode: packages.NeedName | packages.NeedFiles | packages.NeedCompiledGoFiles | packages.NeedTypes | packages.NeedSyntax | packages.NeedTypesInfo | packages.NeedImports | packages.NeedDeps}
+	ps, err := packages.Load(cfg, "./internal/checker")
+	if err != nil || packages.PrintErrors(ps) != 0 || len(ps) != 1 {
+		panic(fmt.Sprint(err))
+	}
+	p := ps[0]
+	st := p.Types.Scope().Lookup("ValueSymbolLinks").Type().Underlying().(*types.Struct)
+	var field *types.Var
+	for f := range st.Fields() {
+		if f.Name() == "resolvedType" {
+			field = f
+		}
+	}
+	if field == nil {
+		panic("field missing")
+	}
+	var writes []write
+	for _, file := range p.Syntax {
+		path := p.Fset.Position(file.Pos()).Filename
+		src, err := os.ReadFile(path)
+		if err != nil {
+			panic(err)
+		}
+		offset := func(pos token.Pos) int { return p.Fset.PositionFor(pos, false).Offset }
+		for _, decl := range file.Decls {
+			fd, ok := decl.(*ast.FuncDecl)
+			if !ok {
+				continue
+			}
+			ast.Inspect(fd.Body, func(n ast.Node) bool {
+				a, ok := n.(*ast.AssignStmt)
+				if !ok {
+					return true
+				}
+				for _, lhs := range a.Lhs {
+					s, ok := lhs.(*ast.SelectorExpr)
+					if !ok || p.TypesInfo.Uses[s.Sel] != field {
+						continue
+					}
+					if len(a.Lhs) != 1 || len(a.Rhs) != 1 || a.Tok != token.ASSIGN {
+						panic("unsupported store")
+					}
+					sc := p.Types.Scope().Innermost(a.Pos())
+					_, c := sc.LookupParent("c", a.Pos())
+					owner := "c"
+					if c == nil || types.TypeString(c.Type(), func(pkg *types.Package) string { return pkg.Name() }) != "*checker.Checker" {
+						if fd.Name.Name == "addPropertyToElementList" {
+							owner = "b.ch"
+						} else {
+							panic("missing checker at " + fd.Name.Name)
+						}
+					}
+					writes = append(writes, write{filepath.Base(path), offset(a.Pos()), offset(a.End()), string(src[offset(s.X.Pos()):offset(s.X.End())]), string(src[offset(a.Rhs[0].Pos()):offset(a.Rhs[0].End())]), owner})
+				}
+				return true
+			})
+		}
+	}
+	if err := json.NewEncoder(os.Stdout).Encode(writes); err != nil {
+		panic(err)
+	}
+}

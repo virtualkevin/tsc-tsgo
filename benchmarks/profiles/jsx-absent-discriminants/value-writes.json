@@ -1,0 +1,483 @@
+{
+  "files": {
+    "checker.go": "3a1445bb4033d7fb2a2e5b692fcbf551a7c755a7e3297a7b4b179eb607218e33",
+    "inference.go": "07d05600b3ca4e1855814d1c21192abdd7d99e956db12f8490135a9799f61509",
+    "jsx.go": "fba14e883682a80d1bdca98d92b04c0f046247b54054365ee9b818ccdcec59b8",
+    "nodebuilderimpl.go": "c29c3388562d69d76c24cf33072881db6b3246e2dcc548a104fb67dfe8b21657",
+    "services.go": "60b50f593a5aa9a688750bd6285ff51a6e0e0f8ecafb3e9f8876b95b5120aa65"
+  },
+  "writes": [
+    {
+      "File": "checker.go",
+      "Start": 73526,
+      "End": 73606,
+      "Receiver": "c.valueSymbolLinks.Get(c.undefinedSymbol)",
+      "Value": "c.undefinedWideningType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 73608,
+      "End": 73730,
+      "Receiver": "c.valueSymbolLinks.Get(c.argumentsSymbol)",
+      "Value": "c.getGlobalType(\"IArguments\", 0 /*arity*/, true /*reportErrors*/)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 73732,
+      "End": 73798,
+      "Receiver": "c.valueSymbolLinks.Get(c.unknownSymbol)",
+      "Value": "c.errorType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 73800,
+      "End": 73915,
+      "Receiver": "c.valueSymbolLinks.Get(c.globalThisSymbol)",
+      "Value": "c.newObjectType(ObjectFlagsAnonymous, c.globalThisSymbol)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 265817,
+      "End": 265943,
+      "Receiver": "c.valueSymbolLinks.Get(member)",
+      "Value": "c.getRegularTypeOfLiteralType(c.checkExpression(attr.AsImportAttribute().Value))",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 503141,
+      "End": 503284,
+      "Receiver": "links",
+      "Value": "c.addOptionalityEx(t, false, declaration != nil && declaration.Initializer() == nil && isOptionalDeclaration(declaration))",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 503502,
+      "End": 503584,
+      "Receiver": "links",
+      "Value": "c.getTypeFromBindingPattern(declaration.Name(), false, false)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 504142,
+      "End": 504216,
+      "Receiver": "c.valueSymbolLinks.Get(c.getSymbolOfDeclaration(element))",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 639789,
+      "End": 639811,
+      "Receiver": "links",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 647962,
+      "End": 647991,
+      "Receiver": "links",
+      "Value": "leftType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 648010,
+      "End": 648126,
+      "Receiver": "links",
+      "Value": "c.getUnionTypeEx([]*Type{leftType, rightTypeWithoutUndefined}, UnionReductionSubtype, nil, nil)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 651585,
+      "End": 651621,
+      "Receiver": "links",
+      "Value": "c.undefinedType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 651638,
+      "End": 651744,
+      "Receiver": "links",
+      "Value": "c.addOptionalityEx(c.getTypeOfSymbol(prop), true /*isProperty*/, true /*isOptional*/)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 653161,
+      "End": 653197,
+      "Receiver": "links",
+      "Value": "c.undefinedType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 653210,
+      "End": 653254,
+      "Receiver": "links",
+      "Value": "c.getTypeOfSymbol(prop)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 676419,
+      "End": 676466,
+      "Receiver": "c.valueSymbolLinks.Get(symbol)",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 676606,
+      "End": 676653,
+      "Receiver": "c.valueSymbolLinks.Get(symbol)",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 745288,
+      "End": 745366,
+      "Receiver": "c.valueSymbolLinks.Get(anonymousSymbol)",
+      "Value": "defaultContainingObject",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 748130,
+      "End": 748273,
+      "Receiver": "c.valueSymbolLinks.Get(result)",
+      "Value": "c.newAnonymousType(result, resolvedModuleType.Members(), nil, nil, resolvedModuleType.indexInfos)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 776437,
+      "End": 776495,
+      "Receiver": "links",
+      "Value": "c.getUnionType(deferred.constituents)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 776510,
+      "End": 776575,
+      "Receiver": "links",
+      "Value": "c.getIntersectionType(deferred.constituents)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 781698,
+      "End": 781783,
+      "Receiver": "links",
+      "Value": "c.instantiateType(c.getTypeOfSymbol(links.target), links.mapper)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 782814,
+      "End": 782836,
+      "Receiver": "links",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 794928,
+      "End": 795060,
+      "Receiver": "c.valueSymbolLinks.Get(symbol)",
+      "Value": "c.getTypeFromBindingElement(e, false /*includePatternInType*/, false /*reportErrors*/)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 797498,
+      "End": 797563,
+      "Receiver": "links",
+      "Value": "c.getTypeOfFuncClassEnumModuleWorker(symbol)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 836208,
+      "End": 836320,
+      "Receiver": "c.valueSymbolLinks.Get(symbol)",
+      "Value": "c.getTypeFromBindingElement(e, includePatternInType, reportErrors)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 859275,
+      "End": 859333,
+      "Receiver": "links",
+      "Value": "c.getDeclaredTypeOfEnumMember(symbol)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 862028,
+      "End": 862050,
+      "Receiver": "links",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 864022,
+      "End": 864074,
+      "Receiver": "links",
+      "Value": "c.getTypeOfSymbol(targetSymbol)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 864091,
+      "End": 864123,
+      "Receiver": "links",
+      "Value": "c.errorType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 864264,
+      "End": 864296,
+      "Receiver": "links",
+      "Value": "c.errorType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 966555,
+      "End": 966584,
+      "Receiver": "links",
+      "Value": "propType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 966639,
+      "End": 966671,
+      "Receiver": "links",
+      "Value": "c.errorType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 978185,
+      "End": 978242,
+      "Receiver": "links",
+      "Value": "c.createArrayType(combinedParamType)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 978257,
+      "End": 978295,
+      "Receiver": "links",
+      "Value": "combinedParamType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 978521,
+      "End": 978603,
+      "Receiver": "links",
+      "Value": "c.createArrayType(c.getTypeAtPosition(shorter, longestCount))",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 978631,
+      "End": 978697,
+      "Receiver": "links",
+      "Value": "c.instantiateType(links.resolvedType, mapper)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 993830,
+      "End": 993876,
+      "Receiver": "links",
+      "Value": "c.getUnionType(propTypes)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 993889,
+      "End": 993942,
+      "Receiver": "links",
+      "Value": "c.getIntersectionType(propTypes)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 995854,
+      "End": 995876,
+      "Receiver": "links",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 1122685,
+      "End": 1122757,
+      "Receiver": "c.valueSymbolLinks.Get(metaPropertySymbol)",
+      "Value": "importMetaType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 1126828,
+      "End": 1126889,
+      "Receiver": "c.valueSymbolLinks.Get(property)",
+      "Value": "typeParameter",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 1127232,
+      "End": 1127296,
+      "Receiver": "c.valueSymbolLinks.Get(lengthSymbol)",
+      "Value": "c.numberType",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 1127460,
+      "End": 1127540,
+      "Receiver": "c.valueSymbolLinks.Get(lengthSymbol)",
+      "Value": "c.getUnionType(literalTypes)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 1247848,
+      "End": 1247889,
+      "Receiver": "links",
+      "Value": "c.createArrayType(t)",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 1247904,
+      "End": 1247926,
+      "Receiver": "links",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "checker.go",
+      "Start": 1424012,
+      "End": 1424047,
+      "Receiver": "links",
+      "Value": "info.valueType",
+      "Checker": "c"
+    },
+    {
+      "File": "inference.go",
+      "Start": 54243,
+      "End": 54397,
+      "Receiver": "links",
+      "Value": "core.OrElse(c.inferReverseMappedType(reverseLinks.propertyType, reverseLinks.mappedType, reverseLinks.constraintType), c.unknownType)",
+      "Checker": "c"
+    },
+    {
+      "File": "inference.go",
+      "Start": 59338,
+      "End": 59398,
+      "Receiver": "c.valueSymbolLinks.Get(literalProp)",
+      "Value": "c.anyType",
+      "Checker": "c"
+    },
+    {
+      "File": "jsx.go",
+      "Start": 35897,
+      "End": 35926,
+      "Receiver": "links",
+      "Value": "exprType",
+      "Checker": "c"
+    },
+    {
+      "File": "jsx.go",
+      "Start": 40402,
+      "End": 40436,
+      "Receiver": "links",
+      "Value": "childTypes[0]",
+      "Checker": "c"
+    },
+    {
+      "File": "jsx.go",
+      "Start": 40535,
+      "End": 40585,
+      "Receiver": "links",
+      "Value": "c.createTupleType(childTypes)",
+      "Checker": "c"
+    },
+    {
+      "File": "jsx.go",
+      "Start": 40602,
+      "End": 40668,
+      "Receiver": "links",
+      "Value": "c.createArrayType(c.getUnionType(childTypes))",
+      "Checker": "c"
+    },
+    {
+      "File": "jsx.go",
+      "Start": 56295,
+      "End": 56356,
+      "Receiver": "c.valueSymbolLinks.Get(parameterSymbol)",
+      "Value": "result",
+      "Checker": "c"
+    },
+    {
+      "File": "nodebuilderimpl.go",
+      "Start": 78590,
+      "End": 78631,
+      "Receiver": "links",
+      "Value": "c.createArrayType(t)",
+      "Checker": "c"
+    },
+    {
+      "File": "nodebuilderimpl.go",
+      "Start": 78650,
+      "End": 78672,
+      "Receiver": "links",
+      "Value": "t",
+      "Checker": "c"
+    },
+    {
+      "File": "nodebuilderimpl.go",
+      "Start": 104169,
+      "End": 104232,
+      "Receiver": "b.ch.valueSymbolLinks.Get(setterParam)",
+      "Value": "writeType",
+      "Checker": "b.ch"
+    },
+    {
+      "File": "services.go",
+      "Start": 12901,
+      "End": 12931,
+      "Receiver": "symbolLinks",
+      "Value": "nil",
+      "Checker": "c"
+    },
+    {
+      "File": "services.go",
+      "Start": 13248,
+      "End": 13287,
+      "Receiver": "symbolLinks",
+      "Value": "resolvedType",
+      "Checker": "c"
+    }
+  ]
+}

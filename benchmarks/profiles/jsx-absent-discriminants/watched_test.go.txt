@@ -1,0 +1,60 @@
+package checker
+
+import (
+	"testing"
+
+	"github.com/microsoft/typescript-go/internal/ast"
+)
+
+type changingAbsentDiscriminator struct {
+	*ObjectLiteralDiscriminator
+	onMiddle func()
+}
+
+func (d *changingAbsentDiscriminator) matches(index int, t *Type) bool {
+	if index == 1 && d.onMiddle != nil {
+		callback := d.onMiddle
+		d.onMiddle = nil
+		callback()
+	}
+	return d.ObjectLiteralDiscriminator.matches(index, t)
+}
+
+func TestAbsentPlanInvalidatedDuringFallback(t *testing.T) {
+	c := lazyPropertyTestChecker()
+	members := []*ast.Symbol{c.newProperty("a", c.undefinedType), c.newProperty("b", c.undefinedType), c.newProperty("c", c.undefinedType)}
+	var watched *ValueSymbolLinks
+	makeBranch := func() *Type {
+		obj := lazyObject(c)
+		x := c.newIntersectionType(ObjectFlagsIsNeverIntersectionComputed, []*Type{obj, obj})
+		data := x.AsIntersectionType()
+		data.resolvedApparentType = x
+		data.propertyCacheWithoutFunctionPropertyAugment = ast.SymbolTable{}
+		for i, m := range members {
+			prop := lazyProperty(c, m.Name, c.undefinedType, true)
+			if i != 1 {
+				prop.CheckFlags |= ast.CheckFlagsMapped
+			}
+			data.propertyCacheWithoutFunctionPropertyAugment[m.Name] = prop
+			if i == 2 {
+				watched = c.valueSymbolLinks.Get(prop)
+			}
+		}
+		return x
+	}
+	left, right := makeBranch(), makeBranch()
+	target := c.newUnionType(ObjectFlagsNone, []*Type{left, right})
+	plan := c.makeAbsentPropertyPlan(target.Types(), members)
+	if len(plan.spans) != 2 || !watched.watchesAbsentProperties {
+		t.Fatal("fixture failed to create two watched spans")
+	}
+	c.absentPlans = map[*Type]*absentPropertyPlan{target: plan}
+	original := &ObjectLiteralDiscriminator{c: c, members: members}
+	d := &changingAbsentDiscriminator{original, func() { c.setResolvedValue(watched, c.stringType) }}
+	if got := c.discriminateWithAbsentPlan(target, d, plan); got != left || c.absentPlans[target] != nil {
+		t.Fatal("later span used a result invalidated by the middle column")
+	}
+	if c.discriminateTypeByDiscriminableItems(target, original) != left {
+		t.Fatal("ordinary lookup disagrees")
+	}
+}
